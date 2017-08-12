@@ -5,31 +5,31 @@ The manifest and mmodules defined on this repo will deploy an OpenStack cloud ba
 
 Once all the hardware is provisioned, enter in controller and compute nodes and follow these steps:
 
-1. Clone releng::
+1. Clone releng-xci::
 
-    git clone https://gerrit.opnfv.org/gerrit/releng /opt/releng
+    git clone https://gerrit.opnfv.org/gerrit/releng-xci /opt/releng-xci
 
 2. Copy hiera to the right place::
 
-    cp /opt/releng/prototypes/puppet-infracloud/hiera/common.yaml /var/lib/hiera
+    cp /opt/puppet-infracloud/hiera/common.yaml /var/lib/hiera
 
 3. Install modules::
 
-    cd /opt/releng/prototypes/puppet-infracloud
+    cd /opt/puppet-infracloud
     ./install_modules.sh
 
 4. Apply the infracloud manifest::
 
-    cd /opt/releng/prototypes/puppet-infracloud
-    puppet apply manifests/site.pp --modulepath=/etc/puppet/modules:/opt/releng/prototypes/puppet-infracloud/modules
+    cd /opt/puppet-infracloud
+    puppet apply manifests/site.pp --modulepath=/etc/puppet/modules:/opt/puppet-infracloud/modules
 
 5. Once you finish this operation on controller and compute nodes, you will have a functional OpenStack cloud.
 
 In jumphost, follow that steps:
 
-1. Clone releng::
+1. Clone releng-xci::
 
-    git clone https://gerrit.opnfv.org/gerrit/releng /opt/releng
+    git clone https://gerrit.opnfv.org/gerrit/releng-xci /opt/releng-xci
 
 2. Create OpenStack clouds config directory::
 
@@ -37,7 +37,7 @@ In jumphost, follow that steps:
 
 3. Copy credentials file::
 
-    cp /opt/releng/prototypes/puppet-infracloud/creds/clouds.yaml /root/.config/openstack/
+    cp /opt/puppet-infracloud/creds/clouds.yaml /root/.config/openstack/
 
 4. Install python-dev package as the installation of python-openstackclient depends on it
 

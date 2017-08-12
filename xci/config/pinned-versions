@@ -19,7 +19,7 @@
 #   export OPENSTACK_BIFROST_VERSION="a87f7ce6c8725b3bbffec7b2efa1e466796848a9"
 #   export OPENSTACK_OSA_VERSION="4713cf45e11b4ebca9fbed25d1389854602213d8"
 #-------------------------------------------------------------------------------
-# use releng from master until the development work with the sandbox is complete
+# use releng-xci from master until the development work with the sandbox is complete
 export OPNFV_RELENG_VERSION="master"
 # HEAD of bifrost "master" as of 29.06.2017
 export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"7c9bb5e07c6bc3b42c9a9e8457e5eef511075b38"}
