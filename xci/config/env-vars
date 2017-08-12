@@ -2,12 +2,12 @@
 # !!! Changing or overriding these will most likely break everything altogether !!!
 #    Please do not change these settings if you are not developing for XCI!
 #-------------------------------------------------------------------------------
-export OPNFV_RELENG_GIT_URL=https://gerrit.opnfv.org/gerrit/releng.git
+export OPNFV_RELENG_GIT_URL=https://gerrit.opnfv.org/gerrit/releng-xci.git
 export OPENSTACK_BIFROST_GIT_URL=https://git.openstack.org/openstack/bifrost
 export OPENSTACK_OSA_GIT_URL=https://git.openstack.org/openstack/openstack-ansible
 export OPENSTACK_OSA_ETC_PATH=/etc/openstack_deploy
 export OPNFV_HOST_IP=192.168.122.2
-export XCI_FLAVOR_ANSIBLE_FILE_PATH=$OPNFV_RELENG_PATH/prototypes/xci/file/$XCI_FLAVOR
+export XCI_FLAVOR_ANSIBLE_FILE_PATH=$OPNFV_RELENG_PATH/xci/file/$XCI_FLAVOR
 export CI_LOOP=${CI_LOOP:-daily}
 export JOB_NAME=${JOB_NAME:-false}
 # TODO: this currently matches to bifrost ansible version
