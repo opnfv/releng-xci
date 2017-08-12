@@ -10,12 +10,12 @@ Please follow documentation on: [https://git.openstack.org/cgit/openstack/bifros
 Once the **baremetal** VM is finished, you can login by ssh and start installing bifrost there. To proceed, follow this steps:
 
  1. Change to root user, install git
- 2. Clone releng project (cd /opt, git clone https://gerrit.opnfv.org/gerrit/releng)
- 3. cd /opt/releng/prototypes/puppet-infracloud
+ 2. Clone releng-xci project (cd /opt, git clone https://gerrit.opnfv.org/gerrit/releng-xci)
+ 3. cd /opt/puppet-infracloud
  4. Copy hiera to the right folder (cp hiera/common_baremetal.yaml /var/lib/hiera/common.yaml)
  5. Ensure hostname is properly set ( hostnamectl set-hostname baremetal.opnfvlocal , hostname -f )
  6. Install puppet and modules ( ./install_puppet.sh , ./install_modules.sh )
- 7. Apply puppet to install bifrost (puppet apply manifests/site.pp --modulepath=/etc/puppet/modules:/opt/releng/prototypes/puppet-infracloud/modules)
+ 7. Apply puppet to install bifrost (puppet apply manifests/site.pp --modulepath=/etc/puppet/modules:/opt/puppet-infracloud/modules)
 
  With these steps you will have a bifrost controller up and running.
 
@@ -43,15 +43,15 @@ Once all the servers are on **active** state, they can be accessed by ssh and In
 On each of those, follow that steps:
 
  1. ssh from the bifrost controller to their external ips: ssh root@172.30.13.90
- 2. cd /opt, clone releng project (git clone https://gerrit.opnfv.org/gerrit/releng)
+ 2. cd /opt, clone releng-xci project (git clone https://gerrit.opnfv.org/gerrit/releng-xci)
  3. Copy hiera to the right folder ( cp hiera/common_baremetal.yaml /var/lib/hiera/common.yaml)
  4. Install modules: ./install_modules.sh
- 5. Apply puppet: puppet apply manifests/site.pp --modulepath=/etc/puppet/modules:/opt/releng/prototypes/puppet-infracloud/modules
+ 5. Apply puppet: puppet apply manifests/site.pp --modulepath=/etc/puppet/modules:/opt/puppet-infracloud/modules
 
 Once this has been done on controller and compute, you will have a working cloud. To start working with it, follow that steps:
 
  1. Ensure that controller00.opnfvlocal resolves properly to the external IP (this is already done in the bifrost controller)
- 2. Copy releng/prototypes/puppet-infracloud/creds/clouds.yaml to $HOME/.config/openstack/clouds.yaml
+ 2. Copy releng-xci/puppet-infracloud/creds/clouds.yaml to $HOME/.config/openstack/clouds.yaml
  3. Install python-openstackclient
  4. Specify the cloud you want to use: export OS_CLOUD=opnfvlocal
  5. Now you can start operating in your cloud with openstack-client: openstack flavor list

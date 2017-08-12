@@ -11,7 +11,7 @@ Please follow that steps:
 
 2. Clone releng::
 
-    sudo git clone https://gerrit.opnfv.org/gerrit/releng /opt/releng
+    sudo git clone https://gerrit.opnfv.org/gerrit/releng-xci /opt/releng-xci
 
 3. Clone infracloud::
 
@@ -19,7 +19,7 @@ Please follow that steps:
 
 4. Combine releng scripts and playbooks with bifrost::
 
-    sudo cp -R /opt/releng/prototypes/bifrost/* /opt/bifrost/
+    sudo cp -R /opt/releng-xci/bifrost/* /opt/bifrost/
 
 5. Copy /opt/puppet-infracloud/templates/bifrost/create_bridge.py.erb to /opt/puppet-infracloud/files/elements/infra-cloud-bridge/static/opt/create_bridge.py,
    and replace tag <%= @bridge_name -%> with br_opnfv
