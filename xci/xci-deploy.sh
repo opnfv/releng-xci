@@ -38,6 +38,13 @@ source "$XCI_PATH/config/${XCI_FLAVOR}-vars"
 source $XCI_PATH/config/env-vars
 
 #-------------------------------------------------------------------------------
+# Set VM memory size to 16384 when XCI is deployed with sdn
+#-------------------------------------------------------------------------------
+if [[ $XCI_DEPLOY_OPTION == "sdn" ]]; then
+    export VM_MEMORY_SIZE=16384
+fi
+
+#-------------------------------------------------------------------------------
 # Sanitize local development environment variables
 #-------------------------------------------------------------------------------
 user_local_dev_vars=(OPNFV_RELENG_DEV_PATH OPNFV_OSA_DEV_PATH OPNFV_BIFROST_DEV_PATH)
@@ -54,6 +61,7 @@ echo "Info: Deployment parameters"
 echo "-------------------------------------------------------------------------"
 echo "xci flavor: $XCI_FLAVOR"
 echo "opnfv/releng-xci version: $OPNFV_RELENG_VERSION"
+echo "xci deployment option: $XCI_DEPLOY_OPTION"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
 echo "-------------------------------------------------------------------------"
