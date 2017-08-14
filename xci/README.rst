@@ -96,6 +96,9 @@ puts much lower requirements on the host machine and full-blown HA.
 See the details of the flavors from
 `this link <https://wiki.opnfv.org/display/INF/XCI+Developer+Sandbox#XCIDeveloperSandbox-AvailableFlavors>`_.
 
+It also provides option to install Opendaylight (which provides some advanced networking capabilities) in
+mini, noha and ha flavors.
+
 ==========
 How to Use
 ==========
@@ -143,6 +146,10 @@ change into directory where the sandbox script is located
 set the sandbox flavor
 
     export XCI_FLAVOR=noha
+
+set the XCI deployment option (nosdn by default)
+
+    export XCI_DEPLOY_OPTION=sdn
 
 set the version to use for openstack-ansible
 

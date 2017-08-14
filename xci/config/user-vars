@@ -23,6 +23,18 @@
 export XCI_FLAVOR=${XCI_FLAVOR:-aio}
 
 #-------------------------------------------------------------------------------
+# Set Deployment Option
+#-------------------------------------------------------------------------------
+# OPNFV XCI can be deployed with or without SDN (i.e. Opendaylight Controller)
+#
+# Examples:
+#   export XCI_DEPLOY_OPTION="nosdn"
+# or
+#   export XCI_DEPLOY_OPTION="sdn"
+#-------------------------------------------------------------------------------
+export XCI_DEPLOY_OPTION=${XCI_DEPLOY_OPTION:-nosdn}
+
+#-------------------------------------------------------------------------------
 # Set Paths to where git repositories of XCI Components will be cloned
 #-------------------------------------------------------------------------------
 # OPNFV XCI Sandbox is not verified to be used as non-root user as of yet so
