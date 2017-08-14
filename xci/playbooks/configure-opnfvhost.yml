@@ -100,6 +100,7 @@
         chdir: "{{OPENSTACK_OSA_PATH}}/scripts"
   roles:
     - { role: "os-odl-sfc", when: "OPNFV_SCENARIO == 'os-odl-sfc'" }
+    - { role: "os-odl-nofeature", when: "OPNFV_SCENARIO == 'os-odl-nofeature'" }
 
 - hosts: localhost
   remote_user: root
