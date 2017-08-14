@@ -16,3 +16,8 @@
   src: https://gerrit.opnfv.org/gerrit/sfc
   version: master
   role: scenarios/os-odl-sfc/role/os-odl-sfc
+- scenario: os-odl-nofeature
+  scm: git
+  src: https://git.opnfv.org/releng-xci
+  version: master
+  role: xci/scenarios/os-odl-nofeature/role/os-odl-nofeature
