@@ -9,7 +9,7 @@
 ##############################################################################
 OPNFV_RELENG_GIT_URL: "{{ lookup('env','OPNFV_RELENG_GIT_URL') }}"
 OPNFV_RELENG_PATH: "{{ lookup('env','OPNFV_RELENG_PATH') }}"
-OPNFV_RELENG_DEV_PATH: "{{ lookup('env','OPNFV_RELENG_DEV_PATH') }}"
+OPNFV_RELENG_XCI_DEV_PATH: "{{ lookup('env','OPNFV_RELENG_XCI_DEV_PATH') }}"
 OPNFV_RELENG_VERSION: "{{ lookup('env','OPNFV_RELENG_VERSION') }}"
 OPENSTACK_BIFROST_GIT_URL: "{{ lookup('env','OPENSTACK_BIFROST_GIT_URL') }}"
 OPENSTACK_BIFROST_PATH: "{{ lookup('env','OPENSTACK_BIFROST_PATH') }}"

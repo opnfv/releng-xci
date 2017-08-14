@@ -36,12 +36,12 @@
         - OPENSTACK_BIFROST_DEV_PATH != ""
     - name: Synchronize local development releng-xci repository to XCI paths
       synchronize:
-        src: "{{ OPNFV_RELENG_DEV_PATH }}"
+        src: "{{ OPNFV_RELENG_XCI_DEV_PATH }}"
         dest: "{{ OPNFV_RELENG_PATH }}"
         recursive: yes
         delete: yes
       when:
-        - OPNFV_RELENG_DEV_PATH != ""
+        - OPNFV_RELENG_XCI_DEV_PATH != ""
     - name: Copy extra vars to releng-xci and bifrost
       synchronize:
         src: "{{ XCI_EXTRA_VARS_PATH }}"
