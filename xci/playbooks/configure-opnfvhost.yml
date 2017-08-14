@@ -98,6 +98,19 @@
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/openstack_services.yml {{OPENSTACK_OSA_PATH}}/playbooks/defaults/repo_packages/openstack_services.yml"
       when:
         - OPENSTACK_OSA_VERSION != "master"
+
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - ../var/flavor-vars.yml
+    - ../var/opnfv.yml
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+  roles:
+   - { role: "os-odl-nofeature", when: "OPNFV_SCENARIO == 'os-odl-nofeature'" }
+  tasks:
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
