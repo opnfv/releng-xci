@@ -26,12 +26,12 @@
   tasks:
     - name: Synchronize local development releng-xci repository to XCI paths
       synchronize:
-        src: "{{ OPNFV_RELENG_DEV_PATH }}"
+        src: "{{ OPNFV_RELENG_XCI_DEV_PATH }}"
         dest: "{{ OPNFV_RELENG_PATH }}"
         recursive: yes
         delete: yes
       when:
-        - OPNFV_RELENG_DEV_PATH != ""
+        - OPNFV_RELENG_XCI_DEV_PATH != ""
     - name: Synchronize local development openstack-ansible repository to XCI paths
       synchronize:
         src: "{{ OPENSTACK_OSA_DEV_PATH }}"
@@ -92,6 +92,7 @@
     - ../var/opnfv.yml
   roles:
    - { role: "os-odl-sfc", when: "OPNFV_SCENARIO == 'os-odl-sfc'" }
+   - { role: "os-odl-nofeature", when: "OPNFV_SCENARIO == 'os-odl-nofeature'" }
   tasks:
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
