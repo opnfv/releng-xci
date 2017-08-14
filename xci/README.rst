@@ -195,7 +195,7 @@ directories for releng-xci/bifrost/OSA, instead of cloning the whole repositorie
 on each run.
 To enable it, you need to export the different DEV_PATH vars:
 
-- export OPNFV_RELENG_DEV_PATH=/opt/releng-xci/
+- export OPNFV_RELENG_XCI_DEV_PATH=/opt/releng-xci/
 - export OPENSTACK_BIFROST_DEV_PATH=/opt/bifrost/
 - export OPENSTACK_OSA_DEV_PATH=/opt/openstack-ansible/
 

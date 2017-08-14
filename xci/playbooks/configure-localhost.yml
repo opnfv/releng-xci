@@ -25,12 +25,12 @@
   tasks:
     - name: Synchronize local development releng-xci repository to XCI paths
       synchronize:
-        src: "{{ OPNFV_RELENG_DEV_PATH }}"
+        src: "{{ OPNFV_RELENG_XCI_DEV_PATH }}"
         dest: "{{ OPNFV_RELENG_PATH }}"
         recursive: yes
         delete: yes
       when:
-        - OPNFV_RELENG_DEV_PATH != ""
+        - OPNFV_RELENG_XCI_DEV_PATH != ""
 
 - hosts: localhost
   connection: local
