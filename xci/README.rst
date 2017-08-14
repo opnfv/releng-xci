@@ -195,7 +195,7 @@ directories for releng-xci/bifrost/OSA, instead of cloning the whole repositorie
 on each run.
 To enable it, you need to export the different DEV_PATH vars:
 
-- export OPNFV_RELENG_DEV_PATH=/opt/releng-xci/
+- export OPNFV_RELENG_XCI_DEV_PATH=/opt/releng-xci/
 - export OPENSTACK_BIFROST_DEV_PATH=/opt/bifrost/
 - export OPENSTACK_OSA_DEV_PATH=/opt/openstack-ansible/
 
@@ -226,6 +226,36 @@ Testing
 Sandbox is continuously tested by OPNFV CI to ensure the changes do not impact
 users. In fact, OPNFV CI itself uses the sandbox scripts to run daily platform
 verification jobs.
+
+===========
+Workarounds
+===========
+
+Sometimes while running xci, execution fails due to ntp server sync and dns lookup issues
+while configuring VMs (opnfv, controller and compute). To avoid this, the following workaround
+can be followed to setup local ntp and dns servers in synchronize-time role.
+
+- block:
+    - name: restart chrony
+      service:
+        name: chrony
+        state: restarted
+    - name: synchronize time
+      shell: sed -i '1 i\server <ntp-server-ip> iburst' /etc/chrony/chrony.conf && sed -i '21 s/^/#/'
+             /etc/chrony/chrony.conf && service chrony restart && chronyc -a 'burst 4/4' &&
+             chronyc -a makestep
+    - name: ensure resolv.conf.d directory exists
+      file:
+        path: "/etc/resolvconf/resolv.conf.d/"
+        state: directory
+    - name: ensure resolv.conf.d base file exists
+      file:
+        path: "/etc/resolvconf/resolv.conf.d/base"
+        state: touch
+    - name: update dns resolv.conf file
+      shell: sed -i '1 i\nameserver <dns-server-ip-1>' /etc/resolvconf/resolv.conf.d/base &&
+             sed -i '1 i\nameserver <dns-server-ip-2>' /etc/resolvconf/resolv.conf.d/base
+  when: ansible_distribution_release == "xenial"
 
 =======
 Support

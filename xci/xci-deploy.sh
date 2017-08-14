@@ -42,9 +42,21 @@ if [[ $OPNFV_SCENARIO == "os-odl-sfc" ]]; then
 fi
 
 #-------------------------------------------------------------------------------
+# Set VM memory size to 20480 when XCI is deployed with os-odl-* scenario
+# and ha flavor
+# Set VM memory size to 16384 when XCI is deployed with os-odl-* scenario
+# and other flavors (mini and no-ha)
+#-------------------------------------------------------------------------------
+if [[ $OPNFV_SCENARIO == *"odl"* ]] && [[ $XCI_FLAVOR == "ha" ]]; then
+    export VM_MEMORY_SIZE=20480
+elif [[ $OPNFV_SCENARIO == *"odl"* ]]; then
+    export VM_MEMORY_SIZE=16384
+fi
+
+#-------------------------------------------------------------------------------
 # Sanitize local development environment variables
 #-------------------------------------------------------------------------------
-user_local_dev_vars=(OPNFV_RELENG_DEV_PATH OPNFV_OSA_DEV_PATH OPNFV_BIFROST_DEV_PATH)
+user_local_dev_vars=(OPNFV_RELENG_XCI_DEV_PATH OPNFV_OSA_DEV_PATH OPNFV_BIFROST_DEV_PATH)
 for local_user_var in ${user_local_dev_vars[@]}; do
     [[ -n ${!local_user_var:-} ]] && export $local_user_var=${!local_user_var%/}/
 done
@@ -73,16 +85,6 @@ if [[ $OS_FAMILY != Debian ]]; then
     echo ""
     echo "Error: Sorry, only Ubuntu hosts are supported for now!"
     echo "Error: CentOS7 and openSUSE Leap support is still work in progress."
-    echo ""
-    exit 1
-fi
-
-# TODO: Get rid of this!!!
-# Flavor HA fails to deploy and currently disabled.
-if [[ $XCI_FLAVOR == ha ]]; then
-    echo ""
-    echo "Error: Sorry, the flavor ha is not currently supported due to an upstream issue!"
-    echo "Info : Available flavors are aio, mini, and ha"
     echo ""
     exit 1
 fi
