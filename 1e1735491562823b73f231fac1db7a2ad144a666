@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "da33351e_7d527bde",
+        "filename": "bifrost/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-08-15T06:06:26Z",
+      "side": 1,
+      "message": "this should be releng-xci",
+      "range": {
+        "startLine": 14,
+        "startChar": 51,
+        "endLine": 14,
+        "endChar": 69
+      },
+      "revId": "1e1735491562823b73f231fac1db7a2ad144a666",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_bd6363b0",
+        "filename": "bifrost/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-08-15T06:06:26Z",
+      "side": 1,
+      "message": "I don\u0027t get that. You copy from /opt/bifrost into itself. You probably mean\n\nsudo cp -R /opt/releng-xci/bifrost/* /opt/bifrost/",
+      "revId": "1e1735491562823b73f231fac1db7a2ad144a666",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_dd0f48e0",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 1
