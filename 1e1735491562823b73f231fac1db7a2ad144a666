@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_dd0f48e0",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 2651
+      },
+      "writtenOn": "2017-08-15T03:17:51Z",
+      "side": 1,
+      "message": "since $OPNFV_RELENG_PATH/xci is widely used, how about leveraging a variable OPNFV_XCI_PATH for short and consistent?",
+      "range": {
+        "startLine": 116,
+        "startChar": 3,
+        "endLine": 116,
+        "endChar": 25
+      },
+      "revId": "1e1735491562823b73f231fac1db7a2ad144a666",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
