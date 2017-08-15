@@ -3,6 +3,7 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+exit 0
 submit_bug_report() {
     cd ${XCI_PATH}
     echo ""
