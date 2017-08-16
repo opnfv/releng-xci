@@ -94,6 +94,16 @@ for task in syntax-check list-tasks; do
            -e testing_user=${TESTING_USER}
 done
 
+# NOTE(hwoarang): Disable selinux as we are hitting issues with it from time to
+# time. Remove this when Centos7 is a proper gate on bifrost so we know that
+# selinux works as expected.
+if [[ -e /etc/centos-release ]]; then
+    echo "*************************************"
+    echo "WARNING: Disabling selinux on CentOS7"
+    echo "*************************************"
+    sudo setenforce 0
+fi
+
 # Create the VMS
 ${ANSIBLE} ${ANSIBLE_VERBOSITY} \
        -i inventory/localhost \
