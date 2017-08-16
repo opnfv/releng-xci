@@ -132,8 +132,8 @@ echo "Info: Configured localhost host for openstack-ansible"
 #-------------------------------------------------------------------------------
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-cd $OPNFV_XCI_PATH/playbooks
-ansible-playbook $ANSIBLE_VERBOSITY -i inventory configure-opnfvhost.yml
+cd ${XCI_DEVEL_ROOT}
+ansible-playbook $ANSIBLE_VERBOSITY -i ${OPNFV_XCI_PATH}/playbooks/inventory ${OPNFV_XCI_PATH}/playbooks/configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
 
