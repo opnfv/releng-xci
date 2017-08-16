@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_31213ca0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-08-16T06:39:41Z",
+      "side": 1,
+      "message": "please fix the formatting here",
+      "range": {
+        "startLine": 9,
+        "startChar": 47,
+        "endLine": 9,
+        "endChar": 74
+      },
+      "revId": "b9dbd305a84ec31ef6f575c0dd9518196f75d18d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
