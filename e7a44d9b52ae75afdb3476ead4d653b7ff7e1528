@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "da33351e_57c79045",
+        "filename": "xci/README.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-16T20:12:35Z",
+      "side": 1,
+      "message": "releng-xci.git",
+      "range": {
+        "startLine": 137,
+        "startChar": 46,
+        "endLine": 137,
+        "endChar": 54
+      },
+      "revId": "e7a44d9b52ae75afdb3476ead4d653b7ff7e1528",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_43235605",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 2
