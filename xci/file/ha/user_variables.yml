@@ -146,3 +146,17 @@ trove_wsgi_processes: 1
 ## Sahara
 sahara_api_workers_max: 2
 sahara_api_workers: 1
+
+openrc_os_auth_url: "https://192.168.122.220:5000/v3"
+keystone_auth_admin_password: "opnfv-secret-password"
+openrc_os_password: "opnfv-secret-password"
+openrc_os_domain_name: "Default"
+openrc_cinder_endpoint_type: "publicURL"
+openrc_nova_endpoint_type: "publicURL"
+openrc_os_endpoint_type: "publicURL"
+openrc_clouds_yml_interface: "public"
+openrc_region_name: RegionOne
+haproxy_user_ssl_cert: "{{ lookup('env', 'XCI_SSL_CERT_PATH') }}xci.crt"
+haproxy_user_ssl_key: "{{ lookup('env', 'XCI_SSL_KEY_PATH') }}xci.key"
+keystone_service_adminuri_insecure: true
+keystone_service_internaluri_insecure: true
