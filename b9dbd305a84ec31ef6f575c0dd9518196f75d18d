@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "da33351e_51096030",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-16T11:37:28Z",
+      "side": 1,
+      "message": "You should add that this will not work until Juan\u0027s patches in OSA and neutron role are merged",
+      "revId": "b9dbd305a84ec31ef6f575c0dd9518196f75d18d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_912c88ad",
         "filename": "xci/config/noha-vars",
         "patchSetId": 1
