@@ -16,6 +16,24 @@
       "revId": "aff9a0a2db59e3ee229f28512bd78ae14389a3d8",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_2cd27fd2",
+        "filename": "xci/config/aio-vars",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-08-16T14:38:10Z",
+      "side": 1,
+      "message": "I am not sure what you mean by that. Could you give an example?",
+      "parentUuid": "da33351e_ac4e8fbf",
+      "revId": "aff9a0a2db59e3ee229f28512bd78ae14389a3d8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
