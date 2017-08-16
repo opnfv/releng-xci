@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_cc04b317",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-08-16T11:51:19Z",
+      "side": 1,
+      "message": "Yes, Will do it.",
+      "parentUuid": "da33351e_51096030",
+      "revId": "b9dbd305a84ec31ef6f575c0dd9518196f75d18d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_912c88ad",
         "filename": "xci/config/noha-vars",
         "patchSetId": 1
@@ -65,6 +83,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_9103e80e",
+        "filename": "xci/config/noha-vars",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-08-16T11:51:19Z",
+      "side": 1,
+      "message": "It\u0027s already set to 16384 in HA flavor. Hope that should be sufficient.",
+      "parentUuid": "da33351e_912c88ad",
+      "range": {
+        "startLine": 17,
+        "startChar": 22,
+        "endLine": 17,
+        "endChar": 27
+      },
+      "revId": "b9dbd305a84ec31ef6f575c0dd9518196f75d18d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_f1187486",
         "filename": "xci/file/ansible-role-requirements.yml",
         "patchSetId": 1
@@ -76,6 +118,30 @@
       "writtenOn": "2017-08-16T11:36:19Z",
       "side": 1,
       "message": "Before merging this, please test it. We are currently using version: bdda0786326a2b2598210e930d2b686eb14696bc and it works. I don\u0027t know if master will work",
+      "range": {
+        "startLine": 211,
+        "startChar": 11,
+        "endLine": 211,
+        "endChar": 17
+      },
+      "revId": "b9dbd305a84ec31ef6f575c0dd9518196f75d18d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ecfff7ff",
+        "filename": "xci/file/ansible-role-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-08-16T11:51:19Z",
+      "side": 1,
+      "message": "Yes Manuel, I have tested it with master.\n\nBelow are my observations (which are positive):\nmini (1 opnfv, 1 controller, 1 compute) :\nODL is installed in controller\u0027s neutron-server-container.\nOVS is installed in controller\u0027s neutron-agents-container, neutron-server-container and compute node.\nHave tested L2 by creating VxLAN provider network and spawned two VMs in compute, dhcp agent vm is automatically\ncreated in neutron-agents-container and internal vxlan transport is established between these two nodes (compute and neutron-agent).\nThe flows/groups are programmed properly in both nodes for L2 connectivity to work.\nNow there is no ODL crash after increasing memory size to 16384.\n\nnoha (1 opnfv, 1 controller, 2 computes):\nsame result as above (except OVS is installed on both computes)\n\nha (1 opnfv, 3 controller, 2 computes):\nXCI deployment fails. Looks like dns issue again. Debugging it.",
+      "parentUuid": "da33351e_f1187486",
       "range": {
         "startLine": 211,
         "startChar": 11,
