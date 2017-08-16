@@ -124,6 +124,10 @@ You can generate one by executing
 
     ssh-keygen -t rsa
 
+After the script finishes, it will provide an openrc file that can be
+sourced to properly start using the cloud. It will be available under the
+opnfv host (in $HOME path), and on the the buildhost (in $XCI_DEVEL_ROOT path)
+
 Advanced Usage
 --------------
 
