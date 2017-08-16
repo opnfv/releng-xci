@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_b7db7c1a",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1451
+      },
+      "writtenOn": "2017-08-16T20:31:57Z",
+      "side": 1,
+      "message": "Sorry I didn\u0027t look close enough in my initial review. Thanks for the correction!",
+      "parentUuid": "da33351e_a377c201",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 28
+      },
+      "revId": "e7a44d9b52ae75afdb3476ead4d653b7ff7e1528",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_831d5ec0",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 2
