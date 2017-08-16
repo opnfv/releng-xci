@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_578670ba",
+        "filename": "xci/README.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 3063
+      },
+      "writtenOn": "2017-08-16T23:53:12Z",
+      "side": 1,
+      "message": "Thanks for the catch.",
+      "parentUuid": "da33351e_57c79045",
+      "range": {
+        "startLine": 137,
+        "startChar": 46,
+        "endLine": 137,
+        "endChar": 54
+      },
+      "revId": "e7a44d9b52ae75afdb3476ead4d653b7ff7e1528",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_43235605",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 2
