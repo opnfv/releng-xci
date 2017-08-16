@@ -22,6 +22,52 @@
       "revId": "b9dbd305a84ec31ef6f575c0dd9518196f75d18d",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_912c88ad",
+        "filename": "xci/config/noha-vars",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-16T11:36:19Z",
+      "side": 1,
+      "message": "You should also increase the VM_MEMORY_SIZE of the HA flavor",
+      "range": {
+        "startLine": 17,
+        "startChar": 22,
+        "endLine": 17,
+        "endChar": 27
+      },
+      "revId": "b9dbd305a84ec31ef6f575c0dd9518196f75d18d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_f1187486",
+        "filename": "xci/file/ansible-role-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-16T11:36:19Z",
+      "side": 1,
+      "message": "Before merging this, please test it. We are currently using version: bdda0786326a2b2598210e930d2b686eb14696bc and it works. I don\u0027t know if master will work",
+      "range": {
+        "startLine": 211,
+        "startChar": 11,
+        "endLine": 211,
+        "endChar": 17
+      },
+      "revId": "b9dbd305a84ec31ef6f575c0dd9518196f75d18d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
