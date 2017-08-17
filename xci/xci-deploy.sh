@@ -37,6 +37,11 @@ source "$XCI_PATH/config/${XCI_FLAVOR}-vars"
 # source xci configuration
 source $XCI_PATH/config/env-vars
 
+if [[ $OPNFV_SCENARIO == "os-odl-sfc" ]]; then
+  source $XCI_PATH/config/sfc-user-vars
+  source $XCI_PATH/config/env-vars
+fi
+
 #-------------------------------------------------------------------------------
 # Sanitize local development environment variables
 #-------------------------------------------------------------------------------
