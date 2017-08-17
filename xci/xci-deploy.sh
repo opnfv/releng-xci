@@ -60,6 +60,7 @@ echo "xci flavor: $XCI_FLAVOR"
 echo "opnfv/releng-xci version: $OPNFV_RELENG_VERSION"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
+echo "OPNFV scenario: $OPNFV_SCENARIO"
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
