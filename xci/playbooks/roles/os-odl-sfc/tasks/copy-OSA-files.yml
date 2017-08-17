@@ -1,0 +1,22 @@
+---
+#####
+
+- name: copy openstack_user_config.yml
+  copy:
+    src: "{{XCI_FLAVOR}}/openstack_user_config.yml"
+    dest: "{{OPENSTACK_OSA_ETC_PATH}}/openstack_user_config.yml"
+
+- name: copy OPNFV role requirements
+  copy:
+    src: "ansible-role-requirements.yml"
+    dest: "{{OPENSTACK_OSA_PATH}}/ansible-role-requirements.yml"
+
+- name: copy setup-openstack.yml
+  copy:
+    src: "setup-openstack.yml"
+    dest: "{{OPENSTACK_OSA_PATH}}/playbooks/setup-openstack.yml"
+
+- name: copy os-tacker-install.yml 
+  copy:
+    src: "os-tacker-install.yml"
+    dest: "{{OPENSTACK_OSA_PATH}}/playbooks/os-tacker-install.yml"
