@@ -1,0 +1,70 @@
+---
+# Copyright 2017, Ericsson AB
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Install OpenDaylight pip packages
+  pip:
+    name: "{{ neutron_optional_opendaylight_pip_packages }}"
+    state: "{{ neutron_pip_package_state }}"
+    virtualenv: "{{ neutron_bin | dirname }}"
+    virtualenv_site_packages: "no"
+    extra_args: >-
+      {{ neutron_developer_mode | ternary(pip_install_developer_constraints | default('--constraint /opt/developer-pip-constraints.txt'), '') }}
+      {{ (pip_install_upper_constraints is defined) | ternary('--constraint ' + pip_install_upper_constraints | default(''),'') }}
+      {{ pip_install_options | default('') }}
+  register: install_packages
+  until: install_packages|success
+  retries: 5
+  delay: 2
+  tags:
+    - opendaylight-install
+    - opendaylight-pip-packages
+
+- name: Configure Genius to use flow based tunnels
+  template:
+    src: "netvirt-elanmanager-config.xml.j2"
+    dest: "/opt/opendaylight/etc/opendaylight/datastore/initial/config/netvirt-elanmanager-config.xml"
+    mode: "0440"
+    owner: "root"
+    group: "root"
+  when:
+    - "neutron_services['neutron-server']['group'] in group_names"
+    - "'networking_sfc.services.sfc.plugin.SfcPlugin' in neutron_plugin_base"
+
+- name: Configure Genius to create vxlan-gpe tunnels
+  template:
+    src: "genius-itm-config.xml.j2"
+    dest: "/opt/opendaylight/etc/opendaylight/datastore/initial/config/genius-itm-config.xml"
+    mode: "0440"
+    owner: "root"
+    group: "root"
+  when:
+    - "neutron_services['neutron-server']['group'] in group_names"
+    - "'networking_sfc.services.sfc.plugin.SfcPlugin' in neutron_plugin_base"
+
+- name: Reset ODL to read the new config files
+  service:
+    name: opendaylight.service
+    state: restarted
+  when:
+    - "neutron_services['neutron-server']['group'] in group_names"
+    - "'networking_sfc.services.sfc.plugin.SfcPlugin' in neutron_plugin_base"
+
+- name: Wait for ODL to be ready
+  wait_for:
+    port: 8181
+    delay: 15
+  when:
+    - "neutron_services['neutron-server']['group'] in group_names"
+    - "'networking_sfc.services.sfc.plugin.SfcPlugin' in neutron_plugin_base"
