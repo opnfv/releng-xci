@@ -205,3 +205,7 @@
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_molteniron
   version: 0de6fe5251b54881ab3eb8bf0a8d694dd4362430
+- name: os_tacker
+  scm: git
+  src: git://git.openstack.org/openstack/openstack-ansible-os_tacker 
+  version: master
