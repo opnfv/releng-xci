@@ -98,6 +98,16 @@
       command: "python pw-token-gen.py --file {{OPENSTACK_OSA_ETC_PATH}}/user_secrets.yml"
       args:
         chdir: "{{OPENSTACK_OSA_PATH}}/scripts"
+
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - ../var/{{ ansible_os_family }}.yml
+    - ../var/flavor-vars.yml
+    - ../var/opnfv.yml
+  roles:
+   - { role: "os-odl-sfc", when: "OPNFV_SCENARIO == 'os-odl-sfc'" }
+
 - hosts: localhost
   remote_user: root
   vars_files:
