@@ -39,6 +39,8 @@ source $XCI_PATH/config/env-vars
 
 if [[ -z $(echo $PATH | grep "$HOME/.local/bin")  ]]; then
     export PATH="$HOME/.local/bin:$PATH"
+if [[ $OPNFV_SCENARIO == "os-odl-sfc" ]]; then
+  source $XCI_PATH/config/sfc-user-vars
 fi
 
 #-------------------------------------------------------------------------------
@@ -60,6 +62,7 @@ echo "xci flavor: $XCI_FLAVOR"
 echo "opnfv/releng-xci version: $OPNFV_RELENG_VERSION"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
+echo "OPNFV scenario: $OPNFV_SCENARIO"
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
