@@ -53,7 +53,7 @@ echo "Info: Starting XCI Deployment"
 echo "Info: Deployment parameters"
 echo "-------------------------------------------------------------------------"
 echo "xci flavor: $XCI_FLAVOR"
-echo "opnfv/releng version: $OPNFV_RELENG_VERSION"
+echo "opnfv/releng-xci version: $OPNFV_RELENG_VERSION"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
 echo "-------------------------------------------------------------------------"
@@ -79,8 +79,8 @@ fi
 #-------------------------------------------------------------------------------
 # This playbook
 # - removes directories that were created by the previous xci run
-# - clones opnfv/releng and openstack/bifrost repositories
-# - combines opnfv/releng and openstack/bifrost scripts/playbooks
+# - clones opnfv/releng-xci and openstack/bifrost repositories
+# - combines opnfv/releng-xci and openstack/bifrost scripts/playbooks
 # - destorys VMs, removes ironic db, leases, logs
 # - creates and provisions VMs for the chosen flavor
 #-------------------------------------------------------------------------------
@@ -98,7 +98,7 @@ echo
 #-------------------------------------------------------------------------------
 # This playbook
 # - removes directories that were created by the previous xci run
-# - clones opnfv/releng repository
+# - clones opnfv/releng-xci repository
 # - creates log directory
 # - copies flavor files such as playbook, inventory, and var file
 #-------------------------------------------------------------------------------
@@ -114,7 +114,7 @@ echo "Info: Configured localhost host for openstack-ansible"
 #-------------------------------------------------------------------------------
 # This playbook
 # - removes directories that were created by the previous xci run
-# - clones opnfv/releng and openstack/openstack-ansible repositories
+# - clones opnfv/releng-xci and openstack/openstack-ansible repositories
 # - configures network
 # - generates/prepares ssh keys
 # - bootstraps ansible
@@ -122,7 +122,7 @@ echo "Info: Configured localhost host for openstack-ansible"
 #-------------------------------------------------------------------------------
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-cd $OPNFV_RELENG_PATH/prototypes/xci/playbooks
+cd $OPNFV_XCI_PATH/playbooks
 ansible-playbook $ANSIBLE_VERBOSITY -i inventory configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
@@ -145,7 +145,7 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Configuring target hosts for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-cd $OPNFV_RELENG_PATH/prototypes/xci/playbooks
+cd $OPNFV_XCI_PATH/playbooks
 ansible-playbook $ANSIBLE_VERBOSITY -i inventory configure-targethosts.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured target hosts"

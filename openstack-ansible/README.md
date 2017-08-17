@@ -5,7 +5,7 @@ The script and playbooks defined on this repo will deploy an OpenStack
 cloud based on OpenStack-Ansible.
 It needs to be combined with Bifrost. You need use Bifrost to provide six VMs.
 To learn about how to use Bifrost, you can read the document on
-[/opt/releng/prototypes/bifrost/README.md].
+[/opt/bifrost/README.md].
 
 Minimal requirements:
 1. You will need to have a least 150G free space for the partition on where
@@ -15,7 +15,7 @@ Minimal requirements:
 After provisioning the six VMs please follow that steps:
 
 1.Run the script to deploy OpenStack
-  cd /opt/releng/prototypes/openstack-ansible/scripts/
+  cd /opt/openstack-ansible/scripts/
   sudo ./osa_deploy.sh
 It will take a lot of time. When the deploy is successful, you will see the
 message "OpenStack deployed successfully".
