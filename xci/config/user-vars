@@ -34,6 +34,15 @@ export OPENSTACK_BIFROST_PATH="${XCI_DEVEL_ROOT}/bifrost"
 export OPENSTACK_OSA_PATH="${XCI_DEVEL_ROOT}/openstack-ansible"
 export OPNFV_SSH_HOST_KEYS_PATH="${XCI_DEVEL_ROOT}/ssh_host_keys"
 
+
+#-------------------------------------------------------------------------------
+# Set Paths to where the code yet to be upstream is
+#-------------------------------------------------------------------------------
+# OPNFV XCI Sandbox is using some code which is not yet upstream (e.g. SFC)
+#-------------------------------------------------------------------------------
+
+export OPNFV_UPSTREAM_PATH="${OPNFV_RELENG_PATH}/upstream"
+
 #-------------------------------------------------------------------------------
 # Set the playbook to use for OpenStack deployment
 #-------------------------------------------------------------------------------

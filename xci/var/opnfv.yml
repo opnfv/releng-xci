@@ -28,3 +28,12 @@ LOG_PATH: "{{ lookup('env','LOG_PATH') }}"
 OPNFV_HOST_IP: "{{ lookup('env','OPNFV_HOST_IP') }}"
 OPNFV_SSH_HOST_KEYS_PATH: "{{ lookup('env', 'OPNFV_SSH_HOST_KEYS_PATH') }}"
 XCI_EXTRA_VARS_PATH: "{{ lookup('env', 'XCI_EXTRA_VARS_PATH') }}"
+OPNFV_SCENARIO: "{{ lookup('env','OPNFV_SCENARIO') }}"
+
+############################################################################
+# The following variables only apply for the os-odl-sfc scenario
+############################################################################
+
+OPNFV_UPSTREAM_PATH_OSA: "{{ lookup('env','OPNFV_UPSTREAM_PATH_OSA') }}"
+OPNFV_XCI_PATH_SFC_ROLE: "{{ lookup('env','OPNFV_XCI_PATH_SFC_ROLE') }}"
+XCI_FLAVOR_ANSIBLE_SFC_FILE_PATH: "{{ lookup('env','XCI_FLAVOR_ANSIBLE_SFC_FILE_PATH') }}"
