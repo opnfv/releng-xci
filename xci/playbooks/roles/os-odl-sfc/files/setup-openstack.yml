@@ -21,4 +21,5 @@
 - include: os-heat-install.yml
 - include: os-horizon-install.yml
 - include: os-swift-install.yml
+- include: os-tacker-install.yml
 - include: os-ironic-install.yml
