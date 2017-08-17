@@ -23,3 +23,5 @@ export DIB_OS_PACKAGES=${DIB_OS_PACKAGES:-"vlan,vim,less,bridge-utils,sudo,langu
 export EXTRA_DIB_ELEMENTS=${EXTRA_DIB_ELEMENTS:-"openssh-server"}
 # subject of the certificate
 export XCI_SSL_SUBJECT=${XCI_SSL_SUBJECT:-"/C=US/ST=California/L=San Francisco/O=IT/CN=xci.releng.opnfv.org"}
+
+export OPNFV_SCENARIO=${OPNFV_SCENARIO:-"os-nosdn-nofeature"}
