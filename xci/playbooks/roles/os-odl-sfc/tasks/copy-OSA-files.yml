@@ -1,0 +1,7 @@
+---
+#####
+
+- name: copy user_variables.yml
+  shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_SFC_FILE_PATH}}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
+- name: copy OPNFV role requirements
+  shell: "/bin/cp -rf {{OPNFV_XCI_PATH_SFC_ROLE}}/xci/file/ansible-role-requirements.yml {{OPENSTACK_OSA_PATH}}"
