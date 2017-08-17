@@ -220,3 +220,13 @@ if grep -q 'failed=1\|unreachable=1' $LOG_PATH/opnfv-setup-openstack.log; then
    exit 1
 fi
 echo "Info: OpenStack installation is successfully completed!"
+
+echo "Info: Copying openrc file to Jumphost"
+echo "-----------------------------------------------------------------------"
+cd $XCI_PATH/playbooks
+ansible-playbook $ANSIBLE_VERBOSITY -i inventory fetch-openrc.yaml
+if [[ ! -f ~/openrc ]]; then
+    echo "Error: Not able to fetch openrc file"
+else
+  echo "Info: Successfully copied openrc file"
+fi
