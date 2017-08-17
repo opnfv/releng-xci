@@ -1,0 +1,117 @@
+---
+# Copyright 2014, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Gather variables for each operating system
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+    - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+    - "{{ ansible_distribution | lower }}.yml"
+    - "{{ ansible_os_family | lower }}.yml"
+  tags:
+    - always
+
+- name: Get CPU info content and store as var
+  command: cat /proc/cpuinfo
+  register: cpuinfo_contents
+  changed_when: false
+  failed_when: false
+  tags:
+    - always
+
+- name: Set neutron target platform type
+  set_fact:
+    neutron_os_type: "powervm"
+  when:
+    - cpuinfo_contents.stdout.find('pSeries') != -1
+    - ansible_architecture == 'ppc64le'
+  tags:
+    - always
+
+- include: neutron_ml2_ovs_powervm.yml
+  static: no
+  when:
+    - neutron_os_type is defined
+    - neutron_os_type == 'powervm'
+    - neutron_plugin_type == 'ml2.ovs'
+    - "{{ ansible_distribution_version | version_compare('16.04','>=') }}"
+  tags:
+    - neutron-config
+
+- include: neutron_pre_install.yml
+  tags:
+    - neutron-install
+
+- include: neutron_install.yml
+  tags:
+    - neutron-install
+
+- name: refresh local facts
+  setup:
+    filter: ansible_local
+    gather_subset: "!all"
+  tags:
+    - neutron-config
+
+- include: neutron_post_install.yml
+  tags:
+    - neutron-config
+
+- include: dragonflow.yml
+  when: neutron_plugin_type == 'ml2.dragonflow'
+  tags:
+    - neutron-install
+
+- include: "neutron_init_{{ ansible_service_mgr }}.yml"
+  tags:
+    - neutron-config
+
+- include: neutron_db_setup.yml
+  static: no
+  when:
+    - "neutron_services['neutron-server']['group'] in group_names"
+  tags:
+    - neutron-config
+
+- include: neutron_service_setup.yml
+  static: no
+  when:
+    - "neutron_services['neutron-server']['group'] in group_names"
+    - "inventory_hostname == (groups[neutron_services['neutron-server']['group']] | intersect(ansible_play_hosts))[0]"
+  tags:
+    - neutron-config
+
+- include: neutron_l3_ha.yml
+  static: no
+  when:
+    - "neutron_services['neutron-l3-agent']['group'] in group_names"
+  tags:
+    - neutron-config
+
+- include: neutron_opendaylight_setup.yml
+  when:
+    - neutron_plugin_type == "ml2.opendaylight"
+    - inventory_hostname not in groups["opendaylight"]
+    - inventory_hostname not in groups["network_hosts"]
+  tags:
+    - neutron-config
+
+- include: setup_external_ovs_bridge.yml
+  tags:
+    - neutron-config
+
+- name: Flush handlers
+  meta: flush_handlers
