@@ -1,0 +1,2 @@
+export OPNFV_UPSTREAM_PATH_OSA="${OPNFV_UPSTREAM_PATH}/openstack-ansible"
+export OPNFV_SFC_ROLE="${OPNFV_UPSTREAM_PATH}/openstack-ansible"
