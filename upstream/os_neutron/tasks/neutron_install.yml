@@ -1,0 +1,213 @@
+---
+# Copyright 2014, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Install neutron role packages
+  package:
+    name: "{{ neutron_package_list }}"
+    state: "{{ neutron_package_state }}"
+    update_cache: "{{ (ansible_pkg_mgr == 'apt') | ternary('yes', omit) }}"
+    cache_valid_time: "{{ (ansible_pkg_mgr == 'apt') | ternary(cache_timeout, omit) }}"
+
+- name: Load the OVS-NSH kernel module to the host of the neutron agent container
+  package:
+    name: openvswitch-datapath-dkms
+    state: present
+  when:
+   - ovs_nsh_support
+   - inventory_hostname in groups["openvswitch_nsh"]
+   - inventory_hostname in groups["network_hosts"]
+
+- name: Ensure that the openvswitch module is loaded for OVS-NSH
+  modprobe:
+    name: openvswitch
+    state: present
+  when:
+   - ovs_nsh_support
+   - inventory_hostname in groups["openvswitch_nsh"]
+   - inventory_hostname not in groups["neutron_agents_container"]
+
+- name: Restart OVS-NSH service to load the kmod inside the container
+  command: lxc-attach -n "{{ item }}" -- service openvswitch-switch restart
+  ignore_errors: True
+  with_items: "{{ groups['neutron_agents_container'] }}"
+  when:
+   - ovs_nsh_support
+   - inventory_hostname in groups["openvswitch_nsh"]
+   - inventory_hostname in groups["network_hosts"]
+
+
+#- name: Ensurre the OVS-NSH module path
+#  wait_for:
+#    path: /lib/modules/4.4.0-83-generic/updates/dkms/openvswitch.ko
+#    state: present
+#  when:
+#   - inventory_hostname in groups["neutron_openvswitch_agent"]
+
+#- name: Restart openvswitch service
+#  service:
+#    name: openvswitch-switch
+#    state: restarted
+#  when:
+#   - inventory_hostname in groups["neutron_openvswitch_agent"]
+
+
+- name: Remove known problem packages
+  package:
+    name: "{{ item }}"
+    state: absent
+  register: remove_packages
+  until: remove_packages|success
+  retries: 5
+  delay: 2
+  with_items: "{{ neutron_remove_distro_packages }}"
+
+- name: Create developer mode constraint file
+  copy:
+    dest: "/opt/developer-pip-constraints.txt"
+    content: |
+      {% for item in neutron_developer_constraints %}
+      {{ item }}
+      {% endfor %}
+  when: neutron_developer_mode | bool
+
+- name: Install requires pip packages
+  pip:
+    name: "{{ neutron_requires_pip_packages }}"
+    state: "{{ neutron_pip_package_state }}"
+    extra_args: >-
+      {{ (pip_install_upper_constraints is defined) | ternary('--constraint ' + pip_install_upper_constraints | default(''),'') }}
+      {{ pip_install_options | default('') }}
+  register: install_packages
+  until: install_packages|success
+  retries: 5
+  delay: 2
+
+- name: Retrieve checksum for venv download
+  uri:
+    url: "{{ neutron_venv_download_url | replace('tgz', 'checksum') }}"
+    return_content: yes
+  register: neutron_venv_checksum
+  when: neutron_venv_download | bool
+
+- name: Attempt venv download
+  get_url:
+    url: "{{ neutron_venv_download_url }}"
+    dest: "/var/cache/{{ neutron_venv_download_url | basename }}"
+    checksum: "sha1:{{ neutron_venv_checksum.content | trim }}"
+  register: neutron_get_venv
+  when: neutron_venv_download | bool
+
+- name: Remove existing venv
+  file:
+    path: "{{ neutron_bin | dirname }}"
+    state: absent
+  when: neutron_get_venv | changed
+
+- name: Create neutron venv dir
+  file:
+    path: "{{ neutron_bin | dirname }}"
+    state: directory
+  register: neutron_venv_dir
+  when: neutron_get_venv | changed
+
+- name: Unarchive pre-built venv
+  unarchive:
+    src: "/var/cache/{{ neutron_venv_download_url | basename }}"
+    dest: "{{ neutron_bin | dirname }}"
+    copy: "no"
+  when: neutron_get_venv | changed
+  notify: Restart neutron services
+
+- name: Install pip packages
+  pip:
+    name: "{{ neutron_pip_packages }}"
+    state: "{{ neutron_pip_package_state }}"
+    virtualenv: "{{ neutron_bin | dirname }}"
+    virtualenv_site_packages: "no"
+    extra_args: >-
+      {{ neutron_developer_mode | ternary('--constraint /opt/developer-pip-constraints.txt', '') }}
+      {{ (pip_install_upper_constraints is defined) | ternary('--constraint ' + pip_install_upper_constraints | default(''),'') }}
+      {{ pip_install_options | default('') }}
+  register: install_packages
+  until: install_packages | success
+  retries: 5
+  delay: 2
+  when: neutron_get_venv | failed or neutron_get_venv | skipped
+  notify: Restart neutron services
+
+- name: CentOS remove python from path first
+  file:
+    path:  "{{ neutron_bin | dirname }}/bin/python2.7"
+    state: "absent"
+  when:
+    - ansible_pkg_mgr == 'yum'
+    - neutron_get_venv | changed
+
+- name: Update virtualenv path
+  command: >
+    virtualenv-tools --update-path=auto --reinitialize {{ neutron_bin | dirname }}
+  when: neutron_get_venv | changed
+
+- name: Install optional pip packages
+  pip:
+    name: >-
+      {{ (neutron_bgp | bool) | ternary(neutron_optional_bgp_pip_packages, []) +
+         (neutron_fwaas | bool) | ternary(neutron_optional_fwaas_pip_packages, []) +
+         (neutron_lbaasv2 | bool) | ternary(neutron_optional_lbaas_pip_packages, []) +
+         (neutron_vpnaas | bool) | ternary(neutron_optional_vpnaas_pip_packages, []) }}
+    state: "{{ neutron_pip_package_state }}"
+    virtualenv: "{{ neutron_bin | dirname }}"
+    virtualenv_site_packages: "no"
+    extra_args: >-
+      {{ neutron_developer_mode | ternary('--constraint /opt/developer-pip-constraints.txt', '') }}
+      {{ (pip_install_upper_constraints is defined) | ternary('--constraint ' + pip_install_upper_constraints | default(''),'') }}
+      {{ pip_install_options | default('') }}
+  when: neutron_bgp | bool or
+        neutron_fwaas | bool or
+        neutron_lbaasv2 | bool or
+        neutron_vpnaas | bool
+  register: install_optional_packages
+  until: install_optional_packages | success
+  retries: 5
+  delay: 2
+  notify: Restart neutron services
+
+- name: Initialise the upgrade facts
+  ini_file:
+    dest: "/etc/ansible/facts.d/openstack_ansible.fact"
+    section: neutron
+    option: "{{ item.name }}"
+    value: "{{ item.state }}"
+  with_items:
+    - name: "need_db_expand"
+      state: "True"
+    - name: "need_db_contract"
+      state: "True"
+  when: (neutron_get_venv | changed) or
+        (neutron_venv_dir | changed) or
+        (install_packages | changed) or
+        (install_optional_packages | changed) or
+        (ansible_local is not defined) or
+        ('openstack_ansible' not in ansible_local) or
+        ('neutron' not in ansible_local['openstack_ansible']) or
+        ('need_db_expand' not in ansible_local['openstack_ansible']['neutron']) or
+        ('need_db_contract' not in ansible_local['openstack_ansible']['neutron'])
+
+- name: Record the venv tag deployed
+  ini_file:
+    dest: "/etc/ansible/facts.d/openstack_ansible.fact"
+    section: neutron
+    option: venv_tag
+    value: "{{ neutron_venv_tag }}"

@@ -1,0 +1,45 @@
+# {{ ansible_managed }}
+
+# ML2 general
+[ml2]
+type_drivers = {{ neutron_plugins[neutron_plugin_type].drivers_type }}
+tenant_network_types = {{ neutron_provider_networks.network_types if neutron_provider_networks.network_types != '' else 'local' }}
+mechanism_drivers = {{ neutron_ml2_mechanism_drivers }}
+extension_drivers = port_security{% if 'qos' in neutron_plugin_base %},qos{% endif %}{% if 'dns' in neutron_plugin_base %},dns{% endif %}
+
+{% if neutron_plugin_type == 'ml2.opendaylight' %}
+bridge_mappings ={% for mapping in hostvars[inventory_hostname]['pndata']['network_mappings_list'] %} {% if 'flat' in mapping %}{{ mapping }}{% endif %}{% endfor %}
+{% endif %}
+
+{% if neutron_provider_networks.network_flat_networks is defined %}
+
+# ML2 flat networks
+[ml2_type_flat]
+flat_networks = {{ neutron_provider_networks.network_flat_networks }}
+
+{% endif %}
+
+{% if neutron_provider_networks.network_vlan_ranges is defined %}
+
+# ML2 VLAN networks
+[ml2_type_vlan]
+network_vlan_ranges = {{ neutron_provider_networks.network_vlan_ranges }}
+
+{% endif %}
+
+{% if neutron_provider_networks.network_vxlan_ranges is defined %}
+
+# ML2 VXLAN networks
+[ml2_type_vxlan]
+vxlan_group = {{ neutron_vxlan_group }}
+vni_ranges = {{ neutron_provider_networks.network_vxlan_ranges }}
+
+{% endif %}
+
+# Security groups
+[securitygroup]
+{% if neutron_plugin_type == 'ml2.ovs' %}
+firewall_driver = iptables_hybrid
+{% endif %}
+enable_security_group = True
+enable_ipset = True

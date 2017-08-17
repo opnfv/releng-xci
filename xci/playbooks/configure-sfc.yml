@@ -1,0 +1,8 @@
+---
+#####
+
+- name: Add networking-odl and networking-sfc repos
+  command: "/bin/cp -rf {{XCI_UPSTREAM_ANSIBLE_FILE_PATH}}/playbooks/defaults/repo_packages/opendaylight.yml {{OPENSTACK_OSA_PATH}}/playbooks/defaults/repo_packages/opendaylight.yml"
+
+- name: Provide neutron and nova inventory which add OVS-NSH and ODL hosts
+  command: "/bin/cp -rf {{XCI_UPSTREAM_ANSIBLE_FILE_PATH}}/playbooks/inventory_odl/env.d/* {{OPENSTACK_OSA_PATH}}/playbooks/inventory_odl/env.d/"
