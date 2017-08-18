@@ -72,6 +72,16 @@ if [[ $OS_FAMILY != Debian ]]; then
     exit 1
 fi
 
+# TODO: Get rid of this!!!
+# Flavor HA fails to deploy and currently disabled.
+if [[ $XCI_FLAVOR == ha ]]; then
+    echo ""
+    echo "Error: Sorry, the flavor ha is not currently supported due to an upstream issue!"
+    echo "Info : Available flavors are aio, mini, and ha"
+    echo ""
+    exit 1
+fi
+
 # TODO: The xci playbooks can be put into a playbook which will be done later.
 
 #-------------------------------------------------------------------------------
@@ -128,27 +138,24 @@ echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
 
 #-------------------------------------------------------------------------------
-# Skip the rest if the flavor is aio since the target host for aio is opnfv
-#-------------------------------------------------------------------------------
-if [[ $XCI_FLAVOR == "aio" ]]; then
-    echo "xci: aio has been installed"
-    exit 0
-fi
-
-#-------------------------------------------------------------------------------
 # Configure target hosts for openstack-ansible
 #-------------------------------------------------------------------------------
+# This playbook is only run for the all flavors except aio since aio is configured
+# by an upstream script.
+
 # This playbook
 # - adds public keys to target hosts
 # - configures network
 # - configures nfs
 #-------------------------------------------------------------------------------
-echo "Info: Configuring target hosts for openstack-ansible"
-echo "-----------------------------------------------------------------------"
-cd $OPNFV_XCI_PATH/playbooks
-ansible-playbook $ANSIBLE_VERBOSITY -i inventory configure-targethosts.yml
-echo "-----------------------------------------------------------------------"
-echo "Info: Configured target hosts"
+if [[ $XCI_FLAVOR == "aio" ]]; then
+    echo "Info: Configuring target hosts for openstack-ansible"
+    echo "-----------------------------------------------------------------------"
+    cd $OPNFV_XCI_PATH/playbooks
+    ansible-playbook $ANSIBLE_VERBOSITY -i inventory configure-targethosts.yml
+    echo "-----------------------------------------------------------------------"
+    echo "Info: Configured target hosts"
+fi
 
 #-------------------------------------------------------------------------------
 # Set up target hosts for openstack-ansible
@@ -161,12 +168,26 @@ ssh root@$OPNFV_HOST_IP "openstack-ansible \
      $OPENSTACK_OSA_PATH/playbooks/setup-hosts.yml" | \
      tee $LOG_PATH/setup-hosts.log
 echo "-----------------------------------------------------------------------"
-# check the log to see if we have any error
-if grep -q 'failed=1\|unreachable=1' $LOG_PATH/setup-hosts.log; then
-    echo "Error: OpenStack node setup failed!"
-    exit 1
-fi
 echo "Info: Set up target hosts for openstack-ansible successfuly"
+
+# TODO: Check this with the upstream and issue a fix in the documentation if the
+# problem is valid.
+#-------------------------------------------------------------------------------
+# Gather facts for all the hosts and containers
+#-------------------------------------------------------------------------------
+# This is needed in order to gather the facts for containers due to a change in
+# upstream that changed the hosts fact are gathered which causes failures during
+# running setup-infrastructure.yml playbook due to lack of the facts for lxc
+# containers.
+#
+# OSA gate also executes this command. See the link
+# http://logs.openstack.org/64/494664/1/check/gate-openstack-ansible-openstack-ansible-aio-ubuntu-xenial/2a0700e/console.html
+#-------------------------------------------------------------------------------
+echo "Info: Gathering facts"
+echo "-----------------------------------------------------------------------"
+ssh root@$OPNFV_HOST_IP "cd $OPENSTACK_OSA_PATH/playbooks; \
+        ansible -m setup -a gather_subset=network,hardware,virtual all"
+echo "-----------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
 # Set up infrastructure
