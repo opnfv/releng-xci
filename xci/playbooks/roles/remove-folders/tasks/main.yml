@@ -13,7 +13,7 @@
     state: absent
     recurse: no
   with_items:
-    - "{{ OPNFV_RELENG_PATH }}"
+    - "{{ OPNFV_RELENG_XCI_PATH }}"
     - "{{ OPENSTACK_BIFROST_PATH }}"
     - "{{ OPENSTACK_OSA_PATH }}"
     - "{{ OPENSTACK_OSA_ETC_PATH }}"
