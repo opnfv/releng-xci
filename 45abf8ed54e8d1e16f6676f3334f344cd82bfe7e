@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_ba7ebce2",
+        "filename": "openstack-ansible/playbooks/defaults/repo_packages/opendaylight.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-18T08:51:16Z",
+      "side": 1,
+      "message": "White spaces :)",
+      "range": {
+        "startLine": 17,
+        "startChar": 47,
+        "endLine": 17,
+        "endChar": 48
+      },
+      "revId": "45abf8ed54e8d1e16f6676f3334f344cd82bfe7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_1a8408d3",
+        "filename": "openstack-ansible/playbooks/inventory_odl/env.d/neutron.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-18T08:51:16Z",
+      "side": 1,
+      "message": "white space.",
+      "range": {
+        "startLine": 88,
+        "startChar": 20,
+        "endLine": 88,
+        "endChar": 21
+      },
+      "revId": "45abf8ed54e8d1e16f6676f3334f344cd82bfe7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3a6aac1a",
+        "filename": "os_neutron/defaults/main.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-18T08:51:16Z",
+      "side": 1,
+      "message": "space.",
+      "range": {
+        "startLine": 142,
+        "startChar": 18,
+        "endLine": 142,
+        "endChar": 19
+      },
+      "revId": "45abf8ed54e8d1e16f6676f3334f344cd82bfe7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7a7434fd",
+        "filename": "os_neutron/tasks/neutron_opendaylight_setup.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-18T08:51:16Z",
+      "side": 1,
+      "message": "space.",
+      "range": {
+        "startLine": 49,
+        "startChar": 31,
+        "endLine": 49,
+        "endChar": 32
+      },
+      "revId": "45abf8ed54e8d1e16f6676f3334f344cd82bfe7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_1a5b6888",
+        "filename": "os_neutron/tasks/neutron_pre_install.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-18T08:51:16Z",
+      "side": 1,
+      "message": "space.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 4
+      },
+      "revId": "45abf8ed54e8d1e16f6676f3334f344cd82bfe7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_5a54d053",
+        "filename": "os_neutron/tasks/neutron_pre_install.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-18T08:51:16Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 100,
+        "startChar": 7,
+        "endLine": 100,
+        "endChar": 8
+      },
+      "revId": "45abf8ed54e8d1e16f6676f3334f344cd82bfe7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_3a510c63",
+        "filename": "os_neutron/tasks/setup_external_ovs_bridge.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-18T08:51:16Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "45abf8ed54e8d1e16f6676f3334f344cd82bfe7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_1ad248d2",
+        "filename": "xci/file/ha/user_variables.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-18T08:51:16Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 47,
+        "startChar": 17,
+        "endLine": 47,
+        "endChar": 18
+      },
+      "revId": "45abf8ed54e8d1e16f6676f3334f344cd82bfe7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_fad684c4",
+        "filename": "xci/file/mini/user_variables.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-18T08:51:16Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 47,
+        "startChar": 17,
+        "endLine": 47,
+        "endChar": 18
+      },
+      "revId": "45abf8ed54e8d1e16f6676f3334f344cd82bfe7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_5adb30ed",
+        "filename": "xci/file/noha/user_variables.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-18T08:51:16Z",
+      "side": 1,
+      "message": "space",
+      "range": {
+        "startLine": 47,
+        "startChar": 17,
+        "endLine": 47,
+        "endChar": 18
+      },
+      "revId": "45abf8ed54e8d1e16f6676f3334f344cd82bfe7e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
