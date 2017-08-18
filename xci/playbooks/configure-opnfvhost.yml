@@ -15,7 +15,7 @@
     - ../var/opnfv.yml
   roles:
     - role: remove-folders
-    - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
+    - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_XCI_GIT_URL }}", dest: "{{ OPNFV_RELENG_XCI_PATH }}", version: "{{ OPNFV_RELENG_XCI_VERSION }}" }
     - { role: clone-repository, project: "openstack/openstack-ansible", repo: "{{ OPENSTACK_OSA_GIT_URL }}", dest: "{{ OPENSTACK_OSA_PATH }}", version: "{{ OPENSTACK_OSA_VERSION }}" }
 
 - hosts: opnfv
@@ -26,12 +26,12 @@
   tasks:
     - name: Synchronize local development releng-xci repository to XCI paths
       synchronize:
-        src: "{{ OPNFV_RELENG_DEV_PATH }}"
-        dest: "{{ OPNFV_RELENG_PATH }}"
+        src: "{{ OPNFV_RELENG_XCI_DEV_PATH }}"
+        dest: "{{ OPNFV_RELENG_XCI_PATH }}"
         recursive: yes
         delete: yes
       when:
-        - OPNFV_RELENG_DEV_PATH != ""
+        - OPNFV_RELENG_XCI_DEV_PATH != ""
     - name: Synchronize local development openstack-ansible repository to XCI paths
       synchronize:
         src: "{{ OPENSTACK_OSA_DEV_PATH }}"
@@ -62,9 +62,9 @@
     - name: fetch public key
       fetch: src="/root/.ssh/id_rsa.pub" dest="{{ OPNFV_SSH_HOST_KEYS_PATH }}"
     - name: copy flavor inventory
-      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/inventory {{OPNFV_RELENG_PATH}}/xci/playbooks"
+      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/inventory {{OPNFV_RELENG_XCI_PATH}}/xci/playbooks"
     - name: copy flavor vars
-      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/flavor-vars.yml {{OPNFV_RELENG_PATH}}/xci/var"
+      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/flavor-vars.yml {{OPNFV_RELENG_XCI_PATH}}/xci/var"
     - name: copy openstack_deploy
       shell: "/bin/cp -rf {{OPENSTACK_OSA_PATH}}/etc/openstack_deploy {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy openstack_user_config.yml
@@ -72,7 +72,7 @@
     - name: copy user_variables.yml
       shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy cinder.yml
-      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
+      shell: "/bin/cp -rf {{OPNFV_RELENG_XCI_PATH}}/xci/file/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
     # TODO: We need to get rid of this as soon as the issue is fixed upstream
     - name: change the haproxy state from disable to enable
       replace:
@@ -80,9 +80,9 @@
         regexp: '(\s+)haproxy_state: disabled'
         replace: '\1haproxy_state: enabled'
     - name: copy OPNFV OpenStack playbook
-      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/setup-openstack.yml {{OPENSTACK_OSA_PATH}}/playbooks"
+      shell: "/bin/cp -rf {{OPNFV_RELENG_XCI_PATH}}/xci/file/setup-openstack.yml {{OPENSTACK_OSA_PATH}}/playbooks"
     - name: copy OPNFV role requirements
-      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/ansible-role-requirements.yml {{OPENSTACK_OSA_PATH}}"
+      shell: "/bin/cp -rf {{OPNFV_RELENG_XCI_PATH}}/xci/file/ansible-role-requirements.yml {{OPENSTACK_OSA_PATH}}"
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
