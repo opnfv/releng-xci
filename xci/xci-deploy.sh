@@ -161,12 +161,26 @@ ssh root@$OPNFV_HOST_IP "openstack-ansible \
      $OPENSTACK_OSA_PATH/playbooks/setup-hosts.yml" | \
      tee $LOG_PATH/setup-hosts.log
 echo "-----------------------------------------------------------------------"
-# check the log to see if we have any error
-if grep -q 'failed=1\|unreachable=1' $LOG_PATH/setup-hosts.log; then
-    echo "Error: OpenStack node setup failed!"
-    exit 1
-fi
 echo "Info: Set up target hosts for openstack-ansible successfuly"
+
+# TODO: Check this with the upstream and issue a fix in the documentation if the
+# problem is valid.
+#-------------------------------------------------------------------------------
+# Gather facts for all the hosts and containers
+#-------------------------------------------------------------------------------
+# This is needed in order to gather the facts for containers due to a change in
+# upstream that changed the hosts fact are gathered which causes failures during
+# running setup-infrastructure.yml playbook due to lack of the facts for lxc
+# containers.
+#
+# OSA gate also executes this command. See the link
+# http://logs.openstack.org/64/494664/1/check/gate-openstack-ansible-openstack-ansible-aio-ubuntu-xenial/2a0700e/console.html
+#-------------------------------------------------------------------------------
+echo "Info: Gathering facts"
+echo "-----------------------------------------------------------------------"
+ssh root@$OPNFV_HOST_IP "cd $OPENSTACK_OSA_PATH/playbooks; \
+        ansible -m setup -a gather_subset=network,hardware,virtual all"
+echo "-----------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
 # Set up infrastructure
