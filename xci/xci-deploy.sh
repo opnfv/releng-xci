@@ -8,7 +8,7 @@ set -o pipefail
 #-------------------------------------------------------------------------------
 if [[ $(whoami) == "root" ]]; then
     echo "WARNING: This script should not be run as root!"
-    echo "Elevated privileges are aquired automatically when necessary"
+    echo "Elevated privileges are aquired automatically when necessary!"
     echo "Waiting 10s to give you a chance to stop the script (Ctrl-C)"
     for x in $(seq 10 -1 1); do echo -n "$x..."; sleep 1; done
 fi
@@ -40,7 +40,7 @@ source $XCI_PATH/config/env-vars
 #-------------------------------------------------------------------------------
 # Sanitize local development environment variables
 #-------------------------------------------------------------------------------
-user_local_dev_vars=(OPNFV_RELENG_DEV_PATH OPNFV_OSA_DEV_PATH OPNFV_BIFROST_DEV_PATH)
+user_local_dev_vars=(OPNFV_RELENG_XCI_DEV_PATH OPNFV_OSA_DEV_PATH OPNFV_BIFROST_DEV_PATH)
 for local_user_var in ${user_local_dev_vars[@]}; do
     [[ -n ${!local_user_var:-} ]] && export $local_user_var=${!local_user_var%/}/
 done
@@ -53,7 +53,7 @@ echo "Info: Starting XCI Deployment"
 echo "Info: Deployment parameters"
 echo "-------------------------------------------------------------------------"
 echo "xci flavor: $XCI_FLAVOR"
-echo "opnfv/releng-xci version: $OPNFV_RELENG_VERSION"
+echo "opnfv/releng-xci version: $OPNFV_RELENG_XCI_VERSION"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
 echo "-------------------------------------------------------------------------"
