@@ -8,7 +8,7 @@ set -o pipefail
 #-------------------------------------------------------------------------------
 if [[ $(whoami) == "root" ]]; then
     echo "WARNING: This script should not be run as root!"
-    echo "Elevated privileges are aquired automatically when necessary"
+    echo "Elevated privileges are aquired automatically when necessary!"
     echo "Waiting 10s to give you a chance to stop the script (Ctrl-C)"
     for x in $(seq 10 -1 1); do echo -n "$x..."; sleep 1; done
 fi
