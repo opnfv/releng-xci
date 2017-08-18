@@ -208,7 +208,10 @@ specified directories, and use them instead of cloning those on every run.
 Limitations, Known Issues, and Improvements
 ===========================================
 
-The list can be seen using `this link <https://jira.opnfv.org/issues/?filter=11616>`_.
+Please note that the deployment of flavor ha is currently disabled due to an
+upstream issue. See `this link <https://jira.opnfv.org/browse/RELENG-301>`_.
+
+The complete list can be seen using `this link <https://jira.opnfv.org/issues/?filter=11616>`_.
 
 =========
 Changelog
