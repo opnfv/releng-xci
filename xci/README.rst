@@ -186,13 +186,17 @@ Once a working version is identified, the versions of the upstream components
 are then bumped in releng-xci repo.
 
 ==================
-XCI developer tips
+XCI Developer Tips
 ==================
+
+XCI Development Mode
+--------------------
 
 It is possible to run XCI in development mode, in order to test the
 latest changes. When deploying on this mode, the script will use the working
 directories for releng-xci/bifrost/OSA, instead of cloning the whole repositories
 on each run.
+
 To enable it, you need to export the different DEV_PATH vars:
 
 - export OPNFV_RELENG_DEV_PATH=/opt/releng-xci/
@@ -203,6 +207,23 @@ Please note the trailing slahses.
 
 This will cause the deployment to pick the development copies stored at the
 specified directories, and use them instead of cloning those on every run.
+
+Using a Different Version of OSA
+--------------------------------
+
+XCI pins OSA version based on upstream OSA CI & OPNFV XCI tests in order to have
+well tested/working versions for the developers, users, and more extensive CI loops,
+such as daily and weekly.
+
+If you change the OSA version by setting environment variables OPENSTACK_OSA_VERSION or
+manually in pinned-versions file, then it's likely to face incompatibilities with the
+dependent roles in ansible-role-requirements.yml file.
+
+If you run into this situation, then your best bet is to replace the XCI
+ansible-role-requirements.yml file with the upstream one from
+http://git.openstack.org/cgit/openstack/openstack-ansible/plain/ansible-role-requirements.yml.
+You also need to set OPNFV_RELENG_DEV_PATH as explained above in order for this file to be
+used throughout the deployment.
 
 ===========================================
 Limitations, Known Issues, and Improvements
