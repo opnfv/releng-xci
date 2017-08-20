@@ -6,6 +6,10 @@
 # not work as expected. You can set the versions you want to use before running
 # the main script on your shell as shown on the examples below.
 #
+# If you intend to change OPENSTACK_OSA_VERSION, please ensure you update the
+# OSA ansible role versions as well. Take a look at README.rst file to see how
+# this can be done.
+#
 # It is important to be consistent between branches you use for OpenStack
 # projects OPNFV XCI uses.
 #

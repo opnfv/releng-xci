@@ -186,13 +186,17 @@ Once a working version is identified, the versions of the upstream components
 are then bumped in releng-xci repo.
 
 ==================
-XCI developer tips
+XCI Developer Tips
 ==================
+
+XCI Development Mode
+--------------------
 
 It is possible to run XCI in development mode, in order to test the
 latest changes. When deploying on this mode, the script will use the working
 directories for releng-xci/bifrost/OSA, instead of cloning the whole repositories
 on each run.
+
 To enable it, you need to export the different DEV_PATH vars:
 
 - export OPNFV_RELENG_DEV_PATH=/opt/releng-xci/
@@ -203,6 +207,59 @@ Please note the trailing slahses.
 
 This will cause the deployment to pick the development copies stored at the
 specified directories, and use them instead of cloning those on every run.
+
+Using a Different Version of OSA
+--------------------------------
+
+XCI pins OSA version based on upstream OSA CI & OPNFV XCI tests in order to have
+well tested/working versions for the developers, users, and more extensive CI loops,
+such as daily and weekly.
+
+If you want to change the OSA version by setting OPENSTACK_OSA_VERSION or manually
+in pinned-versions file, you need to ensure you update the OSA role versions as
+well. If you don't do this, the deployment will most likely fail.
+
+You can do this by following the steps below
+
+install git review
+
+    sudo pip install git-review
+
+clone openstack-ansible repo
+
+    git clone https://review.openstack.org/p/openstack/openstack-ansible.git
+
+change to openstack-ansible clone location
+
+    cd /path/to/openstack-ansible
+
+checkout the commit you want to use in XCI
+
+    git checkout <sha1>
+
+set environment variable FORCE_MASTER
+
+    export FORCE_MASTER=true
+
+execute the script sources-branch-updater.sh
+
+    /path/to/openstack-ansible/scripts/sources-branch-updater.sh
+
+when the execution of the script is done, copy the file ansible-role-requirements.yml
+
+    cp /path/to/openstack-ansible/ansible-role-requirements.yml /path/to/releng-xci/xci/file/ansible-role-requirements.yml
+
+set environment variable OPNFV_RELENG_DEV_PATH
+
+    export OPNFV_RELENG_DEV_PATH=/opt/releng-xci/
+
+execute xci-deploy.sh script
+
+    /path/to/releng-xci/xci/xci-deploy.sh
+
+Please note that the source-branch-updater.sh script pulls latest versions of role
+requirements instead of what corresponds to what you set as OPENSTACK_OSA_VERSION.
+Because of this, it is possible to have issues due to incompatible role versions.
 
 ===========================================
 Limitations, Known Issues, and Improvements
