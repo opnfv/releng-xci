@@ -9,6 +9,11 @@
 ##############################################################################
 # TODO: this role needs to be adjusted for different distros
 - block:
+    - name: Install apt packages
+      apt:
+        pkg: "chrony"
+        state: "present"
+        update_cache: "yes"
     - name: restart chrony
       service:
         name: chrony

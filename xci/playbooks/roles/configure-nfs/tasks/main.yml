@@ -9,6 +9,11 @@
 ##############################################################################
 # TODO: this is for xenial and needs to be adjusted for different distros
 - block:
+    - name: Install apt packages
+      apt:
+        pkg: "nfs-kernel-server"
+        state: "present"
+        update_cache: "yes"
     - name: make NFS directories
       file:
         dest: "{{ item }}"
