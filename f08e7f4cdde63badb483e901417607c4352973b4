@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_0ec205e9",
+        "filename": "xci/README.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-08-21T08:16:05Z",
+      "side": 1,
+      "message": "We can\u0027t unfortunately. At least not without some complex magic to go through all the repositories and fetch the sha that\u0027s closer (date wise) to the sha that you chose as the OPENSTACK_OSA_VERSION. I think it\u0027s probably safer to leave ansible-role-requirements unmodified when overriding the pinned OSA_VERSION. After all, whoever changes the OSA_VERSION is on his own anyway so he may as well do the extra work manually if what we give him are not good enough.",
+      "parentUuid": "da33351e_0e1845d2",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 65
+      },
+      "revId": "f08e7f4cdde63badb483e901417607c4352973b4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_eef1a1ce",
         "filename": "xci/README.rst",
         "patchSetId": 2
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "It is used by source-branch-updater.sh script - it complains if you don\u0027t have git review installed.",
       "parentUuid": "da33351e_eef1a1ce",
+      "range": {
+        "startLine": 226,
+        "startChar": 21,
+        "endLine": 226,
+        "endChar": 31
+      },
+      "revId": "f08e7f4cdde63badb483e901417607c4352973b4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_6eb75187",
+        "filename": "xci/README.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-08-21T08:16:05Z",
+      "side": 1,
+      "message": "Ah I see",
+      "parentUuid": "da33351e_6e0d9190",
       "range": {
         "startLine": 226,
         "startChar": 21,
