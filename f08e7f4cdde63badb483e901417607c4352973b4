@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_8ee4550e",
+        "filename": "xci/README.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-08-21T06:37:44Z",
+      "side": 1,
+      "message": "I think this is slightly confusing right? So imagine you set the OSA sha to what it was a month ago. If you run the script with FORCE_MASTER your ansible-role-requirements file will have what the role has in its master branch _today_ so that doesn\u0027t mean you will get better compatibility.",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 65
+      },
+      "revId": "f08e7f4cdde63badb483e901417607c4352973b4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_eef1a1ce",
+        "filename": "xci/README.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-08-21T06:37:44Z",
+      "side": 1,
+      "message": "why do you need git-review?",
+      "range": {
+        "startLine": 226,
+        "startChar": 21,
+        "endLine": 226,
+        "endChar": 31
+      },
+      "revId": "f08e7f4cdde63badb483e901417607c4352973b4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
