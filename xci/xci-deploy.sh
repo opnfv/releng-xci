@@ -37,6 +37,10 @@ source "$XCI_PATH/config/${XCI_FLAVOR}-vars"
 # source xci configuration
 source $XCI_PATH/config/env-vars
 
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
+
 #-------------------------------------------------------------------------------
 # Sanitize local development environment variables
 #-------------------------------------------------------------------------------
