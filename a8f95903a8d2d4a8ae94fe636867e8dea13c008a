@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_71e9f67f",
+        "filename": "xci/playbooks/roles/configure-nfs/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-21T12:16:11Z",
+      "side": 1,
+      "message": "we already have this in images built by dib. \n\nhttps://gerrit.opnfv.org/gerrit/gitweb?p\u003dreleng-xci.git;a\u003dblob;f\u003dxci/config/env-vars;h\u003df4a3faccfdc9072b1fd29221aeab79a21e5fd09d;hb\u003dHEAD#l21\n\nam I missing something here?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 27
+      },
+      "revId": "a8f95903a8d2d4a8ae94fe636867e8dea13c008a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_51ee7289",
+        "filename": "xci/playbooks/roles/synchronize-time/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-21T12:16:11Z",
+      "side": 1,
+      "message": "same here.\n\nhttps://gerrit.opnfv.org/gerrit/gitweb?p\u003dreleng-xci.git;a\u003dblob;f\u003dxci/config/env-vars;h\u003df4a3faccfdc9072b1fd29221aeab79a21e5fd09d;hb\u003dHEAD#l21",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 27
+      },
+      "revId": "a8f95903a8d2d4a8ae94fe636867e8dea13c008a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
