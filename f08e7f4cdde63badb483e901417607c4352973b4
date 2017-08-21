@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_6e45916f",
+        "filename": "xci/README.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2017-08-21T08:31:52Z",
+      "side": 1,
+      "message": "Could we add an automated option of deploying for master? If we detect OSA version being master, get all the dependencies for master as well? I think it can be a common use case to just deploy from master",
+      "parentUuid": "da33351e_0ec205e9",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 65
+      },
+      "revId": "f08e7f4cdde63badb483e901417607c4352973b4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_eef1a1ce",
         "filename": "xci/README.rst",
         "patchSetId": 2
