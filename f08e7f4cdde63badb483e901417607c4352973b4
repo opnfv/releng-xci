@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_ee588158",
+        "filename": "xci/README.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-21T08:34:12Z",
+      "side": 1,
+      "message": "Yolanda,\n\nThat\u0027s in the pipeline. We need this functionality for our osa-periodic jobs which will have OPENSTACK_OSA_VERSION set to master. I intend to have a script to check the version, run sources-branch-updater.sh to update ansible role requirements if the variable is set to master. \n\nWould this work for you?",
+      "parentUuid": "da33351e_6e45916f",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 220,
+        "endChar": 65
+      },
+      "revId": "f08e7f4cdde63badb483e901417607c4352973b4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_eef1a1ce",
         "filename": "xci/README.rst",
         "patchSetId": 2
