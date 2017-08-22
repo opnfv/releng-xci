@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_7748c12d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-22T21:19:52Z",
+      "side": 1,
+      "message": "added some suggestions inline.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 63
+      },
+      "revId": "457e611294e368eaca572f504299e1da30dde80c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_d7beedfe",
+        "filename": "xci/file/ansible-role-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-22T21:19:52Z",
+      "side": 1,
+      "message": "please put sha of master commit to keep the versions consistent here.",
+      "range": {
+        "startLine": 211,
+        "startChar": 11,
+        "endLine": 211,
+        "endChar": 17
+      },
+      "revId": "457e611294e368eaca572f504299e1da30dde80c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_b7bb690d",
+        "filename": "xci/file/ha/openstack_user_config.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-22T21:19:52Z",
+      "side": 1,
+      "message": "this file will probably become a template and depending on the environment (networking), pod (baremetal, virtual), scenario (odl, sfc, etc.) user config will be generated using template.\n\nI think you can put this into sfc role without templating it to keep the original file clear.",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 21
+      },
+      "revId": "457e611294e368eaca572f504299e1da30dde80c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_1738559f",
+        "filename": "xci/file/mini/openstack_user_config.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-22T21:19:52Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 21
+      },
+      "revId": "457e611294e368eaca572f504299e1da30dde80c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_77c1e17f",
+        "filename": "xci/file/noha/openstack_user_config.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-22T21:19:52Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 142,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 21
+      },
+      "revId": "457e611294e368eaca572f504299e1da30dde80c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_97c46593",
+        "filename": "xci/file/setup-openstack.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-22T21:19:52Z",
+      "side": 1,
+      "message": "I think this file should also be moved under \u003crole\u003e/file/setup-openstack.yml.\n\nIts new home is most probably role for sfc scenario until we find other uses.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 32
+      },
+      "revId": "457e611294e368eaca572f504299e1da30dde80c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
