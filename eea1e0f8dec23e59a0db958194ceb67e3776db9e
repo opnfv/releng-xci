@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_289ff453",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-23T13:20:19Z",
+      "side": 1,
+      "message": "do you know if it is possible to set this condition to something like \"if the OPNFV_SCENARIO has \u0027odl\u0027 in it, then...\"?",
+      "range": {
+        "startLine": 48,
+        "startChar": 25,
+        "endLine": 48,
+        "endChar": 43
+      },
+      "revId": "eea1e0f8dec23e59a0db958194ceb67e3776db9e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
