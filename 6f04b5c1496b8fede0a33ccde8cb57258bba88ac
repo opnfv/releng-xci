@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_082dd046",
+        "filename": "xci/file/ha/user_variables.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-08-23T13:00:10Z",
+      "side": 1,
+      "message": "okay. raised review for it in https://review.openstack.org/#/c/496580/",
+      "parentUuid": "da33351e_6ace145c",
+      "revId": "6f04b5c1496b8fede0a33ccde8cb57258bba88ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_4affd067",
         "filename": "xci/file/ha/user_variables.yml",
         "patchSetId": 6
@@ -48,6 +66,30 @@
       "writtenOn": "2017-08-23T06:50:14Z",
       "side": 1,
       "message": "I think that this is not gonna work.\n\nThis is not the right way to fill a list.\n\nYou need to do something like ovs_manager_list.append if I remember correctly.",
+      "range": {
+        "startLine": 43,
+        "startChar": 15,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "6f04b5c1496b8fede0a33ccde8cb57258bba88ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_e8318ca3",
+        "filename": "xci/file/ha/user_variables.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-08-23T13:00:10Z",
+      "side": 1,
+      "message": "now its being added in neutron role\u0027s vars/main.yml with different logic, but yet to test it.",
+      "parentUuid": "da33351e_4affd067",
       "range": {
         "startLine": 43,
         "startChar": 15,
@@ -83,6 +125,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_4827d864",
+        "filename": "xci/file/ha/user_variables.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-08-23T13:00:10Z",
+      "side": 1,
+      "message": "okay, raised a review in https://review.openstack.org/#/c/496583/",
+      "parentUuid": "da33351e_4a0d1090",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 75
+      },
+      "revId": "6f04b5c1496b8fede0a33ccde8cb57258bba88ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_2a124cb1",
         "filename": "xci/file/noha/user_variables.yml",
         "patchSetId": 6
@@ -94,6 +160,30 @@
       "writtenOn": "2017-08-23T06:50:14Z",
       "side": 1,
       "message": "Just a suggestion: Here we could add the haproxy IP.\n\nDoesn\u0027t matter if the flavor is HA or noHa (or mini but I am not sure about mini) \nall the openstack services are accessible through haproxy\u0027s IP in both flavors.\n\nSo it would be better to keep the same convention for ODL too.\n\nI attach here two links for the haproxy.cfg file and the output of the openstack endpoint list commamnd in a noHa flavor so you can understand what I mean by that:\n\nhttp://pasted.co/d975be56\n\nhttp://pasted.co/ce82c866",
+      "range": {
+        "startLine": 44,
+        "startChar": 19,
+        "endLine": 44,
+        "endChar": 95
+      },
+      "revId": "6f04b5c1496b8fede0a33ccde8cb57258bba88ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_e8d86c55",
+        "filename": "xci/file/noha/user_variables.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-08-23T13:00:10Z",
+      "side": 1,
+      "message": "mini is also same noha, but its with single compute node. now changed to use haproxy\u0027s IP for ml2 ODL configuration.",
+      "parentUuid": "da33351e_2a124cb1",
       "range": {
         "startLine": 44,
         "startChar": 19,
