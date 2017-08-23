@@ -16,6 +16,93 @@
       "revId": "6f04b5c1496b8fede0a33ccde8cb57258bba88ac",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_6ace145c",
+        "filename": "xci/file/ha/user_variables.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-23T06:50:14Z",
+      "side": 1,
+      "message": "IMHO this code should not be here in user_variables file.\n\nI think it will be better to add this code to a task file.",
+      "parentUuid": "da33351e_17bdf568",
+      "revId": "6f04b5c1496b8fede0a33ccde8cb57258bba88ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4affd067",
+        "filename": "xci/file/ha/user_variables.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-23T06:50:14Z",
+      "side": 1,
+      "message": "I think that this is not gonna work.\n\nThis is not the right way to fill a list.\n\nYou need to do something like ovs_manager_list.append if I remember correctly.",
+      "range": {
+        "startLine": 43,
+        "startChar": 15,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "6f04b5c1496b8fede0a33ccde8cb57258bba88ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4a0d1090",
+        "filename": "xci/file/ha/user_variables.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-23T06:50:14Z",
+      "side": 1,
+      "message": "IMHO this should not be here.\n\nYou can just check how the other haproxy services (galera,neutron,nova) are added and add this piece of code there like: \"if neutron_plugin_type \u003d\u003d ml2.opendaylight then expand the haproxy_sservice list\".\n\nI just said you to add this code here in the past because I wanted to give you a quick solution.BUt in reality I think this code shouldn\u0027t be here.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 75
+      },
+      "revId": "6f04b5c1496b8fede0a33ccde8cb57258bba88ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_2a124cb1",
+        "filename": "xci/file/noha/user_variables.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-08-23T06:50:14Z",
+      "side": 1,
+      "message": "Just a suggestion: Here we could add the haproxy IP.\n\nDoesn\u0027t matter if the flavor is HA or noHa (or mini but I am not sure about mini) \nall the openstack services are accessible through haproxy\u0027s IP in both flavors.\n\nSo it would be better to keep the same convention for ODL too.\n\nI attach here two links for the haproxy.cfg file and the output of the openstack endpoint list commamnd in a noHa flavor so you can understand what I mean by that:\n\nhttp://pasted.co/d975be56\n\nhttp://pasted.co/ce82c866",
+      "range": {
+        "startLine": 44,
+        "startChar": 19,
+        "endLine": 44,
+        "endChar": 95
+      },
+      "revId": "6f04b5c1496b8fede0a33ccde8cb57258bba88ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
