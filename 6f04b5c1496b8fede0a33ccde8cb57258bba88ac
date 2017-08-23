@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_17bdf568",
+        "filename": "xci/file/ha/user_variables.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-08-23T02:47:33Z",
+      "side": 1,
+      "message": "I still need to make required changes for making ovs manager pointing to all odl ip addresses from xci in ha mode. Once it is complete, will update this code review to align with Manuel\u0027s /c/39517/ folder structure for os-sdn-nofeature.",
+      "revId": "6f04b5c1496b8fede0a33ccde8cb57258bba88ac",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
