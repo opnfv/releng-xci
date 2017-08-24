@@ -1,3 +1,5 @@
+# {{ ansible_managed }}
+
 # The loopback network interface
 auto lo
 iface lo inet loopback
@@ -16,7 +18,7 @@ auto {{ interface }}.30
 iface {{ interface }}.30 inet manual
     vlan-raw-device {{ interface }}
 
-# Storage network VLAN interface (optional)
+# Storage network VLAN interface
 auto {{ interface }}.20
 iface {{ interface }}.20 inet manual
     vlan-raw-device {{ interface }}
@@ -31,14 +33,14 @@ iface br-mgmt inet static
     address {{host_info[inventory_hostname].MGMT_IP}}
     netmask 255.255.252.0
 
-# OpenStack Networking VXLAN (tunnel/overlay) bridge
+# compute1 VXLAN (tunnel/overlay) bridge config
 auto br-vxlan
 iface br-vxlan inet static
     bridge_stp off
     bridge_waitport 0
     bridge_fd 0
     bridge_ports {{ interface }}.30
-    address {{ host_info[inventory_hostname].VXLAN_IP }}
+    address {{host_info[inventory_hostname].VXLAN_IP}}
     netmask 255.255.252.0
 
 # OpenStack Networking VLAN bridge
@@ -52,6 +54,15 @@ iface br-vlan inet static
     netmask 255.255.255.0
     gateway 192.168.122.1
     dns-nameserver 8.8.8.8 8.8.4.4
+    offload-sg off
+    # Create veth pair, don't bomb if already exists
+    pre-up ip link add br-vlan-veth type veth peer name eth12 || true
+    # Set both ends UP
+    pre-up ip link set br-vlan-veth up
+    pre-up ip link set eth12 up
+    # Delete veth pair on DOWN
+    post-down ip link del br-vlan-veth || true
+    bridge_ports br-vlan-veth
 
 # OpenStack Storage bridge
 auto br-storage

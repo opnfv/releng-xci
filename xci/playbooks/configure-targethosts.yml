@@ -13,8 +13,7 @@
     - ../var/{{ ansible_os_family }}.yml
     - ../var/flavor-vars.yml
   roles:
-    # TODO: this only works for ubuntu/xenial and need to be adjusted for other distros
-    - { role: configure-network, src: "../template/controller.interface.j2", dest: "/etc/network/interfaces" }
+    - role: configure-network
     # we need to force sync time with ntp or the nodes will be out of sync timewise
     - role: synchronize-time
 
@@ -24,8 +23,7 @@
     - ../var/{{ ansible_os_family }}.yml
     - ../var/flavor-vars.yml
   roles:
-    # TODO: this only works for ubuntu/xenial and need to be adjusted for other distros
-    - { role: configure-network, src: "../template/compute.interface.j2", dest: "/etc/network/interfaces" }
+    - role: configure-network
     # we need to force sync time with ntp or the nodes will be out of sync timewise
     - role: synchronize-time
 
