@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_3f6d6799",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-08-24T17:49:13Z",
+      "side": 1,
+      "message": "shouldn\u0027t these be\n\n    cd $XCI_PATH\n    ansible-playbook $ANSIBLE_VERBOSITY -i inventory configure-opnfvhost.yml",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 134
+      },
+      "revId": "0d9f2d14bb5d5faea5964290a1e2e05cb6850eeb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
