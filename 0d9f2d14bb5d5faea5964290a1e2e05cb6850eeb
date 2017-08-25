@@ -22,6 +22,30 @@
       "revId": "0d9f2d14bb5d5faea5964290a1e2e05cb6850eeb",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_534ca470",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2017-08-25T09:15:57Z",
+      "side": 1,
+      "message": "No, i needed to go to this path, because i install the playbooks to generate the certs, and it cannot find them from $OPNFV_XCI_PATH/playbooks directory",
+      "parentUuid": "da33351e_3f6d6799",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 134
+      },
+      "revId": "0d9f2d14bb5d5faea5964290a1e2e05cb6850eeb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
