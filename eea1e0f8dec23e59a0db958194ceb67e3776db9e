@@ -22,6 +22,30 @@
       "revId": "eea1e0f8dec23e59a0db958194ceb67e3776db9e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_dbac46a3",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-08-28T05:01:57Z",
+      "side": 1,
+      "message": "Yes Manuel, changed the condition like below:\nif [[ $OPNFV_SCENARIO \u003d\u003d *\"odl\"* ]]; then\n    export VM_MEMORY_SIZE\u003d16384\nfi",
+      "parentUuid": "da33351e_289ff453",
+      "range": {
+        "startLine": 48,
+        "startChar": 25,
+        "endLine": 48,
+        "endChar": 43
+      },
+      "revId": "eea1e0f8dec23e59a0db958194ceb67e3776db9e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
