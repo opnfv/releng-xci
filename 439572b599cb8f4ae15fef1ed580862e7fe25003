@@ -1,0 +1,8 @@
+Code-Review+1: David Blaisonneau <david.blaisonneau@orange.com>
+Code-Review+2: Yolanda Robla Mota <info@ysoft.biz>
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Submitted-by: Fatih Degirmenci <fatih.degirmenci@ericsson.com>
+Submitted-at: Mon, 28 Aug 2017 10:18:25 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/40349
+Project: releng-xci
+Branch: refs/heads/master
