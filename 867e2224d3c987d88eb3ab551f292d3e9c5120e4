@@ -68,6 +68,30 @@
       "revId": "867e2224d3c987d88eb3ab551f292d3e9c5120e4",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_912a9f7c",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 170
+      },
+      "writtenOn": "2017-08-28T11:04:54Z",
+      "side": 1,
+      "message": "If ~/.local/bin is in the beginning and path is\n  ~/.local/bin:SOMESTUFF\nthen\n  :$PATH: \nwill expand to\n  :~/.local/bin:SOMESTUFF:\nand the pattern \n  *\":~/.local/bin:\"*\nwill match. \n\n\n~ expands without quotation marks:\n\u003e echo \"~\" \n~\n\n\u003e echo ~\n/home/xci",
+      "parentUuid": "da33351e_110a2a8a",
+      "range": {
+        "startLine": 40,
+        "startChar": 22,
+        "endLine": 40,
+        "endChar": 23
+      },
+      "revId": "867e2224d3c987d88eb3ab551f292d3e9c5120e4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
