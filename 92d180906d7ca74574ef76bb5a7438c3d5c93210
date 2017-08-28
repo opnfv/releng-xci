@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_3178f3c3",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-28T17:09:04Z",
+      "side": 1,
+      "message": "This should be releng-xci or?",
+      "range": {
+        "startLine": 32,
+        "startChar": 43,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "92d180906d7ca74574ef76bb5a7438c3d5c93210",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_71071b1d",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-28T17:09:04Z",
+      "side": 1,
+      "message": "According to this, I guess I should get a directory called:\n\n/tmp/.xci-deploy-env/openstack-ansible-openstack_openrc in the opnfv VM right? There is openstack-ansible, releng and ssh_host_keys there",
+      "revId": "92d180906d7ca74574ef76bb5a7438c3d5c93210",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
