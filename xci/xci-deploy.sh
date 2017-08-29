@@ -259,3 +259,23 @@ if grep -q 'failed=1\|unreachable=1' $LOG_PATH/opnfv-setup-openstack.log; then
    exit 1
 fi
 echo "Info: OpenStack installation is successfully completed!"
+
+#-------------------------------------------------------------------------------
+# - Getting OpenStack login information
+#-------------------------------------------------------------------------------
+echo "Info: Openstack login details"
+echo "-----------------------------------------------------------------------"
+FLAVOR_VARS=$XCI_PATH/file/$XCI_FLAVOR/flavor-vars.yml
+python -c \
+"import yaml
+if '$XCI_FLAVOR' is 'aio':
+   print 'Horizon UI is available at http://192.168.122.2'
+else:
+   host_info = open('$FLAVOR_VARS', 'r')
+   net_config = yaml.safe_load(host_info)
+   print 'Info: Horizon UI is available at http://{}'.format(net_config['host_info']['controller00']['VLAN_IP'])"
+USERNAME=$(ssh -q root@192.168.122.2 awk "/OS_USERNAME=./" openrc)
+PASSWORD=$(ssh -q root@192.168.122.2 awk "/OS_PASSWORD=./" openrc)
+echo "Info: Admin username -  ${USERNAME##*=}"
+echo "Info: Admin password - ${PASSWORD##*=}"
+echo "Info: It is recommended to change the default password."
