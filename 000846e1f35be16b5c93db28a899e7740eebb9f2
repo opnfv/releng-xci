@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_4ab7b9d8",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 5761
+      },
+      "writtenOn": "2017-08-29T15:29:28Z",
+      "side": 1,
+      "message": "Should I consume these parameters from `openrc` file ?\nIf yes, then maybe I need to wait Yolanda\u0027s patch to merge \nso I use the local openrc file rather than the one inside the containers.",
+      "range": {
+        "startLine": 251,
+        "startChar": 1,
+        "endLine": 252,
+        "endChar": 28
+      },
+      "revId": "000846e1f35be16b5c93db28a899e7740eebb9f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
