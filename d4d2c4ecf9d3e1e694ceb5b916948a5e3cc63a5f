@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_ca13c95a",
+        "filename": "xci/playbooks/roles/os-odl-sfc/tasks/copy-OSA-files.yml",
+        "patchSetId": 21
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-29T10:55:35Z",
+      "side": 1,
+      "message": "Yes, it is working. Everything inside the directory \"files\" inside a role allows to refer to it in the tasks without an absolute or relative path",
+      "parentUuid": "da33351e_c7dbc4eb",
+      "revId": "d4d2c4ecf9d3e1e694ceb5b916948a5e3cc63a5f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_a7d680c1",
         "filename": "xci/playbooks/roles/os-odl-sfc/tasks/copy-OSA-files.yml",
         "patchSetId": 21
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_aa0e4530",
+        "filename": "xci/playbooks/roles/os-odl-sfc/tasks/copy-OSA-files.yml",
+        "patchSetId": 21
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-29T10:55:35Z",
+      "side": 1,
+      "message": "Same explanation as above",
+      "parentUuid": "da33351e_a7d680c1",
+      "revId": "d4d2c4ecf9d3e1e694ceb5b916948a5e3cc63a5f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_07e64cb4",
         "filename": "xci/playbooks/roles/os-odl-sfc/tasks/main.yml",
         "patchSetId": 21
@@ -47,6 +83,24 @@
       "writtenOn": "2017-08-29T09:53:52Z",
       "side": 1,
       "message": "Nit: trailing space",
+      "revId": "d4d2c4ecf9d3e1e694ceb5b916948a5e3cc63a5f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0a1e5163",
+        "filename": "xci/playbooks/roles/os-odl-sfc/tasks/main.yml",
+        "patchSetId": 21
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-29T10:55:35Z",
+      "side": 1,
+      "message": "Good catch!",
+      "parentUuid": "da33351e_07e64cb4",
       "revId": "d4d2c4ecf9d3e1e694ceb5b916948a5e3cc63a5f",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
