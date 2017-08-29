@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_8a58a133",
+        "filename": "xci/playbooks/roles/os-odl-sfc/tasks/copy-OSA-files.yml",
+        "patchSetId": 21
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-08-29T11:21:40Z",
+      "side": 1,
+      "message": "ah! okay. I was trying with directory name as \"file\" under the role :(",
+      "parentUuid": "da33351e_ca13c95a",
+      "revId": "d4d2c4ecf9d3e1e694ceb5b916948a5e3cc63a5f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_a7d680c1",
         "filename": "xci/playbooks/roles/os-odl-sfc/tasks/copy-OSA-files.yml",
         "patchSetId": 21
