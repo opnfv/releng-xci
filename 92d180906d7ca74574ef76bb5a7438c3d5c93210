@@ -39,6 +39,29 @@
       "revId": "92d180906d7ca74574ef76bb5a7438c3d5c93210",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_c7b465d3",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-08-29T01:14:59Z",
+      "side": 1,
+      "message": "why change to this directory?",
+      "range": {
+        "startLine": 135,
+        "startChar": 2,
+        "endLine": 135,
+        "endChar": 20
+      },
+      "revId": "92d180906d7ca74574ef76bb5a7438c3d5c93210",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
