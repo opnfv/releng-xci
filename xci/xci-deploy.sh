@@ -241,3 +241,12 @@ if grep -q 'failed=1\|unreachable=1' $LOG_PATH/opnfv-setup-openstack.log; then
    exit 1
 fi
 echo "Info: OpenStack installation is successfully completed!"
+
+# - Getting OpenStack information
+FLAVOR_VARS=$XCI_PATH/file/$XCI_FLAVOR/flavor-vars.yml
+python -c "import yaml
+host_info = open('$FLAVOR_VARS', 'r')
+net_config = yaml.safe_load(host_info)
+print 'Info: Horizon UI is available at http://{}'.format(net_config['host_info']['controller00']['VLAN_IP'])"
+echo "Info: Admin username "
+echo "Info: Admin Password "
