@@ -60,6 +60,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_bb3fb924",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-30T10:43:29Z",
+      "side": 1,
+      "message": "Is this directory removed afterwards? I can\u0027t find it anywhere :(",
+      "parentUuid": "da33351e_b0f3589e",
+      "revId": "92d180906d7ca74574ef76bb5a7438c3d5c93210",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_c7b465d3",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 5
