@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_db1b9dc8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-30T11:12:40Z",
+      "side": 1,
+      "message": "We are taking our own certificates but afterwards, we are forcing not to use them because of the --insecure flag we add. Am I perhaps understanding it wrongly?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 29
+      },
+      "revId": "6bb628aceafb3b2aeacd64226da2e6725221ebed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_fb2021f9",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-30T11:12:40Z",
+      "side": 1,
+      "message": "According to this, I should find openrc under /tmp/.xci-deploy-env in the opnfv VM, right? It is not there. Maybe that is why the openrc in the utility container does not have the aliases (e.g. alias glance\u003d\u0027glance --insecure\u0027)",
+      "range": {
+        "startLine": 146,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 18
+      },
+      "revId": "6bb628aceafb3b2aeacd64226da2e6725221ebed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
