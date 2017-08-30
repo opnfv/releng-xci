@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_b0f3589e",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2017-08-30T07:48:39Z",
+      "side": 1,
+      "message": "Yes, it should use that directory to copy the role there",
+      "parentUuid": "da33351e_71071b1d",
+      "revId": "92d180906d7ca74574ef76bb5a7438c3d5c93210",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_c7b465d3",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 5
@@ -53,6 +71,30 @@
       "writtenOn": "2017-08-29T01:14:59Z",
       "side": 1,
       "message": "why change to this directory?",
+      "range": {
+        "startLine": 135,
+        "startChar": 2,
+        "endLine": 135,
+        "endChar": 20
+      },
+      "revId": "92d180906d7ca74574ef76bb5a7438c3d5c93210",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_10f3249f",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2017-08-30T07:48:39Z",
+      "side": 1,
+      "message": "because the osa_openrc role is copied there, and we need the playbook to pick the path of the role properly",
+      "parentUuid": "da33351e_c7b465d3",
       "range": {
         "startLine": 135,
         "startChar": 2,
