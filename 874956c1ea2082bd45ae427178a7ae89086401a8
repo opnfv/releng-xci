@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_1b16a5a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-08-30T11:08:11Z",
+      "side": 1,
+      "message": "Can you change the title and say that you are adding the os-odl-nofeature scenario? I was getting confused thinking that our patches were colliding",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "874956c1ea2082bd45ae427178a7ae89086401a8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
