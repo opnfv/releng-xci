@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_3062a8ad",
+        "filename": "xci/playbooks/roles/configure-network/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 170
+      },
+      "writtenOn": "2017-08-30T06:24:45Z",
+      "side": 1,
+      "message": "This does not look right. What happened to the xenial branch?",
+      "revId": "e8f6f7180dc5d78520d3ab298f279a8dd1b8795b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
