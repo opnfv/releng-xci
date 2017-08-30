@@ -22,3 +22,4 @@
 - include: os-horizon-install.yml
 - include: os-swift-install.yml
 - include: os-ironic-install.yml
+- include: os-tempest-install.yml
