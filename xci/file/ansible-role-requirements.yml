@@ -80,7 +80,7 @@
 - name: os_cinder
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_cinder
-  version: 0d0527e8f8d490c65b74981247f6df6f9b7770e7
+  version: 96160f084d89355ba62980b1ebbedf0eef7c7b20
 - name: os_glance
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_glance
