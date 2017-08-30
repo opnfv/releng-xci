@@ -40,7 +40,7 @@
 - name: keepalived
   scm: git
   src: https://github.com/evrardjp/ansible-keepalived
-  version: 3.0.1
+  version: b13e0840b09154a6d2470f71fea8eaa968525c5b
 - name: lxc_container_create
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-lxc_container_create
