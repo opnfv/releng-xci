@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_900d6f3a",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-08-31T11:05:17Z",
+      "side": 1,
+      "message": "as I explained before this conditional is rather obscure and possibly doesn\u0027t cover all possible cases in $PATH. It\u0027s best if you use echo and grep to find out what you are looking for",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 50
+      },
+      "revId": "004a38f52a7c58e041f4aa7beeba8f6896a03cfe",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
