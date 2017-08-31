@@ -16,6 +16,24 @@
       "revId": "e8f6f7180dc5d78520d3ab298f279a8dd1b8795b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_b07d1371",
+        "filename": "xci/playbooks/roles/configure-network/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-08-31T11:43:27Z",
+      "side": 1,
+      "message": "works fine. It just matches the whole debian family not just Ubuntu",
+      "parentUuid": "da33351e_3062a8ad",
+      "revId": "e8f6f7180dc5d78520d3ab298f279a8dd1b8795b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
