@@ -44,8 +44,9 @@ Vagrant.configure(2) do |config|
           export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-2048}
           export VM_DOMAIN_TYPE=qemu
           export PATH=$PATH:$HOME/.local/bin
+          export OPNFV_RELENG_DEV_PATH=/vagrant
           [[ ! -e ${HOME}/.ssh/id_rsa ]] && ssh-keygen -q -P '' -f ${HOME}/.ssh/id_rsa
-          ./xci-deploy.sh
+          cd xci && ./xci-deploy.sh
       SHELL
       s.env = {
           "XCI_FLAVOR" => "#{ENV['XCI_FLAVOR']}",
@@ -78,8 +79,9 @@ Vagrant.configure(2) do |config|
           export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-2048}
           export VM_DOMAIN_TYPE=qemu
           export PATH=$PATH:$HOME/.local/bin
+          export OPNFV_RELENG_DEV_PATH=/vagrant
           [[ ! -e ${HOME}/.ssh/id_rsa ]] && ssh-keygen -q -P '' -f ${HOME}/.ssh/id_rsa
-          ./xci-deploy.sh
+          cd xci && ./xci-deploy.sh
       SHELL
       s.env = {
           "XCI_FLAVOR" => "#{ENV['XCI_FLAVOR']}",
@@ -110,8 +112,9 @@ Vagrant.configure(2) do |config|
         export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-2048}
         export VM_DOMAIN_TYPE=qemu
         export PATH=$PATH:$HOME/.local/bin
+        export OPNFV_RELENG_DEV_PATH=/vagrant
         [[ ! -e ${HOME}/.ssh/id_rsa ]] && ssh-keygen -q -P '' -f ${HOME}/.ssh/id_rsa
-        ./xci-deploy.sh
+        cd xci && ./xci-deploy.sh
       SHELL
     end
   end
@@ -136,8 +139,9 @@ Vagrant.configure(2) do |config|
         export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-2048}
         export VM_DOMAIN_TYPE=qemu
         export PATH=$PATH:$HOME/.local/bin
+        export OPNFV_RELENG_DEV_PATH=/vagrant
         [[ ! -e ${HOME}/.ssh/id_rsa ]] && ssh-keygen -q -P '' -f ${HOME}/.ssh/id_rsa
-        ./xci-deploy.sh
+        cd xci && ./xci-deploy.sh
       SHELL
     end
   end
