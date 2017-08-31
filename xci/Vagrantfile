@@ -64,13 +64,13 @@ Vagrant.configure(2) do |config|
       s.privileged = false
       s.inline = <<-SHELL
           cd /vagrant
-          PART_START=$(parted /dev/sda --script unit MB print | awk '/^ 3 / {print $3}')
-          parted /dev/sda --script unit MB mkpart primary ${PART_START} 100%
-          parted /dev/sda --script set 4 lvm on
-          pvcreate /dev/sda4
-          vgextend VolGroup00 /dev/sda4
-          lvextend -l +100%FREE /dev/mapper/VolGroup00-LogVol00
-          xfs_growfs /dev/mapper/VolGroup00-LogVol00
+          PART_START=$(sudo parted /dev/sda --script unit MB print | awk '/^ 3 / {print $3}')
+          sudo parted /dev/sda --script unit MB mkpart primary ${PART_START} 100%
+          sudo parted /dev/sda --script set 4 lvm on
+          sudo pvcreate /dev/sda4
+          sudo vgextend VolGroup00 /dev/sda4
+          sudo lvextend -l +100%FREE /dev/mapper/VolGroup00-LogVol00
+          sudo xfs_growfs /dev/mapper/VolGroup00-LogVol00
           export XCI_FLAVOR=${XCI_FLAVOR:-mini}
           export VM_CPU=${VM_CPU:-2}
           export VM_DISK=${VM_DISK:-40}
@@ -95,13 +95,13 @@ Vagrant.configure(2) do |config|
       # NOTE(hwoarang) The parted version in Leap 42.2 can't do an online
       # partition resize so we must create a new one and attach it to the
       # btrfs filesystem.
-      s.privileged = true,
+      s.privileged = false
       s.inline = <<-SHELL
         cd /vagrant
-        echo -e 'd\n2\nn\np\n\n\n\nn\nw' | fdisk /dev/sda
-        PART_END=$(fdisk -l /dev/sda | grep ^/dev/sda2 | awk '{print $4}')
-        resizepart /dev/sda 2 $PART_END
-        btrfs fi resize max /
+        echo -e 'd\n2\nn\np\n\n\n\nn\nw' | sudo fdisk /dev/sda
+        PART_END=$(sudo fdisk -l /dev/sda | grep ^/dev/sda2 | awk '{print $4}')
+        sudo resizepart /dev/sda 2 $PART_END
+        sudo btrfs fi resize max /
         export XCI_FLAVOR=${XCI_FLAVOR:-mini}
         export VM_CPU=${VM_CPU:-2}
         export VM_DISK=${VM_DISK:-40}
@@ -120,13 +120,13 @@ Vagrant.configure(2) do |config|
       # NOTE(hwoarang) The parted version in Leap 42.3 can't do an online
       # partition resize so we must create a new one and attach it to the
       # btrfs filesystem.
-      s.privileged = true,
+      s.privileged = false
       s.inline = <<-SHELL
         cd /vagrant
-        echo -e 'd\n2\nn\np\n\n\n\nn\nw' | fdisk /dev/sda
-        PART_END=$(fdisk -l /dev/sda | grep ^/dev/sda2 | awk '{print $4}')
-        resizepart /dev/sda 2 $PART_END
-        btrfs fi resize max /
+        echo -e 'd\n2\nn\np\n\n\n\nn\nw' | sudo fdisk /dev/sda
+        PART_END=$(sudo fdisk -l /dev/sda | grep ^/dev/sda2 | awk '{print $4}')
+        sudo resizepart /dev/sda 2 $PART_END
+        sudo btrfs fi resize max /
         export XCI_FLAVOR=${XCI_FLAVOR:-mini}
         export VM_CPU=${VM_CPU:-2}
         export VM_DISK=${VM_DISK:-40}
