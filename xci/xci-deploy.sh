@@ -72,16 +72,6 @@ if [[ $OS_FAMILY != Debian ]]; then
     exit 1
 fi
 
-# TODO: Get rid of this!!!
-# Flavor HA fails to deploy and currently disabled.
-if [[ $XCI_FLAVOR == ha ]]; then
-    echo ""
-    echo "Error: Sorry, the flavor ha is not currently supported due to an upstream issue!"
-    echo "Info : Available flavors are aio, mini, and ha"
-    echo ""
-    exit 1
-fi
-
 # TODO: The xci playbooks can be put into a playbook which will be done later.
 
 #-------------------------------------------------------------------------------
