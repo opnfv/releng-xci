@@ -1,0 +1,15 @@
+#!/bin/bash
+
+INTERFACE=$1
+ACTION=$4
+
+if [[ $INTERFACE == "br-vlan" ]]; then
+    if [[ $ACTION == "pre-up" ]]; then
+        ip link add br-vlan-veth type veth peer name eth12 || true
+        ip link set br-vlan-veth up
+        ip link set eth12 up
+    else
+        ip link del br-vlan-veth || true
+    fi
+fi
+
