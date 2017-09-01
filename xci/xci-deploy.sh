@@ -91,11 +91,11 @@ case ${OS_FAMILY,,} in
         ;;
 esac
 
-# There is no CentOS or openSUSE support at all
-if [[ $OS_FAMILY != Debian ]]; then
+# There is no CentOS support at all
+if [[ $OS_FAMILY == RedHat ]]; then
     echo ""
-    echo "Error: Sorry, only Ubuntu hosts are supported for now!"
-    echo "Error: CentOS7 and openSUSE Leap support is still work in progress."
+    echo "Error: Sorry, only Ubuntu and SUSE hosts are supported for now!"
+    echo "Error: CentOS 7 support is still work in progress."
     echo ""
     exit 1
 fi
