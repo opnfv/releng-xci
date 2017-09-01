@@ -63,6 +63,30 @@ echo "-------------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 source file/install-ansible.sh
 
+# Make the VMs match the host. If we need to make this configurable
+# then this logic has to be moved outside this file
+case ${OS_FAMILY,,} in
+    # These should ideally match the CI jobs
+    debian)
+        export DIB_OS_RELEASE="xenial"
+        export DIB_OS_ELEMENT="ubuntu-minimal"
+        export DIB_OS_PACKAGES="vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,chrony,iptables"
+        export EXTRA_DIB_ELEMENTS="openssh-server"
+        ;;
+    redhat)
+        export DIB_OS_RELEASE="7"
+        export DIB_OS_ELEMENT="centos-minimal"
+        export DIB_OS_PACKAGES="vim,less,bridge-utils,iputils,rsyslog,curl,iptables"
+        export EXTRA_DIB_ELEMENTS="openssh-server"
+        ;;
+    suse)
+        export DIB_OS_RELEASE="42.3"
+        export DIB_OS_ELEMENT="opensuse-minimal"
+        export DIB_OS_PACKAGES="vim,less,bridge-utils,iputils,rsyslog,curl,iptables"
+        export EXTRA_DIB_ELEMENTS="openssh-server"
+        ;;
+esac
+
 # There is no CentOS or openSUSE support at all
 if [[ $OS_FAMILY != Debian ]]; then
     echo ""
