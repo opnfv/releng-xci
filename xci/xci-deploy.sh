@@ -74,19 +74,19 @@ case ${OS_FAMILY,,} in
     debian)
         export DIB_OS_RELEASE="${DIB_OS_RELEASE:-xenial}"
         export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-ubuntu-minimal}"
-        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,chrony,iptables,nfs-kernel-server}"
+        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,chrony,iptables}"
         export EXTRA_DIB_ELEMENTS="${EXTRA_DIB_ELEMENTS:-openssh-server}"
         ;;
     redhat)
         export DIB_OS_RELEASE="${DIB_OS_RELEASE:-7}"
         export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-centos-minimal}"
-        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables,nfs-kernel-server}"
+        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables}"
         export EXTRA_DIB_ELEMENTS="${EXTRA_DIB_ELEMENTS:-openssh-server}"
         ;;
     suse)
         export DIB_OS_RELEASE="${DIB_OS_RELEASE:-42.3}"
         export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-opensuse-minimal}"
-        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables,nfs-kernel-server}"
+        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables}"
         export EXTRA_DIB_ELEMENTS="${EXTRA_DIB_ELEMETS:-openssh-server}"
         ;;
 esac

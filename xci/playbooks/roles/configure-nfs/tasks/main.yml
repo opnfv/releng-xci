@@ -43,6 +43,12 @@
   with_items:
     - "/images         *(rw,sync,no_subtree_check,no_root_squash)"
     - "/volumes        *(rw,sync,no_subtree_check,no_root_squash)"
+
+- name: Install the NFS server package
+  package:
+    name: "{{ nfs_server_package }}"
+    state: latest
+
 - name: restart NFS service
   service:
     name: "{{ nfs_server_service }}"
