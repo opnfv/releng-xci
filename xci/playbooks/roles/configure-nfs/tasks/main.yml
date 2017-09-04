@@ -43,7 +43,7 @@
   with_items:
     - "/images         *(rw,sync,no_subtree_check,no_root_squash)"
     - "/volumes        *(rw,sync,no_subtree_check,no_root_squash)"
-- name: restart ubuntu xenial NFS service
+- name: restart NFS service
   service:
     name: "{{ nfs_server_service }}"
     state: restarted
