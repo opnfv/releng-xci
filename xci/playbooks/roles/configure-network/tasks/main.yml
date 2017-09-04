@@ -34,6 +34,14 @@
   when: ansible_os_family | lower == "debian"
 
 - block:
+    - name: Remove existing network configuration
+      file:
+        path: "/etc/sysconfig/network/{{ item }}"
+        state: absent
+      with_items:
+        - "ifcfg-eth0"
+        - "ifroute-eth0"
+
     - name: Configure networking on SUSE
       template:
         src: "{{ ansible_os_family | lower }}/suse.interface.j2"
@@ -45,12 +53,21 @@
         - { name: "{{ interface }}.20", vlan_id: 20 }
         - { name: "br-mgmt", bridge_ports: "{{ interface }}.10", ip: "{{ host_info[inventory_hostname].MGMT_IP }}/22" }
         - { name: "br-vxlan", bridge_ports: "{{ interface }}.30", ip: "{{ host_info[inventory_hostname].VXLAN_IP }}/22" }
-        - { name: "br-vlan", bridge_ports: "{{ interface }}", ip: "{{ host_info[inventory_hostname].VLAN_IP }}/24", gateway: "192.168.122.1" }
+        - { name: "br-vlan", bridge_ports: "{{ interface }}", ip: "{{ host_info[inventory_hostname].VLAN_IP }}/24" }
         - { name: "br-storage", bridge_ports: "{{ interface }}.20", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}/22" }
+
     - name: Add postup/postdown scripts on SUSE
       copy:
         src: "network-config-suse"
         dest: "/etc/sysconfig/network/scripts/network-config-suse"
+
+    - name: Configure routes on SUSE
+      template:
+        src: "{{ ansible_os_family | lower }}/suse.routes.j2"
+        dest: "/etc/sysconfig/network/ifroute-{{ item.name }}"
+      with_items:
+        - { name: "br-vlan", gateway: "192.168.122.1", route: "default" }
+
     - name: restart network service
-      shell: "/sbin/ifconfig {{ interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
+      shell: "/usr/sbin/wicked ifreload all"
   when: ansible_os_family | lower == "suse"
