@@ -7,5 +7,5 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-
+nfs_server_package: "nfs-kernel-server"
 nfs_server_service: "nfs-kernel-server"
