@@ -29,6 +29,5 @@
 
 - hosts: compute00
   remote_user: root
-  # TODO: this role is for configuring NFS on xenial and adjustment needed for other distros
   roles:
     - role: configure-nfs
