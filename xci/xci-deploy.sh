@@ -74,7 +74,7 @@ case ${OS_FAMILY,,} in
     debian)
         export DIB_OS_RELEASE="${DIB_OS_RELEASE:-xenial}"
         export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-ubuntu-minimal}"
-        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,chrony,iptables}"
+        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,iptables}"
         export EXTRA_DIB_ELEMENTS="${EXTRA_DIB_ELEMENTS:-openssh-server}"
         ;;
     redhat)
