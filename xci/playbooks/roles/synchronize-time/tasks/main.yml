@@ -7,12 +7,13 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-# TODO: this role needs to be adjusted for different distros
-- block:
-    - name: restart chrony
-      service:
-        name: chrony
-        state: restarted
-    - name: synchronize time
-      shell: "chronyc -a 'burst 4/4' && chronyc -a makestep"
-  when: ansible_distribution_release == "xenial"
+- name: install chrony
+  package:
+    name: "chrony"
+    state: latest
+- name: restart chrony
+  service:
+    name: chrony
+    state: restarted
+- name: synchronize time
+  shell: "chronyc -a 'burst 4/4' && chronyc -a makestep"
