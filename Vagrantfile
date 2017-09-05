@@ -37,6 +37,7 @@ Vagrant.configure(2) do |config|
     config.vm.provision "shell"do |s|
       s.privileged = false
       s.inline = <<-SHELL
+          sudo apt-get update
           cd /vagrant
           export XCI_FLAVOR=${XCI_FLAVOR:-mini}
           export VM_CPU=${VM_CPU:-2}
@@ -65,6 +66,7 @@ Vagrant.configure(2) do |config|
     config.vm.provision "shell" do |s|
       s.privileged = false
       s.inline = <<-SHELL
+          sudo yum update
           cd /vagrant
           PART_START=$(sudo parted /dev/sda --script unit MB print | awk '/^ 3 / {print $3}')
           sudo parted /dev/sda --script unit MB mkpart primary ${PART_START} 100%
@@ -101,6 +103,7 @@ Vagrant.configure(2) do |config|
       # btrfs filesystem.
       s.privileged = false
       s.inline = <<-SHELL
+        sudo zypper -n up -l
         cd /vagrant
         echo -e 'd\n2\nn\np\n\n\n\nn\nw' | sudo fdisk /dev/sda
         PART_END=$(sudo fdisk -l /dev/sda | grep ^/dev/sda2 | awk '{print $4}')
@@ -128,6 +131,7 @@ Vagrant.configure(2) do |config|
       # btrfs filesystem.
       s.privileged = false
       s.inline = <<-SHELL
+        sudo zypper -n up -l
         cd /vagrant
         echo -e 'd\n2\nn\np\n\n\n\nn\nw' | sudo fdisk /dev/sda
         PART_END=$(sudo fdisk -l /dev/sda | grep ^/dev/sda2 | awk '{print $4}')
