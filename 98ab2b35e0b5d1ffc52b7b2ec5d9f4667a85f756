@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_f7ec9691",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-11T22:08:51Z",
+      "side": 1,
+      "message": "Should we make this user configurable like the rest of the variables here?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 89
+      },
+      "revId": "98ab2b35e0b5d1ffc52b7b2ec5d9f4667a85f756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_5703c241",
+        "filename": "xci/file/ha/user_variables.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-11T22:08:51Z",
+      "side": 1,
+      "message": "This path should probably respect the environmental variable we set before right? (ditto for the other flavor files)",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 48
+      },
+      "revId": "98ab2b35e0b5d1ffc52b7b2ec5d9f4667a85f756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_37fefe38",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-11T22:08:51Z",
+      "side": 1,
+      "message": "Is this change unrelated?",
+      "revId": "98ab2b35e0b5d1ffc52b7b2ec5d9f4667a85f756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
