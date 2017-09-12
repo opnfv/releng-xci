@@ -15,9 +15,9 @@ SCRIPT_HOME="$(cd "$(dirname "$0")" && pwd)"
 BIFROST_HOME=$SCRIPT_HOME/..
 ANSIBLE_INSTALL_ROOT=${ANSIBLE_INSTALL_ROOT:-/opt/stack}
 ANSIBLE_VERBOSITY=${ANSIBLE_VERBOSITY-"-vvvv"}
-ENABLE_VENV="false"
+ENABLE_VENV="true"
 USE_DHCP="false"
-USE_VENV="false"
+USE_VENV="true"
 BUILD_IMAGE=true
 PROVISION_WAIT_TIMEOUT=${PROVISION_WAIT_TIMEOUT:-3600}
 
@@ -67,6 +67,21 @@ export DIB_OS_PACKAGES=${DIB_OS_PACKAGES:-"vlan,vim,less,bridge-utils,language-p
 # Additional dib elements
 export EXTRA_DIB_ELEMENTS=${EXTRA_DIB_ELEMENTS:-"openssh-server"}
 
+if [ ${USE_VENV} = "true" ]; then
+    export VENV=/opt/stack/bifrost
+    $SCRIPT_HOME/env-setup.sh
+    # Note(cinerama): activate is not compatible with "set -u";
+    # disable it just for this line.
+    set +u
+    source ${VENV}/bin/activate
+    set -u
+    ANSIBLE=${VENV}/bin/ansible-playbook
+    ENABLE_VENV="true"
+else
+    $SCRIPT_HOME/env-setup.sh
+    ANSIBLE=${HOME}/.local/bin/ansible-playbook
+fi
+
 # Source Ansible
 set +x +o nounset
 $SCRIPT_HOME/env-setup.sh
@@ -83,11 +98,11 @@ cd $BIFROST_HOME/playbooks
 
 # Syntax check of dynamic inventory test path
 for task in syntax-check list-tasks; do
-    ${ANSIBLE} ${ANSIBLE_VERBOSITY} \
+    ${ANSIBLE} \
            -i inventory/localhost \
            test-bifrost-create-vm.yaml \
            --${task}
-    ${ANSIBLE} ${ANSIBLE_VERBOSITY} \
+    ${ANSIBLE} \
            -i inventory/localhost \
            ${TEST_PLAYBOOK} \
            --${task} \
@@ -105,7 +120,7 @@ if [[ -e /etc/centos-release ]]; then
 fi
 
 # Create the VMS
-${ANSIBLE} ${ANSIBLE_VERBOSITY} \
+${ANSIBLE} \
        -i inventory/localhost \
        test-bifrost-create-vm.yaml \
        -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
@@ -115,7 +130,7 @@ ${ANSIBLE} ${ANSIBLE_VERBOSITY} \
        -e ${INVENTORY_FILE_FORMAT}=${BAREMETAL_DATA_FILE}
 
 # Execute the installation and VM startup test
-${ANSIBLE} ${ANSIBLE_VERBOSITY} \
+${ANSIBLE} \
     -i inventory/bifrost_inventory.py \
     ${TEST_PLAYBOOK} \
     -e use_cirros=${USE_CIRROS} \
