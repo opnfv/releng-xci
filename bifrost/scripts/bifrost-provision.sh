@@ -17,7 +17,7 @@ ANSIBLE_INSTALL_ROOT=${ANSIBLE_INSTALL_ROOT:-/opt/stack}
 ANSIBLE_VERBOSITY=${ANSIBLE_VERBOSITY-"-vvvv"}
 ENABLE_VENV="false"
 USE_DHCP="false"
-USE_VENV="false"
+USE_VENV="true"
 BUILD_IMAGE=true
 PROVISION_WAIT_TIMEOUT=${PROVISION_WAIT_TIMEOUT:-3600}
 
@@ -66,6 +66,21 @@ export DIB_OS_PACKAGES=${DIB_OS_PACKAGES:-"vlan,vim,less,bridge-utils,language-p
 
 # Additional dib elements
 export EXTRA_DIB_ELEMENTS=${EXTRA_DIB_ELEMENTS:-"openssh-server"}
+
+if [ ${USE_VENV} = "true" ]; then
+    export VENV=/opt/stack/bifrost
+    $SCRIPT_HOME/env-setup.sh
+    # Note(cinerama): activate is not compatible with "set -u";
+    # disable it just for this line.
+    set +u
+    source ${VENV}/bin/activate
+    set -u
+    ANSIBLE=${VENV}/bin/ansible-playbook
+    ENABLE_VENV="true"
+else
+    $SCRIPT_HOME/env-setup.sh
+    ANSIBLE=${HOME}/.local/bin/ansible-playbook
+fi
 
 # Source Ansible
 set +x +o nounset
