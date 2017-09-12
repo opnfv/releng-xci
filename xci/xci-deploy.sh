@@ -91,7 +91,7 @@ fi
 echo "Info: Starting provisining VM nodes using openstack/bifrost"
 echo "-------------------------------------------------------------------------"
 cd $XCI_PATH/playbooks
-ansible-playbook $ANSIBLE_VERBOSITY -i inventory provision-vm-nodes.yml
+ansible-playbook -i inventory provision-vm-nodes.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: VM nodes are provisioned!"
 source $OPENSTACK_BIFROST_PATH/env-vars
@@ -109,7 +109,7 @@ echo
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd $XCI_PATH/playbooks
-ansible-playbook $ANSIBLE_VERBOSITY -i inventory configure-localhost.yml
+ansible-playbook -i inventory configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
 
@@ -127,7 +127,7 @@ echo "Info: Configured localhost host for openstack-ansible"
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd $OPNFV_XCI_PATH/playbooks
-ansible-playbook $ANSIBLE_VERBOSITY -i inventory configure-opnfvhost.yml
+ansible-playbook -i inventory configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
 
@@ -146,7 +146,7 @@ if [[ $XCI_FLAVOR != "aio" ]]; then
     echo "Info: Configuring target hosts for openstack-ansible"
     echo "-----------------------------------------------------------------------"
     cd $OPNFV_XCI_PATH/playbooks
-    ansible-playbook $ANSIBLE_VERBOSITY -i inventory configure-targethosts.yml
+    ansible-playbook -i inventory configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts"
 fi
