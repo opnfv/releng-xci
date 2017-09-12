@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_5d6921bd",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 170
+      },
+      "writtenOn": "2017-09-12T07:13:46Z",
+      "side": 1,
+      "message": "The DIB_OS_RELEASE is already defined in file/install-ansible.sh to be (1) xenial by default (2) DIB_OS_RELEASE if defined. After this change, it is no longer possible to define the guest OS release before starting the script.\n\nIf you do this change, I suggest at least checking that there is no default already -- which is set in install-ansible.sh so that has to be modified also.",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 51
+      },
+      "revId": "5143bd8f1d3027fd569eb074bd3adf80d2dfa586",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
