@@ -113,6 +113,8 @@ ansible-playbook $ANSIBLE_VERBOSITY -i inventory configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
 
+export ANSIBLE_DEBUG=1
+
 #-------------------------------------------------------------------------------
 # Configure openstack-ansible deployment host, opnfv
 #-------------------------------------------------------------------------------
