@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_cf2d7248",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-12T20:59:47Z",
+      "side": 1,
+      "message": "I don\u0027t know to be honest... probably not. If we don\u0027t need to configure it then don\u0027t make it a variable and hardcode it to the playbooks instead. Does it have to be a variable?",
+      "parentUuid": "da33351e_78c4f35e",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 89
+      },
+      "revId": "98ab2b35e0b5d1ffc52b7b2ec5d9f4667a85f756",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_5703c241",
         "filename": "xci/file/ha/user_variables.yml",
         "patchSetId": 11
