@@ -159,8 +159,8 @@ fi
 echo "Info: Setting up target hosts for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "openstack-ansible \
-     $OPENSTACK_OSA_PATH/playbooks/setup-hosts.yml" | \
-     tee $LOG_PATH/setup-hosts.log
+     $OPENSTACK_OSA_PATH/playbooks/setup-hosts.yml | tee setup-hosts.log"
+scp root@OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
 echo "-----------------------------------------------------------------------"
 echo "Info: Set up target hosts for openstack-ansible successfuly"
 
@@ -192,8 +192,8 @@ echo "Info: Setting up infrastructure"
 echo "-----------------------------------------------------------------------"
 echo "xci: running ansible playbook setup-infrastructure.yml"
 ssh root@$OPNFV_HOST_IP "openstack-ansible \
-     $OPENSTACK_OSA_PATH/playbooks//setup-infrastructure.yml" | \
-     tee $LOG_PATH/setup-infrastructure.log
+     $OPENSTACK_OSA_PATH/playbooks//setup-infrastructure.yml | tee setup-infrastructure.log"
+scp root@OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error
 if grep -q 'failed=1\|unreachable=1' $LOG_PATH/setup-infrastructure.log; then
@@ -208,8 +208,8 @@ echo "Info: Verifying database cluster"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "ansible -i $OPENSTACK_OSA_PATH/playbooks/inventory/ \
            galera_container -m shell \
-           -a "mysql -h localhost -e 'show status like \"%wsrep_cluster_%\";'"" \
-           | tee $LOG_PATH/galera.log
+           -a "mysql -h localhost -e 'show status like \"%wsrep_cluster_%\";'" | tee galera.log"
+scp root@$OPNFV_HOST_IP:~/galera.log $LOG_PATH/galera.log
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error
 if grep -q 'FAILED' $LOG_PATH/galera.log; then
@@ -226,8 +226,8 @@ echo "Info: Database cluster verification successful!"
 echo "Info: Installing OpenStack on target hosts"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "openstack-ansible \
-     $OPENSTACK_OSA_PATH/playbooks/setup-openstack.yml" | \
-     tee $LOG_PATH/opnfv-setup-openstack.log
+     $OPENSTACK_OSA_PATH/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
+scp root@$OPNFV_HOST_IP:~/opnfv-setup-openstack.log $LOG_PATH/opnfv-setup-openstack.log
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error
 if grep -q 'failed=1\|unreachable=1' $LOG_PATH/opnfv-setup-openstack.log; then
