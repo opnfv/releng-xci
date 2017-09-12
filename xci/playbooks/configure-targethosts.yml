@@ -10,22 +10,28 @@
 - hosts: controller
   remote_user: root
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/flavor-vars.yml
-  roles:
-    - role: configure-network
-    # we need to force sync time with ntp or the nodes will be out of sync timewise
-    - role: synchronize-time
+  tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+    - include_role:
+        name: configure-network
+    - include_role:
+        name: synchronize-time
 
 - hosts: compute
   remote_user: root
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/flavor-vars.yml
-  roles:
-    - role: configure-network
-    # we need to force sync time with ntp or the nodes will be out of sync timewise
-    - role: synchronize-time
+  tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+    - include_role:
+        name: configure-network
+    - include_role:
+        name: synchronize-time
 
 - hosts: compute00
   remote_user: root
