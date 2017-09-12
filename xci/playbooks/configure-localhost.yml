@@ -10,19 +10,29 @@
 - hosts: localhost
   connection: local
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
-  roles:
-    - role: remove-folders
-    - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
+  tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+    - include_role:
+        name: remove-folders
+    - include_role:
+        name: clone-repository
+        vars:
+          - project: "opnfv/releng-xci"
+          - repo: "{{ OPNFV_RELENG_GIT_URL }}"
+          - dest: "{{ OPNFV_RELENG_PATH }}"
+          - version: "{{ OPNFV_RELENG_VERSION }}"
 
 - hosts: localhost
   connection: local
-  gather_facts: false
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
   tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
     - name: Synchronize local development releng-xci repository to XCI paths
       synchronize:
         src: "{{ OPNFV_RELENG_DEV_PATH }}"
@@ -35,9 +45,11 @@
 - hosts: localhost
   connection: local
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
   tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
     - name:  create log directory {{LOG_PATH}}
       file:
         path: "{{LOG_PATH}}"

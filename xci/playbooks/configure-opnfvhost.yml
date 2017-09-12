@@ -10,13 +10,27 @@
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
-    - ../var/flavor-vars.yml
     - ../var/opnfv.yml
-  roles:
-    - role: remove-folders
-    - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
-    - { role: clone-repository, project: "openstack/openstack-ansible", repo: "{{ OPENSTACK_OSA_GIT_URL }}", dest: "{{ OPENSTACK_OSA_PATH }}", version: "{{ OPENSTACK_OSA_VERSION }}" }
+  tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+    - include_role:
+        name: remove-folders
+    - include_role:
+        name: clone-repository
+      vars:
+        - project: "opnfv/releng-xci"
+        - repo: "{{ OPNFV_RELENG_GIT_URL }}"
+        - dest: "{{ OPNFV_RELENG_PATH }}"
+        - version: "{{ OPNFV_RELENG_VERSION }}"
+    - include_role:
+        name: clone-repository
+      vars:
+        - project: "openstack/openstack-ansible"
+        - repo: "{{ OPENSTACK_OSA_GIT_URL }}"
+        - dest: "{{ OPENSTACK_OSA_PATH }}"
+        - version: "{{ OPENSTACK_OSA_VERSION }}"
 
 - hosts: opnfv
   remote_user: root
@@ -44,12 +58,14 @@
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
-    - ../var/flavor-vars.yml
     - ../var/opnfv.yml
-  roles:
-      - role: configure-network
   tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+    - include_role:
+        name: configure-network
+
     - name: generate SSH keys
       shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
       args:
