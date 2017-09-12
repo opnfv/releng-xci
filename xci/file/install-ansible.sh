@@ -133,4 +133,4 @@ PIP=$(which pip)
 
 ${PIP} install --user "pip>6.0"
 
-${PIP} install --user --upgrade ansible==$XCI_ANSIBLE_PIP_VERSION
+${PIP} install --user --upgrade ansible${XCI_ANSIBLE_PIP_VERSION}

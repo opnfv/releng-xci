@@ -13,7 +13,7 @@ export CI_LOOP=${CI_LOOP:-daily}
 export JOB_NAME=${JOB_NAME:-false}
 # TODO: this currently matches to bifrost ansible version
 # there is perhaps better way to do this
-export XCI_ANSIBLE_PIP_VERSION=2.1.5.0
+export XCI_ANSIBLE_PIP_VERSION="<2.2"
 export ANSIBLE_HOST_KEY_CHECKING=False
 export DISTRO=${DISTRO:-ubuntu}
 export DIB_OS_RELEASE=${DIB_OS_RELEASE:-xenial}
