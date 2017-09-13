@@ -65,7 +65,7 @@ echo """---
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-# these versions are extracted based on the osa commit ${1} on $(git --no-pager log -1 --format=%cI $1)
+# these versions are based on the osa commit ${1} on $(git --no-pager log -1 --format=%cd --date=format:%Y-%m-%d $1)
 # https://review.openstack.org/gitweb?p=openstack/openstack-ansible.git;a=commit;h=$1""" > $releng_xci_base/file/ansible-role-requirements.yml
 cat $tempdir/openstack-ansible/ansible-role-requirements.yml >> $releng_xci_base/file/ansible-role-requirements.yml
 
