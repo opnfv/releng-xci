@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_02ad719c",
+        "filename": "bifrost/scripts/bifrost-provision.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 170
+      },
+      "writtenOn": "2017-09-13T07:13:52Z",
+      "side": 1,
+      "message": "Should changing the default for ENABLE_VENV from \"false\" to \"true\" be a separate patch?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 18
+      },
+      "revId": "ae5deb0b85908d180a942ff9056e50c8e7c05db2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4296594d",
+        "filename": "bifrost/scripts/bifrost-provision.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 170
+      },
+      "writtenOn": "2017-09-13T07:13:52Z",
+      "side": 1,
+      "message": "Why this test? On line 20 it was set to true",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 27
+      },
+      "revId": "ae5deb0b85908d180a942ff9056e50c8e7c05db2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_42a499a5",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 170
+      },
+      "writtenOn": "2017-09-13T07:13:52Z",
+      "side": 1,
+      "message": "/tmp/.xci-deploy-env/bifrost/scripts/env-setup.sh which is called from bifrost-provision.sh will install ansible version \"stable-2.1\" which evaluates to 2.1.6, so why set it here to a different value?",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 38
+      },
+      "revId": "ae5deb0b85908d180a942ff9056e50c8e7c05db2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_82aea183",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 13
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 170
+      },
+      "writtenOn": "2017-09-13T07:13:52Z",
+      "side": 1,
+      "message": "Could this be \nexport ANSIBLE_VERBOSITY\u003d{ANSIBLE_VERBOSITY:-4} \nso that one day I can turn verbosity back to normal?",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 26
+      },
+      "revId": "ae5deb0b85908d180a942ff9056e50c8e7c05db2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_62739d15",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 170
+      },
+      "writtenOn": "2017-09-13T07:13:52Z",
+      "side": 1,
+      "message": "Why this line here?",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 50
+      },
+      "revId": "ae5deb0b85908d180a942ff9056e50c8e7c05db2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
