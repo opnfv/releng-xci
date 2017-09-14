@@ -15,4 +15,8 @@
         state: restarted
     - name: synchronize time
       shell: "chronyc -a 'burst 4/4' && chronyc -a makestep"
+      register: chrony_got_time
+      until: chrony_got_time.rc == 0
+      retries: 5
+      delay: 5
   when: ansible_distribution_release == "xenial"
