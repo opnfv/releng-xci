@@ -206,13 +206,13 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Verifying database cluster"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "ansible -vvv -i $OPENSTACK_OSA_PATH/playbooks/inventory/ \
-	galera_container -m shell \
+ssh root@$OPNFV_HOST_IP "ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
+    -i $OPENSTACK_OSA_PATH/playbooks/inventory/ galera_container -m shell \
 	-a \"mysql -h localhost -e \\\"show status like '%wsrep_cluster_%';\\\"\" | tee galera.log"
 scp root@$OPNFV_HOST_IP:~/galera.log $LOG_PATH/galera.log
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error
-if grep -q 'FAILED' $LOG_PATH/galera.log; then
+if grep -q 'FAILED\|UNREACHABLE' $LOG_PATH/galera.log; then
     echo "Error: Database cluster verification failed!"
     exit 1
 fi
