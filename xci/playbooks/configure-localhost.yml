@@ -15,7 +15,7 @@
   roles:
     - role: remove-folders
     - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
-
+    - { role: clone-repository, project: "openstack/openstack-ansible-openstack_openrc", repo: "{{ OPENSTACK_OSA_OPENRC_GIT_URL }}", dest: "{{ OPENSTACK_OSA_OPENRC_PATH }}", version: "master" }
 - hosts: localhost
   connection: local
   gather_facts: false
@@ -57,3 +57,21 @@
       copy:
         src: "{{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/flavor-vars.yml"
         dest: "{{OPNFV_RELENG_PATH}}/xci/var"
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - ../var/{{ ansible_os_family }}.yml
+    - ../var/opnfv.yml
+  tasks:
+    - name: create certificate directory /etc/ssl/certs
+      file:
+        path: "/etc/ssl/certs"
+        state: directory
+    - name: create key directory /etc/ssl/private
+      file:
+        path: "/etc/ssl/private"
+        state: directory
+    - name: generate self signed certificate
+      command: openssl req -new -nodes -x509 -subj "{{ XCI_SSL_SUBJECT }}" -days 3650 -keyout "/etc/ssl/private/xci.key" -out "/etc/ssl/certs/xci.crt" -extensions v3_ca
+      become: true
