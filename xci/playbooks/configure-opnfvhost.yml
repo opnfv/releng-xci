@@ -10,9 +10,12 @@
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/flavor-vars.yml
     - ../var/opnfv.yml
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
   roles:
     - role: remove-folders
     - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
@@ -21,9 +24,11 @@
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
   tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
     - name: Synchronize local development releng-xci repository to XCI paths
       synchronize:
         src: "{{ OPNFV_RELENG_DEV_PATH }}"
@@ -44,9 +49,12 @@
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/flavor-vars.yml
     - ../var/opnfv.yml
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
   roles:
       - role: configure-network
   tasks:
@@ -133,10 +141,13 @@
   gather_facts: no
   remote_user: root
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/flavor-vars.yml
     - ../var/opnfv.yml
     - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/user_variables.yml"
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
   roles:
     - role: "openstack-ansible-openstack_openrc"
   tasks:

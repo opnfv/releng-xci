@@ -10,8 +10,11 @@
 - hosts: localhost
   connection: local
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
   roles:
     - role: remove-folders
     - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
@@ -20,9 +23,11 @@
   connection: local
   gather_facts: false
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
   tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
     - name: Synchronize local development releng-xci repository to XCI paths
       synchronize:
         src: "{{ OPNFV_RELENG_DEV_PATH }}"
@@ -35,9 +40,11 @@
 - hosts: localhost
   connection: local
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
   tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
     - name:  create log directory {{LOG_PATH}}
       file:
         path: "{{LOG_PATH}}"
@@ -61,9 +68,11 @@
   connection: local
   gather_facts: false
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
   tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
     - name: create certificate directory /etc/ssl/certs
       file:
         path: "/etc/ssl/certs"
