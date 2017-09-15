@@ -14,7 +14,6 @@ export PYTHONUNBUFFERED=1
 SCRIPT_HOME="$(cd "$(dirname "$0")" && pwd)"
 BIFROST_HOME=$SCRIPT_HOME/..
 ANSIBLE_INSTALL_ROOT=${ANSIBLE_INSTALL_ROOT:-/opt/stack}
-ANSIBLE_VERBOSITY=${ANSIBLE_VERBOSITY-"-vvvv"}
 ENABLE_VENV="false"
 USE_DHCP="false"
 USE_VENV="true"
@@ -98,12 +97,10 @@ cd $BIFROST_HOME/playbooks
 
 # Syntax check of dynamic inventory test path
 for task in syntax-check list-tasks; do
-    ${ANSIBLE} ${ANSIBLE_VERBOSITY} \
-           -i inventory/localhost \
+    ${ANSIBLE} -i inventory/localhost \
            test-bifrost-create-vm.yaml \
            --${task}
-    ${ANSIBLE} ${ANSIBLE_VERBOSITY} \
-           -i inventory/localhost \
+    ${ANSIBLE} -i inventory/localhost \
            ${TEST_PLAYBOOK} \
            --${task} \
            -e testing_user=${TESTING_USER}
@@ -120,8 +117,7 @@ if [[ -e /etc/centos-release ]]; then
 fi
 
 # Create the VMS
-${ANSIBLE} ${ANSIBLE_VERBOSITY} \
-       -i inventory/localhost \
+${ANSIBLE} -i inventory/localhost \
        test-bifrost-create-vm.yaml \
        -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
        -e test_vm_memory_size=${VM_MEMORY_SIZE} \
@@ -130,8 +126,7 @@ ${ANSIBLE} ${ANSIBLE_VERBOSITY} \
        -e ${INVENTORY_FILE_FORMAT}=${BAREMETAL_DATA_FILE}
 
 # Execute the installation and VM startup test
-${ANSIBLE} ${ANSIBLE_VERBOSITY} \
-    -i inventory/bifrost_inventory.py \
+${ANSIBLE} -i inventory/bifrost_inventory.py \
     ${TEST_PLAYBOOK} \
     -e use_cirros=${USE_CIRROS} \
     -e testing_user=${TESTING_USER} \
