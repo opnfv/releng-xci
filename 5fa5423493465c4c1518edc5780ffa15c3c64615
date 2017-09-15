@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_e585ee07",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 26
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-15T15:36:48Z",
+      "side": 1,
+      "message": "quotes are not needed",
+      "range": {
+        "startLine": 27,
+        "startChar": 40,
+        "endLine": 27,
+        "endChar": 60
+      },
+      "revId": "5fa5423493465c4c1518edc5780ffa15c3c64615",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_257b5629",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-15T15:36:48Z",
+      "side": 1,
+      "message": "I don\u0027t understand this part of the code but we have bumped SHAs to 5th of September so I guess this is not needed now?",
+      "revId": "5fa5423493465c4c1518edc5780ffa15c3c64615",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_8574e236",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 26
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-15T15:36:48Z",
+      "side": 1,
+      "message": "This doesn\u0027t work as you expect see https://gerrit.opnfv.org/gerrit/#/c/41783/",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 40
+      },
+      "revId": "5fa5423493465c4c1518edc5780ffa15c3c64615",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_6571de43",
+        "filename": "xci/playbooks/roles/os-odl-sfc/files/ansible-role-requirements.yml",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-15T15:36:48Z",
+      "side": 1,
+      "message": "I guess this is not needed anymore. Overall I think this is not good approach since it forces us to carry a lot of workarounds in the XCI. If there is a need for newer XCI code we can always bump SHAs",
+      "revId": "5fa5423493465c4c1518edc5780ffa15c3c64615",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
