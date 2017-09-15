@@ -9,9 +9,13 @@
 ##############################################################################
 - hosts: localhost
   connection: local
+  gather_facts: true
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
   roles:
     # using these roles here ensures that we can reuse this playbook in different context
     - role: remove-folders
@@ -20,11 +24,13 @@
 
 - hosts: localhost
   connection: local
-  gather_facts: false
+  gather_facts: true
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
   tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
     - name: Synchronize local development bifrost repository to XCI paths
       # command module is much faster than the copy module
       synchronize:
@@ -54,11 +60,13 @@
 
 - hosts: localhost
   connection: local
-  gather_facts: false
+  gather_facts: true
   vars_files:
-    - ../var/{{ ansible_os_family }}.yml
     - ../var/opnfv.yml
   tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
     - name: combine opnfv/releng-xci and openstack/bifrost scripts/playbooks
       copy:
         src: "{{ OPNFV_RELENG_PATH }}/bifrost/"
