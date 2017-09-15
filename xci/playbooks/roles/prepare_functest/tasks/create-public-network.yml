@@ -1,0 +1,17 @@
+---
+- name: Create the public neutron network 
+  os_network:
+    state: present
+    name: example-net
+    external: true
+    provider_network_type: flat
+    provider_physical_network: flat
+
+- name: Create the public neutron subnet 
+  os_subnet:
+    state: present
+    name: example-subnet
+    network_name: example-net
+    cidr: "{{ subnet_cidr }}"
+    gateway_ip: "{{ gateway_ip }}"
+    enable_dhcp: "{{ enable_dhcp }}"

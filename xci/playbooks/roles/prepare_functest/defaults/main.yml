@@ -1,0 +1,9 @@
+---
+# Gateway parameters
+gateway_ip: "10.10.10.1"
+broadcast: "10.10.10.255"
+interface: "br-vlan"
+
+# Subnet parameters
+subnet_cidr: "10.10.10.0/24"
+enable_dhcp: False

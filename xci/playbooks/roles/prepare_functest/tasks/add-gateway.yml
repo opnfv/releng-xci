@@ -1,0 +1,7 @@
+---
+- name: Add public network gateway
+  command: /sbin/ip addr add arg1 brd arg2 dev arg3
+    args:
+      ip: "{{ gateway_ip }}"
+      broadcast: "{{ broadcast_ip }}"
+      interface: "{{ gateway_interface }}"
