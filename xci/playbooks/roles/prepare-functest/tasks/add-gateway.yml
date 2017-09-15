@@ -1,0 +1,9 @@
+---
+- name: Check if the gateway was already set
+  shell: "/sbin/ip a | grep {{ gateway_ip }}"
+  register: gateway_ip_result
+  ignore_errors: True
+
+- name: Add public network gateway
+  command: "/sbin/ip addr add {{ gateway_ip_mask }} brd {{ broadcast_ip }} dev {{ gateway_interface }}"
+  when: gateway_ip_result|failed
