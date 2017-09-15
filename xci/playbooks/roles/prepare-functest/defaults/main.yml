@@ -1,0 +1,14 @@
+---
+# Gateway parameters
+gateway_ip: "10.10.10.1"
+gateway_ip_mask: "10.10.10.1/24"
+broadcast_ip: "10.10.10.255"
+gateway_interface: "br-vlan"
+
+# Network parameters
+external_network: "ext-net"
+
+# Subnet parameters
+subnet_name: "ext-subnet"
+allocation_pool: "start=10.10.10.5,end=10.10.10.254"
+subnet_cidr: "10.10.10.0/24"
