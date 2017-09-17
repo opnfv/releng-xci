@@ -100,8 +100,15 @@
         replace: '\1haproxy_state: enabled'
     - name: copy OPNFV OpenStack playbook
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/setup-openstack.yml {{OPENSTACK_OSA_PATH}}/playbooks"
-    - name: copy OPNFV role requirements
-      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/ansible-role-requirements.yml {{OPENSTACK_OSA_PATH}}"
+    - name: copy pinned versions of OSA Roles and global requirements
+      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/{{ item }} {{OPENSTACK_OSA_PATH}}/{{ item }}"
+      with_items:
+        - "ansible-role-requirements.yml"
+        - "global-requirement-pins.txt"
+      when:
+        - OPENSTACK_OSA_VERSION != "master"
+    - name: copy pinned versions of OpenStack services
+      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/openstack_services.yml {{OPENSTACK_OSA_PATH}}/playbooks/defaults/repo_packages/openstack_services.yml"
       when:
         - OPENSTACK_OSA_VERSION != "master"
     - name: bootstrap ansible on opnfv host
