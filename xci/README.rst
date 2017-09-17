@@ -111,6 +111,11 @@ change into directory where the sandbox script is located
 
     cd releng-xci/xci
 
+
+install diskimage-builder
+
+    sudo pip install diskimage-builder=2.8.0
+
 execute sandbox script
 
     ./xci-deploy.sh
@@ -143,6 +148,10 @@ clone OPNFV releng-xci repository
 change into directory where the sandbox script is located
 
     cd releng-xci/xci
+
+install diskimage-builder
+
+    sudo pip install diskimage-builder=2.8.0
 
 set the sandbox flavor
 
