@@ -82,6 +82,8 @@
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/setup-openstack.yml {{OPENSTACK_OSA_PATH}}/playbooks"
     - name: copy OPNFV role requirements
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/ansible-role-requirements.yml {{OPENSTACK_OSA_PATH}}"
+      when:
+        - OPENSTACK_OSA_VERSION != "master"
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
