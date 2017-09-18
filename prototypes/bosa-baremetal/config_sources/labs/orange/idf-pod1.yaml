@@ -1,0 +1,35 @@
+###############################################################################
+# Orange Pod1 Installer descriptor file
+###############################################################################
+
+---
+xci:
+    nodes_roles:
+        server02: [compute, storage]
+        server03: [compute, storage]
+        server04: [controller, network, storage]
+        server09: [controller, network, storage]
+        server11: [controller, network, storage]
+
+    rsyslog: 10.1.0.6
+    glance:
+        nfs:
+            server: 10.0.2.6
+            path: /pod1/glance
+    cinder:
+        nfs:
+            server: 10.0.2.6
+            path: /pod1/cinder
+
+    # network mapping
+    network_mapping:
+        br-mgmt: admin
+        br-storage: storage
+        br-vxlan: private
+        br-vlan: public
+
+    # Cinder
+    cinder_physical_device: sdb
+
+    # Management bridge name for jumphost
+    jumphost_network_interface: ens3

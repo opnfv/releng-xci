@@ -1,0 +1,38 @@
+---
+network_interface: "{{ xci.jumphost_network_interface }}"
+ironic_db_password: {{ ironic_db_password }}
+mysql_username: root
+mysql_password:
+
+enabled_drivers: agent_ipmitool
+
+ssh_public_key_path: "/root/.ssh/id_rsa.pub"
+
+create_image_via_dib: true
+
+transform_boot_image: false
+
+create_ipa_image: false
+download_ipa: true
+
+{% set nmap = xci.network_mapping %}
+dnsmasq_router: {{ net_config[nmap['br-mgmt']].network | ip_add( 1 ) }}
+
+dnsmasq_dns_servers: {{ net_config[nmap['br-mgmt']].network | ip_add( 1 ) }}
+dhcp_pool_start: {{ net_config[nmap['br-mgmt']].network | ip_add( 150 ) }}
+dhcp_pool_end: {{ net_config[nmap['br-mgmt']].network | ip_add( 250 ) }}
+dhcp_lease_time: 12h
+dhcp_static_mask: 24
+inventory_dns: true
+inventory_dhcp: false
+inspect_nodes: false
+
+dib_os_release: xenial
+dib_os_element: ubuntu-minimal
+dib_packages: "vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,byobu"
+extra_dib_elements: baremetal devuser growroot openssh-server
+dib_init_element: simple-init
+dib_dev_user_username: {{ dib_dev_user_username }}
+dib_dev_user_password: {{ dib_dev_user_password }}
+
+enable_venv: {{ bifrost_enable_venv }}

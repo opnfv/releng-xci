@@ -1,0 +1,150 @@
+---
+- hosts: jumphost
+  become: true
+  vars_files:
+    - "vars/defaults.yaml"
+    - "vars/idf.yaml"
+    - "vars/pdf.yaml"
+  tasks:
+    ##
+    # Gen SSH keys if not exists
+    ##
+    - name: Generate SSH keys
+      shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
+      args:
+        creates: /root/.ssh/id_rsa
+    ##
+    # Clean and get Bifrost sources
+    ##
+    - name: Update list of packages
+      apt:
+        name: 'python-pip'
+        update_cache: 'yes'
+        state: installed
+    - name: Remove list of packages
+      apt:
+        name: "{{item}}"
+        state: absent
+      with_items:
+        - python-six
+    - name: Install list of packages
+      apt:
+        name: "{{item}}"
+        state: installed
+      with_items:
+        - python-pip
+        - python-dev
+        - libssl-dev
+        - virtualenv
+        - git
+        - jq
+    - name: Clean old bifrost
+      file:
+        path: "{{ bifrost_path }}"
+        state: absent
+    - name: "clone bifrost {{bifrost_branch}}"
+      git:
+        repo: "{{ bifrost_url }}"
+        dest: "{{ bifrost_path }}"
+        version: "{{ bifrost_branch }}"
+    ##
+    # Clean dnsmasq.leases
+    ##
+    - name: Remove pre-existing leases file
+      file: path=/var/lib/misc/dnsmasq.leases state=absent
+    ##
+    # Prepare inventory and config files
+    ##
+    - name: copy bifrost target vars
+      template:
+        dest: "{{ bifrost_path }}/playbooks/inventory/group_vars/target"
+        src: "templates/target.j2"
+    - name: copy bifrost baremetal vars
+      template:
+        dest: "{{ bifrost_path }}/playbooks/inventory/group_vars/baremetal"
+        src: "templates/baremetal.j2"
+    ##
+    # Setup bifrost ansible environment
+    ##
+    - name: setup bifrost ansible environment
+      shell: "./env-setup.sh"
+      args:
+        chdir: "{{ bifrost_path }}/scripts/"
+      environment:
+        VENV: "{{ bifrost_venv_folder if bifrost_enable_venv else '' }}"
+    ##
+    # Setup bifrost wrapper to enable or not virtualenv
+    ##
+    - name: Set bifrost-ansible wrapper
+      template:
+        dest: "/usr/local/bin/bifrost-ansible"
+        src: "templates/bifrost-ansible.j2"
+        mode: 0500
+    - name: Set bifrost-pip wrapper
+      template:
+        dest: "/usr/local/bin/bifrost-pip"
+        src: "templates/bifrost-pip.j2"
+        mode: 0500
+    ##
+    # Correct image gen and remove old images
+    ##
+    - name: correct bifrost image generation
+      lineinfile:
+        path: "{{ bifrost_path }}/playbooks/install.yaml"
+        regexp: '^(.*) serial-console(.*)$'
+        line: '\1 enable-serial-console\2'
+        backrefs: 'yes'
+    - name: Remove old image
+      file:
+        path: "/httpboot/deployment_image*"
+        state: absent
+    ##
+    # Install Bifrost
+    ##
+    - name: Install bifrost
+      shell: >
+        bifrost-ansible -i inventory/target install.yaml
+        -e staging_drivers_include=true;
+      args:
+        chdir: "{{ bifrost_path }}/playbooks/"
+    ##
+    # Correct DNSmasq config for default gateway
+    ##
+    - name: correct dnsmasq config - default gateway
+      lineinfile:
+        path: /etc/dnsmasq.conf
+        regexp: '^dhcp-option=3'
+        line: "dhcp-option=3,{{ net_config['admin'].gateway }}"
+    - service:
+        name: dnsmasq
+        state: restarted
+    ##
+    # Upgrade pyasn1 as it make ironic conductor fail
+    # "hardware type or interface pxe_ilo could not be loaded"
+    ##
+    - name: Install bifrost
+      shell: "bifrost-pip install pyasn1 --upgrade"
+    - service:
+        name: ironic-conductor
+        state: restarted
+    ##
+    # Set various files
+    ##
+    - name: install libs needed outside the VENV
+      pip:
+        name: "{{ item }}"
+      with_items:
+        - jsonpatch
+        - shade
+      when: bifrost_enable_venv
+    ##
+    # Set various files
+    ##
+    - name: clean bifrost detailled inventory folder
+      file:
+        path: "{{ bosa_config }}/bifrost_inventory/"
+        state: absent
+    - name: set bifrost detailled inventory folder
+      file:
+        path: "{{ bosa_config }}/bifrost_inventory/"
+        state: directory

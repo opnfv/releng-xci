@@ -1,0 +1,155 @@
+###############################################################################
+# Orange Pod1 descriptor file
+###############################################################################
+
+---
+details:
+    pod owner: Orange
+    contact: david.blaisonneau@orange.com
+    lab: Orange Lab Lannion
+    location: Lannion, Bretagne, France
+    type: development
+    link: http://wiki.opnfv.org/
+###################################################
+net_config:
+    admin:
+        interface: 0
+        vlan: 0
+        network: 10.1.0.0
+        mask: 24
+        gateway: 10.1.0.1
+        dns: 10.1.0.1
+    storage:
+        interface: 1
+        vlan: 2051
+        network: 10.1.1.0
+        mask: 24
+    private:
+        interface: 2
+        vlan: 0
+        network: 10.1.3.0
+        mask: 24
+    public:
+        interface: 1
+        vlan: 2052
+        network: 10.1.2.0
+        mask: 24
+        gateway: 10.1.2.1
+        dns: 8.8.8.8
+###################################################
+jumphost:
+    name: orange-pod1-jump
+    node:
+        type: virtual              # can be virtual or baremetal
+        vendor: libvirt
+        model: qemu
+        arch: x86_64
+        cpus: 1
+        cpu_cflags: haswell        # add values based on CFLAGS in GCC
+        cores: 8                   # physical cores, not including hyper-threads
+        memory: 8G
+    disks:                         # disk list
+        - name: 'disk1'
+          disk_capacity: 17.20G
+          disk_type: ssd
+          disk_interface: virtio
+          disk_rotation: 15000
+    remote_management:
+        type:
+            - libvirt: qemu+ssh://ubuntu@srv10.infra.opnfv.fr/system
+        bridges:
+            - admin: brAdm1
+###################################################
+nodes:
+    - name: server02
+      node: &nodeparams
+          type: baremetal
+          vendor: hp
+          model: dl360g9
+          arch: x86_64
+          cpus: 2
+          cpu_cflags: haswell
+          cores: 14
+          memory: 128G
+      remote_params: &remote_params
+          type:
+              - ipmi: [2.0]
+          user: Administrator
+          pass: opnfv2017
+      disks: &disks
+          - name: 'disk1'
+            disk_capacity: 300G
+            disk_type: ssd
+            disk_interface: ssd
+            disk_rotation: 15000
+          - name: 'disk2'
+            disk_capacity: 1200G
+            disk_type: ssd
+            disk_interface: ssd
+            disk_rotation: 15000
+      remote_management:
+          <<: *remote_params
+          address: 10.0.0.12
+          mac_address: "94:57:a5:62:f4:c7"
+      interfaces:
+          - "94:57:a5:52:f1:80"
+          - "94:57:a5:52:f1:81"
+          - "94:57:a5:52:f1:82"
+    ########################
+    - name: server03
+      node: *nodeparams
+      disks: *disks
+      remote_management:
+          <<: *remote_params
+          address: 10.0.0.13
+          mac_address: "e0:07:1b:f8:7e:5f"
+      interfaces:
+          - "1c:98:ec:16:ae:38"
+          - "1c:98:ec:16:ae:39"
+          - "1c:98:ec:16:ae:3a"
+    ########################
+    - name: server04
+      node: *nodeparams
+      disks: &disks2
+          - name: 'disk1'
+            disk_capacity: 300G
+            disk_type: ssd
+            disk_interface: ssd
+            disk_rotation: 15000
+          - name: 'disk2'
+            disk_capacity: 300G
+            disk_type: ssd
+            disk_interface: ssd
+            disk_rotation: 15000
+      remote_management:
+          <<: *remote_params
+          address: 10.0.0.14
+          mac_address: "94:57:a5:62:73:c3"
+      interfaces:
+          - "94:57:a5:52:c9:48"
+          - "94:57:a5:52:c9:49"
+          - "94:57:a5:52:c9:4a"
+    ########################
+    - name: server09
+      node: *nodeparams
+      disks: *disks2
+      remote_management:
+          <<: *remote_params
+          address: 10.0.0.19
+          mac_address: "94:57:a5:62:72:b9"
+      interfaces:
+          - "94:57:a5:52:53:7c"
+          - "94:57:a5:52:53:7d"
+          - "94:57:a5:52:53:7e"
+    ########################
+    - name: server11
+      node: *nodeparams
+      disks: *disks2
+      remote_management:
+          <<: *remote_params
+          address: 10.0.0.21
+          mac_address: "94:57:a5:62:f4:a7"
+      interfaces:
+          - "94:57:a5:52:c1:d8"
+          - "94:57:a5:52:c1:d9"
+          - "94:57:a5:52:c1:da"
