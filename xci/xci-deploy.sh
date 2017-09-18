@@ -116,6 +116,8 @@ echo "Info: Starting provisining VM nodes using openstack/bifrost"
 echo "-------------------------------------------------------------------------"
 cd $XCI_PATH/playbooks
 ansible-playbook -i inventory provision-vm-nodes.yml
+cd ${OPENSTACK_BIFROST_PATH}
+sudo -E bash ./scripts/bifrost-provision.sh
 echo "-----------------------------------------------------------------------"
 echo "Info: VM nodes are provisioned!"
 source $OPENSTACK_BIFROST_PATH/env-vars
