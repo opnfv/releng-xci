@@ -32,7 +32,6 @@
     - { role: clone-repository, project: "openstack/openstack-ansible-openstack_openrc", repo: "{{ OPENSTACK_OSA_OPENRC_GIT_URL }}", dest: "{{ OPENSTACK_OSA_OPENRC_PATH }}", version: "master" }
 - hosts: localhost
   connection: local
-  gather_facts: false
   vars_files:
     - ../var/opnfv.yml
   tasks:
@@ -77,7 +76,6 @@
         dest: "{{OPNFV_RELENG_PATH}}/xci/var"
 - hosts: localhost
   connection: local
-  gather_facts: false
   vars_files:
     - ../var/opnfv.yml
   tasks:
