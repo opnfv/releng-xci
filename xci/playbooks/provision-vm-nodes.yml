@@ -10,6 +10,15 @@
 - hosts: localhost
   connection: local
   gather_facts: true
+  become: yes
+  vars_files:
+    - ../var/opnfv.yml
+  roles:
+    - role: remove-folders
+
+- hosts: localhost
+  connection: local
+  gather_facts: true
   vars_files:
     - ../var/opnfv.yml
   pre_tasks:
@@ -17,8 +26,6 @@
       include_vars:
         file: ../var/{{ ansible_os_family }}.yml
   roles:
-    # using these roles here ensures that we can reuse this playbook in different context
-    - role: remove-folders
     - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
     - { role: clone-repository, project: "opnfv/bifrost", repo: "{{ OPENSTACK_BIFROST_GIT_URL }}", dest: "{{ OPENSTACK_BIFROST_PATH }}", version: "{{ OPENSTACK_BIFROST_VERSION }}" }
 
