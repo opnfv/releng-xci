@@ -1,0 +1,86 @@
+---
+- hosts: jumphost
+  gather_facts: false
+  become: true
+  vars_files:
+    - "vars/defaults.yaml"
+    - "vars/idf.yaml"
+    - "vars/pdf.yaml"
+  tasks:
+    # Push shade lib to latest stable version (the one installed with OSA
+    # crashes with following actions)
+    - pip:
+        name: shade
+        state: latest
+    ##
+    # Push images if asked
+    ##
+    - name: create images folders
+      file:
+        path: "{{ item }}"
+        state: directory
+        recurse: true
+      with_items:
+        - "{{ images_folder }}/ubuntu"
+        - "{{ images_folder }}/debian"
+        - "{{ images_folder }}/cirros"
+        - "{{ images_folder }}/centos"
+        - "{{ images_folder }}/suse"
+      when: os_basic.images
+    - name: Download images
+      get_url:
+        url: "{{ item.url }}"
+        dest: "{{ images_folder }}/{{ item.file }}"
+      with_items: "{{ os_images }}"
+      when: os_basic.images
+    - name: Push images
+      os_image:
+        name: "{{ item.name }}"
+        container_format: bare
+        disk_format: qcow2
+        state: present
+        filename: "{{ images_folder }}/{{ item.file }}"
+        min_disk: "{{ item.min_disk }}"
+        properties:
+          cpu_arch: x86_64
+          distro: "{{ item.distro }}"
+      with_items: "{{ os_images }}"
+      when: os_basic.images
+    ##
+    # Push flavors if asked
+    ##
+    - name: "Create '{{ item.name }}' flavor with {{ item.ram }}MB of RAM, {{ item.vcpu }} virtual CPU, and {{ item.disk }}GB of local disk."
+      os_nova_flavor:
+        state: present
+        name: "{{ item.name }}"
+        ram: "{{ item.ram }}"
+        vcpus: "{{ item.vcpu }}"
+        disk: "{{ item.disk }}"
+      with_items: "{{ os_flavors }}"
+      when: os_basic.flavors
+    ##
+    # Push Ext-net if asked
+    ##
+    - name: "Create external network based on br-vlan"
+      os_network:
+        state: present
+        name: "{{ ext_net.name }}"
+        external: true
+      when: os_basic.ext_net
+    - name: 'get ext_subnet info'
+      set_fact:
+        ext_subnet: "{{ net_config[xci.network_mapping['br-vlan']] }}"
+    - name: Gather facts about a previously created subnet by name
+      os_subnets_facts:
+        name: "{{ ext_net.name }}_subnet"
+    - name: create external subnetwork
+      os_subnet:
+        state: present
+        network_name: "{{ ext_net.name }}"
+        name: "{{ ext_net.name }}_subnet"
+        cidr: "{{ ext_subnet.network }}/{{ ext_subnet.mask }}"
+        gateway_ip: "{{ ext_subnet.gateway }}"
+        allocation_pool_start: "{{ ext_subnet.network | ip_add(ext_net.dhcp.start_shift) }}"
+        allocation_pool_end: "{{ ext_subnet.network | ip_last_of(ext_subnet.mask) }}"
+        dns_nameservers: "{{ ext_subnet.dns }}"
+      when: openstack_subnets.0 is not defined and os_basic.ext_net
