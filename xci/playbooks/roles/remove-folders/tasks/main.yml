@@ -17,5 +17,6 @@
     - "{{ OPENSTACK_BIFROST_PATH }}"
     - "{{ OPENSTACK_OSA_PATH }}"
     - "{{ OPENSTACK_OSA_ETC_PATH }}"
+    - "{{ XCI_DEVEL_ROOT }}"
     - "{{ LOG_PATH }} "
     - "{{ OPNFV_SSH_HOST_KEYS_PATH }}"
