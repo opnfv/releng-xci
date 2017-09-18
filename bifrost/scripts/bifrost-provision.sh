@@ -81,12 +81,6 @@ else
     ANSIBLE=${HOME}/.local/bin/ansible-playbook
 fi
 
-# Source Ansible
-set +x +o nounset
-$SCRIPT_HOME/env-setup.sh
-ANSIBLE=$(which ansible-playbook)
-set -x -o nounset
-
 logs_on_exit() {
     $SCRIPT_HOME/collect-test-info.sh
 }
