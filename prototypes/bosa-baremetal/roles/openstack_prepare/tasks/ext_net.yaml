@@ -1,0 +1,27 @@
+---
+- name: "Create external network based on br-vlan"
+  os_network:
+    state: present
+    name: "{{ ext_net.name }}"
+    external: true
+    provider_network_type: flat
+    provider_physical_network: flat
+- name: 'get ext_subnet info'
+  set_fact:
+    ext_subnet: "{{ net_config[xci.network_mapping['br-vlan']] }}"
+- name: Gather facts about a previously created subnet by name
+  os_subnets_facts:
+    name: "{{ ext_net.name }}_subnet"
+- name: create external subnetwork
+  os_subnet:
+    state: present
+    network_name: "{{ ext_net.name }}"
+    name: "{{ ext_net.name }}_subnet"
+    cidr: "{{ ext_subnet.network }}/{{ ext_subnet.mask }}"
+    gateway_ip: "{{ ext_subnet.gateway }}"
+    allocation_pool_start:
+      "{{ ext_subnet.network | ip_add(ext_net.dhcp.start_shift) }}"
+    allocation_pool_end:
+      "{{ ext_subnet.network | ip_last_of(ext_subnet.mask) }}"
+    dns_nameservers: "{{ ext_subnet.dns }}"
+  when: openstack_subnets.0 is not defined

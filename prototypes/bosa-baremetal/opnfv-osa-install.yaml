@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local
+  vars_files:
+    - "vars/defaults.yaml"
+    - "vars/idf.yaml"
+    - "vars/pdf.yaml"
+  roles:
+    - osa_install

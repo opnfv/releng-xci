@@ -1,0 +1,29 @@
+{
+{% for srv in nodes | sort(attribute='name')  %}
+{% if item is not defined or item.name == srv.name %}
+    "{{ srv.name }}": {
+        "name": "{{ srv.name }}",
+        "uuid": "00000000-0000-0000-0000-000000000{{ '%03d'|format(loop.index|int) }}",
+        "driver_info": {
+        "power": {
+            "ipmi_username": "{{ srv.remote_management.user }}",
+            "ipmi_address": "{{ srv.remote_management.address | regex_replace('/{d}*$','') }}",
+            "ipmi_password": "{{ srv.remote_management.pass }}"
+            }
+        },
+        "nics": [
+        {% for mac in srv.interfaces or []  %}
+            { "mac": "{{ mac }}" }{{ "," if not loop.last else '' }}
+        {% endfor %} ],
+        "driver": "agent_ipmitool",
+        "ipv4_address": "{{ net_config['admin'].network | ip_add( ip_shift + loop.index ) }}",
+        "properties": {
+            "cpu_arch": "x86_64",
+            "ram": "{{ (srv.node.memory or '0') | sizeConv }}",
+            "disk_size": "{{ (srv.disks or []) | map(attribute='disk_capacity') | list | sizeSum(target_unit='Go') }}",
+            "cpus": "{{ srv.node.cores }}"
+        }
+    }{{ "," if not loop.last else '' }}
+{% endif %}
+{% endfor %}
+}

@@ -1,0 +1,106 @@
+---
+##
+# set correct gateway
+##
+- name: ensure the gateway is correct
+  shell:
+    "ip r d default && ip r a default via {{ net_config['admin'].gateway }}"
+
+##
+# set correct resolv.conf
+##
+- name: ensure the resolv.conf is correct
+  shell: "echo nameserver {{ net_config['admin'].dns }} > /etc/resolv.conf"
+
+##
+# install basic packages
+##
+- name: install packages
+  import_tasks: install_DEBIAN.yaml
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+##
+# Prepare modules
+##
+- name: configure modules
+  lineinfile:
+    dest: /etc/modules
+    state: present
+    create: 'yes'
+    line: "8021q"
+- name: add modules
+  modprobe:
+    name: 8021q
+    state: present
+- name: ensure glean rules are removed
+  file:
+    path: "/etc/udev/rules.d/99-glean.rules"
+    state: absent
+
+##
+# Get remote network data
+##
+- name: get nodes as a dict
+  set_fact:
+    nodes_dict: "{{ nodes | nodes_as_dict() }}"
+- name: get bridges to configure
+  set_fact:
+    node_netw: >
+      {{ inventory_hostname |
+      get_networks(hostvars, network_profiles, xci.nodes_roles) }}
+- name: get srv_macs
+  set_fact:
+    srv_macs:
+      "{{ inventory_hostname | target_interfaces(hostvars, nodes_dict) }}"
+- debug:
+    var: srv_macs
+- name: get mac2intf
+  set_fact:
+    macs: "{{ inventory_hostname | mac2intf(hostvars, nodes_dict) }}"
+- debug:
+    var: macs
+- name: get mgmt interface
+  set_fact:
+    mgmt_intf: "{{ macs[srv_macs[net_config['admin'].interface]] }}"
+- debug:
+    var: mgmt_intf
+- name: shortcut for network mapping
+  set_fact:
+    nmap: "{{ xci.network_mapping }}"
+
+##
+# Prepare network
+##
+- name: ensure interfaces.d folder is empty
+  shell: "/bin/rm -rf /etc/network/interfaces.d/*"
+- name: ensure interfaces file is updated
+  template:
+    src: "templates/interfaces.j2"
+    dest: "/etc/network/interfaces"
+- name: restart mgmt interface
+  shell: >-
+    ip a d {{
+    net_config[nmap['br-mgmt']].network | ip_add(
+    ip_shift+node_id) }}/{{ net_config[nmap['br-mgmt']].mask }}
+    dev {{ mgmt_intf }} &&
+    ip l set dev {{ mgmt_intf }} down && ifup br-mgmt
+  when: hostvars[inventory_hostname]["ansible_"+mgmt_intf].ipv4 is defined
+- name: restart all interfaces
+  shell: "ifdown --exclude=lo -a && ifup --exclude=lo -a && sleep 5"
+
+##
+# Restart services
+##
+- systemd:
+    name: ntp
+    state: restarted
+    daemon_reload: 'yes'
+    no_block: true
+
+##
+# Purge setuptools for a better OSA install
+##
+- name: remove setuptools
+  pip:
+    name: setuptools
+    state: absent

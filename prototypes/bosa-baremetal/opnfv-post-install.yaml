@@ -1,0 +1,10 @@
+---
+- hosts: jumphost
+  gather_facts: false
+  become: true
+  vars_files:
+    - "vars/defaults.yaml"
+    - "vars/idf.yaml"
+    - "vars/pdf.yaml"
+  roles:
+    - openstack_prepare

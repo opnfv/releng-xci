@@ -1,0 +1,45 @@
+---
+- set_fact:
+    server_url:
+      "{{ hostvars[groups['server'][0]].ansible_default_ipv4.address }}"
+
+- name: determine if we're already running an agent
+  shell: "docker ps | fgrep -q rancher/agent"
+  register: agent_installed
+  ignore_errors: true
+  changed_when: false
+
+- name: get projects list
+  uri:
+    method: GET
+    status_code: 200
+    url: "http://{{ server_url }}/v3/projects/"
+  register: projects
+  until: >
+    (projects.status == 200) and (projects.json.data|selectattr('name',
+      'equalto', 'System')|list|length > 0)
+  retries: 100
+  delay: 1
+
+- name: register System project id
+  set_fact:
+    system_project_id: >
+      "{{ (projects.json.data|selectattr('name', 'equalto',
+        'System')|first).id }}"
+
+- name: get registration tokens
+  uri:
+    method: GET
+    status_code: 200
+    url: >-
+      "http://{{ server_url }}/v2-beta/projects/
+      {{ system_project_id }}/clusters"
+  register: registration_tokens
+  when: agent_installed|failed
+
+- name: register host
+  become: true
+  command: >
+    "{{ (registration_tokens.json.data|selectattr('name', 'equalto',
+    'Default')|first).registrationToken.hostCommand|replace('sudo ', '') }}"
+  when: agent_installed|failed

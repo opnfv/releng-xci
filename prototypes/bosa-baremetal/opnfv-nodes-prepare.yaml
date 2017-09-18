@@ -1,0 +1,17 @@
+---
+- hosts: nodes
+  vars_files:
+    - "vars/defaults.yaml"
+    - "vars/idf.yaml"
+    - "vars/pdf.yaml"
+  gather_facts: 'no'
+  roles:
+    - nodes_wait_for
+
+- hosts: nodes
+  vars_files:
+    - "vars/defaults.yaml"
+    - "vars/idf.yaml"
+    - "vars/pdf.yaml"
+  roles:
+    - nodes_prepare

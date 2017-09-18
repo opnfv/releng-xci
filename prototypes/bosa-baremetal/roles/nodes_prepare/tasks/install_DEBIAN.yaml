@@ -1,0 +1,15 @@
+---
+- name: Install list of packages
+  apt: name={{item}} state=installed
+  with_items:
+    - bridge-utils
+    - debootstrap
+    - ifenslave
+    - ifenslave-2.6
+    - lsof
+    - lvm2
+    - ntp
+    - ntpdate
+    - sudo
+    - tcpdump
+    - vlan

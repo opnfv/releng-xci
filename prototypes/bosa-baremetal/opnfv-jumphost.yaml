@@ -1,0 +1,7 @@
+---
+- hosts: jumphost
+  become: true
+  vars_files:
+    - "vars/defaults.yaml"
+  roles:
+    - jumphost_prepare

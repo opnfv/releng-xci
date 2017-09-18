@@ -1,0 +1,192 @@
+---
+- set_fact:
+    server_url:
+      "{{ hostvars[groups['server'][0]].ansible_default_ipv4.address }}"
+
+- name: get projects list
+  uri:
+    method: GET
+    status_code: 200
+    url: "http://{{ server_url }}/v3/projects/"
+  register: projects
+
+- debug: msg="{{projects.json}}"
+
+- name: register kube project id
+  set_fact:
+    kube_project_id: >
+      "{{ (projects.json.data|selectattr('name', 'equalto',
+                                         'kube-system')|first).id }}"
+
+- name: get all launched stacks on Kube project
+  uri:
+    method: GET
+    status_code: 200
+    url: "http://{{ server_url }}/v3/projects/{{ kube_project_id }}/stacks"
+  register: kube_stacks
+
+- set_fact:
+    kube_dns_not_present: true
+  when: >
+    kube_stacks.json.data|selectattr('name', 'equalto',
+                                     'kube-dns')|list|length == 0
+
+- set_fact:
+    kube_dns_not_present: false
+  when: >
+    kube_stacks.json.data|selectattr('name', 'equalto',
+                                     'kube-dns')|list|length != 0
+
+
+# Cannot uncompress an archive directly on /tmp as tar tries to change
+#   the ctime and it's weirdly not allowed
+- name: create /tmp/rancher if needed
+  file:
+    path: /tmp/rancher
+    state: directory
+    mode: 0755
+
+- name: decompress rancher cli for Linux
+  unarchive:
+    src: >-
+      https://github.com/rancher/cli/releases/download/v1.0.0-alpha4/
+        rancher-linux-amd64-v1.0.0-alpha4.tar.gz
+    dest: /tmp/rancher
+    remote_src: 'yes'
+  when: (ansible_system == 'Linux') and
+        (ansible_userspace_architecture == 'x86_64')
+
+- name: decompress rancher cli for MacOs
+  unarchive:
+    src: >-
+      https://github.com/rancher/cli/releases/download/v1.0.0-alpha4/
+        rancher-linux-amd64-v1.0.0-alpha4.tar.gz
+    dest: /tmp/rancher
+    remote_src: 'yes'
+  when: ansible_system == "Darwin"
+
+- name: move executable
+  become: true
+  copy:
+    remote_src: 'yes'
+    src: /tmp/rancher/rancher-v1.0.0-alpha4/rancher
+    dest: /usr/local/bin/rancher
+    mode: 0755
+
+- name: retrieve catalog from rancher
+  command: >
+    rancher --url http://{{ server_url }}/v3 --env {{ kube_project_id }}
+      catalog --format json
+  register: catalog
+
+- name: retrieve kube-dns project id
+  set_fact:
+    kube_dns_catalog_id: >
+      "{{ (catalog.stdout_lines | select('match', '.*kube-dns.*') |
+        first | from_json).ID }}"
+  when: kube_dns_not_present
+
+- name: launch installation of kube-dns
+  command: >
+    rancher --url http://{{ server_url }}/v3 --env {{ kube_project_id }}
+      catalog install --name kube-dns {{ kube_dns_catalog_id }}
+  when: kube_dns_not_present
+
+- name: get clusters of project
+  uri:
+    method: GET
+    status_code: 200
+    url: "http://{{ server_url }}/v3/projects/{{ system_project_id }}/clusters"
+  register: clusters
+
+- name: register k8s cluster id
+  set_fact:
+    cluster_id: >
+      "{{ (clusters.json.data|selectattr('orchestration',
+                                         'equalto', 'kubernetes')|first).id }}"
+
+- name: create api key for kubectl
+  uri:
+    method: POST
+    status_code: 201
+    url: "http://{{ server_url }}/v3/projects/1a5/apikey"
+    body:
+      - type: "apiKey"
+      - name: "kubectl"
+      - description: "Provides workstation access to kubectl"
+    body_format: json
+  register: apikey_infos
+
+- set_fact:
+    apikey_id: "{{ apikey_infos.json.id}}"
+    username: "{{ apikey_infos.json.publicValue}}"
+    password: "{{ apikey_infos.json.secretValue}}"
+
+- name: check key is created
+  uri:
+    method: GET
+    status_code: 200
+    url: "http://{{ server_url }}/v3/projects/1a5/apikey/{{ apikey_id }}"
+  register: apikey_infos
+  until: apikey_infos.json.state == "active"
+  retries: 10
+  delay: 1
+
+- set_fact:
+    key_active: "{{ apikey_infos.json.state}}"
+
+- name: install latest kubectl
+  become: true
+  get_url:
+    url: >-
+      https://storage.googleapis.com/kubernetes-release/release/v1.8.0/
+      bin/linux/amd64/kubectl
+    dest: /usr/local/bin/kubectl
+    mode: 0777
+
+- name: create ~/.kube if needed
+  file:
+    path: "{{ ansible_env.HOME }}/.kube"
+    state: directory
+    mode: 0755
+
+- name: create kubectl_config
+  template:
+    src: kube_config.j2
+    dest: "{{ ansible_env.HOME }}/.kube/config"
+
+- set_fact:
+    helm_not_present: true
+  when:
+    kube_stacks.json.data|selectattr('name', 'equalto', 'helm')|list|length == 0
+
+- set_fact:
+    helm_not_present: false
+  when:
+    kube_stacks.json.data|selectattr('name', 'equalto', 'helm')|list|length != 0
+
+- name: retrieve helm project id
+  set_fact:
+    helm_catalog_id: >
+      "{{ (catalog.stdout_lines | select('match', '.*helm.*') |
+      first | from_json).ID }}"
+  when: helm_not_present
+
+- name: launch installation of helm
+  command: >
+    rancher --url http://{{ server_url }}/v3 --env {{ kube_project_id }}
+      catalog install --name helm {{ helm_catalog_id }}
+  when: helm_not_present
+
+- name: get helm latest release
+  get_url:
+    url: https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get
+    dest: /tmp/get_helm.sh
+
+- name: make helm.sh executable
+  file:
+    path: /tmp/get_helm.sh
+    mode: 0700
+
+- name: install helm on jumphost
+  command: "/tmp/get_helm.sh"

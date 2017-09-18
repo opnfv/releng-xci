@@ -1,0 +1,14 @@
+---
+- name: remove openstack-ansible directories
+  file:
+    path: "{{ osa_path }}"
+    state: absent
+- name: remove openstack-ansible config directories
+  file:
+    path: "{{ osa_etc_path }}"
+    state: absent
+- name: "clone openstack-ansible {{osa_branch}}"
+  git:
+    repo: "{{ osa_url }}"
+    dest: "{{ osa_path }}"
+    version: "{{ osa_branch }}"

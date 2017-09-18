@@ -1,0 +1,32 @@
+---
+##
+# Push images if asked
+##
+- name: create images folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: true
+  with_items:
+    - "{{ images_folder }}/ubuntu"
+    - "{{ images_folder }}/debian"
+    - "{{ images_folder }}/cirros"
+    - "{{ images_folder }}/centos"
+    - "{{ images_folder }}/suse"
+- name: Download images
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ images_folder }}/{{ item.file }}"
+  with_items: "{{ os_images }}"
+- name: Push images
+  os_image:
+    name: "{{ item.name }}"
+    container_format: bare
+    disk_format: qcow2
+    state: present
+    filename: "{{ images_folder }}/{{ item.file }}"
+    min_disk: "{{ item.min_disk }}"
+    properties:
+      cpu_arch: x86_64
+      distro: "{{ item.distro }}"
+  with_items: "{{ os_images }}"

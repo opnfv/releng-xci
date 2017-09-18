@@ -1,0 +1,4 @@
+---
+- hosts: k8s-cluster
+  roles:
+    - role: k8s-prepare
