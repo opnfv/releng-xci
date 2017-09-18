@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_7a533839",
+        "filename": "xci/README.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 3063
+      },
+      "writtenOn": "2017-09-18T12:17:54Z",
+      "side": 1,
+      "message": "This will only work if pip is installed already which is not the case on a system with fresh OS.",
+      "revId": "b1795e93a44cffdf4a588efc0ade2da9aabb2704",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
