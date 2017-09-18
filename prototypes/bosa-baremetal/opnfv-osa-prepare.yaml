@@ -1,0 +1,28 @@
+---
+- hosts: jumphost
+  become: true
+  vars_files:
+    - "vars/defaults.yaml"
+    - "vars/idf.yaml"
+    - "vars/pdf.yaml"
+  tasks:
+    ##
+    # install osa
+    ##
+    - name: remove openstack-ansible directories
+      file:
+        path: "{{ osa_path }}"
+        state: absent
+    - name: remove openstack-ansible config directories
+      file:
+        path: "{{ osa_etc_path }}"
+        state: absent
+    - name: "clone openstack-ansible {{osa_branch}}"
+      git:
+        repo: "{{ osa_url }}"
+        dest: "{{ osa_path }}"
+        version: "{{ osa_branch }}"
+    # - name: set ansible-role-requirements
+    #   copy:
+    #     dest: "{{ osa_path }}/ansible-role-requirements.yml"
+    #     src: files/ansible-role-requirements.yml

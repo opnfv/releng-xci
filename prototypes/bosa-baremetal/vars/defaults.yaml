@@ -1,0 +1,118 @@
+##
+# Installation targets
+##
+
+osa_etc_path: /etc/openstack_deploy
+bosa_config: /etc/bosa/
+bifrost_path: "/opt/bifrost"
+osa_path: /opt/openstack-ansible
+
+##
+# Sources
+##
+
+# Bifrost git params
+bifrost_url: https://git.openstack.org/openstack/bifrost
+bifrost_branch: "stable/ocata" # will be pushed in SDF
+
+# OSA git params
+osa_url: https://git.openstack.org/openstack/openstack-ansible
+osa_branch: "stable/ocata" # will be pushed in SDF
+
+##
+# Bifrost config
+##
+
+# Enable VENV
+bifrost_enable_venv: true
+bifrost_venv_folder: /opt/stack/bifrost
+
+# Ironic DB password
+ironic_db_password: aSecretPassword473z
+
+# Dib user
+dib_dev_user_username: ubuntu
+dib_dev_user_password: opnfv2017
+
+##
+# Network config
+##
+
+# network profiles
+network_profiles:
+    controller:
+        - br-mgmt
+    storage:
+        - br-mgmt
+        - br-storage
+    network:
+        - br-mgmt
+        - br-vxlan
+        - br-vlan
+    compute:
+        - br-mgmt
+        - br-vxlan
+        - br-vlan
+
+# IP shift from network address to set ip
+# first used ip address of will be network + ip_shif + node_id
+ip_shift: 10
+
+##
+# Openstack basic customization
+##
+
+os_basic:
+    images: false
+    flavors: true
+    ext_net: true
+
+# Default images folder on jumphost
+images_folder: /mnt/images
+
+# Push images
+os_images:
+    - { name: 'cirros-0.3.5',
+        file: 'cirros/cirros-0.3.5-x86_64-disk.img',
+        distro: 'cirros',
+        min_disk: 2,
+        url: 'http://download.cirros-cloud.net/0.3.5/cirros-0.3.5-x86_64-disk.img' }
+    - { name: 'ubuntu-17.04-daily',
+        file: 'ubuntu/ubuntu-17.04-daily.img',
+        distro: 'ubuntu',
+        min_disk: 4,
+        url: 'https://cloud-images.ubuntu.com/zesty/current/zesty-server-cloudimg-amd64.img' }
+    - { name: 'ubuntu-14.04-daily',
+        file: 'ubuntu/ubuntu-14.04-daily.img',
+        distro: 'ubuntu',
+        min_disk: 4,
+        url: 'https://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img' }
+    - { name: 'ubuntu-16.04-daily',
+        file: 'ubuntu/ubuntu-16.04-daily.img',
+        distro: 'ubuntu',
+        min_disk: 4,
+        url: 'https://cloud-images.ubuntu.com/xenial/current/xenial-server-cloudimg-amd64-disk1.img' }
+    - { name: 'debian-9',
+        file: 'debian/debian-9-openstack-amd64.img',
+        distro: 'debian',
+        min_disk: 4,
+        url: 'https://cdimage.debian.org/cdimage/openstack/current-9/debian-9-openstack-amd64.qcow2' }
+    - { name: 'opensuse-13.2',
+        file: 'centos/opensuse-13.2-x86_64.img',
+        distro: 'opensuse',
+        min_disk: 4,
+        url: 'http://download.opensuse.org/repositories/Cloud:/Images:/openSUSE_13.2/images/openSUSE-13.2-OpenStack-Guest.x86_64.qcow2' }
+
+# default flavors - https://docs.openstack.org/horizon/latest/admin/manage-flavors.html
+os_flavors:
+    - { ram: 512,    disk: 1,    vcpu: 1,  name: 'm1.smaller'   }
+    - { ram: 2048,   disk: 20,   vcpu: 1,  name: 'm1.small'     }
+    - { ram: 3072,   disk: 40,   vcpu: 2,  name: 'm1.medium'    }
+    - { ram: 8192,   disk: 80,   vcpu: 4,  name: 'm1.large'     }
+    - { ram: 16384,  disk: 160,  vcpu: 8,  name: 'm1.xlarge'    }
+
+ext_net:
+    name: ext-net
+    dhcp:
+      start_shift: 5
+      from_end_shift: 0
