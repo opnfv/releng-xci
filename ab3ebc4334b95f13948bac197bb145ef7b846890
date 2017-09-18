@@ -1,0 +1,7 @@
+Code-Review+2: Fatih Degirmenci <fatih.degirmenci@ericsson.com>
+Verified+1: Fatih Degirmenci <fatih.degirmenci@ericsson.com>
+Submitted-by: Markos Chandras <mchandras@suse.de>
+Submitted-at: Mon, 18 Sep 2017 09:42:22 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/41613
+Project: releng-xci
+Branch: refs/heads/master
