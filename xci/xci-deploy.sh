@@ -115,7 +115,11 @@ fi
 echo "Info: Starting provisining VM nodes using openstack/bifrost"
 echo "-------------------------------------------------------------------------"
 cd $XCI_PATH/playbooks
+# NOTE(hwoarang) we need newer ansible to work on the following playbook
+sudo -H pip install ansible==${XCI_ANSIBLE_PIP_VERSION}
 ansible-playbook -i inventory provision-vm-nodes.yml
+cd ${OPENSTACK_BIFROST_PATH}
+bash ./scripts/bifrost-provision.sh
 echo "-----------------------------------------------------------------------"
 echo "Info: VM nodes are provisioned!"
 source $OPENSTACK_BIFROST_PATH/env-vars
@@ -130,6 +134,10 @@ echo
 # - creates log directory
 # - copies flavor files such as playbook, inventory, and var file
 #-------------------------------------------------------------------------------
+
+# NOTE(hwoarang) we need newer ansible to work on the OSA playbooks
+sudo -H pip install ansible==${XCI_ANSIBLE_PIP_VERSION}
+
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd $XCI_PATH/playbooks
