@@ -1,0 +1,18 @@
+host  {{ jumphost.name }}
+
+{% for node in role2nodes['controller'] %}
+host infra{{ loop.index }}
+    HostName {{ nodes_ip[node]['ip'] }}
+{% endfor %}
+{% for node in role2nodes['compute'] %}
+host compute{{ loop.index }}
+    HostName {{ nodes_ip[node]['ip'] }}
+{% endfor %}
+
+host infra* compute*
+    User root
+    StrictHostKeyChecking=false
+
+host log1
+    HostName  {{ xci.rsyslog }}
+    StrictHostKeyChecking=false

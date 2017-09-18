@@ -1,0 +1,13 @@
+[controllers]
+{% for node in role2nodes['controller'] %}
+infra{{ loop.index }} node_id={{ nodes_ip[node]['index'] }}
+{% endfor %}
+
+[computes]
+{% for node in role2nodes['compute'] %}
+compute{{ loop.index }} node_id={{ nodes_ip[node]['index'] }}
+{% endfor %}
+
+[nodes:children]
+controllers
+computes
