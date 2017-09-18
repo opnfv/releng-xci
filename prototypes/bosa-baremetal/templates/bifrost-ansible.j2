@@ -1,0 +1,9 @@
+#!/bin/bash
+unset ANSIBLE_STDOUT_CALLBACK
+{% if bifrost_enable_venv %}
+echo "Enable virtualenv {{ bifrost_venv_folder }}"
+source {{ bifrost_venv_folder }}/bin/activate
+{{ bifrost_venv_folder }}/bin/ansible-playbook $@
+{% else %}
+~/.local/bin/ansible-playbook $@
+{% endif %}

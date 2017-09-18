@@ -1,0 +1,50 @@
+---
+- hosts: jumphost
+  become: true
+  vars_files:
+    - "vars/defaults.yaml"
+    - "vars/idf.yaml"
+    - "vars/pdf.yaml"
+  tasks:
+    ##
+    # Prepare config
+    ##
+    - name: ensure openstack-ansible config directories exists
+      file:
+        path: "{{ osa_etc_path }}"
+        state: directory
+    - name: Copy etc/openstack_deploy
+      shell: "cp -rf openstack_deploy/* {{ osa_etc_path }}"
+      args:
+        chdir: "{{ osa_path }}/etc/"
+    - name: Generate pw-tokens
+      shell: >
+        /usr/bin/python pw-token-gen.py --file
+        {{ osa_etc_path }}/user_secrets.yml
+      args:
+        chdir: "{{ osa_path }}/scripts/"
+    - name: get nodes ips
+      set_fact:
+        nodes_ip: >
+          {{ nodes |
+          node_ips(net_config[xci.network_mapping['br-mgmt']].network,
+                   ip_shift) }}
+    - name: get role nodes
+      set_fact:
+        role2nodes: "{{ xci.nodes_roles | role2nodes() }}"
+    - name: set openstack_user_config.yml
+      template:
+        src: "templates/openstack_user_config.yml.prod.j2"
+        dest: "{{ osa_etc_path }}/openstack_user_config.yml"
+    - name: set user_variables.yml
+      copy:
+        src: "files/user_variables.yml"
+        dest: "{{ osa_etc_path }}/user_variables.yml"
+
+    ##
+    # Check syntax
+    ##
+    - name: Check syntax
+      shell: "openstack-ansible setup-infrastructure.yml --syntax-check"
+      args:
+        chdir: "{{ osa_path }}/playbooks/"
