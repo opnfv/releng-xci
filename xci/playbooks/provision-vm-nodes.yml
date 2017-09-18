@@ -85,16 +85,3 @@
       command: "/bin/bash ./scripts/destroy-env.sh"
       args:
         chdir: "{{ OPENSTACK_BIFROST_PATH }}"
-
-- hosts: localhost
-  connection: local
-  vars_files:
-    - ../var/opnfv.yml
-  tasks:
-    - name: Load distribution variables
-      include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
-    - name: create and provision VM nodes for the flavor {{ XCI_FLAVOR }}
-      command: "/bin/bash ./scripts/bifrost-provision.sh"
-      args:
-        chdir: "{{ OPENSTACK_BIFROST_PATH }}"
