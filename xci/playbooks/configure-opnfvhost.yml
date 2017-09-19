@@ -9,6 +9,7 @@
 ##############################################################################
 - hosts: opnfv
   remote_user: root
+  become: yes
   vars_files:
     - ../var/flavor-vars.yml
     - ../var/opnfv.yml
@@ -18,6 +19,17 @@
         file: ../var/{{ ansible_os_family }}.yml
   roles:
     - role: remove-folders
+
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - ../var/flavor-vars.yml
+    - ../var/opnfv.yml
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+  roles:
     - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
     - { role: clone-repository, project: "openstack/openstack-ansible", repo: "{{ OPENSTACK_OSA_GIT_URL }}", dest: "{{ OPENSTACK_OSA_PATH }}", version: "{{ OPENSTACK_OSA_VERSION }}" }
 
