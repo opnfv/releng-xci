@@ -114,6 +114,8 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Starting provisining VM nodes using openstack/bifrost"
 echo "-------------------------------------------------------------------------"
+cd $XCI_PATH/../bifrost/
+sudo -E bash ./scripts/destroy-env.sh
 cd $XCI_PATH/playbooks
 # NOTE(hwoarang) we need newer ansible to work on the following playbook
 sudo -H pip install ansible==${XCI_ANSIBLE_PIP_VERSION}
