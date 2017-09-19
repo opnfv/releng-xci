@@ -114,6 +114,8 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Starting provisining VM nodes using openstack/bifrost"
 echo "-------------------------------------------------------------------------"
+cd ${OPENSTACK_BIFROST_PATH}
+sudo -E bash ./scripts/destroy-env.sh
 cd $XCI_PATH/playbooks
 ansible-playbook -i inventory provision-vm-nodes.yml
 cd ${OPENSTACK_BIFROST_PATH}
