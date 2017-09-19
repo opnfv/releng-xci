@@ -114,6 +114,8 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Starting provisining VM nodes using openstack/bifrost"
 echo "-------------------------------------------------------------------------"
+# We are using sudo so we need to make sure that env_reset is not present
+sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 cd ${OPENSTACK_BIFROST_PATH}
 sudo -E bash ./scripts/destroy-env.sh
 cd $XCI_PATH/playbooks
