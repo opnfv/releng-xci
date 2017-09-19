@@ -63,19 +63,3 @@
       copy:
         src: "{{ OPNFV_RELENG_PATH }}/bifrost/"
         dest: "{{ OPENSTACK_BIFROST_PATH }}"
-
-- hosts: localhost
-  connection: local
-  become: true
-  gather_facts: true
-  vars_files:
-    - ../var/opnfv.yml
-  tasks:
-    - name: Load distribution variables
-      include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
-
-    - name: destroy VM nodes created by previous deployment
-      command: "/bin/bash ./scripts/destroy-env.sh"
-      args:
-        chdir: "{{ OPENSTACK_BIFROST_PATH }}"
