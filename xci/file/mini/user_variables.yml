@@ -27,6 +27,7 @@ haproxy_keepalived_external_interface: br-vlan
 haproxy_keepalived_internal_interface: br-mgmt
 gnocchi_db_sync_options: ""
 
+nfs_file_gw: False
 # The settings below are taken from aio since this flavor is mostly
 # for short CI loops and users with lower requirements.
 # https://github.com/openstack/openstack-ansible/blob/master/tests/roles/bootstrap-host/templates/user_variables.aio.yml.j2
