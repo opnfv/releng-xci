@@ -82,7 +82,7 @@
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
   
     - name: copy ceph.yml
-      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/conf.d/"
+      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/conf.d/"
     - name: copy user_ceph.yml
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/user_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_ceph.yml"
     - name: copy user_variables_ceph.yml
