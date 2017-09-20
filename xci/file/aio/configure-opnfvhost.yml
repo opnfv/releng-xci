@@ -23,3 +23,5 @@
       command: "/bin/bash ./scripts/bootstrap-aio.sh"
       args:
         chdir: "{{OPENSTACK_OSA_PATH}}"
+      environment:
+        SCENARIO: "{{ (XCI_CEPH_ENABLED == 'true') | ternary('ceph', 'aio') }}"

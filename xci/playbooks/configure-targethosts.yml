@@ -24,6 +24,7 @@
   remote_user: root
   vars_files:
     - ../var/flavor-vars.yml
+    - ../var/opnfv.yml
   pre_tasks:
     - name: Load distribution variables
       include_vars:
@@ -32,6 +33,8 @@
     - role: configure-network
     # we need to force sync time with ntp or the nodes will be out of sync timewise
     - role: synchronize-time
+    - role: configure-ceph
+      when: XCI_CEPH_ENABLED == "true"
 
 - hosts: compute00
   remote_user: root
