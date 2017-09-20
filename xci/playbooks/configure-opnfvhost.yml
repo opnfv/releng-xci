@@ -113,11 +113,14 @@
       command: "python pw-token-gen.py --file {{OPENSTACK_OSA_ETC_PATH}}/user_secrets.yml"
       args:
         chdir: "{{OPENSTACK_OSA_PATH}}/scripts"
+    - name: check if certificate directory /etc/ssl/certs exists already
+      stat: path=/etc/ssl/certs
+      register: check_etc_ssl_certs
     - name: create certificate directory /etc/ssl/certs
       file:
         path: "/etc/ssl/certs"
         state: directory
-      when: ansible_pkg_mgr != 'zypper'
+      when: check_etc_ssl_certs.stat.exists == false
     - name: create key directory /etc/ssl/private
       file:
         path: "/etc/ssl/private"
@@ -126,7 +129,6 @@
       copy:
         src: "/etc/ssl/certs/xci.crt"
         dest: "/etc/ssl/certs/"
-      become: true
     - name: read remote key from /etc/ssl/private
       set_fact:
         xci_ssl_key: "{{ lookup('pipe', 'sudo cat /etc/ssl/private/xci.key' ) }}"
