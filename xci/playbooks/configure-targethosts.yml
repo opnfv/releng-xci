@@ -28,10 +28,13 @@
     - name: Load distribution variables
       include_vars:
         file: ../var/{{ ansible_os_family }}.yml
+        file: ../var/opnfv.yml
   roles:
     - role: configure-network
     # we need to force sync time with ntp or the nodes will be out of sync timewise
     - role: synchronize-time
+    - role: configure-ceph
+      when: XCI_CEPH_ENABLED == true
 
 - hosts: compute00
   remote_user: root
