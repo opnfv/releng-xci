@@ -82,6 +82,7 @@
         state: directory
       when: check_etc_ssl_certs.stat.exists == false
     - name: create key directory /etc/ssl/private
+      become: true
       file:
         path: "/etc/ssl/private"
         state: directory
