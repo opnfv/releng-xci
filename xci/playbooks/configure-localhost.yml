@@ -86,6 +86,7 @@
       file:
         path: "/etc/ssl/certs"
         state: directory
+      when: ansible_pkg_mgr != 'zypper'
     - name: create key directory /etc/ssl/private
       file:
         path: "/etc/ssl/private"
