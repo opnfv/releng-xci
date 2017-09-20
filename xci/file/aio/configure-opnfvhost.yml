@@ -11,6 +11,12 @@
       args:
         chdir: "{{OPENSTACK_OSA_PATH}}"
     - name: bootstrap opnfv host as aio
+      command: "export SCENARIO='ceph' && /bin/bash ./scripts/bootstrap-aio.sh"
+      args:
+        chdir: "{{OPENSTACK_OSA_PATH}}"
+      when: XCI_CEPH_ENABLED == true
+    - name: bootstrap opnfv host as aio
       command: "/bin/bash ./scripts/bootstrap-aio.sh"
       args:
         chdir: "{{OPENSTACK_OSA_PATH}}"
+      when: XCI_CEPH_ENABLED != true
