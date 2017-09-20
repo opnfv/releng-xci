@@ -40,3 +40,5 @@ opnfv_required_packages:
 opnfv_required_pip:
   - python-openstackclient
   - docker-py
+
+XCI_CEPH_ENABLED: "{{ lookup('env', 'XCI_CEPH_ENABLED') }}"
