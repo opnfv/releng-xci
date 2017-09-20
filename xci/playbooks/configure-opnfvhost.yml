@@ -80,12 +80,19 @@
       shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy cinder.yml
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
+  
+    - name: copy ceph.yml
+      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/conf.d/"
+    - name: copy user_ceph.yml
+      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/user_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_ceph.yml"
+    - name: copy user_variables_ceph.yml
+      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/user_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_variables_ceph.yml"
     # TODO: We need to get rid of this as soon as the issue is fixed upstream
-    - name: change the haproxy state from disable to enable
-      replace:
-        dest: "{{OPENSTACK_OSA_PATH}}/playbooks/os-keystone-install.yml"
-        regexp: '(\s+)haproxy_state: disabled'
-        replace: '\1haproxy_state: enabled'
+#    - name: change the haproxy state from disable to enable
+#      replace:
+#        dest: "{{OPENSTACK_OSA_PATH}}/playbooks/os-keystone-install.yml"
+#        regexp: '(\s+)haproxy_state: disabled'
+#        replace: '\1haproxy_state: enabled'
     - name: copy OPNFV OpenStack playbook
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/setup-openstack.yml {{OPENSTACK_OSA_PATH}}/playbooks"
     - name: copy OPNFV role requirements

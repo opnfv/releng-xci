@@ -13,6 +13,6 @@
       args:
         chdir: "{{OPENSTACK_OSA_PATH}}"
     - name: bootstrap opnfv host as aio
-      command: "/bin/bash ./scripts/bootstrap-aio.sh"
+      command: "export SCENARIO='ceph' && /bin/bash ./scripts/bootstrap-aio.sh"
       args:
         chdir: "{{OPENSTACK_OSA_PATH}}"

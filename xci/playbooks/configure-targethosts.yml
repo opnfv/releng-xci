@@ -37,3 +37,4 @@
   remote_user: root
   roles:
     - role: configure-nfs
+    - role: configure-ceph
