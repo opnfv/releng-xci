@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_4ef829c3",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5761
+      },
+      "writtenOn": "2017-09-21T10:01:36Z",
+      "side": 1,
+      "message": "This part has some syntax error:\n\nTASK [Load distribution variables] *********************************************\nfatal: [opnfv]: FAILED! \u003d\u003e {\"failed\": true, \"msg\": \"No filename was specified to include.\\n\\nThe error appears to have been in \u0027/tmp/.xci-deploy-env/releng-xci/xci/playbooks/configure-opnfvhost.yml\u0027: line 16, column 7, but may\\nbe elsewhere in the file depending on the exact syntax problem.\\n\\nThe offending line appears to be:\\n\\n  pre_tasks:\\n    - name: Load distribution variables\\n      ^ here\\n\"}",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 48
+      },
+      "revId": "0982b35c0342fd67b6d5bdd2fc9789681174b768",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
