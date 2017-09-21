@@ -41,6 +41,9 @@ if [[ -z $(echo $PATH | grep "$HOME/.local/bin")  ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# try without venv
+export USE_VENV=true
+
 #-------------------------------------------------------------------------------
 # Sanitize local development environment variables
 #-------------------------------------------------------------------------------
@@ -74,7 +77,7 @@ case ${OS_FAMILY,,} in
     debian)
         export DIB_OS_RELEASE="${DIB_OS_RELEASE:-xenial}"
         export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-ubuntu-minimal}"
-        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,iptables}"
+        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,iptables,initramfs-tools}"
         export EXTRA_DIB_ELEMENTS="${EXTRA_DIB_ELEMENTS:-openssh-server}"
         ;;
     redhat)
