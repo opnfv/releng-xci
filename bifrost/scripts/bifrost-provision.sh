@@ -16,9 +16,10 @@ BIFROST_HOME=$SCRIPT_HOME/..
 ANSIBLE_INSTALL_ROOT=${ANSIBLE_INSTALL_ROOT:-/opt/stack}
 ENABLE_VENV="false"
 USE_DHCP="false"
-USE_VENV="true"
+USE_VENV="false"
 BUILD_IMAGE=true
 PROVISION_WAIT_TIMEOUT=${PROVISION_WAIT_TIMEOUT:-3600}
+export ANSIBLE_PIP_VERSION=${XCI_ANSIBLE_PIP_VERSION:-}
 
 # Ensure the right inventory files is used based on branch
 CURRENT_BIFROST_BRANCH=$(git rev-parse --abbrev-ref HEAD)
