@@ -143,8 +143,15 @@ echo
 
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-# NOTE(hwoarang) we need newer ansible to work on the OSA playbooks
+# NOTE(hwoarang) we need newer ansible to work on the OSA playbooks. Make sure
+# all installations are gone. This is ugly and has to be removed as soon as we
+# are able to deploy bifrost in vent or when bifrost start working with newest
+# ansible
+pip uninstall -y ansible || true
+sudo -H pip uninstall -y ansible || true
 sudo pip install --force-reinstall ansible==${XCI_ANSIBLE_PIP_VERSION}
+# Start fresh
+hash -r
 cd $XCI_PATH/playbooks
 ansible-playbook -i inventory configure-localhost.yml
 echo "-----------------------------------------------------------------------"
