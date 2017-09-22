@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_ebc64a67",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T15:42:14Z",
+      "side": 1,
+      "message": "to ensure the deployment is done as part of CI.\n\nit is up to users to decide if they want to install docker and run tests through opnfv vm.",
+      "parentUuid": "da33351e_6bb35a0a",
+      "range": {
+        "startLine": 134,
+        "startChar": 6,
+        "endLine": 134,
+        "endChar": 47
+      },
+      "revId": "5f5d367247c1b7fd464b92e0748da7f108eb6f7f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_4bb816e5",
         "filename": "xci/playbooks/configure-opnfvhost.yml",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-09-22T15:39:02Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 140,
+        "startChar": 6,
+        "endLine": 140,
+        "endChar": 47
+      },
+      "revId": "5f5d367247c1b7fd464b92e0748da7f108eb6f7f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0ba9ee90",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T15:42:14Z",
+      "side": 1,
+      "message": "this is even more relevant as we will be preparing for testing using ansible openstack module and users will probably use other means than ansible to do similar things.\n\nagain, leaving it to users.",
+      "parentUuid": "da33351e_4bb816e5",
       "range": {
         "startLine": 140,
         "startChar": 6,
