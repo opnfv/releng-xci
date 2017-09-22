@@ -9,6 +9,7 @@
 ##############################################################################
 - hosts: localhost
   connection: local
+  become: yes
   vars_files:
     - ../var/opnfv.yml
   pre_tasks:
@@ -17,11 +18,20 @@
         file: ../var/{{ ansible_os_family }}.yml
   roles:
     - role: remove-folders
+
+- hosts: localhost
+  connection: local
+  vars_files:
+    - ../var/opnfv.yml
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+  roles:
     - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
     - { role: clone-repository, project: "openstack/openstack-ansible-openstack_openrc", repo: "{{ OPENSTACK_OSA_OPENRC_GIT_URL }}", dest: "{{ OPENSTACK_OSA_OPENRC_PATH }}", version: "master" }
 - hosts: localhost
   connection: local
-  gather_facts: false
   vars_files:
     - ../var/opnfv.yml
   tasks:
@@ -66,7 +76,6 @@
         dest: "{{OPNFV_RELENG_PATH}}/xci/var"
 - hosts: localhost
   connection: local
-  gather_facts: false
   vars_files:
     - ../var/opnfv.yml
   tasks:
