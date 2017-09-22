@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_8bf7be8a",
+        "filename": "xci/scripts/vm/build-dib-os.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T16:10:05Z",
+      "side": 1,
+      "message": "tabs here and down below.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 13
+      },
+      "revId": "4f6b6898f966401dd27aeb5cf0715e710cc5d541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ebf00a93",
+        "filename": "xci/scripts/vm/id_rsa_for_dib",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T16:10:05Z",
+      "side": 1,
+      "message": "this will be flagged by security scan and we need to get exception.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "4f6b6898f966401dd27aeb5cf0715e710cc5d541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0b33ae63",
+        "filename": "xci/scripts/vm/id_rsa_for_dib.pub",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T16:10:05Z",
+      "side": 1,
+      "message": "this will be flagged by security scan and we need to get exception.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 400
+      },
+      "revId": "4f6b6898f966401dd27aeb5cf0715e710cc5d541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_2b079283",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T16:10:05Z",
+      "side": 1,
+      "message": "tabzzz\n\nthese tab stuff gets my attention, sorry. there are more down below.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 4
+      },
+      "revId": "4f6b6898f966401dd27aeb5cf0715e710cc5d541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0b0c4ea4",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T16:10:05Z",
+      "side": 1,
+      "message": "one of the nodes (ericsson-pod2) holds some other vms so please ensure to be none-destructive when it comes to libvirt stuff.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 32
+      },
+      "revId": "4f6b6898f966401dd27aeb5cf0715e710cc5d541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4b02d66f",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T16:10:05Z",
+      "side": 1,
+      "message": "it is better to move this away from this script into its own.",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 12
+      },
+      "revId": "4f6b6898f966401dd27aeb5cf0715e710cc5d541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_abfa8272",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T16:10:05Z",
+      "side": 1,
+      "message": "we shouldn\u0027t destroy the vm as we need it for testing. a separate cleanup script is better.",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 27
+      },
+      "revId": "4f6b6898f966401dd27aeb5cf0715e710cc5d541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
