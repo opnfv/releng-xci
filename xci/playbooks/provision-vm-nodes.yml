@@ -29,11 +29,6 @@
     - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
     - { role: clone-repository, project: "opnfv/bifrost", repo: "{{ OPENSTACK_BIFROST_GIT_URL }}", dest: "{{ OPENSTACK_BIFROST_PATH }}", version: "{{ OPENSTACK_BIFROST_VERSION }}" }
 
-- hosts: localhost
-  connection: local
-  gather_facts: true
-  vars_files:
-    - ../var/opnfv.yml
   tasks:
     - name: Load distribution variables
       include_vars:
@@ -64,31 +59,7 @@
         - "{{ OPENSTACK_BIFROST_PATH }}/playbooks/inventory"
       when:
         - XCI_EXTRA_VARS_PATH != ""
-
-- hosts: localhost
-  connection: local
-  gather_facts: true
-  vars_files:
-    - ../var/opnfv.yml
-  tasks:
-    - name: Load distribution variables
-      include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
     - name: combine opnfv/releng-xci and openstack/bifrost scripts/playbooks
       copy:
         src: "{{ OPNFV_RELENG_PATH }}/bifrost/"
         dest: "{{ OPENSTACK_BIFROST_PATH }}"
-
-- hosts: localhost
-  connection: local
-  become: yes
-  vars_files:
-    - ../var/opnfv.yml
-  tasks:
-    - name: Load distribution variables
-      include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
-    - name: destroy VM nodes created by previous deployment
-      command: "/bin/bash ./scripts/destroy-env.sh"
-      args:
-        chdir: "{{ OPENSTACK_BIFROST_PATH }}"
