@@ -126,6 +126,18 @@
         content: "{{ xci_ssl_key }}"
         dest: "/etc/ssl/private/xci.key"
       become: true
+    # install docker on opnfv host only if we are running as part of CI
+    - name: install docker
+      package:
+        name: "{{ docker_package_name }}"
+        state: latest
+      when: lookup('env', 'JENKINS_HOME') != ""
+    # install shade on opnfv host only if we are running as part of CI
+    - name: install shade
+      pip:
+        name: shade
+        state: present
+      when: lookup('env', 'JENKINS_HOME') != ""
 
 - hosts: localhost
   remote_user: root
