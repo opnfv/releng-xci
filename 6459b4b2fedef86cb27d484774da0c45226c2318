@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_de9d0668",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T20:55:02Z",
+      "side": 1,
+      "message": "https",
+      "range": {
+        "startLine": 285,
+        "startChar": 37,
+        "endLine": 285,
+        "endChar": 41
+      },
+      "revId": "6459b4b2fedef86cb27d484774da0c45226c2318",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_9e97fe47",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T20:55:02Z",
+      "side": 1,
+      "message": "I think this should be https.",
+      "range": {
+        "startLine": 289,
+        "startChar": 43,
+        "endLine": 289,
+        "endChar": 47
+      },
+      "revId": "6459b4b2fedef86cb27d484774da0c45226c2318",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7e94ba42",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-22T20:55:02Z",
+      "side": 1,
+      "message": "this should be external_lb_vip_address instead of ip of controller node.",
+      "range": {
+        "startLine": 289,
+        "startChar": 71,
+        "endLine": 289,
+        "endChar": 111
+      },
+      "revId": "6459b4b2fedef86cb27d484774da0c45226c2318",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
