@@ -36,3 +36,8 @@ testapi_venv/
 .tox
 *.retry
 job_output/
+# Clear VM files
+*.qcow2
+*.sha256.txt
+build.log
+*.d/
