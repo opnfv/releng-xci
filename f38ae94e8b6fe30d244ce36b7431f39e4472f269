@@ -1,0 +1,11 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Dimitrios Markou <mardim@intracom-telecom.com>
+Code-Review+1: Tapio Tallgren <tapio.tallgren@nokia.com>
+Code-Review+1: wutianwei <wutianwei1@huawei.com>
+Code-Review+1: Taseer Ahmed <taseer94@gmail.com>
+Code-Review+2: Markos Chandras <mchandras@suse.de>
+Submitted-by: Markos Chandras <mchandras@suse.de>
+Submitted-at: Fri, 22 Sep 2017 14:16:18 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/42163
+Project: releng-xci
+Branch: refs/heads/master
