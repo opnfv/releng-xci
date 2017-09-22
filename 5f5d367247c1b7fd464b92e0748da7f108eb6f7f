@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_6bb35a0a",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-22T15:39:02Z",
+      "side": 1,
+      "message": "why is this necessary?",
+      "range": {
+        "startLine": 134,
+        "startChar": 6,
+        "endLine": 134,
+        "endChar": 47
+      },
+      "revId": "5f5d367247c1b7fd464b92e0748da7f108eb6f7f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_4bb816e5",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-22T15:39:02Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 140,
+        "startChar": 6,
+        "endLine": 140,
+        "endChar": 47
+      },
+      "revId": "5f5d367247c1b7fd464b92e0748da7f108eb6f7f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
