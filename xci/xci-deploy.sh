@@ -164,7 +164,10 @@ echo "Info: Configured localhost host for openstack-ansible"
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd ${XCI_DEVEL_ROOT}
-ansible-playbook -i ${OPNFV_XCI_PATH}/playbooks/inventory ${OPNFV_XCI_PATH}/playbooks/configure-opnfvhost.yml
+if [[ ${XCI_FLAVOR} != 'aio' ]]; then
+    ansible-playbook -i ${OPNFV_XCI_PATH}/playbooks/inventory ${OPNFV_XCI_PATH}/playbooks/configure-opnfvhost.yml
+else
+   ansible-playbook -i ${OPNFV_XCI_PATH}/playbooks/inventory ${OPNFV_XCI_PATH}/file/${XCI_FLAVOR}/configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
 
