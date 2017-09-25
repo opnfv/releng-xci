@@ -20,7 +20,7 @@
 # or
 #   export XCI_FLAVOR="ha"
 #-------------------------------------------------------------------------------
-export XCI_FLAVOR=${XCI_FLAVOR:-aio}
+export XCI_FLAVOR=${XCI_FLAVOR:-mini}
 
 #-------------------------------------------------------------------------------
 # Set Paths to where git repositories of XCI Components will be cloned
