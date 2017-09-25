@@ -30,23 +30,24 @@ declare -r CPU=host
 declare -r NCPUS=24
 declare -r MEMORY=49152
 declare -r DISK=500
-declare -r NAME=${1}
+declare -r NAME=${1}_xci_vm
+declare -r OS=${1}
 declare -r NETWORK="jenkins-test"
-declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci.*@@")
+declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/.*@@")
 
 echo "Preparing new virtual machine '${NAME}'..."
 
 # NOTE(hwoarang) This should be removed when we move the dib images to a central place
-echo "Building '${NAME}' image (tail build.log for progress and failures)..."
-$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${NAME} > build.log 2>&1
+echo "Building '${OS}' image (tail build.log for progress and failures)..."
+$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
 
-[[ ! -e ${1}.qcow2 ]] && echo "${1}.qcow2 not found! This should never happen!" && exit 1
+[[ ! -e ${OS}.qcow2 ]] && echo "${OS}.qcow2 not found! This should never happen!" && exit 1
 
 sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils
 sudo systemctl -q start libvirtd
 
-echo "Resizing disk image '${NAME}' to ${DISK}G..."
-qemu-img resize ${NAME}.qcow2 ${DISK}G
+echo "Resizing disk image '${OS}' to ${DISK}G..."
+qemu-img resize ${OS}.qcow2 ${DISK}G
 
 echo "Creating new network '${NETWORK}' if it does not exist already..."
 if ! sudo virsh net-list --name | grep -q ${NETWORK}; then
@@ -74,10 +75,12 @@ fi
 echo "Destroying previous instances if necessary..."
 sudo virsh destroy ${NAME} || true
 sudo virsh undefine ${NAME} || true
+sudo virsh destroy ${NAME/_xci*}  || true
+sudo virsh undefine ${NAME/_xci*} || true
 
 echo "Installing virtual machine '${NAME}'..."
 sudo virt-install -n ${NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
-	--import --disk=${NAME}.qcow2 --network network=${NETWORK} \
+	--import --disk=${OS}.qcow2 --network network=${NETWORK} \
 	--graphics none --hvm --noautoconsole
 
 _retries=30
@@ -98,7 +101,7 @@ done
 chmod 600 ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib*
 # Remove it from known_hosts
 ssh-keygen -R $_ip || true
-ssh-keygen -R ${NAME}_xci_vm || true
+ssh-keygen -R ${NAME} || true
 
 declare -r vm_ssh="ssh -o StrictHostKeyChecking=no -i ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib -l devuser"
 
@@ -107,7 +110,7 @@ _ssh_exit=0
 
 echo "Verifying operational status..."
 while [[ $_retries -ne 0 ]]; do
-	if eval $vm_ssh $_ip "sudo cat /etc/os-release" 2>/dev/null; then
+	if eval $vm_ssh $_ip "sudo cat /etc/os-release"; then
 		_ssh_exit=$?
 		break;
 	else
@@ -121,8 +124,8 @@ done
 echo "Congratulations! Your shiny new '${NAME}' virtual machine is fully operational! Enjoy!"
 
 echo "Adding ${NAME}_xci_vm entry to /etc/hosts"
-sudo sed -i "/.*${NAME}_xci_vm.*/d" /etc/hosts
-sudo bash -c "echo '${_ip} ${NAME}_xci_vm' >> /etc/hosts"
+sudo sed -i "/.*${NAME}.*/d" /etc/hosts
+sudo bash -c "echo '${_ip} ${NAME}' >> /etc/hosts"
 
 echo "Dropping a minimal .ssh/config file"
 cat > $HOME/.ssh/config<<EOF
@@ -144,18 +147,31 @@ echo "Preparing test environment..."
 # Start with good dns
 $vm_ssh $_ip 'sudo bash -c "echo nameserver 8.8.8.8 > /etc/resolv.conf"'
 $vm_ssh $_ip 'sudo bash -c "echo nameserver 8.8.4.4 >> /etc/resolv.conf"'
+cat > ${BASE_PATH}/vm_hosts.txt <<EOF
+127.0.0.1 localhost ${NAME}
+::1 localhost ipv6-localhost ipv6-loopback
+fe00::0 ipv6-localnet
+fe00::1 ipv6-allnodes
+fe00::2 ipv6-allrouters
+ff00::3 ipv6-allhosts
+$_ip ${NAME}
+EOF
+
 # Need to copy releng-xci to the vm so we can execute stuff
 do_copy() {
 	rsync -a \
 		--exclude "${NAME}*" \
 		--exclude "build.log" \
-		-e "$vm_ssh" ${BASE_PATH} $_ip:~/
+		-e "$vm_ssh" ${BASE_PATH}/* $_ip:~/releng-xci/
 }
 
 do_copy
+rm ${BASE_PATH}/vm_hosts.txt
+
 # Copy keypair
 $vm_ssh $_ip "cp --preserve=all ~/releng-xci/xci/scripts/vm/id_rsa_for_dib /home/devuser/.ssh/id_rsa"
 $vm_ssh $_ip "cp --preserve=all ~/releng-xci/xci/scripts/vm/id_rsa_for_dib.pub /home/devuser/.ssh/id_rsa.pub"
+$vm_ssh $_ip "sudo mv /home/devuser/releng-xci/vm_hosts.txt /etc/hosts"
 
 set +e
 
