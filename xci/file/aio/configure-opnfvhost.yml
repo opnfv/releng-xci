@@ -4,14 +4,14 @@
   gather_facts: true
   become: yes
   vars_files:
-    - ../var/opnfv.yml
+    - ../../var/opnfv.yml
   roles:
     - role: remove-folders
 
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/opnfv.yml
+    - ../../var/opnfv.yml
     - { role: clone-repository, project: "openstack/openstack-ansible", repo: "{{ OPENSTACK_OSA_GIT_URL }}", dest: "{{ OPENSTACK_OSA_PATH }}", version: "{{ OPENSTACK_OSA_VERSION }}" }
   tasks:
     - name: bootstrap ansible on opnfv host
