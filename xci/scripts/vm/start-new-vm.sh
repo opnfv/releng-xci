@@ -8,7 +8,7 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-set -e
+set -ex
 
 lsb_release -i | grep -q -i ubuntu || { echo "This script only works on Ubuntu distros"; exit 1; }
 
@@ -30,23 +30,24 @@ declare -r CPU=host
 declare -r NCPUS=24
 declare -r MEMORY=49152
 declare -r DISK=500
-declare -r NAME=${1}
+declare -r NAME=${1}_xci_vm
+declare -r OS=${1}
 declare -r NETWORK="jenkins-test"
-declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci.*@@")
+declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/.*@@")
 
 echo "Preparing new virtual machine '${NAME}'..."
 
 # NOTE(hwoarang) This should be removed when we move the dib images to a central place
-echo "Building '${NAME}' image (tail build.log for progress and failures)..."
-$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${NAME} > build.log 2>&1
+echo "Building '${OS}' image (tail build.log for progress and failures)..."
+$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
 
-[[ ! -e ${1}.qcow2 ]] && echo "${1}.qcow2 not found! This should never happen!" && exit 1
+[[ ! -e ${OS}.qcow2 ]] && echo "${OS}.qcow2 not found! This should never happen!" && exit 1
 
 sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils
 sudo systemctl -q start libvirtd
 
-echo "Resizing disk image '${NAME}' to ${DISK}G..."
-qemu-img resize ${NAME}.qcow2 ${DISK}G
+echo "Resizing disk image '${OS}' to ${DISK}G..."
+qemu-img resize ${OS}.qcow2 ${DISK}G
 
 echo "Creating new network '${NETWORK}' if it does not exist already..."
 if ! sudo virsh net-list --name | grep -q ${NETWORK}; then
@@ -74,10 +75,12 @@ fi
 echo "Destroying previous instances if necessary..."
 sudo virsh destroy ${NAME} || true
 sudo virsh undefine ${NAME} || true
+sudo virsh destroy ${NAME/_xci*}  || true
+sudo virsh undefine ${NAME/_xci*} || true
 
 echo "Installing virtual machine '${NAME}'..."
 sudo virt-install -n ${NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
-	--import --disk=${NAME}.qcow2 --network network=${NETWORK} \
+	--import --disk=${OS}.qcow2 --network network=${NETWORK} \
 	--graphics none --hvm --noautoconsole
 
 _retries=30
