@@ -8,7 +8,7 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-set -e
+set -ex
 
 lsb_release -i | grep -q -i ubuntu || { echo "This script only works on Ubuntu distros"; exit 1; }
 
@@ -30,9 +30,9 @@ declare -r CPU=host
 declare -r NCPUS=24
 declare -r MEMORY=49152
 declare -r DISK=500
-declare -r NAME=${1}
+declare -r NAME=${1}_xci_vm
 declare -r NETWORK="jenkins-test"
-declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci.*@@")
+declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/.*@@")
 
 echo "Preparing new virtual machine '${NAME}'..."
 
@@ -74,6 +74,8 @@ fi
 echo "Destroying previous instances if necessary..."
 sudo virsh destroy ${NAME} || true
 sudo virsh undefine ${NAME} || true
+sudo virsh destroy ${NAME/_xci*}  || true
+sudo virsh undefine ${NAME/_xci*} || true
 
 echo "Installing virtual machine '${NAME}'..."
 sudo virt-install -n ${NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
