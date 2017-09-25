@@ -32,7 +32,7 @@ declare -r MEMORY=49152
 declare -r DISK=500
 declare -r NAME=${1}
 declare -r NETWORK="jenkins-test"
-declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci.*@@")
+declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/scripts/vm/.*@@")
 
 echo "Preparing new virtual machine '${NAME}'..."
 
