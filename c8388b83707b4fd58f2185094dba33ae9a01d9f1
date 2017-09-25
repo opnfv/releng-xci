@@ -70,6 +70,30 @@
       "revId": "c8388b83707b4fd58f2185094dba33ae9a01d9f1",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0de0decb",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-25T19:15:03Z",
+      "side": 1,
+      "message": "Yes look at L250 on https://gerrit.opnfv.org/gerrit/#/c/42761/2/jjb/xci/xci-verify-jobs.yml",
+      "parentUuid": "da33351e_cdc27633",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 15
+      },
+      "revId": "c8388b83707b4fd58f2185094dba33ae9a01d9f1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
