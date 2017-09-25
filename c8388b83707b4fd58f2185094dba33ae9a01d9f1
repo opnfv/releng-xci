@@ -22,6 +22,30 @@
       "revId": "c8388b83707b4fd58f2185094dba33ae9a01d9f1",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_0db9fecb",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-25T19:07:38Z",
+      "side": 1,
+      "message": "Why? We rsync everything from the host which created the VM in the first place. So we should get the git repo that was prepared by jenkins or the one we have locally naywya.\n\nThe start and test phases are separated. If you don\u0027t set DEFAULT_XCI_TEST the script will only create the VM and will do nothing.",
+      "parentUuid": "da33351e_4ddca646",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 15
+      },
+      "revId": "c8388b83707b4fd58f2185094dba33ae9a01d9f1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
