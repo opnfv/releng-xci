@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_4ddca646",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-25T18:08:16Z",
+      "side": 1,
+      "message": "I think we need to have git clone and checkout stuff here as well, isn\u0027t it?\n\nalso, can we separate the node creation/start from execution of the tests as I asked in one of the earlier patches?",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 15
+      },
+      "revId": "c8388b83707b4fd58f2185094dba33ae9a01d9f1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
