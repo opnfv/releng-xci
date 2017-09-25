@@ -33,6 +33,7 @@ if [ -x '/usr/bin/zypper' ]; then
         [openssl]=openssl
     )
     EXTRA_PKG_DEPS=( python-xml )
+    sudo zypper -n ref
     # NOTE (cinerama): we can't install python without removing this package
     # if it exists
     if $(${CHECK_CMD} patterns-openSUSE-minimal_base-conflicts &> /dev/null); then
@@ -54,6 +55,7 @@ elif [ -x '/usr/bin/apt-get' ]; then
               [openssl]=openssl
             )
     EXTRA_PKG_DEPS=()
+    sudo apt-get update
 elif [ -x '/usr/bin/dnf' ] || [ -x '/usr/bin/yum' ]; then
     OS_FAMILY="RedHat"
     PKG_MANAGER=$(which dnf || which yum)
@@ -71,6 +73,7 @@ elif [ -x '/usr/bin/dnf' ] || [ -x '/usr/bin/yum' ]; then
         [wget]=wget
         [openssl]=openssl
     )
+    sudo yum update --assumeno
     EXTRA_PKG_DEPS=()
 else
     echo "ERROR: Supported package manager not found.  Supported: apt,yum,zypper"
