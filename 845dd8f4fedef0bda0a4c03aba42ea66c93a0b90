@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_6de6ca16",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-25T18:11:06Z",
+      "side": 1,
+      "message": "I think this can go into install-ansible.sh which can be reused here as well.",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 70
+      },
+      "revId": "845dd8f4fedef0bda0a4c03aba42ea66c93a0b90",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
