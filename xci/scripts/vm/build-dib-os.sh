@@ -13,8 +13,10 @@ set -e
 lsb_release -i | grep -q -i ubuntu || { echo "This script only works on Ubuntu distros"; exit 1; }
 
 declare -A flavors=( ["ubuntu-minimal"]="xenial" ["opensuse-minimal"]="42.3" ["centos-minimal"]="7" )
-elements="vm simple-init devuser growroot openssh-server"
+declare -r elements="vm simple-init devuser growroot openssh-server"
 declare -r one_distro=${1}
+declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/.*@@")
+
 if [[ -n ${one_distro} ]]; then
 	case ${one_distro} in
 		centos|ubuntu|opensuse) : ;;
@@ -26,7 +28,7 @@ fi
 echo "Configuring devuser..."
 export DIB_DEV_USER_USERNAME=devuser
 export DIB_DEV_USER_PWDLESS_SUDO=1
-export DIB_DEV_USER_AUTHORIZED_KEYS=$HOME/.ssh/id_rsa_for_dib.pub
+export DIB_DEV_USER_AUTHORIZED_KEYS=${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib.pub
 export DIB_DEV_USER_PASSWORD=linux
 
 echo "Installing base dependencies..."
