@@ -46,6 +46,30 @@
       "revId": "c8388b83707b4fd58f2185094dba33ae9a01d9f1",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_cdc27633",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-25T19:11:43Z",
+      "side": 1,
+      "message": "Ok, I missed the resync bit.\n\nFollowup question about DEFAULT_XCI_TEST; if we don\u0027t set it, the next job phase will need to execute it. How it will be done? ssh susevm \"/path/to/repo/xci/xci-deploy.sh\" ?",
+      "parentUuid": "da33351e_0db9fecb",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 15
+      },
+      "revId": "c8388b83707b4fd58f2185094dba33ae9a01d9f1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
