@@ -123,7 +123,7 @@ cd $XCI_PATH/playbooks
 sudo pip uninstall -y ansible || true
 sudo -H pip uninstall -y ansible || true
 sudo pip install ansible==${XCI_ANSIBLE_PIP_VERSION}
-ansible-playbook -i inventory provision-vm-nodes.yml
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
 cd ${OPENSTACK_BIFROST_PATH}
 bash ./scripts/bifrost-provision.sh
 echo "-----------------------------------------------------------------------"
@@ -146,7 +146,7 @@ echo "-----------------------------------------------------------------------"
 # NOTE(hwoarang) we need newer ansible to work on the OSA playbooks
 sudo pip install --force-reinstall ansible==${XCI_ANSIBLE_PIP_VERSION}
 cd $XCI_PATH/playbooks
-ansible-playbook -i inventory configure-localhost.yml
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
 
@@ -164,7 +164,7 @@ echo "Info: Configured localhost host for openstack-ansible"
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd ${XCI_DEVEL_ROOT}
-ansible-playbook -i ${OPNFV_XCI_PATH}/playbooks/inventory ${OPNFV_XCI_PATH}/playbooks/configure-opnfvhost.yml
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i ${OPNFV_XCI_PATH}/playbooks/inventory ${OPNFV_XCI_PATH}/playbooks/configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
 
@@ -183,7 +183,7 @@ if [[ $XCI_FLAVOR != "aio" ]]; then
     echo "Info: Configuring target hosts for openstack-ansible"
     echo "-----------------------------------------------------------------------"
     cd $OPNFV_XCI_PATH/playbooks
-    ansible-playbook -i inventory configure-targethosts.yml
+    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts"
 fi
@@ -195,7 +195,7 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Setting up target hosts for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "openstack-ansible \
+ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
      $OPENSTACK_OSA_PATH/playbooks/setup-hosts.yml | tee setup-hosts.log "
 scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
 echo "-----------------------------------------------------------------------"
@@ -217,7 +217,7 @@ echo "Info: Set up target hosts for openstack-ansible successfuly"
 echo "Info: Gathering facts"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "cd $OPENSTACK_OSA_PATH/playbooks; \
-        ansible -m setup -a gather_subset=network,hardware,virtual all"
+        ansible ${XCI_ANSIBLE_VERBOSITY} -m setup -a gather_subset=network,hardware,virtual all"
 echo "-----------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ echo "-----------------------------------------------------------------------"
 echo "Info: Setting up infrastructure"
 echo "-----------------------------------------------------------------------"
 echo "xci: running ansible playbook setup-infrastructure.yml"
-ssh root@$OPNFV_HOST_IP "openstack-ansible \
+ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
      $OPENSTACK_OSA_PATH/playbooks//setup-infrastructure.yml | tee setup-infrastructure.log"
 scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
 echo "-----------------------------------------------------------------------"
@@ -262,7 +262,7 @@ echo "Info: Database cluster verification successful!"
 #-------------------------------------------------------------------------------
 echo "Info: Installing OpenStack on target hosts"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "openstack-ansible \
+ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
      $OPENSTACK_OSA_PATH/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
 scp root@$OPNFV_HOST_IP:~/opnfv-setup-openstack.log $LOG_PATH/opnfv-setup-openstack.log
 echo "-----------------------------------------------------------------------"
