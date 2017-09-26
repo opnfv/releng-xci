@@ -49,10 +49,10 @@ export OPNFV_OSA_PLAYBOOK=${OPNFV_OSA_PLAYBOOK:-"$OPENSTACK_OSA_PATH/playbooks/s
 # Set the verbosity for ansible
 #
 # Examples:
-#   ANSIBLE_VERBOSITY="-v"
+#   XCI_ANSIBLE_VERBOSITY="-v"
 # or
-#   ANSIBLE_VERBOSITY="-vvvv"
-export ANSIBLE_VERBOSITY=${ANSIBLE_VERBOSITY:-""}
+#   XCI_ANSIBLE_VERBOSITY="-vvvv"
+export XCI_ANSIBLE_VERBOSITY=${XCI_ANSIBLE_VERBOSITY:-""}
 export LOG_PATH=${LOG_PATH:-${XCI_DEVEL_ROOT}/opnfv/logs}
 export RUN_TEMPEST=${RUN_TEMPEST:-false}
 # Set this to to true to force XCI to re-create the target OS images
