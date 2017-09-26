@@ -8,7 +8,7 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-set -ex
+set -e
 
 lsb_release -i | grep -q -i ubuntu || { echo "This script only works on Ubuntu distros"; exit 1; }
 
@@ -46,7 +46,11 @@ while [[ $_retries -ne 0 ]]; do
 		sleep 60
 		(( _retries = _retries - 1 ))
 	else
-		$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+		if [[ -n ${JENKINS_HOME} ]]; then
+			$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} 2>&1 | tee build.log
+		else
+			$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+		fi
 		break
 	fi
 done

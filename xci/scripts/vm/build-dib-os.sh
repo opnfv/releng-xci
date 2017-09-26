@@ -7,7 +7,7 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-set -ex
+set -e
 
 # This only works on ubuntu hosts
 lsb_release -i | grep -q -i ubuntu || { echo "This script only works on Ubuntu distros"; exit 1; }
