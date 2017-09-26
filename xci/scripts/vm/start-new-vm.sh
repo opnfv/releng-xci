@@ -39,7 +39,11 @@ echo "Preparing new virtual machine '${NAME}'..."
 
 # NOTE(hwoarang) This should be removed when we move the dib images to a central place
 echo "Building '${OS}' image (tail build.log for progress and failures)..."
-$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+if [[ -n ${JENKINS_HOME} ]]; then
+	$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} 2>&1 | tee build.log
+else
+	$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+fi
 
 [[ ! -e ${OS}.qcow2 ]] && echo "${OS}.qcow2 not found! This should never happen!" && exit 1
 
