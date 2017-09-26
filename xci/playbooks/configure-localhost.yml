@@ -83,11 +83,13 @@
       include_vars:
         file: ../var/{{ ansible_os_family }}.yml
     - name: create certificate directory /etc/ssl/certs
+      become: true
       file:
         path: "/etc/ssl/certs"
         state: directory
       when: ansible_pkg_mgr != 'zypper'
     - name: create key directory /etc/ssl/private
+      become: true
       file:
         path: "/etc/ssl/private"
         state: directory
