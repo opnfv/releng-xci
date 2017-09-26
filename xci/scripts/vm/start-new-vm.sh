@@ -46,7 +46,11 @@ while [[ $_retries -ne 0 ]]; do
 		sleep 20
 		(( _retries = _retries - 1 ))
 	else
-		$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+		if [[ -n ${JENKINS_HOME} ]]; then
+			$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} 2>&1 | tee build.log
+		else
+			$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+		fi
 	fi
 done
 
