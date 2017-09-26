@@ -48,7 +48,11 @@ while [[ $_retries -ne 0 ]]; do
 	else
 		# Just in case something went terribly wrong before...
 		mount | grep -q -o devpts || sudo mount -t devtmpfs devtmpfs /dev/pts
-		$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+		if [[ -n ${JENKINS_HOME} ]]; then
+			$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} 2>&1 | tee build.log
+		else
+			$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+		fi
 	fi
 done
 
