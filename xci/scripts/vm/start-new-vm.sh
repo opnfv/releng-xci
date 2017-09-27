@@ -192,7 +192,7 @@ set +e
 
 _has_test=true
 echo "Verifying test script exists..."
-$vm_ssh $_ip "bash -c 'stat ~/$(basename ${BASE_PATH})/run_jenkins_test.sh'"
+$vm_ssh $_ip "bash -c 'stat ~/releng-xci/run_jenkins_test.sh'"
 if [[ $? != 0 ]]; then
 	echo "Failed to find a 'run_jenkins_test.sh' script..."
 	if ${DEFAULT_XCI_TEST}; then
@@ -211,7 +211,7 @@ fi
 
 if ${_has_test}; then
 	echo "Running test..."
-	$vm_ssh $_ip "bash ~/$(basename ${BASE_PATH})/run_jenkins_test.sh"
+	$vm_ssh $_ip "bash ~/releng-xci/run_jenkins_test.sh"
 	xci_error=$?
 else
 	echo "No jenkins test was found. The virtual machine will remain idle!"
