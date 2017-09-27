@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_22496860",
+        "filename": "prototypes/bosa-baremetal/files/bash_aliases",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2965
+      },
+      "writtenOn": "2017-09-27T09:11:31Z",
+      "side": 1,
+      "message": "typo issue: tabulation to be replaced by spaces",
+      "revId": "8aad12e134bd39874a6c549f600c5c1dea8f1a68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
