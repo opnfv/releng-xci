@@ -78,7 +78,7 @@ sudo virsh undefine ${NAME} || true
 
 echo "Installing virtual machine '${NAME}'..."
 sudo virt-install -n ${NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
-	--import --disk=${OS}.qcow2 --network network=${NETWORK} \
+	--import --disk=${OS}.qcow2,cache=unsafe --network network=${NETWORK} \
 	--graphics none --hvm --noautoconsole
 
 _retries=30
