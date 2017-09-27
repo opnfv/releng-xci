@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_a25578fb",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/env.j2",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-09-27T08:55:35Z",
+      "side": 1,
+      "message": "I am getting problems with the quotation",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "707469c08ade38c713eccdf4040221bf35cd92d3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
