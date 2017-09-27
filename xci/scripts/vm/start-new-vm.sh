@@ -38,8 +38,17 @@ declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/.*@@")
 echo "Preparing new virtual machine '${NAME}'..."
 
 # NOTE(hwoarang) This should be removed when we move the dib images to a central place
+_retries=60
 echo "Building '${OS}' image (tail build.log for progress and failures)..."
-$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+while [[ $_retries -ne 0 ]]; do
+	if pgrep build-dib-os.sh &>/dev/null; then
+		echo "There is already a dib process running... waiting...($_retries retries left)"
+		sleep 20
+		(( _retries = _retries - 1 ))
+	else
+		$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+	fi
+done
 
 [[ ! -e ${OS}.qcow2 ]] && echo "${OS}.qcow2 not found! This should never happen!" && exit 1
 
