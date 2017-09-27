@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_67338214",
+        "filename": "xci/playbooks/roles/prepare-functest/tasks/main.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-27T08:11:30Z",
+      "side": 1,
+      "message": "This will not work on SUSE. ip is at /usr/sbin/. Just call the tool directly without the full path. Same thing for the rest of the patch",
+      "range": {
+        "startLine": 11,
+        "startChar": 11,
+        "endLine": 11,
+        "endChar": 19
+      },
+      "revId": "be93d65f8d9d1240a0e3875ba30f30cd5b5c7fed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
