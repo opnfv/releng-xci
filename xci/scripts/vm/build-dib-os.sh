@@ -31,12 +31,16 @@ export DIB_DEV_USER_PWDLESS_SUDO=1
 export DIB_DEV_USER_AUTHORIZED_KEYS=${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib.pub
 export DIB_DEV_USER_PASSWORD=linux
 
+# 120 seconds is enough to get everything installed
+(
+flock -w 120 -x 9
 echo "Installing base dependencies..."
-sudo apt-get install -y -q=3 yum yum-utils rpm zypper kpartx python-pip debootstrap gnupg2
 
+sudo apt-get install -y -q=3 yum yum-utils rpm zypper kpartx python-pip debootstrap gnupg2
 echo "Installing diskimage-builder"
 
 sudo -H pip install -q -U diskimage-builder
+) 9>install.lock
 
 echo "Removing old files..."
 sudo rm -rf *.qcow2 *.sha256.txt
