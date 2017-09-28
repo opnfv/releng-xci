@@ -38,8 +38,22 @@ declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/.*@@")
 echo "Preparing new virtual machine '${NAME}'..."
 
 # NOTE(hwoarang) This should be removed when we move the dib images to a central place
+_retries=20
 echo "Building '${OS}' image (tail build.log for progress and failures)..."
-$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+while [[ $_retries -ne 0 ]]; do
+	if pgrep build-dib-os.sh &>/dev/null; then
+		echo "There is another dib process running... ($_retries retries left)"
+		sleep 60
+		(( _retries = _retries - 1 ))
+	else
+		if [[ -n ${JENKINS_HOME} ]]; then
+			$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} 2>&1 | tee build.log
+		else
+			$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+		fi
+		break
+	fi
+done
 
 [[ ! -e ${OS}.qcow2 ]] && echo "${OS}.qcow2 not found! This should never happen!" && exit 1
 
@@ -78,7 +92,7 @@ sudo virsh undefine ${NAME} || true
 
 echo "Installing virtual machine '${NAME}'..."
 sudo virt-install -n ${NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
-	--import --disk=${OS}.qcow2 --network network=${NETWORK} \
+	--import --disk=${OS}.qcow2,cache=unsafe --network network=${NETWORK} \
 	--graphics none --hvm --noautoconsole
 
 _retries=30
@@ -177,7 +191,7 @@ set +e
 
 _has_test=true
 echo "Verifying test script exists..."
-$vm_ssh $_ip "bash -c 'stat ~/$(basename ${BASE_PATH})/run_jenkins_test.sh'"
+$vm_ssh $_ip "bash -c 'stat ~/releng-xci/run_jenkins_test.sh'"
 if [[ $? != 0 ]]; then
 	echo "Failed to find a 'run_jenkins_test.sh' script..."
 	if ${DEFAULT_XCI_TEST}; then
@@ -196,7 +210,7 @@ fi
 
 if ${_has_test}; then
 	echo "Running test..."
-	$vm_ssh $_ip "bash ~/$(basename ${BASE_PATH})/run_jenkins_test.sh"
+	$vm_ssh $_ip "bash ~/releng-xci/run_jenkins_test.sh"
 	xci_error=$?
 else
 	echo "No jenkins test was found. The virtual machine will remain idle!"
