@@ -98,6 +98,10 @@
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/openstack_services.yml {{OPENSTACK_OSA_PATH}}/playbooks/defaults/repo_packages/openstack_services.yml"
       when:
         - OPENSTACK_OSA_VERSION != "master"
+    - name: Prepare everything to run the os-odl-sfc scenario
+      include_role:
+        name: "os-odl-sfc"
+      when: OPNFV_SCENARIO == 'os-odl-sfc'
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
