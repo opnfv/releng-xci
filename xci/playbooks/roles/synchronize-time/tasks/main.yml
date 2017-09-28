@@ -13,7 +13,7 @@
     state: latest
 - name: restart chrony
   service:
-    name: chrony
+    name: "{{ (ansible_pkg_mgr == 'apt') | ternary('chrony', 'chronyd') }}"
     state: restarted
 - name: synchronize time
   shell: "chronyc -a 'burst 4/4' && chronyc -a makestep"
