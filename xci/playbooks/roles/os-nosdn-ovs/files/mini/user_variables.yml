@@ -1,0 +1,168 @@
+---
+# Copyright 2014, Rackspace US, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# ##
+# ## This file contains commonly used overrides for convenience. Please inspect
+# ## the defaults for each role to find additional override options.
+# ##
+
+# # Debug and Verbose options.
+debug: false
+
+haproxy_keepalived_external_vip_cidr: "192.168.122.3/32"
+haproxy_keepalived_internal_vip_cidr: "172.29.236.11/32"
+haproxy_keepalived_external_interface: br-vlan
+haproxy_keepalived_internal_interface: br-mgmt
+gnocchi_db_sync_options: ""
+
+# The settings below are taken from aio since this flavor is mostly
+# for short CI loops and users with lower requirements.
+# https://github.com/openstack/openstack-ansible/blob/master/tests/roles/bootstrap-host/templates/user_variables.aio.yml.j2
+
+## Galera settings
+galera_innodb_buffer_pool_size: 16M
+galera_innodb_log_buffer_size: 4M
+galera_wsrep_provider_options:
+ - { option: "gcache.size", value: "4M" }
+
+## Neutron settings
+neutron_metadata_checksum_fix: True
+
+### Set workers for all services to optimise memory usage
+
+## Repo
+repo_nginx_threads: 2
+
+## Keystone
+keystone_httpd_mpm_start_servers: 2
+keystone_httpd_mpm_min_spare_threads: 1
+keystone_httpd_mpm_max_spare_threads: 2
+keystone_httpd_mpm_thread_limit: 2
+keystone_httpd_mpm_thread_child: 1
+keystone_wsgi_threads: 1
+keystone_wsgi_processes_max: 2
+
+## Barbican
+barbican_wsgi_processes: 2
+barbican_wsgi_threads: 1
+
+## Cinder
+cinder_wsgi_processes_max: 2
+cinder_wsgi_threads: 1
+cinder_wsgi_buffer_size: 16384
+cinder_osapi_volume_workers_max: 2
+
+## Glance
+glance_api_threads_max: 2
+glance_api_threads: 1
+glance_api_workers: 1
+glance_registry_workers: 1
+
+## Nova
+nova_wsgi_threads: 1
+nova_wsgi_processes_max: 2
+nova_wsgi_processes: 2
+nova_wsgi_buffer_size: 16384
+nova_api_threads_max: 2
+nova_api_threads: 1
+nova_osapi_compute_workers: 1
+nova_conductor_workers: 1
+nova_metadata_workers: 1
+
+## Neutron
+neutron_rpc_workers: 1
+neutron_metadata_workers: 1
+neutron_api_workers: 1
+neutron_api_threads_max: 2
+neutron_api_threads: 2
+neutron_num_sync_threads: 1
+
+## Heat
+heat_api_workers: 1
+heat_api_threads_max: 2
+heat_api_threads: 1
+heat_wsgi_threads: 1
+heat_wsgi_processes_max: 2
+heat_wsgi_processes: 1
+heat_wsgi_buffer_size: 16384
+
+## Horizon
+horizon_wsgi_processes: 1
+horizon_wsgi_threads: 1
+horizon_wsgi_threads_max: 2
+
+## Ceilometer
+ceilometer_notification_workers_max: 2
+ceilometer_notification_workers: 1
+
+## AODH
+aodh_wsgi_threads: 1
+aodh_wsgi_processes_max: 2
+aodh_wsgi_processes: 1
+
+## Gnocchi
+gnocchi_wsgi_threads: 1
+gnocchi_wsgi_processes_max: 2
+gnocchi_wsgi_processes: 1
+
+## Swift
+swift_account_server_replicator_workers: 1
+swift_server_replicator_workers: 1
+swift_object_replicator_workers: 1
+swift_account_server_workers: 1
+swift_container_server_workers: 1
+swift_object_server_workers: 1
+swift_proxy_server_workers_max: 2
+swift_proxy_server_workers_not_capped: 1
+swift_proxy_server_workers_capped: 1
+swift_proxy_server_workers: 1
+
+## Ironic
+ironic_wsgi_threads: 1
+ironic_wsgi_processes_max: 2
+ironic_wsgi_processes: 1
+
+## Trove
+trove_api_workers_max: 2
+trove_api_workers: 1
+trove_conductor_workers_max: 2
+trove_conductor_workers: 1
+trove_wsgi_threads: 1
+trove_wsgi_processes_max: 2
+trove_wsgi_processes: 1
+
+## Sahara
+sahara_api_workers_max: 2
+sahara_api_workers: 1
+
+openrc_os_auth_url: "https://192.168.122.3:5000/v3"
+keystone_auth_admin_password: "opnfv-secret-password"
+openrc_os_password: "opnfv-secret-password"
+openrc_os_domain_name: "Default"
+openrc_cinder_endpoint_type: "publicURL"
+openrc_nova_endpoint_type: "publicURL"
+openrc_os_endpoint_type: "publicURL"
+openrc_clouds_yml_interface: "public"
+openrc_region_name: RegionOne
+haproxy_user_ssl_cert: "/etc/ssl/certs/xci.crt"
+haproxy_user_ssl_key: "/etc/ssl/private/xci.key"
+keystone_service_adminuri_insecure: true
+keystone_service_internaluri_insecure: true
+
+# Ensure the openvswitch kernel module is loaded
+openstack_host_specific_kernel_modules:
+  - name: "openvswitch"
+    pattern: "CONFIG_OPENVSWITCH"
+    group: "network_hosts"
