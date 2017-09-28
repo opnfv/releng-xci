@@ -76,6 +76,11 @@ unset user_local_dev_vars local_user_var
 # register our handler
 trap submit_bug_report ERR
 
+export OPNFV_SCENARIO=os-odl-sfc
+export OPENSTACK_OSA_VERSION=stable/pike
+export VM_MEMORY_SIZE=16384
+
+
 #-------------------------------------------------------------------------------
 # Log info to console
 #-------------------------------------------------------------------------------
@@ -86,7 +91,9 @@ echo "xci flavor: $XCI_FLAVOR"
 echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
+echo "OPNFV scenario: $OPNFV_SCENARIO"
 echo "-------------------------------------------------------------------------"
+
 
 #-------------------------------------------------------------------------------
 # Install ansible on localhost
