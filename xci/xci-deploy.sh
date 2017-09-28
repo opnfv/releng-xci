@@ -250,6 +250,13 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Verifying database cluster"
 echo "-----------------------------------------------------------------------"
+# Apply SUSE fix until https://review.openstack.org/508154 is merged
+if [[ ${OS_FAMILY,,} == "suse" ]]; then
+	ssh root@$OPNFV_HOST_IP "ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
+		-i $OPENSTACK_OSA_PATH/playbooks/inventory/ galera_container -m shell \
+		-a \"sed -i \\\"s@/var/run/mysqld/mysqld.sock@/var/run/mysql/mysql.sock@\\\" /etc/my.cnf\""
+fi
+
 ssh root@$OPNFV_HOST_IP "ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
     -i $OPENSTACK_OSA_PATH/playbooks/inventory/ galera_container -m shell \
 	-a \"mysql -h localhost -e \\\"show status like '%wsrep_cluster_%';\\\"\" | tee galera.log"
