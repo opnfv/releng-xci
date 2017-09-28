@@ -10,11 +10,9 @@
 
 set -e
 
-lsb_release -i | grep -q -i ubuntu || { echo "This script only works on Ubuntu distros"; exit 1; }
-
 export DEFAULT_XCI_TEST=${DEFAULT_XCI_TEST:-false}
 
-grep -q -i ^Y$ /sys/module/kvm_intel/parameters/nested || { echo "Nested virtualization is not enabled but it's needed for XCI to work"; exit 1; }
+#grep -q -i ^Y$ /sys/module/kvm_intel/parameters/nested || { echo "Nested virtualization is not enabled but it's needed for XCI to work"; exit 1; }
 
 usage() {
 	echo """
@@ -30,41 +28,78 @@ declare -r CPU=host
 declare -r NCPUS=24
 declare -r MEMORY=49152
 declare -r DISK=500
-declare -r NAME=${1}_xci_vm
+declare -r VM_NAME=${1}_xci_vm
 declare -r OS=${1}
 declare -r NETWORK="jenkins-test"
 declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/.*@@")
 
-echo "Preparing new virtual machine '${NAME}'..."
+echo "Preparing new virtual machine '${VM_NAME}'..."
 
-# NOTE(hwoarang) This should be removed when we move the dib images to a central place
+source /etc/os-release
+echo "Installing host (${ID,,}) dependencies..."
+# check we can run sudo
+if ! sudo -n "true"; then
+	echo ""
+	echo "passwordless sudo is needed for '$(id -nu)' user."
+	echo "Please fix your /etc/sudoers file. You likely want an"
+	echo "entry like the following one..."
+	echo ""
+	echo "$(id -nu) ALL=(ALL) NOPASSWD: ALL"
+	exit 1
+fi
+case ${ID,,} in
+	*suse) sudo zypper -q -n in virt-manager qemu-kvm qemu-tools libvirt-daemon docker libvirt-client libvirt-daemon-driver-qemu iptables ebtables dnsmasq
+			  ;;
+	centos) sudo yum install -q -y epel-release
+			sudo yum install -q -y in virt-manager qemu-kvm qemu-kvm-tools qemu-img libvirt-daemon-kvm docker iptables ebtables dnsmasq
+			;;
+	ubuntu) sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils docker.io docker iptables ebtables dnsmasq
+			;;
+esac
+
+echo "Ensuring libvirt and docker services are running..."
+sudo systemctl -q start libvirtd
+sudo systemctl -q start docker
+
+echo "Building new ${OS} image..."
+
 _retries=20
-echo "Building '${OS}' image (tail build.log for progress and failures)..."
-while [[ $_retries -ne 0 ]]; do
-	if pgrep build-dib-os.sh &>/dev/null; then
+while [[ $_retries -gt 0 ]]; do
+	if pgrep -a docker | grep -q docker-dib-xci &> /dev/null; then
 		echo "There is another dib process running... ($_retries retries left)"
 		sleep 60
 		(( _retries = _retries - 1 ))
 	else
-		if [[ -n ${JENKINS_HOME} ]]; then
-			$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} 2>&1 | tee build.log
-		else
-			$BASE_PATH/xci/scripts/vm/build-dib-os.sh ${OS} > build.log 2>&1
+		docker_cmd="sudo docker"
+		# See if we can run docker as regular user.
+		docker ps &> /dev/null && docker_cmd="docker"
+		docker_name="docker_xci_builder_${OS}"
+		# Destroy previous containers
+		if eval $docker_cmd ps -a | grep -q ${docker_name} &>/dev/null; then
+			echo "Destroying previous container..."
+			eval $docker_cmd rm -f ${docker_name}
 		fi
+		# Get rid of stale files
+		rm -rf *.qcow2 ${OS}.d/
+		echo "Getting the latest docker image..."
+		eval $docker_cmd pull hwoarang/docker-dib-xci:latest
+		echo "Initiating dib build..."
+		eval $docker_cmd run --name ${docker_name} \
+			--rm --privileged=true -e ONE_DISTRO=${OS} \
+			-t -v `pwd`:`pwd` -w `pwd` \
+			hwoarang/docker-dib-xci '/usr/bin/do-build.sh'
+		sudo chown $SUDO_UID:$SUDO_GID ${OS}.qcow2
 		break
 	fi
 done
 
 [[ ! -e ${OS}.qcow2 ]] && echo "${OS}.qcow2 not found! This should never happen!" && exit 1
 
-sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils
-sudo systemctl -q start libvirtd
-
 echo "Resizing disk image '${OS}' to ${DISK}G..."
 qemu-img resize ${OS}.qcow2 ${DISK}G
 
 echo "Creating new network '${NETWORK}' if it does not exist already..."
-if ! sudo virsh net-list --name | grep -q ${NETWORK}; then
+if ! sudo virsh net-list --name --all | grep -q ${NETWORK}; then
 	cat > /tmp/${NETWORK}.xml <<EOF
 <network>
   <name>${NETWORK}</name>
@@ -82,38 +117,39 @@ if ! sudo virsh net-list --name | grep -q ${NETWORK}; then
 </network>
 EOF
 	sudo virsh net-define /tmp/${NETWORK}.xml
-	sudo virsh net-autostart ${NETWORK}
-	sudo virsh net-start ${NETWORK}
 fi
 
-echo "Destroying previous instances if necessary..."
-sudo virsh destroy ${NAME} || true
-sudo virsh undefine ${NAME} || true
+sudo virsh net-list --autostart | grep -q ${NETWORK} || sudo virsh net-autostart ${NETWORK}
+sudo virsh net-list --inactive | grep -q ${NETWORK} && sudo virsh net-start ${NETWORK}
 
-echo "Installing virtual machine '${NAME}'..."
-sudo virt-install -n ${NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
+echo "Destroying previous instances if necessary..."
+sudo virsh destroy ${VM_NAME} || true
+sudo virsh undefine ${VM_NAME} || true
+
+echo "Installing virtual machine '${VM_NAME}'..."
+sudo virt-install -n ${VM_NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
 	--import --disk=${OS}.qcow2,cache=unsafe --network network=${NETWORK} \
 	--graphics none --hvm --noautoconsole
 
 _retries=30
 while [[ $_retries -ne 0 ]]; do
-	_ip=$(sudo virsh domifaddr ${NAME} | grep -o --colour=never 192.168.140.[[:digit:]]* | cat )
+	_ip=$(sudo virsh domifaddr ${VM_NAME} | grep -o --colour=never 192.168.140.[[:digit:]]* | cat )
 	if [[ -z ${_ip} ]]; then
-		echo "Waiting for '${NAME}' virtual machine to boot ($_retries retries left)..."
+		echo "Waiting for '${VM_NAME}' virtual machine to boot ($_retries retries left)..."
 		sleep 5
 		(( _retries = _retries - 1 ))
 	else
 		break
 	fi
 done
-[[ -n $_ip ]] && echo "'${NAME}' virtual machine is online at $_ip"
-[[ -z $_ip ]] && echo "'${NAME}' virtual machine did not boot on time" && exit 1
+[[ -n $_ip ]] && echo "'${VM_NAME}' virtual machine is online at $_ip"
+[[ -z $_ip ]] && echo "'${VM_NAME}' virtual machine did not boot on time" && exit 1
 
 # Fix up perms if needed to make ssh happy
 chmod 600 ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib*
 # Remove it from known_hosts
 ssh-keygen -R $_ip || true
-ssh-keygen -R ${NAME} || true
+ssh-keygen -R ${VM_NAME} || true
 
 declare -r vm_ssh="ssh -o StrictHostKeyChecking=no -i ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib -l devuser"
 
@@ -131,13 +167,13 @@ while [[ $_retries -ne 0 ]]; do
 		(( _retries = _retries - 1 ))
 	fi
 done
-[[ $_ssh_exit != 0 ]] && echo "Failed to SSH to the virtual machine '${NAME}'! This should never happen!" && exit 1
+[[ $_ssh_exit != 0 ]] && echo "Failed to SSH to the virtual machine '${VM_NAME}'! This should never happen!" && exit 1
 
-echo "Congratulations! Your shiny new '${NAME}' virtual machine is fully operational! Enjoy!"
+echo "Congratulations! Your shiny new '${VM_NAME}' virtual machine is fully operational! Enjoy!"
 
-echo "Adding ${NAME}_xci_vm entry to /etc/hosts"
-sudo sed -i "/.*${NAME}.*/d" /etc/hosts
-sudo bash -c "echo '${_ip} ${NAME}' >> /etc/hosts"
+echo "Adding ${VM_NAME}_xci_vm entry to /etc/hosts"
+sudo sed -i "/.*${VM_NAME}.*/d" /etc/hosts
+sudo bash -c "echo '${_ip} ${VM_NAME}' >> /etc/hosts"
 
 echo "Dropping a minimal .ssh/config file"
 cat > $HOME/.ssh/config<<EOF
@@ -157,24 +193,25 @@ EOF
 
 echo "Preparing test environment..."
 # *_xci_vm hostname is invalid. Letst just use distro name
-$vm_ssh $_ip "sudo hostname ${NAME/_xci*}"
+$vm_ssh $_ip "sudo hostname ${VM_NAME/_xci*}"
 # Start with good dns
 $vm_ssh $_ip 'sudo bash -c "echo nameserver 8.8.8.8 > /etc/resolv.conf"'
 $vm_ssh $_ip 'sudo bash -c "echo nameserver 8.8.4.4 >> /etc/resolv.conf"'
 cat > ${BASE_PATH}/vm_hosts.txt <<EOF
-127.0.0.1 localhost ${NAME/_xci*}
+127.0.0.1 localhost ${VM_NAME/_xci*}
 ::1 localhost ipv6-localhost ipv6-loopback
 fe00::0 ipv6-localnet
 fe00::1 ipv6-allnodes
 fe00::2 ipv6-allrouters
 ff00::3 ipv6-allhosts
-$_ip ${NAME/_xci*}
+$_ip ${VM_NAME/_xci*}
 EOF
 
 # Need to copy releng-xci to the vm so we can execute stuff
 do_copy() {
 	rsync -a \
-		--exclude "${NAME}*" \
+		--exclude "${VM_NAME}*" \
+		--exclude "${OS}*" \
 		--exclude "build.log" \
 		-e "$vm_ssh" ${BASE_PATH}/* $_ip:~/releng-xci/
 }
