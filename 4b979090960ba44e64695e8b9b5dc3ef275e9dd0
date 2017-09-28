@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_6ab342e9",
+        "filename": "xci/scripts/vm/build-dib-os.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-09-28T14:10:55Z",
+      "side": 1,
+      "message": "I know you said this is temporary but wouldn\u0027t it be good to pin this next to bifrost/osa, in pinned-vars? we will need it anyways when we switch to storing/downloading images to/from artifact repo.",
+      "range": {
+        "startLine": 39,
+        "startChar": 23,
+        "endLine": 39,
+        "endChar": 47
+      },
+      "revId": "4b979090960ba44e64695e8b9b5dc3ef275e9dd0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
