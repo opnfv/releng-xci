@@ -86,7 +86,19 @@ echo "xci flavor: $XCI_FLAVOR"
 echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
+echo "OPNFV scenario: $OPNFV_SCENARIO"
 echo "-------------------------------------------------------------------------"
+
+
+#-------------------------------------------------------------------------------
+# Copy the scenario role
+#-------------------------------------------------------------------------------
+if [[ $OPNFV_SCENARIO == "os-odl-sfc" ]]; then
+  git clone https://gerrit.opnfv.org/gerrit/sfc /tmp/sfc
+  cp -r /tmp/sfc/scenarios/os-odl-sfc/role/os-odl-sfc $XCI_PATH/playbooks/roles
+  sudo rm -r /tmp/sfc
+fi
+
 
 #-------------------------------------------------------------------------------
 # Install ansible on localhost
