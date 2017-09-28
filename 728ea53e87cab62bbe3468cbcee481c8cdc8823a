@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "da33351e_cf8a6063",
+        "filename": "xci/file/aio/configure-opnfvhost.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-09-28T08:50:13Z",
+      "side": 1,
+      "message": "I will add the conditional to judge",
+      "parentUuid": "da33351e_8c0a2624",
+      "revId": "728ea53e87cab62bbe3468cbcee481c8cdc8823a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_ec03f20d",
         "filename": "xci/playbooks/configure-opnfvhost.yml",
         "patchSetId": 3
@@ -76,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "da33351e_ef8da47d",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-09-28T08:50:13Z",
+      "side": 1,
+      "message": "I will add the conditional.",
+      "parentUuid": "da33351e_2f014c05",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 124
+      },
+      "revId": "728ea53e87cab62bbe3468cbcee481c8cdc8823a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da33351e_cc00ae04",
         "filename": "xci/playbooks/configure-opnfvhost.yml",
         "patchSetId": 3
@@ -87,6 +129,30 @@
       "writtenOn": "2017-09-28T08:22:42Z",
       "side": 1,
       "message": "why is that?",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 44
+      },
+      "revId": "728ea53e87cab62bbe3468cbcee481c8cdc8823a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_8f94d88b",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-09-28T08:50:13Z",
+      "side": 1,
+      "message": "I am testing to move this code. I forget to delete.",
+      "parentUuid": "da33351e_cc00ae04",
       "range": {
         "startLine": 103,
         "startChar": 0,
