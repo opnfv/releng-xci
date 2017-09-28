@@ -17,3 +17,7 @@
   include_role:
     name: "os-odl-nofeature"
   when: OPNFV_SCENARIO == 'os-odl-nofeature'
+- name: Prepare everything to run the os-odl-sfc scenario
+  include_role:
+    name: "os-odl-sfc"
+  when: OPNFV_SCENARIO == 'os-odl-sfc'
