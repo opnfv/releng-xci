@@ -36,7 +36,7 @@ sudo apt-get install -y -q=3 yum yum-utils rpm zypper kpartx python-pip debootst
 
 echo "Installing diskimage-builder"
 
-sudo -H pip install -q -U diskimage-builder
+sudo -H pip install -q diskimage-builder==2.9.0
 
 echo "Removing old files..."
 sudo rm -rf *.qcow2 *.sha256.txt

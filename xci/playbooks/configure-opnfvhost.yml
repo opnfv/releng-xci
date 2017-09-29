@@ -9,19 +9,6 @@
 ##############################################################################
 - hosts: opnfv
   remote_user: root
-  become: yes
-  vars_files:
-    - ../var/flavor-vars.yml
-    - ../var/opnfv.yml
-  pre_tasks:
-    - name: Load distribution variables
-      include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
-  roles:
-    - role: remove-folders
-
-- hosts: opnfv
-  remote_user: root
   vars_files:
     - ../var/flavor-vars.yml
     - ../var/opnfv.yml
@@ -130,6 +117,7 @@
       file:
         path: "/etc/ssl/certs"
         state: directory
+      when: ansible_pkg_mgr != 'zypper'
     - name: create key directory /etc/ssl/private
       file:
         path: "/etc/ssl/private"

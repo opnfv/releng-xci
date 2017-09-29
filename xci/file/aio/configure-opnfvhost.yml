@@ -1,15 +1,6 @@
 ---
 - hosts: opnfv
   remote_user: root
-  gather_facts: true
-  become: yes
-  vars_files:
-    - ../var/opnfv.yml
-  roles:
-    - role: remove-folders
-
-- hosts: opnfv
-  remote_user: root
   vars_files:
     - ../var/opnfv.yml
   roles:
