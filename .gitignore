@@ -41,3 +41,7 @@ job_output/
 *.sha256.txt
 build.log
 *.d/
+_static/
+conf.py
+*.html
+html/
