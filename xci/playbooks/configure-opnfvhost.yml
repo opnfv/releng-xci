@@ -143,12 +143,10 @@
         name: "{{ docker_package_name }}"
         state: latest
       when: lookup('env', 'JENKINS_HOME') != ""
-    # install python-openstackclient on opnfv host only if we are running as part of CI
     - name: install python-openstackclient
       pip:
         name: python-openstackclient
         state: present
-      when: lookup('env', 'JENKINS_HOME') != ""
 
 - hosts: localhost
   remote_user: root
