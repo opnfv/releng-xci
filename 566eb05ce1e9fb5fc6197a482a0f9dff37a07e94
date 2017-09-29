@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_1b0e493b",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-29T14:20:13Z",
+      "side": 1,
+      "message": "I think we are missing a become: true here but we don\u0027t see the problem yet because we execute ansible as root.",
+      "revId": "566eb05ce1e9fb5fc6197a482a0f9dff37a07e94",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
