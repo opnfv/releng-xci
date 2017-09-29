@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_5b56112b",
+        "filename": "xci/playbooks/setup-functest.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-09-29T14:15:28Z",
+      "side": 1,
+      "message": "Either I don\u0027t understand what you want to do or this is pointless. What\u0027s stopping scenarios call the role directly in their playbooks?",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 30
+      },
+      "revId": "b398dae977b9db5af61d7191f3e80f98868c66a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
