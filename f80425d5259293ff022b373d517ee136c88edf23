@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_fb5c454d",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-09-29T14:23:25Z",
+      "side": 1,
+      "message": "this is a nice idea :) \n\nLet us see how to generalize it for covering other scenarios too. can we factor out these changes to a script (per scenario) and invoke it from xci-deploy.sh ?",
+      "revId": "f80425d5259293ff022b373d517ee136c88edf23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
