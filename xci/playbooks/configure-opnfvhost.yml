@@ -148,7 +148,6 @@
       pip:
         name: python-openstackclient
         state: present
-      when: lookup('env', 'JENKINS_HOME') != ""
 
 - hosts: localhost
   remote_user: root
