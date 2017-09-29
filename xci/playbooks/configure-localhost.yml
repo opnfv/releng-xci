@@ -82,12 +82,17 @@
     - name: Load distribution variables
       include_vars:
         file: ../var/{{ ansible_os_family }}.yml
+    - name: check if certificate directory /etc/ssl/certs exists already
+      stat: path=/etc/ssl/certs
+      register: check_etc_ssl_certs
     - name: create certificate directory /etc/ssl/certs
+      become: true
       file:
         path: "/etc/ssl/certs"
         state: directory
-      when: ansible_pkg_mgr != 'zypper'
+      when: check_etc_ssl_certs.stat.exists == false
     - name: create key directory /etc/ssl/private
+      become: true
       file:
         path: "/etc/ssl/private"
         state: directory
