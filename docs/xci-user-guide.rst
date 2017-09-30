@@ -77,6 +77,8 @@ the users in best possible way.
   More infromation about this project can be seen on
   `OPNFV Releng documentation <https://wiki.opnfv.org/display/releng>`_.
 
+.. _sandbox-flavors:
+
 Sandbox Flavors
 ===============
 
