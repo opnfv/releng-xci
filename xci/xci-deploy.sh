@@ -92,7 +92,7 @@ case ${OS_FAMILY,,} in
 esac
 
 # There is no CentOS support at all
-if [[ $OS_FAMILY == RedHat ]]; then
+if [[ $OS_FAMILY == RedHat && -z ${JENKINS_HOME:-} ]]; then
     echo ""
     echo "Error: Sorry, only Ubuntu and SUSE hosts are supported for now!"
     echo "Error: CentOS 7 support is still work in progress."
