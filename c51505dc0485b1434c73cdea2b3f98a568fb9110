@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_67a24ffe",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-10-02T20:08:09Z",
+      "side": 1,
+      "message": "we have organization on docker hub which we can use for pushing images.",
+      "range": {
+        "startLine": 91,
+        "startChar": 24,
+        "endLine": 91,
+        "endChar": 54
+      },
+      "revId": "c51505dc0485b1434c73cdea2b3f98a568fb9110",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
