@@ -14,9 +14,10 @@ CHECK_CMD_PKGS=(
     python-devel
 )
 
-# Check zypper before apt-get in case zypper-aptitude
-# is installed
-if [ -x '/usr/bin/zypper' ]; then
+source /etc/os-release || source /usr/lib/os-release
+
+case ${ID,,} in
+	*suse)
     OS_FAMILY="Suse"
     INSTALLER_CMD="sudo -H -E zypper install -y"
     CHECK_CMD="zypper search --match-exact --installed"
@@ -39,7 +40,8 @@ if [ -x '/usr/bin/zypper' ]; then
     if $(${CHECK_CMD} patterns-openSUSE-minimal_base-conflicts &> /dev/null); then
         sudo -H zypper remove -y patterns-openSUSE-minimal_base-conflicts
     fi
-elif [ -x '/usr/bin/apt-get' ]; then
+	;;
+	ubuntu|debian)
     OS_FAMILY="Debian"
     INSTALLER_CMD="sudo -H -E apt-get -y install"
     CHECK_CMD="dpkg -l"
@@ -56,7 +58,8 @@ elif [ -x '/usr/bin/apt-get' ]; then
             )
     EXTRA_PKG_DEPS=()
     sudo apt-get update
-elif [ -x '/usr/bin/dnf' ] || [ -x '/usr/bin/yum' ]; then
+	;;
+	rhel|centos|fedora)
     OS_FAMILY="RedHat"
     PKG_MANAGER=$(which dnf || which yum)
     INSTALLER_CMD="sudo -H -E ${PKG_MANAGER} -y install"
@@ -75,9 +78,9 @@ elif [ -x '/usr/bin/dnf' ] || [ -x '/usr/bin/yum' ]; then
     )
     sudo yum update --assumeno
     EXTRA_PKG_DEPS=()
-else
-    echo "ERROR: Supported package manager not found.  Supported: apt,yum,zypper"
-fi
+	;;
+	*) echo "ERROR: Supported package manager not found.  Supported: apt,yum,zypper"; exit 1;;
+esac
 
 if ! $(python --version &>/dev/null); then
     ${INSTALLER_CMD} ${PKG_MAP[python]}
