@@ -1,0 +1,10 @@
+Code-Review+1: Trevor Bramwell <tbramwell@linuxfoundation.org>
+Code-Review+1: Taseer Ahmed <taseer94@gmail.com>
+Code-Review+1: Tapio Tallgren <tapio.tallgren@nokia.com>
+Code-Review+2: Markos Chandras <mchandras@suse.de>
+Verified+1: Fatih Degirmenci <fatih.degirmenci@ericsson.com>
+Submitted-by: Fatih Degirmenci <fatih.degirmenci@ericsson.com>
+Submitted-at: Mon, 02 Oct 2017 07:27:13 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/43661
+Project: releng-xci
+Branch: refs/heads/master
