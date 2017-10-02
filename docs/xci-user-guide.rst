@@ -313,11 +313,11 @@ executing the script. The current user variables can be seen from
 file located in releng-xci repository.
 
 The variables can also be set directly within the file before executing
-the sandbox script. If you do this, you need to set ``$RELENG_DEV_PATH``
+the sandbox script. If you do this, you need to set ``$OPNFV_RELENG_DEV_PATH``
 environment variable where the releng-xci repo is located on your host which
 you modified the files in.
 
-| ``export RELENG_DEV_PATH=/path/to/releng-xci/``
+| ``export OPNFV_RELENG_DEV_PATH=/path/to/releng-xci/``
 
 Pinned Versions
 ---------------
