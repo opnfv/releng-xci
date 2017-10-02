@@ -3,6 +3,29 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+submit_bug_report() {
+	echo ""
+	echo "-------------------------------------------------------------------------"
+	echo "Oh nooooo! The XCI deployment failed miserably :-("
+	echo ""
+	echo "If you need help, please choose one of the following options"
+	echo "* #opnfv-pharos @ freenode network"
+	echo "* opnfv-tech-discuss mailing list (https://lists.opnfv.org/mailman/listinfo/opnfv-tech-discuss)"
+	echo "  - Please prefix the subject with [XCI]"
+	echo "* https://jira.opnfv.org (Release Engineering project)"
+	echo ""
+	echo "Do not forget to submit the following information on your bug report:"
+	echo ""
+	git diff --quiet && echo "releng-xci tree status: clean" || echo "releng-xci tree status: local modifications"
+	echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
+	echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
+	echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
+	echo "xci flavor: $XCI_FLAVOR"
+	echo "Environment variables:"
+	env | grep --color=never '^\(OPNFV\|XCI\|OPENSTACK\)_'
+	echo "-------------------------------------------------------------------------"
+}
+
 #-------------------------------------------------------------------------------
 # This script should not be run as root
 #-------------------------------------------------------------------------------
@@ -50,6 +73,9 @@ for local_user_var in ${user_local_dev_vars[@]}; do
 done
 unset user_local_dev_vars local_user_var
 
+# register our handler
+trap submit_bug_report ERR
+
 #-------------------------------------------------------------------------------
 # Log info to console
 #-------------------------------------------------------------------------------
@@ -57,7 +83,7 @@ echo "Info: Starting XCI Deployment"
 echo "Info: Deployment parameters"
 echo "-------------------------------------------------------------------------"
 echo "xci flavor: $XCI_FLAVOR"
-echo "opnfv/releng-xci version: $OPNFV_RELENG_VERSION"
+echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
 echo "-------------------------------------------------------------------------"
