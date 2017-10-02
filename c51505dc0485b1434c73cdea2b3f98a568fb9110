@@ -22,6 +22,30 @@
       "revId": "c51505dc0485b1434c73cdea2b3f98a568fb9110",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_c7f19b02",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-02T20:34:58Z",
+      "side": 1,
+      "message": "OK lets discuss on how to setup a hook on my github repository so we can take advantage of the automated builds",
+      "parentUuid": "da33351e_67a24ffe",
+      "range": {
+        "startLine": 91,
+        "startChar": 24,
+        "endLine": 91,
+        "endChar": 54
+      },
+      "revId": "c51505dc0485b1434c73cdea2b3f98a568fb9110",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
