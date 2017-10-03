@@ -22,6 +22,30 @@
       "revId": "b398dae977b9db5af61d7191f3e80f98868c66a9",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_fa03963f",
+        "filename": "xci/playbooks/setup-functest.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-10-03T08:01:10Z",
+      "side": 1,
+      "message": "I think it makes more sense too. From technical perspective, should the scenario also copy the prepare-functest role to the roles directory (/etc/ansible/roles)?",
+      "parentUuid": "da33351e_5b56112b",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 30
+      },
+      "revId": "b398dae977b9db5af61d7191f3e80f98868c66a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
