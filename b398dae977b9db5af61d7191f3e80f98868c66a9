@@ -46,6 +46,30 @@
       "revId": "b398dae977b9db5af61d7191f3e80f98868c66a9",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_ba9d8e0c",
+        "filename": "xci/playbooks/setup-functest.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-03T08:19:18Z",
+      "side": 1,
+      "message": "Well it depends on how you plan to integrate your scenario to XCI. If you plan to do some scripting magic to get your scenario integrated to XCI before executing it, then you can execute the role from where it is. Otherwise, yes, Ansible expects to find roles in certain places so you should make sure the role it\u0027s there. This is similar to what existing playbooks do with our existing roles like configure-network etc",
+      "parentUuid": "da33351e_fa03963f",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 30
+      },
+      "revId": "b398dae977b9db5af61d7191f3e80f98868c66a9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
