@@ -10,6 +10,11 @@
 
 set -e
 
+# If we are not on real Jenkins CI, then just set this variable so we can pretend
+# we are since various playbooks use this variable to determine if they are being
+# executed on a CI or not.
+export JENKINS_HOME="${JENKINS_HOME:-${HOME}}"
+
 export DEFAULT_XCI_TEST=${DEFAULT_XCI_TEST:-false}
 
 grep -q -i ^Y$ /sys/module/kvm_intel/parameters/nested || { echo "Nested virtualization is not enabled but it's needed for XCI to work"; exit 1; }
