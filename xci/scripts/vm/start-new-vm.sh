@@ -187,6 +187,8 @@ echo "Dropping a minimal .ssh/config file"
 cat > $HOME/.ssh/config<<EOF
 Host *
 StrictHostKeyChecking no
+ServerAliveInterval 60
+ServerAliveCountMax 5
 IdentityFile ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib
 
 Host *_xci_vm
