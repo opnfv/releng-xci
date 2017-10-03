@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Fatih Degirmenci <fatih.degirmenci@ericsson.com>
+Code-Review+1: Tapio Tallgren <tapio.tallgren@nokia.com>
+Submitted-by: Markos Chandras <mchandras@suse.de>
+Submitted-at: Tue, 03 Oct 2017 12:12:44 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/43951
+Project: releng-xci
+Branch: refs/heads/master
