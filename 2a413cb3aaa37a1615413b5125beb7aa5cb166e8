@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_18e2c22e",
+        "filename": "xci/playbooks/run-tests.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2017-10-03T14:36:23Z",
+      "side": 1,
+      "message": "It must be noticed that we could run a dedicated container for sfc if required. It would allow testing your patch before merging (real CI/CD).\n\nMaybe I\u0027m wrong regarding the target here.",
+      "revId": "2a413cb3aaa37a1615413b5125beb7aa5cb166e8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
