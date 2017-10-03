@@ -137,15 +137,13 @@
         content: "{{ xci_ssl_key }}"
         dest: "/etc/ssl/private/xci.key"
       become: true
-    # install docker on opnfv host only if we are running as part of CI
-    - name: install docker
+    - name: install opnfv required packages
       package:
-        name: "{{ docker_package_name }}"
+        name: "{{ opnfv_required_packages }}"
         state: latest
-      when: lookup('env', 'JENKINS_HOME') != ""
-    - name: install python-openstackclient
+    - name: install opnfv required pip packages
       pip:
-        name: python-openstackclient
+        name: "{{ opnfv_required_pip }}"
         state: present
 
 - hosts: localhost
