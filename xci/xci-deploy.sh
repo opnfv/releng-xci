@@ -145,10 +145,6 @@ sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 cd $XCI_PATH/../bifrost/
 sudo -E bash ./scripts/destroy-env.sh
 cd $XCI_PATH/playbooks
-# NOTE(hwoarang) we need newer ansible to work on the following playbook
-sudo pip uninstall -y ansible || true
-sudo -H pip uninstall -y ansible || true
-sudo pip install ansible==${XCI_ANSIBLE_PIP_VERSION}
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
 cd ${OPENSTACK_BIFROST_PATH}
 bash ./scripts/bifrost-provision.sh
@@ -169,15 +165,6 @@ echo
 
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-# NOTE(hwoarang) we need newer ansible to work on the OSA playbooks. Make sure
-# all installations are gone. This is ugly and has to be removed as soon as we
-# are able to deploy bifrost in vent or when bifrost start working with newest
-# ansible
-pip uninstall -y ansible || true
-sudo -H pip uninstall -y ansible || true
-sudo pip install --force-reinstall ansible==${XCI_ANSIBLE_PIP_VERSION}
-# Start fresh
-hash -r
 cd $XCI_PATH/playbooks
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory configure-localhost.yml
 echo "-----------------------------------------------------------------------"
