@@ -32,3 +32,12 @@ OPNFV_HOST_IP: "{{ lookup('env','OPNFV_HOST_IP') }}"
 OPNFV_SSH_HOST_KEYS_PATH: "{{ lookup('env', 'OPNFV_SSH_HOST_KEYS_PATH') }}"
 XCI_EXTRA_VARS_PATH: "{{ lookup('env', 'XCI_EXTRA_VARS_PATH') }}"
 XCI_SSL_SUBJECT: "{{ lookup('env', 'XCI_SSL_SUBJECT') }}"
+JENKINS_HOME: "{{ lookup('env', 'JENKINS_HOME') }}"
+
+# install docker on opnfv host only if we are running as part of CI
+opnfv_required_packages:
+  - "{% if JENKINS_HOME != '' %}{{ docker_package_name }}{% endif %}"
+
+opnfv_required_pip:
+  - python-openstackclient
+  - "{% if JENKINS_HOME != '' %} docker-py {% endif %}"
