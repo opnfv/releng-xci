@@ -143,7 +143,12 @@
         name: "{{ docker_package_name }}"
         state: latest
       when: lookup('env', 'JENKINS_HOME') != ""
-    - name: install python-openstackclient
+    - name: install docker-py
+      pip:
+        name: docker-py
+        state: latest
+      when: lookup('env', 'JENKINS_HOME') != ""
+     - name: install python-openstackclient
       pip:
         name: python-openstackclient
         state: present
