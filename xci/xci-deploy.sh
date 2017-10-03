@@ -22,7 +22,7 @@ submit_bug_report() {
     echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
     echo "xci flavor: $XCI_FLAVOR"
     echo "Environment variables:"
-    env | grep --color=never '^\(OPNFV\|XCI\|OPENSTACK\)_'
+    env | grep --color=never '\(OPNFV\|XCI\|OPENSTACK\)'
     echo "-------------------------------------------------------------------------"
 }
 
