@@ -16,6 +16,11 @@ set -e
 export JENKINS_HOME="${JENKINS_HOME:-${HOME}}"
 
 export DEFAULT_XCI_TEST=${DEFAULT_XCI_TEST:-false}
+# JIT Build of OS image to load on the clean VM
+export XCI_BUILD_CLEAN_VM_OS=${XCI_BUILD_CLEAN_VM_OS:-true}
+# Use cached (possibly outdated) images instead of always using the latest
+# ones.
+export XCI_UPDATE_CLEAN_VM_OS=${XCI_UPDATE_CLEAN_VM_OS:-false}
 
 grep -q -i ^Y$ /sys/module/kvm_intel/parameters/nested || { echo "Nested virtualization is not enabled but it's needed for XCI to work"; exit 1; }
 
@@ -25,6 +30,42 @@ usage() {
 
 	distro must be one of 'ubuntu', 'opensuse', 'centos'
 	"""
+}
+
+update_clean_vm_files() {
+	local opnfv_url="http://artifacts.opnfv.org/releng/xci/images"
+	local vm_cache=${XCI_CACHE_DIR}/clean_vm/images
+	local sha_local shafile=${vm_cache}/${OS}.qcow2.sha256.txt
+	local sha_remote="${opnfv_url}/${OS}.qcow2.sha256.txt"
+	local image_remote="${opnfv_url}/${OS}.qcow2"
+
+	get_new_vm_files() {
+		rm -rf ${vm_cache}/${OS}*
+		wget --quiet ${image_remote}
+		wget --quiet ${sha_remote}
+	}
+
+	# There are 3 reasons why we want to fetch files from the GS storage
+	# 1) We don't have a shafile locally (clean cache?)
+	# 2) We have one but it's not the latest one
+	# 3) We have one but the qcow2 is corrupted
+	cd ${vm_cache}
+	if [[ -e ${shafile} ]]; then
+		echo "Found local ${OS} files in cache..."
+		sha_local=$(awk '{print $1}' $shafile)
+		if $XCI_UPDATE_CLEAN_VM_OS; then
+			echo "Updating local copies of ${OS}..."
+			! curl -s ${sha_remote} | grep -q ${sha_local} && \
+			get_new_vm_files
+		fi
+		echo "Verifying integrity of ${OS} files..."
+		! sha256sum --status -c $shafile && get_new_vm_files
+	else
+		get_new_vm_files
+	fi
+	echo "Final integrity check of ${OS} files..."
+	sha256sum --status -c $shafile
+	cd - &> /dev/null
 }
 
 [[ $# -ne 1 ]] && usage && exit 1
@@ -37,6 +78,7 @@ declare -r VM_NAME=${1}_xci_vm
 declare -r OS=${1}
 declare -r NETWORK="jenkins-test"
 declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/.*@@")
+declare -r XCI_CACHE_DIR=${HOME}/.cache/opnfv_xci_deploy
 
 echo "Preparing new virtual machine '${VM_NAME}'..."
 
@@ -66,45 +108,32 @@ echo "Ensuring libvirt and docker services are running..."
 sudo systemctl -q start libvirtd
 sudo systemctl -q start docker
 
-echo "Building new ${OS} image..."
+echo "Preparing XCI cache..."
+mkdir -p ${XCI_CACHE_DIR}/ ${XCI_CACHE_DIR}/clean_vm/images/
 
-_retries=20
-while [[ $_retries -gt 0 ]]; do
-	if pgrep -a docker | grep -q docker-dib-xci &> /dev/null; then
-		echo "There is another dib process running... ($_retries retries left)"
-		sleep 60
-		(( _retries = _retries - 1 ))
-	else
-		docker_cmd="sudo docker"
-		# See if we can run docker as regular user.
-		docker ps &> /dev/null && docker_cmd="docker"
-		docker_name="docker_xci_builder_${OS}"
-		# Destroy previous containers
-		if eval $docker_cmd ps -a | grep -q ${docker_name} &>/dev/null; then
-			echo "Destroying previous container..."
-			eval $docker_cmd rm -f ${docker_name}
-		fi
-		# Prepare new working directory
-		dib_workdir="$(pwd)/docker_dib_xci_workdir"
-		[[ ! -d $dib_workdir ]] && mkdir $dib_workdir
-		chmod 777 -R $dib_workdir
-		uid=$(id -u)
-		gid=$(id -g)
-		# Get rid of stale files
-		rm -rf $dib_workdir/*.qcow2 $dib_workdir/*.sha256.txt $dib_workdir/*.d
-		echo "Getting the latest docker image..."
-		eval $docker_cmd pull hwoarang/docker-dib-xci:latest
-		echo "Initiating dib build..."
-		eval $docker_cmd run --name ${docker_name} \
-			--rm --privileged=true -e ONE_DISTRO=${OS} \
-			-t -v $dib_workdir:$dib_workdir -w $dib_workdir \
-			hwoarang/docker-dib-xci '/usr/bin/do-build.sh'
-		sudo chown $uid:$gid $dib_workdir/${OS}.qcow2
-		declare -r OS_IMAGE_FILE=$dib_workdir/${OS}.qcow2
-
+if ${XCI_BUILD_CLEAN_VM_OS}; then
+	echo "Building new ${OS} image..."
+	_retries=20
+	while [[ $_retries -gt 0 ]]; do
+		if pgrep -a docker | grep -q docker-dib-xci &> /dev/null; then
+			echo "There is another dib process running... ($_retries retries left)"
+			sleep 60
+			(( _retries = _retries - 1 ))
+		else
+			${BASE_PATH}/xci/scripts/vm/build-dib-os.sh ${OS}
 		break
-	fi
-done
+		fi
+	done
+else
+	echo "Retrieving ${OS} image files..."
+	update_clean_vm_files
+fi
+
+# Doesn't matter if we just built an image or got one from artifacts. In both
+# cases there should be a copy in the cache so copy it over.
+sudo rm -f ${BASE_PATH}/${OS}.qcow2
+cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2 ${BASE_PATH}/
+declare -r OS_IMAGE_FILE=${OS}.qcow2
 
 [[ ! -e ${OS_IMAGE_FILE} ]] && echo "${OS_IMAGE_FILE} not found! This should never happen!" && exit 1
 
@@ -227,7 +256,6 @@ do_copy() {
 	rsync -a \
 		--exclude "${VM_NAME}*" \
 		--exclude "${OS}*" \
-		--exclude "$dib_workdir*" \
 		--exclude "build.log" \
 		-e "$vm_ssh" ${BASE_PATH}/* $_ip:~/releng-xci/
 }
