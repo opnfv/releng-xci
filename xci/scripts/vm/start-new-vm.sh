@@ -257,7 +257,7 @@ do_copy() {
 		--exclude "${VM_NAME}*" \
 		--exclude "${OS}*" \
 		--exclude "build.log" \
-		-e "$vm_ssh" ${BASE_PATH}/* $_ip:~/releng-xci/
+		-e "$vm_ssh" ${BASE_PATH}/ $_ip:~/releng-xci/
 }
 
 do_copy
