@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_a9242660",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-10-04T11:35:16Z",
+      "side": 1,
+      "message": "after thinking a bit and seeing the conversation you had (especially the \"whole cloud\" comment), we can perhaps get rid of the JENKINS_HOME condition and install stuff by default.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 55
+      },
+      "revId": "d9af88511cc7ab6b7e0002ad0168ab6fc36c2028",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
