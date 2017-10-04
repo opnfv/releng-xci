@@ -302,7 +302,8 @@ Here are the steps that take place upon the execution of the sandbox script
 8. Starts the OpenStack installation.
 
 .. image:: images/xci-basic-flow.png
-   :scale: 75 %
+   :height: 640px
+   :align: center
 
 User Variables
 --------------
