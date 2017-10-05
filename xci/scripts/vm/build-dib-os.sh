@@ -24,17 +24,21 @@ fi
 # Prepare new working directory
 dib_workdir="${XCI_CACHE_DIR:-${HOME}/.cache/opnfv_xci_deploy}/clean_vm/images"
 [[ ! -d $dib_workdir ]] && mkdir -p $dib_workdir
-chmod 777 -R $dib_workdir
 
 # Record our information
 uid=$(id -u)
 gid=$(id -g)
 
+sudo chmod 777 -R $dib_workdir
+sudo chown $uid:$gid -R $dib_workdir
+
 echo "Getting the latest docker image..."
 eval $docker_cmd pull hwoarang/docker-dib-xci:latest
 
 # Get rid of stale files
-rm -rf $dib_workdir/*.qcow2 $dib_workdir/*.sha256.txt $dib_workdir/*.d
+rm -rf $dib_workdir/${ONE_DISTRO}.qcow2 \
+	$dib_workdir/${ONE_DISTRO}.sha256.txt \
+	$dib_workdir/${ONE_DISTRO}.d
 echo "Initiating dib build..."
 eval $docker_cmd run --name ${docker_name} \
 	--rm --privileged=true -e ONE_DISTRO=${ONE_DISTRO} \
