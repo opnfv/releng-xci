@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_b202ceb1",
+        "filename": "xci/playbooks/roles/os-nosdn-ovs/files/ha/user_variables.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-10-05T15:14:01Z",
+      "side": 1,
+      "message": "You should add the \n\nneutron_plugin_type:",
+      "revId": "151db10bfdab9cf88a8d3834b229b2916ac9bb58",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
