@@ -110,6 +110,11 @@ sudo systemctl -q start docker
 
 echo "Preparing XCI cache..."
 mkdir -p ${XCI_CACHE_DIR}/ ${XCI_CACHE_DIR}/clean_vm/images/
+# Record our information
+uid=$(id -u)
+gid=$(id -g)
+sudo chmod 777 -R $XCI_CACHE_DIR/clean_vm/images/
+sudo chown $uid:$gid -R $XCI_CACHE_DIR/clean_vm_images/
 
 if ${XCI_BUILD_CLEAN_VM_OS}; then
 	echo "Building new ${OS} image..."
@@ -132,6 +137,9 @@ fi
 # Doesn't matter if we just built an image or got one from artifacts. In both
 # cases there should be a copy in the cache so copy it over.
 sudo rm -f ${BASE_PATH}/${OS}.qcow2
+# Fix perms again...
+sudo chmod 777 -R $XCI_CACHE_DIR/clean_vm/images/
+sudo chown $uid:$gid -R $XCI_CACHE_DIR/clean_vm_images/
 cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2 ${BASE_PATH}/
 declare -r OS_IMAGE_FILE=${OS}.qcow2
 
