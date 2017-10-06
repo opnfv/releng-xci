@@ -82,6 +82,10 @@ declare -r XCI_CACHE_DIR=${HOME}/.cache/opnfv_xci_deploy
 
 echo "Preparing new virtual machine '${VM_NAME}'..."
 
+echo "Destroying previous instances if necessary..."
+sudo virsh destroy ${VM_NAME} || true
+sudo virsh undefine ${VM_NAME} || true
+
 source /etc/os-release
 echo "Installing host (${ID,,}) dependencies..."
 # check we can run sudo
@@ -172,10 +176,6 @@ fi
 sudo virsh net-list --autostart | grep -q ${NETWORK} || sudo virsh net-autostart ${NETWORK}
 sudo virsh net-list --inactive | grep -q ${NETWORK} && sudo virsh net-start ${NETWORK}
 
-echo "Destroying previous instances if necessary..."
-sudo virsh destroy ${VM_NAME} || true
-sudo virsh undefine ${VM_NAME} || true
-
 echo "Installing virtual machine '${VM_NAME}'..."
 sudo virt-install -n ${VM_NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
 	--import --disk=${OS_IMAGE_FILE},cache=unsafe --network network=${NETWORK} \
@@ -197,11 +197,13 @@ done
 
 # Fix up perms if needed to make ssh happy
 chmod 600 ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib*
+
 # Remove it from known_hosts
 ssh-keygen -R $_ip || true
 ssh-keygen -R ${VM_NAME} || true
 
-declare -r vm_ssh="ssh -o StrictHostKeyChecking=no -i ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib -l devuser"
+# Initial ssh command until we setup everything
+vm_ssh="ssh -o StrictHostKeyChecking=no -i ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib -l devuser"
 
 _retries=30
 _ssh_exit=0
@@ -221,12 +223,12 @@ done
 
 echo "Congratulations! Your shiny new '${VM_NAME}' virtual machine is fully operational! Enjoy!"
 
-echo "Adding ${VM_NAME}_xci_vm entry to /etc/hosts"
+echo "Adding ${VM_NAME} entry to /etc/hosts"
 sudo sed -i "/.*${VM_NAME}.*/d" /etc/hosts
 sudo bash -c "echo '${_ip} ${VM_NAME}' >> /etc/hosts"
 
 echo "Dropping a minimal .ssh/config file"
-cat > $HOME/.ssh/config<<EOF
+cat > $HOME/.ssh/xci-vm-config<<EOF
 Host *
 StrictHostKeyChecking no
 ServerAliveInterval 60
@@ -243,12 +245,15 @@ StrictHostKeyChecking no
 ProxyCommand ssh -l devuser \$(echo %h | sed 's/_opnfv//') 'nc 192.168.122.2 %p'
 EOF
 
+# Final ssh command which will also test the configuration file
+declare -r vm_ssh="ssh -F $HOME/.ssh/xci-vm-config"
+
 echo "Preparing test environment..."
 # *_xci_vm hostname is invalid. Letst just use distro name
-$vm_ssh $_ip "sudo hostname ${VM_NAME/_xci*}"
+$vm_ssh ${VM_NAME} "sudo hostname ${VM_NAME/_xci*}"
 # Start with good dns
-$vm_ssh $_ip 'sudo bash -c "echo nameserver 8.8.8.8 > /etc/resolv.conf"'
-$vm_ssh $_ip 'sudo bash -c "echo nameserver 8.8.4.4 >> /etc/resolv.conf"'
+$vm_ssh ${VM_NAME} 'sudo bash -c "echo nameserver 8.8.8.8 > /etc/resolv.conf"'
+$vm_ssh ${VM_NAME} 'sudo bash -c "echo nameserver 8.8.4.4 >> /etc/resolv.conf"'
 cat > ${BASE_PATH}/vm_hosts.txt <<EOF
 127.0.0.1 localhost ${VM_NAME/_xci*}
 ::1 localhost ipv6-localhost ipv6-loopback
@@ -265,22 +270,22 @@ do_copy() {
 		--exclude "${VM_NAME}*" \
 		--exclude "${OS}*" \
 		--exclude "build.log" \
-		-e "$vm_ssh" ${BASE_PATH}/ $_ip:~/releng-xci/
+		-e "$vm_ssh" ${BASE_PATH}/ ${VM_NAME}:~/releng-xci/
 }
 
 do_copy
 rm ${BASE_PATH}/vm_hosts.txt
 
 # Copy keypair
-$vm_ssh $_ip "cp --preserve=all ~/releng-xci/xci/scripts/vm/id_rsa_for_dib /home/devuser/.ssh/id_rsa"
-$vm_ssh $_ip "cp --preserve=all ~/releng-xci/xci/scripts/vm/id_rsa_for_dib.pub /home/devuser/.ssh/id_rsa.pub"
-$vm_ssh $_ip "sudo mv /home/devuser/releng-xci/vm_hosts.txt /etc/hosts"
+$vm_ssh ${VM_NAME} "cp --preserve=all ~/releng-xci/xci/scripts/vm/id_rsa_for_dib /home/devuser/.ssh/id_rsa"
+$vm_ssh ${VM_NAME} "cp --preserve=all ~/releng-xci/xci/scripts/vm/id_rsa_for_dib.pub /home/devuser/.ssh/id_rsa.pub"
+$vm_ssh ${VM_NAME} "sudo mv /home/devuser/releng-xci/vm_hosts.txt /etc/hosts"
 
 set +e
 
 _has_test=true
 echo "Verifying test script exists..."
-$vm_ssh $_ip "bash -c 'stat ~/releng-xci/run_jenkins_test.sh'"
+$vm_ssh ${VM_NAME} "bash -c 'stat ~/releng-xci/run_jenkins_test.sh'"
 if [[ $? != 0 ]]; then
 	echo "Failed to find a 'run_jenkins_test.sh' script..."
 	if ${DEFAULT_XCI_TEST}; then
@@ -300,7 +305,7 @@ fi
 
 if ${_has_test}; then
 	echo "Running test..."
-	$vm_ssh $_ip "bash ~/releng-xci/run_jenkins_test.sh"
+	$vm_ssh ${VM_NAME} "bash ~/releng-xci/run_jenkins_test.sh"
 	xci_error=$?
 else
 	echo "No jenkins test was found. The virtual machine will remain idle!"
