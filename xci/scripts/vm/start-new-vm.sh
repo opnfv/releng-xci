@@ -201,7 +201,8 @@ chmod 600 ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib*
 ssh-keygen -R $_ip || true
 ssh-keygen -R ${VM_NAME} || true
 
-declare -r vm_ssh="ssh -o StrictHostKeyChecking=no -i ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib -l devuser"
+# Initial ssh command until we setup everything
+vm_ssh="ssh -o StrictHostKeyChecking=no -i ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib -l devuser"
 
 _retries=30
 _ssh_exit=0
@@ -226,7 +227,7 @@ sudo sed -i "/.*${VM_NAME}.*/d" /etc/hosts
 sudo bash -c "echo '${_ip} ${VM_NAME}' >> /etc/hosts"
 
 echo "Dropping a minimal .ssh/config file"
-cat > $HOME/.ssh/config<<EOF
+cat > $HOME/.ssh/xci-vm-config<<EOF
 Host *
 StrictHostKeyChecking no
 ServerAliveInterval 60
@@ -242,6 +243,9 @@ TCPKeepAlive yes
 StrictHostKeyChecking no
 ProxyCommand ssh -l devuser \$(echo %h | sed 's/_opnfv//') 'nc 192.168.122.2 %p'
 EOF
+
+# Final ssh command which will also test the configuration file
+declare -r vm_ssh="ssh -F $HOME/.ssh/xci-vm-config"
 
 echo "Preparing test environment..."
 # *_xci_vm hostname is invalid. Letst just use distro name
