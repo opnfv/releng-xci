@@ -19,6 +19,9 @@ USE_DHCP="false"
 USE_VENV="false"
 BUILD_IMAGE=true
 PROVISION_WAIT_TIMEOUT=${PROVISION_WAIT_TIMEOUT:-3600}
+# This is normally exported by XCI env but we should initialize it here
+# in case we run this script on its own for debug purposes
+XCI_ANSIBLE_VERBOSITY=${XCI_ANSIBLE_VERBOSITY:-}
 
 # Ensure the right inventory files is used based on branch
 CURRENT_BIFROST_BRANCH=$(git rev-parse --abbrev-ref HEAD)
