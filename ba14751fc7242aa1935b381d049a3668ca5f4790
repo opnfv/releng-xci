@@ -46,6 +46,54 @@
       "revId": "ba14751fc7242aa1935b381d049a3668ca5f4790",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_d895f133",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-10-06T10:17:53Z",
+      "side": 1,
+      "message": "ok. I copied this from other place but it might be that this procedure is not recommended. I\u0027ll change it",
+      "parentUuid": "da33351e_18ae3998",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 67
+      },
+      "revId": "ba14751fc7242aa1935b381d049a3668ca5f4790",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_f892754a",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-10-06T10:17:53Z",
+      "side": 1,
+      "message": "Yes, that\u0027s what I want. My role replaces important files such as the a-r-r file so that the config that I want gets deployed by xci. Therefore, I need it to be executed before opnfv host is deployed.\n\nI did not know about the include_role_module, thanks!. Do you think it would look nicer?",
+      "parentUuid": "da33351e_d8a7b1bb",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 67
+      },
+      "revId": "ba14751fc7242aa1935b381d049a3668ca5f4790",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
