@@ -46,6 +46,30 @@
       "revId": "41b5fe57505f77c66e0fa25024d098134fb88abd",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_63e51608",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-06T15:17:57Z",
+      "side": 1,
+      "message": "Still we try really hard to remove code from this script to make it as generic as possible. Scenarios should provide all the overrides they need. If xci-deploy.sh or the playbooks doesn\u0027t make it easy for scenarios to override stuff then we can add hooks instead of growing that script. That\u0027s my personal opinion at least. Lets see what others think.",
+      "parentUuid": "da33351e_436e12ca",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 2
+      },
+      "revId": "41b5fe57505f77c66e0fa25024d098134fb88abd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
