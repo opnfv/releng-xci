@@ -22,6 +22,30 @@
       "revId": "41b5fe57505f77c66e0fa25024d098134fb88abd",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_436e12ca",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-10-06T14:07:59Z",
+      "side": 1,
+      "message": "This piece of code is applicable for all type of scenarios which uses opendaylight (example: os-odl-nofeature, os-odl-sfc etc.) \nMoreover it is just used to set vm memory and felt it is unnecessary to create multiple variable files for each scenario/flavor combinations just to keep VM_MEMORY_SIZE.",
+      "parentUuid": "da33351e_383b3dec",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 2
+      },
+      "revId": "41b5fe57505f77c66e0fa25024d098134fb88abd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
