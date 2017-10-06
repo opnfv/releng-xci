@@ -94,6 +94,77 @@
       "revId": "ba14751fc7242aa1935b381d049a3668ca5f4790",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_78cdc565",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-06T10:47:11Z",
+      "side": 1,
+      "message": "Well OK if you want your role to be executed before the tasks then it\u0027s fine then.",
+      "parentUuid": "da33351e_f892754a",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 67
+      },
+      "revId": "ba14751fc7242aa1935b381d049a3668ca5f4790",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_38b05ddc",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-06T10:47:11Z",
+      "side": 1,
+      "message": "OK I checked and this works",
+      "parentUuid": "da33351e_d895f133",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 67
+      },
+      "revId": "ba14751fc7242aa1935b381d049a3668ca5f4790",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_98bec9ac",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-06T10:47:11Z",
+      "side": 1,
+      "message": "I think there might be some mixing with quotes here. Might worth dropping the quotes from os-odl-sfc and writting the conditional as\n\nOPNFV_SCENARIO \u003d\u003d \u0027os-odl-sfc\u0027",
+      "range": {
+        "startLine": 112,
+        "startChar": 6,
+        "endLine": 112,
+        "endChar": 66
+      },
+      "revId": "ba14751fc7242aa1935b381d049a3668ca5f4790",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
