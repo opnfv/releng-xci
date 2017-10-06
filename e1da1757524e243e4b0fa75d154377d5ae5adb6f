@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_5811e150",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-10-06T06:54:40Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 21,
+        "startChar": 86,
+        "endLine": 21,
+        "endChar": 87
+      },
+      "revId": "e1da1757524e243e4b0fa75d154377d5ae5adb6f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_7816654d",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-10-06T06:54:40Z",
+      "side": 1,
+      "message": "to",
+      "range": {
+        "startLine": 21,
+        "startChar": 22,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "e1da1757524e243e4b0fa75d154377d5ae5adb6f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_b81c6d6b",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-10-06T06:54:40Z",
+      "side": 1,
+      "message": "ia?",
+      "range": {
+        "startLine": 34,
+        "startChar": 30,
+        "endLine": 34,
+        "endChar": 32
+      },
+      "revId": "e1da1757524e243e4b0fa75d154377d5ae5adb6f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_9817e944",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-10-06T06:54:40Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 136,
+        "startChar": 78,
+        "endLine": 136,
+        "endChar": 79
+      },
+      "revId": "e1da1757524e243e4b0fa75d154377d5ae5adb6f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
