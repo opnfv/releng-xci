@@ -22,6 +22,30 @@
       "revId": "18a952fc5825da3b3065fbd8f62f1c0121054e58",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da33351e_b8058d15",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-10-06T13:42:54Z",
+      "side": 1,
+      "message": "As discussed, OVS gets installed in neutron-agent containers and compute nodes, but not on neutron server container. This is an expected behavior.",
+      "parentUuid": "da33351e_583d612a",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "18a952fc5825da3b3065fbd8f62f1c0121054e58",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
