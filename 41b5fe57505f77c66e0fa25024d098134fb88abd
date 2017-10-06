@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_383b3dec",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 15
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-06T13:37:39Z",
+      "side": 1,
+      "message": "shouldn\u0027t all that be overridden somewhere in your role? Then we can add some specific logic to XCI to read your variable files on top of the default ones. I don\u0027t quite like having scenario specific stuff in the main script.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 2
+      },
+      "revId": "41b5fe57505f77c66e0fa25024d098134fb88abd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
