@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da33351e_583d612a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-10-06T11:35:24Z",
+      "side": 1,
+      "message": "With the current implementation of OVS in neutron role the OVS will be installed in the compute nodes and also in the controller nodes and in the neutron-agent containers.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "18a952fc5825da3b3065fbd8f62f1c0121054e58",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
