@@ -12,30 +12,30 @@ The Sandbox
 ===========
 
 Users and developers need to have an easy way to bring up an environment that
-fits to their purpose in a simple way in order to spend time on features they
+fits their purpose in a simple way so they can spend time on features they
 are developing, bugs they are fixing, trying things out, for learning purposes
-or just for fun rather than dealing with the tools and mechanisms used for
+or just for fun rather than dealing with tools and mechanisms used for
 creating and provisioning nodes, installing different components they do not
-intend to touch, and so on.
+intend to touch, etc.
 
-We also have reality. For example, not all users and developers have full Pharos
-baremetal PODs or powerful machines waiting for them to use while doing their
-work or want to use different Linux distributions due to different reasons.
+However, we also have ito deal with reality. For example, not all users and developers 
+have full Pharos baremetal PODs or powerful machines available for their
+work or they may want to use different Linux distributions for different reasons.
 It is important to take these into account and provide different configuration
-options for the sandbox based on the requirements the people have on the
+options for the sandbox based on the requirements that people have on the
 environment they will be using.
 
 Based on the observations we made and the feedback we received from the OPNFV
-users and the developers, XCI Team has created a sandbox that is highly
-configurable, simple and at the same time capable to provide a realistic
-environment for the people to do their work. The sandbox makes it possible to
-bring up the complete environment with a single command and offers variety of
+users and developers, XCI Team has created a sandbox that is highly
+configurable, simple and at the same time capable of providing a realistic
+environment for people to do their work. The sandbox makes it possible to
+bring up the complete environment with a single command and offers a variety of
 options to change how the stack should be deployed. The configuration of the
-sandbox is as easy as setting few environment variables.
+sandbox is as easy as setting ia few environment variables.
 
 The sandbox provides
 
-* automated way to bring up and tear down complete stack
+* automated way to bring up and tear down a complete stack
 * various flavors to pick and use
 * support for different Linux distributions
 * multiple OPNFV scenarios to install
@@ -44,7 +44,7 @@ The sandbox provides
 
 One last point to highlight here is that the XCI itself uses the sandbox for
 development and test purposes so it is continuously tested to ensure it works
-for XCI and for the users and the developers who are using it for different
+for XCI and for users and developers who are using it for different
 purposes.
 
 Components of the Sandbox
@@ -53,11 +53,11 @@ Components of the Sandbox
 The sandbox uses OpenStack projects for VM node creation, provisioning
 and OpenStack installation. XCI Team provides playbooks, roles, and scripts
 to ensure the components utilized by the sandbox work in a way that serves
-the users in best possible way.
+the users in the best possible way.
 
 * **openstack/bifrost:** Bifrost (pronounced bye-frost) is a set of Ansible
   playbooks that automates the task of deploying a base image onto a set
-  of known hardware using ironic. It provides modular utility for one-off
+  of known hardware using Ironic. It provides modular utility for one-off
   operating system deployment with as few operational requirements as
   reasonably possible. Bifrost supports different operating systems such as
   Ubuntu, CentOS, and openSUSE.
@@ -71,9 +71,9 @@ the users in best possible way.
   `OpenStack Ansible documentation <https://docs.openstack.org/developer/openstack-ansible/>`_.
 
 * **opnfv/releng-xci:** OPNFV Releng Project provides additional scripts, Ansible
-  playbooks and configuration options in order for developers to have easy
+  playbooks and configuration options in order for developers to have an easy
   way of using openstack/bifrost and openstack/openstack-ansible by just
-  setting couple of environment variables and executing a single script.
+  setting a couple of environment variables and executing a single script.
   More infromation about this project can be seen on
   `OPNFV Releng documentation <https://wiki.opnfv.org/display/releng>`_.
 
@@ -112,7 +112,7 @@ Available flavors are listed on the table below.
 
 The specs for VMs are configurable and the more vCPU/RAM the better.
 
-Estimated times listed above are provided as guidance and they might vary
+Estimated times listed above are provided as a guidance and they might vary
 depending on
 
 * the physical (or virtual) host where the sandbox is run
@@ -133,7 +133,7 @@ The VMs are attached to default libvirt network and has single NIC where VLANs
 are created on. Different Linux bridges for management, storage and tunnel
 networks are created on these VLANs.
 
-Use of more *production-like* network setup with multiple interfaces is in the
+Use of more *production-like* network setup with multiple interfaces is in our 
 backlog.
 
 For storage, Cinder with NFS backend is used. Work to enable CEPH is currently
@@ -143,10 +143,10 @@ The differences between the flavors are documented below.
 
 **All in One**
 
-As shown on the table in previous section, this flavor consists of single
+As shown on the table in the previous section, this flavor consists of a single
 node. All the OpenStack services, including compute run on the same node.
 
-The flavor All in One (aio) is deployed based on the process described on
+The flavor All in One (aio) is deployed based on the process described in the
 upstream documentation. Please check `OpenStack Ansible Developer Quick Start <https://docs.openstack.org/openstack-ansible/pike/contributor/quickstart-aio.html>`_ for details.
 
 **Mini/No HA/HA**
@@ -155,7 +155,7 @@ These flavors consist of multiple nodes.
 
 * **opnfv**: This node is used for driving the installation towards target nodes
   in order to ensure the deployment process is isolated from the physical host
-  and always done on clean machine.
+  and always done on a clean machine.
 * **controller**: OpenStack control plane runs on this node.
 * **compute**: OpenStack compute service runs on this node.
 
@@ -218,7 +218,7 @@ The openrc file will be available on ``opnfv`` host in ``$HOME``.
 **Advanced Usage**
 
 The flavor to deploy and the versions of upstream components to use can
-be configured by the users  by setting certain environment variables.
+be configured by the users by setting certain environment variables.
 Below example deploys noha flavor using the latest of openstack-ansible
 master branch and stores logs in different location than what is set as
 default.
@@ -253,7 +253,7 @@ default.
 
 Please note that changing the version to use may result in unexpected
 behaviors, especially if it is changed to ``master``. If you are not
-sure about how good the version you intend to use, it is advisable to
+sure about how good the version you intend to use is, it is advisable to
 use the pinned versions instead.
 
 **Verifying the Basic Operation**
@@ -272,14 +272,14 @@ You can verify the basic operation using the commands below.
 
    | ``openstack service list``
 
-You can also access to the Horizon UI by using the URL, username, and
+You can also access the Horizon UI by using the URL, username, and
 the password displayed on your console upon the completion of the
 deployment.
 
 **Debugging Tips**
 
 If ``xci-deploy.sh`` fails midway through and you happen to fix whatever
-problem it was that caused the failure in the first place, please run
+problem caused the failure in the first place, please run
 the script again. Do not attempt to continue the deployment using helper
 scripts such as ``bifrost-provision.sh``.
 
@@ -288,7 +288,7 @@ Look at various logs in ``$LOG_PATH`` directory. (default one is /tmp/.xci-deplo
 Behind the Scenes
 -----------------
 
-Here are the steps that take place upon the execution of the sandbox script
+Here are steps that take place upon the execution of the sandbox script
 ``xci-deploy.sh``:
 
 1. Sources environment variables in order to set things up properly.
@@ -329,8 +329,8 @@ provides. They can be seen from
 `pinned-versions <https://git.opnfv.org/releng-xci/tree/xci/config/pinned-versions>`_.
 
 OPNFV runs periodic jobs against upstream projects openstack/bifrost and
-openstack/openstack-ansible using latest on master branch, continuously
-chasing upstream to find well working version.
+openstack/openstack-ansible using the latest on master branch, continuously
+chasing upstream to find a well working version.
 
 Once a working version is identified, the versions of the upstream components
 are then bumped in releng-xci repo.
@@ -357,17 +357,17 @@ Testing
 
 Sandbox is continuously tested by OPNFV XCI to ensure the changes do not impact
 users. In fact, OPNFV XCI itself uses the sandbox to ensure it is always in
-working state..
+working state.
 
 Support
 =======
 
-OPNFV XCI issues are tracked on OPNFV JIRA Releng project. If you encounter
+OPNFV XCI issues are tracked in OPNFV JIRA Releng project. If you encounter
 and issue or identify a bug, please submit an issue to JIRA using
 `this link <https://jira.opnfv.org/projects/RELENG>`_. Please label the issue
 you are submitting with ``xci`` label.
 
-If you have questions or comments, you can ask them on ``#opnfv-pharos`` IRC
+If you have questions or comments, you can ask them on the ``#opnfv-pharos`` IRC
 channel on Freenode.
 
 References
