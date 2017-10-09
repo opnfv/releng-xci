@@ -20,6 +20,8 @@ export JENKINS_HOME="${JENKINS_HOME:-${HOME}}"
 export XCI_KEEP_CLEAN_VM_ON_FAILURES=${XCI_KEEP_CLEAN_VM_ON_FAILURES:-true}
 
 export DEFAULT_XCI_TEST=${DEFAULT_XCI_TEST:-false}
+export DEFAULT_XCI_TEST_RUN=${DEFAULT_XCI_TEST_RUN:-false}
+
 # JIT Build of OS image to load on the clean VM
 export XCI_BUILD_CLEAN_VM_OS=${XCI_BUILD_CLEAN_VM_OS:-true}
 # Use cached (possibly outdated) images instead of always using the latest
@@ -100,13 +102,13 @@ update_clean_vm_files() {
 [[ $# -ne 1 ]] && usage && exit 1
 
 declare -r CPU=host
-declare -r NCPUS=24
-declare -r MEMORY=49152
-declare -r DISK=500
+declare -r NCPUS=${XCI_VM_NCPUS:-24}
+declare -r MEMORY=${XCI_VM_MEMORY_SIZE:-49152}
+declare -r DISK=${XCI_VM_DISK_SIZE:-500}
 declare -r VM_NAME=${1}_xci_vm
 declare -r OS=${1}
 declare -r NETWORK="jenkins-test"
-declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/.*@@")
+declare -r BASE_PATH=$(dirname $(readlink -f $0) | sed "s@/xci/\?.*@@")
 declare -r XCI_CACHE_DIR=${HOME}/.cache/opnfv_xci_deploy
 
 echo "Preparing new virtual machine '${VM_NAME}'..."
@@ -130,16 +132,16 @@ fi
 case ${ID,,} in
 	*suse)
 		wait_for_pkg_mgr zypper
-		sudo zypper -q -n in virt-manager qemu-kvm qemu-tools libvirt-daemon docker libvirt-client libvirt-daemon-driver-qemu iptables ebtables dnsmasq
+		sudo zypper -q -n in virt-manager qemu-kvm qemu-tools libvirt-daemon docker libvirt-client libvirt-daemon-driver-qemu iptables ebtables dnsmasq libosinfo
 		;;
 	centos)
 		wait_for_pkg_mgr yum
 		sudo yum install -q -y epel-release
-		sudo yum install -q -y in virt-manager qemu-kvm qemu-kvm-tools qemu-img libvirt-daemon-kvm docker iptables ebtables dnsmasq
+		sudo yum install -q -y in virt-manager qemu-kvm qemu-kvm-tools qemu-img libvirt-daemon-kvm docker iptables ebtables dnsmasq libosinfo
 		;;
 	ubuntu)
 		wait_for_pkg_mgr apt-get
-		sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils docker.io docker iptables ebtables dnsmasq
+		sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils docker.io docker iptables ebtables dnsmasq libosinfo-bin
 		;;
 esac
 
@@ -180,7 +182,7 @@ sudo rm -f ${BASE_PATH}/${OS}.qcow2
 sudo chmod 777 -R $XCI_CACHE_DIR/clean_vm/images/
 sudo chown $uid:$gid -R $XCI_CACHE_DIR/clean_vm/images/
 cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2 ${BASE_PATH}/
-declare -r OS_IMAGE_FILE=${OS}.qcow2
+declare -r OS_IMAGE_FILE=${BASE_PATH}/${OS}.qcow2
 
 [[ ! -e ${OS_IMAGE_FILE} ]] && echo "${OS_IMAGE_FILE} not found! This should never happen!" && exit 1
 
@@ -211,10 +213,18 @@ fi
 sudo virsh net-list --autostart | grep -q ${NETWORK} || sudo virsh net-autostart ${NETWORK}
 sudo virsh net-list --inactive | grep -q ${NETWORK} && sudo virsh net-start ${NETWORK}
 
+# Determine OS variant if possible
+OS_VARIANT="none"
+case ${OS} in
+	suse) osinfo-query os | grep -q opensuse42.3 && OS_VARIANT="opensuse42.3" ;;
+	centos) osinfo-query os | grep -q centos7.0 && OS_VARIANT="centos7.0" ;;
+	ubuntu) osinfo-query os | grep -q ubuntu1604 && OS_VARIANT="ubuntu16.04" ;;
+esac
+
 echo "Installing virtual machine '${VM_NAME}'..."
 sudo virt-install -n ${VM_NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
 	--import --disk=${OS_IMAGE_FILE},cache=unsafe --network network=${NETWORK} \
-	--graphics none --hvm --noautoconsole
+	--graphics none --hvm --noautoconsole --os-variant ${OS_VARIANT}
 
 trap destroy_vm_on_failures EXIT
 
@@ -326,12 +336,41 @@ if [[ $? != 0 ]]; then
 	echo "Failed to find a 'run_jenkins_test.sh' script..."
 	if ${DEFAULT_XCI_TEST}; then
 		echo "Creating a default test case to run xci-deploy.sh"
-		cat > ${BASE_PATH}/run_jenkins_test.sh <<EOF
-#!/bin/bash
-export XCI_FLAVOR=mini
-cd ~/releng-xci/xci
-./xci-deploy.sh
-EOF
+		# Prepare the XCI deployment script
+		# - Copy use development repositories
+		# - Copy current XCI environment
+		# - Run xci-deploy-core.sh script
+		cat > $BASE_PATH/run_jenkins_test.sh<<-EOF
+			#!/bin/bash
+			#
+			# Exporting all XCI variables
+			export _XCI_ENV_IS_PREPARED_=true
+		EOF
+		rm -rf ${BASE_PATH}/.user_local_dev/
+		declare -A user_local_dev_vars=( ["OPNFV_RELENG_DEV_PATH"]="releng-xci" ["OPENSTACK_OSA_DEV_PATH"]="openstack-ansible" ["OPENSTACK_BIFROST_DEV_PATH"]="bifrost" )
+		for local_user_var in ${!user_local_dev_vars[@]}; do
+		    if [[ -n ${!local_user_var:-} ]]; then
+				mkdir -p ${BASE_PATH}/.user_local_dev/
+				eval $local_user_var=${!local_user_var%/}/
+				rsync -a --delete \
+					--exclude "*.user_local_dev*" \
+					--exclude "*qcow2*" \
+					--exclude "${XCI_VM}*" \
+					${!local_user_var} \
+					$BASE_PATH/.user_local_dev/${user_local_dev_vars[$local_user_var]}/
+				unset $local_user_var
+				cat >> $BASE_PATH/run_jenkins_test.sh<<-EOF
+					export $local_user_var=~/releng-xci/.user_local_dev/${user_local_dev_vars[$local_user_var]}
+				EOF
+			fi
+		done
+
+		cat >> $BASE_PATH/run_jenkins_test.sh<<-EOF
+			$(for x in $(env | grep --color=never '\(OPNFV\|XCI\|OPENSTACK\)');do echo "export $x"; done)
+			# Execute the actual XCI deployment
+			cd ~/releng-xci/xci
+			./xci-deploy-core.sh
+		EOF
 		# Copy again
 		do_copy
 	else
@@ -340,9 +379,14 @@ EOF
 fi
 
 if ${_has_test}; then
-	echo "Running test..."
-	$vm_ssh ${VM_NAME} "bash ~/releng-xci/run_jenkins_test.sh"
-	xci_error=$?
+	if ${DEFAULT_XCI_TEST_RUN}; then
+		echo "Running test..."
+		$vm_ssh ${VM_NAME} "bash ~/releng-xci/run_jenkins_test.sh"
+		xci_error=$?
+	else
+		echo "Explicitely preventing the jenkins test from running!"
+		xci_error=0
+	fi
 else
 	echo "No jenkins test was found. The virtual machine will remain idle!"
 	xci_error=0
