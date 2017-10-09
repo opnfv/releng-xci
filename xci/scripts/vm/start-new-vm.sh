@@ -45,6 +45,22 @@ usage() {
 	"""
 }
 
+wait_for_pkg_mgr() {
+	local pkg_mgr=$1
+	local _retries=30
+	while [[ $_retries -gt 0 ]]; do
+		if pgrep -a $pkg_mgr &> /dev/null; then
+			echo "There is another $pkg_mgr process running... ($_retries retries left)"
+			sleep 30
+			(( _retries = _retries - 1 ))
+		else
+			break
+		fi
+	done
+	echo "$pkg_mgr still running... Maybe stuck?"
+	exit 1
+}
+
 update_clean_vm_files() {
 	local opnfv_url="http://artifacts.opnfv.org/releng/xci/images"
 	local vm_cache=${XCI_CACHE_DIR}/clean_vm/images
@@ -108,13 +124,19 @@ if ! sudo -n "true"; then
 	exit 1
 fi
 case ${ID,,} in
-	*suse) sudo zypper -q -n in virt-manager qemu-kvm qemu-tools libvirt-daemon docker libvirt-client libvirt-daemon-driver-qemu iptables ebtables dnsmasq
-			  ;;
-	centos) sudo yum install -q -y epel-release
-			sudo yum install -q -y in virt-manager qemu-kvm qemu-kvm-tools qemu-img libvirt-daemon-kvm docker iptables ebtables dnsmasq
-			;;
-	ubuntu) sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils docker.io docker iptables ebtables dnsmasq
-			;;
+	*suse)
+		wait_for_pkg_mgr zypper
+		sudo zypper -q -n in virt-manager qemu-kvm qemu-tools libvirt-daemon docker libvirt-client libvirt-daemon-driver-qemu iptables ebtables dnsmasq
+		;;
+	centos)
+		wait_for_pkg_mgr yum
+		sudo yum install -q -y epel-release
+		sudo yum install -q -y in virt-manager qemu-kvm qemu-kvm-tools qemu-img libvirt-daemon-kvm docker iptables ebtables dnsmasq
+		;;
+	ubuntu)
+		wait_for_pkg_mgr apt-get
+		sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils docker.io docker iptables ebtables dnsmasq
+		;;
 esac
 
 echo "Ensuring libvirt and docker services are running..."
