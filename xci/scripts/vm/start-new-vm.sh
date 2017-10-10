@@ -15,6 +15,10 @@ set -e
 # executed on a CI or not.
 export JENKINS_HOME="${JENKINS_HOME:-${HOME}}"
 
+# Set this option to destroy the VM on failures. This is helpful when we
+# don't want to preserve the VM for debugging purposes.
+export XCI_KEEP_CLEAN_VM_ON_FAILURES=${XCI_KEEP_CLEAN_VM_ON_FAILURES:-true}
+
 export DEFAULT_XCI_TEST=${DEFAULT_XCI_TEST:-false}
 # JIT Build of OS image to load on the clean VM
 export XCI_BUILD_CLEAN_VM_OS=${XCI_BUILD_CLEAN_VM_OS:-true}
@@ -23,6 +27,15 @@ export XCI_BUILD_CLEAN_VM_OS=${XCI_BUILD_CLEAN_VM_OS:-true}
 export XCI_UPDATE_CLEAN_VM_OS=${XCI_UPDATE_CLEAN_VM_OS:-false}
 
 grep -q -i ^Y$ /sys/module/kvm_intel/parameters/nested || { echo "Nested virtualization is not enabled but it's needed for XCI to work"; exit 1; }
+
+destroy_vm_on_failures() {
+	local exit_err=${xci_error:-130}
+	if ! ${XCI_KEEP_CLEAN_VM_ON_FAILURES}; then
+		sudo virsh destroy ${VM_NAME}_xci_vm
+		sudo virsh undefine ${VM_NAME}_xci_vm
+	fi
+	exit $exit_err
+}
 
 usage() {
 	echo """
@@ -180,6 +193,8 @@ echo "Installing virtual machine '${VM_NAME}'..."
 sudo virt-install -n ${VM_NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
 	--import --disk=${OS_IMAGE_FILE},cache=unsafe --network network=${NETWORK} \
 	--graphics none --hvm --noautoconsole
+
+trap destroy_vm_on_failures EXIT
 
 _retries=30
 while [[ $_retries -ne 0 ]]; do
