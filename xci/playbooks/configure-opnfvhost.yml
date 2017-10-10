@@ -75,8 +75,8 @@
       shell: "/bin/cp -rf {{OPENSTACK_OSA_PATH}}/etc/openstack_deploy {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy openstack_user_config.yml
       shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/openstack_user_config.yml {{OPENSTACK_OSA_ETC_PATH}}"
-    - name: copy user_variables.yml
-      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
+    - name: copy all user override files
+      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/user_*.yml {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy cinder.yml
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
     # TODO: We need to get rid of this as soon as the issue is fixed upstream
