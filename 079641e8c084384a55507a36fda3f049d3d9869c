@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_ebf89cc6",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-10-11T15:48:52Z",
+      "side": 1,
+      "message": "could you write a very dummy example of how xci_overrides would look like?",
+      "range": {
+        "startLine": 101,
+        "startChar": 4,
+        "endLine": 101,
+        "endChar": 66
+      },
+      "revId": "079641e8c084384a55507a36fda3f049d3d9869c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_cbf5d8cc",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-10-11T15:48:52Z",
+      "side": 1,
+      "message": "This is the one we would use in os-odl-sfc",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 18
+      },
+      "revId": "079641e8c084384a55507a36fda3f049d3d9869c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
