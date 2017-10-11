@@ -76,6 +76,31 @@ unset user_local_dev_vars local_user_var
 # register our handler
 trap submit_bug_report ERR
 
+# User hooks
+pre_bifrost_hook() { true; }
+post_bifrost_hook() { true; }
+pre_localhost_hook() { true; }
+post_localhost_hook() { true; }
+pre_opnfvhost_hook() { true; }
+post_opnfvhost_hook() { true; }
+pre_targethosts_hook() { true; }
+post_targethosts_hook() { true; }
+pre_setuphosts_hook() { true; }
+post_setuphosts_hook() { true; }
+pre_setup_infrastructure_hook() { true; }
+post_setup_infrastructure_hook() { true; }
+pre_setup_openstack_hook() { true; }
+post_setup_openstack_hook() { true; }
+pre_final_hook() { true; }
+post_final_hook() { true; }
+
+#-------------------------------------------------------------------------------
+# Get role overrides
+#-------------------------------------------------------------------------------
+if [[ -f $XCI_PATH/playbooks/roles/${OPNFV_SCENARIO:-_no_role_}/xci_overrides ]]; then
+    source $XCI_PATH/playbooks/roles/$OPNFV_SCENARIO/xci_overrides
+fi
+
 #-------------------------------------------------------------------------------
 # Log info to console
 #-------------------------------------------------------------------------------
@@ -140,6 +165,7 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Starting provisining VM nodes using openstack/bifrost"
 echo "-------------------------------------------------------------------------"
+pre_bifrost_hook
 # We are using sudo so we need to make sure that env_reset is not present
 sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 cd $XCI_PATH/../bifrost/
@@ -148,6 +174,7 @@ cd $XCI_PATH/playbooks
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
 cd ${OPENSTACK_BIFROST_PATH}
 bash ./scripts/bifrost-provision.sh
+post_bifrost_hook
 echo "-----------------------------------------------------------------------"
 echo "Info: VM nodes are provisioned!"
 source $OPENSTACK_BIFROST_PATH/env-vars
@@ -165,8 +192,10 @@ echo
 
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
+pre_localhost_hook
 cd $XCI_PATH/playbooks
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory configure-localhost.yml
+post_localhost_hook
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
 
@@ -183,8 +212,10 @@ echo "Info: Configured localhost host for openstack-ansible"
 #-------------------------------------------------------------------------------
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
+pre_opnfvhost_hook
 cd ${XCI_DEVEL_ROOT}
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i ${OPNFV_XCI_PATH}/playbooks/inventory ${OPNFV_XCI_PATH}/playbooks/configure-opnfvhost.yml
+post_opnfvhost_hook
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
 
@@ -202,8 +233,10 @@ echo "Info: Configured opnfv deployment host for openstack-ansible"
 if [[ $XCI_FLAVOR != "aio" ]]; then
     echo "Info: Configuring target hosts for openstack-ansible"
     echo "-----------------------------------------------------------------------"
+    pre_targethosts_hook
     cd $OPNFV_XCI_PATH/playbooks
     ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory configure-targethosts.yml
+    post_targethost_hook
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts"
 fi
@@ -215,9 +248,11 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Setting up target hosts for openstack-ansible"
 echo "-----------------------------------------------------------------------"
+pre_setuphosts_hook
 ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
      $OPENSTACK_OSA_PATH/playbooks/setup-hosts.yml | tee setup-hosts.log "
 scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
+post_setuphosts_hook
 echo "-----------------------------------------------------------------------"
 echo "Info: Set up target hosts for openstack-ansible successfuly"
 
@@ -247,10 +282,12 @@ echo "-----------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 echo "Info: Setting up infrastructure"
 echo "-----------------------------------------------------------------------"
+pre_setup_infrastructure_hook
 echo "xci: running ansible playbook setup-infrastructure.yml"
 ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
      $OPENSTACK_OSA_PATH/playbooks//setup-infrastructure.yml | tee setup-infrastructure.log"
 scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
+post_setup_infrastructure_hook
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error
 if grep -q 'failed=1\|unreachable=1' $LOG_PATH/setup-infrastructure.log; then
@@ -289,9 +326,11 @@ echo "Info: Database cluster verification successful!"
 #-------------------------------------------------------------------------------
 echo "Info: Installing OpenStack on target hosts"
 echo "-----------------------------------------------------------------------"
+pre_setup_openstack_hook
 ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
      $OPENSTACK_OSA_PATH/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
 scp root@$OPNFV_HOST_IP:~/opnfv-setup-openstack.log $LOG_PATH/opnfv-setup-openstack.log
+post_setup_openstack_hook
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error
 if grep -q 'failed=1\|unreachable=1' $LOG_PATH/opnfv-setup-openstack.log; then
@@ -305,6 +344,7 @@ echo "Info: OpenStack installation is successfully completed!"
 #-------------------------------------------------------------------------------
 echo "Info: Openstack login details"
 echo "-----------------------------------------------------------------------"
+pre_final_hook
 OS_USER_CONFIG=$XCI_PATH/file/$XCI_FLAVOR/openstack_user_config.yml
 python -c \
 "import yaml
@@ -320,5 +360,6 @@ PASSWORD=$(ssh -q root@192.168.122.2 awk "/OS_PASSWORD=./" openrc)
 echo "Info: Admin username -  ${USERNAME##*=}"
 echo "Info: Admin password - ${PASSWORD##*=}"
 echo "Info: It is recommended to change the default password."
+post_final_hook
 
 # vim: set ts=4 sw=4 expandtab:
