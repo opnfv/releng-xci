@@ -77,6 +77,13 @@ unset user_local_dev_vars local_user_var
 trap submit_bug_report ERR
 
 #-------------------------------------------------------------------------------
+# Get role variables overrides
+#-------------------------------------------------------------------------------
+if [[ -f $XCI_PATH/scenarios/${OPNFV_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
+    source $XCI_PATH/scenarios/$OPNFV_SCENARIO/xci_overrides
+fi
+
+#-------------------------------------------------------------------------------
 # Log info to console
 #-------------------------------------------------------------------------------
 echo "Info: Starting XCI Deployment"
