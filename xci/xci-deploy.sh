@@ -129,6 +129,13 @@ fi
 # TODO: The xci playbooks can be put into a playbook which will be done later.
 
 #-------------------------------------------------------------------------------
+# Get scenario variables overrides
+#-------------------------------------------------------------------------------
+if [[ -f $XCI_PATH/scenarios/${OPNFV_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
+    source $XCI_PATH/scenarios/$OPNFV_SCENARIO/xci_overrides
+fi
+
+#-------------------------------------------------------------------------------
 # Start provisioning VM nodes
 #-------------------------------------------------------------------------------
 # This playbook
