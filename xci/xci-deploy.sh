@@ -77,13 +77,6 @@ unset user_local_dev_vars local_user_var
 trap submit_bug_report ERR
 
 #-------------------------------------------------------------------------------
-# Get role variables overrides
-#-------------------------------------------------------------------------------
-if [[ -f $XCI_PATH/playbooks/scenarios/${OPNFV_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
-    source $XCI_PATH/playbooks/scenarios/$OPNFV_SCENARIO/xci_overrides
-fi
-
-#-------------------------------------------------------------------------------
 # Log info to console
 #-------------------------------------------------------------------------------
 echo "Info: Starting XCI Deployment"
@@ -134,6 +127,25 @@ if [[ $OS_FAMILY == RedHat ]]; then
 fi
 
 # TODO: The xci playbooks can be put into a playbook which will be done later.
+
+# Clone OPNFV scenario repositories
+#-------------------------------------------------------------------------------
+# This playbook
+# - removes existing scenario roles
+# - clones OPNFV scenario roles based on the file/opnfv-scenario-requirements.yml file
+#-------------------------------------------------------------------------------
+echo "Info: Cloning OPNFV scenario repositories"
+echo "-------------------------------------------------------------------------"
+cd $XCI_PATH/playbooks
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory get-opnfv-scenario-requirements.yml
+echo "-------------------------------------------------------------------------"
+
+#-------------------------------------------------------------------------------
+# Get scenario variables overrides
+#-------------------------------------------------------------------------------
+if [[ -f $XCI_PATH/playbooks/scenarios/${OPNFV_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
+    source $XCI_PATH/playbooks/scenarios/$OPNFV_SCENARIO/xci_overrides
+fi
 
 #-------------------------------------------------------------------------------
 # Start provisioning VM nodes
