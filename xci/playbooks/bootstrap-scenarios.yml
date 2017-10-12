@@ -1,0 +1,10 @@
+---
+#
+# This file is aimed to be used by scenarios to plug into the XCI.
+# Ideally, all they need to do at this point is to include their
+# role using a statement like the following one
+#
+# - name: Include foobar role
+#   include_role:
+#     name: "foobar"
+#   when: OPNFV_SCENARIO == "foobar"
