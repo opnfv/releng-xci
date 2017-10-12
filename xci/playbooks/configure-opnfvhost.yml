@@ -57,6 +57,7 @@
   roles:
       - role: configure-network
   tasks:
+    - include: get-opnfv-scenario-requirements.yml
     - name: generate SSH keys
       shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
       args:
