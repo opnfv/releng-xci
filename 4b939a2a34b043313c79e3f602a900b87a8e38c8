@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_41940937",
+        "filename": "xci/file/opnfv-scenario-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-10-12T08:52:58Z",
+      "side": 1,
+      "message": "can we have this file directly in releng-xci/xci ?",
+      "revId": "4b939a2a34b043313c79e3f602a900b87a8e38c8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_e1a27d99",
+        "filename": "xci/file/opnfv-scenario-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-10-12T08:52:58Z",
+      "side": 1,
+      "message": "I think this is redundant, isn\u0027t it?\n\nif you agree, we can talk to Manuel to get it adjusted.",
+      "range": {
+        "startLine": 18,
+        "startChar": 28,
+        "endLine": 18,
+        "endChar": 44
+      },
+      "revId": "4b939a2a34b043313c79e3f602a900b87a8e38c8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_a1999570",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-10-12T08:52:58Z",
+      "side": 1,
+      "message": "why localhost? shouldn\u0027t it be opnfv host?",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 18
+      },
+      "revId": "4b939a2a34b043313c79e3f602a900b87a8e38c8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
