@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_1e937cfb",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-10-12T03:47:22Z",
+      "side": 1,
+      "message": "if using \"/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/*ceph*\", it will copy ceph.yml to the \"{{OPENSTACK_OSA_ETC_PATH}}\", but we need copy ceph.yml to \"{{OPENSTACK_OSA_ETC_PATH}}/conf.d/\". It i s not very well to use /bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/*ceph*.",
+      "parentUuid": "9a3d3df0_08c1862e",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 138
+      },
+      "revId": "78316c694b30592868a2d8a86c36ba3bd756422b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_a857ba01",
         "filename": "xci/playbooks/roles/configure-ceph/tasks/main.yml",
         "patchSetId": 11
