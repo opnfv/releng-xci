@@ -128,6 +128,30 @@
       "revId": "4b939a2a34b043313c79e3f602a900b87a8e38c8",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_0174c1fb",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-12T09:10:24Z",
+      "side": 1,
+      "message": "OK I remembered why I did it like that. It\u0027s because we need to have the scenarios present as soon as possible so we can make use of the \u0027xci_overrides\u0027 file before deployment starts.  It doesn\u0027t matter much I think since a) everything is copied to opnfv host and b) the opfnv host will become the same host with localhost at some point",
+      "parentUuid": "9a3d3df0_a1351548",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 18
+      },
+      "revId": "4b939a2a34b043313c79e3f602a900b87a8e38c8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
