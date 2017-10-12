@@ -136,6 +136,19 @@ fi
 # TODO: The xci playbooks can be put into a playbook which will be done later.
 
 #-------------------------------------------------------------------------------
+# Clone OPNFV scenario repositories
+#-------------------------------------------------------------------------------
+# This playbook
+# - removes existing scenario roles
+# - clones OPNFV scenario roles based on the file/opnfv-scenario-requirements.yml file
+#-------------------------------------------------------------------------------
+echo "Info: Cloning OPNFV scenario repositories"
+echo "-------------------------------------------------------------------------"
+cd $XCI_PATH/playbooks
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory get-opnfv-scenario-requirements.yml
+echo "-------------------------------------------------------------------------"
+
+#-------------------------------------------------------------------------------
 # Start provisioning VM nodes
 #-------------------------------------------------------------------------------
 # This playbook

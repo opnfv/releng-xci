@@ -1,0 +1,61 @@
+---
+# Copyright 2016, Rackspace US, Inc.
+# Copyright 2017, SUSE LINUX GmbH.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+- name: Clone the scenario requirements
+  hosts: localhost
+  connection: local
+  gather_facts: true
+  tasks:
+    - name: Remove target directory
+      file:
+        path: "{{ item.path | default(scenario_path_default) + '/' + item.scenario }}"
+        state: absent
+      when:
+        - item.scm == "git" or item.scm is undefined
+      with_items: "{{ scenarios }}"
+
+    - name: Clone git repos (with git)
+      git:
+        repo: "{{ item.src }}"
+        dest: "{{ item.path | default(scenario_path_default) }}/{{ item.scenario | default(item.src | basename) }}"
+        version: "{{ item.version | default('master') }}"
+        refspec: "{{ item.refspec | default(omit) }}"
+        update: true
+        force: true
+      when:
+        - item.scm == "git" or item.scm is undefined
+      with_items: "{{ scenarios }}"
+      register: git_clone
+      until: git_clone | success
+      retries: "{{ git_clone_retries }}"
+      delay: "{{ git_clone_retry_delay }}"
+
+    - name: Plug in the roles to XCI
+      file:
+        state: link
+        src: "{{ item.path | default(scenario_path_default) }}/{{ item.scenario | default(item.src | basename) }}/{{ item.role }}"
+        dest: "{{ role_path_default }}/{{ item.scenario }}"
+        force: yes
+      with_items: "{{ scenarios }}"
+
+  vars:
+    ansible_python_interpreter: "/usr/bin/python"
+    scenarios: "{{ lookup('file', scenario_file) | from_yaml }}"
+    scenario_file: '../file/opnfv-scenario-requirements.yml'
+    scenario_path_default: "{{ playbook_dir }}/.scenarios"
+    role_path_default: "{{ playbook_dir }}/roles"
+    git_clone_retries: 2
+    git_clone_retry_delay: 5
