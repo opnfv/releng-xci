@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_41308956",
+        "filename": "xci/file/opnfv-scenario-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-12T08:59:17Z",
+      "side": 1,
+      "message": "Well it depends. Have we agreed on the layout for the projects? I am not sure if all of them will follow the scenarios/$name/role/$name or something\n\nIf all of them put the roles in the same path then we don\u0027t need to make that scenario specific.",
+      "parentUuid": "9a3d3df0_e1a27d99",
+      "range": {
+        "startLine": 18,
+        "startChar": 28,
+        "endLine": 18,
+        "endChar": 44
+      },
+      "revId": "4b939a2a34b043313c79e3f602a900b87a8e38c8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_a1999570",
         "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
         "patchSetId": 2
@@ -53,6 +77,30 @@
       "writtenOn": "2017-10-12T08:52:58Z",
       "side": 1,
       "message": "why localhost? shouldn\u0027t it be opnfv host?",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 18
+      },
+      "revId": "4b939a2a34b043313c79e3f602a900b87a8e38c8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_a1351548",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-12T08:59:17Z",
+      "side": 1,
+      "message": "Maybe... the entire XCI repo will be copied to the opfnv host so it doesn\u0027t matter. I can move this later on in the process. Possibly inside the opfnvhost playbooks.",
+      "parentUuid": "9a3d3df0_a1999570",
       "range": {
         "startLine": 18,
         "startChar": 9,
