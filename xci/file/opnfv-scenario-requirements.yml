@@ -1,0 +1,17 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2017 SUSE LINUX GmbH and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+#
+# OPNFV scenarios participating in XCI must create their own entry in this file so
+# XCI can make use of them.
+#
+- scenario: os-odl-sfc
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/sfc
+  version: master
