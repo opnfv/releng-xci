@@ -107,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_7ea44857",
+        "filename": "xci/playbooks/roles/configure-ceph/tasks/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-10-12T03:43:07Z",
+      "side": 1,
+      "message": "I get this file from the openstack ansible,and change some code to match our code. So I think we need reserve the copyright in here.",
+      "parentUuid": "9a3d3df0_a857ba01",
+      "range": {
+        "startLine": 2,
+        "startChar": 2,
+        "endLine": 2,
+        "endChar": 49
+      },
+      "revId": "78316c694b30592868a2d8a86c36ba3bd756422b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_885c7627",
         "filename": "xci/var/opnfv.yml",
         "patchSetId": 11
