@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_e13efd28",
+        "filename": "xci/file/opnfv-scenario-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-12T08:59:36Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "9a3d3df0_41940937",
+      "revId": "4b939a2a34b043313c79e3f602a900b87a8e38c8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_e1a27d99",
         "filename": "xci/file/opnfv-scenario-requirements.yml",
         "patchSetId": 2
