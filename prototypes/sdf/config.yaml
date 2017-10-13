@@ -1,0 +1,16 @@
+---
+generic_scenario: 'generic_by_name.yaml.j2'
+deployment_options:
+  types_exclusions:
+    baremetal: []
+    virtual:
+      - fdio
+      - onap # for the example
+  installer_supported_features:
+    apex:
+      - fdio
+    joid:
+      - lxc
+      - mano
+    xci_baremetal:
+      - onap

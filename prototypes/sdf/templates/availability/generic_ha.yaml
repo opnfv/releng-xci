@@ -1,0 +1,11 @@
+    type: ha
+    roles_distribution:
+      infra:
+        - controller
+        - storage
+      infra_or_worker:
+        - controller
+        - storage
+      worker:
+        - compute
+        - network

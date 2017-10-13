@@ -1,0 +1,3 @@
+ - vnfm:
+    type: onap
+    branch: master

@@ -1,0 +1,13 @@
+    type: noha
+    roles_distribution:
+      infra:
+        - controller
+        - storage
+      infra_or_worker:
+        - compute
+        - network
+        - storage
+      worker:
+        - compute
+        - network
+        - storage

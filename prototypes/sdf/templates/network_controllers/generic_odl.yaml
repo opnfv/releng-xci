@@ -1,0 +1,6 @@
+      component-type: opendaylight
+      release: carbon
+      version: ">6.0.1"
+      features:
+        - odl_l2
+        - vpp

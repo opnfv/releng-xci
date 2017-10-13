@@ -1,0 +1,65 @@
+##############################################################################
+# scenario meta-data
+scenario-metadata:
+  name: {{ sc.cloud_controller }}-{{ sc.network_controller }}-{{ sc.features |join('_') or 'nofeature' }}-{{ sc.availability }}
+  title:
+  generic-scenario: true
+  version: 1.0.0
+  creation-date:  2017-03-16
+  opnfv-release: euphrates
+  opnfv-version: 5.1.0  # the first opnfv version, the scenario was introduced
+  owner: David Blaisonneau <david.blaisonneau@orange.com>
+  # Add additional contact persons e.g. from installers or major components
+
+##############################################################################
+
+##############################################################################
+# components
+components:
+  - sdn-controller:
+{% include 'network_controllers/generic_'+sc.network_controller+'.yaml' %}
+
+  - storage: # not used by xci-baremetal
+      component-type: ceph
+  - cloud-controller:
+{% include 'cloud_controllers/generic_'+sc.cloud_controller+'.yaml' %}
+
+{% for feature in sc.features %}
+{% include 'features/'+feature+'.yaml' %}
+{% endfor %}
+
+##############################################################################
+
+##############################################################################
+# deployment options
+deployment-options:
+  deployment-types:
+    {% if not any_in(sc.features, deployment_options.types_exclusions.virtual) -%}
+    - virtual:
+      architecture: x86_64
+    {% endif -%}
+    {% if not any_in(sc.features, deployment_options.types_exclusions.baremetal) -%}
+    - baremetal:
+      architecture: x86_64
+    {% endif %}
+
+  availability:
+{% include 'availability/generic_'+sc.availability+'.yaml' %}
+
+  deployment-tools:
+    {% if all_in(sc.features, deployment_options.installer_supported_features.apex) -%}
+    - apex
+    {% endif -%}
+    {% if all_in(sc.features, deployment_options.installer_supported_features.joid) -%}
+    - joid
+    {% endif -%}
+    {% if all_in(sc.features, deployment_options.installer_supported_features.xci_baremetal) -%}
+    - xci_baremetal
+    {% endif %}
+
+##############################################################################
+
+##############################################################################
+# Prerequisites
+# No other prerequisites
+##############################################################################

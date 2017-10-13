@@ -1,0 +1,11 @@
+      type: openstack
+      branch: stable/ocata
+      modules:
+        - nova
+        - cinder
+        - dashboard
+        - glance
+        - heat
+        - neutron
+        - tacker
+        - congress
