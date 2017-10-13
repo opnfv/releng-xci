@@ -10,6 +10,12 @@
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
         chdir: "{{OPENSTACK_OSA_PATH}}"
+    - name: Disable AIO tempest
+      lineinfile:
+        path: "{{ OPENSTACK_OSA_PATH }}/tests/roles/bootstrap-host/templates/user_variables.aio.yml.j2"
+        regexp: "^tempest_install.*"
+        line: "tempest_install: false"
+        state: present
     - name: bootstrap opnfv host as aio
       command: "/bin/bash ./scripts/bootstrap-aio.sh"
       args:
