@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_52c175e3",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-10-13T12:50:17Z",
+      "side": 1,
+      "message": "This does not execute the role. Where do we execute it?",
+      "range": {
+        "startLine": 147,
+        "startChar": 56,
+        "endLine": 147,
+        "endChar": 70
+      },
+      "revId": "bdc93f9cbeff5854aa451558c69c1c4ae1d73bc9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
