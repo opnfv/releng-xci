@@ -99,10 +99,10 @@ update_clean_vm_files() {
 
 [[ $# -ne 1 ]] && usage && exit 1
 
-declare -r CPU=host
-declare -r NCPUS=24
-declare -r MEMORY=49152
-declare -r DISK=500
+declare -r CPU=${XCI_CPU_TYPE:-host}
+declare -r NCPUS=${XCI_NCPUS:-24}
+declare -r MEMORY=${XCI_MEMORY_SIZE:-49152}
+declare -r DISK=${XCI_DISK_SIZE:-500}
 declare -r VM_NAME=${1}_xci_vm
 declare -r OS=${1}
 declare -r NETWORK="jenkins-test"
