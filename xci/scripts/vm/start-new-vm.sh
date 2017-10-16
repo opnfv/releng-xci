@@ -305,6 +305,7 @@ do_copy() {
 	rsync -a \
 		--exclude "${VM_NAME}*" \
 		--exclude "${OS}*" \
+		--exclude "*.qcow2*" \
 		--exclude "build.log" \
 		-e "$vm_ssh" ${BASE_PATH}/ ${VM_NAME}:~/releng-xci/
 }
