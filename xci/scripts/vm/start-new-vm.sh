@@ -303,9 +303,11 @@ EOF
 # Need to copy releng-xci to the vm so we can execute stuff
 do_copy() {
 	rsync -a \
+
 		--exclude "${VM_NAME}*" \
 		--exclude "${OS}*" \
 		--exclude "build.log" \
+		--exclude "*.qcow2*" \
 		-e "$vm_ssh" ${BASE_PATH}/ ${VM_NAME}:~/releng-xci/
 }
 
