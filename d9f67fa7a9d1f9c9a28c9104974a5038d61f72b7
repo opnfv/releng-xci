@@ -1,0 +1,8 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Victor Morales <victor.morales@intel.com>
+Code-Review+2: Aric Gardner <agardner@linuxfoundation.org>
+Submitted-by: Aric Gardner <agardner@linuxfoundation.org>
+Submitted-at: Mon, 16 Oct 2017 19:35:54 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/45221
+Project: releng-xci
+Branch: refs/heads/master
