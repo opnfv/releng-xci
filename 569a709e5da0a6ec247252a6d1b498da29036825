@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_a6ecfec8",
+        "filename": "docs/xci-overview.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-17T13:24:39Z",
+      "side": 1,
+      "message": "\u0027o\u0027penSUSE",
+      "range": {
+        "startLine": 148,
+        "startChar": 51,
+        "endLine": 148,
+        "endChar": 52
+      },
+      "revId": "569a709e5da0a6ec247252a6d1b498da29036825",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
