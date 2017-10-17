@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_5aaa2271",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-10-17T15:59:42Z",
+      "side": 1,
+      "message": "I noticed that this breakline is causing some issues.",
+      "revId": "d9f67fa7a9d1f9c9a28c9104974a5038d61f72b7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
