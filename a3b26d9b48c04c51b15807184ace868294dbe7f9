@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_da175250",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-10-17T18:41:07Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this variable also provide a \"_no_scenario_\" default value? I was thinking in the use case when the variable wasn\u0027t  defined but the file exists",
+      "range": {
+        "startLine": 135,
+        "startChar": 32,
+        "endLine": 135,
+        "endChar": 46
+      },
+      "revId": "a3b26d9b48c04c51b15807184ace868294dbe7f9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
