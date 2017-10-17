@@ -303,7 +303,6 @@ EOF
 # Need to copy releng-xci to the vm so we can execute stuff
 do_copy() {
 	rsync -a \
-
 		--exclude "${VM_NAME}*" \
 		--exclude "${OS}*" \
 		--exclude "build.log" \
