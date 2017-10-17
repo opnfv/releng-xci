@@ -3,6 +3,20 @@
   remote_user: root
   vars_files:
     - ../var/opnfv.yml
+  pre_tasks:
+    - name: Configure proxy
+      template:
+         src: "roles/configure-network/templates/debian/proxy.j2"
+         dest: /etc/apt/apt.conf.d/01proxy
+         owner: root
+         group: root
+         mode: 0644
+      become: true
+      when: ansible_os_family | lower == "debian"
+    - name: "Configure resolvconf"
+      sudo: yes
+      lineinfile: dest=/etc/resolv.conf line='nameserver 192.168.122.1'
+      when: ansible_os_family | lower == "debian"
   roles:
     - { role: clone-repository, project: "openstack/openstack-ansible", repo: "{{ OPENSTACK_OSA_GIT_URL }}", dest: "{{ OPENSTACK_OSA_PATH }}", version: "{{ OPENSTACK_OSA_VERSION }}" }
   tasks:
@@ -19,7 +33,15 @@
       with_items:
         - "tempest_install"
         - "tempest_run"
+      environment:
+        HTTP_PROXY: "{{ lookup('env','HTTP_PROXY') }}"
+        HTTPS_PROXY: "{{ lookup('env','HTTPS_PROXY') }}"
+        NO_PROXY: "{{ lookup('env','NO_PROXY') }}"
     - name: bootstrap opnfv host as aio
       command: "/bin/bash ./scripts/bootstrap-aio.sh"
       args:
         chdir: "{{OPENSTACK_OSA_PATH}}"
+      environment:
+        http_proxy: "{{ lookup('env','HTTP_PROXY') }}"
+        https_proxy: "{{ lookup('env','HTTPS_PROXY') }}"
+        no_proxy: "{{ lookup('env','NO_PROXY') }}"

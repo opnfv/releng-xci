@@ -12,3 +12,7 @@
     repo: "{{ repo }}"
     dest: "{{ dest }}"
     version: "{{ version }}"
+  environment:
+    HTTP_PROXY: "{{ lookup('env','HTTP_PROXY') }}"
+    HTTPS_PROXY: "{{ lookup('env','HTTPS_PROXY') }}"
+    NO_PROXY: "{{ lookup('env','NO_PROXY') }}"

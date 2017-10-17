@@ -185,6 +185,7 @@ declare -r OS_IMAGE_FILE=${OS}.qcow2
 [[ ! -e ${OS_IMAGE_FILE} ]] && echo "${OS_IMAGE_FILE} not found! This should never happen!" && exit 1
 
 echo "Resizing disk image '${OS}' to ${DISK}G..."
+sudo chown 1000:1000 ${OS_IMAGE_FILE}
 qemu-img resize ${OS_IMAGE_FILE} ${DISK}G
 
 echo "Creating new network '${NETWORK}' if it does not exist already..."
@@ -290,6 +291,7 @@ $vm_ssh ${VM_NAME} "sudo hostname ${VM_NAME/_xci*}"
 # Start with good dns
 $vm_ssh ${VM_NAME} 'sudo bash -c "echo nameserver 8.8.8.8 > /etc/resolv.conf"'
 $vm_ssh ${VM_NAME} 'sudo bash -c "echo nameserver 8.8.4.4 >> /etc/resolv.conf"'
+$vm_ssh ${VM_NAME} 'sudo bash -c "echo nameserver 192.168.140.1 >> /etc/resolv.conf"'
 cat > ${BASE_PATH}/vm_hosts.txt <<EOF
 127.0.0.1 localhost ${VM_NAME/_xci*}
 ::1 localhost ipv6-localhost ipv6-loopback
@@ -299,11 +301,11 @@ fe00::2 ipv6-allrouters
 ff00::3 ipv6-allhosts
 $_ip ${VM_NAME/_xci*}
 EOF
+cp /etc/apt/apt.conf.d/01proxy ${BASE_PATH}/01proxy
 
 # Need to copy releng-xci to the vm so we can execute stuff
 do_copy() {
 	rsync -a \
-
 		--exclude "${VM_NAME}*" \
 		--exclude "${OS}*" \
 		--exclude "build.log" \
@@ -313,11 +315,13 @@ do_copy() {
 
 do_copy
 rm ${BASE_PATH}/vm_hosts.txt
+rm ${BASE_PATH}/01proxy
 
 # Copy keypair
 $vm_ssh ${VM_NAME} "cp --preserve=all ~/releng-xci/xci/scripts/vm/id_rsa_for_dib /home/devuser/.ssh/id_rsa"
 $vm_ssh ${VM_NAME} "cp --preserve=all ~/releng-xci/xci/scripts/vm/id_rsa_for_dib.pub /home/devuser/.ssh/id_rsa.pub"
 $vm_ssh ${VM_NAME} "sudo mv /home/devuser/releng-xci/vm_hosts.txt /etc/hosts"
+$vm_ssh ${VM_NAME} "sudo mv /home/devuser/releng-xci/01proxy /etc/apt/apt.conf.d/01proxy"
 
 set +e
 
