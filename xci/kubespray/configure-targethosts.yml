@@ -1,0 +1,16 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: add public key to host
+      copy:
+        src: ../file/authorized_keys
+        dest: /root/.ssh/authorized_keys
+    - name: install dbus and ptyhon-netaddr
+      apt:
+        name: "{{item}}"
+        update_cache: yes
+      with_items:
+        - "python-netaddr"
+        - "dbus"
+ 

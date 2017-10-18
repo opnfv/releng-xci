@@ -175,6 +175,18 @@ echo "Info: VM nodes are provisioned!"
 source $OPENSTACK_BIFROST_PATH/env-vars
 ironic node-list
 echo
+
+#-------------------------------------------------------------------------------
+# Deploy kubernetes
+#-------------------------------------------------------------------------------
+if [ $XCI_K8S_ENABLED == true ]; then
+    echo "Deploy Kubernetes"
+    cd $XCI_PATH
+    pwd
+    source ./scripts/deploy-k8s.sh
+    exit $?
+fi
+
 #-------------------------------------------------------------------------------
 # Configure localhost
 #-------------------------------------------------------------------------------
