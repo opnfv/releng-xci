@@ -29,3 +29,5 @@ export OPNFV_RELENG_VERSION="master"
 export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"cc46b9280cb0f65e8903af1b15994021018de27e"}
 # HEAD of osa "master" as of 17.11.2017
 export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"56eefa2f66aa7c77df831ef3332bdfa0802d9a04"}
+# XCI Kubernetes support is still in early development state, use master for kubespray
+export KUBESPRAY_VERSION="master"
