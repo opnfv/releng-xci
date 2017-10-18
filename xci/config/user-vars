@@ -34,6 +34,7 @@ export OPENSTACK_OSA_OPENRC_PATH="${XCI_DEVEL_ROOT}/openstack-ansible-openstack_
 export OPENSTACK_BIFROST_PATH="${XCI_DEVEL_ROOT}/bifrost"
 export OPENSTACK_OSA_PATH="${XCI_DEVEL_ROOT}/openstack-ansible"
 export OPNFV_SSH_HOST_KEYS_PATH="${XCI_DEVEL_ROOT}/ssh_host_keys"
+export KUBESPRAY_PATH="${XCI_DEVEL_ROOT}/kubespray"
 
 #-------------------------------------------------------------------------------
 # Set the playbook to use for OpenStack deployment
@@ -60,3 +61,4 @@ export CLEAN_DIB_IMAGES=${CLEAN_DIB_IMAGES:-false}
 # Set this to a full path pointing to extra config files (containing
 # group_vars/all)
 export XCI_EXTRA_VARS_PATH=${XCI_EXTRA_VARS_PATH:-""}
+export XCI_K8S_ENABLED=${XCI_K8S_ENABLED:-false}
