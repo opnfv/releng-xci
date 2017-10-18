@@ -1,0 +1,61 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - ../var/opnfv.yml
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+  roles:
+    - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
+    - { role: clone-repository, project: "kubernetes-incubator/kubespray", repo: "https://github.com/kubernetes-incubator/kubespray.git", dest: "{{ XCI_DEVEL_ROOT }}/kubespray", version: "master" }
+
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - ../var/opnfv.yml
+  tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+    - debug:
+        msg: "{{OPNFV_RELENG_DEV_PATH}}"
+    - name: Synchronize local development releng-xci repository to XCI paths
+      synchronize:
+        src: "{{ OPNFV_RELENG_DEV_PATH }}"
+        dest: "{{ OPNFV_RELENG_PATH }}"
+        recursive: yes
+        delete: yes
+      when:
+        - OPNFV_RELENG_DEV_PATH != ""
+    - name: generate SSH keys
+      shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
+      args:
+        creates: /root/.ssh/id_rsa
+    - name: add id_rsa.pub to authorized_keys
+      shell: cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+    - name: create opnfv_inventory directory (if needed)
+      #shell: "/bin/mkdir -p {{ KUBESPRAY_PATH }}/opnfv_inventory"
+      shell: "/bin/mkdir -p {{ XCI_DEVEL_ROOT }}/kubespray/opnfv_inventory"
+    - name: copy kubespray inventory directory
+      #shell: "/bin/cp -rf {{ OPNFV_RELENG_DEV_PATH }}/kubespray/inventory {{ KUBESPRAY_PATH }}/opnfv_inventory"
+      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/kubespray/aio/inventory {{ XCI_DEVEL_ROOT }}/kubespray/opnfv_inventory"
+    - name: install dbus and ptyhon-netaddr
+      apt:
+        name: "{{item}}"
+        update_cache: yes
+      with_items:
+        - "python-netaddr"
+        - "dbus"
+    - name: pip install ansible
+      pip:
+        name: ansible
+        version: 2.4.0.0

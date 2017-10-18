@@ -172,6 +172,30 @@ echo "Info: VM nodes are provisioned!"
 source $OPENSTACK_BIFROST_PATH/env-vars
 ironic node-list
 echo
+
+#-------------------------------------------------------------------------------
+# Deploy kubernetes
+#-------------------------------------------------------------------------------
+if [ $XCI_K8S_ENABLED == true ]; then
+    if [ $XCI_FLAVOR != "aio" ]; then
+        echo "XCI Kubernetes currently only supports AIO flavor"
+        exit 1
+    fi
+    # TODO: destroy previous k8s environment
+    echo "Info: Configuring opnfvhost for kubespray"
+    echo "-----------------------------------------------------------------------"
+    cd $XCI_PATH/kubespray
+    export ANSIBLE_ROLES_PATH=$XCI_PATH/playbooks/roles
+    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i ../playbooks/inventory configure-opnfvhost.yml
+    echo "-----------------------------------------------------------------------"
+    # for k8s 1.8, swap needs to be disabled for kubelet to run
+    ssh root@$OPNFV_HOST_IP "/sbin/swapoff -a"
+    ssh root@$OPNFV_HOST_IP "cd ${KUBESPRAY_PATH};\
+             ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i opnfv_inventory/inventory/inventory.cfg cluster.yml -b"
+    # TODO: kubespray playbook has tunable parameter for taint nodes
+    exit 0
+fi
+
 #-------------------------------------------------------------------------------
 # Configure localhost
 #-------------------------------------------------------------------------------
