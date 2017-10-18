@@ -126,6 +126,27 @@ if [[ $OS_FAMILY == RedHat ]]; then
     exit 1
 fi
 
+if [ $XCI_K8S_ENABLED == true ]; then
+    if [ $XCI_FLAVOR != "aio" ]; then
+        echo "XCI Kubernetes currently only supports AIO flavor"
+        exit 1
+    fi
+    # TODO: destroy previous k8s environment
+    echo "Info: Configuring localhost for kubespray"
+    echo "-----------------------------------------------------------------------"
+    cd $XCI_PATH/kubespray
+    export ANSIBLE_ROLES_PATH=$XCI_PATH/playbooks/roles
+    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i ../playbooks/inventory configure-opnfvhost.yml
+    echo "-----------------------------------------------------------------------"
+    # for k8s 1.8, swap needs to be disabled for kubelet to run
+    /sbin/swapoff -a
+    cd ${KUBESPRAY_PATH}
+    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i opnfv_inventory/inventory/inventory.cfg cluster.yml -b
+    # TODO: kubespray playbook has tunable parameter for taint nodes
+    kubectl taint nodes --all node-role.kubernetes.io/master-
+    exit 0
+fi
+
 # TODO: The xci playbooks can be put into a playbook which will be done later.
 
 #-------------------------------------------------------------------------------
