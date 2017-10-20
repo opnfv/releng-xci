@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_e40eef33",
+        "filename": "xci/file/aio/configure-opnfvhost.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-20T07:27:22Z",
+      "side": 1,
+      "message": "So this is more complex that it should I think\n\nWould that work better?\n\ncommand: \"/bin/bash ./scripts/bootstrap-aio.sh\"\n      args:\n        chdir: \"{{OPENSTACK_OSA_PATH}}\"\n      environment:\n          SCENARIO\u003d\"{{ XCI_CEPH_ENABLED \u003d\u003d \u0027true\u0027 | ternary(\u0027ceph\u0027, \u0027aio\u0027)\"",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "bcf6949013461b898ce6a21de13dcb5fff52227a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
