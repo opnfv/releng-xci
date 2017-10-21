@@ -186,8 +186,12 @@ finding working versions of upstream components from their master branches to pi
 them for development purposes.
 
 .. image:: images/pipelines-upstream.png
-   :height: 240px
+   :height: 320px
    :align: center
+
+Please note that the types and scope of testing done by XCI vary for different
+projects and the work for enabling pipelines is still in progress which heavily
+depends on the readiness of the upstream projects.
 
 Pipelines for OPNFV Scenarios
 -----------------------------
@@ -272,3 +276,4 @@ is the scenario itself.
 .. image:: images/pipelines-parallel.png
    :height: 480px
    :align: center
+
