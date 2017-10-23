@@ -22,6 +22,30 @@
       "revId": "bcf6949013461b898ce6a21de13dcb5fff52227a",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_5a9050ec",
+        "filename": "xci/file/aio/configure-opnfvhost.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-10-23T01:15:22Z",
+      "side": 1,
+      "message": "It seem more simple, but I am not sure whether it work or not, I will try that.",
+      "parentUuid": "9a3d3df0_e40eef33",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "bcf6949013461b898ce6a21de13dcb5fff52227a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
