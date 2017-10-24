@@ -46,6 +46,30 @@
       "revId": "a3b26d9b48c04c51b15807184ace868294dbe7f9",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_13a07342",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-10-24T16:16:29Z",
+      "side": 1,
+      "message": "Maybe I could be wrong, but for the case where the variable *OPNFV_SCENARIO* is not defined, the line 134 will check if the *./scenarios/_no_scenario_/xci_overrides* file exists and if that is true, it\u0027s going to try to source its values in the line 135 but the final file path will be different trying to load *./scenarios//xci_overrides*",
+      "parentUuid": "9a3d3df0_8455681f",
+      "range": {
+        "startLine": 135,
+        "startChar": 32,
+        "endLine": 135,
+        "endChar": 46
+      },
+      "revId": "a3b26d9b48c04c51b15807184ace868294dbe7f9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
