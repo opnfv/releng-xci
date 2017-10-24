@@ -2,39 +2,46 @@
 # NOTE(hwoarang): Most parts of this this file were taken from the
 # bifrost repository (scripts/install-deps.sh). This script contains all
 # the necessary distro specific code to install ansible and it's dependencies.
-
 set -eu
 
 declare -A PKG_MAP
 
+# workaround: for latest bindep to work, it needs to use en_US local
+export LANG=c
+
 CHECK_CMD_PKGS=(
+    gcc
     libffi
     libopenssl
+    lsb-release
+    make
     net-tools
     python-devel
+    python
+    venv
+    wget
 )
 
 source /etc/os-release || source /usr/lib/os-release
-
 case ${ID,,} in
     *suse)
     OS_FAMILY="Suse"
-    INSTALLER_CMD="sudo -H -E zypper install -y"
+    INSTALLER_CMD="sudo -H -E zypper install -y --no-recommends"
     CHECK_CMD="zypper search --match-exact --installed"
     PKG_MAP=(
         [gcc]=gcc
-        [git]=git
         [libffi]=libffi-devel
         [libopenssl]=libopenssl-devel
+        [lsb-release]=lsb-release
+        [make]=make
         [net-tools]=net-tools
         [python]=python
         [python-devel]=python-devel
         [venv]=python-virtualenv
         [wget]=wget
-        [openssl]=openssl
     )
     EXTRA_PKG_DEPS=( python-xml )
-    sudo zypper -n ref
+	sudo zypper -n ref
     # NOTE (cinerama): we can't install python without removing this package
     # if it exists
     if $(${CHECK_CMD} patterns-openSUSE-minimal_base-conflicts &> /dev/null); then
@@ -47,43 +54,44 @@ case ${ID,,} in
     export DEBIAN_FRONTEND=noninteractive
     INSTALLER_CMD="sudo -H -E apt-get -y install"
     CHECK_CMD="dpkg -l"
-    PKG_MAP=( [gcc]=gcc
-              [git]=git
-              [libffi]=libffi-dev
-              [libopenssl]=libssl-dev
-              [net-tools]=net-tools
-              [python]=python-minimal
-              [python-devel]=libpython-dev
-              [venv]=python-virtualenv
-              [wget]=wget
-              [openssl]=openssl
-            )
+    PKG_MAP=(
+        [gcc]=gcc
+        [libffi]=libffi-dev
+        [libopenssl]=libssl-dev
+        [lsb-release]=lsb-release
+        [make]=make
+        [net-tools]=net-tools
+        [python]=python-minimal
+        [python-devel]=libpython-dev
+        [venv]=python-virtualenv
+        [wget]=wget
+    )
     EXTRA_PKG_DEPS=()
-    sudo apt-get update
+	sudo apt-get update
     ;;
 
-    rhel|centos|fedora)
+    rhel|fedora|centos)
     OS_FAMILY="RedHat"
     PKG_MANAGER=$(which dnf || which yum)
     INSTALLER_CMD="sudo -H -E ${PKG_MANAGER} -y install"
     CHECK_CMD="rpm -q"
     PKG_MAP=(
         [gcc]=gcc
-        [git]=git
         [libffi]=libffi-devel
         [libopenssl]=openssl-devel
+        [lsb-release]=redhat-lsb
+        [make]=make
         [net-tools]=net-tools
         [python]=python
         [python-devel]=python-devel
         [venv]=python-virtualenv
         [wget]=wget
-        [openssl]=openssl
     )
-    sudo yum update --assumeno
     EXTRA_PKG_DEPS=()
-   ;;
+	sudo yum update --assumeno
+    ;;
 
-    *) echo "ERROR: Supported package manager not found.  Supported: apt,yum,zypper"; exit 1;;
+    *) echo "ERROR: Supported package manager not found.  Supported: apt, dnf, yum, zypper"; exit 1;;
 esac
 
 if ! $(python --version &>/dev/null); then
@@ -92,11 +100,13 @@ fi
 if ! $(gcc -v &>/dev/null); then
     ${INSTALLER_CMD} ${PKG_MAP[gcc]}
 fi
-if ! $(git --version &>/dev/null); then
-    ${INSTALLER_CMD} ${PKG_MAP[git]}
-fi
 if ! $(wget --version &>/dev/null); then
     ${INSTALLER_CMD} ${PKG_MAP[wget]}
+fi
+if [ -n "${VENV-}" ]; then
+    if ! $(python -m virtualenv --version &>/dev/null); then
+        ${INSTALLER_CMD} ${PKG_MAP[venv]}
+    fi
 fi
 
 for pkg in ${CHECK_CMD_PKGS[@]}; do
@@ -144,6 +154,14 @@ fi
 
 PIP=$(which pip)
 
-${PIP} install --user "pip>6.0"
+sudo -H -E ${PIP} install --upgrade "pip>6.0"
 
+# Install the rest of required packages using bindep
+sudo -H -E ${PIP} install bindep
+
+# bindep returns 1 if packages are missing
+bindep -b &> /dev/null || ${INSTALLER_CMD} $(bindep -b)
+
+# upgrade setuptools, as latest version is needed to install some projects
+sudo -H -E ${PIP} install --upgrade setuptools
 ${PIP} install --user --upgrade ansible==$XCI_ANSIBLE_PIP_VERSION
