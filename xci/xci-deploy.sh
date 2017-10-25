@@ -135,7 +135,7 @@ fi
 # - removes directories that were created by the previous xci run
 # - clones opnfv/releng-xci and openstack/bifrost repositories
 # - combines opnfv/releng-xci and openstack/bifrost scripts/playbooks
-# - destorys VMs, removes ironic db, leases, logs
+# - destroys VMs, removes ironic db, leases, logs
 # - creates and provisions VMs for the chosen flavor
 #-------------------------------------------------------------------------------
 echo "Info: Starting provisining VM nodes using openstack/bifrost"
