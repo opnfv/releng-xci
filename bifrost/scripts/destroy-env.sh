@@ -44,7 +44,9 @@ rm -rf /tmp/baremetal.*
 
 echo "removing ironic database"
 if $(which mysql &> /dev/null); then
-    mysql -u root ironic --execute "drop database ironic;"
+    mysql_ironic_user=$(sudo grep "connection" /etc/ironic/ironic.conf | cut -d : -f 2 )
+    msyql_ironic_password=$(sudo grep "connection" /etc/ironic/ironic.conf | cut -d : -f 3)
+    mysql -u${mysql_ironic_user#*//} -p${msyql_ironic_password%%@*} --execute "drop database ironic;"
 fi
 echo "removing leases"
 [[ -e /var/lib/misc/dnsmasq/dnsmasq.leases ]] && > /var/lib/misc/dnsmasq/dnsmasq.leases
