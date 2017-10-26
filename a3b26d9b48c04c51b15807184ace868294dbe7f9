@@ -118,6 +118,30 @@
       "revId": "a3b26d9b48c04c51b15807184ace868294dbe7f9",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_2dbb93e6",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-26T09:23:59Z",
+      "side": 1,
+      "message": "Yeah so what\u0027s the problem? We clone scenarios early enough (see 3rd patch in the series) so if they have an xci_overrides variable we will use that.",
+      "parentUuid": "9a3d3df0_8d1d7f12",
+      "range": {
+        "startLine": 135,
+        "startChar": 32,
+        "endLine": 135,
+        "endChar": 46
+      },
+      "revId": "a3b26d9b48c04c51b15807184ace868294dbe7f9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
