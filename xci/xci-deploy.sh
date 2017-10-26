@@ -50,7 +50,7 @@ fi
 #   override any of them.
 #-------------------------------------------------------------------------------
 # find where are we
-XCI_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export XCI_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # source user vars
 source $XCI_PATH/config/user-vars
 # source pinned versions
@@ -127,6 +127,25 @@ if [[ $OS_FAMILY == RedHat ]]; then
 fi
 
 # TODO: The xci playbooks can be put into a playbook which will be done later.
+
+# Clone OPNFV scenario repositories
+#-------------------------------------------------------------------------------
+# This playbook
+# - removes existing scenario roles
+# - clones OPNFV scenario roles based on the file/opnfv-scenario-requirements.yml file
+#-------------------------------------------------------------------------------
+echo "Info: Cloning OPNFV scenario repositories"
+echo "-------------------------------------------------------------------------"
+cd $XCI_PATH/playbooks
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory get-opnfv-scenario-requirements.yml
+echo "-------------------------------------------------------------------------"
+
+#-------------------------------------------------------------------------------
+# Get scenario variables overrides
+#-------------------------------------------------------------------------------
+if [[ -f $XCI_PATH/scenarios/${OPNFV_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
+    source $XCI_PATH/scenarios/$OPNFV_SCENARIO/xci_overrides
+fi
 
 #-------------------------------------------------------------------------------
 # Start provisioning VM nodes

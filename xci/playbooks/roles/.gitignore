@@ -1,0 +1,8 @@
+*
+!.gitignore
+!clone-repository/
+!configure-network/
+!configure-nfs/
+!prepare-functest/
+!remote-folders/
+!synchronize-time/
