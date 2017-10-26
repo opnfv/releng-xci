@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_edbecbfe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-26T08:28:08Z",
+      "side": 1,
+      "message": "configure",
+      "range": {
+        "startLine": 10,
+        "startChar": 32,
+        "endLine": 10,
+        "endChar": 43
+      },
+      "revId": "711a744a4d07d0f4e95bc1e186402293da22876c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_2d38b39f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-26T08:28:08Z",
+      "side": 1,
+      "message": "other",
+      "range": {
+        "startLine": 11,
+        "startChar": 25,
+        "endLine": 11,
+        "endChar": 31
+      },
+      "revId": "711a744a4d07d0f4e95bc1e186402293da22876c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_cdbb070d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-26T08:28:08Z",
+      "side": 1,
+      "message": "configure",
+      "range": {
+        "startLine": 11,
+        "startChar": 13,
+        "endLine": 11,
+        "endChar": 24
+      },
+      "revId": "711a744a4d07d0f4e95bc1e186402293da22876c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_0d3def8f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-26T08:28:08Z",
+      "side": 1,
+      "message": "to not deploy",
+      "range": {
+        "startLine": 13,
+        "startChar": 15,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "711a744a4d07d0f4e95bc1e186402293da22876c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_6d42bb11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-26T08:28:08Z",
+      "side": 1,
+      "message": "\u0027.\u0027 is not needed",
+      "range": {
+        "startLine": 14,
+        "startChar": 26,
+        "endLine": 14,
+        "endChar": 27
+      },
+      "revId": "711a744a4d07d0f4e95bc1e186402293da22876c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_4d47f71f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-26T08:28:08Z",
+      "side": 1,
+      "message": "deployed",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "711a744a4d07d0f4e95bc1e186402293da22876c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ad4b232a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-26T08:28:08Z",
+      "side": 1,
+      "message": "storage",
+      "range": {
+        "startLine": 16,
+        "startChar": 43,
+        "endLine": 16,
+        "endChar": 49
+      },
+      "revId": "711a744a4d07d0f4e95bc1e186402293da22876c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
