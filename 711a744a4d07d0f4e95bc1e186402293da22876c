@@ -160,6 +160,30 @@
       "revId": "711a744a4d07d0f4e95bc1e186402293da22876c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_8d6f3f92",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-10-26T08:36:36Z",
+      "side": 1,
+      "message": "I am not good at English. I will modify that. :)",
+      "parentUuid": "9a3d3df0_4d47f71f",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "711a744a4d07d0f4e95bc1e186402293da22876c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
