@@ -94,6 +94,30 @@
       "revId": "a3b26d9b48c04c51b15807184ace868294dbe7f9",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_8d1d7f12",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-10-26T09:16:40Z",
+      "side": 1,
+      "message": "I am not sure about this part either.\n\nWhat if we are deploying a scenario which is not stored in releng-xci/scenarios but pulled in during scenario bootstrap from another repo such as sfc?",
+      "parentUuid": "9a3d3df0_2e6a6e1a",
+      "range": {
+        "startLine": 135,
+        "startChar": 32,
+        "endLine": 135,
+        "endChar": 46
+      },
+      "revId": "a3b26d9b48c04c51b15807184ace868294dbe7f9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
