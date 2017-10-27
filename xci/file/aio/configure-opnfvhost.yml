@@ -6,6 +6,14 @@
   roles:
     - { role: clone-repository, project: "openstack/openstack-ansible", repo: "{{ OPENSTACK_OSA_GIT_URL }}", dest: "{{ OPENSTACK_OSA_PATH }}", version: "{{ OPENSTACK_OSA_VERSION }}" }
   tasks:
+    - name: Synchronize local development openstack-ansible repository to XCI paths
+      synchronize:
+        src: "{{ OPENSTACK_OSA_DEV_PATH }}"
+        dest: "{{ OPENSTACK_OSA_PATH }}"
+        recursive: yes
+        delete: yes
+      when:
+        - OPENSTACK_OSA_DEV_PATH != ""
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
