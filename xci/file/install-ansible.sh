@@ -79,7 +79,7 @@ case ${ID,,} in
         [wget]=wget
         [openssl]=openssl
     )
-    sudo yum update --assumeno
+    sudo yum updateinfo
     EXTRA_PKG_DEPS=()
    ;;
 
