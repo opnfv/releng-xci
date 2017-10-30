@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_3cb61fda",
+        "filename": "xci/playbooks/roles/os-odl-nofeature/tasks/main.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-30T14:48:14Z",
+      "side": 1,
+      "message": "Yes it does but the xci infrastructure will make sure that your role will end up in the roles directory. Just make sure you add the scenario information to the opnfv-requirements.yml file like the rest of them. You are currently missing that file from your patch.",
+      "parentUuid": "9a3d3df0_dc76133e",
+      "revId": "148a6c605100d6f3216ac822f63fe3240bbe821b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_1cea3b0f",
         "filename": "xci/scenarios/os-odl-nofeature/xci_overrides",
         "patchSetId": 16
