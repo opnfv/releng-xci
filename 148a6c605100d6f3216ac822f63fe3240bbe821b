@@ -91,6 +91,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_3cd73fc3",
+        "filename": "xci/playbooks/roles/os-odl-nofeature/tasks/main.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-10-30T16:11:29Z",
+      "side": 1,
+      "message": "ah! okay, now i see the parsing logic in get-opnfv-scenario-requirements.yml :)",
+      "parentUuid": "9a3d3df0_3c89ffeb",
+      "revId": "148a6c605100d6f3216ac822f63fe3240bbe821b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_1cea3b0f",
         "filename": "xci/scenarios/os-odl-nofeature/xci_overrides",
         "patchSetId": 16
