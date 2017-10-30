@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_dc49f3d1",
+        "filename": "xci/playbooks/roles/os-odl-nofeature/tasks/main.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-10-30T15:28:58Z",
+      "side": 1,
+      "message": "Okay. Thank for the details.\nwe haven\u0027t found any specific repo to keep os-odl\u003dnofeature scenario and can be pulled using opnfv-scenario-requirements.yml file. \nI think the current plan is to keep the files under scenarios directory in releng-xci and use it.",
+      "parentUuid": "9a3d3df0_3cb61fda",
+      "revId": "148a6c605100d6f3216ac822f63fe3240bbe821b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_1cea3b0f",
         "filename": "xci/scenarios/os-odl-nofeature/xci_overrides",
         "patchSetId": 16
