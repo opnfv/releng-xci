@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_3c89ffeb",
+        "filename": "xci/playbooks/roles/os-odl-nofeature/tasks/main.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-30T15:33:32Z",
+      "side": 1,
+      "message": "Yes. But you still need to modify that file and simply add the releng-xci information there.\n\nSo something like\n- scenario: os-odl-nofeature  scm: git                                                                                                                                                                                    \n  src: https://git.opnfv.org/releng-xci\n  version: master\n  role: xci/scenarios/os-odl-nofeature/role/os-odl-nofeature\n\nThe reason for that is that we treat both \u0027in-tree\u0027 and \u0027out-of-tree\u0027 scenarios the same because the \u0027in-tree\u0027 ones may be moved elsewhere in the future.",
+      "parentUuid": "9a3d3df0_dc49f3d1",
+      "revId": "148a6c605100d6f3216ac822f63fe3240bbe821b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_1cea3b0f",
         "filename": "xci/scenarios/os-odl-nofeature/xci_overrides",
         "patchSetId": 16
