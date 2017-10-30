@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_fcee7721",
+        "filename": "xci/playbooks/roles/os-odl-nofeature/tasks/main.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-30T11:08:49Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be in the roles directory. It should be moved to scenarios",
+      "revId": "148a6c605100d6f3216ac822f63fe3240bbe821b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1cea3b0f",
+        "filename": "xci/scenarios/os-odl-nofeature/xci_overrides",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-10-30T11:08:49Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be here. We are sourcing this file so any \u0027set\u0027 that you do here will be propagated to the main script.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 14
+      },
+      "revId": "148a6c605100d6f3216ac822f63fe3240bbe821b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
