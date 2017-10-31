@@ -1,0 +1,193 @@
+##############################################################################
+# Copyright (c) 2017 Ericsson AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+---
+### vPOD descriptor file ###
+
+details:
+  pod_owner: OPNFV
+  contact: N/A
+  lab: OPNFV LaaS
+  location: N/A
+  type: production
+  link: http://wiki.opnfv.org/
+##############################################################################
+net_config:
+  mgmt:
+    interface: 0
+    ip-range: 192.168.122.2-192.168.122.254
+##############################################################################
+jumphost:
+  name: vpod-jump
+  node:
+    type: virtual
+    vendor: libvirt
+    model: pc
+    arch: x86_64
+    cpus: 2
+    cpu_cflags: host-model
+    cores: 2
+    memory: 4G
+  disks:
+    - name: disk1
+      disk_capacity: 80G
+      disk_type: qcow2
+      disk_interface: ide
+      disk_rotation:
+  os:
+  remote_management:
+    type: agent_ssh
+    versions:
+    user: ironic
+    pass: /home/ironic/.ssh/id_rsa
+    address: 192.168.122.2/24
+    mac_address: "52:54:00:8e:f4:80"
+  interfaces:
+    - mac_address: "52:54:00:8e:f4:80"
+      speed:
+      features:
+##############################################################################
+nodes:
+  - name: vpod-node1
+    node:
+      type: virtual
+      vendor: libvirt
+      model: pc
+      arch: x86_64
+      cpus: 6
+      cpu_cflags: host-model
+      cores: 6
+      memory: 16G
+    disks:
+      - name: disk1
+        disk_capacity: 80G
+        disk_type: qcow2
+        disk_interface: ide
+        disk_rotation:
+    remote_management:
+      type: agent_ssh
+      versions:
+      user: ironic
+      pass: /home/ironic/.ssh/id_rsa
+      address: 192.168.122.3/24
+      mac_address: "52:54:00:fe:3b:01"
+    interfaces:
+      - mac_address: "52:54:00:fe:3b:01"
+        speed:
+        features:
+##############################################################################
+  - name: vpod-node2
+    node:
+      type: virtual
+      vendor: libvirt
+      model: pc
+      arch: x86_64
+      cpus: 6
+      cpu_cflags: host-model
+      cores: 6
+      memory: 16G
+    disks:
+      - name: disk1
+        disk_capacity: 80G
+        disk_type: qcow2
+        disk_interface: ide
+        disk_rotation:
+    remote_management:
+      type: agent_ssh
+      versions:
+      user: ironic
+      pass: /home/ironic/.ssh/id_rsa
+      address: 192.168.122.4/24
+      mac_address: "52:54:00:b9:d4:87"
+    interfaces:
+      - mac_address: "52:54:00:b9:d4:87"
+        speed:
+        features:
+##############################################################################
+  - name: vpod-node3
+    node:
+      type: virtual
+      vendor: libvirt
+      model: pc
+      arch: x86_64
+      cpus: 6
+      cpu_cflags: host-model
+      cores: 6
+      memory: 16G
+    disks:
+      - name: disk1
+        disk_capacity: 80G
+        disk_type: qcow2
+        disk_interface: ide
+        disk_rotation:
+    remote_management:
+      type: agent_ssh
+      versions:
+      user: ironic
+      pass: /home/ironic/.ssh/id_rsa
+      address: 192.168.122.5/24
+      mac_address: "52:54:00:6d:0e:d1"
+    interfaces:
+      - mac_address: "52:54:00:6d:0e:d1"
+        speed:
+        features:
+##############################################################################
+  - name: vpod-node4
+    node:
+      type: virtual
+      vendor: libvirt
+      model: pc
+      arch: x86_64
+      cpus: 6
+      cpu_cflags: host-model
+      cores: 6
+      memory: 16G
+    disks:
+      - name: disk1
+        disk_capacity: 80G
+        disk_type: qcow2
+        disk_interface: ide
+        disk_rotation:
+    remote_management:
+      type: agent_ssh
+      versions:
+      user: ironic
+      pass: /home/ironic/.ssh/id_rsa
+      address: 192.168.122.6/24
+      mac_address: "52:54:00:95:02:10"
+    interfaces:
+      - mac_address: "52:54:00:95:02:10"
+        speed:
+        features:
+##############################################################################
+  - name: vpod-node5
+    node:
+      type: virtual
+      vendor: libvirt
+      model: pc
+      arch: x86_64
+      cpus: 6
+      cpu_cflags: host-model
+      cores: 6
+      memory: 16G
+    disks:
+      - name: disk1
+        disk_capacity: 80G
+        disk_type: qcow2
+        disk_interface: ide
+        disk_rotation:
+    remote_management:
+      type: agent_ssh
+      versions:
+      user: ironic
+      pass: /home/ironic/.ssh/id_rsa
+      address: 192.168.122.7/24
+      mac_address: "52:54:00:84:fa:19"
+    interfaces:
+      - mac_address: "52:54:00:84:fa:19"
+        speed:
+        features:
