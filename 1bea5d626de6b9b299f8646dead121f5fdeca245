@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_9925b8c4",
+        "filename": "xci/playbooks/roles/os-nosdn-ovs/tasks/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-11-01T16:54:27Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be better to keep this more generic? Something like:\n\n    name: copy user_variables_{{ OPNFV_SCENARIO }}.yml",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 11,
+        "endChar": 44
+      },
+      "revId": "1bea5d626de6b9b299f8646dead121f5fdeca245",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_792274ba",
+        "filename": "xci/playbooks/roles/os-nosdn-ovs/tasks/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-11-01T16:54:27Z",
+      "side": 1,
+      "message": "ditto: line 11",
+      "range": {
+        "startLine": 13,
+        "startChar": 25,
+        "endLine": 13,
+        "endChar": 37
+      },
+      "revId": "1bea5d626de6b9b299f8646dead121f5fdeca245",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d92f40a0",
+        "filename": "xci/playbooks/roles/os-nosdn-ovs/tasks/main.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-11-01T16:54:27Z",
+      "side": 1,
+      "message": "ditto: line 11",
+      "range": {
+        "startLine": 14,
+        "startChar": 53,
+        "endLine": 14,
+        "endChar": 65
+      },
+      "revId": "1bea5d626de6b9b299f8646dead121f5fdeca245",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
