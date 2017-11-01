@@ -2,6 +2,144 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a3d3df0_ccb94030",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2017-11-01T19:40:34Z",
+      "side": 1,
+      "message": "License header :)",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_8caf38e3",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2017-11-01T19:40:34Z",
+      "side": 1,
+      "message": "We could re-use these later (see note about disks below)",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 16
+      },
+      "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_cc62e0d7",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2017-11-01T19:40:34Z",
+      "side": 1,
+      "message": "The spec says cpu_flags should be gcc-compatible, so I doubt host-model is valid in that context.",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 14
+      },
+      "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ac5f9c0d",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2017-11-01T19:40:34Z",
+      "side": 1,
+      "message": "we should probably extend disk_rotation accepted values with \u00270\u0027 or \u0027null\u0027, or make it optional",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_6cac74ee",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2017-11-01T19:40:34Z",
+      "side": 1,
+      "message": "Do we have a way to use a custom libvirt URI (instead of default qemu:///system)? That way we could spread VMs across multiple KVM hosts, in Armband\u0027s future probably betweent different arch KVM nodes.",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 19
+      },
+      "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_0c9cc8bf",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2017-11-01T19:40:34Z",
+      "side": 1,
+      "message": "interesting idea, should be documented in the spec if we adopt it",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_f62b3380",
         "filename": "xci/file/ha/vpod-pdf.yaml",
         "patchSetId": 2
@@ -41,6 +179,52 @@
         "startLine": 36,
         "startChar": 3,
         "endLine": 36,
+        "endChar": 36
+      },
+      "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_eca084f6",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2017-11-01T19:40:34Z",
+      "side": 1,
+      "message": "looks like all nodes have the same disk config, how about \u0026disks + *disks?",
+      "range": {
+        "startLine": 53,
+        "startChar": 4,
+        "endLine": 53,
+        "endChar": 9
+      },
+      "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_4ca6d011",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2017-11-01T19:40:34Z",
+      "side": 1,
+      "message": "same as for disks, \u0026remote_param + \u003c\u003c*remote_param?",
+      "range": {
+        "startLine": 60,
+        "startChar": 6,
+        "endLine": 63,
         "endChar": 36
       },
       "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
