@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_85c42b93",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-11-02T23:20:02Z",
+      "side": 1,
+      "message": "didn\u0027t know that and didn\u0027t google it so thanks for making me curious.",
+      "parentUuid": "9a3d3df0_afc14e30",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 14
+      },
+      "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_ac5f9c0d",
         "filename": "xci/file/ha/vpod-pdf.yaml",
         "patchSetId": 2
@@ -273,6 +297,30 @@
       "side": 1,
       "message": "yes",
       "parentUuid": "9a3d3df0_4c59b0fd",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 19
+      },
+      "revId": "429a55625d8d835dd6e11e6687dff9da7a51ae76",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_25d0bf4f",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-11-02T23:20:02Z",
+      "side": 1,
+      "message": "then it is possible :)",
+      "parentUuid": "9a3d3df0_0fde7a11",
       "range": {
         "startLine": 30,
         "startChar": 2,
