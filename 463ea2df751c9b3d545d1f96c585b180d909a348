@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_eca6c4c0",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-11-02T01:29:59Z",
+      "side": 1,
+      "message": "one question, can we add one more interface? if integrating dpdk, it will need another interface.",
+      "range": {
+        "startLine": 101,
+        "startChar": 2,
+        "endLine": 104,
+        "endChar": 17
+      },
+      "revId": "463ea2df751c9b3d545d1f96c585b180d909a348",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
