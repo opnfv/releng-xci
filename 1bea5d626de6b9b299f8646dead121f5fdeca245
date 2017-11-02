@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a3d3df0_4f108201",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-11-02T09:52:08Z",
+      "side": 1,
+      "message": "I don\u0027t quite understand why need export the OPNFV_SCENARIO in here.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 61
+      },
+      "revId": "1bea5d626de6b9b299f8646dead121f5fdeca245",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_2f153ef1",
+        "filename": "xci/playbooks/roles/os-nosdn-ovs/files/user_variables_os-nosdn-ovs.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-11-02T09:52:08Z",
+      "side": 1,
+      "message": "it seem to miss some configuration according to the https://docs.openstack.org/developer/openstack-ansible-os_neutron/app-openvswitch.html\n\nit seem also need change some thing in openstack_user_config.yml",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "1bea5d626de6b9b299f8646dead121f5fdeca245",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_9925b8c4",
         "filename": "xci/playbooks/roles/os-nosdn-ovs/tasks/main.yml",
         "patchSetId": 6
