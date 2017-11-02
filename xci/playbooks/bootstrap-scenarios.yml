@@ -8,3 +8,8 @@
 #   include_role:
 #     name: "foobar"
 #   when: OPNFV_SCENARIO == "foobar"
+
+- name: Prepare everything to run the os-odl-nofeature scenario
+  include_role:
+    name: "os-odl-nofeature"
+  when: OPNFV_SCENARIO == 'os-odl-nofeature'
