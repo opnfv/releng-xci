@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_e0040517",
+        "filename": "xci/playbooks/roles/os-nosdn-ovs/files/user_variables_os-nosdn-ovs.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-11-03T06:50:32Z",
+      "side": 1,
+      "message": "I don\u0027t think equals matters here (may be due to pattern ?). I have seen ovs got installed in neutron_agent_container and compute node with the configuration (lines 22-28).\nThe remaining configuration are for configuring the neutron for allowing specific network types and its configuration for northbound. Let me check the blog.",
+      "parentUuid": "9a3d3df0_45b503ed",
+      "range": {
+        "startLine": 24,
+        "startChar": 12,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "1bea5d626de6b9b299f8646dead121f5fdeca245",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_2f153ef1",
         "filename": "xci/playbooks/roles/os-nosdn-ovs/files/user_variables_os-nosdn-ovs.yml",
         "patchSetId": 6
