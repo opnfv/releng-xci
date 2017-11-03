@@ -37,16 +37,24 @@ fi
         virsh undefine $vm || true
     done
 
+echo "stopping ironic services"
+service ironic-api stop || true
+service ironic-inspector stop || true
 service ironic-conductor stop || true
 
 echo "removing inventory files created by previous builds"
 rm -rf /tmp/baremetal.*
 
-echo "removing ironic database"
 if $(which mysql &> /dev/null); then
+    echo "removing ironic database"
     mysql_ironic_user=$(sudo grep "connection" /etc/ironic/ironic.conf | cut -d : -f 2 )
     msyql_ironic_password=$(sudo grep "connection" /etc/ironic/ironic.conf | cut -d : -f 3)
-    mysql -u${mysql_ironic_user#*//} -p${msyql_ironic_password%%@*} --execute "drop database ironic;"
+    mysql -u${mysql_ironic_user#*//} -p${msyql_ironic_password%%@*} --execute "drop database if exists ironic;"
+
+    echo "removing inspector database"
+    mysql_ironic_user=$(sudo grep "connection" /etc/ironic-inspector/inspector.conf | cut -d : -f 2 )
+    msyql_ironic_password=$(sudo grep "connection" /etc/ironic-inspector/inspector.conf | cut -d : -f 3)
+    mysql -u${mysql_ironic_user#*//} -p${msyql_ironic_password%%@*} --execute "drop database if exists inspector;"
 fi
 echo "removing leases"
 [[ -e /var/lib/misc/dnsmasq/dnsmasq.leases ]] && > /var/lib/misc/dnsmasq/dnsmasq.leases
@@ -68,6 +76,3 @@ rm -rf /var/lib/libvirt/images/*.qcow2
 echo "restarting services"
 service dnsmasq restart || true
 service libvirtd restart
-service ironic-api restart || true
-service ironic-conductor start || true
-service ironic-inspector restart || true
