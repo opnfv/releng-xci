@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_c076213e",
+        "filename": "xci/playbooks/roles/os-nosdn-ovs/files/user_variables_os-nosdn-ovs.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-11-03T12:36:18Z",
+      "side": 1,
+      "message": "okay, i see your point. it is about configuring required provider bridges at ovs. The blog covers only vlan and flat networks. i think releng-xci should support for vxlan tunneling too. \nThere is already openstack_user_config.yml for each flavor in releng-xci. so i thought of overriding it only for provider_networks with openstack_user_config_os-nosdn-ovs.yml file. Fatih, Markos, all: please let me if it is okay.",
+      "parentUuid": "9a3d3df0_e5bff7ce",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "1bea5d626de6b9b299f8646dead121f5fdeca245",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_9925b8c4",
         "filename": "xci/playbooks/roles/os-nosdn-ovs/tasks/main.yml",
         "patchSetId": 6
