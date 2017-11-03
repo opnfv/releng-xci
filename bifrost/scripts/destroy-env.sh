@@ -31,22 +31,34 @@ if which vbmc &>/dev/null || { [[ -e /opt/stack/bifrost/bin/activate ]] && sourc
 fi
 
 # Destroy all XCI VMs if the previous operation failed
-[[ -n ${XCI_FLAVOR} ]] && \
-    for vm in ${TEST_VM_NODE_NAMES}; do
-        virsh destroy $vm || true
-        virsh undefine $vm || true
-    done
+if $(which virsh &> /dev/null); then
+    [[ -n ${XCI_FLAVOR} ]] && \
+        for vm in ${TEST_VM_NODE_NAMES}; do
+            virsh destroy $vm || true
+            virsh undefine $vm || true
+        done
+fi
 
-service ironic-conductor stop || true
+echo "stopping ironic services"
+if service --status-all | grep -Fq 'ironic-'; then
+    service ironic-api stop || true
+    service ironic-inspector stop || true
+    service ironic-conductor stop || true
+fi
 
 echo "removing inventory files created by previous builds"
 rm -rf /tmp/baremetal.*
 
-echo "removing ironic database"
 if $(which mysql &> /dev/null); then
+    echo "removing ironic database"
     mysql_ironic_user=$(sudo grep "connection" /etc/ironic/ironic.conf | cut -d : -f 2 )
     msyql_ironic_password=$(sudo grep "connection" /etc/ironic/ironic.conf | cut -d : -f 3)
-    mysql -u${mysql_ironic_user#*//} -p${msyql_ironic_password%%@*} --execute "drop database ironic;"
+    mysql -u${mysql_ironic_user#*//} -p${msyql_ironic_password%%@*} --execute "drop database if exists ironic;"
+
+    echo "removing inspector database"
+    mysql_ironic_user=$(sudo grep "connection" /etc/ironic-inspector/inspector.conf | cut -d : -f 2 )
+    msyql_ironic_password=$(sudo grep "connection" /etc/ironic-inspector/inspector.conf | cut -d : -f 3)
+    mysql -u${mysql_ironic_user#*//} -p${msyql_ironic_password%%@*} --execute "drop database if exists inspector;"
 fi
 echo "removing leases"
 [[ -e /var/lib/misc/dnsmasq/dnsmasq.leases ]] && > /var/lib/misc/dnsmasq/dnsmasq.leases
@@ -66,8 +78,9 @@ fi
 rm -rf /var/lib/libvirt/images/*.qcow2
 
 echo "restarting services"
-service dnsmasq restart || true
-service libvirtd restart
-service ironic-api restart || true
-service ironic-conductor start || true
-service ironic-inspector restart || true
+if service --status-all | grep -Fq 'dnsmasq'; then
+    service dnsmasq restart || true
+fi
+if service --status-all | grep -Fq 'libvirtd'; then
+    service libvirtd restart
+fi
