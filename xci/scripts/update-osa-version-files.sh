@@ -78,14 +78,19 @@ sed -i -e "/^export OPENSTACK_OSA_VERSION/s@:-\"[a-z0-9]*@:-\"${1}@" \
     sed -i -e "/^export OPENSTACK_BIFROST_VERSION/s@:-\"[a-z0-9]*@:-\"${2}@" \
     -e "s/\(^# HEAD of bifrost.*of \).*/\1$(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
 
+cp $tempdir/openstack-ansible/playbooks/defaults/repo_packages/openstack_services.yml ${releng_xci_base}/file/.
+cp $tempdir/openstack-ansible/global-requirement-pins.txt ${releng_xci_base}/file/.
+
 popd &> /dev/null
 
 printme ""
 printme "======================= Report ============================"
 printme ""
-printme "The $releng_xci_base/file/ansible-role-requirements.yml and"
-printme "$releng_xci_base/config/pinned-versions files have been"
-printme "updated. Please make sure you test the end result before"
-printme "committing it!"
+printme "The following files have been updated:"
+printme "- $releng_xci_base/file/ansible-role-requirements.yml"
+printme "- $releng_xci_base/file/global-requirement-pins.txt"
+printme "- $releng_xci_base/file/openstack_services.yml"
+printme "- $releng_xci_base/config/pinned-versions"
+printme "Please make sure you test the end result before committing it!"
 printme ""
 printme "==========================================================="

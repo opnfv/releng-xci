@@ -21,6 +21,9 @@
 # # Debug and Verbose options.
 debug: false
 
+# Allow root logins
+security_sshd_permit_root_login: yes
+
 haproxy_keepalived_external_vip_cidr: "192.168.122.3/32"
 haproxy_keepalived_internal_vip_cidr: "172.29.236.11/32"
 haproxy_keepalived_external_interface: br-vlan
