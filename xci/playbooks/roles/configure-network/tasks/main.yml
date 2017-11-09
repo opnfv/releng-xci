@@ -60,6 +60,7 @@
       copy:
         src: "network-config-suse"
         dest: "/etc/sysconfig/network/scripts/network-config-suse"
+        mode: 0755
 
     - name: Configure routes on SUSE
       template:
