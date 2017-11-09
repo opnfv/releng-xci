@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_712f20f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-09T15:04:11Z",
+      "side": 1,
+      "message": "capitals :)\n\nOverall I think the title is not in line with good git commit practices. You should briefly describe your fix instead of \u0027fix bug\u0027. For example \u0027Fix permissions on SUSE network script\u0027\n\nSee https://git-scm.com/book/en/v2/Distributed-Git-Contributing-to-a-Project",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "56519a930a7124d10cce9f1677d6460d3b8c7a82",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_31ee38b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-09T15:04:11Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 10,
+        "startChar": 19,
+        "endLine": 10,
+        "endChar": 20
+      },
+      "revId": "56519a930a7124d10cce9f1677d6460d3b8c7a82",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
