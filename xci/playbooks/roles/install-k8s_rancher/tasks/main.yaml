@@ -1,0 +1,22 @@
+---
+- name: install docker
+  import_tasks: docker.yaml
+  become: true
+  tags: docker
+  when: ('server' in group_names) or
+        ('node' in group_names)
+
+- name: install rancher server part
+  import_tasks: server.yaml
+  tags: server
+  when: "'server' in group_names"
+
+- name: install rancher compute part
+  import_tasks: node.yaml
+  tags: node
+  when: "'node' in group_names"
+
+- name: install kubernetes on top of rancher
+  import_tasks: kubernetes.yaml
+  tags: k8s
+  when: "'jumphost' in group_names"

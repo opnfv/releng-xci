@@ -1,0 +1,19 @@
+---
+- name: install packages
+  import_tasks: docker_DEBIAN.yaml
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: add login user to docker group
+  user: name={{ansible_user}} groups=docker append=yes
+
+- name: Upgrade pip
+  pip:
+    name: pip
+    state: latest
+  tags:
+    - skip_ansible_lint
+
+- name: install docker py
+  pip:
+    name: docker-py
+    state: present

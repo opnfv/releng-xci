@@ -1,0 +1,227 @@
+---
+- name: set fact server_url
+  set_fact:
+    server_url:
+      "{{ (groups['server']|map('extract', hostvars)|
+      selectattr('ip')|list|length > 0) |
+      ternary(groups['server']|map('extract', hostvars, 'ip')|list|first,
+      hostvars[groups.server[0]].ansible_default_ipv4.address )}}"
+
+- name: get projects list
+  uri:
+    method: GET
+    status_code: 200
+    url: "http://{{ server_url }}/v2-beta/projects/"
+  register: projects
+
+- name: register System project id
+  set_fact:
+    system_project_id:
+      "{{ (projects.json.data|selectattr('name', 'equalto',
+                                         'Default')|first).id }}"
+
+- name: get all launched stacks on Kube project
+  uri:
+    method: GET
+    status_code: 200
+    url: "http://{{ server_url }}/v2-beta/stacks"
+  register: stacks
+
+- name: set kube_not_present fact
+  set_fact:
+    kube_not_present:
+      "{{ stacks.json.data|selectattr('name', 'equalto',
+                                      'kubernetes')|list|length == 0 }}"
+
+- name: retrieve kubernetes template info
+  uri:
+    method: GET
+    status_code: 200
+    url: "http://{{ server_url }}/v1-catalog/templates/library:infra*k8s"
+  register: kube_template
+  when: kube_not_present
+
+- name: launch installation of kubernetes
+  uri:
+    method: POST
+    status_code: 201
+    url:
+      "http://{{ server_url }}/v2-beta/projects/{{ system_project_id }}/stacks"
+    body: "{{ lookup('file','stack_body.json') }}"
+    body_format: json
+  register: kube_stack
+  when: kube_not_present
+
+# Tried to use ternary
+# (https://docs.ansible.com/ansible/devel/playbooks_filters.html#id27)
+# but ternary first resolve its parameter and then applies the rest so all
+# variables must be know and it's not he case here (kube_stack known only
+# when kube_not_present is false)
+
+- name: retrieve kubernetes stack id when kube was not present
+  set_fact:
+    kube_stack_id: "{{ kube_stack.json.id }}"
+  when: kube_not_present
+
+- name: retrieve kubernetes stack id when kube was present
+  set_fact:
+    kube_stack_id:
+      "{{ (stacks.json.data|selectattr('name',
+                                       'equalto', 'kubernetes')|first).id}}"
+  when: not kube_not_present
+
+- name: wait for stack to be active
+  uri:
+    method: GET
+    status_code: 200
+    url:
+      "http://{{ server_url }}/v2-beta/projects/\
+      {{ system_project_id }}/stacks/{{ kube_stack_id }}"
+  register: kube_stack
+  until: >
+    (kube_stack.status == 200) and (kube_stack.json.healthState == "healthy")
+  retries: 60
+  delay: 10
+
+- name: check if kubectl config exist
+  stat:
+    path: "{{ ansible_env.HOME }}/.kube/config"
+  register: kubectl_config
+
+- name: set fact kubectl config is present
+  set_fact:
+    kubectl_config_present: "{{ kubectl_config.stat.exists }}"
+
+- name: retrieve kubectl config
+  slurp:
+    src: "{{ ansible_env.HOME }}/.kube/config"
+  register: kubectl_config
+  when: kubectl_config_present
+
+- name: retrieve username in kubectl config
+  set_fact:
+    kubectl_username:
+      "{{ kubectl_config.content |
+      b64decode | regex_findall('# username: \"([0-9a-zA-Z]+)\"') | first }}"
+  when: kubectl_config_present
+
+- name: retrieve all keys from API
+  uri:
+    method: GET
+    status_code: 200
+    url:
+      "http://{{ server_url }}/v2-beta/projects/\
+      {{ system_project_id }}/apiKeys"
+  register: apikeys
+  when: kubectl_config_present
+
+- name: check if key already present
+  set_fact:
+    apikey_not_present:
+      "{{ apikeys.json.data |
+      selectattr('publicValue', 'equalto', kubectl_username) |
+      list | length == 0}}"
+  when: kubectl_config_present
+
+- name: create api key for kubectl
+  uri:
+    method: POST
+    status_code: 201
+    url:
+      "http://{{ server_url }}/v2-beta/projects/\
+      {{ system_project_id }}/apiKeys"
+    body:
+      kind: "apiKey"
+      name: "kubectl"
+      description: "Provides workstation access to kubectl"
+    body_format: json
+  register: apikey_infos
+  when: (not kubectl_config_present) or apikey_not_present
+
+- name: set apikey_id, username, password facts
+  set_fact:
+    apikey_id: "{{ apikey_infos.json.id}}"
+    username: "{{ apikey_infos.json.publicValue}}"
+    token:
+      "{{ ('Basic ' + (apikey_infos.json.publicValue + ':' +
+      apikey_infos.json.secretValue | b64encode)) | b64encode }}"
+  when: (not kubectl_config_present) or apikey_not_present
+
+- name: check key is created
+  uri:
+    method: GET
+    status_code: 200
+    url:
+      "http://{{ server_url }}/v2-beta/projects/{{ system_project_id }}\
+      /apiKeys/{{ apikey_id }}"
+  register: apikey_infos
+  until: apikey_infos.json.state == "active"
+  retries: 10
+  delay: 1
+  when: (not kubectl_config_present) or apikey_not_present
+
+- name: set fact key_active
+  set_fact:
+    key_active: "{{ apikey_infos.json.state}}"
+  when: (not kubectl_config_present) or apikey_not_present
+
+- name: create Kubernetes service proxy
+  uri:
+    method: POST
+    status_code: 201
+    url:
+      "http://{{ server_url }}/v2-beta/projects/{{ system_project_id }}\
+      /serviceProxies"
+    body:
+      scheme: "https"
+      port: 6443
+      service: "kubernetes"
+    body_format: json
+  when: (not kubectl_config_present) or apikey_not_present
+
+- name: install latest kubectl
+  become: true
+  get_url:
+    url:
+      "https://storage.googleapis.com/kubernetes-release/\
+      release/v1.8.0/bin/linux/amd64/kubectl"
+    dest: /usr/local/bin/kubectl
+    mode: 0777
+  when: (ansible_system == 'Linux') and
+        (ansible_userspace_architecture == 'x86_64')
+
+- name: create ~/.kube if needed
+  file:
+    path: "{{ ansible_env.HOME }}/.kube"
+    state: directory
+    mode: 0755
+
+- name: create kubectl_config
+  template:
+    src: kube_config.j2
+    dest: "{{ ansible_env.HOME }}/.kube/config"
+  when: (not kubectl_config_present) or apikey_not_present
+
+- name: set fact helm_not_present
+  set_fact:
+    helm_not_present: >
+      kube_stacks.json.data|selectattr('name',
+                                       'equalto', 'helm')|list|length != 0
+
+- name: get helm latest release
+  get_url:
+    url: https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get
+    dest: /tmp/get_helm.sh
+
+- name: make helm.sh executable
+  file:
+    path: /tmp/get_helm.sh
+    mode: 0700
+
+- name: install helm on jumphost
+  command: "/tmp/get_helm.sh"
+  when: "True"
+
+- name: init helm
+  command: "helm init --upgrade"
+  when: "True"

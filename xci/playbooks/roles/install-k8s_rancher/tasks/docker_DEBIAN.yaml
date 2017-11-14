@@ -1,0 +1,50 @@
+---
+- name: Install list of packages
+  apt:
+    name: "{{item}}"
+    state: installed
+    update_cache: "yes"
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg2
+    - software-properties-common
+
+- name: Install python-pip
+  apt:
+    name: python-pip
+    state: installed
+  when: ansible_python.version.major == 2
+
+- name: Install python3-pip
+  apt:
+    name: python3-pip
+    state: installed
+  when: ansible_python.version.major == 3
+
+- name: retrieve linux type
+  set_fact:
+    distri: "{{ ansible_distribution.lower() }}"
+
+- name: retrieve docker apt key
+  apt_key:
+    url: "https://download.docker.com/linux/{{ distri }}/gpg"
+    id: 0EBFCD88
+    state: present
+
+- name: retrieve linux release
+  set_fact:
+    release: "{{ ansible_distribution_release.lower() }}"
+
+- name: add docker repo
+  apt_repository:
+    repo: >
+      deb [arch=amd64] https://download.docker.com/linux/{{ distri }}
+        {{ release }} stable
+    state: present
+
+- name: install docker
+  apt:
+    update_cache: 'yes'
+    name: docker-ce

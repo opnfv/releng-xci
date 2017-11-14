@@ -1,0 +1,10 @@
+---
+- name: start rancher server
+  become: true
+  docker_container:
+    name: rancher_server
+    image: "rancher/server:stable"
+    state: started
+    restart_policy: unless-stopped
+    published_ports:
+      - "80:8080"

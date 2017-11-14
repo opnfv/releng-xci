@@ -1,4 +1,5 @@
-*
+*/
+!install-k8s_rancher/
 !.gitignore
 !clone-repository/
 !configure-network/
