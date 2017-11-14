@@ -21,6 +21,7 @@
 #   export XCI_FLAVOR="ha"
 #-------------------------------------------------------------------------------
 export XCI_FLAVOR=${XCI_FLAVOR:-aio}
+export XCI_CEPH_ENABLED=${XCI_CEPH_ENABLED:-false}
 
 #-------------------------------------------------------------------------------
 # Set Paths to where git repositories of XCI Components will be cloned
