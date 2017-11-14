@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_0f3b0839",
+        "filename": "xci/file/ha/vpod-pdf.yaml",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2017-11-14T15:27:46Z",
+      "side": 1,
+      "message": "why not using \n    interface: 0\n    vlan: 0\n    network: \n    mask: \n    gateway: \n    dns: \nit would be better for node configuration",
+      "revId": "a535c9d8a9882b88d3f93aa00a2472b25498ec38",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
