@@ -1,0 +1,4 @@
+---
+- hosts: k8s-cluster
+  roles:
+    - role: install-k8s_rancher
