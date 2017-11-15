@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_c9963b94",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/user_variables_os-odl-nofeature.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-11-15T15:57:09Z",
+      "side": 1,
+      "message": "Shouldn\u0027t username and password need to be variables?",
+      "range": {
+        "startLine": 31,
+        "startChar": 15,
+        "endLine": 31,
+        "endChar": 20
+      },
+      "revId": "00a5cb91b74e6041af937d029fe5826d5d4d8112",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
