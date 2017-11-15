@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_85cb791d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-15T14:14:48Z",
+      "side": 1,
+      "message": "if you make further changes to this patchset please wrap this line to 80 chars",
+      "range": {
+        "startLine": 9,
+        "startChar": 71,
+        "endLine": 9,
+        "endChar": 143
+      },
+      "revId": "e04df3129b8dfd21cf2da0a56d4ae796c0b7255b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
