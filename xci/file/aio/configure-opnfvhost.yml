@@ -14,6 +14,15 @@
         delete: yes
       when:
         - OPENSTACK_OSA_DEV_PATH != ""
+    - name: copy pinned versions of OSA Roles and global requirements
+      copy:
+        src: "{{OPNFV_RELENG_PATH}}/xci/file/{{ item }}"
+        dest: "{{OPENSTACK_OSA_PATH}}/{{ item }}"
+      with_items:
+        - "ansible-role-requirements.yml"
+        - "global-requirement-pins.txt"
+      when:
+        - OPENSTACK_OSA_VERSION != "master"
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
