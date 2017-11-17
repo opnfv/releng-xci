@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_fd06551f",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-17T17:04:25Z",
+      "side": 1,
+      "message": "Why not simply drop the google ones and always use the libvirt  DNS? that should help with reliability issues especially when you are behind a firewall that doesn\u0027t allow external DNS queries.",
+      "revId": "fe62027d61f69d46d9af14c0a0da6f211883b5b3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
