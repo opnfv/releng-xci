@@ -7,13 +7,8 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-- name: clone "{{ project }}" and checkout "{{ version }}"
-  git:
-    repo: "{{ repo }}"
-    dest: "{{ dest }}"
-    version: "{{ version }}"
-    force: yes
-  environment:
-    http_proxy: "{{ lookup('env','http_proxy') }}"
-    https_proxy: "{{ lookup('env','https_proxy') }}"
-    no_proxy: "{{ lookup('env','no_proxy') }}"
+- name: Add proxy environment variables to APT configuration file
+  blockinfile:
+    dest: "/etc/apt/apt.conf.d/01proxy"
+    create: yes
+    block: "{{ lookup('template', 'apt_01proxy.j2') }}"
