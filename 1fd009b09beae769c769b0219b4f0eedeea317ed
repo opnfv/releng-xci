@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_5e1017a8",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-11-20T10:06:48Z",
+      "side": 1,
+      "message": "I suppose the date needs updating as well.",
+      "range": {
+        "startLine": 28,
+        "startChar": 33,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "1fd009b09beae769c769b0219b4f0eedeea317ed",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
