@@ -7,13 +7,16 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-- name: clone "{{ project }}" and checkout "{{ version }}"
-  git:
-    repo: "{{ repo }}"
-    dest: "{{ dest }}"
-    version: "{{ version }}"
-    force: yes
-  environment:
-    http_proxy: "{{ lookup('env','http_proxy') }}"
-    https_proxy: "{{ lookup('env','https_proxy') }}"
-    no_proxy: "{{ lookup('env','no_proxy') }}"
+- name: Setup environment variables
+  lineinfile:
+    path: "/etc/sysconfig/proxy"
+    regexp: "^{{ item.key }}.*"
+    line: "{{ item.key }}: \"{{ item.value }}\""
+    state: present
+  with_dict: "{{ proxy_values }}"
+- name: Add proxy HTTPS_PROXY environment variable to Zypper configuration file
+  lineinfile:
+    path: "/etc/sysconfig/proxy"
+    regexp: "^PROXY_ENABLED=.*"
+    line: "PROXY_ENABLED=\"yes\""
+    state: present

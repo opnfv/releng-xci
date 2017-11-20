@@ -1,0 +1,12 @@
+{% if lookup('env','http_proxy') is defined %}
+http_proxy={{ lookup('env','http_proxy') }}
+HTTP_PROXY={{ lookup('env','http_proxy') }}
+{% endif %}
+{% if lookup('env','https_proxy') is defined %}
+https_proxy={{ lookup('env','https_proxy') }}
+HTTPS_PROXY={{ lookup('env','https_proxy') }}
+{% endif %}
+{% if lookup('env','no_proxy') is defined %}
+no_proxy={{ lookup('env','no_proxy') }}
+NO_PROXY={{ lookup('env','no_proxy') }}
+{% endif %}
