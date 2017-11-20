@@ -12,11 +12,24 @@
   vars_files:
     - ../var/flavor-vars.yml
     - ../var/opnfv.yml
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
+    HTTP_PROXY: "{{ lookup('env','http_proxy') }}"
+    HTTPS_PROXY: "{{ lookup('env','https_proxy') }}"
+    NO_PROXY: "{{ lookup('env','no_proxy') }}"
   pre_tasks:
     - name: Load distribution variables
       include_vars:
         file: ../var/{{ ansible_os_family }}.yml
+    - name: "Configure resolvconf"
+      sudo: yes
+      lineinfile:
+        path: /etc/resolv.conf
+        line: 'nameserver 192.168.122.1'
   roles:
+    - { role: setup-proxy }
     - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
     - { role: clone-repository, project: "openstack/openstack-ansible", repo: "{{ OPENSTACK_OSA_GIT_URL }}", dest: "{{ OPENSTACK_OSA_PATH }}", version: "{{ OPENSTACK_OSA_VERSION }}" }
 
@@ -50,6 +63,13 @@
   vars_files:
     - ../var/flavor-vars.yml
     - ../var/opnfv.yml
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
+    HTTP_PROXY: "{{ lookup('env','http_proxy') }}"
+    HTTPS_PROXY: "{{ lookup('env','https_proxy') }}"
+    NO_PROXY: "{{ lookup('env','no_proxy') }}"
   pre_tasks:
     - name: Load distribution variables
       include_vars:
@@ -87,6 +107,22 @@
         - name: copy user_variables_ceph.yml
           shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/user_variables_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_variables_ceph.yml"
       when: XCI_CEPH_ENABLED == "true"
+    - block:
+        - name: copy user_variables_proxy.yml
+          shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/user_variables_proxy.yml {{OPENSTACK_OSA_ETC_PATH}}/user_variables_proxy.yml"
+        - name: "Configure proxy_env_url"
+          lineinfile:
+            path: "{{OPENSTACK_OSA_ETC_PATH}}/user_variables_proxy.yml"
+            regexp: "^proxy_env_url:.*"
+            line: "{{ 'proxy_env_url: ' + lookup('env','http_proxy') }}"
+        - name: "Configure no_proxy_env"
+          lineinfile:
+            path: "{{OPENSTACK_OSA_ETC_PATH}}/user_variables_proxy.yml"
+            regexp: "^no_proxy_env:.*"
+            line: "{{ 'no_proxy_env: ' + lookup('env','no_proxy') }}"
+      when:
+        - lookup('env','no_proxy') is defined
+        - lookup('env','http_proxy') is defined
     # TODO: We need to get rid of this as soon as the issue is fixed upstream
     - name: change the haproxy state from disable to enable
       replace:

@@ -1,9 +1,23 @@
 ---
 - hosts: opnfv
   remote_user: root
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
+    HTTP_PROXY: "{{ lookup('env','http_proxy') }}"
+    HTTPS_PROXY: "{{ lookup('env','https_proxy') }}"
+    NO_PROXY: "{{ lookup('env','no_proxy') }}"
   vars_files:
     - ../var/opnfv.yml
+  pre_tasks:
+    - name: "Configure resolvconf"
+      sudo: yes
+      lineinfile:
+        path: /etc/resolv.conf
+        line: 'nameserver 192.168.122.1'
   roles:
+    - { role: setup-proxy }
     - { role: clone-repository, project: "openstack/openstack-ansible", repo: "{{ OPENSTACK_OSA_GIT_URL }}", dest: "{{ OPENSTACK_OSA_PATH }}", version: "{{ OPENSTACK_OSA_VERSION }}" }
   tasks:
     - name: Synchronize local development openstack-ansible repository to XCI paths
@@ -27,6 +41,16 @@
       with_items:
         - "tempest_install"
         - "tempest_run"
+    - name: "Configure proxy_env_url"
+      lineinfile:
+        path: "{{ OPENSTACK_OSA_PATH }}/tests/roles/bootstrap-host/templates/user_variables.aio.yml.j2"
+        line: "{{ 'proxy_env_url: ' + lookup('env','http_proxy') }}"
+      when: lookup('env','http_proxy') is defined
+    - name: "Configure no_proxy_env"
+      lineinfile:
+        path: "{{ OPENSTACK_OSA_PATH }}/tests/roles/bootstrap-host/templates/user_variables.aio.yml.j2"
+        line: "{{ 'no_proxy_env: ' + lookup('env','no_proxy') }}"
+      when: lookup('env','no_proxy') is defined
     - name: bootstrap opnfv host as aio
       command: "/bin/bash ./scripts/bootstrap-aio.sh"
       args:

@@ -1,0 +1,6 @@
+{% if lookup('env','http_proxy') is defined %}
+Acquire::http::Proxy "{{ lookup('env','http_proxy') }}";
+{% endif %}
+{% if lookup('env','https_proxy') is defined %}
+Acquire::https::Proxy "{{ lookup('env','https_proxy') }}";
+{% endif %}

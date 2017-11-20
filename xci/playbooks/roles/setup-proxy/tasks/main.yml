@@ -7,12 +7,8 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-- name: clone "{{ project }}" and checkout "{{ version }}"
-  git:
-    repo: "{{ repo }}"
-    dest: "{{ dest }}"
-    version: "{{ version }}"
-  environment:
-    http_proxy: "{{ lookup('env','http_proxy') }}"
-    https_proxy: "{{ lookup('env','https_proxy') }}"
-    no_proxy: "{{ lookup('env','no_proxy') }}"
+- name: Add proxy environment variables to environment file
+  blockinfile:
+    dest: "/etc/environment"
+    block: "{{ lookup('template', 'environment.j2') }}"
+- include: "config_pkg_mgr_{{ ansible_pkg_mgr }}.yml"
