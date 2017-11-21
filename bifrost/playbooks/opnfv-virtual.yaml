@@ -53,10 +53,12 @@
     - role: bifrost-create-dib-image
       dib_imagetype: "qcow2"
       dib_imagename: "{{deploy_image}}"
+      dib_env_vars:
+        DIB_PYTHON_VERSION: 2
       dib_os_element: "{{ lookup('env','DIB_OS_ELEMENT') }}"
       dib_os_release: "{{ lookup('env', 'DIB_OS_RELEASE') }}"
       extra_dib_elements: "{{ lookup('env', 'EXTRA_DIB_ELEMENTS') | default('') }}"
-      dib_elements: "vm enable-serial-console simple-init devuser growroot {{ extra_dib_elements }}"
+      dib_elements: "vm enable-serial-console simple-init devuser openssh-server growroot pip-and-virtualenv {{ extra_dib_elements }}"
       dib_packages: "{{ lookup('env', 'DIB_OS_PACKAGES') }}"
       dib_notmpfs: true
       when: create_image_via_dib | bool == true and transform_boot_image | bool == false
