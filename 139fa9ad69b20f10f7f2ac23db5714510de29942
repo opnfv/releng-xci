@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_0ba92e7b",
+        "filename": "bifrost/scripts/bifrost-provision.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-11-21T18:00:16Z",
+      "side": 1,
+      "message": "nit: This is not need it, can be do it thru XCI_ANSIBLE_VERBOSITY variable",
+      "revId": "139fa9ad69b20f10f7f2ac23db5714510de29942",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
