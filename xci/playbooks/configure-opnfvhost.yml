@@ -79,6 +79,14 @@
       shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy cinder.yml
       shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
+    - name: Configure AIO tempest
+      lineinfile:
+        path: "{{ OPENSTACK_OSA_ETC_PATH }}/user_variables.yml"
+        line: "{{ item }}: {{ RUN_TEMPEST }}"
+        state: present
+      with_items:
+        - "tempest_install"
+        - "tempest_run"
     - block:
         - name: copy ceph.yml
           shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/conf.d/"
