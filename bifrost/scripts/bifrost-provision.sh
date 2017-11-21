@@ -126,6 +126,7 @@ ${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} \
 # Execute the installation and VM startup test
 ${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} \
     -i inventory/bifrost_inventory.py \
+	-vvv \
     ${TEST_PLAYBOOK} \
     -e use_cirros=${USE_CIRROS} \
     -e testing_user=${TESTING_USER} \
