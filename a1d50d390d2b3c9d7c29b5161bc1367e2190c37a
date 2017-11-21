@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_cbc9067b",
+        "filename": "xci/file/aio/configure-opnfvhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-21T17:32:21Z",
+      "side": 1,
+      "message": "You should really cast this value to bool\n\n{{ RUN_TEMPEST | bool }}",
+      "range": {
+        "startLine": 25,
+        "startChar": 27,
+        "endLine": 25,
+        "endChar": 45
+      },
+      "revId": "a1d50d390d2b3c9d7c29b5161bc1367e2190c37a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ebce8a82",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-21T17:32:21Z",
+      "side": 1,
+      "message": "You should really cast this value to bool\n\n{{ RUN_TEMPEST | bool }}",
+      "range": {
+        "startLine": 85,
+        "startChar": 27,
+        "endLine": 85,
+        "endChar": 45
+      },
+      "revId": "a1d50d390d2b3c9d7c29b5161bc1367e2190c37a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
