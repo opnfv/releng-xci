@@ -8,7 +8,9 @@ if [[ $INTERFACE == "br-vlan" ]]; then
         ip link add br-vlan-veth type veth peer name eth12 || true
         ip link set br-vlan-veth up
         ip link set eth12 up
+        brctl addif br-vlan br-vlan-veth
     else
+        brctl delif br-vlan br-vlan-veth
         ip link del br-vlan-veth || true
     fi
 fi
