@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_a145c371",
+        "filename": "xci/file/aio/configure-opnfvhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-22T20:15:51Z",
+      "side": 1,
+      "message": "There is no good reason for this to be in pre_tasks right? You can simply move it to tasks and make it the first one to be executed.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "7a1fdf61d1cb77bb3ce1cffffbd2ffb2d3a6fab2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
