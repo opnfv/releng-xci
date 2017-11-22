@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_01a62f53",
+        "filename": "xci/file/setup-openstack.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-22T19:48:14Z",
+      "side": 1,
+      "message": "This should be conditional to\n\n  when: (tempest_install | default(False)) | bool or (tempest_run | default(False)) | bool\n\nSee https://github.com/openstack/openstack-ansible/blob/master/playbooks/setup-openstack.yml#L44\n\nso we can turn tempest on and off",
+      "revId": "7878a36b6603da9b08577ecf2aaa7900cbf78918",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
