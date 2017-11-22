@@ -45,22 +45,6 @@ usage() {
 	"""
 }
 
-wait_for_pkg_mgr() {
-	local pkg_mgr=$1
-	local _retries=30
-	while [[ $_retries -gt 0 ]]; do
-		if pgrep -a $pkg_mgr &> /dev/null; then
-			echo "There is another $pkg_mgr process running... ($_retries retries left)"
-			sleep 30
-			(( _retries = _retries - 1 ))
-		else
-			return 0
-		fi
-	done
-	echo "$pkg_mgr still running... Maybe stuck?"
-	exit 1
-}
-
 update_clean_vm_files() {
 	local opnfv_url="http://artifacts.opnfv.org/releng/xci/images"
 	local vm_cache=${XCI_CACHE_DIR}/clean_vm/images
@@ -127,21 +111,32 @@ if ! sudo -n "true"; then
 	echo "$(id -nu) ALL=(ALL) NOPASSWD: ALL"
 	exit 1
 fi
+
+# Wait 30-120 seconds so we avoid running multiple instances of pkg manager. Of course
+# this will not work as it should if there is an external process running a package
+# manager instance. However, since this script is only being execute on CI nodes which
+# we have complete control it should be mostly fine.
+backoff_time=0
+while [[ ${backoff_time} -le 30 ]]; do
+	backoff_time=$(( $RANDOM % 120 ))
+done
+
 case ${ID,,} in
 	*suse)
-		wait_for_pkg_mgr zypper
-		sudo zypper -q -n in virt-manager qemu-kvm qemu-tools libvirt-daemon docker libvirt-client libvirt-daemon-driver-qemu iptables ebtables dnsmasq
+		pkg_mgr_cmd="sudo zypper -q -n install virt-manager qemu-kvm qemu-tools libvirt-daemon docker libvirt-client libvirt-daemon-driver-qemu iptables ebtables dnsmasq"
 		;;
 	centos)
-		wait_for_pkg_mgr yum
-		sudo yum install -q -y epel-release
-		sudo yum install -q -y in virt-manager qemu-kvm qemu-kvm-tools qemu-img libvirt-daemon-kvm docker iptables ebtables dnsmasq
+		pkg_mgr_cmd="sudo yum install -q -y epel-release && sudo yum install -q -y in virt-manager qemu-kvm qemu-kvm-tools qemu-img libvirt-daemon-kvm docker iptables ebtables dnsmasq"
 		;;
 	ubuntu)
-		wait_for_pkg_mgr apt-get
-		sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils docker.io docker iptables ebtables dnsmasq
+		pkg_mgr_cmd="sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils docker.io docker iptables ebtables dnsmasq"
 		;;
 esac
+
+if pgrep -fa ${pkg_mgr_cmd%*install*} 2>&1; then
+	sleep ${backoff_time}
+fi
+eval ${pkg_mgr_cmd}
 
 echo "Ensuring libvirt and docker services are running..."
 sudo systemctl -q start libvirtd
