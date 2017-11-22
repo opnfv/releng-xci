@@ -22,6 +22,30 @@
       "revId": "7a1fdf61d1cb77bb3ce1cffffbd2ffb2d3a6fab2",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_e15eab44",
+        "filename": "xci/file/aio/configure-opnfvhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-11-22T20:18:26Z",
+      "side": 1,
+      "message": "Good point, I\u0027m going to move it before \"install opnfv required packages\"",
+      "parentUuid": "9a3d3df0_a145c371",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 48
+      },
+      "revId": "7a1fdf61d1cb77bb3ce1cffffbd2ffb2d3a6fab2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
