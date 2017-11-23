@@ -140,6 +140,30 @@
       "revId": "54aecdbfe87a7148d16df951f5f2d0425b03aa24",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_37a571b5",
+        "filename": "xci/file/setup-openstack.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-11-23T13:00:07Z",
+      "side": 1,
+      "message": "right, sorry. I meant if we have daily runs of xci so that we can check if deployments are working \"operationally\"",
+      "parentUuid": "9a3d3df0_97defd3d",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 90
+      },
+      "revId": "54aecdbfe87a7148d16df951f5f2d0425b03aa24",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
