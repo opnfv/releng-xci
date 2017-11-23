@@ -21,12 +21,16 @@
   vars_files:
     - ../var/opnfv.yml
   tasks:
-    - name: Remove target directory
+    - name: Remove existing scenario directories
       file:
         path: "{{ item.path | default(scenario_path_default) + '/' + item.scenario }}"
         state: absent
-      when:
-        - item.scm == "git" or item.scm is undefined
+      with_items: "{{ scenarios }}"
+
+    - name: Create scenario directories
+      file:
+        path: "{{ item.path | default(scenario_path_default) + '/' + item.scenario }}"
+        state: directory
       with_items: "{{ scenarios }}"
 
     - name: Clone git repos (with git)
