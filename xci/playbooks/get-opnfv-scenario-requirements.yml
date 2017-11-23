@@ -21,13 +21,13 @@
   vars_files:
     - ../var/opnfv.yml
   tasks:
-    - name: Remove target directory
+    - name: Remove existing scenario directories
       file:
-        path: "{{ item.path | default(scenario_path_default) + '/' + item.scenario }}"
+        path: path: "{{ item[1] }} + '/' + {{ item[0].scenario }}"
         state: absent
-      when:
-        - item.scm == "git" or item.scm is undefined
-      with_items: "{{ scenarios }}"
+      with_nested:
+        - "{{ scenarios }}"
+        - [ "{{ scenario_path_default }}", "{{ role_path_default }}" ]
 
     - name: Clone git repos (with git)
       git:
@@ -38,7 +38,8 @@
         update: true
         force: true
       when:
-        - item.scm == "git" or item.scm is undefined
+        - item.scm is defined
+        - item.scm == "git"
       with_items: "{{ scenarios }}"
       register: git_clone
       until: git_clone | success
