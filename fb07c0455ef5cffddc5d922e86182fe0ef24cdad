@@ -2,6 +2,86 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a3d3df0_3799f11f",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/noha/openstack_user_config.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-11-23T16:41:09Z",
+      "side": 1,
+      "message": "I did not use this \"global_overrides\" but wrote provider_networks directly. Do you know the difference?",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 17
+      },
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_97a0bd44",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/noha/openstack_user_config.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-11-23T16:41:09Z",
+      "side": 1,
+      "message": "You should add:\n      host_bind_override: \"eth12\"\n\nIf you want the mapping vlan:eth12. Otherwise you\u0027ll get vlan:br-vlan and management will break",
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d789a5cb",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/user_variables_os-odl-nofeature.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-11-23T16:41:09Z",
+      "side": 1,
+      "message": "aren\u0027t you already defining provider_networks in the openstack user config file?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 25
+      },
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_f78e69cf",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/user_variables_os-odl-nofeature.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-11-23T16:41:09Z",
+      "side": 1,
+      "message": "If you want ODL to do L3 instead of neutron, you should add odl-router_v2. I do that defining the neutron_plugin_base in this file like this (not sure if we need metering, but it is in the default deployment so I just left it):\n\nneutron_plugin_base:\n  - odl-router_v2\n  - metering",
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_577ab5f1",
         "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/tasks/main.yml",
         "patchSetId": 22
