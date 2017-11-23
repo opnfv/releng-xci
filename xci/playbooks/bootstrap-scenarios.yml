@@ -9,7 +9,7 @@
 #     name: "foobar"
 #   when: OPNFV_SCENARIO == "foobar"
 
-- name: Prepare everything to run the os-nosdn-ovs scenario
+- name: Prepare everything to run the os-nosdn-nofeature scenario
   include_role:
-    name: "os-nosdn-ovs"
-  when: OPNFV_SCENARIO == 'os-nosdn-ovs'
+    name: "os-nosdn-nofeature"
+  when: OPNFV_SCENARIO == 'os-nosdn-nofeature'
