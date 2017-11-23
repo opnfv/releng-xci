@@ -8,11 +8,11 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-- name: copy user_variables_os-nosdn-ovs.yml
+- name: copy user_variables_os-nosdn-nofeature.yml
   copy:
-    src: "user_variables_os-nosdn-ovs.yml"
-    dest: "{{OPENSTACK_OSA_ETC_PATH}}/user_variables_os-nosdn-ovs.yml"
-- name: copy os-nosdn-ovs scenario specific openstack_user_config.yml
+    src: "user_variables_os-nosdn-nofeature.yml"
+    dest: "{{OPENSTACK_OSA_ETC_PATH}}/user_variables_os-nosdn-nofeature.yml"
+- name: copy os-nosdn-nofeature scenario specific openstack_user_config.yml
   copy:
     src: "{{XCI_FLAVOR}}/openstack_user_config.yml"
     dest: "{{OPENSTACK_OSA_ETC_PATH}}/openstack_user_config.yml"
