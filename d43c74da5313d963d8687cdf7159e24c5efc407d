@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_9c6e2200",
+        "filename": "xci/file/aio/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-23T09:05:29Z",
+      "side": 1,
+      "message": "So this is OK, but we normally put this as the first task because there is always the chance that subsequent tasks need the defined variables.\n\nI will not let this block the patch anyway",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 48
+      },
+      "revId": "d43c74da5313d963d8687cdf7159e24c5efc407d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
