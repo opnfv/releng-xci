@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_f72ae98e",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/noha/openstack_user_config.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-11-23T17:13:21Z",
+      "side": 1,
+      "message": "i think this is top level and attributes defined inside this level can be used in other levels. OSA experts can clarify on this.",
+      "parentUuid": "9a3d3df0_3799f11f",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 17
+      },
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_97a0bd44",
         "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/noha/openstack_user_config.yml",
         "patchSetId": 22
@@ -36,6 +60,24 @@
       "writtenOn": "2017-11-23T16:41:09Z",
       "side": 1,
       "message": "You should add:\n      host_bind_override: \"eth12\"\n\nIf you want the mapping vlan:eth12. Otherwise you\u0027ll get vlan:br-vlan and management will break",
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d72525c3",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/noha/openstack_user_config.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-11-23T17:13:21Z",
+      "side": 1,
+      "message": "so you want to replace container_interface eth11 with eth12 and add host_bind_override: \"eth12\" ?\nwhich means we either have vlan or flat provider network. am i correct ?",
+      "parentUuid": "9a3d3df0_97a0bd44",
       "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_57191587",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/user_variables_os-odl-nofeature.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-11-23T17:13:21Z",
+      "side": 1,
+      "message": "I\u0027m not sure about this. i have seen some samples which had this configuration, but its a duplication of what we have in openstack user config file. Let me remove this and test it.",
+      "parentUuid": "9a3d3df0_d789a5cb",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 25
+      },
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_f78e69cf",
         "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/user_variables_os-odl-nofeature.yml",
         "patchSetId": 22
@@ -82,6 +148,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_37673127",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/user_variables_os-odl-nofeature.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-11-23T17:13:21Z",
+      "side": 1,
+      "message": "yes, i have defined this in line#29, let me have it with line space and will add metering too.",
+      "parentUuid": "9a3d3df0_f78e69cf",
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_577ab5f1",
         "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/tasks/main.yml",
         "patchSetId": 22
@@ -93,6 +177,30 @@
       "writtenOn": "2017-11-23T16:07:09Z",
       "side": 1,
       "message": "what\u0027s the point of using XCI_FLAVOR here if this only happens for HA? Would it be better to use the \u0027stat\u0027 module to find out if a flavor file exists and only copy it if it does? then you can get rid of the FLAVOR conditional.",
+      "range": {
+        "startLine": 16,
+        "startChar": 44,
+        "endLine": 16,
+        "endChar": 59
+      },
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_371c5177",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/tasks/main.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-11-23T17:13:21Z",
+      "side": 1,
+      "message": "you mean just replace {{XCI_FLAVOR}} with ha ? because this file always exists for under ha directory.",
+      "parentUuid": "9a3d3df0_577ab5f1",
       "range": {
         "startLine": 16,
         "startChar": 44,
