@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_17ab0d1e",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-23T16:44:57Z",
+      "side": 1,
+      "message": "So this line needs to be changed based on that we discussed with Fatih in IRC right?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 61
+      },
+      "revId": "0148ae45f7810b6a10d752b72485dbd7eac71f95",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
