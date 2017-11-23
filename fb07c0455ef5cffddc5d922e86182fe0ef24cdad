@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_577ab5f1",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/tasks/main.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-23T16:07:09Z",
+      "side": 1,
+      "message": "what\u0027s the point of using XCI_FLAVOR here if this only happens for HA? Would it be better to use the \u0027stat\u0027 module to find out if a flavor file exists and only copy it if it does? then you can get rid of the FLAVOR conditional.",
+      "range": {
+        "startLine": 16,
+        "startChar": 44,
+        "endLine": 16,
+        "endChar": 59
+      },
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_377d71e8",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/tasks/main.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-23T16:07:09Z",
+      "side": 1,
+      "message": "here too",
+      "range": {
+        "startLine": 18,
+        "startChar": 57,
+        "endLine": 18,
+        "endChar": 71
+      },
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_97843dd5",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/tasks/main.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-23T16:07:09Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 19,
+        "startChar": 70,
+        "endLine": 19,
+        "endChar": 84
+      },
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
