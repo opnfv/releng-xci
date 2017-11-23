@@ -84,6 +84,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_733d4cbb",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/noha/openstack_user_config.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-11-23T17:53:58Z",
+      "side": 1,
+      "message": "In the container we will get eth11, however, in the computes eth11 interface does not exist and thus ansible selects br-vlan as the interface unless host_bind_override is defined. That means we will have both flat and vlan provider going through eth12 in the computes, which I thought makes sense after the discussion we had",
+      "parentUuid": "9a3d3df0_d72525c3",
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_d789a5cb",
         "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/user_variables_os-odl-nofeature.yml",
         "patchSetId": 22
@@ -160,6 +178,24 @@
       "side": 1,
       "message": "yes, i have defined this in line#29, let me have it with line space and will add metering too.",
       "parentUuid": "9a3d3df0_f78e69cf",
+      "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d34c1873",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/files/user_variables_os-odl-nofeature.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-11-23T17:53:58Z",
+      "side": 1,
+      "message": "Oh right! I missed it :P. I am not sure about what metering does so perhaps you can just remove it",
+      "parentUuid": "9a3d3df0_37673127",
       "revId": "fb07c0455ef5cffddc5d922e86182fe0ef24cdad",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
