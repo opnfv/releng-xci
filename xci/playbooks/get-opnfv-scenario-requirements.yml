@@ -21,18 +21,24 @@
   vars_files:
     - ../var/opnfv.yml
   tasks:
-    - name: Remove target directory
+    - name: Remove existing scenario directories
       file:
-        path: "{{ item.path | default(scenario_path_default) + '/' + item.scenario }}"
+        path: "{{ item[1] }} + '/' + {{ item[0].scenario }}"
         state: absent
-      when:
-        - item.scm == "git" or item.scm is undefined
+      with_nested:
+        - "{{ scenarios }}"
+        - [ "{{ scenario_path_default }}", "{{ role_path_default }}" ]
+
+    - name: Create scenario directories
+      file:
+        path: "{{ role_path_default }} + '/' + item.scenario }}"
+        state: directory
       with_items: "{{ scenarios }}"
 
     - name: Clone git repos (with git)
       git:
         repo: "{{ item.src }}"
-        dest: "{{ item.path | default(scenario_path_default) }}/{{ item.scenario | default(item.src | basename) }}"
+        dest: "{{ scenario_path_default }}/{{ item.scenario | default(item.src | basename) }}"
         version: "{{ item.version | default('master') }}"
         refspec: "{{ item.refspec | default(omit) }}"
         update: true
@@ -45,11 +51,25 @@
       retries: "{{ git_clone_retries }}"
       delay: "{{ git_clone_retry_delay }}"
 
-    - name: Plug in the roles to XCI
-      shell: >-
-          cp -a {{ item.path | default(scenario_path_default) }}/{{ item.scenario | default(item.src | basename) }}/{{ item.role }}
-          {{ role_path_default }}/{{ item.scenario }}
+    - name: Check that scenarios exist
+      stat:
+        path: "{{ scenario_path_default }}/{{ item.scenario }}/{{ item.role }}"
+      register: scenarios_list_exists
       with_items: "{{ scenarios }}"
+    
+    - name: Plug in the scenario to XCI
+      shell: >-
+          cp -a {{ scenario_path_default }}/{{ item.item.scenario }}/{{ item.item.role }}
+          {{ role_path_default }}/{{ item.item.scenario }}
+      when: item.stat.exists
+      with_items: "{{ scenarios_list_exists.results }}"
+
+    - name: Plug in the scenario to XCI (fallback)
+      shell: >-
+          cp -a {{ XCI_PATH }}/{{ item.item.role }}
+          {{ role_path_default }}/{{ item.item.scenario }}
+      when: not item.stat.exists
+      with_items: "{{ scenarios_list_exists.results }}" 
 
   vars:
     ansible_python_interpreter: "/usr/bin/python"
