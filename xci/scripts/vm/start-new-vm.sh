@@ -288,8 +288,7 @@ echo "Preparing test environment..."
 # *_xci_vm hostname is invalid. Letst just use distro name
 $vm_ssh ${VM_NAME} "sudo hostname ${VM_NAME/_xci*}"
 # Start with good dns
-$vm_ssh ${VM_NAME} 'sudo bash -c "echo nameserver 8.8.8.8 > /etc/resolv.conf"'
-$vm_ssh ${VM_NAME} 'sudo bash -c "echo nameserver 8.8.4.4 >> /etc/resolv.conf"'
+$vm_ssh ${VM_NAME} 'sudo bash -c "echo nameserver 192.168.140.1 > /etc/resolv.conf"'
 cat > ${BASE_PATH}/vm_hosts.txt <<EOF
 127.0.0.1 localhost ${VM_NAME/_xci*}
 ::1 localhost ipv6-localhost ipv6-loopback

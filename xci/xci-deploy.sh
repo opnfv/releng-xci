@@ -268,7 +268,7 @@ echo "Info: Setting up infrastructure"
 echo "-----------------------------------------------------------------------"
 echo "xci: running ansible playbook setup-infrastructure.yml"
 ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
-     $OPENSTACK_OSA_PATH/playbooks//setup-infrastructure.yml | tee setup-infrastructure.log"
+     $OPENSTACK_OSA_PATH/playbooks/setup-infrastructure.yml | tee setup-infrastructure.log"
 scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error
