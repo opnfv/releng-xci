@@ -92,6 +92,30 @@
       "revId": "54aecdbfe87a7148d16df951f5f2d0425b03aa24",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d720854b",
+        "filename": "xci/file/setup-openstack.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-11-23T11:52:23Z",
+      "side": 1,
+      "message": "Do we have a CI right now? Otherwise we might end up with commits which don\u0027t break the deployment but break the normal cloud operations, as experienced in the previous weeks",
+      "parentUuid": "9a3d3df0_3730d19d",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 90
+      },
+      "revId": "54aecdbfe87a7148d16df951f5f2d0425b03aa24",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
