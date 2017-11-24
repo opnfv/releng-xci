@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_3603b274",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-24T16:17:23Z",
+      "side": 1,
+      "message": "it should be ../playbooks/roles",
+      "range": {
+        "startLine": 59,
+        "startChar": 24,
+        "endLine": 59,
+        "endChar": 39
+      },
+      "revId": "9cc9090338eb1dce48cc2aa42cc8488fcf18d6a2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
