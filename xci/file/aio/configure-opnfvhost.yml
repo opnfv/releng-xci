@@ -33,3 +33,14 @@
         chdir: "{{OPENSTACK_OSA_PATH}}"
       environment:
         SCENARIO: "{{ (XCI_CEPH_ENABLED == 'true') | ternary('ceph', 'aio') }}"
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+    - name: install opnfv required packages
+      package:
+        name: "{{ opnfv_required_packages }}"
+        state: latest
+    - name: install opnfv required pip packages
+      pip:
+        name: "{{ opnfv_required_pip }}"
+        state: present
