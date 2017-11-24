@@ -56,6 +56,6 @@
     scenarios: "{{ lookup('file', scenario_file) | from_yaml }}"
     scenario_file: '../opnfv-scenario-requirements.yml'
     scenario_path_default: "{{ lookup('env', 'XCI_PATH') }}/.cache/repos/scenarios"
-    role_path_default: "{{ playbook_dir }}/roles"
+    role_path_default: "{{ lookup('env', 'XCI_PATH') }}/playbooks/roles"
     git_clone_retries: 2
     git_clone_retry_delay: 5
