@@ -44,11 +44,9 @@
       delay: "{{ git_clone_retry_delay }}"
 
     - name: Plug in the roles to XCI
-      file:
-        state: link
-        src: "{{ item.path | default(scenario_path_default) }}/{{ item.scenario | default(item.src | basename) }}/{{ item.role }}"
-        dest: "{{ role_path_default }}/{{ item.scenario }}"
-        force: yes
+      shell: >-
+          cp -a {{ item.path | default(scenario_path_default) }}/{{ item.scenario | default(item.src | basename) }}/{{ item.role }}
+          {{ role_path_default }}/{{ item.scenario }}
       with_items: "{{ scenarios }}"
 
   vars:
