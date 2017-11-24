@@ -16,6 +16,8 @@
 
 - name: Clone the scenario requirements
   hosts: localhost
+  vars_files:
+    - ../var/opnfv.yml
   connection: local
   gather_facts: true
   tasks:
@@ -56,6 +58,6 @@
     scenarios: "{{ lookup('file', scenario_file) | from_yaml }}"
     scenario_file: '../opnfv-scenario-requirements.yml'
     scenario_path_default: "{{ lookup('env', 'XCI_PATH') }}/.cache/repos/scenarios"
-    role_path_default: "{{ playbook_dir }}/roles"
+    role_path_default: "{{ OPNFV_RELENG_PATH }}/xci/playbooks/roles"
     git_clone_retries: 2
     git_clone_retry_delay: 5
