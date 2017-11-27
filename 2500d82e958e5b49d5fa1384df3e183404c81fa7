@@ -283,6 +283,30 @@
       "revId": "2500d82e958e5b49d5fa1384df3e183404c81fa7",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_9c78ddc5",
+        "filename": "xci/var/xci_hosts.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-27T13:21:51Z",
+      "side": 1,
+      "message": "OK but I don\u0027t know what ip_add() is supposed to do. Where is this documented? How does one find out how to use this filter?\n\nAnd what do you mean when you say that this file has to be generic for all install? This is an XCI file so it should only matter in XCI environments where we have complete control.",
+      "parentUuid": "9a3d3df0_3cbb9173",
+      "range": {
+        "startLine": 32,
+        "startChar": 54,
+        "endLine": 32,
+        "endChar": 60
+      },
+      "revId": "2500d82e958e5b49d5fa1384df3e183404c81fa7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
