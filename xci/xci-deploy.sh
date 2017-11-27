@@ -50,7 +50,7 @@ fi
 #   override any of them.
 #-------------------------------------------------------------------------------
 # find where are we
-export XCI_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export XCI_PATH="$(git rev-parse --show-toplevel)"
 # source user vars
 source $XCI_PATH/config/user-vars
 # source pinned versions
@@ -67,7 +67,7 @@ fi
 #-------------------------------------------------------------------------------
 # Sanitize local development environment variables
 #-------------------------------------------------------------------------------
-user_local_dev_vars=(OPNFV_RELENG_DEV_PATH OPENSTACK_OSA_DEV_PATH OPENSTACK_BIFROST_DEV_PATH)
+user_local_dev_vars=(OPENSTACK_OSA_DEV_PATH OPENSTACK_BIFROST_DEV_PATH)
 for local_user_var in ${user_local_dev_vars[@]}; do
     [[ -n ${!local_user_var:-} ]] && export $local_user_var=${!local_user_var%/}/
 done
