@@ -277,3 +277,16 @@ is the scenario itself.
    :height: 480px
    :align: center
 
+How to Get Involved
+===================
+
+OPNFV XCI is an initiative driven by OPNFV community and receives contributions from
+various open source communities such as `OpenStack <https://www.openstack.org/>`_ and
+`OpenDaylight <https://www.opendaylight.org/>`_.
+
+Anyone can contribute to XCI by trying the :ref:`XCI Sandbox <xci-user-guide>`, issuing
+bug reports, updating the documentation, or contributing the code.
+
+You can get in touch with XCI developers on ``#opnfv-pharos`` IRC channel
+on Freenode or send mail to ``opnfv-users@lists.opnfv.org`` for any questions
+you might have.
