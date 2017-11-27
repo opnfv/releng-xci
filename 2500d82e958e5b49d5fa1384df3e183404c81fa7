@@ -307,6 +307,30 @@
       "revId": "2500d82e958e5b49d5fa1384df3e183404c81fa7",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_5c46557d",
+        "filename": "xci/var/xci_hosts.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2017-11-27T13:28:47Z",
+      "side": 1,
+      "message": "This will be documented with the stabilition (Bifrost) patch. We do not have a full control if we want to use PDF as input.",
+      "parentUuid": "9a3d3df0_9c78ddc5",
+      "range": {
+        "startLine": 32,
+        "startChar": 54,
+        "endLine": 32,
+        "endChar": 60
+      },
+      "revId": "2500d82e958e5b49d5fa1384df3e183404c81fa7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
