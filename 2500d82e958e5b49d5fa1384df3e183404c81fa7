@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_3ced518c",
+        "filename": "xci/var/idf.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-27T12:53:53Z",
+      "side": 1,
+      "message": "OK but why do we need to use this ip_shift thing and not simply uses an IP address which is something everybody understands.",
+      "parentUuid": "9a3d3df0_9c557d52",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 15
+      },
+      "revId": "2500d82e958e5b49d5fa1384df3e183404c81fa7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_01ee2fb4",
         "filename": "xci/var/xci_hosts.yml",
         "patchSetId": 6
@@ -178,6 +202,30 @@
       "side": 1,
       "message": "This give the possibility to be used not only on a virtual pod, and reuse the config from PDF",
       "parentUuid": "9a3d3df0_612c5b03",
+      "range": {
+        "startLine": 32,
+        "startChar": 54,
+        "endLine": 32,
+        "endChar": 60
+      },
+      "revId": "2500d82e958e5b49d5fa1384df3e183404c81fa7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_9c03bd41",
+        "filename": "xci/var/xci_hosts.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-27T12:53:53Z",
+      "side": 1,
+      "message": "I only commented on the ip_add() filter which is not clear what it does. Can we use something else that it\u0027s understood by everybody like a real IP?",
+      "parentUuid": "9a3d3df0_5c5c957e",
       "range": {
         "startLine": 32,
         "startChar": 54,
