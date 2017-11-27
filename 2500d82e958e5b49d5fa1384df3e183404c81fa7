@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_3c5f1174",
+        "filename": "xci/var/idf.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2017-11-27T12:44:33Z",
+      "side": 1,
+      "message": "This will give the mapping between net_config to local network VM",
+      "parentUuid": "9a3d3df0_41c037e0",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 14
+      },
+      "revId": "2500d82e958e5b49d5fa1384df3e183404c81fa7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_21f3739f",
         "filename": "xci/var/idf.yml",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2017-11-22T19:42:23Z",
       "side": 1,
       "message": "personally I think this is a bit cryptic. can we use ip_host_range\u003d or something more clear?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 15
+      },
+      "revId": "2500d82e958e5b49d5fa1384df3e183404c81fa7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_9c557d52",
+        "filename": "xci/var/idf.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2017-11-27T12:44:33Z",
+      "side": 1,
+      "message": "I can add an example if it is too cryptic:\n192.168.0.0 + ip_shif(2) \u003d 192.168.0.2\nIP range will overlap with PDF net_config definition.",
+      "parentUuid": "9a3d3df0_21f3739f",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_fc64894a",
+        "filename": "xci/var/xci_hosts.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2017-11-27T12:44:33Z",
+      "side": 1,
+      "message": "This is the same in other PDF. This point can be addressed during the plugfest.",
+      "parentUuid": "9a3d3df0_01ee2fb4",
+      "range": {
+        "startLine": 27,
+        "startChar": 16,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "2500d82e958e5b49d5fa1384df3e183404c81fa7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_612c5b03",
         "filename": "xci/var/xci_hosts.yml",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2017-11-22T19:42:23Z",
       "side": 1,
       "message": "what\u0027s this? Would it be better to simply put a normal IP here?",
+      "range": {
+        "startLine": 32,
+        "startChar": 54,
+        "endLine": 32,
+        "endChar": 60
+      },
+      "revId": "2500d82e958e5b49d5fa1384df3e183404c81fa7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_5c5c957e",
+        "filename": "xci/var/xci_hosts.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2017-11-27T12:44:33Z",
+      "side": 1,
+      "message": "This give the possibility to be used not only on a virtual pod, and reuse the config from PDF",
+      "parentUuid": "9a3d3df0_612c5b03",
       "range": {
         "startLine": 32,
         "startChar": 54,
