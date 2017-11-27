@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_67b2a6e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-11-27T18:18:32Z",
+      "side": 1,
+      "message": "Can you please describe in a little more detail the changes \nthat you are gonna introduce to this patchset because I am struggling to understand what is the problem here that this patch tries to resolve",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "c2804a9829baefd05f6274dd3596c426dc45255a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
