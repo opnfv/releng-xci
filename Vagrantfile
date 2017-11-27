@@ -45,7 +45,6 @@ Vagrant.configure(2) do |config|
           export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-2048}
           export VM_DOMAIN_TYPE=qemu
           export PATH=$PATH:$HOME/.local/bin
-          export OPNFV_RELENG_DEV_PATH=/vagrant
           [[ ! -e ${HOME}/.ssh/id_rsa ]] && ssh-keygen -q -P '' -f ${HOME}/.ssh/id_rsa
           cd xci && ./xci-deploy.sh
       SHELL
@@ -81,7 +80,6 @@ Vagrant.configure(2) do |config|
           export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-2048}
           export VM_DOMAIN_TYPE=qemu
           export PATH=$PATH:$HOME/.local/bin
-          export OPNFV_RELENG_DEV_PATH=/vagrant
           [[ ! -e ${HOME}/.ssh/id_rsa ]] && ssh-keygen -q -P '' -f ${HOME}/.ssh/id_rsa
           cd xci && ./xci-deploy.sh
       SHELL
@@ -115,7 +113,6 @@ Vagrant.configure(2) do |config|
         export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-2048}
         export VM_DOMAIN_TYPE=qemu
         export PATH=$PATH:$HOME/.local/bin
-        export OPNFV_RELENG_DEV_PATH=/vagrant
         [[ ! -e ${HOME}/.ssh/id_rsa ]] && ssh-keygen -q -P '' -f ${HOME}/.ssh/id_rsa
         cd xci && ./xci-deploy.sh
       SHELL
@@ -143,7 +140,6 @@ Vagrant.configure(2) do |config|
         export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-2048}
         export VM_DOMAIN_TYPE=qemu
         export PATH=$PATH:$HOME/.local/bin
-        export OPNFV_RELENG_DEV_PATH=/vagrant
         # workaround for https://github.com/openSUSE/vagrant/pull/22
         sudo bash -c 'echo "127.0.0.1 localhost" >> /etc/hosts'
         [[ ! -e ${HOME}/.ssh/id_rsa ]] && ssh-keygen -q -P '' -f ${HOME}/.ssh/id_rsa

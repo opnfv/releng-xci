@@ -50,15 +50,15 @@ fi
 #   override any of them.
 #-------------------------------------------------------------------------------
 # find where are we
-export XCI_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export XCI_PATH="$(git rev-parse --show-toplevel)"
 # source user vars
-source $XCI_PATH/config/user-vars
+source $XCI_PATH/xci/config/user-vars
 # source pinned versions
-source $XCI_PATH/config/pinned-versions
+source $XCI_PATH/xci/config/pinned-versions
 # source flavor configuration
-source "$XCI_PATH/config/${XCI_FLAVOR}-vars"
+source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
 # source xci configuration
-source $XCI_PATH/config/env-vars
+source $XCI_PATH/xci/config/env-vars
 
 if [[ -z $(echo $PATH | grep "$HOME/.local/bin")  ]]; then
     export PATH="$HOME/.local/bin:$PATH"
@@ -67,7 +67,7 @@ fi
 #-------------------------------------------------------------------------------
 # Sanitize local development environment variables
 #-------------------------------------------------------------------------------
-user_local_dev_vars=(OPNFV_RELENG_DEV_PATH OPENSTACK_OSA_DEV_PATH OPENSTACK_BIFROST_DEV_PATH)
+user_local_dev_vars=(OPENSTACK_OSA_DEV_PATH OPENSTACK_BIFROST_DEV_PATH)
 for local_user_var in ${user_local_dev_vars[@]}; do
     [[ -n ${!local_user_var:-} ]] && export $local_user_var=${!local_user_var%/}/
 done
@@ -136,15 +136,15 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Cloning OPNFV scenario repositories"
 echo "-------------------------------------------------------------------------"
-cd $XCI_PATH/playbooks
+cd $XCI_PATH/xci/playbooks
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory get-opnfv-scenario-requirements.yml
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
 # Get scenario variables overrides
 #-------------------------------------------------------------------------------
-if [[ -f $XCI_PATH/scenarios/${OPNFV_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
-    source $XCI_PATH/scenarios/$OPNFV_SCENARIO/xci_overrides
+if [[ -f $XCI_PATH/xci/scenarios/${OPNFV_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
+    source $XCI_PATH/xci/scenarios/$OPNFV_SCENARIO/xci_overrides
 fi
 
 #-------------------------------------------------------------------------------
@@ -161,9 +161,9 @@ echo "Info: Starting provisining VM nodes using openstack/bifrost"
 echo "-------------------------------------------------------------------------"
 # We are using sudo so we need to make sure that env_reset is not present
 sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
-cd $XCI_PATH/../bifrost/
+cd $XCI_PATH/bifrost/
 sudo -E bash ./scripts/destroy-env.sh
-cd $XCI_PATH/playbooks
+cd $XCI_PATH/xci/playbooks
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
 cd ${OPENSTACK_BIFROST_PATH}
 bash ./scripts/bifrost-provision.sh
@@ -184,7 +184,7 @@ echo
 
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-cd $XCI_PATH/playbooks
+cd $XCI_PATH/xci/playbooks
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
