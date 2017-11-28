@@ -12,3 +12,9 @@ interface: "ens3"
 python_crypto_package_name: python-crypto
 docker_package_name: docker
 docker_service_name: docker
+kolla_packages:
+  - python-devel
+  - libffi-devel
+  - gcc
+  - openssl-devel
+  - libselinux-python
