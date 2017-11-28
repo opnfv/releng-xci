@@ -67,7 +67,7 @@ fi
 #-------------------------------------------------------------------------------
 # Sanitize local development environment variables
 #-------------------------------------------------------------------------------
-user_local_dev_vars=(OPENSTACK_OSA_DEV_PATH OPENSTACK_BIFROST_DEV_PATH)
+user_local_dev_vars=(OPENSTACK_OSA_DEV_PATH OPENSTACK_BIFROST_DEV_PATH OPENSTACK_KOLLA_ANSIBLE_DEV_PATH)
 for local_user_var in ${user_local_dev_vars[@]}; do
     [[ -n ${!local_user_var:-} ]] && export $local_user_var=${!local_user_var%/}/
 done
@@ -179,12 +179,12 @@ echo "Info: VM nodes are provisioned!"
 # - copies flavor files such as playbook, inventory, and var file
 #-------------------------------------------------------------------------------
 
-echo "Info: Configuring localhost for openstack-ansible"
+echo "Info: Configuring localhost for $XCI_OPENSTACK_DEPLOY_TOOL"
 echo "-----------------------------------------------------------------------"
 cd $XCI_PATH/xci/playbooks
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory configure-localhost.yml
 echo "-----------------------------------------------------------------------"
-echo "Info: Configured localhost host for openstack-ansible"
+echo "Info: Configured localhost host for $XCI_OPENSTACK_DEPLOY_TOOL"
 
 #-------------------------------------------------------------------------------
 # Configure openstack-ansible deployment host, opnfv
@@ -197,12 +197,12 @@ echo "Info: Configured localhost host for openstack-ansible"
 # - bootstraps ansible
 # - copies flavor files to be used by openstack-ansible
 #-------------------------------------------------------------------------------
-echo "Info: Configuring opnfv deployment host for openstack-ansible"
+echo "Info: Configuring opnfv deployment host for $XCI_OPENSTACK_DEPLOY_TOOL"
 echo "-----------------------------------------------------------------------"
 cd ${XCI_DEVEL_ROOT}
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i ${OPNFV_XCI_PATH}/playbooks/inventory ${OPNFV_XCI_PATH}/playbooks/configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
-echo "Info: Configured opnfv deployment host for openstack-ansible"
+echo "Info: Configured opnfv deployment host for $XCI_OPENSTACK_DEPLOY_TOOL"
 
 #-------------------------------------------------------------------------------
 # Configure target hosts for openstack-ansible
@@ -229,13 +229,14 @@ fi
 #-------------------------------------------------------------------------------
 # This is openstack-ansible playbook. Check upstream documentation for details.
 #-------------------------------------------------------------------------------
-echo "Info: Setting up target hosts for openstack-ansible"
-echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
-     $OPENSTACK_OSA_PATH/playbooks/setup-hosts.yml | tee setup-hosts.log "
-scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
-echo "-----------------------------------------------------------------------"
-echo "Info: Set up target hosts for openstack-ansible successfuly"
+if [[ $XCI_OPENSTACK_DEPLOY_TOOL == "openstack-ansible" ]]; then
+    echo "Info: Setting up target hosts for openstack-ansible"
+    echo "-----------------------------------------------------------------------"
+    ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
+         $OPENSTACK_OSA_PATH/playbooks/setup-hosts.yml | tee setup-hosts.log "
+    scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
+    echo "-----------------------------------------------------------------------"
+    echo "Info: Set up target hosts for openstack-ansible successfuly"
 
 # TODO: Check this with the upstream and issue a fix in the documentation if the
 # problem is valid.
@@ -250,53 +251,54 @@ echo "Info: Set up target hosts for openstack-ansible successfuly"
 # OSA gate also executes this command. See the link
 # http://logs.openstack.org/64/494664/1/check/gate-openstack-ansible-openstack-ansible-aio-ubuntu-xenial/2a0700e/console.html
 #-------------------------------------------------------------------------------
-echo "Info: Gathering facts"
-echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "cd $OPENSTACK_OSA_PATH/playbooks; \
-        ansible ${XCI_ANSIBLE_VERBOSITY} -m setup -a gather_subset=network,hardware,virtual all"
-echo "-----------------------------------------------------------------------"
+    echo "Info: Gathering facts"
+    echo "-----------------------------------------------------------------------"
+    ssh root@$OPNFV_HOST_IP "cd $OPENSTACK_OSA_PATH/playbooks; \
+            ansible ${XCI_ANSIBLE_VERBOSITY} -m setup -a gather_subset=network,hardware,virtual all"
+    echo "-----------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
 # Set up infrastructure
 #-------------------------------------------------------------------------------
 # This is openstack-ansible playbook. Check upstream documentation for details.
 #-------------------------------------------------------------------------------
-echo "Info: Setting up infrastructure"
-echo "-----------------------------------------------------------------------"
-echo "xci: running ansible playbook setup-infrastructure.yml"
-ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
-     $OPENSTACK_OSA_PATH/playbooks/setup-infrastructure.yml | tee setup-infrastructure.log"
-scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
-echo "-----------------------------------------------------------------------"
-# check the log to see if we have any error
-if grep -q 'failed=1\|unreachable=1' $LOG_PATH/setup-infrastructure.log; then
-    echo "Error: OpenStack node setup failed!"
-    exit 1
-fi
+    echo "Info: Setting up infrastructure"
+    echo "-----------------------------------------------------------------------"
+    echo "xci: running ansible playbook setup-infrastructure.yml"
+    ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
+         $OPENSTACK_OSA_PATH/playbooks/setup-infrastructure.yml | tee setup-infrastructure.log"
+    scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
+    echo "-----------------------------------------------------------------------"
+    # check the log to see if we have any error
+    if grep -q 'failed=1\|unreachable=1' $LOG_PATH/setup-infrastructure.log; then
+        echo "Error: OpenStack node setup failed!"
+        exit 1
+    fi
 
 #-------------------------------------------------------------------------------
 # Verify database cluster
 #-------------------------------------------------------------------------------
-echo "Info: Verifying database cluster"
-echo "-----------------------------------------------------------------------"
-# Apply SUSE fix until https://review.openstack.org/508154 is merged
-if [[ ${OS_FAMILY,,} == "suse" ]]; then
-	ssh root@$OPNFV_HOST_IP "ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
-		-i $OPENSTACK_OSA_PATH/playbooks/inventory/ galera_container -m shell \
-		-a \"sed -i \\\"s@/var/run/mysqld/mysqld.sock@/var/run/mysql/mysql.sock@\\\" /etc/my.cnf\""
-fi
+    echo "Info: Verifying database cluster"
+    echo "-----------------------------------------------------------------------"
+    # Apply SUSE fix until https://review.openstack.org/508154 is merged
+    if [[ ${OS_FAMILY,,} == "suse" ]]; then
+        ssh root@$OPNFV_HOST_IP "ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
+            -i $OPENSTACK_OSA_PATH/playbooks/inventory/ galera_container -m shell \
+            -a \"sed -i \\\"s@/var/run/mysqld/mysqld.sock@/var/run/mysql/mysql.sock@\\\" /etc/my.cnf\""
+    fi
 
-ssh root@$OPNFV_HOST_IP "ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
-    -i $OPENSTACK_OSA_PATH/playbooks/inventory/ galera_container -m shell \
+    ssh root@$OPNFV_HOST_IP "ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
+        -i $OPENSTACK_OSA_PATH/playbooks/inventory/ galera_container -m shell \
 	-a \"mysql -h localhost -e \\\"show status like '%wsrep_cluster_%';\\\"\" | tee galera.log"
-scp root@$OPNFV_HOST_IP:~/galera.log $LOG_PATH/galera.log
-echo "-----------------------------------------------------------------------"
-# check the log to see if we have any error
-if grep -q 'FAILED\|UNREACHABLE' $LOG_PATH/galera.log; then
-    echo "Error: Database cluster verification failed!"
-    exit 1
+    scp root@$OPNFV_HOST_IP:~/galera.log $LOG_PATH/galera.log
+    echo "-----------------------------------------------------------------------"
+    # check the log to see if we have any error
+    if grep -q 'FAILED\|UNREACHABLE' $LOG_PATH/galera.log; then
+        echo "Error: Database cluster verification failed!"
+        exit 1
+    fi
+    echo "Info: Database cluster verification successful!"
 fi
-echo "Info: Database cluster verification successful!"
 
 #-------------------------------------------------------------------------------
 # Install OpenStack
@@ -305,8 +307,19 @@ echo "Info: Database cluster verification successful!"
 #-------------------------------------------------------------------------------
 echo "Info: Installing OpenStack on target hosts"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
-     $OPENSTACK_OSA_PATH/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
+case $XCI_OPENSTACK_DEPLOY_TOOL in
+    *openstack-ansible)
+        ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
+            $OPENSTACK_OSA_PATH/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
+        openrc_file='openrc'
+    ;;
+    *kolla-ansible)
+        ssh root@$OPNFV_HOST_IP "kolla-ansible ${XCI_ANSIBLE_VERBOSITY} \
+            deploy -i ${OPENSTACK_KOLLA_ANSIBLE_PATH}/ansible/inventory/all-in-one | tee opnfv-setup-openstack.log"
+        ssh root@$OPNFV_HOST_IP "kolla-ansible post-deploy"
+        openrc_file='/etc/kolla/admin-openrc.sh'
+    ;;
+esac
 scp root@$OPNFV_HOST_IP:~/opnfv-setup-openstack.log $LOG_PATH/opnfv-setup-openstack.log
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error
@@ -331,8 +344,8 @@ else:
    net_config = yaml.safe_load(host_info)
    print 'Info: Horizon UI is available at https://{}' \
          .format(net_config['global_overrides']['external_lb_vip_address'])"
-USERNAME=$(ssh -q root@$OPNFV_HOST_IP awk "/OS_USERNAME=./" openrc)
-PASSWORD=$(ssh -q root@$OPNFV_HOST_IP awk "/OS_PASSWORD=./" openrc)
+USERNAME=$(ssh -q root@$OPNFV_HOST_IP awk "/OS_USERNAME=./" $openrc_file)
+PASSWORD=$(ssh -q root@$OPNFV_HOST_IP awk "/OS_PASSWORD=./" $openrc_file)
 echo "Info: Admin username -  ${USERNAME##*=}"
 echo "Info: Admin password - ${PASSWORD##*=}"
 echo "Info: It is recommended to change the default password."
