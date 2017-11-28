@@ -24,3 +24,4 @@
 - include: os-ironic-install.yml
 - include: os-tempest-install.yml
   when: (tempest_install | default(False)) | bool or (tempest_run | default(False)) | bool
+  ignore_errors: yes
