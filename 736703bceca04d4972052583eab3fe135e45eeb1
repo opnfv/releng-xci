@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_8d50a95f",
+        "filename": "xci/file/ansible-role-requirements.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1451
+      },
+      "writtenOn": "2017-11-28T19:06:08Z",
+      "side": 1,
+      "message": "This date doesn\u0027t match the other one.",
+      "range": {
+        "startLine": 10,
+        "startChar": 97,
+        "endLine": 10,
+        "endChar": 99
+      },
+      "revId": "736703bceca04d4972052583eab3fe135e45eeb1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
