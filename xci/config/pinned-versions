@@ -44,3 +44,7 @@ export HAPROXY_VERSION=$(grep -E '.*name: haproxy_server' -A 3 \
        ${XCI_PATH}/xci/installer/osa/files/ansible-role-requirements.yml \
        | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
 export KUBESPRAY_VERSION=${KUBESPRAY_VERSION:-"master"}
+# HEAD of kolla "master" as 28.11.2017
+export OPENSTACK_KOLLA_VERSION=${OPENSTACK_KOLLA_VERSION:-"c94b0850d6dbd6a5676069e7ed71d038a13cddcf"}
+# HEAD of kolla-ansible "master" as 17.11.2017
+export OPENSTACK_KOLLA_ANSIBLE_VERSION=${OPENSTACK_KOLLA_ANSIBLE_VERSION:-"1175238420978dde00ec375d0e6c549310ed5893"}
