@@ -1,0 +1,104 @@
+---
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - ../var/opnfv.yml
+  roles:
+    - { role: clone-repository, project: "openstack/kolla", repo: "{{ OPENSTACK_KOLLA_GIT_URL }}", dest: "{{ OPENSTACK_KOLLA_PATH }}", version: "{{ OPENSTACK_KOLLA_VERSION }}" }
+    - { role: clone-repository, project: "openstack/kolla-ansible", repo: "{{ OPENSTACK_KOLLA_ANSIBLE_GIT_URL }}", dest: "{{ OPENSTACK_KOLLA_ANSIBLE_PATH }}", version: "{{ OPENSTACK_KOLLA_ANSIBLE_VERSION }}" }
+  tasks:
+    - name: Synchronize local development kolla repository to XCI paths
+      synchronize:
+        src: "{{ OPENSTACK_KOLLA_DEV_PATH }}"
+        dest: "{{ OPENSTACK_KOLLA_PATH }}"
+        recursive: yes
+        delete: yes
+      when:
+        - OPENSTACK_KOLLA_DEV_PATH != ""
+    - name: Synchronize local development kolla-ansible repository to XCI paths
+      synchronize:
+        src: "{{ OPENSTACK_KOLLA_ANSIBLE_DEV_PATH }}"
+        dest: "{{ OPENSTACK_KOLLA_ANSIBLE_PATH }}"
+        recursive: yes
+        delete: yes
+      when:
+        - OPENSTACK_KOLLA_ANSIBLE_DEV_PATH != ""
+    - name: Load distribution variables
+      include_vars:
+        file: ../var/{{ ansible_os_family }}.yml
+    - name: install opnfv required packages
+      package:
+        name: "{{ opnfv_required_packages }}"
+        state: latest
+    - name: install kolla-ansible dependencies
+      package:
+        name: "{{ kolla_packages }}"
+        state: latest
+    - name: ensure docker System D folder
+      file:
+        path: "/etc/systemd/system/docker.service.d/"
+        state: directory
+    - name: set MountFlags option
+      blockinfile:
+          dest: "/etc/systemd/system/docker.service.d/kolla.conf"
+          create: yes
+          block: |
+              [Service]
+              MountFlags=shared
+    - service:
+        name: docker
+        state: restarted
+    - name: install kolla from source code
+      shell: "/usr/bin/python setup.py install"
+      args:
+        chdir: "{{ OPENSTACK_KOLLA_PATH }}"
+    - name: pip install kolla requirements
+      pip:
+        name: "{{ OPENSTACK_KOLLA_PATH }}"
+    - name: pip install kolla-ansible from source code
+      shell: "/usr/bin/python setup.py install"
+      args:
+        chdir: "{{ OPENSTACK_KOLLA_ANSIBLE_PATH }}"
+    - name: pip install kolla-ansible requirements
+      pip:
+        name: "{{ OPENSTACK_KOLLA_ANSIBLE_PATH }}"
+    - name: pip install kolla dependencies
+      pip:
+        name: "{{ item }}"
+      with_items:
+        - ansible
+        - docker
+        - python-openstackclient
+    - name: ensure kolla configuration directory exists
+      file:
+        path: "{{ OPENSTACK_KOLLA_ETC_PATH }}"
+        state: directory
+    - name: copy all configuration files
+      shell: "/bin/cp {{OPENSTACK_KOLLA_ANSIBLE_PATH}}/etc/kolla/{{ item }} {{ OPENSTACK_KOLLA_ETC_PATH }}"
+      with_items:
+        - passwords.yml
+    - name: configure kolla build images
+      blockinfile:
+          dest: "{{ OPENSTACK_KOLLA_ETC_PATH }}/globals.yml"
+          create: yes
+          block: |
+              ---
+              openstack_release: "master"
+              network_interface: "ens3"
+              api_interface: "ens3"
+              kolla_internal_vip_address: "192.168.122.3"
+    - name: generate ramdom passwords
+      shell: "/usr/local/bin/kolla-genpwd -p {{ OPENSTACK_KOLLA_ETC_PATH }}/passwords.yml"
+    - name: configure kolla build images
+      blockinfile:
+          dest: "{{ OPENSTACK_KOLLA_ETC_PATH }}/kolla-build.conf"
+          create: yes
+          block: |
+              [DEFAULT]
+              base = ubuntu
+              profile = main
+
+              [profiles]
+              main = ceilometer,cinder,glance,heat,horizon,iscsi,keystone,neutron,nova-,swift
+    - name: build kolla docker images
+      shell: "/usr/local/bin/kolla-build --config-file {{ OPENSTACK_KOLLA_ETC_PATH }}/kolla-build.conf"

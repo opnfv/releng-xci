@@ -63,7 +63,7 @@
     # when the deployment is aio, we overwrite and use playbook, configure-opnfvhost.yml, since everything gets installed on opnfv host
     - name: copy aio playbook
       copy:
-        src: "{{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/configure-opnfvhost.yml"
+        src: "{{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/{{XCI_OPENSTACK_DEPLOY_TOOL}}/configure-opnfvhost.yml"
         dest: "{{OPNFV_RELENG_PATH}}/xci/playbooks"
       when: XCI_FLAVOR == "aio"
     - name: copy flavor inventory
