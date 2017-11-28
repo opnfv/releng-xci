@@ -25,6 +25,15 @@ openstack_osa_etc_path: "{{ lookup('env','OPENSTACK_OSA_ETC_PATH') }}"
 openstack_osa_openrc_git_url: "{{ lookup('env', 'OPENSTACK_OSA_OPENRC_GIT_URL') }}"
 openstack_osa_haproxy_git_url: "{{ lookup('env','OPENSTACK_OSA_HAPROXY_GIT_URL') }}"
 
+# openstack/kolla variables
+openstack_kolla_git_url: "{{ lookup('env','OPENSTACK_KOLLA_GIT_URL') }}"
+openstack_kolla_version: "{{ lookup('env','OPENSTACK_KOLLA_VERSION') }}"
+openstack_kolla_path: "{{ lookup('env','OPENSTACK_KOLLA_PATH') }}"
+openstack_kolla_ansible_git_url: "{{ lookup('env','OPENSTACK_KOLLA_ANSIBLE_GIT_URL') }}"
+openstack_kolla_ansible_version: "{{ lookup('env','OPENSTACK_KOLLA_ANSIBLE_VERSION') }}"
+openstack_kolla_ansible_path: "{{ lookup('env','OPENSTACK_KOLLA_ANSIBLE_PATH') }}"
+openstack_kolla_etc_path: "{{ lookup('env','OPENSTACK_KOLLA_ETC_PATH') }}"
+
 # kubespray variables
 kubespray_git_url: "{{ lookup('env','KUBESPRAY_GIT_URL') }}"
 kubespray_version: "{{ lookup('env','KUBESPRAY_VERSION') }}"

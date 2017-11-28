@@ -1,0 +1,172 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Intel Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+  vars:
+    - requirements_git_install_branch: "207ac2e166f0874b7ff891535bdb78ecf36cabc6"
+
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
+    HTTP_PROXY: "{{ lookup('env','http_proxy') }}"
+    HTTPS_PROXY: "{{ lookup('env','https_proxy') }}"
+    NO_PROXY: "{{ lookup('env','no_proxy') }}"
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: "{{ item }}"
+      with_items:
+        - "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
+        - "{{ xci_flavor_ansible_file_path }}/flavor-vars.yml"
+    - name: Set facts for remote deployment
+      set_fact:
+        remote_xci_path: "{{ ansible_env.HOME }}/releng-xci"
+        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/installer/{{installer_type}}/files/{{ xci_flavor }}"
+        remote_xci_playbooks: "{{ ansible_env.HOME }}/releng-xci/xci/playbooks"
+
+  roles:
+    - role: bootstrap-host
+      configure_network: xci_flavor != 'aio'
+    - role: peru.proxy_settings
+      proxy_settings_http_proxy: "{{ lookup('env','http_proxy') }}"
+      proxy_settings_https_proxy: "{{ lookup('env','https_proxy') }}"
+      proxy_settings_ftp_proxy: "{{ lookup('env','ftp_proxy') }}"
+      proxy_settings_no_proxy: "{{ lookup('env','no_proxy') }}"
+    - role: abaez.docker
+
+  tasks:
+    - name: generate SSH keys
+      shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
+      args:
+        creates: "{{ ansible_env.HOME }}/.ssh/id_rsa"
+    - name: fetch public key
+      fetch:
+        src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+        dest: "{{ xci_path }}/xci/files/authorized_keys"
+        flat: yes
+    - name: Copy releng-xci to remote host
+      synchronize:
+        src: "{{ xci_path }}/"
+        dest: "{{ remote_xci_path }}"
+        recursive: yes
+        delete: yes
+    - name: install kolla-ansible dependencies
+      package:
+        name: "{{ kolla_packages }}"
+        state: latest
+    - name: ensure docker.service.d service folder
+      file:
+        path: "/etc/systemd/system/docker.service.d/"
+        state: directory
+    - name: Configure docker service to use http_proxy env value
+      blockinfile:
+        dest: "/etc/systemd/system/docker.service.d/http-proxy.conf"
+        create: yes
+        block: |
+            [Service]
+            Environment="HTTP_PROXY={{ lookup('env','http_proxy') }}"
+      when:
+        - lookup('env','http_proxy') != "fooproxy"
+    - name: Configure docker service to use https_proxy env value
+      blockinfile:
+        dest: "/etc/systemd/system/docker.service.d/https-proxy.conf"
+        create: yes
+        block: |
+            [Service]
+            Environment="HTTPS_PROXY={{ lookup('env','https_proxy') }}"
+      when:
+        - lookup('env','https_proxy') != "fooproxy"
+    - name: set MountFlags option
+      blockinfile:
+        dest: "/etc/systemd/system/docker.service.d/kolla.conf"
+        create: yes
+        block: |
+            [Service]
+            MountFlags=shared
+    - name: reload systemd
+      command: systemctl daemon-reload
+    - service:
+        name: docker
+        state: restarted
+    - name: pip install kolla requirements.txt file
+      pip:
+        requirements: "{{ item }}/requirements.txt"
+        extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
+      with_items:
+        - "{{ openstack_kolla_path }}"
+        - "{{ openstack_kolla_ansible_path }}"
+    - name: install kolla from source code
+      shell: "/usr/bin/python setup.py install"
+      args:
+        chdir: "{{ item }}"
+      with_items:
+        - "{{ openstack_kolla_path }}"
+        - "{{ openstack_kolla_ansible_path }}"
+    - name: pip install kolla dependencies
+      pip:
+        name: "{{ item }}"
+        state: present
+        extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
+      with_items:
+        - ansible
+        - docker
+        - python-openstackclient
+    - name: ensure kolla configuration directory exists
+      file:
+        path: "{{ openstack_kolla_etc_path }}"
+        state: directory
+    - name: copy all configuration files
+      shell: "/bin/cp {{ openstack_kolla_ansible_path }}/etc/kolla/{{ item }} {{ openstack_kolla_etc_path }}"
+      with_items:
+        - passwords.yml
+        - globals.yml
+    - name: configure local docker registry
+      lineinfile:
+        path: "{{ openstack_kolla_etc_path }}/globals.yml"
+        regexp: "{{ item.pattern }}"
+        line: "{{ item.replace }}"
+      with_items:
+        - { pattern: "^#docker_registry:.*", replace: "docker_registry: 192.168.122.2" }
+        - { pattern: "^#api_interface:.*", replace: "api_interface: br_vlan" }
+        - { pattern: "^#network_interface:.*", replace: "network_interface: br_vlan" }
+        - { pattern: "^#tunnel_interface:.*", replace: "tunnel_interface: br_vxlan" }
+        - { pattern: "^#storage_interface:.*", replace: "storage_interface: br_storage" }
+        - { pattern: "^#neutron_external_interface:.*", replace: "neutron_external_interface: br_mgmt" }
+        - { pattern: "^#kolla_base_distro:.*", replace: "kolla_base_distro: {{ xci_distro }}" }
+        - { pattern: "^#kolla_install_type:.*", replace: "kolla_install_type: \"source\"" }
+    - name: configure kolla VIP for All-in-One flavor
+      lineinfile:
+        path: "{{ openstack_kolla_etc_path }}/globals.yml"
+        regexp: "{{ item.pattern }}"
+        line: "{{ item.replace }}"
+      with_items:
+        - { pattern: "^kolla_internal_vip_address:.*", replace: "kolla_internal_vip_address: 192.168.122.2" }
+        - { pattern: "^#enable_haproxy:.*", replace: "enable_haproxy: \"no\"" }
+      when: xci_flavor == 'aio'
+    - name: enable tempest
+      lineinfile:
+        path: "{{ openstack_kolla_etc_path }}/globals.yml"
+        regexp: "^#enable_tempest:.*"
+        line: "enable_tempest: \"yes\""
+      when: (tempest_install | default(False)) | bool or (tempest_run | default(False)) | bool
+    - name: generate ramdom passwords
+      shell: "kolla-genpwd -p {{ openstack_kolla_etc_path }}/passwords.yml"
+    - name: copy pinned versions of OpenStack services
+      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/kolla/files/kolla-build.conf {{ openstack_kolla_etc_path }}/kolla-build.conf"
+    - name: configure kolla build images
+      lineinfile:
+        path: "{{ openstack_kolla_etc_path }}/kolla-build.conf"
+        regexp: "^#base =.*"
+        line: "base = {{ xci_distro }}"
+    - name: build kolla docker images
+      shell: "kolla-build --config-file {{ openstack_kolla_etc_path }}/kolla-build.conf"

@@ -1,0 +1,10 @@
+DEVICE={{ item.name }}
+NM_CONTROLLED=no
+ONBOOT=yes
+BOOTPROTO=none
+{% if item.vlan_id is defined %}
+VLAN=yes
+ETHERDEVICE={{ ansible_default_ipv4.interface }}
+VLAN_ID={{ item.vlan_id }}
+{% endif %}
+BRIDGE={{ item.bridge }}

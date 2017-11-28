@@ -11,9 +11,12 @@ export OPENSTACK_OSA_OPENRC_GIT_URL=${OPENSTACK_OSA_OPENRC_GIT_URL:-https://git.
 export KUBESPRAY_GIT_URL=${KUBESPRAY_GIT_URL:-https://github.com/kubernetes-incubator/kubespray.git}
 export OPENSTACK_OSA_HAPROXY_GIT_URL=${OPENSTACK_OSA_HAPROXY_GIT_URL:-https://git.openstack.org/openstack/openstack-ansible-haproxy_server}
 export KEEPALIVED_GIT_URL=${KEEPALIVED_GIT_URL:-https://github.com/evrardjp/ansible-keepalived}
+export OPENSTACK_KOLLA_GIT_URL=${OPENSTACK_KOLLA_GIT_URL:-https://git.openstack.org/openstack/kolla}
+export OPENSTACK_KOLLA_ANSIBLE_GIT_URL=${OPENSTACK_KOLLA_ANSIBLE_GIT_URL:-https://git.openstack.org/openstack/kolla-ansible}
 
 # Configuration
 export OPENSTACK_OSA_ETC_PATH=/etc/openstack_deploy
+export OPENSTACK_KOLLA_ETC_PATH=/etc/kolla
 export OPNFV_HOST_IP=192.168.122.2
 export XCI_FLAVOR_ANSIBLE_FILE_PATH=$XCI_PATH/xci/installer/$INSTALLER_TYPE/files/$XCI_FLAVOR
 export CI_LOOP=${CI_LOOP:-daily}
@@ -29,6 +32,8 @@ export XCI_PLAYBOOKS=${XCI_PATH}/xci/playbooks
 # Paths where git repositories of XCI Components will be cloned on the OPNFV host
 #-------------------------------------------------------------------------------
 export OPENSTACK_OSA_PATH="${OPNFV_XCI_CACHE}/repos/openstack-ansible"
+export OPENSTACK_KOLLA_PATH="${OPNFV_XCI_CACHE}/repos/kolla"
+export OPENSTACK_KOLLA_ANSIBLE_PATH="${OPNFV_XCI_CACHE}/repos/kolla-ansible"
 
 # Logging
 export LOG_PATH=${LOG_PATH:-${XCI_PATH}/xci/logs}

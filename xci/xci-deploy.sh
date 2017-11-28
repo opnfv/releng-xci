@@ -21,6 +21,7 @@ submit_bug_report() {
     echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
     echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
     echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
+    echo "openstack/kolla version: $OPENSTACK_KOLLA_VERSION"
     echo "xci flavor: $XCI_FLAVOR"
     echo "xci installer: $INSTALLER_TYPE"
     echo "xci scenario: $DEPLOY_SCENARIO"
