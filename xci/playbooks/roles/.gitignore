@@ -6,3 +6,4 @@
 !prepare-functest/
 !remote-folders/
 !synchronize-time/
+!install-docker/

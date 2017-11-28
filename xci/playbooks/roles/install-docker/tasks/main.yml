@@ -1,0 +1,42 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Intel Corporation.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+    - name: install docker package
+      package:
+        name: "{{ docker_package_name }}"
+        state: latest
+    - name: ensure docker System D folder
+      file:
+        path: "/etc/systemd/system/docker.service.d/"
+        state: directory
+    - name: Configure docker service to use http_proxy env value
+      blockinfile:
+        dest: "/etc/systemd/system/docker.service.d/http-proxy.conf"
+        create: yes
+        block: |
+            [Service]
+            Environment="HTTP_PROXY={{ lookup('env','http_proxy') }}"
+      when:
+        - lookup('env','http_proxy') is defined
+        - lookup('env','http_proxy') != ""
+    - name: Configure docker service to use https_proxy env value
+      blockinfile:
+        dest: "/etc/systemd/system/docker.service.d/https-proxy.conf"
+        create: yes
+        block: |
+            [Service]
+            Environment="HTTPS_PROXY={{ lookup('env','https_proxy') }}"
+      when:
+        - lookup('env','https_proxy') is defined
+        - lookup('env','https_proxy') != ""
+    - name: reload systemd
+      command: systemctl daemon-reload
+    - service:
+        name: docker
+        state: restarted
