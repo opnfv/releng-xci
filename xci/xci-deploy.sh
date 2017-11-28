@@ -6,8 +6,6 @@ set -o pipefail
 submit_bug_report() {
     echo ""
     echo "-------------------------------------------------------------------------"
-    echo "Oh nooooo! The XCI deployment failed miserably :-("
-    echo ""
     echo "If you need help, please choose one of the following options"
     echo "* #opnfv-pharos @ freenode network"
     echo "* opnfv-tech-discuss mailing list (https://lists.opnfv.org/mailman/listinfo/opnfv-tech-discuss)"
