@@ -46,3 +46,7 @@ export HAPROXY_VERSION=$(grep -E '.*name: haproxy_server' -A 3 \
 # HEAD of kubspray "master" as of 27.02.2018
 # kubespray's bug Reference: https://github.com/kubernetes-incubator/kubespray/issues/2400
 export KUBESPRAY_VERSION=${KUBESPRAY_VERSION:-"810c10a0e9b65b0ef8ae8f7c302f7553a165631c"}
+# HEAD of kolla "master" as 13.02.2018
+export OPENSTACK_KOLLA_VERSION=${OPENSTACK_KOLLA_VERSION:-"9735112313bd23d74274c70f08207a192db994fc"}
+# HEAD of kolla-ansible "master" as 13.02.2018
+export OPENSTACK_KOLLA_ANSIBLE_VERSION=${OPENSTACK_KOLLA_ANSIBLE_VERSION:-"df89e1885beaa16a1d9df6d8ca8796c95fb37eff"}

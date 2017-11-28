@@ -49,6 +49,18 @@
       version: "{{ KUBESPRAY_VERSION }}"
       when: XCI_INSTALLER == "kubespray"
     - role: clone-repository
+      project: "openstack/kolla"
+      repo: "{{ OPENSTACK_KOLLA_GIT_URL }}"
+      dest: "{{ XCI_CACHE }}/repos/kolla"
+      version: "{{ OPENSTACK_KOLLA_VERSION }}"
+      when: XCI_INSTALLER == "kolla"
+    - role: clone-repository
+      project: "openstack/kolla-ansible"
+      repo: "{{ OPENSTACK_KOLLA_ANSIBLE_GIT_URL }}"
+      dest: "{{ XCI_CACHE }}/repos/kolla-ansible"
+      version: "{{ OPENSTACK_KOLLA_ANSIBLE_VERSION }}"
+      when: XCI_INSTALLER == "kolla"
+    - role: clone-repository
       project: "openstack/openstack-ansible-haproxy_server"
       repo: "{{ OPENSTACK_OSA_HAPROXY_GIT_URL }}"
       dest: roles/haproxy_server
