@@ -41,6 +41,13 @@
         - opensuse
         - ubuntu
         - centos
+    - installer: kolla
+      flavors:
+        - aio
+        - mini
+      distros:
+        - ubuntu
+        - centos
 
 - scenario: os-odl-nofeature
   scm: git
