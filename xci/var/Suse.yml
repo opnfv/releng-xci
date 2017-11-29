@@ -11,3 +11,4 @@
 interface: "eth0"
 python_crypto_package_name: python-pycrypto
 docker_package_name: docker
+docker_service_name: docker
