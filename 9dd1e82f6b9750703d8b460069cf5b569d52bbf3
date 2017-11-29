@@ -94,6 +94,30 @@
       "revId": "9dd1e82f6b9750703d8b460069cf5b569d52bbf3",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_9c47384b",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-11-29T12:16:30Z",
+      "side": 1,
+      "message": "oh! okay, now i understand :)\nyou are talking about xci-overrides for external scenarios. then, i hope your patch will address both xci-overrides and {{playbook_dir}} in role_path_default issues.",
+      "parentUuid": "9a3d3df0_c8a61f53",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 2
+      },
+      "revId": "9dd1e82f6b9750703d8b460069cf5b569d52bbf3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
