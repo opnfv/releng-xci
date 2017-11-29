@@ -46,6 +46,30 @@
       "revId": "9dd1e82f6b9750703d8b460069cf5b569d52bbf3",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_48bb2f72",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2017-11-29T11:18:36Z",
+      "side": 1,
+      "message": "Do you see any problem with this approach ?\n\u003e\u003e I mean the fix proposed in this review.",
+      "parentUuid": "9a3d3df0_e894c3e3",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 2
+      },
+      "revId": "9dd1e82f6b9750703d8b460069cf5b569d52bbf3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
