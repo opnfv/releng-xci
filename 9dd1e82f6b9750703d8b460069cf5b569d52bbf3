@@ -70,6 +70,30 @@
       "revId": "9dd1e82f6b9750703d8b460069cf5b569d52bbf3",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_c8a61f53",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-29T11:21:23Z",
+      "side": 1,
+      "message": "I agree the line is wrong. It should work for all scenarios. However, with your proposed change we lose that ability. External scenarios (once we fix this line) will be unable to override any variable if you clone them so late into the process",
+      "parentUuid": "9a3d3df0_48bb2f72",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 2
+      },
+      "revId": "9dd1e82f6b9750703d8b460069cf5b569d52bbf3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
