@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_e8e683b3",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-11-29T10:57:54Z",
+      "side": 1,
+      "message": "So this line does not work anymore because you don\u0027t have the scenarios in place which means you can\u0027t override env variables from the scenario anymore. I am pretty sure this is not what you want to do :)\n\nI think we should keep the roles in {{ playbook_dir }} and then we can think of how to make them available in the checked out repo. I have some other patches in flight which should facilitate that so lets discuss in IRC",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 136,
+        "endChar": 2
+      },
+      "revId": "9dd1e82f6b9750703d8b460069cf5b569d52bbf3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
