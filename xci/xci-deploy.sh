@@ -143,8 +143,8 @@ echo "-------------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 # Get scenario variables overrides
 #-------------------------------------------------------------------------------
-if [[ -f $XCI_PATH/xci/scenarios/${OPNFV_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
-    source $XCI_PATH/xci/scenarios/$OPNFV_SCENARIO/xci_overrides
+if [[ -f $SCENARIO_CHECKOUT_PATH/${OPNFV_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
+    source $SCENARIO_CHECKOUT_PATH/$OPNFV_SCENARIO/xci_overrides
 fi
 
 #-------------------------------------------------------------------------------
