@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_35a71f0e",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-11-30T21:36:17Z",
+      "side": 1,
+      "message": "This patch makes sense however I am concerned about the variable name cause the name for the var you picked might confuse developers.\n\nAs we discussed, we will need to know where external scenario are located on the filesystem. In Jenkins case, we know where they are; in WORKSPACE. But in developer case, we do not and we need developers to tell where their scenario is. SCENARIO_CHECKOUT_PATH sounds like where did I clone my project repo and so on.\n\nCould it be something like XCI_SCENARIO_CACHE or something like that?",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 29
+      },
+      "revId": "9905ccabdd708496dc6384c220a935f0dbc37aee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
