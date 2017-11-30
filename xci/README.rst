@@ -203,7 +203,6 @@ on each run.
 
 To enable it, you need to export the different DEV_PATH vars:
 
-- export OPNFV_RELENG_DEV_PATH=/opt/releng-xci/
 - export OPENSTACK_BIFROST_DEV_PATH=/opt/bifrost/
 - export OPENSTACK_OSA_DEV_PATH=/opt/openstack-ansible/
 
@@ -226,8 +225,6 @@ dependent roles in ansible-role-requirements.yml file.
 If you run into this situation, then your best bet is to replace the XCI
 ansible-role-requirements.yml file with the upstream one from
 http://git.openstack.org/cgit/openstack/openstack-ansible/plain/ansible-role-requirements.yml.
-You also need to set OPNFV_RELENG_DEV_PATH as explained above in order for this file to be
-used throughout the deployment.
 
 ===========================================
 Limitations, Known Issues, and Improvements

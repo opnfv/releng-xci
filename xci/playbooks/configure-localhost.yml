@@ -40,12 +40,10 @@
         file: ../var/{{ ansible_os_family }}.yml
     - name: Synchronize local development releng-xci repository to XCI paths
       synchronize:
-        src: "{{ OPNFV_RELENG_DEV_PATH }}"
+        src: "{{ XCI_PATH }}"
         dest: "{{ OPNFV_RELENG_PATH }}"
         recursive: yes
         delete: yes
-      when:
-        - OPNFV_RELENG_DEV_PATH != ""
 
 - hosts: localhost
   connection: local
