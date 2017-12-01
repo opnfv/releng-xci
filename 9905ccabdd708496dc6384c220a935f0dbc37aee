@@ -22,6 +22,30 @@
       "revId": "9905ccabdd708496dc6384c220a935f0dbc37aee",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_957d4bb4",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-12-01T09:26:18Z",
+      "side": 1,
+      "message": "This is not fixing scenario handling so all the limitations that we currently have are there. So merely fixes the code to look at where we clone the scenarios for overrides.",
+      "parentUuid": "9a3d3df0_35a71f0e",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 29
+      },
+      "revId": "9905ccabdd708496dc6384c220a935f0dbc37aee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
