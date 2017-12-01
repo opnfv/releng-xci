@@ -1,0 +1,17 @@
+STARTMODE='auto'
+BOOTPROTO='static'
+{% if item.vlan_id is defined %}
+ETHERDEVICE={{ interface }}
+VLAN_ID={{ item.vlan_id }}
+{% endif %}
+{% if item.bridge_ports is defined %}
+BRIDGE='yes'
+BRIDGE_FORWARDDELAY='0'
+BRIDGE_STP=off
+BRIDGE_PORTS={{ item.bridge_ports }}
+{% endif %}
+{% if item.ip is defined %}
+IPADDR={{ item.ip }}
+{% endif %}
+PRE_UP_SCRIPT="compat:suse:network-config-suse"
+POST_DOWN_SCRIPT="compat:suse:network-config-suse"
