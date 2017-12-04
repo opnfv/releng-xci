@@ -176,3 +176,16 @@
       copy:
         src: "{{ XCI_PATH }}/xci/files/authorized_keys"
         dest: /root/.ssh/authorized_keys
+    - block:
+      - name: ensure ansible configuration folder exist
+        file:
+          path: "{{ ansible_env.HOME }}/ansible"
+          state: directory
+      - name: set ansible profiler
+        blockinfile:
+            dest: "{{ ansible_env.HOME }}/ansible/ansible.cfg"
+            create: yes
+            block: |
+                [defaults]
+                callback_whitelist = profile_tasks
+      when: "{{ XCI_ANSIBLE_PROFILER | bool }}"
