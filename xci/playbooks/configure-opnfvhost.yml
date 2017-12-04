@@ -201,3 +201,14 @@
         src: "{{ ansible_env.HOME }}/openrc"
         dest: "{{ XCI_DEVEL_ROOT }}/"
         flat: true
+    - name: ensure ansible configuration folder exist
+      file:
+        path: "/etc/ansible"
+        state: directory
+    - name: set ansible profiler
+      blockinfile:
+          dest: "/etc/ansible/ansible.cfg"
+          create: yes
+          block: |
+              [defaults]
+              callback_whitelist = profile_tasks
