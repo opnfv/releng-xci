@@ -1,0 +1,6 @@
+---
+other:
+  - |
+    Introduce OpenStack reno to keep track of changes.
+
+    More details are available on https://docs.openstack.org/reno/latest/user/usage.html
