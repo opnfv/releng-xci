@@ -18,6 +18,8 @@
   hosts: localhost
   connection: local
   gather_facts: true
+  vars_files:
+    - ../var/opnfv.yml
   tasks:
     - name: Remove target directory
       file:
@@ -53,7 +55,7 @@
     ansible_python_interpreter: "/usr/bin/python"
     scenarios: "{{ lookup('file', scenario_file) | from_yaml }}"
     scenario_file: '../opnfv-scenario-requirements.yml'
-    scenario_path_default: "{{ lookup('env', 'XCI_PATH') }}/.cache/repos/scenarios"
+    scenario_path_default: "{{ XCI_SCENARIOS_CACHE }}"
     role_path_default: "{{ playbook_dir }}/roles"
     git_clone_retries: 2
     git_clone_retry_delay: 5
