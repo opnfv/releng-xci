@@ -169,9 +169,6 @@ cd ${OPENSTACK_BIFROST_PATH}
 bash ./scripts/bifrost-provision.sh
 echo "-----------------------------------------------------------------------"
 echo "Info: VM nodes are provisioned!"
-source $OPENSTACK_BIFROST_PATH/env-vars
-ironic node-list
-echo
 #-------------------------------------------------------------------------------
 # Configure localhost
 #-------------------------------------------------------------------------------
