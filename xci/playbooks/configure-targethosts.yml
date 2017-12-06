@@ -10,11 +10,15 @@
 - hosts: controller
   remote_user: root
   vars_files:
-    - ../var/flavor-vars.yml
+    - ../var/opnfv.yml
+
   pre_tasks:
     - name: Load distribution variables
       include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
+        file: "{{ item }}"
+      with_items:
+        - ../var/{{ ansible_os_family }}.yml
+        - ../file/{{ XCI_FLAVOR }}/flavor-vars.yml
   roles:
     - role: configure-network
     # we need to force sync time with ntp or the nodes will be out of sync timewise
@@ -23,12 +27,16 @@
 - hosts: compute
   remote_user: root
   vars_files:
-    - ../var/flavor-vars.yml
     - ../var/opnfv.yml
+
   pre_tasks:
     - name: Load distribution variables
       include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
+        file: "{{ item }}"
+      with_items:
+        - ../var/opnfv.yml
+        - ../var/{{ ansible_os_family }}.yml
+        - ../file/{{ XCI_FLAVOR }}/flavor-vars.yml
   roles:
     - role: configure-network
     # we need to force sync time with ntp or the nodes will be out of sync timewise
