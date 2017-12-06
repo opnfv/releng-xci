@@ -25,7 +25,7 @@
 #-------------------------------------------------------------------------------
 # use releng-xci from master until the development work with the sandbox is complete
 export OPNFV_RELENG_VERSION="master"
-# HEAD of bifrost "master" as of 20.11.2017
-export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"cc46b9280cb0f65e8903af1b15994021018de27e"}
+# HEAD of bifrost "master" as of 06.12.2017
+export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"d81c122b8565677feb38602eec3f8784065c7de6"}
 # HEAD of osa "master" as of 28.11.2017
 export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"746330cc858ad2c419571e56248f6ee82280a3da"}
