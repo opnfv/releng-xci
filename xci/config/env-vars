@@ -8,10 +8,21 @@ export OPENSTACK_OSA_GIT_URL=https://git.openstack.org/openstack/openstack-ansib
 export OPENSTACK_OSA_OPENRC_GIT_URL=https://git.openstack.org/openstack/openstack-ansible-openstack_openrc
 export OPENSTACK_OSA_ETC_PATH=/etc/openstack_deploy
 export OPNFV_HOST_IP=192.168.122.2
-export OPNFV_XCI_PATH=$OPNFV_RELENG_PATH/xci
-export XCI_FLAVOR_ANSIBLE_FILE_PATH=$OPNFV_XCI_PATH/file/$XCI_FLAVOR
+export XCI_FLAVOR_ANSIBLE_FILE_PATH=$XCI_PATH/xci/file/$XCI_FLAVOR
 export CI_LOOP=${CI_LOOP:-daily}
 export JOB_NAME=${JOB_NAME:-false}
+export XCI_CACHE=${XCI_PATH}/.cache
+export XCI_PLAYBOOKS=${XCI_PATH}/xci/playbooks
+
+#-------------------------------------------------------------------------------
+# Paths where git repositories of XCI Components will be cloned
+#-------------------------------------------------------------------------------
+export OPENSTACK_BIFROST_PATH="${XCI_CACHE}/repos/bifrost"
+export OPENSTACK_OSA_PATH="${XCI_CACHE}/repos/openstack-ansible"
+
+# Logging
+export LOG_PATH=${LOG_PATH:-${XCI_PATH}/xci/logs}
+
 # This currently matches to OSA Ansible version but it doesn't really
 # matter since bifrost and OSA will use the Ansible version they need.
 # Overall, it's better to use what OSA supports so we can use new features.

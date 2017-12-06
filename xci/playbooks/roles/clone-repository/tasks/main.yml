@@ -12,3 +12,4 @@
     repo: "{{ repo }}"
     dest: "{{ dest }}"
     version: "{{ version }}"
+    force: yes
