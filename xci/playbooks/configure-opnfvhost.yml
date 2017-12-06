@@ -10,73 +10,66 @@
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/flavor-vars.yml
     - ../var/opnfv.yml
   pre_tasks:
     - name: Load distribution variables
       include_vars:
         file: ../var/{{ ansible_os_family }}.yml
+        file: ../file/{{ XCI_FLAVOR }}/flavor-vars.yml
+
   roles:
-    - { role: clone-repository, project: "opnfv/releng-xci", repo: "{{ OPNFV_RELENG_GIT_URL }}", dest: "{{ OPNFV_RELENG_PATH }}", version: "{{ OPNFV_RELENG_VERSION }}" }
-    - { role: clone-repository, project: "openstack/openstack-ansible", repo: "{{ OPENSTACK_OSA_GIT_URL }}", dest: "{{ OPENSTACK_OSA_PATH }}", version: "{{ OPENSTACK_OSA_VERSION }}" }
+    - role: clone-repository
+      project: "openstack/openstack-ansible"
+      repo: "{{ OPENSTACK_OSA_GIT_URL }}"
+      dest: "{{ OPENSTACK_OSA_PATH }}"
+      version: "{{ OPENSTACK_OSA_VERSION }}"
 
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/opnfv.yml
-  tasks:
-    - name: Load distribution variables
-      include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
-    - name: Synchronize local development releng-xci repository to XCI paths
-      synchronize:
-        src: "{{ XCI_PATH }}"
-        dest: "{{ OPNFV_RELENG_PATH }}"
-        recursive: yes
-        delete: yes
-    - name: Synchronize local development openstack-ansible repository to XCI paths
-      synchronize:
-        src: "{{ OPENSTACK_OSA_DEV_PATH }}"
-        dest: "{{ OPENSTACK_OSA_PATH }}"
-        recursive: yes
-        delete: yes
-      when:
-        - OPENSTACK_OSA_DEV_PATH != ""
-
-- hosts: opnfv
-  remote_user: root
-  vars_files:
-    - ../var/flavor-vars.yml
     - ../var/opnfv.yml
   pre_tasks:
     - name: Load distribution variables
       include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
+        file: "{{ item }}"
+      with_items:
+        - ../var/{{ ansible_os_family }}.yml
+        - ../file/{{ XCI_FLAVOR }}/flavor-vars.yml
+
   roles:
       - role: configure-network
+
   tasks:
     - name: generate SSH keys
       shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
       args:
-        creates: /root/.ssh/id_rsa
-    - name: ensure ssh key storage directory exists
-      file:
-        path: "{{ OPNFV_SSH_HOST_KEYS_PATH }}"
-        state: directory
+        creates: "{{ ansible_env.HOME }}/.ssh/id_rsa"
     - name: fetch public key
-      fetch: src="/root/.ssh/id_rsa.pub" dest="{{ OPNFV_SSH_HOST_KEYS_PATH }}"
+      fetch:
+        src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+        dest: "../file/authorized_keys"
+        flat: yes
+    - name: Set facts for remote deployment
+      set_fact:
+        remote_xci_path: "{{ ansible_env.HOME }}/releng-xci"
+        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/file/{{ XCI_FLAVOR }}"
+        remote_xci_playbooks: "{{ ansible_env.HOME }}/releng-xci/xci/playbooks"
+    - name: Copy releng-xci to remote host
+      synchronize:
+        src: "{{ XCI_PATH }}/"
+        dest: "{{ remote_xci_path }}"
+        recursive: yes
+        delete: yes
     - name: copy flavor inventory
-      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/inventory {{OPNFV_RELENG_PATH}}/xci/playbooks"
-    - name: copy flavor vars
-      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/flavor-vars.yml {{OPNFV_RELENG_PATH}}/xci/var"
+      shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/inventory {{ remote_xci_playbooks }}"
     - name: copy openstack_deploy
       shell: "/bin/cp -rf {{OPENSTACK_OSA_PATH}}/etc/openstack_deploy {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy openstack_user_config.yml
-      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/openstack_user_config.yml {{OPENSTACK_OSA_ETC_PATH}}"
+      shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/openstack_user_config.yml {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy all user override files
-      shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
+      shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy cinder.yml
-      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
+      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/file/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
     - name: Configure AIO tempest
       lineinfile:
         path: "{{ OPENSTACK_OSA_ETC_PATH }}/user_variables.yml"
@@ -87,11 +80,11 @@
         - "tempest_run"
     - block:
         - name: copy ceph.yml
-          shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/conf.d/"
+          shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/conf.d/"
         - name: copy user_ceph.yml
-          shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/user_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_ceph.yml"
+          shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_ceph.yml"
         - name: copy user_variables_ceph.yml
-          shell: "/bin/cp -rf {{XCI_FLAVOR_ANSIBLE_FILE_PATH}}/user_variables_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_variables_ceph.yml"
+          shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_variables_ceph.yml"
       when: XCI_CEPH_ENABLED == "true"
     # TODO: We need to get rid of this as soon as the issue is fixed upstream
     - name: change the haproxy state from disable to enable
@@ -100,16 +93,16 @@
         regexp: '(\s+)haproxy_state: disabled'
         replace: '\1haproxy_state: enabled'
     - name: copy OPNFV OpenStack playbook
-      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/setup-openstack.yml {{OPENSTACK_OSA_PATH}}/playbooks"
+      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/file/setup-openstack.yml {{OPENSTACK_OSA_PATH}}/playbooks"
     - name: copy pinned versions of OSA Roles and global requirements
-      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/{{ item }} {{OPENSTACK_OSA_PATH}}/{{ item }}"
+      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/file/{{ item }} {{OPENSTACK_OSA_PATH}}/{{ item }}"
       with_items:
         - "ansible-role-requirements.yml"
         - "global-requirement-pins.txt"
       when:
         - OPENSTACK_OSA_VERSION != "master"
     - name: copy pinned versions of OpenStack services
-      shell: "/bin/cp -rf {{OPNFV_RELENG_PATH}}/xci/file/openstack_services.yml {{OPENSTACK_OSA_PATH}}/playbooks/defaults/repo_packages/openstack_services.yml"
+      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/file/openstack_services.yml {{OPENSTACK_OSA_PATH}}/playbooks/defaults/repo_packages/openstack_services.yml"
       when:
         - OPENSTACK_OSA_VERSION != "master"
     - include: bootstrap-scenarios.yml
@@ -172,23 +165,25 @@
   vars_files:
     - ../var/opnfv.yml
   tasks:
-    - name: Generate authorized_keys
-      shell: "/bin/cat {{ OPNFV_SSH_HOST_KEYS_PATH }}/opnfv/root/.ssh/id_rsa.pub >> ../file/authorized_keys"
     - name: Append public keys to authorized_keys
       shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> ../file/authorized_keys"
 
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/flavor-vars.yml
     - ../var/opnfv.yml
-    - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/user_variables.yml"
   pre_tasks:
     - name: Load distribution variables
       include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
+        file: "{{ item }}"
+      with_items:
+        - ../var/opnfv.yml
+        - ../var/{{ ansible_os_family }}.yml
+        - ../file/{{ XCI_FLAVOR }}/flavor-vars.yml
+        - ../file/{{ XCI_FLAVOR }}/user_variables.yml
   roles:
     - role: "openstack-ansible-openstack_openrc"
+
   tasks:
     - name: add extra insecure flag to generated openrc
       blockinfile:
@@ -199,5 +194,5 @@
     - name: fetch generated openrc
       fetch:
         src: "{{ ansible_env.HOME }}/openrc"
-        dest: "{{ XCI_DEVEL_ROOT }}/"
+        dest: "{{ XCI_PATH }}/.cache/openrc"
         flat: true

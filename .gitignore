@@ -45,3 +45,4 @@ _static/
 conf.py
 *.html
 html/
+xci/logs/
