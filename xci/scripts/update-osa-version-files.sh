@@ -53,7 +53,7 @@ popd &> /dev/null
 pushd $tempdir/openstack-ansible &> /dev/null
 source scripts/sources-branch-updater-lib.sh
 printme "Synchronize roles and packages"
-update_ansible_role_requirements "master" "true" "true"
+update_ansible_role_requirements "${OPENSTACK_OSA_VERSION:-master}" "true" "true"
 
 # Construct the ansible-role-requirements-file
 echo """---
