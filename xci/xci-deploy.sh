@@ -126,6 +126,20 @@ if [[ $OS_FAMILY == RedHat ]]; then
     exit 1
 fi
 
+if [[ ${OPENSTACK_OSA_VERSION} =~ "stable/" ]]; then
+    echo ""
+    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    echo "WARNING: We have detected that you are trying to use a stable OpenStack-Ansible."
+    echo "This will likely not work because, unless you know what you are doing, you are going"
+    echo "to be mixing roles and services from the master branch with a stable OpenStack-Ansible."
+    echo "This is _NOT_ supported in any way but we can try to make it work for you."
+    echo "Either way you are on your own so please do not report bugs as they will be considered invalid."
+    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    echo ""
+    sleep 15
+    trap - ERR
+    ${XCI_PATH}/xci/scripts/update-osa-version-files.sh ${OPENSTACK_OSA_VERSION}
+fi
 # TODO: The xci playbooks can be put into a playbook which will be done later.
 
 # Clone OPNFV scenario repositories
