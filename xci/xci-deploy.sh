@@ -4,6 +4,7 @@ set -o nounset
 set -o pipefail
 
 submit_bug_report() {
+    cd ${XCI_PATH}
     echo ""
     echo "-------------------------------------------------------------------------"
     echo "Oh nooooo! The XCI deployment failed miserably :-("
