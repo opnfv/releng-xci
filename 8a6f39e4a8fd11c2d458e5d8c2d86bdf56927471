@@ -93,6 +93,30 @@
       "revId": "8a6f39e4a8fd11c2d458e5d8c2d86bdf56927471",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_aec0f4e0",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-12-11T12:00:23Z",
+      "side": 1,
+      "message": "Nothing, I was misunderstanding the patch sorry. If I understand now correctly, we use the releng-xci a-r-r file, etc unless the OSA version set by the user is stable/xxx, in that case we fetch the a-r-r file, etc from upstream, right? Then we are assuming that users will not set a \"SHA\" as OSA version when referring to stable/xxx, which I guess is a safe guess. Maybe we could add a condition when reading the OSA version and if it is not the default or \"stable/xxx\", we can print: \"YOU ARE ON YOUR OWN!\" :)",
+      "parentUuid": "9a3d3df0_6e8f0ccd",
+      "range": {
+        "startLine": 129,
+        "startChar": 31,
+        "endLine": 129,
+        "endChar": 33
+      },
+      "revId": "8a6f39e4a8fd11c2d458e5d8c2d86bdf56927471",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
