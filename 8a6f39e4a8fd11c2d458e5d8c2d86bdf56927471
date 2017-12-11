@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_ce645824",
+        "filename": "xci/scripts/update-osa-version-files.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-12-11T12:29:54Z",
+      "side": 1,
+      "message": "Actually not. Because the first argument in update_ansible_role_requirements expects to be a \u0027branch\u0027name but in update-osa-version-files.sh the first argument can be a branch or SHA so if we pass SHA then update_ansible_role_requirements will not work. As such (at least for now) we have to be a bit ugly here :/",
+      "parentUuid": "9a3d3df0_8e9410e3",
+      "range": {
+        "startLine": 56,
+        "startChar": 36,
+        "endLine": 56,
+        "endChar": 57
+      },
+      "revId": "8a6f39e4a8fd11c2d458e5d8c2d86bdf56927471",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_0ea12047",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 3
