@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_117e616b",
+        "filename": "xci/scripts/update-osa-version-files.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-12-11T14:28:45Z",
+      "side": 1,
+      "message": "I see",
+      "parentUuid": "9a3d3df0_ce645824",
+      "range": {
+        "startLine": 56,
+        "startChar": 36,
+        "endLine": 56,
+        "endChar": 57
+      },
+      "revId": "8a6f39e4a8fd11c2d458e5d8c2d86bdf56927471",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_0ea12047",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 3
@@ -156,6 +180,30 @@
       "side": 1,
       "message": "Almost. We are _not_ using the upstream a-r-r file when you set stable/foo. The upstream a-r-r contains SHAs for the roles but we use the stable branches in the roles which means we are really using the latest stable code from the roles instead of an SHA on the stable brach. I hope that makes sense. I have noticed that people normally use SHAs around the one we provide if they want to workaround bugs or they use stable/* if they work with scenarios so I think that should cover our most common cases right now.",
       "parentUuid": "9a3d3df0_aec0f4e0",
+      "range": {
+        "startLine": 129,
+        "startChar": 31,
+        "endLine": 129,
+        "endChar": 33
+      },
+      "revId": "8a6f39e4a8fd11c2d458e5d8c2d86bdf56927471",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d1835954",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-12-11T14:28:45Z",
+      "side": 1,
+      "message": "ok, understood :)",
+      "parentUuid": "9a3d3df0_4eb1688e",
       "range": {
         "startLine": 129,
         "startChar": 31,
