@@ -18,6 +18,11 @@
       repo: "{{ OPENSTACK_OSA_OPENRC_GIT_URL }}"
       dest: roles/openstack-ansible-openstack_openrc
       version: "master"
+    - role: clone-repository
+      project: "openstack/openstack-ansible"
+      repo: "{{ OPENSTACK_OSA_GIT_URL }}"
+      dest: "{{ OPENSTACK_OSA_PATH }}"
+      version: "{{ OPENSTACK_OSA_VERSION }}"
 
   tasks:
     - name: Load distribution variables
