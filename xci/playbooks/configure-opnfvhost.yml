@@ -26,6 +26,7 @@
 
   roles:
     - role: configure-network
+      when: XCI_FLAVOR != "aio"
 
   tasks:
     - name: generate SSH keys
@@ -49,8 +50,10 @@
       shell: "/bin/cp -rf {{OPENSTACK_OSA_PATH}}/etc/openstack_deploy {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy openstack_user_config.yml
       shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/openstack_user_config.yml {{OPENSTACK_OSA_ETC_PATH}}"
+      failed_when: false
     - name: copy all user override files
       shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
+      failed_when: false
     - name: copy cinder.yml
       shell: "/bin/cp -rf {{ remote_xci_path }}/xci/file/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
     - name: Configure AIO tempest
@@ -159,6 +162,7 @@
     - name: Load distribution variables
       include_vars:
         file: "{{ item }}"
+      failed_when: false
       with_items:
         - ../var/opnfv.yml
         - ../var/{{ ansible_os_family }}.yml
