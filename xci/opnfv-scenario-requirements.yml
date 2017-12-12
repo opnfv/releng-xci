@@ -71,3 +71,19 @@
         - noha
       distros:
         - ubuntu
+
+- scenario: os-odl-bgpvpn
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/sdnvpn
+  version: master
+  role: scenarios/os-odl-bgpvpn/role/os-odl-bgpvpn
+  installers:
+    - installer: osa
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - opensuse
+        - ubuntu
+        - centos

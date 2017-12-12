@@ -65,6 +65,8 @@ source "$XCI_PATH/xci/installer/${XCI_INSTALLER}/env" &>/dev/null || true
 # source xci configuration
 source $XCI_PATH/xci/config/env-vars
 
+export DEPLOY_SCENARIO=os-odl-bgpvpn
+
 if [[ -z $(echo $PATH | grep "$HOME/.local/bin")  ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
