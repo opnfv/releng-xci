@@ -177,7 +177,7 @@ echo "-------------------------------------------------------------------------"
 sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 cd $XCI_PATH/bifrost/
 sudo -E bash ./scripts/destroy-env.sh
-cd $XCI_PATH/xci/playbooks
+cd $XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
 cd ${OPENSTACK_BIFROST_PATH}
 bash ./scripts/bifrost-provision.sh
@@ -195,7 +195,7 @@ echo "Info: VM nodes are provisioned!"
 
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-cd $XCI_PATH/xci/playbooks
+cd $XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
@@ -213,8 +213,9 @@ echo "Info: Configured localhost host for openstack-ansible"
 #-------------------------------------------------------------------------------
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-cd ${XCI_DEVEL_ROOT}
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i ${OPNFV_XCI_PATH}/playbooks/inventory ${OPNFV_XCI_PATH}/playbooks/configure-opnfvhost.yml
+cd $XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+    configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
 
@@ -232,8 +233,9 @@ echo "Info: Configured opnfv deployment host for openstack-ansible"
 if [[ $XCI_FLAVOR != "aio" ]]; then
     echo "Info: Configuring target hosts for openstack-ansible"
     echo "-----------------------------------------------------------------------"
-    cd $OPNFV_XCI_PATH/playbooks
-    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory configure-targethosts.yml
+    cd $XCI_PLAYBOOKS
+    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+        configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts"
 fi

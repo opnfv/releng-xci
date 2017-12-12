@@ -24,28 +24,6 @@ export XCI_FLAVOR=${XCI_FLAVOR:-aio}
 export XCI_CEPH_ENABLED=${XCI_CEPH_ENABLED:-false}
 
 #-------------------------------------------------------------------------------
-# Set Paths to where git repositories of XCI Components will be cloned
-#-------------------------------------------------------------------------------
-# OPNFV XCI Sandbox is not verified to be used as non-root user as of yet so
-# changing these paths might break things.
-#-------------------------------------------------------------------------------
-export XCI_DEVEL_ROOT=${XCI_DEVEL_ROOT:-"/tmp/.xci-deploy-env"}
-export OPNFV_RELENG_PATH="${XCI_DEVEL_ROOT}/releng-xci"
-export OPENSTACK_OSA_OPENRC_PATH="${XCI_DEVEL_ROOT}/openstack-ansible-openstack_openrc"
-export OPENSTACK_BIFROST_PATH="${XCI_DEVEL_ROOT}/bifrost"
-export OPENSTACK_OSA_PATH="${XCI_DEVEL_ROOT}/openstack-ansible"
-export OPNFV_SSH_HOST_KEYS_PATH="${XCI_DEVEL_ROOT}/ssh_host_keys"
-export XCI_SCENARIOS_CACHE="${XCI_PATH}/.cache/repos/scenarios"
-
-#-------------------------------------------------------------------------------
-# Set the playbook to use for OpenStack deployment
-#-------------------------------------------------------------------------------
-# The variable can be overriden in order to install additional OpenStack services
-# supported by OpenStack Ansible or exclude certain OpenStack services.
-#-------------------------------------------------------------------------------
-export OPNFV_OSA_PLAYBOOK=${OPNFV_OSA_PLAYBOOK:-"$OPENSTACK_OSA_PATH/playbooks/setup-openstack.yml"}
-
-#-------------------------------------------------------------------------------
 # Configure some other stuff
 #-------------------------------------------------------------------------------
 # Set the verbosity for ansible
@@ -55,7 +33,6 @@ export OPNFV_OSA_PLAYBOOK=${OPNFV_OSA_PLAYBOOK:-"$OPENSTACK_OSA_PATH/playbooks/s
 # or
 #   XCI_ANSIBLE_VERBOSITY="-vvvv"
 export XCI_ANSIBLE_VERBOSITY=${XCI_ANSIBLE_VERBOSITY:-""}
-export LOG_PATH=${LOG_PATH:-${XCI_DEVEL_ROOT}/opnfv/logs}
 export RUN_TEMPEST=${RUN_TEMPEST:-false}
 # Set this to to true to force XCI to re-create the target OS images
 export CLEAN_DIB_IMAGES=${CLEAN_DIB_IMAGES:-false}
