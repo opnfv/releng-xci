@@ -49,4 +49,5 @@ opnfv_required_packages:
 
 opnfv_required_pip:
   - python-openstackclient
+  - python-neutronclient
   - docker-py
