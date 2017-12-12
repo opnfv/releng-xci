@@ -31,7 +31,7 @@ neutron_opendaylight_conf_ini_overrides:
     username: "admin"
     password: "admin"
     port_binding_controller: "pseudo-agentdb-binding"
-    url: "http://{{ internal_lb_vip_address }}:8080/controller/nb/v2/neutron"
+    url: "http://{{ internal_lb_vip_address }}:8180/controller/nb/v2/neutron"
 
 neutron_ml2_drivers_type: "flat,vlan,vxlan"
 
