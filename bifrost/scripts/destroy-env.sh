@@ -53,8 +53,8 @@ echo "removing leases"
 echo "removing logs"
 rm -rf /var/log/libvirt/baremetal_logs/*
 
-# clean up dib images only if requested explicitly
-CLEAN_DIB_IMAGES=${CLEAN_DIB_IMAGES:-false}
+# clean up dib images by default
+CLEAN_DIB_IMAGES=${CLEAN_DIB_IMAGES:-true}
 
 if [ $CLEAN_DIB_IMAGES = "true" ]; then
     rm -rf /httpboot /tftpboot
