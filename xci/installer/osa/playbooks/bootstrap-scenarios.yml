@@ -21,3 +21,7 @@
   include_role:
     name: "os-odl-sfc"
   when: DEPLOY_SCENARIO == 'os-odl-sfc'
+- name: Prepare everything to run the os-odl-bgpvpn scenario
+  include_role:
+    name: "os-odl-bgpvpn"
+  when: OPNFV_SCENARIO == 'os-odl-bgpvpn'
