@@ -26,4 +26,8 @@
   src: https://git.opnfv.org/releng-xci
   version: master
   role: xci/scenarios/os-odl-nofeature/role/os-odl-nofeature
-
+- scenario: os-odl-bgpvpn
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/sdnvpn
+  version: master
+  role: scenarios/os-odl-bgpvpn/role/os-odl-bgpvpn
