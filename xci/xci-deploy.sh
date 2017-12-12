@@ -181,7 +181,7 @@ cd $XCI_PATH/bifrost/
 sudo -E bash ./scripts/destroy-env.sh
 cd $XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
-cd ${OPENSTACK_BIFROST_PATH}
+cd ${XCI_CACHE}/repos/bifrost
 bash ./scripts/bifrost-provision.sh
 echo "-----------------------------------------------------------------------"
 echo "Info: VM nodes are provisioned!"
@@ -250,7 +250,7 @@ fi
 echo "Info: Setting up target hosts for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
-     $OPENSTACK_OSA_PATH/playbooks/setup-hosts.yml | tee setup-hosts.log "
+     releng-xci/.cache/repos/openstack-ansible/playbooks/setup-hosts.yml | tee setup-hosts.log "
 scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
 echo "-----------------------------------------------------------------------"
 echo "Info: Set up target hosts for openstack-ansible successfuly"
@@ -270,7 +270,7 @@ echo "Info: Set up target hosts for openstack-ansible successfuly"
 #-------------------------------------------------------------------------------
 echo "Info: Gathering facts"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "cd $OPENSTACK_OSA_PATH/playbooks; \
+ssh root@$OPNFV_HOST_IP "cd releng-xci/.cache/repos/openstack-ansible/playbooks; \
         ansible ${XCI_ANSIBLE_VERBOSITY} -m setup -a gather_subset=network,hardware,virtual all"
 echo "-----------------------------------------------------------------------"
 
@@ -283,7 +283,7 @@ echo "Info: Setting up infrastructure"
 echo "-----------------------------------------------------------------------"
 echo "xci: running ansible playbook setup-infrastructure.yml"
 ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
-     $OPENSTACK_OSA_PATH/playbooks/setup-infrastructure.yml | tee setup-infrastructure.log"
+     releng-xci/.cache/repos/openstack-ansible/playbooks/setup-infrastructure.yml | tee setup-infrastructure.log"
 scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error
@@ -300,12 +300,12 @@ echo "-----------------------------------------------------------------------"
 # Apply SUSE fix until https://review.openstack.org/508154 is merged
 if [[ ${OS_FAMILY,,} == "suse" ]]; then
 	ssh root@$OPNFV_HOST_IP "ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
-		-i $OPENSTACK_OSA_PATH/playbooks/inventory/ galera_container -m shell \
+		-i releng-xci/.cache/repos/openstack-ansible/playbooks/inventory/ galera_container -m shell \
 		-a \"sed -i \\\"s@/var/run/mysqld/mysqld.sock@/var/run/mysql/mysql.sock@\\\" /etc/my.cnf\""
 fi
 
 ssh root@$OPNFV_HOST_IP "ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
-    -i $OPENSTACK_OSA_PATH/playbooks/inventory/ galera_container -m shell \
+    -i releng-xci/.cache/repos/openstack-ansible/playbooks/inventory/ galera_container -m shell \
 	-a \"mysql -h localhost -e \\\"show status like '%wsrep_cluster_%';\\\"\" | tee galera.log"
 scp root@$OPNFV_HOST_IP:~/galera.log $LOG_PATH/galera.log
 echo "-----------------------------------------------------------------------"
@@ -324,7 +324,7 @@ echo "Info: Database cluster verification successful!"
 echo "Info: Installing OpenStack on target hosts"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
-     $OPENSTACK_OSA_PATH/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
+     releng-xci/.cache/repos/openstack-ansible/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
 scp root@$OPNFV_HOST_IP:~/opnfv-setup-openstack.log $LOG_PATH/opnfv-setup-openstack.log
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error

@@ -12,14 +12,7 @@
   vars_files:
     - ../var/opnfv.yml
 
-  roles:
-    - role: clone-repository
-      project: "openstack/openstack-ansible-openstack_openrc"
-      repo: "{{ OPENSTACK_OSA_OPENRC_GIT_URL }}"
-      dest: roles/openstack-ansible-openstack_openrc
-      version: "master"
-
-  tasks:
+  pre_tasks:
     - name: Load distribution variables
       include_vars:
         file: ../var/{{ ansible_os_family }}.yml
@@ -29,11 +22,23 @@
         state: absent
         recurse: no
       with_items:
-        - "{{ OPENSTACK_BIFROST_PATH }}"
-        - "{{ OPENSTACK_OSA_PATH }}"
-        - "{{ OPENSTACK_OSA_ETC_PATH }}"
+        - "{{ XCI_CACHE }}/repos"
         - "{{ LOG_PATH }} "
         - "{{ OPNFV_SSH_HOST_KEYS_PATH }}"
+
+  roles:
+    - role: clone-repository
+      project: "openstack/openstack-ansible-openstack_openrc"
+      repo: "{{ OPENSTACK_OSA_OPENRC_GIT_URL }}"
+      dest: roles/openstack-ansible-openstack_openrc
+      version: "master"
+    - role: clone-repository
+      project: "openstack/openstack-ansible"
+      repo: "{{ OPENSTACK_OSA_GIT_URL }}"
+      dest: "{{ OPENSTACK_OSA_PATH }}"
+      version: "{{ OPENSTACK_OSA_VERSION }}"
+
+  tasks:
     - name:  create log directory {{LOG_PATH}}
       file:
         path: "{{LOG_PATH}}"
@@ -56,3 +61,12 @@
     - name: generate self signed certificate
       command: openssl req -new -nodes -x509 -subj "{{ XCI_SSL_SUBJECT }}" -days 3650 -keyout "/etc/ssl/private/xci.key" -out "/etc/ssl/certs/xci.crt" -extensions v3_ca
       become: true
+    - name: Synchronize local development OSA repository to XCI paths
+      # command module is much faster than the copy module
+      synchronize:
+        src: "{{ OPENSTACK_OSA_DEV_PATH }}"
+        dest: "{{ XCI_CACHE }}/repos/openstack-ansible"
+        recursive: yes
+        delete: yes
+      when:
+        - OPENSTACK_OSA_DEV_PATH != ""
