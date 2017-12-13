@@ -9,6 +9,8 @@
 #     name: "foobar"
 #   when: DEPLOY_SCENARIO == "foobar"
 
+- name: Do nothing
+  shell: "/bin/ls"
 - name: Prepare everything to run the os-nosdn-nofeature scenario
   include_role:
     name: "os-nosdn-nofeature"
@@ -20,4 +22,3 @@
 - name: Prepare everything to run the os-odl-sfc scenario
   include_role:
     name: "os-odl-sfc"
-  when: DEPLOY_SCENARIO == 'os-odl-sfc'
