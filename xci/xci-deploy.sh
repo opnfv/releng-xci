@@ -94,6 +94,8 @@ echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
 echo "OPNFV scenario: $DEPLOY_SCENARIO"
 echo "-------------------------------------------------------------------------"
 
+export XCI_ANSIBLE_VERBOSITY=-vvv
+
 #-------------------------------------------------------------------------------
 # Install ansible on localhost
 #-------------------------------------------------------------------------------

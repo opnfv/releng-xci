@@ -92,7 +92,10 @@
       shell: "/bin/cp -rf {{ remote_xci_path }}/xci/nfvi/osa/files/openstack_services.yml {{OPENSTACK_OSA_PATH}}/playbooks/defaults/repo_packages/openstack_services.yml"
       when:
         - OPENSTACK_OSA_VERSION != "master"
+    - name: ‘What’s in DEPLOY_SCENARIO  variable?’
+      debug: var=DEPLOY_SCENARIO
     - include: bootstrap-scenarios.yml
+      static: yes
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
