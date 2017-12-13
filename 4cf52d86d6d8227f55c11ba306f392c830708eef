@@ -22,6 +22,30 @@
       "revId": "4cf52d86d6d8227f55c11ba306f392c830708eef",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_b2016e07",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-12-13T20:25:07Z",
+      "side": 1,
+      "message": "Sure. I will fix that",
+      "parentUuid": "9a3d3df0_4f8e7dd1",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 48
+      },
+      "revId": "4cf52d86d6d8227f55c11ba306f392c830708eef",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
