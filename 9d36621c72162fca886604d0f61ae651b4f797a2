@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_33144543",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2017-12-13T09:19:24Z",
+      "side": 1,
+      "message": "Does it mean that sfc will be the default scenario ?",
+      "range": {
+        "startLine": 34,
+        "startChar": 41,
+        "endLine": 34,
+        "endChar": 52
+      },
+      "revId": "9d36621c72162fca886604d0f61ae651b4f797a2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
