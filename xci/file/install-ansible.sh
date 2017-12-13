@@ -27,7 +27,7 @@ source /etc/os-release || source /usr/lib/os-release
 case ${ID,,} in
     *suse)
     OS_FAMILY="Suse"
-    INSTALLER_CMD="sudo -H -E zypper install -y --no-recommends"
+    INSTALLER_CMD="sudo -H -E zypper -q install -y --no-recommends"
     CHECK_CMD="zypper search --match-exact --installed"
     PKG_MAP=(
         [gcc]=gcc
@@ -42,7 +42,7 @@ case ${ID,,} in
         [wget]=wget
     )
     EXTRA_PKG_DEPS=( python-xml )
-	sudo zypper -n ref
+    sudo zypper -n ref
     # NOTE (cinerama): we can't install python without removing this package
     # if it exists
     if $(${CHECK_CMD} patterns-openSUSE-minimal_base-conflicts &> /dev/null); then
@@ -53,7 +53,7 @@ case ${ID,,} in
     ubuntu|debian)
     OS_FAMILY="Debian"
     export DEBIAN_FRONTEND=noninteractive
-    INSTALLER_CMD="sudo -H -E apt-get -y install"
+    INSTALLER_CMD="sudo -H -E apt-get -y -q=3 install"
     CHECK_CMD="dpkg -l"
     PKG_MAP=(
         [gcc]=gcc
@@ -68,13 +68,13 @@ case ${ID,,} in
         [wget]=wget
     )
     EXTRA_PKG_DEPS=()
-	sudo apt-get update
+    sudo apt-get update
     ;;
 
     rhel|fedora|centos)
     OS_FAMILY="RedHat"
     PKG_MANAGER=$(which dnf || which yum)
-    INSTALLER_CMD="sudo -H -E ${PKG_MANAGER} -y install"
+    INSTALLER_CMD="sudo -H -E ${PKG_MANAGER} -q -y install"
     CHECK_CMD="rpm -q"
     PKG_MAP=(
         [gcc]=gcc
@@ -90,7 +90,6 @@ case ${ID,,} in
     )
     sudo yum updateinfo
     EXTRA_PKG_DEPS=()
-    sudo yum update --assumeno
     ;;
 
     *) echo "ERROR: Supported package manager not found.  Supported: apt, dnf, yum, zypper"; exit 1;;
@@ -155,8 +154,8 @@ fi
 
 PIP=$(which pip)
 echo "Using pip: $(${PIP} --version)"
-sudo -H -E ${PIP} install --upgrade virtualenv
-sudo -H -E ${PIP} install --upgrade pip
+sudo -H -E ${PIP} -q install --upgrade virtualenv
+sudo -H -E ${PIP} -q install --upgrade pip
 # upgrade setuptools, as latest version is needed to install some projects
-sudo -H -E ${PIP} install --upgrade setuptools
-${PIP} install --user --upgrade ansible==$XCI_ANSIBLE_PIP_VERSION
+sudo -H -E ${PIP} -q install --upgrade setuptools
+${PIP} install -q --user --upgrade ansible==$XCI_ANSIBLE_PIP_VERSION

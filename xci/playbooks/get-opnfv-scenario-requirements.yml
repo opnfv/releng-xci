@@ -28,12 +28,16 @@
       with_nested:
         - "{{ scenarios }}"
         - [ "{{ scenario_path_default }}", "{{ role_path_default }}" ]
+      loop_control:
+        label: "{{ item[0].scenario }}"
 
     - name: Create scenario directories
       file:
         path: "{{ role_path_default }} + '/' + item.scenario }}"
         state: directory
       with_items: "{{ scenarios }}"
+      loop_control:
+        label: "{{ item.scenario }}"
 
     - name: Clone git repos (with git)
       git:
@@ -50,12 +54,16 @@
       until: git_clone | success
       retries: "{{ git_clone_retries }}"
       delay: "{{ git_clone_retry_delay }}"
+      loop_control:
+        label: "{{ item.scenario }}"
 
     - name: Check that scenarios exist
       stat:
         path: "{{ scenario_path_default }}/{{ item.scenario }}/{{ item.role }}"
       register: scenarios_list_exists
       with_items: "{{ scenarios }}"
+      loop_control:
+        label: "{{ item.scenario }}"
 
     - name: Plug in the scenario to XCI
       shell: >-
@@ -63,6 +71,8 @@
           {{ role_path_default }}/{{ item.item.scenario }}
       when: item.stat.exists
       with_items: "{{ scenarios_list_exists.results }}"
+      loop_control:
+        label: "{{ item.item.scenario }}"
 
     - name: Plug in the scenario to XCI (fallback)
       shell: >-
@@ -70,6 +80,8 @@
           {{ role_path_default }}/{{ item.item.scenario }}
       when: not item.stat.exists
       with_items: "{{ scenarios_list_exists.results }}"
+      loop_control:
+        label: "{{ item.item.scenario }}"
 
   vars:
     ansible_python_interpreter: "/usr/bin/python"

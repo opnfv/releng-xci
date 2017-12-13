@@ -7,7 +7,7 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-set -eux
+set -eu
 set -o pipefail
 
 export PYTHONUNBUFFERED=1
@@ -71,7 +71,7 @@ export EXTRA_DIB_ELEMENTS=${EXTRA_DIB_ELEMENTS:-"openssh-server"}
 
 if [ ${USE_VENV} = "true" ]; then
     export VENV=/opt/stack/bifrost
-    $SCRIPT_HOME/env-setup.sh
+    $SCRIPT_HOME/env-setup.sh &>/dev/null
     # Note(cinerama): activate is not compatible with "set -u";
     # disable it just for this line.
     set +u
@@ -80,28 +80,12 @@ if [ ${USE_VENV} = "true" ]; then
     ANSIBLE=${VENV}/bin/ansible-playbook
     ENABLE_VENV="true"
 else
-    $SCRIPT_HOME/env-setup.sh
+    $SCRIPT_HOME/env-setup.sh &>/dev/null
     ANSIBLE=${HOME}/.local/bin/ansible-playbook
 fi
 
-logs_on_exit() {
-    $SCRIPT_HOME/collect-test-info.sh
-}
-trap logs_on_exit EXIT
-
 # Change working directory
 cd $BIFROST_HOME/playbooks
-
-# Syntax check of dynamic inventory test path
-for task in syntax-check list-tasks; do
-    ${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} -i inventory/localhost \
-           test-bifrost-create-vm.yaml \
-           --${task}
-    ${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} -i inventory/localhost \
-           ${TEST_PLAYBOOK} \
-           --${task} \
-           -e testing_user=${TESTING_USER}
-done
 
 # NOTE(hwoarang): Disable selinux as we are hitting issues with it from time to
 # time. Remove this when Centos7 is a proper gate on bifrost so we know that
