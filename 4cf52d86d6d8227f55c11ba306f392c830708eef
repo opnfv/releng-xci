@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_4f8e7dd1",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2017-12-13T18:53:52Z",
+      "side": 1,
+      "message": "I see you already have a comment down below which tells me what OPNFV_XCI_CACHE is but should we name these like\n\n    LOCAL_XCI_CACHE\n    OPNFV_XCI_CACHE\n\nto make it easier to understand where these caches are?\nOr add a comment before them to tell what they are?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 48
+      },
+      "revId": "4cf52d86d6d8227f55c11ba306f392c830708eef",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
