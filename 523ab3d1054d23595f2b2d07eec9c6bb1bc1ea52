@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_5872c649",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2017-12-13T03:17:42Z",
+      "side": 1,
+      "message": "if we synchronize the releng-xci which include openstack-ansible,\nthe directory \"{{ OPENSTACK_OSA_PATH }}\" need change to \"{{remote_xci_path}}/.cache/repos/openstack-ansible\".",
+      "range": {
+        "startLine": 49,
+        "startChar": 26,
+        "endLine": 49,
+        "endChar": 69
+      },
+      "revId": "523ab3d1054d23595f2b2d07eec9c6bb1bc1ea52",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
