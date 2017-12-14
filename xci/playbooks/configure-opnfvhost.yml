@@ -89,6 +89,7 @@
       when:
         - OPENSTACK_OSA_VERSION != "master"
     - include: bootstrap-scenarios.yml
+      when: deploy_scenario_on_flavor
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
