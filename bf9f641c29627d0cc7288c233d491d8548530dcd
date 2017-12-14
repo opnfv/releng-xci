@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_d53e9cd9",
+        "filename": "xci/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2017-12-14T10:47:43Z",
+      "side": 1,
+      "message": "I wonder if it makes sense to deploy XCI without scenarios or just fail miserably",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 37
+      },
+      "revId": "bf9f641c29627d0cc7288c233d491d8548530dcd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
