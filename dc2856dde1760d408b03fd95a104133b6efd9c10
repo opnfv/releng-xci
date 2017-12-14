@@ -22,6 +22,30 @@
       "revId": "dc2856dde1760d408b03fd95a104133b6efd9c10",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_7e604dcf",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-12-14T22:54:07Z",
+      "side": 1,
+      "message": "I would call it motivational speech :D",
+      "parentUuid": "9a3d3df0_e3704ade",
+      "range": {
+        "startLine": 100,
+        "startChar": 12,
+        "endLine": 100,
+        "endChar": 67
+      },
+      "revId": "dc2856dde1760d408b03fd95a104133b6efd9c10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
