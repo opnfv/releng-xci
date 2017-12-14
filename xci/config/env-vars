@@ -11,15 +11,17 @@ export OPNFV_HOST_IP=192.168.122.2
 export XCI_FLAVOR_ANSIBLE_FILE_PATH=$XCI_PATH/xci/file/$XCI_FLAVOR
 export CI_LOOP=${CI_LOOP:-daily}
 export JOB_NAME=${JOB_NAME:-false}
+# XCI_CACHE is a cache on localhost where repositories and scenarios are cloned.
 export XCI_CACHE=${XCI_PATH}/.cache
+# OPNFV_XCI_CACHE is similar to XCI_CACHE but refers to the remote OPNFV host.
+export OPNFV_XCI_CACHE="/root/releng-xci/.cache"
 export XCI_SCENARIOS_CACHE="${XCI_CACHE}/repos/scenarios"
 export XCI_PLAYBOOKS=${XCI_PATH}/xci/playbooks
 
 #-------------------------------------------------------------------------------
-# Paths where git repositories of XCI Components will be cloned
+# Paths where git repositories of XCI Components will be cloned on the OPNFV host
 #-------------------------------------------------------------------------------
-export OPENSTACK_BIFROST_PATH="${XCI_CACHE}/repos/bifrost"
-export OPENSTACK_OSA_PATH="${XCI_CACHE}/repos/openstack-ansible"
+export OPENSTACK_OSA_PATH="${OPNFV_XCI_CACHE}/repos/openstack-ansible"
 
 # Logging
 export LOG_PATH=${LOG_PATH:-${XCI_PATH}/xci/logs}
