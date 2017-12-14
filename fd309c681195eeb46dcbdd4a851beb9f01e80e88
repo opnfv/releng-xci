@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_5815a1e3",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2017-12-14T13:09:20Z",
+      "side": 1,
+      "message": "maybe replace \u0027true\u0027 with XCI_FLAVOR in item.flavors\n\nand remove that line in when, it will always fill that value and an avoid undefined var",
+      "range": {
+        "startLine": 88,
+        "startChar": 35,
+        "endLine": 88,
+        "endChar": 39
+      },
+      "revId": "fd309c681195eeb46dcbdd4a851beb9f01e80e88",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
