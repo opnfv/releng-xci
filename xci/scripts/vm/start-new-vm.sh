@@ -208,7 +208,7 @@ sudo virsh net-list --inactive | grep -q ${NETWORK} && sudo virsh net-start ${NE
 
 echo "Installing virtual machine '${VM_NAME}'..."
 sudo virt-install -n ${VM_NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
-	--import --disk=${OS_IMAGE_FILE},cache=unsafe --network network=${NETWORK} \
+	--import --disk=${OS_IMAGE_FILE},cache=unsafe,bus=virtio --network network=${NETWORK},model=virtio \
 	--graphics none --hvm --noautoconsole
 
 trap destroy_vm_on_failures EXIT
