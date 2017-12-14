@@ -83,6 +83,26 @@
       loop_control:
         label: "{{ item.item.scenario }}"
 
+    - name: Determine if selected {{ OPNFV_SCENARIO }} scenario can be deployed
+      set_fact:
+        deploy_scenario_on_flavor: XCI_FLAVOR in item.flavors
+      when: OPNFV_SCENARIO == item.scenario
+      with_items: "{{ scenarios }}"
+      loop_control:
+        label: "{{ item.scenario }}"
+
+    - name: Fail if {{ XCI_FLAVOR }} is not supported in {{ OPNFV_SCENARIO }}
+      fail:
+        msg:
+          - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+          - ERROR! The {{ OPNFV_SCENARIO }} scenario does not support the {{ XCI_FLAVOR }}
+          - ''
+          - This is a great chance for you to contribute to XCI ;-)
+          - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+          - ''
+      when:
+        - not deploy_scenario_on_flavor
+
   vars:
     ansible_python_interpreter: "/usr/bin/python"
     scenarios: "{{ lookup('file', scenario_file) | from_yaml }}"
