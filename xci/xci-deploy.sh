@@ -124,28 +124,51 @@ echo "-------------------------------------------------------------------------"
 source $(find $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO} -name xci_overrides) &>/dev/null || :
 
 #-------------------------------------------------------------------------------
-# Start provisioning VM nodes
+# Start provisioning nodes
 #-------------------------------------------------------------------------------
-# This playbook
-# - removes directories that were created by the previous xci run
-# - clones opnfv/releng-xci and openstack/bifrost repositories
-# - combines opnfv/releng-xci and openstack/bifrost scripts/playbooks
-# - destroys VMs, removes ironic db, leases, logs
-# - creates and provisions VMs for the chosen flavor
-#-------------------------------------------------------------------------------
-echo "Info: Starting provisining VM nodes using openstack/bifrost"
-echo "-------------------------------------------------------------------------"
+
 # We are using sudo so we need to make sure that env_reset is not present
 sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
-cd $XCI_PATH/bifrost/
-sudo -E bash ./scripts/destroy-env.sh
-cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," bootstrap-bifrost.yml
-cd ${XCI_CACHE}/repos/bifrost
-bash ./scripts/bifrost-provision.sh
-echo "-----------------------------------------------------------------------"
-echo "Info: VM nodes are provisioned!"
-echo "-----------------------------------------------------------------------"
+
+set +o nounset
+#-------------------------------------------------------------------------------
+# To test a proto on infra, set XCI_INFRA_PROTO to the proto name
+#-------------------------------------------------------------------------------
+if [ -n "${XCI_INFRA_PROTO}" ]; then
+    set -o nounset
+    if [ "${XCI_INFRA_PROTO}" == "infra_manager" ]; then
+        #-----------------------------------------------------------------------
+        # Start provisioning baremetal nodes using infra_manger proto
+        #-----------------------------------------------------------------------
+        export XCI_PATH=${XCI_PATH}
+        cd ${XCI_PATH}/prototypes/${XCI_INFRA_PROTO}
+        bash ./deploy.sh
+        cd $XCI_PATH
+    fi
+else
+    #---------------------------------------------------------------------------
+    # Start provisioning VM nodes
+    #---------------------------------------------------------------------------
+    # This playbook
+    # - removes directories that were created by the previous xci run
+    # - clones opnfv/releng-xci and openstack/bifrost repositories
+    # - combines opnfv/releng-xci and openstack/bifrost scripts/playbooks
+    # - destroys VMs, removes ironic db, leases, logs
+    # - creates and provisions VMs for the chosen flavor
+    #---------------------------------------------------------------------------
+    set -o nounset
+    echo "Info: Starting provisining VM nodes using openstack/bifrost"
+    echo "---------------------------------------------------------------------"
+    cd $XCI_PATH/bifrost/
+    sudo -E bash ./scripts/destroy-env.sh
+    cd $XCI_PLAYBOOKS
+    ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," bootstrap-bifrost.yml
+    cd ${XCI_CACHE}/repos/bifrost
+    bash ./scripts/bifrost-provision.sh
+    echo "---------------------------------------------------------------------"
+    echo "Info: VM nodes are provisioned!"
+    echo "---------------------------------------------------------------------"
+fi
 
 # Deploy OpenStack on the selected installer
 echo "Info: Deploying '${INSTALLER_TYPE}' installer"
