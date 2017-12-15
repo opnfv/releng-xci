@@ -106,9 +106,14 @@ echo "-------------------------------------------------------------------------"
 case ${XCI_DISTRO,,} in
     # These should ideally match the CI jobs
     ubuntu)
-        export DIB_OS_RELEASE="${DIB_OS_RELEASE:-xenial}"
-        export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-ubuntu-minimal}"
-        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,iptables}"
+        # Set ansible version to 2.4
+        # (not compatible with 2.3 - import_tasks - let see if i need to work
+        # on downgrade to 2.3
+        XCI_ANSIBLE_PIP_VERSION=2.4.2.0
+        $XCI_PATH/infra_manager/servers-prepare.sh
+        $XCI_PATH/infra_manager/nodes-deploy.sh
+        # Ensure vars used by infra_manager did not erase traditionnal vars
+        source $XCI_PATH/xci/config/env-vars
         ;;
     centos)
         export DIB_OS_RELEASE="${DIB_OS_RELEASE:-7}"
@@ -120,7 +125,17 @@ case ${XCI_DISTRO,,} in
         export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-opensuse-minimal}"
         export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables}"
         ;;
+    *) echo "ERROR: unsupported OS '$XCI_DISTRO'"; exit 1;;
 esac
+
+# David_Orange - moved after case to erase the ansible used by infra_manager
+#-------------------------------------------------------------------------------
+# Install ansible on localhost
+#-------------------------------------------------------------------------------
+echo "Info: Installing Ansible from pip"
+echo "-------------------------------------------------------------------------"
+source files/install-ansible.sh
+echo "-------------------------------------------------------------------------"
 
 # Clone OPNFV scenario repositories
 #-------------------------------------------------------------------------------
@@ -153,15 +168,21 @@ echo "Info: Starting provisining VM nodes using openstack/bifrost"
 echo "-------------------------------------------------------------------------"
 # We are using sudo so we need to make sure that env_reset is not present
 sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
-cd $XCI_PATH/bifrost/
-sudo -E bash ./scripts/destroy-env.sh
-cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
-cd ${XCI_CACHE}/repos/bifrost
-bash ./scripts/bifrost-provision.sh
-echo "-----------------------------------------------------------------------"
-echo "Info: VM nodes are provisioned!"
-echo "-----------------------------------------------------------------------"
+# Bifrost is already run for Debian Family
+case ${OS_FAMILY,,} in
+    # These should ideally match the CI jobs
+    RedHat|Suse)
+      cd $XCI_PATH/bifrost/
+      sudo -E bash ./scripts/destroy-env.sh
+      cd $XCI_PLAYBOOKS
+      ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
+      cd ${XCI_CACHE}/repos/bifrost
+      bash ./scripts/bifrost-provision.sh
+      echo "-----------------------------------------------------------------------"
+      echo "Info: VM nodes are provisioned!"
+      echo "-----------------------------------------------------------------------"
+      ;;
+esac
 
 # Deploy OpenStack on the selected installer
 echo "Info: Deploying '${XCI_INSTALLER}' installer"
