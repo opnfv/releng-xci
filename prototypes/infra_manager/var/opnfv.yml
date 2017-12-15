@@ -1,0 +1,64 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Get variables from env
+##
+XCI_FLAVOR: "{{ lookup('env','XCI_FLAVOR') | default('mini', true) }}"
+XCI_DISTRO: "{{ lookup('env','XCI_DISTRO') | default('ubuntu', true) }}"
+CLEAN_DIB_IMAGES: "{{ lookup('env','CLEAN_DIB_IMAGES') | default(false, true) }}"
+
+##
+# Add for bifrost new version
+##
+
+# Set xci root (for config, src, logs, venv, bin)
+xci_root: /opt/xci
+
+opnfv_user: opnfv
+
+deploy_definitions:
+  aio:
+    opnfv_host: 1
+  mini:
+    opnfv_host: 1
+    controller: 1
+    compute: 1
+  noha:
+    opnfv_host: 1
+    controller: 1
+    compute: 2
+  ha:
+    opnfv_host: 1
+    controller: 3
+    compute: 2
+
+# For XCI_host we create the disk from cloud a image this is the list
+# of cloud images we can use.
+xci_hosts_images:
+  ubuntu:
+    base_url: http://cloud-images.ubuntu.com/releases/16.04/release/
+    filename: ubuntu-16.04-server-cloudimg-amd64-disk1.img
+    user: ubuntu
+    type: debian
+    default_net: ens3
+  suse:
+    base_url:
+    filename:
+    user:
+    type:
+    default_net:
+  centos:
+    base_url:
+    filename:
+    user:
+    type:
+    default_net:

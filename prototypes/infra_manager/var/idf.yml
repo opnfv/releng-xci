@@ -1,0 +1,67 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+idf:
+  version: 0.1
+  net_config: &net_config
+    admin:
+      interface: 0
+      network: 172.29.236.0
+      mask: 22
+    storage:
+      interface: 1
+      network: 172.29.240.0
+      mask: 22
+    public:
+      interface: 2
+      network: 192.168.122.0
+      mask: 24
+      gateway: 192.168.122.1
+      dns: 8.8.8.8
+    private:
+      interface: 3
+      network: 172.29.244.0
+      mask: 22
+
+xci:
+  pod_name: vpod1
+  net_config: *net_config
+  nodes_roles:
+    opnfv_host: [opnfv_host]
+    node1: [compute]
+    node2: [compute]
+    node3: [controller, storage]
+    node4: [controller, storage]
+    node5: [controller, storage]
+
+  # net_config network to be used by the PXE
+  pxe_network: public
+
+  # As the MAC of generated bridges are generated, we use a list of local
+  # bridges to create libvirt networks
+  jumphost_interfaces_bridges:
+    - name: virbr0
+      ip: 192.168.122.1
+
+  extra_addresses:
+    opnfv_host: 192.168.122.2
+
+  # network mapping
+  network_mapping:
+    net-mgmt: admin
+    net-storage: storage
+    net-internal: private
+    net-vnf: public
+
+  installers:
+    osa: &idf_osa
+    kolla: &idf_kolla
+    k8s: &idf_k8s
