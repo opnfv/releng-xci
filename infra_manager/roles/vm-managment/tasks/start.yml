@@ -1,0 +1,32 @@
+---
+
+- name: "Start XCI hosts"
+  become: "yes"
+  virt:
+    name: "{{ idf.xci.pod_name }}_{{ node.name }}"
+    state: running
+
+- name: wait ssh to be reachable
+  shell: >
+    ssh -o StrictHostKeyChecking=no
+    {{xci_hosts_user}}@{{ ip }} python --version
+  vars:
+    ip: "{{ pxe_network| ip_add( idf.xci.ip_shift + nodes_index[node.name]) }}"
+  register: ping_ssh
+  until: ping_ssh.rc == 0
+  retries: 24
+  delay: 5
+  when: "True"
+  tags:
+    - skip_ansible_lint
+
+- name: update ssh known hosts
+  shell: >
+    ssh-keygen -f "{{ known_hosts_file }}" -R {{ ip }};
+    ssh-keyscan -t rsa {{ ip }} >> {{ known_hosts_file }};
+    ssh {{xci_hosts_user}}@{{ ip }} hostname
+  vars:
+    known_hosts_file: "{{ lookup('env','HOME') }}/.ssh/known_hosts"
+    ip: "{{ pxe_network| ip_add( idf.xci.ip_shift + nodes_index[node.name]) }}"
+  tags:
+    - skip_ansible_lint
