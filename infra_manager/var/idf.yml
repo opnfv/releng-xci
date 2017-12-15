@@ -1,0 +1,36 @@
+###############################################################################
+# Virtual Pod Installer Descriptor File
+###############################################################################
+
+---
+idf:
+  version: 0.1
+  xci:
+    pod_name: vpod
+
+    nodes_roles:
+      opnfv_host: [opnfv_host]
+      node1: [compute]
+      node2: [compute]
+      node3: [controller]
+      node4: [controller]
+      node5: [controller]
+
+    # network mapping
+    network_mapping:
+      br-mgmt: admin
+      br-storage: storage
+      br-vxlan: private
+      br-vlan: public
+
+    # net_config network to be used by the PXE
+    pxe_network: public
+
+    # As the MAC of generated bridges are generated, we use a list of local
+    # bridges to create libvirt networks
+    jumphost_interfaces_bridges:
+      - virbr0
+
+    # IP shift from network address to set ip
+    # first used ip address of will be network + ip_shift
+    ip_shift: 2
