@@ -1,0 +1,23 @@
+---
+{% for srv in nodes | sort(attribute='name')  %}
+{{ srv.name }}:
+  name: {{ srv.name }}
+  uuid: 00000000-0000-0000-0000-000000000{{ '%03d'|format(nodes_index[srv.name]) }}
+  driver_info:
+    power:
+      ipmi_username: {{ srv.remote_management.user }}
+      ipmi_address: {{ srv.remote_management.address | regex_replace('/{d}*$','') }}
+      {% if srv.remote_management.port is defined -%}
+      ipmi_port: {{ srv.remote_management.port }}
+      {% endif -%}
+      ipmi_password: {{ srv.remote_management.pass }}
+  nics:
+    - mac: {{ srv.interfaces[net_config[idf.xci.pxe_network].interface].mac_address }}
+  driver: agent_ipmitool
+  ipv4_address: {{ net_config[idf.xci.pxe_network].network | ip_add( idf.xci.ip_shift | int + nodes_index[srv.name] ) }}
+  properties:
+    cpu_arch: {{ srv.node.arch }}
+    ram: {{ (srv.node.memory or '0') | sizeConv }}
+    disk_size: {{ (srv.disks or []) | map(attribute='disk_capacity') | list | sizeSum(target_unit='Go') }}
+    cpus: {{ srv.node.cores }}
+{% endfor %}
