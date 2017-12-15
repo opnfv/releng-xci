@@ -52,6 +52,7 @@ export XCI_BIF_IP=$(cat ${XCI_ROOT}/${POD_NAME}/etc/opnfv_hosts_inventory.yml |\
                     yq -r .all.hosts.opnfv_host.ansible_host)
 ssh ${OPNFV_USER}@${XCI_BIF_IP} \
   sudo bifrost-ansible \
+    ${XCI_ANSIBLE_VERBOSE} \
     -i inventory/target \
     -e staging_drivers_include=true \
     install.yaml
@@ -68,10 +69,12 @@ ansible-playbook ${XCI_ANSIBLE_VERBOSE} \
   ${XCI_RUN_ROOT}/opnfv-nodes-deploy.yml
 ssh ${OPNFV_USER}@${XCI_BIF_IP} \
   sudo bifrost-ansible \
+    ${XCI_ANSIBLE_VERBOSE} \
     -i inventory/bifrost_inventory.py \
     enroll-dynamic.yaml
 ssh ${OPNFV_USER}@${XCI_BIF_IP} \
   sudo bifrost-ansible \
+    ${XCI_ANSIBLE_VERBOSE} \
     -i inventory/bifrost_inventory.py \
     deploy-dynamic.yaml
 
