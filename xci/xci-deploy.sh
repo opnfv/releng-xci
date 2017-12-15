@@ -90,33 +90,36 @@ echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
 echo "OPNFV scenario: $OPNFV_SCENARIO"
 echo "-------------------------------------------------------------------------"
 
-#-------------------------------------------------------------------------------
-# Install ansible on localhost
-#-------------------------------------------------------------------------------
-echo "Info: Installing Ansible from pip"
-echo "-------------------------------------------------------------------------"
-source file/install-ansible.sh
-echo "-------------------------------------------------------------------------"
-
 # Make the VMs match the host. If we need to make this configurable
 # then this logic has to be moved outside this file
+source /etc/os-release || source /usr/lib/os-release
+OS_FAMILY=${OS_FAMILY:-$ID}
 case ${OS_FAMILY,,} in
     # These should ideally match the CI jobs
-    debian)
-        export DIB_OS_RELEASE="${DIB_OS_RELEASE:-xenial}"
-        export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-ubuntu-minimal}"
-        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,iptables}"
+    ubuntu|debian)
+        export OS_FAMILY="Debian"
+        # Set ansible version to 2.4
+        # (not compatible with 2.3 - import_tasks - let see if i need to work
+        # on downgrade to 2.3
+        XCI_ANSIBLE_PIP_VERSION=2.4.2.0
+        $XCI_PATH/infra_manager/servers-prepare.sh
+        $XCI_PATH/infra_manager/servers-deploy.sh
+        # Ensure vars used by infra_manager did not erase traditionnal vars
+        source $XCI_PATH/xci/config/env-vars
         ;;
-    redhat)
+    rhel|fedora|centos)
+        OS_FAMILY="RedHat"
         export DIB_OS_RELEASE="${DIB_OS_RELEASE:-7}"
         export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-centos-minimal}"
         export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables}"
         ;;
-    suse)
+    *suse)
+        export OS_FAMILY="Suse"
         export DIB_OS_RELEASE="${DIB_OS_RELEASE:-42.3}"
         export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-opensuse-minimal}"
         export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables}"
         ;;
+    *) echo "ERROR: unsupported OS '$OS_FAMILY'"; exit 1;;
 esac
 
 # There is no CentOS support at all
@@ -127,6 +130,14 @@ if [[ $OS_FAMILY == RedHat ]]; then
     echo ""
     exit 1
 fi
+# David_Orange - moved after case to erase the ansible used by infra_manager
+#-------------------------------------------------------------------------------
+# Install ansible on localhost
+#-------------------------------------------------------------------------------
+echo "Info: Installing Ansible from pip"
+echo "-------------------------------------------------------------------------"
+source file/install-ansible.sh
+echo "-------------------------------------------------------------------------"
 
 if [[ ${OPENSTACK_OSA_VERSION} =~ "stable/" ]]; then
     echo ""
