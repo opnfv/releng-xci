@@ -1,0 +1,37 @@
+---
+
+# This file describes the extra nodes to be created for XCI needs
+# This is a complement to the PDF (for both virtual pod or baremetal pod)
+# Nodes must use the same format as PDF
+xci_hosts:
+  # Main opnfv host
+  - name: opnfv_host
+    node:
+      type: virtual
+      vendor: libvirt
+      model: pc
+      arch: x86_64
+      cpus: 2
+      cpu_cflags: host-model
+      cores: 2
+      memory: 4G
+    disks:
+      - name: disk1
+        disk_capacity: 80G
+        disk_type: qcow2
+        disk_interface: ide
+        disk_rotation:
+    os:
+    remote_management:
+      type:
+        - ipmi: [2.0]
+      user: admin
+      pass: please*ChangeMe*
+      port: 624
+      address:
+        "{{ net_config[idf.xci.pxe_network].network | ip_add( 1 ) }}"
+      mac_address: "52:54:00:8e:f4:80"
+    interfaces:
+      - mac_address: "52:54:00:8e:f4:80"
+        speed:
+        features:
