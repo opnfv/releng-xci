@@ -1,0 +1,35 @@
+---
+##
+# Get bifrost sources in local
+#   it gives the possibility to edit local source then replay the deploy
+##
+
+- name: "clone bifrost {{bifrost_branch}} in local"
+  delegate_to: 127.0.0.1
+  git:
+    repo: "{{ git_bifrost.url }}"
+    dest: "{{ local_bifrost_src_folder }}"
+    version: "{{ git_bifrost.branch }}"
+
+##
+# generate baremetal and target inventory
+##
+- name: generate bifrost configs
+  delegate_to: 127.0.0.1
+  template:
+    dest: "{{ local_bifrost_etc_folder }}/{{ item }}"
+    src: "templates/{{ item }}.j2"
+  with_items:
+    - baremetal
+    - target
+    - bifrost_inventory.yml
+    - ssh_config
+
+##
+# Prepare ansible inventory for nodes_* roles
+##
+- name: set ansible nodes inventory
+  delegate_to: 127.0.0.1
+  template:
+    dest: "{{ local_xci_configs_root }}/vim_inventory.yml"
+    src: "templates/vim_inventory.yml.j2"
