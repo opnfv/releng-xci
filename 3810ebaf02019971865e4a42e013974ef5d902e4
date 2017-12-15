@@ -22,6 +22,23 @@
       "revId": "3810ebaf02019971865e4a42e013974ef5d902e4",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_0498d468",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-12-15T18:49:02Z",
+      "side": 1,
+      "message": "Can you use \u0027getopts\u0027 builtin function here?",
+      "revId": "3810ebaf02019971865e4a42e013974ef5d902e4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
