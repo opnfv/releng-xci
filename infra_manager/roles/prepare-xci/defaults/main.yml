@@ -1,0 +1,9 @@
+---
+# defaults file for prepare_jumphost
+
+# ansible forks
+forks: 10
+
+# Default folders
+xci_root: "/opt/xci"
+user: opnfv
