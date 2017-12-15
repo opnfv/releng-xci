@@ -27,7 +27,7 @@
       shell: "/bin/rm -rf /etc/network/interfaces.d/*"
     - name: ensure interfaces file is updated
       template:
-        src: "{{ ansible_os_family | lower }}/{{ ansible_hostname }}.interface.j2"
+        src: "{{ ansible_os_family | lower }}/{{ hostvars[inventory_hostname]['group_names'][0] }}.interface.j2"
         dest: "/etc/network/interfaces"
     - name: restart network service
       shell: "/sbin/ifconfig {{ interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
