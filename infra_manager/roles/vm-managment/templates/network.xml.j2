@@ -1,0 +1,17 @@
+<network>
+  {# set clear var names #}
+  <name>{{ net_name }}</name>
+  {% if 'virbr' in attached_bridge %}
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  {% endif %}
+  <bridge name='{{ attached_bridge }}' stp='on' delay='0'/>
+  {% if pxe_net in net_name %}
+  <ip address='{{ net_config[pxe_net].network | ip_add( idf.xci.ip_shift | int - 1 ) }}'
+      netmask='{{ net_config[pxe_net].network | prefix2mask(net_config[pxe_net].mask) }}'>
+  </ip>
+  {% endif %}
+</network>

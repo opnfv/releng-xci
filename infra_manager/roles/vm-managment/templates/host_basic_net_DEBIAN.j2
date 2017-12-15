@@ -1,0 +1,9 @@
+auto lo
+iface lo inet loopback
+
+auto {{ xci_hosts_image.default_net }}
+iface {{ xci_hosts_image.default_net }} inet static
+  address {{ net_config[ idf.xci.pxe_network ].network | ip_add(idf.xci.ip_shift + nodes_index[ node.name ]) }}
+  netmask {{ net_config[ idf.xci.pxe_network ].mask }}
+  gateway {{ net_config[ idf.xci.pxe_network ].gateway }}
+  dns-nameservers {{ net_config[ idf.xci.pxe_network ].dns }}
