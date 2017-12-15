@@ -1,0 +1,56 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+idf:
+  version: 0.1
+  xci:
+    pod_name: vpod
+
+    nodes_roles:
+      opnfv_host: [opnfv_host]
+      node1: [compute]
+      node2: [compute]
+      node3: [controller]
+      node4: [controller]
+      node5: [controller]
+
+    net_config:
+      admin:
+        interface: nic1
+        network: 172.29.236.0
+        mask: 22
+      storage:
+        interface: nic2
+        network: 172.29.240.0
+        mask: 22
+      public:
+        interface: nic3
+        network: 192.168.122.0
+        mask: 24
+        gateway: 192.168.122.1
+        dns: 8.8.8.8
+      private:
+        interface: nic4
+        network: 172.29.244.0
+        mask: 22
+
+
+    # net_config network to be used by the PXE
+    pxe_network: public
+
+    # As the MAC of generated bridges are generated, we use a list of local
+    # bridges to create libvirt networks
+    jumphost_interfaces_bridges:
+      - name: virbr0
+        ip: 192.168.122.1
+
+    extra_addresses:
+      opnfv_host: 192.168.122.2
