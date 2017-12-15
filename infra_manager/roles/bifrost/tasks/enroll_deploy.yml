@@ -1,0 +1,36 @@
+---
+
+##
+# Check ipmi reachability
+##
+- name: check ipmi reachability
+  local_action:
+    ping {{ item['remote_management']['address'] | regex_replace('/{d}*$')}}
+  with_items: "{{ nodes }}"
+
+
+##
+# Enroll using prepared wrapper to ensure venv is used or not
+##
+- name: Enroll nodes
+  become: true
+  shell: >
+    . {{ bifrost_venv_folder }}/bin/activate &&
+    ansible-playbook  -i inventory/bifrost_inventory.py enroll-dynamic.yaml
+  args:
+    chdir: "{{ bifrost_src_folder }}/playbooks/"
+  environment:
+    BIFROST_INVENTORY_SOURCE: "{{ xci_configs_root }}/bifrost_inventory.yml"
+
+##
+# Deploy using prepared wrapper to ensure venv is used or not
+##
+- name: Deploy bifrost
+  become: true
+  shell: >
+    . {{ bifrost_venv_folder }}/bin/activate &&
+    ansible-playbook -i inventory/bifrost_inventory.py deploy-dynamic.yaml
+  args:
+    chdir: "{{ bifrost_src_folder }}/playbooks/"
+  environment:
+    BIFROST_INVENTORY_SOURCE: "{{ xci_configs_root }}/bifrost_inventory.yml"

@@ -1,0 +1,62 @@
+---
+# tasks file for node-preparation
+
+#
+# set correct gateway
+##
+- name: ensure the gateway is correct
+  shell: >
+    ip r d default && \
+    ip r a default via {{ net_config[idf.xci.pxe_network].gateway }}
+  when: "True"
+  tags:
+    - configure
+
+##
+# set correct resolv.conf
+##
+
+- name: set resolv.conf
+  copy:
+    content: "nameserver {{ net_config[idf.xci.pxe_network].dns }}"
+    dest: /etc/resolv.conf
+  tags:
+    - configure
+
+##
+# install basic packages
+##
+
+- name: install packages and get sources
+  become: "yes"
+  include_tasks: install_pkg.yml
+  tags:
+    - install
+
+##
+# Prepare modules
+##
+- name: configure modules
+  lineinfile:
+    dest: /etc/modules
+    state: present
+    create: 'yes'
+    line: "8021q"
+- name: add modules
+  modprobe:
+    name: 8021q
+    state: present
+- name: ensure glean rules are removed
+  file:
+    path: "/etc/udev/rules.d/99-glean.rules"
+    state: absent
+
+##
+# Restart services
+##
+- name: restart NTP service
+  systemd:
+    name: ntp
+    state: restarted
+    daemon_reload: 'yes'
+    no_block: true
