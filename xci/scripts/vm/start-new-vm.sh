@@ -85,7 +85,7 @@ update_clean_vm_files() {
 
 declare -r CPU=${XCI_CPU_TYPE:-host-passthrough}
 declare -r NCPUS=${XCI_NCPUS:-24}
-declare -r MEMORY=${XCI_MEMORY_SIZE:-49152}
+declare -r MEMORY=${XCI_MEMORY_SIZE:-65536}
 declare -r DISK=${XCI_DISK_SIZE:-500}
 declare -r VM_NAME=${1}_xci_vm
 declare -r OS=${1}
@@ -208,7 +208,7 @@ sudo virsh net-list --inactive | grep -q ${NETWORK} && sudo virsh net-start ${NE
 
 echo "Installing virtual machine '${VM_NAME}'..."
 sudo virt-install -n ${VM_NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
-	--import --disk=${OS_IMAGE_FILE},cache=unsafe,bus=virtio --network network=${NETWORK},model=virtio \
+	--import --disk=${OS_IMAGE_FILE},cache=none,bus=virtio --network network=${NETWORK},model=virtio \
 	--graphics none --hvm --noautoconsole
 
 trap destroy_vm_on_failures EXIT
