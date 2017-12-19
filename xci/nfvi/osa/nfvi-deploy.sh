@@ -66,7 +66,7 @@ echo "Info: Configured opnfv deployment host for openstack-ansible"
 # Configure target hosts for openstack-ansible
 #-------------------------------------------------------------------------------
 # This playbook is only run for the all flavors except aio since aio is configured
-# by an upstream script.
+# by configure-opnfvhost.yml
 
 # This playbook
 # - adds public keys to target hosts
@@ -180,16 +180,13 @@ echo "Info: OpenStack installation is successfully completed!"
 #-------------------------------------------------------------------------------
 echo "Info: Openstack login details"
 echo "-----------------------------------------------------------------------"
-OS_USER_CONFIG=$XCI_PATH/xci/file/$XCI_FLAVOR/openstack_user_config.yml
+OS_USER_CONFIG=$XCI_PATH/xci/playbooks/roles/$DEPLOY_SCENARIO/files/$XCI_FLAVOR/openstack_user_config.yml
 python -c \
 "import yaml
-if '$XCI_FLAVOR' is 'aio':
-   print 'Horizon UI is available at https://$OPNFV_HOST_IP'
-else:
-   host_info = open('$OS_USER_CONFIG', 'r')
-   net_config = yaml.safe_load(host_info)
-   print 'Info: Horizon UI is available at https://{}' \
-         .format(net_config['global_overrides']['external_lb_vip_address'])"
+host_info = open('$OS_USER_CONFIG', 'r')
+net_config = yaml.safe_load(host_info)
+print 'Info: Horizon UI is available at https://{}' \
+      .format(net_config['global_overrides']['external_lb_vip_address'])"
 USERNAME=$(ssh -q root@$OPNFV_HOST_IP awk "/OS_USERNAME=./" openrc)
 PASSWORD=$(ssh -q root@$OPNFV_HOST_IP awk "/OS_PASSWORD=./" openrc)
 echo "Info: Admin username -  ${USERNAME##*=}"

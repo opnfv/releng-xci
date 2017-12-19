@@ -26,6 +26,7 @@
   version: master
   role: xci/scenarios/os-nosdn-nofeature/role/os-nosdn-nofeature
   flavors:
+    - aio
     - ha
     - mini
     - noha
