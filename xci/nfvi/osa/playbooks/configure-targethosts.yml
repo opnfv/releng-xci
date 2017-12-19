@@ -47,3 +47,9 @@
   remote_user: root
   roles:
     - role: configure-nfs
+
+- hosts: opnfv
+  remote_user: root
+  roles:
+    - role: configure-nfs
+      when: XCI_FLAVOR == "aio"
