@@ -65,23 +65,18 @@ echo "Info: Configured opnfv deployment host for openstack-ansible"
 #-------------------------------------------------------------------------------
 # Configure target hosts for openstack-ansible
 #-------------------------------------------------------------------------------
-# This playbook is only run for the all flavors except aio since aio is configured
-# by an upstream script.
-
 # This playbook
 # - adds public keys to target hosts
 # - configures network
 # - configures nfs
 #-------------------------------------------------------------------------------
-if [[ $XCI_FLAVOR != "aio" ]]; then
-    echo "Info: Configuring target hosts for openstack-ansible"
-    echo "-----------------------------------------------------------------------"
-    cd $OSA_XCI_PLAYBOOKS
-    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
-        configure-targethosts.yml
-    echo "-----------------------------------------------------------------------"
-    echo "Info: Configured target hosts"
-fi
+echo "Info: Configuring target hosts for openstack-ansible"
+echo "-----------------------------------------------------------------------"
+cd $OSA_XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+    configure-targethosts.yml
+echo "-----------------------------------------------------------------------"
+echo "Info: Configured target hosts"
 
 #-------------------------------------------------------------------------------
 # Set up target hosts for openstack-ansible

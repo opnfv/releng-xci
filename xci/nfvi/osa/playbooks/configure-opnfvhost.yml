@@ -27,7 +27,6 @@
 
   roles:
     - role: configure-network
-      when: XCI_FLAVOR != "aio"
 
   tasks:
     - name: generate SSH keys

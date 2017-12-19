@@ -47,3 +47,19 @@
   remote_user: root
   roles:
     - role: configure-nfs
+
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: "{{ item }}"
+      with_items:
+        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
+        - "{{ XCI_PATH }}/xci/file/{{ XCI_FLAVOR }}/flavor-vars.yml"
+  roles:
+    - role: configure-nfs
+      when: XCI_FLAVOR == "aio"
