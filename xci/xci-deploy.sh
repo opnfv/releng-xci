@@ -80,6 +80,8 @@ unset user_local_dev_vars local_user_var
 # register our handler
 trap submit_bug_report ERR
 
+export XCI_FLAVOR="aio"
+
 #-------------------------------------------------------------------------------
 # Log info to console
 #-------------------------------------------------------------------------------
