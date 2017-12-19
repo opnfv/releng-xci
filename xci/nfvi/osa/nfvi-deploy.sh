@@ -8,12 +8,12 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-if [[ ${OPENSTACK_OSA_VERSION} =~ "stable/" ]]; then
+if [[ ${OPENSTACK_OSA_VERSION} =~ (stable/|master) ]]; then
     echo ""
     echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    echo "WARNING: We have detected that you are trying to use a stable OpenStack-Ansible."
+    echo "WARNING: We have detected that you are trying to OpenStack-Ansible from stable or master branch."
     echo "This will likely not work because, unless you know what you are doing, you are going"
-    echo "to be mixing roles and services from the master branch with a stable OpenStack-Ansible."
+    echo "to be trying something that has not been verified by XCI or upstream fully."
     echo "This is _NOT_ supported in any way but we can try to make it work for you."
     echo "Either way you are on your own so please do not report bugs as they will be considered invalid."
     echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
