@@ -27,7 +27,10 @@
 
   roles:
     - role: configure-network
-      when: XCI_FLAVOR != "aio"
+    - role: configure-nfs
+      when: XCI_FLAVOR == "aio"
+    - role: synchronize-time
+      when: XCI_FLAVOR == "aio"
 
   tasks:
     - name: generate SSH keys

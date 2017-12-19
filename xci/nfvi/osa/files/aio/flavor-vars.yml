@@ -1,3 +1,9 @@
 ---
-# this file is added intentionally in order to simplify putting files in place
-# in future, it might contain vars specific to this flavor
+host_info: {
+    'opnfv': {
+        'VLAN_IP': '192.168.122.2',
+        'MGMT_IP': '172.29.236.10',
+        'VXLAN_IP': '172.29.240.10',
+        'STORAGE_IP': '172.29.244.10'
+    }
+}

@@ -34,6 +34,7 @@
   nfvis:
     - nfvi: osa
       flavors:
+        - aio
         - ha
         - mini
         - noha
