@@ -33,7 +33,7 @@
 
     - name: Create scenario directories
       file:
-        path: "{{ role_path_default }} + '/' + item.scenario }}"
+        path: "{{ role_path_default }} + '/' + {{ item.scenario }}"
         state: directory
       with_items: "{{ scenarios }}"
       loop_control:
@@ -70,6 +70,18 @@
           cp -a {{ scenario_path_default }}/{{ item.item.scenario }}/{{ item.item.role }}
           {{ role_path_default }}/{{ item.item.scenario }}
       when: item.stat.exists
+      with_items: "{{ scenarios_list_exists.results }}"
+      loop_control:
+        label: "{{ item.item.scenario }}"
+
+    - name: Synchronize local changes to scenarios' master branch
+      synchronize:
+        src: "{{ XCI_PATH }}/{{ item.item.role }}/"
+        dest: "{{ role_path_default }}/{{ item.item.scenario }}"
+      failed_when: false
+      when:
+        - item.stat.exists
+        - item.item.version == 'master'
       with_items: "{{ scenarios_list_exists.results }}"
       loop_control:
         label: "{{ item.item.scenario }}"
