@@ -8,6 +8,9 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
+OSA_XCI_PLAYBOOKS="$(dirname $(realpath ${BASH_SOURCE[0]}))/playbooks"
+export ANSIBLE_ROLES_PATH=$HOME/.ansible/roles:/etc/ansible/roles:${XCI_PATH}/xci/playbooks/roles
+
 if [[ ${OPENSTACK_OSA_VERSION} =~ (stable/|master) ]]; then
     echo ""
     echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
@@ -35,8 +38,8 @@ fi
 
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory configure-localhost.yml
+cd $OSA_XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i inventory configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
 
@@ -53,8 +56,8 @@ echo "Info: Configured localhost host for openstack-ansible"
 #-------------------------------------------------------------------------------
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+cd $OSA_XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
     configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
@@ -73,8 +76,8 @@ echo "Info: Configured opnfv deployment host for openstack-ansible"
 if [[ $XCI_FLAVOR != "aio" ]]; then
     echo "Info: Configuring target hosts for openstack-ansible"
     echo "-----------------------------------------------------------------------"
-    cd $XCI_PLAYBOOKS
-    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+    cd $OSA_XCI_PLAYBOOKS
+    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
         configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts"

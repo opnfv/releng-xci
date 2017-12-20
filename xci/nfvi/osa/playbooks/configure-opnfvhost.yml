@@ -10,14 +10,15 @@
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/opnfv.yml
+    - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+
   pre_tasks:
     - name: Load distribution variables
       include_vars:
         file: "{{ item }}"
       with_items:
-        - ../var/{{ ansible_os_family }}.yml
-        - ../file/{{ XCI_FLAVOR }}/flavor-vars.yml
+        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
+        - "{{ XCI_PATH }}/xci/file/{{ XCI_FLAVOR }}/flavor-vars.yml"
     - name: Set facts for remote deployment
       set_fact:
         remote_xci_path: "{{ ansible_env.HOME }}/releng-xci"
@@ -36,7 +37,7 @@
     - name: fetch public key
       fetch:
         src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
-        dest: "../file/authorized_keys"
+        dest: "{{ XCI_PATH }}/xci/file/authorized_keys"
         flat: yes
     - name: Copy releng-xci to remote host
       synchronize:
@@ -79,7 +80,7 @@
         regexp: '(\s+)haproxy_state: disabled'
         replace: '\1haproxy_state: enabled'
     - name: copy OPNFV OpenStack playbook
-      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/file/setup-openstack.yml {{OPENSTACK_OSA_PATH}}/playbooks"
+      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/nfvi/osa/files/setup-openstack.yml {{OPENSTACK_OSA_PATH}}/playbooks"
     - name: copy pinned versions of OSA Roles and global requirements
       shell: "/bin/cp -rf {{ remote_xci_path }}/xci/file/{{ item }} {{OPENSTACK_OSA_PATH}}/{{ item }}"
       with_items:
@@ -88,7 +89,7 @@
       when:
         - OPENSTACK_OSA_VERSION != "master"
     - name: copy pinned versions of OpenStack services
-      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/file/openstack_services.yml {{OPENSTACK_OSA_PATH}}/playbooks/defaults/repo_packages/openstack_services.yml"
+      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/nfvi/osa/files/openstack_services.yml {{OPENSTACK_OSA_PATH}}/playbooks/defaults/repo_packages/openstack_services.yml"
       when:
         - OPENSTACK_OSA_VERSION != "master"
     - include: bootstrap-scenarios.yml
@@ -148,26 +149,25 @@
 
 - hosts: localhost
   remote_user: root
-  vars_files:
-    - ../var/opnfv.yml
+
   tasks:
     - name: Append public keys to authorized_keys
-      shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> ../file/authorized_keys"
+      shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ XCI_PATH }}/xci/file/authorized_keys"
 
 - hosts: opnfv
   remote_user: root
   vars_files:
-    - ../var/opnfv.yml
+    - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+
   pre_tasks:
     - name: Load distribution variables
       include_vars:
         file: "{{ item }}"
       failed_when: false
       with_items:
-        - ../var/opnfv.yml
-        - ../var/{{ ansible_os_family }}.yml
-        - ../file/{{ XCI_FLAVOR }}/flavor-vars.yml
-        - ../file/{{ XCI_FLAVOR }}/user_variables.yml
+        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
+        - "{{ XCI_PATH }}/xci/file/{{ XCI_FLAVOR }}/flavor-vars.yml"
+        - "{{ XCI_PATH }}/xci/file/{{ XCI_FLAVOR }}/user_variables.yml"
   roles:
     - role: "openstack-ansible-openstack_openrc"
 
