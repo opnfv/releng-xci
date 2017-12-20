@@ -32,7 +32,7 @@ XCI_EXTRA_VARS_PATH: "{{ lookup('env', 'XCI_EXTRA_VARS_PATH') }}"
 XCI_SSL_SUBJECT: "{{ lookup('env', 'XCI_SSL_SUBJECT') }}"
 XCI_CEPH_ENABLED: "{{ lookup('env', 'XCI_CEPH_ENABLED') }}"
 RUN_TEMPEST: "{{ lookup('env', 'RUN_TEMPEST') }}"
-OPNFV_SCENARIO: "{{ lookup('env','OPNFV_SCENARIO') }}"
+DEPLOY_SCENARIO: "{{ lookup('env','DEPLOY_SCENARIO') }}"
 
 # install docker on opnfv host only if we are running as part of CI
 opnfv_required_packages:

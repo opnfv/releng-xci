@@ -91,7 +91,7 @@ echo "xci nfvi: $XCI_NFVI"
 echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
-echo "OPNFV scenario: $OPNFV_SCENARIO"
+echo "OPNFV scenario: $DEPLOY_SCENARIO"
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
@@ -147,8 +147,8 @@ echo "-------------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 # Get scenario variables overrides
 #-------------------------------------------------------------------------------
-if [[ -f $XCI_SCENARIOS_CACHE/${OPNFV_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
-    source $XCI_SCENARIOS_CACHE/$OPNFV_SCENARIO/xci_overrides
+if [[ -f $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
+    source $XCI_SCENARIOS_CACHE/$DEPLOY_SCENARIO/xci_overrides
 fi
 
 #-------------------------------------------------------------------------------

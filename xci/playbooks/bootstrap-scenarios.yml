@@ -7,17 +7,17 @@
 # - name: Include foobar role
 #   include_role:
 #     name: "foobar"
-#   when: OPNFV_SCENARIO == "foobar"
+#   when: DEPLOY_SCENARIO == "foobar"
 
 - name: Prepare everything to run the os-nosdn-nofeature scenario
   include_role:
     name: "os-nosdn-nofeature"
-  when: OPNFV_SCENARIO == 'os-nosdn-nofeature'
+  when: DEPLOY_SCENARIO == 'os-nosdn-nofeature'
 - name: Prepare everything to run the os-odl-nofeature scenario
   include_role:
     name: "os-odl-nofeature"
-  when: OPNFV_SCENARIO == 'os-odl-nofeature'
+  when: DEPLOY_SCENARIO == 'os-odl-nofeature'
 - name: Prepare everything to run the os-odl-sfc scenario
   include_role:
     name: "os-odl-sfc"
-  when: OPNFV_SCENARIO == 'os-odl-sfc'
+  when: DEPLOY_SCENARIO == 'os-odl-sfc'
