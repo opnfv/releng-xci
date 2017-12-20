@@ -9,13 +9,16 @@
 ##############################################################################
 - hosts: localhost
   connection: local
-  vars_files:
-    - ../var/opnfv.yml
 
   pre_tasks:
     - name: Load distribution variables
       include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
+        file: "{{ item }}"
+      failed_when: false
+      with_items:
+        - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
+
     - name: cleanup leftovers of previous deployment
       file:
         path: "{{ item }}"
