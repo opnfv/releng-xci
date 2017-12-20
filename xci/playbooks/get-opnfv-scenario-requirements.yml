@@ -85,7 +85,7 @@
 
     - name: Determine if selected {{ DEPLOY_SCENARIO }} scenario can be deployed
       set_fact:
-        deploy_scenario_on_flavor: XCI_FLAVOR in item.flavors
+        deploy_scenario_on_flavor: "{{ (XCI_FLAVOR in item.flavors) | ternary(True, False) }}"
       when: DEPLOY_SCENARIO == item.scenario
       with_items: "{{ scenarios }}"
       loop_control:
