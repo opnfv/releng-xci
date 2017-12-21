@@ -23,7 +23,7 @@
   tasks:
     - name: Remove existing scenario directories
       file:
-        path: "{{ item[1] }} + '/' + {{ item[0].scenario }}"
+        path: "{{ item[1] }}/{{ item[0].scenario }}"
         state: absent
       with_nested:
         - "{{ scenarios }}"
@@ -33,7 +33,7 @@
 
     - name: Create scenario directories
       file:
-        path: "{{ role_path_default }} + '/' + item.scenario }}"
+        path: "{{ role_path_default }}/{{ item.scenario }}"
         state: directory
       with_items: "{{ scenarios }}"
       loop_control:
