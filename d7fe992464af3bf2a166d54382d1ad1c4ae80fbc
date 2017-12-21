@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_9546c24d",
+        "filename": "xci/file/aio/user_variables.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-12-21T19:19:51Z",
+      "side": 1,
+      "message": "I\u0027m not sure if we should keep the same copyright as the source",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 36
+      },
+      "revId": "d7fe992464af3bf2a166d54382d1ad1c4ae80fbc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_f5762ea3",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-12-21T19:19:51Z",
+      "side": 1,
+      "message": "With this change this scenario covers all the flavors, do we have to specify them?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 10
+      },
+      "revId": "d7fe992464af3bf2a166d54382d1ad1c4ae80fbc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d57b2a8a",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2017-12-21T19:19:51Z",
+      "side": 1,
+      "message": "This change overrides the user option for All-in-One flavor",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 23
+      },
+      "revId": "d7fe992464af3bf2a166d54382d1ad1c4ae80fbc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
