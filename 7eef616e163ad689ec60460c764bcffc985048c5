@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_67da78e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-12-21T11:11:16Z",
+      "side": 1,
+      "message": "missing SOB line?",
+      "revId": "7eef616e163ad689ec60460c764bcffc985048c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_27d510b9",
+        "filename": "xci/playbooks/roles/configure-network/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-12-21T11:11:16Z",
+      "side": 1,
+      "message": "Why is this needed for networking?",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 58
+      },
+      "revId": "7eef616e163ad689ec60460c764bcffc985048c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_87ddfce2",
+        "filename": "xci/playbooks/roles/configure-network/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-12-21T11:11:16Z",
+      "side": 1,
+      "message": "whitespace :)",
+      "range": {
+        "startLine": 91,
+        "startChar": 75,
+        "endLine": 91,
+        "endChar": 76
+      },
+      "revId": "7eef616e163ad689ec60460c764bcffc985048c5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
