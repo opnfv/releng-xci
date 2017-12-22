@@ -21,6 +21,7 @@ OPENSTACK_OSA_ETC_PATH: "{{ lookup('env','OPENSTACK_OSA_ETC_PATH') }}"
 XCI_ANSIBLE_PIP_VERSION: "{{ lookup('env','XCI_ANSIBLE_PIP_VERSION') }}"
 XCI_CACHE: "{{ lookup('env', 'XCI_CACHE') }}"
 XCI_FLAVOR: "{{ lookup('env','XCI_FLAVOR') }}"
+XCI_NFVI: "{{ lookup('env', 'XCI_NFVI') }}"
 XCI_FLAVOR_ANSIBLE_FILE_PATH: "{{ lookup('env','XCI_FLAVOR_ANSIBLE_FILE_PATH') }}"
 XCI_LOOP: "{{ lookup('env','XCI_LOOP') }}"
 XCI_PATH: "{{ lookup('env', 'XCI_PATH') }}"
@@ -33,6 +34,11 @@ XCI_SSL_SUBJECT: "{{ lookup('env', 'XCI_SSL_SUBJECT') }}"
 XCI_CEPH_ENABLED: "{{ lookup('env', 'XCI_CEPH_ENABLED') }}"
 RUN_TEMPEST: "{{ lookup('env', 'RUN_TEMPEST') }}"
 DEPLOY_SCENARIO: "{{ lookup('env','DEPLOY_SCENARIO') }}"
+
+# FIXME(hwoarang) We need to make the OS_FAMILY available elsewhere too. This should
+# be fixed and make it a proper XCI variable so we can select an OS independent of the
+# underlying host.
+OS_FAMILY: "{{ lookup('env', 'OS_FAMILY') }}"
 
 # install docker on opnfv host only if we are running as part of CI
 opnfv_required_packages:

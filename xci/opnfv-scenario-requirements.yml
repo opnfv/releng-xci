@@ -16,25 +16,42 @@
   src: https://gerrit.opnfv.org/gerrit/sfc
   version: master
   role: scenarios/os-odl-sfc/role/os-odl-sfc
-  flavors:
-    - ha
-    - mini
-    - noha
+  nfvis:
+    - nfvi: osa
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - debian
+        - suse
+
 - scenario: os-nosdn-nofeature
   scm: git
   src: https://git.opnfv.org/releng-xci
   version: master
   role: xci/scenarios/os-nosdn-nofeature/role/os-nosdn-nofeature
-  flavors:
-    - ha
-    - mini
-    - noha
+  nfvis:
+    - nfvi: osa
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - debian
+        - suse
+
 - scenario: os-odl-nofeature
   scm: git
   src: https://git.opnfv.org/releng-xci
   version: master
   role: xci/scenarios/os-odl-nofeature/role/os-odl-nofeature
-  flavors:
-    - ha
-    - mini
-    - noha
+  nfvis:
+    - nfvi: osa
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - debian
+        - suse

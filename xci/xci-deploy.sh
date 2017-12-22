@@ -132,6 +132,11 @@ if [[ $OS_FAMILY == RedHat ]]; then
     exit 1
 fi
 
+# FIXME(hwoarang) We need to make the OS_FAMILY available elsewhere too. This should
+# be fixed and make it a proper XCI variable so we can select an OS independent of the
+# underlying host.
+export OS_FAMILY=${OS_FAMILY,,}
+
 # Clone OPNFV scenario repositories
 #-------------------------------------------------------------------------------
 # This playbook
@@ -141,7 +146,7 @@ fi
 echo "Info: Cloning OPNFV scenario repositories"
 echo "-------------------------------------------------------------------------"
 cd $XCI_PATH/xci/playbooks
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory get-opnfv-scenario-requirements.yml
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} get-opnfv-scenario-requirements.yml
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
