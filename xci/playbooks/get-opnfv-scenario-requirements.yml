@@ -66,9 +66,9 @@
         label: "{{ item.scenario }}"
 
     - name: Plug in the scenario to XCI
-      shell: >-
-          cp -a {{ scenario_path_default }}/{{ item.item.scenario }}/{{ item.item.role }}
-          {{ role_path_default }}/{{ item.item.scenario }}
+      synchronize:
+        src: "{{ scenario_path_default }}/{{ item.item.scenario }}/{{ item.item.role }}/"
+        dest: "{{ role_path_default }}/{{ item.item.scenario }}"
       when: item.stat.exists
       with_items: "{{ scenarios_list_exists.results }}"
       loop_control:
@@ -87,9 +87,9 @@
         label: "{{ item.item.scenario }}"
 
     - name: Plug in the scenario to XCI (fallback)
-      shell: >-
-          cp -a {{ XCI_PATH }}/{{ item.item.role }}
-          {{ role_path_default }}/{{ item.item.scenario }}
+      synchronize:
+        src: "{{ XCI_PATH }}/{{ item.item.role }}/"
+        dest: "{{ role_path_default }}/{{ item.item.scenario }}"
       when: not item.stat.exists
       with_items: "{{ scenarios_list_exists.results }}"
       loop_control:
