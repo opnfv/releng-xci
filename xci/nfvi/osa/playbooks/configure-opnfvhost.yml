@@ -93,6 +93,7 @@
       when:
         - OPENSTACK_OSA_VERSION != "master"
     - include: bootstrap-scenarios.yml
+      static: no
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
