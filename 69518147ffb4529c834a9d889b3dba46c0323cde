@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Markos Chandras <mchandras@suse.de>
+Submitted-by: Markos Chandras <mchandras@suse.de>
+Submitted-at: Fri, 22 Dec 2017 08:47:57 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/49499
+Project: releng-xci
+Branch: refs/heads/master
