@@ -48,7 +48,7 @@
 - name: lxc_hosts
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-lxc_hosts
-  version: 84ac3442e542aeedf1396c88e0387b4ea1548eb1
+  version: 6b529de0315fe6cd12f6e78c00a5f2f2d3a01e28
 - name: memcached_server
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-memcached_server
