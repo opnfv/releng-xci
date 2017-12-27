@@ -68,6 +68,30 @@
       "revId": "d7fe992464af3bf2a166d54382d1ad1c4ae80fbc",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_4d24aeae",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2017-12-27T12:55:29Z",
+      "side": 1,
+      "message": "This is only a temporary change in order to test this patchset in the CI",
+      "parentUuid": "9a3d3df0_d57b2a8a",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 23
+      },
+      "revId": "d7fe992464af3bf2a166d54382d1ad1c4ae80fbc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
