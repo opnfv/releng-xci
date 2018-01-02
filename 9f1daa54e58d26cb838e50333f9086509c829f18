@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_795df046",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-02T16:50:54Z",
+      "side": 1,
+      "message": "Maybe this validation task can be split in two parts and the first one can be placed in the line 105. In that way, the error message can be more specific like the follows:\n\n    - name: Fail if {{ DEPLOY_SCENARIO }} is not supported\n      fail:\n        msg:\n          - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n          - ERROR! The {{ DEPLOY_SCENARIO }} scenario can\u0027t be deployed. This is because\n          - the {{ XCI_NFVI }} NFVI.\n          - \u0027\u0027\n          - This is a great chance for you to contribute to XCI ;-)\n          - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n          - \u0027\u0027\n      when:\n        - deploy_scenario is not defined",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 70
+      },
+      "revId": "9f1daa54e58d26cb838e50333f9086509c829f18",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
