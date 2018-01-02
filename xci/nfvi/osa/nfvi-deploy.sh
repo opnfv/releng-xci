@@ -180,7 +180,7 @@ echo "Info: OpenStack installation is successfully completed!"
 #-------------------------------------------------------------------------------
 echo "Info: Openstack login details"
 echo "-----------------------------------------------------------------------"
-OS_USER_CONFIG=$XCI_PATH/xci/file/$XCI_FLAVOR/openstack_user_config.yml
+OS_USER_CONFIG=$XCI_FLAVOR_ANSIBLE_FILE_PATH/openstack_user_config.yml
 python -c \
 "import yaml
 if '$XCI_FLAVOR' is 'aio':

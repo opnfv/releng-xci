@@ -4,7 +4,7 @@
   tasks:
     - name: add public key to host
       copy:
-        src: "{{ XCI_PATH }}/xci/file/authorized_keys"
+        src: "{{ XCI_PATH }}/xci/files/authorized_keys"
         dest: /root/.ssh/authorized_keys
 
 - hosts: controller
@@ -18,7 +18,7 @@
         file: "{{ item }}"
       with_items:
         - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ XCI_PATH }}/xci/file/{{ XCI_FLAVOR }}/flavor-vars.yml"
+        - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
   roles:
     - role: configure-network
     # we need to force sync time with ntp or the nodes will be out of sync timewise
@@ -35,7 +35,7 @@
         file: "{{ item }}"
       with_items:
         - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ XCI_PATH }}/xci/file/{{ XCI_FLAVOR }}/flavor-vars.yml"
+        - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
   roles:
     - role: configure-network
     # we need to force sync time with ntp or the nodes will be out of sync timewise

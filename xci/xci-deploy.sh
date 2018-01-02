@@ -99,7 +99,7 @@ echo "-------------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 echo "Info: Installing Ansible from pip"
 echo "-------------------------------------------------------------------------"
-source file/install-ansible.sh
+source files/install-ansible.sh
 echo "-------------------------------------------------------------------------"
 
 # Make the VMs match the host. If we need to make this configurable
@@ -136,7 +136,7 @@ fi
 #-------------------------------------------------------------------------------
 # This playbook
 # - removes existing scenario roles
-# - clones OPNFV scenario roles based on the file/opnfv-scenario-requirements.yml file
+# - clones OPNFV scenario roles based on the xci/opnfv-scenario-requirements.yml file
 #-------------------------------------------------------------------------------
 echo "Info: Cloning OPNFV scenario repositories"
 echo "-------------------------------------------------------------------------"
