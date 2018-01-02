@@ -8,14 +8,29 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
+- debug:
+    msg: "Trying to find {{ role_path }}/vars/{{ ansible_distribution | lower }}.yml"
+
+- find:
+    paths: "{{ role_path }}/vars"
+    patterns: '*.yml'
+    recurse: yes
+
 - name: Gather variables for each operating system
   include_vars: "{{ item }}"
   with_first_found:
-    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
-    - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
-    - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
-    - "{{ ansible_distribution | lower }}.yml"
-    - "{{ ansible_os_family | lower }}.yml"
+    - files:
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
+        - "{{ ansible_distribution | lower }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
+      paths:
+        - "{{ role_path }}"
+        - "{{ role_path }}/vars"
+        - '../vars'
+        - "vars"
+
 - name: make NFS directories
   file:
     dest: "{{ item }}"
