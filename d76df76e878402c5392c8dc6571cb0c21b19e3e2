@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_14290b8a",
+        "filename": "xci/nfvi/osa/nfvi-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-02T18:11:56Z",
+      "side": 1,
+      "message": "does \"*suse\" work?",
+      "range": {
+        "startLine": 142,
+        "startChar": 26,
+        "endLine": 142,
+        "endChar": 34
+      },
+      "revId": "d76df76e878402c5392c8dc6571cb0c21b19e3e2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_743977d6",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-02T18:11:56Z",
+      "side": 1,
+      "message": "I didn\u0027t find any reference to this variable, is this change required? The only place that I found a reference is in this change: \n\n    * https://gerrit.opnfv.org/gerrit/#/c/49857/1/xci/nfvi/osa/playbooks/configure-opnfvhost.yml@25",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 43
+      },
+      "revId": "d76df76e878402c5392c8dc6571cb0c21b19e3e2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
