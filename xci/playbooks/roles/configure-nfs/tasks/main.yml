@@ -8,6 +8,9 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
+- debug:
+    msg: "Trying to find {{ role_path }}/vars/{{ ansible_distribution | lower }}.yml"
+
 - name: Gather variables for each operating system
   include_vars: "{{ item }}"
   with_first_found:
@@ -16,6 +19,8 @@
     - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version | lower }}.yml"
     - "{{ ansible_distribution | lower }}.yml"
     - "{{ ansible_os_family | lower }}.yml"
+    - "/home/devuser/releng-xci/xci/playbooks/roles/configure-nfs/vars/{{ ansible_distribution }}.yml"
+
 - name: make NFS directories
   file:
     dest: "{{ item }}"
