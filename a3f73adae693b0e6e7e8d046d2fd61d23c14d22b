@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_5456f306",
+        "filename": "xci/nfvi/osa/nfvi-deploy.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-02T18:14:45Z",
+      "side": 1,
+      "message": "This change is logically irrelevant with your patchset. My preference would be to split it into a different patchset or at least document the reasoning behind this in the commit message.",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 105
+      },
+      "revId": "a3f73adae693b0e6e7e8d046d2fd61d23c14d22b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
