@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a3d3df0_d41b2371",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-02T18:00:12Z",
+      "side": 1,
+      "message": "isn\u0027t this your username? Shouldn\u0027t be better to use Tianwei wu?",
+      "range": {
+        "startLine": 14,
+        "startChar": 15,
+        "endLine": 14,
+        "endChar": 24
+      },
+      "revId": "f66cb587b1ea63d742b80046cf6e0fe1c91a5371",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_391088a7",
         "filename": "xci/files/install-ansible.sh",
         "patchSetId": 1
@@ -19,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_74121758",
+        "filename": "xci/files/install-ansible.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-02T18:00:12Z",
+      "side": 1,
+      "message": "I guess that he\u0027s trying to keep a standard. In the other hand, install-ansible.sh is the only file placed in this folder, is the generic \"file(s)\" name still suitable on this?",
+      "parentUuid": "9a3d3df0_391088a7",
+      "revId": "f66cb587b1ea63d742b80046cf6e0fe1c91a5371",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_9928b4e3",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 1
@@ -30,6 +71,29 @@
       "writtenOn": "2018-01-02T14:06:08Z",
       "side": 1,
       "message": "same. why did you move install-ansible from file to files?",
+      "revId": "f66cb587b1ea63d742b80046cf6e0fe1c91a5371",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_94151b42",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-02T18:00:12Z",
+      "side": 1,
+      "message": "maybe this path needs to be updated.",
+      "range": {
+        "startLine": 139,
+        "startChar": 45,
+        "endLine": 139,
+        "endChar": 81
+      },
       "revId": "f66cb587b1ea63d742b80046cf6e0fe1c91a5371",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
