@@ -99,7 +99,7 @@ echo "-------------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 echo "Info: Installing Ansible from pip"
 echo "-------------------------------------------------------------------------"
-source file/install-ansible.sh
+source files/install-ansible.sh
 echo "-------------------------------------------------------------------------"
 
 # Make the VMs match the host. If we need to make this configurable

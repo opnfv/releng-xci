@@ -18,11 +18,11 @@
         file: "{{ item }}"
       with_items:
         - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ XCI_PATH }}/xci/file/{{ XCI_FLAVOR }}/flavor-vars.yml"
+        - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
     - name: Set facts for remote deployment
       set_fact:
         remote_xci_path: "{{ ansible_env.HOME }}/releng-xci"
-        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/file/{{ XCI_FLAVOR }}"
+        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/nfvi/{{XCI_NFVI}}/files/{{ XCI_FLAVOR }}"
         remote_xci_playbooks: "{{ ansible_env.HOME }}/releng-xci/xci/playbooks"
 
   roles:
@@ -37,7 +37,7 @@
     - name: fetch public key
       fetch:
         src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
-        dest: "{{ XCI_PATH }}/xci/file/authorized_keys"
+        dest: "{{ XCI_PATH }}/xci/files/authorized_keys"
         flat: yes
     - name: Copy releng-xci to remote host
       synchronize:
@@ -152,7 +152,7 @@
 
   tasks:
     - name: Append public keys to authorized_keys
-      shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ XCI_PATH }}/xci/file/authorized_keys"
+      shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ XCI_PATH }}/xci/files/authorized_keys"
 
 - hosts: opnfv
   remote_user: root
@@ -166,8 +166,8 @@
       failed_when: false
       with_items:
         - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ XCI_PATH }}/xci/file/{{ XCI_FLAVOR }}/flavor-vars.yml"
-        - "{{ XCI_PATH }}/xci/file/{{ XCI_FLAVOR }}/user_variables.yml"
+        - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
+        - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/user_variables.yml"
   roles:
     - role: "openstack-ansible-openstack_openrc"
 
