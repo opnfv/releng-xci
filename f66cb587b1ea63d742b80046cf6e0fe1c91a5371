@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_14074b83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-03T02:13:48Z",
+      "side": 1,
+      "message": "I think this does not matter.",
+      "parentUuid": "9a3d3df0_d41b2371",
+      "range": {
+        "startLine": 14,
+        "startChar": 15,
+        "endLine": 14,
+        "endChar": 24
+      },
+      "revId": "f66cb587b1ea63d742b80046cf6e0fe1c91a5371",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_391088a7",
         "filename": "xci/files/install-ansible.sh",
         "patchSetId": 1
@@ -60,6 +84,42 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_7494d742",
+        "filename": "xci/files/install-ansible.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-03T02:13:48Z",
+      "side": 1,
+      "message": "if we introduce more NFVIs, such as kolla-ansible, kubernetes in the future, there are many files to add to directory xci/file.  For example, there are maybe ha, noha, mini and aio directories in kubernetes, if we put these directories in xci/file, it will make people confused. So I suggest to move the files which only used by one NFVI to corresponding directory xci/nfvi/$NFVI/files. it is easy for us to find the NFVI file which we want to modify.\nthis will be more appropriate to add more NFVIs.",
+      "parentUuid": "9a3d3df0_391088a7",
+      "revId": "f66cb587b1ea63d742b80046cf6e0fe1c91a5371",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1492ab4b",
+        "filename": "xci/files/install-ansible.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-03T02:13:48Z",
+      "side": 1,
+      "message": "In my opinion, the directory xci/file should place the common files for XCI. there are only one file install-ansible.sh now. But we may add other files to this directory in the future, so I named it \"files\".",
+      "parentUuid": "9a3d3df0_74121758",
+      "revId": "f66cb587b1ea63d742b80046cf6e0fe1c91a5371",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_9928b4e3",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 1
@@ -77,6 +137,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_b4d65fef",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-03T02:13:48Z",
+      "side": 1,
+      "message": "In my opinion, the directory xci/file should place the common files for XCI. there are only one file install-ansible.sh now. But we may add other files to this directory in the future, so I named it \"files\".",
+      "parentUuid": "9a3d3df0_9928b4e3",
+      "revId": "f66cb587b1ea63d742b80046cf6e0fe1c91a5371",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_94151b42",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 1
@@ -88,6 +166,30 @@
       "writtenOn": "2018-01-02T18:00:12Z",
       "side": 1,
       "message": "maybe this path needs to be updated.",
+      "range": {
+        "startLine": 139,
+        "startChar": 45,
+        "endLine": 139,
+        "endChar": 81
+      },
+      "revId": "f66cb587b1ea63d742b80046cf6e0fe1c91a5371",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_f496273e",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-03T02:13:48Z",
+      "side": 1,
+      "message": "this file I don\u0027t move this file, which placed in xci/. I will update it.",
+      "parentUuid": "9a3d3df0_94151b42",
       "range": {
         "startLine": 139,
         "startChar": 45,
