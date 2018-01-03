@@ -22,6 +22,30 @@
       "revId": "9f1daa54e58d26cb838e50333f9086509c829f18",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_0f15769b",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-03T09:56:04Z",
+      "side": 1,
+      "message": "I am sorry I don\u0027t understand the proposal. Do you mean do print the error message multiple times and making it more specific based on what fact failed?",
+      "parentUuid": "9a3d3df0_795df046",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 70
+      },
+      "revId": "9f1daa54e58d26cb838e50333f9086509c829f18",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
