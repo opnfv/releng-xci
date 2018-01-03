@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_14e0ebcb",
+        "filename": "xci/nfvi/osa/nfvi-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-03T01:54:28Z",
+      "side": 1,
+      "message": "Got it, makes sense",
+      "parentUuid": "9a3d3df0_d4496361",
+      "range": {
+        "startLine": 142,
+        "startChar": 26,
+        "endLine": 142,
+        "endChar": 34
+      },
+      "revId": "d76df76e878402c5392c8dc6571cb0c21b19e3e2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_743977d6",
         "filename": "xci/var/opnfv.yml",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "You answered your question yourself. The bash variable is defined in xci/config/user-vars but we didn\u0027t set the Ansible variable anywhere. It\u0027s needed for the line you posted above",
       "parentUuid": "9a3d3df0_743977d6",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 43
+      },
+      "revId": "d76df76e878402c5392c8dc6571cb0c21b19e3e2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_b4bf7fa9",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-03T01:54:28Z",
+      "side": 1,
+      "message": "So in that case and given that this commit is not using it, it\u0027s not necessary to define it.",
+      "parentUuid": "9a3d3df0_b4465f4d",
       "range": {
         "startLine": 25,
         "startChar": 0,
