@@ -22,6 +22,30 @@
       "revId": "a3f73adae693b0e6e7e8d046d2fd61d23c14d22b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_cfc26e33",
+        "filename": "xci/nfvi/osa/nfvi-deploy.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-01-03T09:12:35Z",
+      "side": 1,
+      "message": "This change is needed here otherwise xci installation fails at this stage for os-nosdn-nofeature scenario in aio flavor. will update the commit message accordingly.\n\nIn this flavor, After the installation, I\u0027m facing issues like \"The requested availability zone is not available\" error during nova boot and vxlan tunnel is not established b/w opnfv and neutron-agent. Looks like its due to heavy load on the neutron server container (seeing lots of rpc timeout errors). I\u0027m looking into it right now and will update the patch later.",
+      "parentUuid": "9a3d3df0_5456f306",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 105
+      },
+      "revId": "a3f73adae693b0e6e7e8d046d2fd61d23c14d22b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
