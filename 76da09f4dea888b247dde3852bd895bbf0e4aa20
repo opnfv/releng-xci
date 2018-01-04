@@ -46,6 +46,30 @@
       "revId": "76da09f4dea888b247dde3852bd895bbf0e4aa20",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_4e1adf7d",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-01-04T12:17:15Z",
+      "side": 1,
+      "message": "How about installer: osa ? or overcloud: osa ?\n\nBTW what do you think would be the alternative options except OSA that xci will support in the future ?",
+      "parentUuid": "9a3d3df0_ceb1cf90",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "76da09f4dea888b247dde3852bd895bbf0e4aa20",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
