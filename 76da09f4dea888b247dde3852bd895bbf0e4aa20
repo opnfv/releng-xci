@@ -118,6 +118,30 @@
       "revId": "76da09f4dea888b247dde3852bd895bbf0e4aa20",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d197b08e",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-04T15:03:55Z",
+      "side": 1,
+      "message": "we already use XCI_NFVI to choose the installer/deployer/foobar method so I just go along with the flow. If NFVI is not correct then we can switch all of them when we agree how to call it",
+      "parentUuid": "9a3d3df0_917a4875",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "76da09f4dea888b247dde3852bd895bbf0e4aa20",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
