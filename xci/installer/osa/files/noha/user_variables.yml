@@ -164,3 +164,8 @@ haproxy_user_ssl_cert: "/etc/ssl/certs/xci.crt"
 haproxy_user_ssl_key: "/etc/ssl/private/xci.key"
 keystone_service_adminuri_insecure: true
 keystone_service_internaluri_insecure: true
+
+lxc_net_address: 172.29.238.1
+lxc_net_netmask: 255.255.255.128
+lxc_net_dhcp_range: 172.29.238.2,172.29.238.27
+lxc_net_bridge: lxcbr0

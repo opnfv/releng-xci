@@ -51,10 +51,10 @@
         - { name: "{{ ansible_default_ipv4.interface }}.10", vlan_id: 10 }
         - { name: "{{ ansible_default_ipv4.interface }}.30", vlan_id: 30 }
         - { name: "{{ ansible_default_ipv4.interface }}.20", vlan_id: 20 }
-        - { name: "br-mgmt", bridge_ports: "{{ ansible_default_ipv4.interface }}.10", ip: "{{ host_info[inventory_hostname].MGMT_IP }}/22" }
-        - { name: "br-vxlan", bridge_ports: "{{ ansible_default_ipv4.interface }}.30", ip: "{{ host_info[inventory_hostname].VXLAN_IP }}/22" }
+        - { name: "br-mgmt", bridge_ports: "{{ ansible_default_ipv4.interface }}.10", ip: "{{ host_info[inventory_hostname].MGMT_IP }}/25" }
+        - { name: "br-vxlan", bridge_ports: "{{ ansible_default_ipv4.interface }}.30", ip: "{{ host_info[inventory_hostname].VXLAN_IP }}/25" }
         - { name: "br-vlan", bridge_ports: "{{ ansible_default_ipv4.interface }}", ip: "{{ host_info[inventory_hostname].VLAN_IP }}/24" }
-        - { name: "br-storage", bridge_ports: "{{ ansible_default_ipv4.interface }}.20", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}/22" }
+        - { name: "br-storage", bridge_ports: "{{ ansible_default_ipv4.interface }}.20", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}/25" }
 
     - name: Add postup/postdown scripts on SUSE
       copy:
