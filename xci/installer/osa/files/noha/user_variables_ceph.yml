@@ -17,8 +17,8 @@
 devices: [/dev/loop0, /dev/loop1, /dev/loop2]
 common_single_host_mode: true
 monitor_interface: eth1
-public_network: "172.29.236.0/22"
-cluster_network: "172.29.244.0/22"
+public_network: "172.29.236.0/25"
+cluster_network: "172.29.244.0/25"
 journal_size: 100
 journal_collocation: true
 pool_default_pg_num: 32
