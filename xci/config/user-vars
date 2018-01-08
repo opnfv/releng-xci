@@ -22,6 +22,15 @@
 #-------------------------------------------------------------------------------
 export XCI_FLAVOR=${XCI_FLAVOR:-aio}
 export XCI_CEPH_ENABLED=${XCI_CEPH_ENABLED:-false}
+
+#-------------------------------------------------------------------------------
+# Set NFVI
+#-------------------------------------------------------------------------------
+# There are two kinds of NFVIs kubespray and osa in XCI currently
+# Examples:
+#    export XCI_NFVI="osa"
+# or
+#    export XCI_NFVI="kubespray"
 export XCI_NFVI=${XCI_NFVI:-osa}
 
 #-------------------------------------------------------------------------------
