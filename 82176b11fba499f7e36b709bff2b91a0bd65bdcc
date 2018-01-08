@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_b40db540",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-08T22:58:41Z",
+      "side": 1,
+      "message": "Maybe this can be renamed to something less redundant like \"deploy.sh\" which will result in\n\n    /home/devuser/releng-xci/xci/installer/osa/deploy.sh\n\ninstead of\n\n    /home/devuser/releng-xci/xci/installer/osa/installer-deploy.sh",
+      "range": {
+        "startLine": 179,
+        "startChar": 50,
+        "endLine": 179,
+        "endChar": 69
+      },
+      "revId": "82176b11fba499f7e36b709bff2b91a0bd65bdcc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
