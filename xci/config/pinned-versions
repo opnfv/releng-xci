@@ -29,3 +29,10 @@ export OPNFV_RELENG_VERSION="master"
 export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"8b4c956bf0ec6c1784e41af2a0598cb49c41461f"}
 # HEAD of osa "master" as of 11.12.2017
 export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"7b3aac28a0a87e5966527829f6b0abcbc2303cc7"}
+export KEEPALIVED_VERSION=$(grep -E '.*name: keepalived' -A 3 \
+       ${XCI_PATH}/xci/installer/osa/files/ansible-role-requirements.yml \
+       | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
+export HAPROXY_VERSION=$(grep -E '.*name: haproxy_server' -A 3 \
+       ${XCI_PATH}/xci/installer/osa/files/ansible-role-requirements.yml \
+       | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
+export KUBESPRAY_VERSION=${KUBESPRAY_VERSION:-"master"}
