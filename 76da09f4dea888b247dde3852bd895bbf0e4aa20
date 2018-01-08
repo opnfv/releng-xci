@@ -166,6 +166,30 @@
       "revId": "76da09f4dea888b247dde3852bd895bbf0e4aa20",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_45e47ae0",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-01-08T08:10:10Z",
+      "side": 1,
+      "message": "I agree to Dimitrios here and installer seems to be more proper term to use.\n\nIf we think OpenStack; we might have multiple installers installing same NFVi. Similar thing is valid for k8s as well; rancher, kubespray, and so on, installing k8s.\n\nBut I\u0027m not going to block this. Up to Markos to fix it now or leave for later.",
+      "parentUuid": "9a3d3df0_118e3879",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "76da09f4dea888b247dde3852bd895bbf0e4aa20",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
