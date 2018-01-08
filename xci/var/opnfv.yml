@@ -35,6 +35,8 @@ XCI_CEPH_ENABLED: "{{ lookup('env', 'XCI_CEPH_ENABLED') }}"
 RUN_TEMPEST: "{{ lookup('env', 'RUN_TEMPEST') }}"
 DEPLOY_SCENARIO: "{{ lookup('env','DEPLOY_SCENARIO') }}"
 XCI_INSTALLER: "{{ lookup('env','XCI_INSTALLER') }}"
+KUBESPRAY_VERSION: "{{lookup('env','KUBESPRAY_VERSION')}}"
+XCI_KUBE_ANSIBLE_PIP_VERSION: "{{lookup('env','XCI_KUBE_ANSIBLE_PIP_VERSION')}}"
 
 # install docker on opnfv host only if we are running as part of CI
 opnfv_required_packages:

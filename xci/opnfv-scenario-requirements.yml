@@ -55,3 +55,17 @@
       distros:
         - opensuse
         - ubuntu
+
+- scenario: k8-nosdn-nofeature
+  scm: git
+  src: https://git.opnfv.org/releng-xci
+  version: master
+  role: xci/scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature
+  installers:
+    - installer: kubespray
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
