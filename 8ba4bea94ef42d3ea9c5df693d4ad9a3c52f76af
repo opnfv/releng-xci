@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_943d112e",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-08T18:48:17Z",
+      "side": 1,
+      "message": "shouldn\u0027t be better in some cases to use lower case?",
+      "range": {
+        "startLine": 62,
+        "startChar": 9,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "8ba4bea94ef42d3ea9c5df693d4ad9a3c52f76af",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_f4461dbf",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-08T18:48:17Z",
+      "side": 1,
+      "message": "ditto: line 62",
+      "range": {
+        "startLine": 176,
+        "startChar": 35,
+        "endLine": 176,
+        "endChar": 44
+      },
+      "revId": "8ba4bea94ef42d3ea9c5df693d4ad9a3c52f76af",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d44319ad",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-08T18:48:17Z",
+      "side": 1,
+      "message": "ditto: line 62",
+      "range": {
+        "startLine": 177,
+        "startChar": 41,
+        "endLine": 177,
+        "endChar": 50
+      },
+      "revId": "8ba4bea94ef42d3ea9c5df693d4ad9a3c52f76af",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
