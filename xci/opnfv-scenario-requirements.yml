@@ -40,6 +40,7 @@
       distros:
         - opensuse
         - ubuntu
+        - centos
 
 - scenario: os-odl-nofeature
   scm: git
