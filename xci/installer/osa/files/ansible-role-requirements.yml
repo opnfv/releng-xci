@@ -27,8 +27,8 @@
   version: 9a8302cbba24ea4e5907567e5f93e874d30d79df
 - name: galera_server
   scm: git
-  src: https://git.openstack.org/openstack/openstack-ansible-galera_server
-  version: aa452989d7295111962f67a3f3a96d96bc408846
+  src: https://github.com/TapioT/openstack-ansible-galera_server.git
+  version: d96b3115741b3cc91b7b9468648a9f1158f06337
 - name: ceph_client
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-ceph_client
