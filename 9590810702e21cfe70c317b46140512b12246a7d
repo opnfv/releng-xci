@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_2075e4f9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-08T14:20:41Z",
+      "side": 1,
+      "message": "Could you add a reference of the upstream review url or the sha of the commit that fixes the problem you are referring to?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 48
+      },
+      "revId": "9590810702e21cfe70c317b46140512b12246a7d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
