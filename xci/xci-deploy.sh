@@ -121,13 +121,11 @@ case ${XCI_DISTRO,,} in
         ;;
 esac
 
-# There is no CentOS support at all
 if [[ ${XCI_DISTRO,,} == centos ]]; then
     echo ""
-    echo "Error: Sorry, only Ubuntu and SUSE hosts are supported for now!"
-    echo "Error: CentOS 7 support is still work in progress."
+    echo "Warning: Only Ubuntu and SUSE hosts are fully supported for now!"
+    echo "Warning: CentOS 7 support is still work in progress."
     echo ""
-    exit 1
 fi
 
 # Clone OPNFV scenario repositories
