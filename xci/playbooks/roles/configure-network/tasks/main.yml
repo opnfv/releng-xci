@@ -72,3 +72,32 @@
     - name: restart network service
       shell: "/usr/sbin/wicked ifreload all"
   when: ansible_os_family | lower == "suse"
+
+- block:
+    - name: Configure networking on CentOS for interfaces
+      template:
+        src: "{{ ansible_os_family | lower }}/interface.ifcfg.j2"
+        dest: "/etc/sysconfig/network-scripts/ifcfg-{{ item.name }}"
+      with_items:
+        - { name: "{{ interface }}"   , bridge: "br-vlan"                 }
+        - { name: "{{ interface }}.10", bridge: "br-mgmt"   , vlan_id: 10 }
+        - { name: "{{ interface }}.20", bridge: "br-storage", vlan_id: 20 }
+        - { name: "{{ interface }}.30", bridge: "br-vxlan"  , vlan_id: 30 }
+    - name: Configure networking on CentOS for bridges
+      template:
+        src: "{{ ansible_os_family | lower }}/bridge.ifcfg.j2"
+        dest: "/etc/sysconfig/network-scripts/ifcfg-{{ item.name }}"
+      with_items:
+        - { name: "br-vlan"   , ip: "{{ host_info[inventory_hostname].VLAN_IP }}",    prefix: 24 }
+        - { name: "br-mgmt"   , ip: "{{ host_info[inventory_hostname].MGMT_IP }}",    prefix: 22 }
+        - { name: "br-storage", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}", prefix: 22 }
+        - { name: "br-vxlan"  , ip: "{{ host_info[inventory_hostname].VXLAN_IP }}",   prefix: 22 }
+    - name: Add default route through br-vlan
+      lineinfile:
+        path: "/etc/sysconfig/network-scripts/ifcfg-br-vlan"
+        line: "GATEWAY=192.168.122.1"
+    - name: Restart networking
+      command: "systemctl restart network"
+    - name: wait for the server to come back
+      wait_for_connection:
+  when: ansible_os_family | lower == "redhat"
