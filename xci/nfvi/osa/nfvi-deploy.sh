@@ -138,13 +138,6 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Verifying database cluster"
 echo "-----------------------------------------------------------------------"
-# Apply SUSE fix until https://review.openstack.org/508154 is merged
-if [[ ${XCI_DISTRO,,} == "opensuse" ]]; then
-	ssh root@$OPNFV_HOST_IP "set -o pipefail; ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
-		-i releng-xci/.cache/repos/openstack-ansible/playbooks/inventory/ galera_container -m shell \
-		-a \"sed -i \\\"s@/var/run/mysqld/mysqld.sock@/var/run/mysql/mysql.sock@\\\" /etc/my.cnf\""
-fi
-
 ssh root@$OPNFV_HOST_IP "set -o pipefail; ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
     -i releng-xci/.cache/repos/openstack-ansible/playbooks/inventory/ galera_container -m shell \
 	-a \"mysql -h localhost -e \\\"show status like '%wsrep_cluster_%';\\\"\" | tee galera.log"
