@@ -1,0 +1,8 @@
+The files/$XCI_FLAVOR/inventory/group_vars/all.yml get from kubespray.
+You can change the parameter according to you need.
+When running, it will be copied to kubespray and be used. 
+
+For example:
+  kube_network_plugin: calico
+  docker_storage_options: -s overlay2
+  kube_service_addresses: 10.233.0.0/18

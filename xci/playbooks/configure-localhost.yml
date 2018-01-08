@@ -1,0 +1,42 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2017 Ericsson AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+- hosts: localhost
+  connection: local
+  become: yes
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: "{{ item }}"
+      failed_when: false
+      with_items:
+        - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
+
+    - name: cleanup leftovers of previous deployment
+      file:
+        path: "{{ item }}"
+        state: absent
+        recurse: no
+      with_items:
+        - "{{ XCI_CACHE }}/repos"
+        - "{{ LOG_PATH }} "
+        - "{{ OPNFV_SSH_HOST_KEYS_PATH }}"
+    - name:  create log directory {{LOG_PATH}}
+      file:
+        path: "{{LOG_PATH}}"
+        state: directory
+        recurse: no
+
+  roles:
+    - role: clone-repository
+      project: "kubernetes-incubator/kubespray"
+      repo: "https://github.com/kubernetes-incubator/kubespray.git"
+      dest: "{{ XCI_CACHE }}/repos/kubespray"
+      version: "{{ KUBESPRAY_VERSION }}"
