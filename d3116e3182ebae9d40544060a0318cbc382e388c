@@ -22,6 +22,30 @@
       "revId": "d3116e3182ebae9d40544060a0318cbc382e388c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_459c7a0f",
+        "filename": "xci/nfvi/osa/nfvi-deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-08T09:20:14Z",
+      "side": 1,
+      "message": "right but this is an unrelated change so I will create a new patch for it.",
+      "parentUuid": "9a3d3df0_05a8b275",
+      "range": {
+        "startLine": 141,
+        "startChar": 23,
+        "endLine": 141,
+        "endChar": 58
+      },
+      "revId": "d3116e3182ebae9d40544060a0318cbc382e388c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
