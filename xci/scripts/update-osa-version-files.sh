@@ -66,8 +66,8 @@ echo """---
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 # these versions are based on the osa commit ${1} on $(git --no-pager log -1 --format=%cd --date=format:%Y-%m-%d $1)
-# https://review.openstack.org/gitweb?p=openstack/openstack-ansible.git;a=commit;h=$1""" > $releng_xci_base/nfvi/osa/files/ansible-role-requirements.yml
-cat $tempdir/openstack-ansible/ansible-role-requirements.yml >> $releng_xci_base/nfvi/osa/files/ansible-role-requirements.yml
+# https://review.openstack.org/gitweb?p=openstack/openstack-ansible.git;a=commit;h=$1""" > $releng_xci_base/installer/osa/files/ansible-role-requirements.yml
+cat $tempdir/openstack-ansible/ansible-role-requirements.yml >> $releng_xci_base/installer/osa/files/ansible-role-requirements.yml
 
 # Update the pinned OSA version
 sed -i -e "/^export OPENSTACK_OSA_VERSION/s@:-\"[a-z0-9]*@:-\"${1}@" \
@@ -78,8 +78,8 @@ sed -i -e "/^export OPENSTACK_OSA_VERSION/s@:-\"[a-z0-9]*@:-\"${1}@" \
     sed -i -e "/^export OPENSTACK_BIFROST_VERSION/s@:-\"[a-z0-9]*@:-\"${2}@" \
     -e "s/\(^# HEAD of bifrost.*of \).*/\1$(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
 
-cp $tempdir/openstack-ansible/playbooks/defaults/repo_packages/openstack_services.yml ${releng_xci_base}/nfvi/osa/files/.
-cp $tempdir/openstack-ansible/global-requirement-pins.txt ${releng_xci_base}/nfvi/osa/files/.
+cp $tempdir/openstack-ansible/playbooks/defaults/repo_packages/openstack_services.yml ${releng_xci_base}/installer/osa/files/.
+cp $tempdir/openstack-ansible/global-requirement-pins.txt ${releng_xci_base}/installer/osa/files/.
 
 popd &> /dev/null
 
@@ -87,9 +87,9 @@ printme ""
 printme "======================= Report ============================"
 printme ""
 printme "The following files have been updated:"
-printme "- $releng_xci_base/nfvi/osa/files/ansible-role-requirements.yml"
-printme "- $releng_xci_base/nfvi/osa/files/global-requirement-pins.txt"
-printme "- $releng_xci_base/nfvi/osa/files/openstack_services.yml"
+printme "- $releng_xci_base/installer/osa/files/ansible-role-requirements.yml"
+printme "- $releng_xci_base/installer/osa/files/global-requirement-pins.txt"
+printme "- $releng_xci_base/installer/osa/files/openstack_services.yml"
 printme "- $releng_xci_base/config/pinned-versions"
 printme "Please make sure you test the end result before committing it!"
 printme ""
