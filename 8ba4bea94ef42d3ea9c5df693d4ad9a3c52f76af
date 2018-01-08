@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_b455b551",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-08T20:09:10Z",
+      "side": 1,
+      "message": "yeah true. bad sed script :)",
+      "parentUuid": "9a3d3df0_943d112e",
+      "range": {
+        "startLine": 62,
+        "startChar": 9,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "8ba4bea94ef42d3ea9c5df693d4ad9a3c52f76af",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_f4461dbf",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 2
