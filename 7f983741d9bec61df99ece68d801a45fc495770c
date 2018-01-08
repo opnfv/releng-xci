@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_d4179943",
+        "filename": "xci/playbooks/roles/configure-network/tasks/main.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-08T15:40:44Z",
+      "side": 1,
+      "message": "please use \u0027ansible_os_family | lower \u003d redhat\u0027 so we can cover RHEL distributions as well.",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 40
+      },
+      "revId": "7f983741d9bec61df99ece68d801a45fc495770c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
