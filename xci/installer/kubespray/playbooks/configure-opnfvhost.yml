@@ -1,0 +1,77 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+
+  tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: "{{ item }}"
+      with_items:
+        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
+    - name: Set facts for remote deployment
+      set_fact:
+        remote_xci_path: "{{ ansible_env.HOME }}/releng-xci"
+        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/installer/{{ XCI_INSTALLER }}/files/{{ XCI_FLAVOR }}"
+        remote_xci_playbooks: "{{ ansible_env.HOME }}/releng-xci/xci/playbooks"
+
+    - name: Copy releng-xci to remote host
+      synchronize:
+        src: "{{ XCI_PATH }}/"
+        dest: "{{ remote_xci_path }}"
+        recursive: yes
+        delete: yes
+
+    - name: generate SSH keys
+      shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
+      args:
+        creates: /root/.ssh/id_rsa
+    - name: add id_rsa.pub to authorized_keys
+      shell: cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+      when:  XCI_FLAVOR == 'aio'
+    - name: fetch public key
+      fetch:
+        src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+        dest: "{{ XCI_PATH }}/xci/files/authorized_keys"
+        flat: yes
+    - name: delete the opnfv_inventory directory
+      file:
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
+        state: absent
+    - name: copy kubespray inventory directory
+      shell: "cp -rf {{ remote_xci_flavor_files }}/inventory \
+                   {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
+    - name: make sure kubespray/opnfv_inventory/group_vars/ exist
+      file:
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
+        state: directory
+    - name: copy k8s_cluster.yml
+      shell: "cp -rf {{ remote_xci_path }}/xci/installer/kubespray/files/k8s-cluster.yml \
+                     {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
+    - name: install dbus and ptyhon-netaddr
+      apt:
+        name: "{{item}}"
+        update_cache: yes
+      with_items: "{{ kube_require_packages }}"
+      when: XCI_FLAVOR == 'aio'
+    - name: pip install ansible
+      pip:
+        name: ansible
+        version: "{{ XCI_KUBE_ANSIBLE_PIP_VERSION }}"
+
+
+- hosts: localhost
+  remote_user: root
+  vars_files:
+    - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+  tasks:
+    - name: Append public keys to authorized_keys
+      shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ XCI_PATH }}/xci/files/authorized_keys"
