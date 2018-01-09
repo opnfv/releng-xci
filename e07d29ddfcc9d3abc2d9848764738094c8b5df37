@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_28c14654",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-09T23:23:07Z",
+      "side": 1,
+      "message": "This patchset is unrelated to the stabilization one right? Does it make sense to merge it separately outside of the \u0027stabilization\u0027 series?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "e07d29ddfcc9d3abc2d9848764738094c8b5df37",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
