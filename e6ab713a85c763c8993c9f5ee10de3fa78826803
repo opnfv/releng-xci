@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_283306ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2018-01-09T23:04:24Z",
+      "side": 1,
+      "message": "tags could be removed (the gerrit topic is fine)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "e6ab713a85c763c8993c9f5ee10de3fa78826803",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_8824d260",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2018-01-09T23:04:24Z",
+      "side": 1,
+      "message": "adds",
+      "revId": "e6ab713a85c763c8993c9f5ee10de3fa78826803",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
