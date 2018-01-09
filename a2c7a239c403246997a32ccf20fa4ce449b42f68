@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_cd142ceb",
+        "filename": "infra_manager/nodes-deploy.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-01-09T14:52:18Z",
+      "side": 1,
+      "message": "True, i will move it to \"stabilization - Servers deployment\"",
+      "parentUuid": "9a3d3df0_80395dd9",
+      "revId": "a2c7a239c403246997a32ccf20fa4ce449b42f68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_6056d907",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 9
@@ -30,6 +48,30 @@
       "writtenOn": "2017-12-28T11:33:56Z",
       "side": 1,
       "message": "these are all seem still WIP. We shouldn\u0027t be doing stuff just for Debian. We also have a central place were the ansible version can be set as a default option. Finally, as said in a previous patchset, it seems we need a way to set the VM/BM distro to be independent of the host. Trying to re-use OS_FAMILY is a bit problematic so that needs to be fixed in a separate and independent patchset",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 58
+      },
+      "revId": "a2c7a239c403246997a32ccf20fa4ce449b42f68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_6d8080f7",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-01-09T14:52:18Z",
+      "side": 1,
+      "message": "The stuff is not only prepared for debian, but only configured now for Debian.\n\nI warned about that point 2 month ago: i am not an expert in suze or centos, but everything is prepared to accept those distros. Distros expert have some parameters to fill up.\n\nAs answered in a previous patchset, it is possible to have BM/VM independent from the host, that is why i use OS_FAMILY\u003d${OS_FAMILY:-$ID}, to set it from Jenkins or manually, but use the jumphost distro if not set.",
+      "parentUuid": "9a3d3df0_6056d907",
       "range": {
         "startLine": 99,
         "startChar": 0,
