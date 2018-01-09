@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_8a6b2a1d",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-09T10:55:05Z",
+      "side": 1,
+      "message": "do we need move the judgement to each installer deploy script? there are different limit for each installer. if judging at here it will block all of the installers.",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 2
+      },
+      "revId": "5eaa9da62dabbf31fc83f0c43c6bc56f68468f9c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
