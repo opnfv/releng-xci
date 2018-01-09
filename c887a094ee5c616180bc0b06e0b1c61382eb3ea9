@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_caf6d25c",
+        "filename": "xci/nfvi/kubespray/playbooks/roles/haproxy/vars/Debian.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-09T11:16:36Z",
+      "side": 1,
+      "message": "the Debian.yml and RedHat.yml are used to define the different service and packages in differnet distro. it doesn\u0027t use now, I would delete it. if need we add it then.",
+      "parentUuid": "9a3d3df0_8aa16a96",
+      "revId": "c887a094ee5c616180bc0b06e0b1c61382eb3ea9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_eaaab66f",
         "filename": "xci/nfvi/kubespray/playbooks/roles/haproxy/vars/RedHat.yml",
         "patchSetId": 4
