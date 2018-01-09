@@ -1,0 +1,193 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_6d07e018",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-09T12:22:08Z",
+      "side": 1,
+      "message": "Can you base this patch on top of https://gerrit.opnfv.org/gerrit/#/c/50225/ which renames \u0027NFVI\u0027 to \u0027installer\u0027?",
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_2d015805",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-09T12:22:08Z",
+      "side": 1,
+      "message": "I don\u0027t understand this comment.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_0d06141d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-09T12:22:08Z",
+      "side": 1,
+      "message": "so all of current flavors are supported. Why are you explicitly stating that?",
+      "range": {
+        "startLine": 12,
+        "startChar": 44,
+        "endLine": 13,
+        "endChar": 9
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_4d0c9c3b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-09T12:22:08Z",
+      "side": 1,
+      "message": "where exactly is this distro support declared?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_8d118454",
+        "filename": "xci/nfvi/kubespray/files/aio/inventory/group_vars/README",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-09T12:22:08Z",
+      "side": 1,
+      "message": "I don\u0027t understand this comment. Can you please explain what exactly needs to be changed and why? otherwise the README has no real value",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 71
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ad144844",
+        "filename": "xci/nfvi/kubespray/files/aio/inventory/inventory.cfg",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-09T12:22:08Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 2,
+        "startChar": 6,
+        "endLine": 2,
+        "endChar": 7
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ed1ad06d",
+        "filename": "xci/nfvi/kubespray/nfvi-deploy.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-09T12:22:08Z",
+      "side": 1,
+      "message": "why?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 59
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_2d283885",
+        "filename": "xci/nfvi/kubespray/playbooks/configure-localhost.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-09T12:22:08Z",
+      "side": 1,
+      "message": "This is identical to the OSA playbook right? sounds like we need to share that playbook (ie move it in xci/playbooks) rather than duplicating it",
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_cd170c44",
+        "filename": "xci/nfvi/kubespray/playbooks/roles/haproxy/handlers/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-09T12:22:08Z",
+      "side": 1,
+      "message": "it would be nice if this role was submitted separately",
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
