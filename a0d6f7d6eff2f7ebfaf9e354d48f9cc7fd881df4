@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_83b4b582",
+        "filename": "xci/playbooks/configure-localhost.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-10T12:26:36Z",
+      "side": 1,
+      "message": "You should also remove the file from the OSA directory since we are now sharing it.",
+      "revId": "a0d6f7d6eff2f7ebfaf9e354d48f9cc7fd881df4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
