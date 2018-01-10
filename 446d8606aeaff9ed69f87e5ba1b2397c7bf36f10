@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_3e4cdc9d",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-01-10T17:37:30Z",
+      "side": 1,
+      "message": "no license header - afaict, there is no sane way to add a license header that will not show in the online MD parsers.\nFor Fuel, we switched from .md to .rst exactly for that.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 19
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1e511836",
+        "filename": "infra_manager/filter_plugins/interfaces.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-01-10T17:37:30Z",
+      "side": 1,
+      "message": "license header",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_7e42e468",
+        "filename": "infra_manager/scripts/install-ansible.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-01-10T17:37:30Z",
+      "side": 1,
+      "message": "ditto (license header - this applies to all files actually)\nalso, I suggest you run this through shellcheck (https://www.shellcheck.net/ or `shellcheck \u003cfile\u003e`)",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_be5f4c40",
+        "filename": "infra_manager/var/opnfv.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-01-10T17:37:30Z",
+      "side": 1,
+      "message": "duplicate license?",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 78
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_9e5c084d",
+        "filename": "infra_manager/var/pdf.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-01-10T17:37:30Z",
+      "side": 1,
+      "message": "should be moved to IDF",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 16
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_de521034",
+        "filename": "infra_manager/var/pdf.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-01-10T17:37:30Z",
+      "side": 1,
+      "message": "this is not in the PDF spec\nwould `address: 192.168.122.1:629` work for you so we don\u0027t diverge from the current PDF spec?",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 15
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
