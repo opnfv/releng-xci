@@ -1,0 +1,8 @@
+---
+# vars file for vm-managment
+
+xci_configs_root: "{{ xci_root }}/etc"
+xci_venv_root: "{{ xci_root }}/venv"
+xci_src_root: "{{ xci_root }}/src"
+xci_log_root: "{{ xci_root }}/log"
+xci_bin_root: "{{ xci_root }}/bin"

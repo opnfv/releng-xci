@@ -1,0 +1,31 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Create a libvirt network
+# vars:
+#   - net_name: the network name to destroy
+#   - interface_ip: the index of the interface in the interfaces list
+#   - attached_bridge: bridge attached to this libvirt network
+##
+- name: define libvirt network
+  virt_net:
+    name: "{{ net_name }}"
+    command: define
+    xml: "{{ lookup('template', 'network.xml.j2') }}"
+- name: start libvirt network
+  virt_net:
+    name: "{{ net_name }}"
+    state: active
+- name: set libvirt network to autostart
+  virt_net:
+    name: "{{ net_name }}"
+    autostart: "yes"

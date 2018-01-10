@@ -1,0 +1,6 @@
+---
+all:
+  hosts:
+   opnfv_host:
+      ansible_host: {{ nodes_d['opnfv_host'].interfaces[0].address }}
+      ansible_user: {{ xci_hosts_user }}
