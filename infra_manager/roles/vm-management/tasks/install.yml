@@ -1,0 +1,40 @@
+---
+- name: Install Debian packages
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+    "{{ pkg_required[ansible_distribution|lower] }}"
+  when: ansible_distribution | lower == 'debian'
+        or ansible_distribution | lower == 'ubuntu'
+
+- name: install RHEL or CentOS packages
+  yum:
+    name: "{{item}}"
+    state: present
+  with_items:
+    "{{ pkg_required.rh }}"
+  when: ansible_distribution | lower == 'rhel'
+        or ansible_distribution  | lower == 'centos'
+
+- name: install Suse packages
+  zypper:
+    name: "{{item}}"
+    state: present
+  with_items:
+    "{{ pkg_required.suse }}"
+  when: ansible_os_family | lower == "suse"
+
+- name: upgrade pip
+  pip:
+    name: pip
+    state: latest
+  tags:
+    - skip_ansible_lint
+
+- name: install pip packages
+  pip:
+    name: "{{item}}"
+    state: present
+  with_items:
+    "{{ pkg_required.pip }}"
