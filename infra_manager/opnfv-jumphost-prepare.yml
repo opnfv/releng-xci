@@ -1,0 +1,13 @@
+---
+# SPDX-license-identifier: Apache-2.0
+
+- hosts: jumphost
+  gather_facts: false
+  vars_files:
+    - var/idf.yml
+  roles:
+    - role: prepare-xci
+      vars:
+        home: "{{ lookup('env','HOME') }}"
+        user: "{{ lookup('env','USER') }}"
+        xci_root: "/opt/xci/{{ idf.xci.pod_name }}"
