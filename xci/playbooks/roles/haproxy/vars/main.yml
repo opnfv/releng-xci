@@ -1,0 +1,28 @@
+##############################################################################
+# Copyright (c) 2016 HUAWEI TECHNOLOGIES CO.,LTD and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+---
+packages_noarch:
+  - keepalived
+  - xinetd
+  - haproxy
+
+services_noarch:
+  - keepalived
+  - xinetd
+  - haproxy
+
+haproxy_hosts:
+  controller00: 192.168.122.3
+  controller01: 192.168.122.4
+  controller02: 192.168.122.5
+
+keepalived_interface: ens3
+vrouter_id_public: 11
+keepalived_public_vip: 192.168.122.222
+keepalived_priority: "{{ ((ansible_play_hosts|length-ansible_play_hosts.index(inventory_hostname))*50) }}"
