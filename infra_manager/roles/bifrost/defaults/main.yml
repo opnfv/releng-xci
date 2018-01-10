@@ -1,0 +1,59 @@
+---
+# defaults file for bifrost
+pkg_required:
+  debian:
+    - python-pip
+    - python-virtualenv
+    - jq
+    - mysql-server
+  rh:
+    - python-pip
+    - python-virtualenv
+    - epel-release
+    - jq
+  suse:
+    - python-pip
+    - python-virtualenv
+    - jq
+  pip:
+    - jsonpatch
+    - shade
+
+git_bifrost:
+  url: https://git.openstack.org/openstack/bifrost
+  branch: stable/pike
+
+# VENV Vars
+bifrost_enable_venv: true
+
+# XCI xci_root
+xci_root: /opt/xci
+
+# Dib Params
+dib_default_pkgs:
+  vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,curl,python
+dib:
+  dev_user:
+    username: opnfv
+    password: opnfv2017
+  os:
+    ubuntu:
+      element: ubuntu-minimal
+      release: xenial
+    centos:
+      element: centos-minimal
+      release: 7
+    suse:
+      element: opensuse-minimal
+      release: 42.3
+  extra_elements: baremetal devuser growroot openssh-server
+  packages:
+    ubuntu: "{{ dib_default_pkgs }}"
+    suse: "{{ dib_default_pkgs }}"
+    centos: "{{ dib_default_pkgs }}"
+
+
+# Bifrost net interface
+bifrost:
+  net_interface: ens3
+  ironic_db_password: aSecretPassword473z

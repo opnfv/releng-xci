@@ -1,0 +1,48 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# install bifrost
+##
+
+# David - move to servers-deploy.sh
+# - name: Install bifrost
+#   shell: >
+#     bifrost-ansible -i inventory/target install.yaml
+#     -e staging_drivers_include=true;
+#   args:
+#     chdir: "{{ bifrost_src_folder }}/playbooks/"
+#   when: "True"
+# Upgrade pyasn1 as it make ironic conductor fail
+# "hardware type or interface pxe_ilo could not be loaded"
+- name: Upgrade pyasn1 for bifrost
+  # become: true
+  pip:
+    name: pyasn1
+    virtualenv: "{{ bifrost_venv_folder }}"
+
+- name: restart ironic-conductor
+  service:
+    name: ironic-conductor
+    state: restarted
+
+##
+# update dnsmasq
+##
+- name: correct dnsmasq config - default gateway
+  lineinfile:
+    path: /etc/dnsmasq.conf
+    regexp: '^dhcp-option=3'
+    line: "dhcp-option=3,{{ pxe_net.gateway }}"
+- name: Restart dnsmasq
+  service:
+    name: dnsmasq
+    state: restarted
