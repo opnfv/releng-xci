@@ -1,0 +1,24 @@
+#cloud-config
+
+packages:
+  - python
+
+users:
+  - name: {{ xci_hosts_user }}
+    gecos: OPNFV User
+    primary-group: {{ xci_hosts_user }}
+    groups:
+      - adm
+      - audio
+      - cdrom
+      - dialout
+      - dip
+      - floppy
+      - netdev
+      - plugdev
+      - sudo
+      - video
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    shell: /bin/bash
+    ssh-authorized-keys:
+      - {{ ssh_pub_key_content }}
