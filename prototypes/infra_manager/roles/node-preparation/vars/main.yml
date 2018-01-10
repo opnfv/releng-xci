@@ -1,0 +1,3 @@
+
+# Default config_root
+xci_root: "/opt/xci/{{ xci.pod_name }}"
