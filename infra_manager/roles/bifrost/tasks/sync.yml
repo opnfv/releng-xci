@@ -1,0 +1,52 @@
+---
+
+##
+# Sync
+##
+- name: synchronize local bifrost sources to remote
+  synchronize:
+    src: "{{ local_bifrost_src_folder }}"
+    dest: "{{ xci_src_root }}"
+    delete: "yes"
+
+##
+# Recover SSH key
+##
+
+- name: get ssh key
+  copy:
+    dest: "{{ hostvars[inventory_hostname].ansible_env.HOME }}/.ssh/{{ item }}"
+    src: "{{ xci_root }}/{{ idf.xci.pod_name }}/etc/{{item}}"
+    owner: "{{ hostvars[inventory_hostname].ansible_env.USER }}"
+    group: "{{ hostvars[inventory_hostname].ansible_env.USER }}"
+    mode: 0600
+  with_items:
+    - 'id_rsa'
+    - 'id_rsa.pub'
+
+##
+# generate baremetal and target inventory
+##
+- name: copy bifrost vars
+  copy:
+    dest: "{{ bifrost_src_folder }}/playbooks/inventory/group_vars/{{ item }}"
+    src: "{{local_xci_configs_root}}/bifrost/{{ item }}"
+  with_items:
+    - baremetal
+    - target
+
+##
+# Setup bifrost_inventory source
+##
+- name: set bifrost inventory
+  copy:
+    dest: "{{ xci_configs_root }}/bifrost/bifrost_inventory.yml"
+    src: "{{ local_bifrost_etc_folder }}/bifrost_inventory.yml"
+
+##
+# Prepare the ssh configs
+##
+- name: prepare ssh config file
+  copy:
+    dest: "/home/{{ opnfv_user }}/.ssh/config"
+    src: "{{ local_bifrost_etc_folder }}/ssh_config"
