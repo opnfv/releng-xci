@@ -1,0 +1,27 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Clean a libvirt network
+# vars:
+#   - net_name: the network name to destroy
+##
+- name: destroy libvirt network
+  virt_net:
+    name: "{{ net_name }}"
+    command: destroy
+  when: net_name in ansible_libvirt_networks and
+        ansible_libvirt_networks[ net_name ].state == 'active'
+- name: undefine libvirt network
+  virt_net:
+    name: "{{ net_name }}"
+    command: undefine
+  when: net_name in ansible_libvirt_networks

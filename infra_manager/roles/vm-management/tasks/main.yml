@@ -1,0 +1,240 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Generate nodes list and attached facts
+##
+
+- name: Role message
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  vars:
+    msg: |
+      ************************************************************************
+      * OPNFV VM Managment role
+      * -----------------------
+      * Prepare VMs for a deploymet size: {{XCI_FLAVOR}}
+      * Pod config: {{ idf.xci.pod_name }}
+      ************************************************************************
+  tags:
+    - always
+
+- name: Concat nodes from pdf with nodes from xci_hosts
+  set_fact:
+    nodes_list: "{{ nodes + xci_hosts }}"
+  tags:
+    - always
+
+- name: Limit the nodes list to those required by the XCI_FLAVOR
+  set_fact:
+    nodes: "{{ nodes_list | nodes_filter(idf.xci.nodes_roles, \
+            deploy_definitions[ XCI_FLAVOR ]) }}"
+  tags:
+    - always
+
+- name: Get list of local bridge name for this pod
+  set_fact:
+    br_name_list:
+      "{{ idf.xci.jumphost_interfaces_bridges | map(attribute='name') | list }}"
+  tags:
+    - always
+
+- name: Get nodes ips
+  set_fact:
+    nodes_net_config: "{{ nodes | nodes_net_config(idf.xci.net_config) }}"
+  tags:
+    - always
+##
+# Checkup require packages
+##
+
+- name: install packages
+  become: "yes"
+  include_tasks: install.yml
+  tags:
+    - install
+
+##
+# Clean VIRSH networks
+# - Get existing libvirt network
+# - destroy libvirt networks containing a bridge that will be used
+# - destroy libvirt networks with the same name of what we will create
+##
+
+- name: collect facts about existing networks
+  become: "yes"
+  virt_net:
+    command: facts
+  tags:
+    - clean
+
+- name: Clean Libvirt network containing a bridge from ansible_libvirt_networks
+  become: "yes"
+  include_tasks: clean-libvirt-network.yml
+  vars:
+    net_name: "{{ item.key }}"
+  when: item.value.bridge in br_name_list
+  with_dict: "{{ ansible_libvirt_networks }}"
+  tags:
+    - clean
+
+- name: collect facts about existing networks
+  become: "yes"
+  virt_net:
+    command: facts
+  tags:
+    - clean
+
+- name: Clean Libvirt networks of this pod if not already destroyed
+  become: "yes"
+  include_tasks: clean-libvirt-network.yml
+  vars:
+    net_name: "{{ item }}"
+  when: item | match('^'+idf.xci.pod_name+'_.*')
+  with_items: "{{ ansible_libvirt_networks }}"
+  tags:
+    - clean
+
+##
+# Clean VIRSH VM
+##
+
+- name: get list of VMs
+  become: "yes"
+  virt:
+    command: "list_vms"
+  register: vms
+  tags:
+    - clean
+
+- name: Delete Libvirt node when name contains pod_name
+  become: "yes"
+  include_tasks: clean-libvirt-node.yml
+  vars:
+    vm: "{{ item }}"
+  when: item | match('^'+idf.xci.pod_name+'_.*')
+  with_items: "{{ vms.list_vms }}"
+  tags:
+    - clean
+
+##
+# Generate inventory facts
+##
+
+- name: get pxe network
+  set_fact:
+    pxe_network: "{{ idf.xci.net_config[idf.xci.pxe_network].network }}"
+  tags:
+    - always
+
+- name: get roles to nodes mapping
+  set_fact:
+    roles: "{{ idf.xci.nodes_roles | role2nodes() }}"
+  tags:
+    - always
+
+- name: get roles as dict
+  set_fact:
+    nodes_d: "{{ nodes | nodes_as_dict() }}"
+  tags:
+    - always
+
+##
+# Create VMs and network
+##
+
+- name: update facts to get last ansible_interfaces
+  become: "yes"
+  setup:
+
+- debug:
+    var: ansible_interfaces
+    verbosity: 2
+  tags:
+    - deploy
+
+- name: Create Libvirt networks
+  become: "yes"
+  include_tasks: create-libvirt-network.yml
+  vars:
+    interface_ip: "{{ item.ip }}"
+    net_name: "{{ idf.xci.pod_name }}_{{ item.name }}"
+    attached_bridge: "{{ item.name }}"
+    pxe_net: "{{ idf.xci.pxe_network }}"
+  when: item.name not in ansible_interfaces
+  with_items: "{{ idf.xci.jumphost_interfaces_bridges }}"
+  tags:
+    - deploy
+
+##
+# Create VM
+#   - empty disk for all nodes
+#   - based on a cloud image for opnfv_hosts
+##
+
+- name: Create Libvirt nodes
+  become: "yes"
+  include_tasks: create-libvirt-node.yml
+  vars:
+    prefix: "{{ idf.xci.pod_name }}_"
+    vm: "{{ item }}"
+    vm_index: "{{ nodes_index[item.name] }}"
+    clone_cloud_img: "{{ xci_hosts_image if item.name in ['opnfv_host'] \
+                                         else '' }}"
+  when: item.node.vendor == 'libvirt'
+  with_items: "{{ nodes }}"
+  tags:
+    - deploy
+
+##
+# For OPNFV Host:
+#   - edit qcow to disable net waiting in cloud config (and gain a few minutes)
+#   - set a configdrive for qcow
+#     - set hostname
+#     - set fixed ip
+#     - set ssh authorized key
+##
+
+- name: get ssk key content
+  set_fact:
+    ssh_pub_key_content: "{{ lookup('file', ssh_pub_key) }}"
+  tags:
+    - deploy
+
+- name: Edit VM
+  become: "yes"
+  include_tasks: vm_custom.yml
+  when: (xci_hosts_start) and (node.name == 'opnfv_host')
+  with_items: "{{ xci_hosts }}"
+  loop_control:
+    loop_var: node
+  tags:
+    - deploy
+
+##
+# Start XCI nodes
+##
+
+- name: Start opnfv_host
+  include_tasks: start.yml
+  when: (xci_hosts_start) and (node.name == 'opnfv_host')
+  with_items: "{{ xci_hosts }}"
+  loop_control:
+    loop_var: node
+  tags:
+    - start
+
+- name: set ansible inventory
+  template:
+    src: "templates/opnfv_hosts_inventory.yml.j2"
+    dest: "{{ xci_configs_root }}/opnfv_hosts_inventory.yml"
+  tags:
+    - start

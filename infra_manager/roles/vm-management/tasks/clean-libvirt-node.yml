@@ -1,0 +1,49 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Clean a libvirt VM
+# vars:
+#   - vm: the vm name
+##
+
+# Remove the VM
+- name: "get VM '{{ vm }}' status"
+  virt:
+    name: "{{ vm }}"
+    command: status
+  register: vm_status
+- name: "destroy vm '{{ vm }}'"
+  virt:
+    name: "{{ vm }}"
+    command: destroy
+  when: vm_status.status == 'running'
+- name: "undefine vm '{{ vm }}'"
+  virt:
+    name: "{{ vm }}"
+    command: undefine
+- name: "remove qcow2 image for vm {{ vm }}"
+  file:
+    path: "{{ libvirt_img }}/{{ vm }}.qcow2"
+    state: absent
+
+# Remove the vBMC entry
+- name: get list of nodes from virtualbmc
+  command: vbmc list
+  register: vbmc_list
+  when: true
+- name: delete vm from virtualbmc if it is there
+  command: vbmc delete {{ vm }}
+  when: vbmc_list.stdout.find(vm) != -1
+- name: "ensure old vbmc config is removed"
+  file:
+    path: "~/.vbmc/{{ vm }}"
+    state: absent

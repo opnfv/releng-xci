@@ -1,0 +1,98 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Create a libvirt VM
+# vars:
+#   - prefix: the prefix of node and network name to use
+#   - clone_cloud_img: dict - if present, we clone the cloud image. Format:
+#       base_url: the url without the filename
+#       filename: the filename of the file to get
+#   - vm: a dict of the VM to create in the format used by PDFs
+##
+
+- debug:
+    var: prefix
+    verbosity: 2
+- debug:
+    var: clone_cloud_img
+    verbosity: 2
+- debug:
+    var: vm
+    verbosity: 2
+
+# Ensure the qcow image store is created
+- name: create directory to store qcow2 images
+  file:
+    path: "{{ libvirt_img }}"
+    state: directory
+    mode: 0755
+  become: true
+
+# if clone_cloud_img is defined
+- name: get a cloud image to clone
+  get_url:
+    url: "{{ clone_cloud_img.base_url }}/{{ clone_cloud_img.filename }}"
+    dest: "{{ libvirt_img }}/{{ xci_hosts_image.filename }}"
+    mode: 0444
+  when: clone_cloud_img is defined and clone_cloud_img != ''
+- name: "copy cloud image for {{ prefix }}{{ vm.name }}"
+  copy:
+    src: "{{ libvirt_img }}/{{ xci_hosts_image.filename }}"
+    dest: "{{ libvirt_img }}/{{ prefix }}{{ vm.name }}.qcow2"
+  when: clone_cloud_img is defined and clone_cloud_img != ''
+- name: "resize new image {{ prefix }}{{ vm.name }}"
+  shell: >
+    qemu-img resize -f qcow2
+    {{ libvirt_img }}/{{ prefix }}{{ vm.name }}.qcow2
+    {{ (vm.disks or []) | map(attribute='disk_capacity') |
+       list | sizeSum(target_unit='Go') }}G
+  when: clone_cloud_img is defined and clone_cloud_img != ''
+  tags:
+    - skip_ansible_lint
+
+# if we create an empty cloud img
+- name: "create qcow2 image for vm {{ prefix }}{{ vm.name }}"
+  shell: >
+    qemu-img create -f qcow2
+    {{ libvirt_img }}/{{ prefix }}{{ vm.name }}.qcow2
+    {{ (vm.disks or []) | map(attribute='disk_capacity') |
+       list | sizeSum(target_unit='Go') }}G
+  when: clone_cloud_img is not defined or clone_cloud_img == ''
+  tags:
+    - skip_ansible_lint
+
+# Define the VM and start if needed
+- name: "define vm {{ prefix }}{{ vm.name }}"
+  virt:
+    command: define
+    name: "{{ prefix }}{{ vm.name }}"
+    xml: "{{ lookup('template', 'vm.xml.j2') }}"
+
+# setup vBMC
+- name: "set vbmc port for {{ prefix }}{{ vm.name }}"
+  set_fact:
+    vbmc_address: "{{ vm.remote_management.address.split(':')[0] }}"
+    vbmc_port: "{{ vm.remote_management.address.split(':')[1] }}"
+  when: vm.name not in ['opnfv_host']
+- name: plug vm into vbmc
+  command: >
+    vbmc add {{ prefix }}{{ vm.name }}
+    --libvirt-uri {{ libvirt_uri }}
+    --port {{ vbmc_port }}
+    --username {{ vm.remote_management.user |default('admin')}}
+    --password {{ vm.remote_management.password |default('password')}}
+    --address {{ vbmc_address }}
+  when: vm.name not in ['opnfv_host']
+
+- name: start virtualbmc
+  command: vbmc start {{ prefix }}{{ vm.name }}
+  when: vm.name not in ['opnfv_host']
