@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_e3c2e151",
+        "filename": "xci/nfvi/kubespray/README",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-01-10T08:53:25Z",
+      "side": 1,
+      "message": "your*",
+      "revId": "af1210158310ba6e41e02540729667f3e160f221",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_03c6e567",
+        "filename": "xci/nfvi/kubespray/README",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-01-10T08:53:25Z",
+      "side": 1,
+      "message": "nit: trailing space",
+      "revId": "af1210158310ba6e41e02540729667f3e160f221",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_838035f8",
+        "filename": "xci/nfvi/kubespray/files/ha/inventory/inventory.cfg",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-01-10T08:53:25Z",
+      "side": 1,
+      "message": "nit: can we have some meaningful name for nodes.",
+      "revId": "af1210158310ba6e41e02540729667f3e160f221",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_a37a9921",
+        "filename": "xci/nfvi/kubespray/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-01-10T08:53:25Z",
+      "side": 1,
+      "message": "you could have an env varible like ANSIBLE_VERSION for referring ansible version",
+      "revId": "af1210158310ba6e41e02540729667f3e160f221",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
