@@ -1,0 +1,33 @@
+---
+##
+# Create a libvirt network
+# vars:
+#   - net_name: the network name to destroy
+#   - interface_index: the index of the interface in the interfaces list
+#   - attached_bridge: bridge attached to this libvirt network
+##
+- debug:
+    var: "{{ net_name }}"
+    verbosity: 2
+- debug:
+    var: "{{ interface_index }}"
+    verbosity: 2
+- debug:
+    var: "{{ attached_bridge }}"
+    verbosity: 2
+- debug:
+    msg: "{{ lookup('template', 'network.xml.j2') }}"
+    verbosity: 2
+- name: define libvirt network
+  virt_net:
+    name: "{{ net_name }}"
+    command: define
+    xml: "{{ lookup('template', 'network.xml.j2') }}"
+- name: start libvirt network
+  virt_net:
+    name: "{{ net_name }}"
+    state: active
+- name: set libvirt network to autostart
+  virt_net:
+    name: "{{ net_name }}"
+    autostart: "yes"
