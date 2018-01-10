@@ -1,0 +1,8 @@
+#!/bin/bash
+unset ANSIBLE_STDOUT_CALLBACK
+source {{ bifrost_venv_folder }}/bin/activate
+INVENTORY_NAME=${INVENTORY_NAME:-bifrost_inventory}
+export BIFROST_INVENTORY_SOURCE={{ bifrost_config_folder }}/${INVENTORY_NAME}.yml
+echo Executing Bifrost ansible-playbook with inventory:${BIFROST_INVENTORY_SOURCE}
+cd {{ bifrost_src_folder }}/playbooks/
+{{ bifrost_venv_folder }}/bin/ansible-playbook $@

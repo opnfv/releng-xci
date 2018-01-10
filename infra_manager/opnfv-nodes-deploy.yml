@@ -1,0 +1,16 @@
+---
+#
+# SPDX-license-identifier: Apache-2.0
+#
+
+- hosts: opnfv_host
+  gather_facts: true
+  vars_files:
+    - var/opnfv.yml
+    - var/pdf.yml
+    - var/idf.yml
+    - var/xci_hosts.yml
+  roles:
+    - role: bifrost
+      vars:
+        deploy_size: "{{ XCI_FLAVOR }}"

@@ -1,0 +1,14 @@
+---
+network_interface: "{{ bifrost.net_interface }}"
+ssh_public_key_path: "{{ xci_configs_root }}/id_rsa.pub"
+testing_user: root
+wait_for_node_deploy: false
+ironic_db_password: {{ bifrost.ironic_db_password }}
+mysql_username: root
+mysql_password:
+
+inventory_dns: true
+inventory_dhcp: false
+inspect_nodes: false
+
+enable_venv: {{ bifrost_enable_venv }}

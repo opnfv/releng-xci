@@ -1,0 +1,85 @@
+---
+{#
+ #We loop on node list and only display one if selected_node is set
+-#}
+{% for srv in nodes | sort(attribute='name')  %}
+{% if selected_node is not defined or selected_node.name == srv.name %}
+{{ srv.name }}:
+  name: {{ srv.name }}
+  uuid: 00000000-0000-0000-0000-000000000{{ '%03d'|format(loop.index|int) }}
+  driver_info:
+    power:
+      ipmi_username: {{ srv.remote_management.user }}
+      {% if ':' in srv.remote_management.address -%}
+      ipmi_address: {{ srv.remote_management.address.split(':').0 }}
+      ipmi_port: {{ srv.remote_management.address.split(':').1 }}
+      {% elif '/' in srv.remote_management.address -%}
+      ipmi_address: {{ srv.remote_management.address.split('/').0 }}
+      {% else -%}
+      ipmi_address: {{ srv.remote_management.address }}
+      {% endif -%}
+      ipmi_password: {{ srv.remote_management.pass }}
+  nics:
+    - mac: {{ nodes_net_config[srv.name][idf.xci.pxe_network].mac }}
+  driver: agent_ipmitool
+  ipv4_address: {{ nodes_net_config[srv.name][idf.xci.pxe_network].ip }}
+  properties:
+    cpu_arch: {{ srv.node.arch }}
+    ram: {{ (srv.node.memory or '0') | sizeConv }}
+    disk_size: {{ (srv.disks or []) | map(attribute='disk_capacity') | list | sizeSum(target_unit='Go') }}
+    cpus: {{ srv.node.cores }}
+  {# To avoid DHCP timout on interfaces that are not plugged on the pxe
+   # network, but physicaly plugged we set a fake IP on other physical
+   # interfaces. This prevent waiting for DHCP timout and gain about 300
+   # seconds -#}
+  node_network_data: |
+    {
+        "links": [
+            {% for mac in (srv.interfaces | map(attribute='mac_address') | list | unique ) -%}
+            {
+                "ethernet_mac_address": "{{ mac }}",
+                "id": "{{ mac }}",
+                "mtu": "1500",
+                "type": "phy"
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ],
+        "networks": [
+            {
+                "dns_nameservers": [
+                    "{{ idf.xci.net_config[idf.xci.pxe_network].dns }}"
+                ],
+                "id": "ipv4-{{ nodes_net_config[srv.name][idf.xci.pxe_network].mac }}",
+                "ip_address": "{{ nodes_net_config[srv.name][idf.xci.pxe_network].ip }}",
+                "link": "{{ nodes_net_config[srv.name][idf.xci.pxe_network].mac }}",
+                "netmask": "{{ (nodes_net_config[srv.name][idf.xci.pxe_network].ip +'/'+ (idf.xci.net_config[idf.xci.pxe_network].mask|string) )|ipaddr('netmask') }}",
+                "routes": [
+                    {
+                        "gateway": "{{ idf.xci.net_config[idf.xci.pxe_network].gateway }}",
+                        "netmask": "0.0.0.0",
+                        "network": "0.0.0.0"
+                    }
+                ],
+                "type": "ipv4"
+            }
+            {% for mac in (srv.interfaces | map(attribute='mac_address') | list | unique ) -%}
+            {% if mac != nodes_net_config[srv.name][idf.xci.pxe_network].mac -%}
+            ,{
+                "id": "ipv4-{{ mac }}",
+                "link": "{{ mac }}",
+                "ip_address": "127.0.{{ loop.index }}.2",
+                "netmask": "255.255.255.0",
+                "type": "ipv4"
+            }
+            {% endif -%}
+            {% endfor %}
+        ],
+        "services": [
+            {
+                "address": "{{ idf.xci.net_config[idf.xci.pxe_network].dns }}",
+                "type": "dns"
+            }
+        ]
+    }
+{% endif %}
+{% endfor %}

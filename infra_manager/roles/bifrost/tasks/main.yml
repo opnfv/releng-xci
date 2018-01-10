@@ -1,0 +1,99 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Generate nodes list and attached facts
+##
+
+- name: Role message
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  vars:
+    msg: |
+      ************************************************************************
+      * OPNFV VM Managment role
+      * -----------------------
+      * Prepare OS for a deploymet size: {{XCI_FLAVOR}}
+      * Pod name: {{ idf.xci.pod_name }}
+      ************************************************************************
+
+- name: set facts
+  include_tasks: facts.yml
+  tags:
+    - always
+
+##
+# Checkup require packages and get sources
+##
+
+- name: install packages and get sources
+  become: "yes"
+  include_tasks: install_pkg.yml
+  tags:
+    - prepare
+
+- name: get sources and generate local config
+  include_tasks: prepare.yml
+  tags:
+    - prepare
+
+##
+# Configure and sync
+##
+- name: sync config and sources
+  include_tasks: sync.yml
+  tags:
+    - sync
+
+##
+# Setup bifrost environment
+##
+- name: setup bifrost ansible environment
+  become: true
+  shell: "./scripts/env-setup.sh"
+  args:
+    chdir: "{{ bifrost_src_folder }}/"
+    creates: "{{ bifrost_venv_folder }}"
+  environment:
+    VENV: "{{ bifrost_venv_folder if bifrost_enable_venv else '' }}"
+  tags:
+    - prepare
+
+##
+# Install bifrost - this hould be run manually
+##
+- name: install bifrost
+  become: true
+  shell: >
+    bifrost-ansible -i inventory/target install.yaml
+    -e staging_drivers_include=true;
+  args:
+    chdir: "{{ bifrost_src_folder }}/playbooks/"
+  when: "True"
+  tags:
+    - install
+
+##
+# bifrost post install correction
+##
+- name: do some minor modifications after bifrost install
+  include_tasks: post_install.yml
+  become: true
+  tags:
+    - post_install
+
+##
+# Enroll and deploy nodes
+##
+- name: enroll and deploy nodes
+  include_tasks: enroll_deploy.yml
+  tags:
+    - enroll_deploy
