@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_08c28233",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-10T02:10:28Z",
+      "side": 1,
+      "message": "ok, I will rebase.",
+      "parentUuid": "9a3d3df0_6d07e018",
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_2d015805",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -30,6 +48,30 @@
       "writtenOn": "2018-01-09T12:22:08Z",
       "side": 1,
       "message": "I don\u0027t understand this comment.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 62
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_e8ec7ebd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-10T02:10:28Z",
+      "side": 1,
+      "message": "what I want to say is the patch 46153 which integrate K8s in XCI is too difficult to fix the conflict. so I submit this patch. maybe I don\u0027t make it clear.",
+      "parentUuid": "9a3d3df0_2d015805",
       "range": {
         "startLine": 9,
         "startChar": 0,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_482daafd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-10T02:10:28Z",
+      "side": 1,
+      "message": "I will delete it",
+      "parentUuid": "9a3d3df0_0d06141d",
+      "range": {
+        "startLine": 12,
+        "startChar": 44,
+        "endLine": 13,
+        "endChar": 9
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_4d0c9c3b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_e843deac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-10T02:10:28Z",
+      "side": 1,
+      "message": "I will add the declaration in deploy script",
+      "parentUuid": "9a3d3df0_4d0c9c3b",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 69
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_8d118454",
         "filename": "xci/nfvi/kubespray/files/aio/inventory/group_vars/README",
         "patchSetId": 5
@@ -99,6 +189,30 @@
       "writtenOn": "2018-01-09T12:22:08Z",
       "side": 1,
       "message": "I don\u0027t understand this comment. Can you please explain what exactly needs to be changed and why? otherwise the README has no real value",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 71
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_48be4a66",
+        "filename": "xci/nfvi/kubespray/files/aio/inventory/group_vars/README",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-10T02:10:28Z",
+      "side": 1,
+      "message": "ok,",
+      "parentUuid": "9a3d3df0_8d118454",
       "range": {
         "startLine": 1,
         "startChar": 0,
@@ -157,6 +271,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_0891e2f0",
+        "filename": "xci/nfvi/kubespray/nfvi-deploy.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-10T02:10:28Z",
+      "side": 1,
+      "message": "this is require by kubespray before. It has been fixed, https://github.com/kubernetes-incubator/kubespray/commit/2c7c956be9f417f6b747d5ccb587e7c8fe9a053e#diff-b92ae64dd18d34a96fbeb7f7e48a6a9b",
+      "parentUuid": "9a3d3df0_ed1ad06d",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 59
+      },
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_2d283885",
         "filename": "xci/nfvi/kubespray/playbooks/configure-localhost.yml",
         "patchSetId": 5
@@ -174,6 +312,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_a8d9d6f4",
+        "filename": "xci/nfvi/kubespray/playbooks/configure-localhost.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-10T02:10:28Z",
+      "side": 1,
+      "message": "I would move this playbook to xci/playbooks, and modify the osa in other patch.",
+      "parentUuid": "9a3d3df0_2d283885",
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_cd170c44",
         "filename": "xci/nfvi/kubespray/playbooks/roles/haproxy/handlers/main.yml",
         "patchSetId": 5
@@ -185,6 +341,24 @@
       "writtenOn": "2018-01-09T12:22:08Z",
       "side": 1,
       "message": "it would be nice if this role was submitted separately",
+      "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_e8df5ed4",
+        "filename": "xci/nfvi/kubespray/playbooks/roles/haproxy/handlers/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-10T02:10:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "9a3d3df0_cd170c44",
       "revId": "d363bf04d80ece3600a9884cfb6f8daa46f10dc3",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
