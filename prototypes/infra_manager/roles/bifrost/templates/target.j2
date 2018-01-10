@@ -1,0 +1,43 @@
+---
+network_interface: "{{ bifrost.net_interface }}"
+ironic_db_password: {{ bifrost.ironic_db_password }}
+mysql_username: root
+mysql_password:
+
+enabled_drivers: agent_ipmitool
+
+ssh_public_key_path: "{{ xci_configs_root }}/id_rsa.pub"
+
+create_image_via_dib: "{{ not ((reuse_previous_image | bool) and (dib_image_src_exists | bool) |bool) }}"
+transform_boot_image: false
+
+create_ipa_image: false
+download_ipa: true
+{% if (xci.ipa_use_coreos|default(false)|bool) %}
+ipa_kernel_upstream_url: https://tarballs.openstack.org/ironic-python-agent/coreos/files/coreos_production_pxe.vmlinuz
+ipa_ramdisk_upstream_url: https://tarballs.openstack.org/ironic-python-agent/coreos/files/coreos_production_pxe_image-oem.cpio.gz
+{% endif %}
+
+{% set netw = pxe_net.network+'/'+(pxe_net.mask|string) -%}
+dnsmasq_router: {{ pxe_net.gateway }}
+dnsmasq_dns_servers: {{ pxe_net.dns }}
+ipv4_subnet_mask: {{ netw | ipaddr('netmask') }}
+ipv4_gateway: {{ pxe_net.gateway }}
+
+dhcp_pool_start: {{ netw | ipaddr('net') | ipaddr(-20) | ipaddr('address') }}
+dhcp_pool_end: {{ netw | ipaddr('net') | ipaddr(-2) | ipaddr('address') }}
+dhcp_lease_time: 12h
+dhcp_static_mask: 24
+inventory_dns: true
+inventory_dhcp: false
+inspect_nodes: false
+
+dib_os_release: "{{ dib_os.release }}"
+dib_os_element: "{{ dib_os.element }}"
+dib_packages: "{{ dib.packages[XCI_DISTRO|lower()] }}"
+extra_dib_elements: {{ dib.extra_elements }}
+dib_init_element: simple-init
+dib_dev_user_username: {{ dib.dev_user.username }}
+dib_dev_user_password: {{ dib.dev_user.password }}
+
+enable_venv: {{ bifrost_enable_venv }}

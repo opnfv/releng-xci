@@ -1,0 +1,53 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# install bifrost
+##
+- name: get the status of a local dib image
+  stat:
+    path: "{{local_xci_images}}/{{dib_os.element}}_{{dib_os.release}}.qcow2"
+  register: local_dib_image
+  delegate_to: 127.0.0.1
+- name: set a fact for the presence of the dib image
+  set_fact:
+    dib_image_src_exists: "{{local_dib_image.stat.exists|bool}}"
+- name: Recover generated image
+  fetch:
+    dest: "{{ local_xci_images }}/{{ dib_os.element}}_{{ dib_os.release}}.qcow2"
+    src: "/httpboot/deployment_image.qcow2"
+    flat: true
+    validate_checksum: true
+  when: (reuse_previous_image |bool) and not dib_image_src_exists
+
+- name: Upgrade pyasn1 for bifrost
+  # become: true
+  pip:
+    name: pyasn1
+    virtualenv: "{{ bifrost_venv_folder }}"
+
+- name: restart ironic-conductor
+  service:
+    name: ironic-conductor
+    state: restarted
+
+##
+# update dnsmasq
+##
+- name: correct dnsmasq config - default gateway
+  lineinfile:
+    path: /etc/dnsmasq.conf
+    regexp: '^dhcp-option=3'
+    line: "dhcp-option=3,{{ pxe_net.gateway }}"
+- name: Restart dnsmasq
+  service:
+    name: dnsmasq
+    state: restarted
