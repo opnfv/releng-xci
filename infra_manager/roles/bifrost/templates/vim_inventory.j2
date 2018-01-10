@@ -1,0 +1,11 @@
+{% for role in roles | sort %}
+{% if roles[role]| length > 1 %}
+[{{ role }}]
+{% for name in roles[role] | sort %}
+{% if name in nodes_d %}
+{{ name }} ansible_host={{ nodes_net_config[name][idf.xci.pxe_network].ip }} ansible_user=root
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% endfor %}

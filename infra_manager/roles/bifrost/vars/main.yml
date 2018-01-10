@@ -1,0 +1,19 @@
+---
+# vars file for bifrost
+xci_configs_root: "{{ xci_root }}/etc"
+xci_venv_root: "{{ xci_root }}/venv"
+xci_src_root: "{{ xci_root }}/src"
+xci_log_root: "{{ xci_root }}/log"
+xci_bin_root: "{{ xci_root }}/bin"
+
+bifrost_venv_folder: "{{ xci_venv_root }}/bifrost"
+bifrost_src_folder: "{{ xci_src_root }}/bifrost"
+bifrost_config_folder: "{{ xci_configs_root }}/bifrost"
+
+local_xci_images: "{{ xci_root }}/images"
+local_xci_configs_root: "{{ xci_root }}/{{ idf.xci.pod_name }}/etc"
+local_bifrost_etc_folder: "{{ local_xci_configs_root }}/bifrost"
+local_bifrost_src_folder: "{{ xci_root }}/{{ idf.xci.pod_name }}/src/bifrost"
+
+# Re-use or not the previous image built by DIB
+reuse_previous_image: "{{ not (CLEAN_DIB_IMAGES|default(true)|bool) }}"

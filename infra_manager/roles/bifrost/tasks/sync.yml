@@ -1,0 +1,92 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+
+##
+# Recover and push dib_image if exists
+##
+- name: get the status of a local dib image
+  stat:
+    path: "{{local_xci_images}}/{{dib_os.element}}_{{dib_os.release}}.qcow2"
+  register: local_dib_image
+  delegate_to: 127.0.0.1
+- name: set a fact for the presence of the dib image
+  set_fact:
+    dib_image_src_exists: "{{local_dib_image.stat.exists|bool}}"
+- name: create /httpboot to push the dib image
+  become: true
+  file:
+    path: "/httpboot"
+    state: directory
+    mode: 0755
+  when: dib_image_src_exists and reuse_previous_image
+- name: copy dib image
+  become: true
+  copy:
+    src: "{{local_xci_images}}/{{dib_os.element}}_{{dib_os.release}}.qcow2"
+    dest: "/httpboot/deployment_image.qcow2"
+  when: dib_image_src_exists and reuse_previous_image
+
+##
+# Sync
+##
+- name: synchronize local bifrost sources to remote
+  synchronize:
+    src: "{{ local_bifrost_src_folder }}"
+    dest: "{{ xci_src_root }}"
+    delete: "yes"
+
+##
+# Recover SSH key
+##
+
+- name: get ssh key
+  copy:
+    dest: "{{ hostvars[inventory_hostname].ansible_env.HOME }}/.ssh/{{ item }}"
+    src: "{{ xci_root }}/{{ idf.xci.pod_name }}/etc/{{item}}"
+    owner: "{{ hostvars[inventory_hostname].ansible_env.USER }}"
+    group: "{{ hostvars[inventory_hostname].ansible_env.USER }}"
+    mode: 0600
+  with_items:
+    - 'id_rsa'
+    - 'id_rsa.pub'
+
+##
+# generate baremetal and target inventory
+##
+- name: copy bifrost vars
+  copy:
+    dest: "{{ bifrost_src_folder }}/playbooks/inventory/group_vars/{{ item }}"
+    src: "{{local_xci_configs_root}}/bifrost/{{ item }}"
+  with_items:
+    - baremetal
+    - target
+
+##
+# Setup bifrost_inventory source
+##
+- name: set bifrost inventory
+  copy:
+    dest: "{{ xci_configs_root }}/bifrost/bifrost_inventory.yml"
+    src: "{{ local_bifrost_etc_folder }}/bifrost_inventory.yml"
+- name: set bifrost inventory for each server
+  copy:
+    dest: "{{ xci_configs_root }}/bifrost/bifrost_inventory_{{ item.name }}.yml"
+    src: "{{ local_bifrost_etc_folder }}/bifrost_inventory_{{ item.name }}.yml"
+  with_items: "{{ nodes }}"
+
+##
+# Prepare the ssh configs
+##
+- name: prepare ssh config file
+  copy:
+    dest: "/home/{{ opnfv_user }}/.ssh/config"
+    src: "{{ local_bifrost_etc_folder }}/ssh_config"
