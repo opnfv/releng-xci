@@ -1,0 +1,12 @@
+---
+# SPDX-license-identifier: Apache-2.0
+#
+
+- hosts: all
+  gather_facts: true
+  become: true
+  vars_files:
+    - var/idf.yml
+    - var/pdf.yml
+  roles:
+    - role: node-preparation
