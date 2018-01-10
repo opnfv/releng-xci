@@ -1,0 +1,45 @@
+#!/bin/bash
+action=$1
+shift
+nodes=$@
+
+case $action in
+  ##
+  # To clean all nodes or just some
+  ##
+  'clean')
+    if [ -z ${nodes} ]; then
+      nodes=$(bifrost-ironic --json node-list 2>/dev/null |jq -r '.[].name')
+    fi
+    for node in ${nodes}; do
+      echo "clean ${node}"
+      bifrost-ironic node-set-maintenance $node true  2>/dev/null
+      bifrost-ironic node-delete $node 2>/dev/null
+    done
+    ;;
+  ##
+  # to list existing nodes
+  ##
+  'list')
+    bifrost-ironic node-list
+    ;;
+  ##
+  # to add a specific node
+  ##
+  'add')
+    if [ -z ${nodes} ]; then
+      echo "please set a node to add in the following list:"
+      ls /opt/xci/etc/bifrost/bifrost_inventory* |perl -pe 's/.*bifrost_inventory_(.*)\.yml/ - $1/'
+    fi
+    for node in ${nodes}; do
+      echo -e "\nEnroll node ${node}\n==================="
+      export INVENTORY_NAME=bifrost_inventory_${node}
+      sudo -E bifrost-ansible -vvv -i inventory/bifrost_inventory.py enroll-dynamic.yaml
+      echo -e "\nDeploy node ${node}\n==================="
+      sudo -E bifrost-ansible -vvv -i inventory/bifrost_inventory.py deploy-dynamic.yaml
+    done
+    ;;
+  *)
+    echo "no action ${action}"
+    ;;
+esac

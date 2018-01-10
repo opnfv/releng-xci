@@ -1,0 +1,46 @@
+---
+
+- name: Concat nodes from pdf with nodes from xci_hosts
+  set_fact:
+    nodes_list: "{{ nodes + xci_hosts }}"
+
+- name: remove opnfv_host for roles, as we do not manage it
+  set_fact:
+    deploy_def: "{{deploy_def | default({}) |combine({item.key: item.value})}}"
+  when: "{{item.key not in ['opnfv_host']}}"
+  with_dict: "{{deploy_definitions[ XCI_FLAVOR ]}}"
+
+- name: Limit the nodes list to those required by the XCI_FLAVOR
+  set_fact:
+    nodes: "{{ nodes_list | nodes_filter(idf.xci.nodes_roles, deploy_def) }}"
+
+- name: Get a node index, it will be useful to increment ips or ports
+  set_fact:
+    nodes_index: "{{ nodes | nodes_index() }}"
+
+- name: get role of each nodes without opnfv_host
+  set_fact:
+    nodes_roles:
+      "{{ nodes_roles | default({}) | combine({ item.key: item.value })}}"
+  when: "{{item.key not in ['opnfv_host']}}"
+  with_dict: "{{ idf.xci.nodes_roles }}"
+
+- name: Get nodes net_config
+  set_fact:
+    nodes_net_config: "{{ nodes | nodes_net_config(idf.xci.net_config) }}"
+
+- name: get roles list with associated nodes
+  set_fact:
+    roles: "{{ nodes_roles | role2nodes() }}"
+
+- name: get pxe network config
+  set_fact:
+    pxe_net: "{{ idf.xci.net_config[idf.xci.pxe_network] }}"
+
+- name: get nodes as dict
+  set_fact:
+    nodes_d: "{{ nodes | nodes_as_dict() }}"
+
+- name: get dib image info
+  set_fact:
+    dib_os: "{{ dib.os[XCI_DISTRO|lower()] }}"
