@@ -1,0 +1,139 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Edit the QEMU filesystem
+# goals:
+#   - remove waiting the network
+#   - avoid local dhcp
+#   - set a fixed ip using configdrive
+#   - set a user_data using configdrive
+# vars:
+#   - node: a node item from nodes list
+##
+
+##
+# Edit qcow
+##
+
+- name: set mount point
+  set_fact:
+    mountp: "/tmp/nbd_{{ xci.pod_name }}_{{ node.name }}"
+
+- name: ensure temporary mountpoint is present
+  file:
+    path: "{{ mountp }}"
+    state: directory
+    mode: 0750
+
+- name: Mount qcow2
+  become: "true"
+  shell:
+    "guestmount \
+      -a {{ libvirt_img }}/{{ xci.pod_name }}_{{ node.name }}.qcow2 \
+      -m /dev/sda1 \
+      {{ mountp }}"
+
+- name: disable cloud init network config and add a new user
+  blockinfile:
+    path: "{{ mountp }}/etc/cloud/cloud.cfg"
+    block: |
+      network:
+        config: disabled
+
+- name: ensure disable root = false
+  lineinfile:
+    path: "{{ mountp }}/etc/cloud/cloud.cfg"
+    regexp: "disable_root: .*"
+    line: "disable_root: false"
+    state: present
+
+- name: ensure hostname in /etc/hosts
+  lineinfile:
+    path: "{{ mountp }}/etc/hosts"
+    regexp: "^{{ item }} {{ node_name }}"
+    line: "{{ item }} {{ node_name }}"
+    state: present
+  vars:
+    node_name: "{{ xci.pod_name }}-{{ node.name | regex_replace('_', '-')}}"
+  with_items: "{{ (node.interfaces | selectattr('address', 'defined') |\
+   map(attribute='address') |list) + [ '127.0.0.1'] }}"
+
+# David_Orange: THIS MUST BE REMOVED !
+- name: create ssh folder for root
+  file:
+    path: "{{ mountp }}/root/.ssh/"
+    state: directory
+    mode: 0770
+
+- name: add ssh key to authorized keys in root
+  copy:
+    dest: "{{ mountp }}/root/.ssh/authorized_keys"
+    content: "{{ ssh_pub_key_content }}"
+    mode: 0660
+
+- name: ensure disable root = false
+  lineinfile:
+    path: "/tmp/nbd_{{ xci.pod_name }}_{{ node.name }}/etc/hosts"
+    regexp: "disable_root: .*"
+    line: "disable_root: false"
+    state: present
+# END of ugly root part
+
+- name: umount qcow2
+  become: "true"
+  shell: "guestunmount {{ mountp }}"
+
+##
+# Create config drive ISO
+##
+
+- name: create user-data
+  template:
+    src: "templates/user_data.j2"
+    dest: "/tmp/{{ xci.pod_name }}_{{ node.name }}_user_data"
+
+- name: create config disks
+  include_role:
+    name: jriguera.configdrive
+  vars:
+    configdrive_os_family: "Debian"
+    configdrive_uuid: "{{ xci.pod_name }}_configdrive-{{ node.name }}"
+    configdrive_fqdn:
+      "{{ xci.pod_name }}-{{ node.name | regex_replace('_', '-') }}"
+    configdrive_name: "{{ xci.pod_name }}_{{ node.name }}-config"
+    configdrive_availability_zone: ""
+    configdrive_network_info: "True"
+    configdrive_config_dir: "{{ libvirt_img }}/"
+    configdrive_volume_path: "{{ libvirt_img }}/"
+    configdrive_meta: {}
+    configdrive_ssh_public_key_path:
+      "{{ lookup('env','HOME') }}/.ssh/id_rsa.pub"
+    configdrive_config_user_data_path:
+      /tmp/{{ xci.pod_name }}_{{ node.name }}_user_data
+    configdrive_config_dir_delete: "True"
+    configdrive_network_device_list:
+      - device: "ens3"
+        address: "{{ nodes_net_config[node.name][xci.pxe_network]['ip'] }}"
+        netmask: "{{ xci.net_config[ xci.pxe_network ].mask }}"
+        gateway: "{{ xci.net_config[ xci.pxe_network ].gateway }}"
+        nameservers:
+          - "{{ xci.net_config[ xci.pxe_network ].dns }}"
+
+- name: format configdrive to ISO
+  become: "yes"
+  shell: "/usr/bin/base64 --decode \
+    {{ xci.pod_name }}_configdrive-{{ node.name }}.gz |gzip -d > \
+    {{ xci.pod_name }}_configdrive-{{ node.name }}.iso"
+  args:
+    chdir: "{{ libvirt_img }}/"
+  tags:
+    - skip_ansible_lint
