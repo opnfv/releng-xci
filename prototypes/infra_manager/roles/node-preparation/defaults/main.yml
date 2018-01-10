@@ -1,0 +1,23 @@
+---
+# defaults file for node-preparation
+pkg_required:
+  debian:
+    - python-setuptools
+    - python-pip
+    - bridge-utils
+    - ifenslave
+    - ifenslave-2.6
+    - lsof
+    - ntp
+    - ntpdate
+    - sudo
+    - tcpdump
+    - vlan
+  # To complete for other OS
+  rh:
+    - python-pip
+  suse:
+    - python-pip
+  pip: []
+
+opnfv_user: opnfv
