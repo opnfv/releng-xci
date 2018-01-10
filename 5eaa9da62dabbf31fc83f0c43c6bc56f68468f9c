@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a3d3df0_83fcb573",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-01-10T09:53:46Z",
+      "side": 1,
+      "message": "just a carriage return to keep the file compliant with line-length",
+      "revId": "5eaa9da62dabbf31fc83f0c43c6bc56f68468f9c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_8a6b2a1d",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 4
