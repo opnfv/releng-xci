@@ -1,0 +1,80 @@
+---
+# Packages to install
+pkg_required:
+  debian:
+    - qemu
+    - qemu-kvm
+    - qemu-utils
+    - virt-manager
+    - libvirt-daemon-system
+    - libguestfs-tools
+  ubuntu:
+    - qemu
+    - qemu-kvm
+    - qemu-utils
+    - virt-manager
+    - libvirt-bin
+    - libguestfs-tools
+  rh:
+    - epel-release
+    - virt-manager
+    - qemu-kvm
+    - qemu-kvm-tools
+    - qemu-img
+    - libvirt-daemon-kvm
+    - libvirt-devel
+    - libguestfs-tools
+  suse:
+    - virt-manager
+    - qemu-kvm
+    - qemu-tools
+    - libvirt-daemon
+    - libvirt-client
+    - libvirt-daemon-driver-qemu
+    - libguestfs-tools 
+  pip:
+    - lxml
+    - virtualbmc
+
+# For XCI_host we create the disk from cloud a image
+# this is the default one in case not set in playbook
+xci_hosts_image:
+  base_url: http://cloud-images.ubuntu.com/releases/16.04/release/
+  filename: ubuntu-16.04-server-cloudimg-amd64-disk1.img
+  user: ubuntu
+  type: debian
+  default_net: ens3
+
+# Default deploy size
+XCI_FLAVOR: mini
+ssh_pub_key: "{{ lookup('env','HOME') }}/.ssh/id_rsa.pub"
+
+# libvirt vars
+libvirt_uri: qemu:///system
+libvirt_img: /var/lib/libvirt/images
+
+# Default new users
+xci_hosts_user: opnfv
+
+# Start VM
+xci_hosts_start: "True"
+
+# Default config_root
+xci_root: "/opt/xci/{{ idf.xci.pod_name }}"
+
+# Default deployment definition
+deploy_definitions:
+  aio:
+    opnfv_host: 1
+  mini:
+    opnfv_host: 1
+    controller: 1
+    compute: 1
+  noha:
+    opnfv_host: 1
+    controller: 1
+    compute: 2
+  ha:
+    opnfv_host: 1
+    controller: 3
+    compute: 2
