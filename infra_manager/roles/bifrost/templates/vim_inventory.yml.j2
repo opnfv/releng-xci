@@ -1,0 +1,17 @@
+---
+all:
+  children:
+{% for role in roles | sort %}
+{% if roles[role]| length > 1 %}
+    {{ role }}:
+      hosts:
+{% for name in roles[role] | sort %}
+{% if name in nodes_d %}
+        {{ name }}:
+          index: {{ nodes_index[name] }}
+          ansible_host: {{ pxe_net.network| ip_add( idf.xci.ip_shift + nodes_index[name]) }}
+          ansible_user: root
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
