@@ -1,0 +1,11 @@
+---
+all:
+  hosts:
+{% for name in xci_nodes_list | sort  %}
+{% if name in nodes_d %}
+    {{ name }}:
+      index: {{ nodes_index[name] }}
+      ansible_host: {{ pxe_network| ip_add( idf.xci.ip_shift + nodes_index[name]) }}
+      ansible_user: {{ xci_hosts_user }}
+{% endif %}
+{% endfor %}

@@ -1,0 +1,17 @@
+---
+##
+# Clean a libvirt network
+# vars:
+#   - net_name: the network name to destroy
+##
+- name: destroy libvirt network
+  virt_net:
+    name: "{{ net_name }}"
+    command: destroy
+  when: net_name in ansible_libvirt_networks and
+        ansible_libvirt_networks[ net_name ].state == 'active'
+- name: undefine libvirt network
+  virt_net:
+    name: "{{ net_name }}"
+    command: undefine
+  when: net_name in ansible_libvirt_networks
