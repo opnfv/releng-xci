@@ -1,0 +1,5 @@
+#!/bin/bash
+unset ANSIBLE_STDOUT_CALLBACK
+source {{ bifrost_src_folder }}/env-vars
+source {{ bifrost_venv_folder }}/bin/activate
+{{ bifrost_venv_folder }}/bin/ironic $@

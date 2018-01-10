@@ -1,0 +1,16 @@
+{% for name in roles['controller'] %}
+{% if name in nodes_d %}
+host infra{{ loop.index }} {{ name }}
+    HostName {{ nodes_net_config[name][xci.pxe_network]['ip'] }}
+{% endif %}
+{% endfor %}
+{% for name in roles['compute'] %}
+{% if name in nodes_d %}
+host compute{{ loop.index }} {{ name }}
+    HostName {{ nodes_net_config[name][xci.pxe_network]['ip'] }}
+{% endif %}
+{% endfor %}
+
+host *
+    User {{ opnfv_user }}
+    StrictHostKeyChecking=false
