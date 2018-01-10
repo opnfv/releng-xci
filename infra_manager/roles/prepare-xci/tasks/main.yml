@@ -1,0 +1,54 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+# tasks file for prepare_jumphost
+
+- name: set ansible config
+  template:
+    src: "templates/ansible.cfg.j2"
+    dest: "{{ home }}/.ansible.cfg"
+
+- name: delete old xci folders
+  become: true
+  file:
+    path: "{{ xci_root }}"
+    state: absent
+
+- name: prepare xci folders root
+  become: true
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0775
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    recurse: true
+  with_items:
+    - "{{ xci_root }}"
+    - "{{ xci_images }}"
+    - "{{ xci_configs_root }}"
+    - "{{ xci_configs_root }}/bifrost"
+    - "{{ xci_venv_root }}"
+    - "{{ xci_src_root }}"
+    - "{{ xci_src_root }}/bifrost"
+    - "{{ xci_log_root }}"
+    - "{{ xci_bin_root }}"
+
+- name: get ssh key
+  copy:
+    src: "{{ ssh_certs_folder }}/{{ item }}"
+    dest: "{{ xci_configs_root }}/{{item}}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0600
+  with_items:
+    - 'id_rsa'
+    - 'id_rsa.pub'
