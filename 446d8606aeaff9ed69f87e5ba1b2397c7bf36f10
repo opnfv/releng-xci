@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_00125656",
+        "filename": "infra_manager/var/pdf.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-01-11T15:55:41Z",
+      "side": 1,
+      "message": "Yes i will move that part and update the PDF to the official template. I badly thought net_config was official",
+      "parentUuid": "9a3d3df0_9e5c084d",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 16
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_de521034",
         "filename": "infra_manager/var/pdf.yml",
         "patchSetId": 7
@@ -128,6 +152,30 @@
       "writtenOn": "2018-01-10T17:37:30Z",
       "side": 1,
       "message": "this is not in the PDF spec\nwould `address: 192.168.122.1:629` work for you so we don\u0027t diverge from the current PDF spec?",
+      "range": {
+        "startLine": 128,
+        "startChar": 6,
+        "endLine": 128,
+        "endChar": 15
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_601b6273",
+        "filename": "infra_manager/var/pdf.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-01-11T15:55:41Z",
+      "side": 1,
+      "message": "i will make it work",
+      "parentUuid": "9a3d3df0_de521034",
       "range": {
         "startLine": 128,
         "startChar": 6,
