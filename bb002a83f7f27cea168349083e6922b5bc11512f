@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_11b10647",
+        "filename": "xci/installer/osa/files/ansible-role-requirements.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-01-12T17:27:40Z",
+      "side": 1,
+      "message": "is this repo covering all the previous ones?",
+      "range": {
+        "startLine": 198,
+        "startChar": 7,
+        "endLine": 198,
+        "endChar": 43
+      },
+      "revId": "bb002a83f7f27cea168349083e6922b5bc11512f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
