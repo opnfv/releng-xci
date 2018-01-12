@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_e66caad2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-12T10:28:01Z",
+      "side": 1,
+      "message": "Please try to keep the commit message to 72 columns width if possible (see the red vertical line at right side)",
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_867b1e8b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-12T10:28:01Z",
+      "side": 1,
+      "message": "XCI_INSTALLER :)",
+      "range": {
+        "startLine": 11,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_c671a6a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-12T10:28:01Z",
+      "side": 1,
+      "message": "installer?",
+      "range": {
+        "startLine": 17,
+        "startChar": 32,
+        "endLine": 17,
+        "endChar": 36
+      },
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_66609acf",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-12T10:28:01Z",
+      "side": 1,
+      "message": "This is likely not necessary because of what you have in opnfv-scenario-requirements.yml XCI will stop much earlier since it will detect that the distro is not supported during the initial steps.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_06670eea",
+        "filename": "xci/installer/kubespray/files/aio/inventory/inventory.cfg",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-12T10:28:01Z",
+      "side": 1,
+      "message": "So you add an AIO file but you explicitly do not allow AIO deployments in the opnfv-scenario-requirements.yml file. So what\u0027s the deal here? :)",
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_a67622a2",
+        "filename": "xci/scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature/tasks/.gitkeep",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-12T10:28:01Z",
+      "side": 1,
+      "message": "Why did you make this change?",
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
