@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_c607e116",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-15T09:43:54Z",
+      "side": 1,
+      "message": "Why I named it relatively to OSA is that the git repo is part of OSA. if this name is not appropriate, I can change this.",
+      "parentUuid": "9a3d3df0_52754cf8",
+      "range": {
+        "startLine": 11,
+        "startChar": 7,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "e0d6db3ed775c33a4d4371d163abd46c357e4424",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_b25db87b",
         "filename": "xci/var/opnfv.yml",
         "patchSetId": 9
