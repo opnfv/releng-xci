@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_f2ad80ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-15T03:28:51Z",
+      "side": 1,
+      "message": "ok, I will obey this rules",
+      "parentUuid": "9a3d3df0_e66caad2",
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_867b1e8b",
         "filename": "/COMMIT_MSG",
         "patchSetId": 8
@@ -30,6 +48,30 @@
       "writtenOn": "2018-01-12T10:28:01Z",
       "side": 1,
       "message": "XCI_INSTALLER :)",
+      "range": {
+        "startLine": 11,
+        "startChar": 3,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_72a210fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-15T03:28:51Z",
+      "side": 1,
+      "message": "sorry, I forgot to change these to installer :)",
+      "parentUuid": "9a3d3df0_867b1e8b",
       "range": {
         "startLine": 11,
         "startChar": 3,
@@ -88,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_929d14bf",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-15T03:28:51Z",
+      "side": 1,
+      "message": "OK,I will delete that",
+      "parentUuid": "9a3d3df0_66609acf",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 2
+      },
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_06670eea",
         "filename": "xci/installer/kubespray/files/aio/inventory/inventory.cfg",
         "patchSetId": 8
@@ -105,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_f75c524d",
+        "filename": "xci/installer/kubespray/files/aio/inventory/inventory.cfg",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-15T03:28:51Z",
+      "side": 1,
+      "message": "I will add aio to opnfv-scenario-requirements.yml.",
+      "parentUuid": "9a3d3df0_06670eea",
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_a67622a2",
         "filename": "xci/scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature/tasks/.gitkeep",
         "patchSetId": 8
@@ -116,6 +200,24 @@
       "writtenOn": "2018-01-12T10:28:01Z",
       "side": 1,
       "message": "Why did you make this change?",
+      "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1760d6ff",
+        "filename": "xci/scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature/tasks/.gitkeep",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-15T03:28:51Z",
+      "side": 1,
+      "message": "it doesn\u0027t do anything in this role, but it would fial at get-opnfv-scenario-requirements.yml without this role, so I add it.",
+      "parentUuid": "9a3d3df0_a67622a2",
       "revId": "b22d407ade19c87cea53f652a9fef2944d95c337",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
