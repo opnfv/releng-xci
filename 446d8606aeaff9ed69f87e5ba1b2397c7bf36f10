@@ -25,6 +25,184 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_127904c8",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-01-15T09:26:38Z",
+      "side": 1,
+      "message": "What installer? The sentence is in past tense, are you talking about how it was done before?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 47
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_b2477876",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-01-15T09:26:38Z",
+      "side": 1,
+      "message": "prepareS",
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_f25c604d",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-01-15T09:26:38Z",
+      "side": 1,
+      "message": "If it does not find the PDF/IDF config, instead of creating VMs it creates a linux bridge?",
+      "range": {
+        "startLine": 29,
+        "startChar": 46,
+        "endLine": 29,
+        "endChar": 52
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_5256ec2a",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-01-15T09:26:38Z",
+      "side": 1,
+      "message": "installS",
+      "range": {
+        "startLine": 32,
+        "startChar": 19,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_3253683a",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-01-15T09:26:38Z",
+      "side": 1,
+      "message": "deployS",
+      "range": {
+        "startLine": 32,
+        "startChar": 68,
+        "endLine": 32,
+        "endChar": 74
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_92335413",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-01-15T09:26:38Z",
+      "side": 1,
+      "message": "What roles?",
+      "range": {
+        "startLine": 46,
+        "startChar": 6,
+        "endLine": 46,
+        "endChar": 11
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_d2395cf3",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-01-15T09:26:38Z",
+      "side": 1,
+      "message": "Can you describe what you mean by this?",
+      "range": {
+        "startLine": 46,
+        "startChar": 51,
+        "endLine": 46,
+        "endChar": 71
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_b23e58d8",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-01-15T09:26:38Z",
+      "side": 1,
+      "message": "So xci_hosts is also possible to be used as a config file?",
+      "range": {
+        "startLine": 59,
+        "startChar": 40,
+        "endLine": 59,
+        "endChar": 49
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_1e511836",
         "filename": "infra_manager/filter_plugins/interfaces.py",
         "patchSetId": 7
