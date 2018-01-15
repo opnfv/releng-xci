@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_e6114553",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-15T09:51:12Z",
+      "side": 1,
+      "message": "Why does it have to be a variable in the first place? And where is this used?",
+      "parentUuid": "9a3d3df0_c607e116",
+      "range": {
+        "startLine": 11,
+        "startChar": 7,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "e0d6db3ed775c33a4d4371d163abd46c357e4424",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_b25db87b",
         "filename": "xci/var/opnfv.yml",
         "patchSetId": 9
@@ -60,6 +84,30 @@
       "writtenOn": "2018-01-15T09:16:23Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 29
+      },
+      "revId": "e0d6db3ed775c33a4d4371d163abd46c357e4424",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_461bd172",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-15T09:51:12Z",
+      "side": 1,
+      "message": "i would also like to know where and how this variable is used because I can\u0027t find a references right now",
+      "parentUuid": "9a3d3df0_b25db87b",
       "range": {
         "startLine": 41,
         "startChar": 0,
