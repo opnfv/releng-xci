@@ -249,6 +249,29 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_29d65ef1",
+        "filename": "infra_manager/scripts/install-ansible.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-16T06:25:08Z",
+      "side": 1,
+      "message": "this file is same as xci/files/install-ansible.sh right? could we use one instead of duplicating it?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 11
+      },
+      "revId": "446d8606aeaff9ed69f87e5ba1b2397c7bf36f10",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_be5f4c40",
         "filename": "infra_manager/var/opnfv.yml",
         "patchSetId": 7
