@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_7c014204",
+        "filename": "infra_manager/roles/vm-management/tasks/create-libvirt-network.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-16T08:40:37Z",
+      "side": 1,
+      "message": "do we need debug in here?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "0ebdd04d2d84f55a0e3ad96e0cb9afca8553c915",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_3c321af2",
+        "filename": "infra_manager/roles/vm-management/tasks/create-libvirt-node.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-16T08:40:37Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 16
+      },
+      "revId": "0ebdd04d2d84f55a0e3ad96e0cb9afca8553c915",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1c2f5689",
+        "filename": "infra_manager/roles/vm-management/tasks/main.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-16T08:40:37Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 8,
+        "endChar": 32
+      },
+      "revId": "0ebdd04d2d84f55a0e3ad96e0cb9afca8553c915",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
