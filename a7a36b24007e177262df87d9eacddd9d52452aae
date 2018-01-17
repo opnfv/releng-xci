@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_dacfae54",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 14
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-01-17T11:11:03Z",
+      "side": 1,
+      "message": "Could you specify what are the requirements in order to run kubernetes? I assume they are smaller compared to OSA. Could you also describe briefly what will be deployed? In OSA we have different flavors which deploy a controller and a compute or a controller and two computes, etc.",
+      "revId": "a7a36b24007e177262df87d9eacddd9d52452aae",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
