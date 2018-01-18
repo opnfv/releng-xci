@@ -16,6 +16,24 @@
       "revId": "a7a36b24007e177262df87d9eacddd9d52452aae",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_35750dfa",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 14
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-18T03:34:49Z",
+      "side": 1,
+      "message": "the performance of host don\u0027t be required in kubernetes officially. So I think it is enough according to OAS requirement. the packages version are required.",
+      "parentUuid": "9a3d3df0_dacfae54",
+      "revId": "a7a36b24007e177262df87d9eacddd9d52452aae",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
