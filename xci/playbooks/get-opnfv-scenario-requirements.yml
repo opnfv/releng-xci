@@ -114,11 +114,12 @@
         - set_fact:
             deploy_scenario_flavor: "{{ (XCI_FLAVOR in deploy_scenario_installer.flavors) | bool }}"
           when:
+            - deploy_scenario_installer is defined
             - deploy_scenario_installer
         - set_fact:
             deploy_scenario_distro: "{{ (XCI_DISTRO in deploy_scenario_installer.distros) | bool }}"
           when:
-            - deploy_scenario_installer
+            - deploy_scenario_flavor is defined
             - deploy_scenario_flavor
       when: deploy_scenario is defined
 
@@ -135,7 +136,8 @@
           - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
           - ''
       when:
-        - deploy_scenario is not defined or not deploy_scenario_distro
+        - deploy_scenario is not defined or
+          (deploy_scenario_distro is defined and not deploy_scenario_distro)
 
   vars:
     ansible_python_interpreter: "/usr/bin/python"
