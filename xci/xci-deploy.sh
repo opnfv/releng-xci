@@ -121,13 +121,6 @@ case ${XCI_DISTRO,,} in
         ;;
 esac
 
-if [[ ${XCI_DISTRO,,} == centos ]]; then
-    echo ""
-    echo "Warning: Only Ubuntu and SUSE hosts are fully supported for now!"
-    echo "Warning: CentOS 7 support is still work in progress."
-    echo
-fi
-
 # Clone OPNFV scenario repositories
 #-------------------------------------------------------------------------------
 # This playbook
