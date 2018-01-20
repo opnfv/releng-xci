@@ -5,4 +5,4 @@ opnfv ansible_ssh_host=192.168.122.2
 controller00 ansible_ssh_host=192.168.122.3
 
 [compute]
-compute00 ansible_ssh_host=192.168.122.4
+compute00 ansible_ssh_host=192.168.122.6
