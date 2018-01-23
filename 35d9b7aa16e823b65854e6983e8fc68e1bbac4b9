@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_8175b665",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-01-23T10:49:32Z",
+      "side": 1,
+      "message": "I am wondering if we should somehow pin the versions of keepalived and haproxy. Especially keepalived since it comes from JPs personal repo.\n\nWe might want to think about introducing something like a-r-r for k8s deployment in xci.",
+      "revId": "35d9b7aa16e823b65854e6983e8fc68e1bbac4b9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_61707272",
+        "filename": "xci/files/authorized_keys",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-01-23T10:49:32Z",
+      "side": 1,
+      "message": "this file will probably be flagged by security check.\n\nwe either need to get an exception and add note about this into documentation or find a way to not have this publicly available.",
+      "revId": "35d9b7aa16e823b65854e6983e8fc68e1bbac4b9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_a166fab8",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-01-23T10:49:32Z",
+      "side": 1,
+      "message": "most of the info documented here can be moved into xci-user-guide but can be done later so no issue for the timebeing.",
+      "revId": "35d9b7aa16e823b65854e6983e8fc68e1bbac4b9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
