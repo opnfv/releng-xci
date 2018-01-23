@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_41828e00",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-23T12:08:00Z",
+      "side": 1,
+      "message": "I have used  the certain SHAs of keepalived and haproxy.",
+      "parentUuid": "9a3d3df0_8175b665",
+      "revId": "35d9b7aa16e823b65854e6983e8fc68e1bbac4b9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_61707272",
         "filename": "xci/files/authorized_keys",
         "patchSetId": 19
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_2185ca06",
+        "filename": "xci/files/authorized_keys",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-23T12:08:00Z",
+      "side": 1,
+      "message": "I have removed this file, forgot to delete before.",
+      "parentUuid": "9a3d3df0_61707272",
+      "revId": "35d9b7aa16e823b65854e6983e8fc68e1bbac4b9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_a166fab8",
         "filename": "xci/installer/kubespray/README",
         "patchSetId": 19
@@ -47,6 +83,24 @@
       "writtenOn": "2018-01-23T10:49:32Z",
       "side": 1,
       "message": "most of the info documented here can be moved into xci-user-guide but can be done later so no issue for the timebeing.",
+      "revId": "35d9b7aa16e823b65854e6983e8fc68e1bbac4b9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_817f7614",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-23T12:08:00Z",
+      "side": 1,
+      "message": "In my opinion, we can move this to xci-use-guide, after finishing centos integration.",
+      "parentUuid": "9a3d3df0_a166fab8",
       "revId": "35d9b7aa16e823b65854e6983e8fc68e1bbac4b9",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
