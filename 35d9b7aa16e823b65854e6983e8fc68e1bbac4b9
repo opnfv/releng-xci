@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_81cdb668",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-01-23T13:02:27Z",
+      "side": 1,
+      "message": "good.\n\nstill, can we have them more explicitly configured somewhere? again, it doesn\u0027t have to be in this patch.",
+      "parentUuid": "9a3d3df0_41828e00",
+      "revId": "35d9b7aa16e823b65854e6983e8fc68e1bbac4b9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_61707272",
         "filename": "xci/files/authorized_keys",
         "patchSetId": 19
