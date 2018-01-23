@@ -112,15 +112,6 @@ if ! sudo -n "true"; then
 	exit 1
 fi
 
-# Wait 30-120 seconds so we avoid running multiple instances of pkg manager. Of course
-# this will not work as it should if there is an external process running a package
-# manager instance. However, since this script is only being execute on CI nodes which
-# we have complete control it should be mostly fine.
-backoff_time=0
-while [[ ${backoff_time} -le 30 ]]; do
-	backoff_time=$(( $RANDOM % 120 ))
-done
-
 case ${ID,,} in
 	*suse)
 		pkg_mgr_cmd="sudo zypper -q -n install virt-manager qemu-kvm qemu-tools libvirt-daemon docker libvirt-client libvirt-daemon-driver-qemu iptables ebtables dnsmasq"
@@ -133,9 +124,10 @@ case ${ID,,} in
 		;;
 esac
 
-if pgrep -fa "${pkg_mgr_cmd%*install*}" 2>&1; then
-	sleep ${backoff_time}
-fi
+while true; do
+	pgrep -fa "${pkg_mgr_cmd%*install*}" 2>&1 && sleep 60 || break
+done
+
 eval ${pkg_mgr_cmd}
 
 echo "Ensuring libvirt and docker services are running..."
