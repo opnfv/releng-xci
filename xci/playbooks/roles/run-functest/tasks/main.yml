@@ -16,17 +16,17 @@
   command: "ip addr add {{ gateway_ip_mask }} brd {{ broadcast_ip }} dev {{ gateway_interface }}"
   when: gateway_ip_result|failed
 
-- name: prepare script to create networks for functest
-  template:
-    src: prepare-functest.sh.j2
-    dest: /root/prepare-functest.sh
-    mode: 0755
-
-- name: Create networks
-  shell: "/root/prepare-functest.sh"
-
 - name: prepare environment file for functest
   template:
     src: env.j2
     dest: /root/env
     mode: 0755
+
+- name: prepare the script to create networks and run functest
+  template:
+    src: run-functest.sh.j2
+    dest: /root/run-functest.sh
+    mode: 0755
+
+- name: execute the script
+  shell: "/root/run-functest.sh"
