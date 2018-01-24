@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_b02e418a",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-24T01:26:41Z",
+      "side": 1,
+      "message": "Sorry I don\u0027t catch your meaning well. Do you mean we need set them like as OPENSTACK_BIFROST_VERSION and OPENSTACK_OSA_VERSION. You can look at patch sets 21 and give me some suggestions.",
+      "parentUuid": "9a3d3df0_81cdb668",
+      "revId": "35d9b7aa16e823b65854e6983e8fc68e1bbac4b9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_61707272",
         "filename": "xci/files/authorized_keys",
         "patchSetId": 19
