@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_33235ba8",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 21
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-24T10:24:38Z",
+      "side": 1,
+      "message": "These are not really supported in XCI+k8s. At least your code right now only adds Ubuntu as supported distro. And we don\u0027t really support Debian. Not sure how accurate this file needs to be though",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 22
+      },
+      "revId": "8c75cb74866200c5fcd0e611378012701c2df488",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_53209f9a",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 21
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-24T10:24:38Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 22
+      },
+      "revId": "8c75cb74866200c5fcd0e611378012701c2df488",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_933d07c7",
+        "filename": "xci/playbooks/configure-localhost.yml",
+        "patchSetId": 21
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-24T10:24:38Z",
+      "side": 1,
+      "message": "Why don\u0027t you add these in a block statement to avoid duplicating the \u0027when\u0027 statement?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 38
+      },
+      "revId": "8c75cb74866200c5fcd0e611378012701c2df488",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
