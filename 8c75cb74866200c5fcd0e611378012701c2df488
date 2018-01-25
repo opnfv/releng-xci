@@ -68,6 +68,30 @@
       "revId": "8c75cb74866200c5fcd0e611378012701c2df488",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_89cdd868",
+        "filename": "xci/playbooks/configure-localhost.yml",
+        "patchSetId": 21
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-25T06:44:52Z",
+      "side": 1,
+      "message": "There are some errors when adding these roles in a block in this syntax. If want to use block, it need to chagne the syntax and would be more complex.",
+      "parentUuid": "9a3d3df0_933d07c7",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 38
+      },
+      "revId": "8c75cb74866200c5fcd0e611378012701c2df488",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
