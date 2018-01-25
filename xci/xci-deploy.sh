@@ -136,8 +136,9 @@ echo "-------------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 # Get scenario variables overrides
 #-------------------------------------------------------------------------------
-if [[ -f $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
-    source $XCI_SCENARIOS_CACHE/$DEPLOY_SCENARIO/xci_overrides
+XCI_OVERRIDE_FILE=$(find "$XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO:-_no_scenario_}" -name xci_overrides)
+if [[ -f $XCI_OVERRIDE_FILE ]]; then
+    source $XCI_OVERRIDE_FILE
 fi
 
 #-------------------------------------------------------------------------------
