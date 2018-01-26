@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_5a99cc6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-01-26T09:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3d3df0_e41f6bb5",
+      "revId": "1ce7383911dd20e14fc47ef93f6373a0c2d7cfd5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_84249f0d",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2018-01-25T17:01:50Z",
       "side": 1,
       "message": "You can simplify that since it\u0027s best to not define a variable which will never use again\n\nsource $(find $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO} -name xci_overrides) \u0026\u003e/dev/null || :\n\nYou also don\u0027t need the _no_scenario_ fallback anymore",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 2
+      },
+      "revId": "1ce7383911dd20e14fc47ef93f6373a0c2d7cfd5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_3a9cc85c",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-01-26T09:50:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3d3df0_84249f0d",
       "range": {
         "startLine": 139,
         "startChar": 0,
