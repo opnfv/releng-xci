@@ -140,6 +140,7 @@ if [[ -f $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO:-_no_scenario_}/xci_overrides ]]
     source $XCI_SCENARIOS_CACHE/$DEPLOY_SCENARIO/xci_overrides
 fi
 
+if [ $XCI_RUN_BIFROST = "true" ]; then
 #-------------------------------------------------------------------------------
 # Start provisioning VM nodes
 #-------------------------------------------------------------------------------
@@ -150,19 +151,20 @@ fi
 # - destroys VMs, removes ironic db, leases, logs
 # - creates and provisions VMs for the chosen flavor
 #-------------------------------------------------------------------------------
-echo "Info: Starting provisining VM nodes using openstack/bifrost"
-echo "-------------------------------------------------------------------------"
-# We are using sudo so we need to make sure that env_reset is not present
-sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
-cd $XCI_PATH/bifrost/
-sudo -E bash ./scripts/destroy-env.sh
-cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
-cd ${XCI_CACHE}/repos/bifrost
-bash ./scripts/bifrost-provision.sh
-echo "-----------------------------------------------------------------------"
-echo "Info: VM nodes are provisioned!"
-echo "-----------------------------------------------------------------------"
+    echo "Info: Starting provisining VM nodes using openstack/bifrost"
+    echo "-------------------------------------------------------------------------"
+    # We are using sudo so we need to make sure that env_reset is not present
+    sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
+    cd $XCI_PATH/bifrost/
+    sudo -E bash ./scripts/destroy-env.sh
+    cd $XCI_PLAYBOOKS
+    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
+    cd ${XCI_CACHE}/repos/bifrost
+    bash ./scripts/bifrost-provision.sh
+    echo "-----------------------------------------------------------------------"
+    echo "Info: VM nodes are provisioned!"
+    echo "-----------------------------------------------------------------------"
+fi
 
 # Deploy OpenStack on the selected installer
 echo "Info: Deploying '${XCI_INSTALLER}' installer"

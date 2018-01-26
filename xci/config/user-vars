@@ -36,5 +36,7 @@ export XCI_INSTALLER=${XCI_INSTALLER:-osa}
 #   XCI_ANSIBLE_VERBOSITY="-vvvv"
 export XCI_ANSIBLE_VERBOSITY=${XCI_ANSIBLE_VERBOSITY:-""}
 export RUN_TEMPEST=${RUN_TEMPEST:-false}
-# Set this to to true to force XCI to re-create the target OS images
+# Set this to true to force XCI to re-create the target OS images
 export CLEAN_DIB_IMAGES=${CLEAN_DIB_IMAGES:-false}
+# Set this to false to skip XCI to re-provision the target VMs
+export XCI_RUN_BIFROST=${XCI_RUN_BIFROST:-true}
