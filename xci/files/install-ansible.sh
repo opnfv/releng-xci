@@ -88,7 +88,9 @@ case ${ID,,} in
         [venv]=python-virtualenv
         [wget]=wget
     )
-    sudo yum updateinfo
+    sudo $PKG_MANAGER updateinfo
+    # Enabling deltarpm to improve bandwidth consumption.
+    ${INSTALLER_CMD} deltarpm
     EXTRA_PKG_DEPS=()
     ;;
 
