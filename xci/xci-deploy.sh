@@ -23,8 +23,9 @@ submit_bug_report() {
     echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
     echo "xci flavor: $XCI_FLAVOR"
     echo "xci installer: $XCI_INSTALLER"
+    echo "xci scenario: $DEPLOY_SCENARIO"
     echo "Environment variables:"
-    env | grep --color=never '\(OPNFV\|XCI\|OPENSTACK\)'
+    env | grep --color=never '\(OPNFV\|XCI\|OPENSTACK\|SCENARIO\)'
     echo "-------------------------------------------------------------------------"
 }
 
