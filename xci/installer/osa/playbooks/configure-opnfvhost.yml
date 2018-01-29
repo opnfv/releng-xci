@@ -18,11 +18,12 @@
         file: "{{ item }}"
       with_items:
         - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
+        - "{{ XCI_FILES_PATH }}/flavor-vars.yml"
     - name: Set facts for remote deployment
       set_fact:
         remote_xci_path: "{{ ansible_env.HOME }}/releng-xci"
-        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/installer/{{XCI_INSTALLER}}/files/{{ XCI_FLAVOR }}"
+        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/files/{{ XCI_FLAVOR }}"
+        remote_xci_osa_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/installer/{{XCI_INSTALLER}}/files/{{ XCI_FLAVOR }}"
         remote_xci_playbooks: "{{ ansible_env.HOME }}/releng-xci/xci/playbooks"
 
   roles:
@@ -50,10 +51,10 @@
     - name: copy openstack_deploy
       shell: "/bin/cp -rf {{OPENSTACK_OSA_PATH}}/etc/openstack_deploy {{OPENSTACK_OSA_ETC_PATH}}"
     - name: copy openstack_user_config.yml
-      shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/openstack_user_config.yml {{OPENSTACK_OSA_ETC_PATH}}"
+      shell: "/bin/cp -rf {{ remote_xci_osa_flavor_files }}/openstack_user_config.yml {{OPENSTACK_OSA_ETC_PATH}}"
       failed_when: false
     - name: copy all user override files
-      shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
+      shell: "/bin/cp -rf {{ remote_xci_osa_flavor_files }}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
       failed_when: false
     - name: copy cinder.yml
       shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
@@ -67,11 +68,11 @@
         - "tempest_run"
     - block:
         - name: copy ceph.yml
-          shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/conf.d/"
+          shell: "/bin/cp -rf {{ remote_xci_osa_flavor_files }}/ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/conf.d/"
         - name: copy user_ceph.yml
-          shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_ceph.yml"
+          shell: "/bin/cp -rf {{ remote_xci_osa_flavor_files }}/user_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_ceph.yml"
         - name: copy user_variables_ceph.yml
-          shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_variables_ceph.yml"
+          shell: "/bin/cp -rf {{ remote_xci_osa_flavor_files }}/user_variables_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_variables_ceph.yml"
       when: XCI_CEPH_ENABLED == "true"
     # TODO: We need to get rid of this as soon as the issue is fixed upstream
     - name: change the haproxy state from disable to enable
@@ -166,7 +167,7 @@
       failed_when: false
       with_items:
         - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
+        - "{{ XCI_FILES_PATH }}/flavor-vars.yml"
         - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/user_variables.yml"
   roles:
     - role: "openstack-ansible-openstack_openrc"

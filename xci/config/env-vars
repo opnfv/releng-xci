@@ -9,6 +9,7 @@ export OPENSTACK_OSA_OPENRC_GIT_URL=https://git.openstack.org/openstack/openstac
 export OPENSTACK_OSA_ETC_PATH=/etc/openstack_deploy
 export OPNFV_HOST_IP=192.168.122.2
 export XCI_FLAVOR_ANSIBLE_FILE_PATH=$XCI_PATH/xci/installer/$XCI_INSTALLER/files/$XCI_FLAVOR
+export XCI_FILES_PATH=$XCI_PATH/xci/files/$XCI_FLAVOR/
 export CI_LOOP=${CI_LOOP:-daily}
 export JOB_NAME=${JOB_NAME:-false}
 # XCI_CACHE is a cache on localhost where repositories and scenarios are cloned.

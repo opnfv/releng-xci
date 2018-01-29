@@ -57,7 +57,7 @@ echo "Info: Configured localhost host for openstack-ansible"
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd $OSA_XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FILES_PATH}/inventory \
     configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
@@ -77,7 +77,7 @@ if [[ $XCI_FLAVOR != "aio" ]]; then
     echo "Info: Configuring target hosts for openstack-ansible"
     echo "-----------------------------------------------------------------------"
     cd $OSA_XCI_PLAYBOOKS
-    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FILES_PATH}/inventory \
         configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts"
