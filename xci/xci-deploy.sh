@@ -137,9 +137,7 @@ echo "-------------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 # Get scenario variables overrides
 #-------------------------------------------------------------------------------
-if [[ -f $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO:-_no_scenario_}/xci_overrides ]]; then
-    source $XCI_SCENARIOS_CACHE/$DEPLOY_SCENARIO/xci_overrides
-fi
+source $(find $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO} -name xci_overrides) &>/dev/null || :
 
 #-------------------------------------------------------------------------------
 # Start provisioning VM nodes
