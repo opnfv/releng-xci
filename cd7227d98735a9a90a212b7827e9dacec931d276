@@ -1,0 +1,487 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_7ffbdd46",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 22
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "requires that ansible version is",
+      "range": {
+        "startLine": 40,
+        "startChar": 12,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_dfa14947",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 22
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "Currently, there are two kinds of installers in XCI: osa and kubespray",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 11
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_3f8cb5d9",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "is obtained from kubespray",
+      "range": {
+        "startLine": 1,
+        "startChar": 50,
+        "endLine": 1,
+        "endChar": 53
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1f8731b6",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "parameters",
+      "range": {
+        "startLine": 2,
+        "startChar": 19,
+        "endLine": 2,
+        "endChar": 28
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_7f92bdf6",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "needs",
+      "range": {
+        "startLine": 2,
+        "startChar": 47,
+        "endLine": 2,
+        "endChar": 51
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_5f8d39d2",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "When  starting the deploy, it will be copied to the right directory and will be used by kubespray",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 4
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_bfbf2560",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "The performance settings are not required officially. I recommend the following:",
+      "range": {
+        "startLine": 12,
+        "startChar": 9,
+        "endLine": 12,
+        "endChar": 20
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_9fc221e7",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "In",
+      "range": {
+        "startLine": 28,
+        "startChar": 101,
+        "endLine": 28,
+        "endChar": 103
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ffb52d7e",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "the deployment",
+      "range": {
+        "startLine": 28,
+        "startChar": 136,
+        "endLine": 28,
+        "endChar": 146
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_dfb82977",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "calico",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 15
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_3fb31599",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "Clone the OPNFV",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1fae112e",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "into the directory",
+      "range": {
+        "startLine": 52,
+        "startChar": 7,
+        "endLine": 52,
+        "endChar": 11
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ff6c0d0a",
+        "filename": "xci/installer/kubespray/README",
+        "patchSetId": 22
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "kubespray",
+      "range": {
+        "startLine": 56,
+        "startChar": 24,
+        "endLine": 56,
+        "endChar": 32
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_bf4d659c",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "kubespray",
+      "range": {
+        "startLine": 41,
+        "startChar": 38,
+        "endLine": 41,
+        "endChar": 47
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_9f506133",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "kubespray",
+      "range": {
+        "startLine": 42,
+        "startChar": 33,
+        "endLine": 42,
+        "endChar": 42
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ff436d69",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "configured by",
+      "range": {
+        "startLine": 56,
+        "startChar": 72,
+        "endLine": 56,
+        "endChar": 84
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_df46697a",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "kubespray",
+      "range": {
+        "startLine": 59,
+        "startChar": 33,
+        "endLine": 59,
+        "endChar": 42
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_3f615505",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "deploy kubernetes/deploy the kubernetes cluster",
+      "range": {
+        "startLine": 73,
+        "startChar": 31,
+        "endLine": 73,
+        "endChar": 37
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1f5c514a",
+        "filename": "xci/installer/kubespray/files/k8s-cluster.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "remove \"the\"",
+      "range": {
+        "startLine": 110,
+        "startChar": 6,
+        "endLine": 110,
+        "endChar": 16
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_7f575d26",
+        "filename": "xci/installer/kubespray/files/k8s-cluster.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "kubernetes",
+      "range": {
+        "startLine": 110,
+        "startChar": 39,
+        "endLine": 110,
+        "endChar": 48
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_5f525935",
+        "filename": "xci/installer/kubespray/files/k8s-cluster.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 4057
+      },
+      "writtenOn": "2018-01-29T11:02:19Z",
+      "side": 1,
+      "message": "Editing",
+      "range": {
+        "startLine": 112,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 10
+      },
+      "revId": "cd7227d98735a9a90a212b7827e9dacec931d276",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
