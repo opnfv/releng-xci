@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_2db3ef98",
+        "filename": "xci/files/install-ansible.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-30T08:17:28Z",
+      "side": 1,
+      "message": "\u0027deltarpm\u0027 should be moved to the EXTRA_PKG_DEPS array. The script will then install it automatically",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 21
+      },
+      "revId": "0657b4221a91c38ea0f404cd99530609f6269fcd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
