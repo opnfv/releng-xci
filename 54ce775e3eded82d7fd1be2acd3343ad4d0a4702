@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_283d9dc4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-30T09:23:34Z",
+      "side": 1,
+      "message": "I think that the commit message needs some rewording because I can\u0027t quite parse it :) (though I am not a native speaker)",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "54ce775e3eded82d7fd1be2acd3343ad4d0a4702",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_882ca99a",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-30T09:23:34Z",
+      "side": 1,
+      "message": "much simpler to simply use\n\nwhen: XCI_ANSIBLE_PROFILER | bool",
+      "range": {
+        "startLine": 198,
+        "startChar": 13,
+        "endLine": 198,
+        "endChar": 55
+      },
+      "revId": "54ce775e3eded82d7fd1be2acd3343ad4d0a4702",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
