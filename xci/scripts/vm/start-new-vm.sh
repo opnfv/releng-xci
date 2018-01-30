@@ -112,15 +112,17 @@ if ! sudo -n "true"; then
 	exit 1
 fi
 
+COMMON_DISTRO_PKGS=(vim strace gdb htop dnsmasq docker iptables ebtalbes virt-manager qemu-kvm)
+
 case ${ID,,} in
 	*suse)
-		pkg_mgr_cmd="sudo zypper -q -n install virt-manager qemu-kvm qemu-tools libvirt-daemon docker libvirt-client libvirt-daemon-driver-qemu iptables ebtables dnsmasq"
+		pkg_mgr_cmd="sudo zypper -q -n install ${COMMON_DISTRO_PKGS[@]} qemu-kvm qemu-tools libvirt-daemon libvirt-client libvirt-daemon-driver-qemu"
 		;;
 	centos)
-		pkg_mgr_cmd="sudo yum install -q -y epel-release && sudo yum install -q -y in virt-manager qemu-kvm qemu-kvm-tools qemu-img libvirt-daemon-kvm docker iptables ebtables dnsmasq"
+		pkg_mgr_cmd="sudo yum install -q -y epel-release && sudo yum install -q -y in ${COMMON_DISTRO_PKGS[@]} qemu-kvm-tools qemu-img libvirt-daemon-kvm"
 		;;
 	ubuntu)
-		pkg_mgr_cmd="sudo apt-get install -y -q=3 virt-manager qemu-kvm libvirt-bin qemu-utils docker.io docker iptables ebtables dnsmasq"
+		pkg_mgr_cmd="sudo apt-get install -y -q=3 ${COMMON_DISTRO_PKGS[@]} libvirt-bin qemu-utils docker.io"
 		;;
 esac
 
