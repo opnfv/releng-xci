@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_e8dc5548",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 23
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-30T14:02:05Z",
+      "side": 1,
+      "message": "Can\u0027t we use the existing XCI_ANSIBLE_PIP_VERSION variable for that? I know it says 2.3.2.0 but we can try to bump it to 2.4 since bifrost and OSA should work with it.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 43
+      },
+      "revId": "fbcdc652be7aaac32cb36fa5d05aaeb4298ea514",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_a8bd2dda",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 23
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-30T14:02:05Z",
+      "side": 1,
+      "message": "is there a reason you deploy from specific shas? unless someone takes care of them they will end up being stale after a while. What if we always used the master branch? Or what if you did some sort of automation like this\n\ngrep -E \u0027.*name: haproxy_server\u0027 -A 3 xci/installer/osa/files/ansible-role-requirements.yml  | tail -n1| sed -n \u0027s/\\(^.*: \\)\\([0-9a-z].*$\\)/\\2/p\u0027\n\nThat way you can share the good tested haproxy and keepalived roles with OSA.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 85
+      },
+      "revId": "fbcdc652be7aaac32cb36fa5d05aaeb4298ea514",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_e8b3b507",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-30T14:02:05Z",
+      "side": 1,
+      "message": "Can you provide some info for the deployment similar to what OSA does to let people know how to get started. For example, OSA at the end provides information about horizon and login details",
+      "revId": "fbcdc652be7aaac32cb36fa5d05aaeb4298ea514",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
