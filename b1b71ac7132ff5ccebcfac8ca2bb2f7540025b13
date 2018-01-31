@@ -22,6 +22,30 @@
       "revId": "b1b71ac7132ff5ccebcfac8ca2bb2f7540025b13",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_5329b299",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 24
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-01-31T09:31:36Z",
+      "side": 1,
+      "message": "yep, it needs to be improved later. And thanks for your suggestions.",
+      "parentUuid": "9a3d3df0_d346627a",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 61
+      },
+      "revId": "b1b71ac7132ff5ccebcfac8ca2bb2f7540025b13",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
