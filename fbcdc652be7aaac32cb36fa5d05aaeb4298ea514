@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_33298ee6",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 23
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-31T07:42:46Z",
+      "side": 1,
+      "message": "OK yeah maybe in another patch",
+      "parentUuid": "9a3d3df0_933dfa91",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 43
+      },
+      "revId": "fbcdc652be7aaac32cb36fa5d05aaeb4298ea514",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_a8bd2dda",
         "filename": "xci/config/pinned-versions",
         "patchSetId": 23
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_d30e628b",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 23
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-31T07:42:46Z",
+      "side": 1,
+      "message": "So what I was suggesting was that instead of keeping a hardcoded shas for these 2 roles, you simply use the SHAs from the OSA installer (via a script for example) because this way the SHAs can automatically be updated whenever we test the OSA installer. If they work for OSA then they most likely will work with kubespray. If not, good, we found a bug and we need to fix it upstream.",
+      "parentUuid": "9a3d3df0_d35ae2f0",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 85
+      },
+      "revId": "fbcdc652be7aaac32cb36fa5d05aaeb4298ea514",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_e8b3b507",
         "filename": "xci/installer/kubespray/deploy.sh",
         "patchSetId": 23
@@ -125,6 +173,24 @@
       "side": 1,
       "message": "yes, this is necessary. could we do that in other patchs?",
       "parentUuid": "9a3d3df0_e8b3b507",
+      "revId": "fbcdc652be7aaac32cb36fa5d05aaeb4298ea514",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_13244a0b",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 23
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-01-31T07:42:46Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "9a3d3df0_5366d2bb",
       "revId": "fbcdc652be7aaac32cb36fa5d05aaeb4298ea514",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
