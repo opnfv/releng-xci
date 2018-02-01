@@ -130,7 +130,7 @@ while true; do
 	pgrep -fa "${pkg_mgr_cmd%*install*}" 2>&1 && sleep 60 || break
 done
 
-eval ${pkg_mgr_cmd}
+eval ${pkg_mgr_cmd} &> /dev/null
 
 echo "Ensuring libvirt and docker services are running..."
 sudo systemctl -q start libvirtd
@@ -173,9 +173,6 @@ declare -r OS_IMAGE_FILE=${OS}.qcow2
 
 [[ ! -e ${OS_IMAGE_FILE} ]] && echo "${OS_IMAGE_FILE} not found! This should never happen!" && exit 1
 
-echo "Resizing disk image '${OS}' to ${DISK}G..."
-qemu-img resize ${OS_IMAGE_FILE} ${DISK}G
-
 echo "Creating new network '${NETWORK}' if it does not exist already..."
 if ! sudo virsh net-list --name --all | grep -q ${NETWORK}; then
 	cat > /tmp/${NETWORK}.xml <<EOF
@@ -200,9 +197,28 @@ fi
 sudo virsh net-list --autostart | grep -q ${NETWORK} || sudo virsh net-autostart ${NETWORK}
 sudo virsh net-list --inactive | grep -q ${NETWORK} && sudo virsh net-start ${NETWORK}
 
+echo "Determining backend storage device..."
+if sudo vgscan | grep -q xci-vm-vg; then
+	echo "Using LVM backend..."
+	lv_dev="/dev/xci-vm-vg/xci-vm-${OS}"
+	echo "Creating new xci-vm-${OS} LV if necessary..."
+	sudo lvscan | grep -q xci-vm-${OS} || {
+		sudo lvcreate -W y -l 33%FREE -n xci-vm-${OS} xci-vm-vg
+		sudo mkfs.ext4 -m 0 ${lv_dev}
+	}
+	echo "Flusing the ${OS_IMAGE_FILE} image to ${lv_dev}..."
+	sudo qemu-img convert -O raw ${OS_IMAGE_FILE} ${lv_dev}
+	disk_config="${lv_dev},cache=directsync,bus=virtio"
+else
+	echo "Using file backend..."
+	echo "Resizing disk image '${OS}' to ${DISK}G..."
+	qemu-img resize ${OS_IMAGE_FILE} ${DISK}G
+	disk_config="${OS_IMAGE_FILE},cache=none,bus=virtio"
+fi
+
 echo "Installing virtual machine '${VM_NAME}'..."
 sudo virt-install -n ${VM_NAME} --memory ${MEMORY} --vcpus ${NCPUS} --cpu ${CPU} \
-	--import --disk=${OS_IMAGE_FILE},cache=none,bus=virtio --network network=${NETWORK},model=virtio \
+	--import --disk=${disk_config} --network network=${NETWORK},model=virtio \
 	--graphics none --hvm --noautoconsole
 
 trap destroy_vm_on_failures EXIT
