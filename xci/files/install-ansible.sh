@@ -88,8 +88,8 @@ case ${ID,,} in
         [venv]=python-virtualenv
         [wget]=wget
     )
-    sudo yum updateinfo
-    EXTRA_PKG_DEPS=()
+    sudo $PKG_MANAGER updateinfo
+    EXTRA_PKG_DEPS=( deltarpm )
     ;;
 
     *) echo "ERROR: Supported package manager not found.  Supported: apt, dnf, yum, zypper"; exit 1;;
