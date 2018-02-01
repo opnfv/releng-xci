@@ -1,0 +1,8 @@
+Code-Review+2: Fatih Degirmenci <fdegir@gmail.com>
+Verified+1: Fatih Degirmenci <fdegir@gmail.com>
+Code-Review+1: Manuel Buil <mbuil@suse.com>
+Submitted-by: Markos Chandras <mchandras@suse.de>
+Submitted-at: Thu, 01 Feb 2018 09:53:51 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/51361
+Project: releng-xci
+Branch: refs/heads/master
