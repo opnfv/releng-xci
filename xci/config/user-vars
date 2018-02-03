@@ -24,6 +24,8 @@ export XCI_FLAVOR=${XCI_FLAVOR:-aio}
 export XCI_DISTRO=${XCI_DISTRO:-$(source /etc/os-release &>/dev/null || source /usr/lib/os-release &>/dev/null; echo ${ID,,})}
 export XCI_CEPH_ENABLED=${XCI_CEPH_ENABLED:-false}
 
+export XCI_INSTALLER=${XCI_INSTALLER:-kubespray}
+export DEPLOY_SCENARIO="k8-nosdn-nofeature"
 #-------------------------------------------------------------------------------
 # Set INSTALLER
 #-------------------------------------------------------------------------------
