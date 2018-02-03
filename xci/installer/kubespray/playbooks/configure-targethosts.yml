@@ -6,10 +6,10 @@
       copy:
         src: "{{ XCI_PATH }}/xci/files/authorized_keys"
         dest: /root/.ssh/authorized_keys
-    - name: install dbus and ptyhon-netaddr
-      apt:
+    - name: install dbus and python-netaddr
+      package:
         name: "{{item}}"
-        update_cache: yes
+        state: present
       with_items: "{{ kube_require_packages }}"
 
 - hosts: kube-master

@@ -32,7 +32,8 @@ export XCI_CEPH_ENABLED=${XCI_CEPH_ENABLED:-false}
 #    export XCI_INSTALLER="osa"
 # or
 #    export XCI_INSTALLER="kubespray"
-export XCI_INSTALLER=${XCI_INSTALLER:-osa}
+export XCI_INSTALLER=${XCI_INSTALLER:-kubespray}
+export DEPLOY_SCENARIO="k8-nosdn-nofeature"
 
 #-------------------------------------------------------------------------------
 # Configure some other stuff
