@@ -71,3 +71,4 @@
         - noha
       distros:
         - ubuntu
+        - centos
