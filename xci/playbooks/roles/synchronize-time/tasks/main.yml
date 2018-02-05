@@ -21,3 +21,7 @@
   until: chrony_got_time.rc == 0
   retries: 5
   delay: 5
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"

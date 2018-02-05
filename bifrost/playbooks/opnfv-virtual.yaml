@@ -29,6 +29,7 @@
   environment:
     http_proxy: "{{ lookup('env','http_proxy') }}"
     https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
 - hosts: localhost
   connection: local
   name: "Executes install, enrollment, and testing in one playbook"
@@ -74,6 +75,7 @@
   environment:
     http_proxy: "{{ lookup('env','http_proxy') }}"
     https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
 - hosts: baremetal
   name: "Enroll node with Ironic"
   become: no
@@ -81,6 +83,10 @@
   roles:
     - role: ironic-enroll-dynamic
     - { role: ironic-inspect-node, when: inspect_nodes | default('false') | bool == true }
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
 - hosts: baremetal
   name: "Create configuration drive files and deploy machines"
   vars:
