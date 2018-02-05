@@ -57,6 +57,7 @@ echo "Info: Configured localhost host for openstack-ansible"
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd $OSA_XCI_PLAYBOOKS
+ansible-galaxy install -r ${XCI_PATH}/xci/files/requirements.yml -p $HOME/.ansible/roles
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
     configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"

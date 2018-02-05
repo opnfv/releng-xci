@@ -100,6 +100,7 @@
   environment:
     http_proxy: "{{ lookup('env','http_proxy') }}"
     https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
 
 - hosts: baremetal
   name: "Enrollment and Deployment"
@@ -112,7 +113,12 @@
     - role: ironic-enroll-dynamic
     - { role: ironic-inspect-node, when: inspect_nodes | default('false') | bool == true }
     - role: bifrost-configdrives-dynamic
+      ipv4_nameserver: 192.168.122.1
     - role: bifrost-deploy-nodes-dynamic
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
 
 - hosts: baremetal
   name: "Deploy machines."
