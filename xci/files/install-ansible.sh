@@ -159,3 +159,4 @@ sudo -H -E ${PIP} -q install --upgrade pip
 # upgrade setuptools, as latest version is needed to install some projects
 sudo -H -E ${PIP} -q install --upgrade setuptools
 ${PIP} install -q --user --upgrade ansible==$XCI_ANSIBLE_PIP_VERSION
+ansible-galaxy install -r files/requirements.yml -p $HOME/.ansible/roles
