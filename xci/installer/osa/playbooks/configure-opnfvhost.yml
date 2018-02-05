@@ -13,6 +13,13 @@
     - "{{ XCI_PATH }}/xci/var/opnfv.yml"
     - "{{ XCI_PATH }}/xci/installer/osa/files/openstack_services.yml"
 
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
+    HTTP_PROXY: "{{ lookup('env','http_proxy') }}"
+    HTTPS_PROXY: "{{ lookup('env','https_proxy') }}"
+    NO_PROXY: "{{ lookup('env','no_proxy') }}"
   pre_tasks:
     - name: Load distribution variables
       include_vars:
@@ -29,6 +36,11 @@
   roles:
     - role: bootstrap-host
       configure_network: XCI_FLAVOR != 'aio'
+    - role: peru.proxy_settings
+      proxy_settings_http_proxy: "{{ lookup('env','http_proxy') }}"
+      proxy_settings_https_proxy: "{{ lookup('env','https_proxy') }}"
+      proxy_settings_ftp_proxy: "{{ lookup('env','ftp_proxy') }}"
+      proxy_settings_no_proxy: "{{ lookup('env','no_proxy') }}"
 
   tasks:
     - name: generate SSH keys
@@ -75,6 +87,16 @@
         - name: copy user_variables_ceph.yml
           shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables_ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/user_variables_ceph.yml"
       when: XCI_CEPH_ENABLED == "true"
+    - block:
+        - name: copy user_variables_proxy.yml
+          shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/user_variables_proxy.yml {{OPENSTACK_OSA_ETC_PATH}}/user_variables_proxy.yml"
+        - name: "Configure http_proxy_env_url"
+          lineinfile:
+            path: "{{OPENSTACK_OSA_ETC_PATH}}/user_variables_proxy.yml"
+            regexp: "^http_proxy_env_url:.*"
+            line: "{{ 'http_proxy_env_url: ' + lookup('env','http_proxy') }}"
+      when:
+        - lookup('env','http_proxy') != "randomfoobarstring"
     - name: copy OPNFV OpenStack playbook
       shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/setup-openstack.yml {{OPENSTACK_OSA_PATH}}/playbooks"
     - name: copy pinned versions of OSA Roles and global requirements
