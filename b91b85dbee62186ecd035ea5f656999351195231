@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_ec93bba0",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 9
+      },
+      "writtenOn": "2018-02-06T21:46:16Z",
+      "side": 1,
+      "message": "Will there be a separate document for k8s or a new section be added here?  (I personally think having a single document makes sense...)",
+      "range": {
+        "startLine": 11,
+        "startChar": 206,
+        "endLine": 11,
+        "endChar": 249
+      },
+      "revId": "b91b85dbee62186ecd035ea5f656999351195231",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_4c8f4775",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 9
+      },
+      "writtenOn": "2018-02-06T21:46:16Z",
+      "side": 1,
+      "message": "suggest changing to \"in XCI itself or bug fixes\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 56,
+        "endLine": 22,
+        "endChar": 10
+      },
+      "revId": "b91b85dbee62186ecd035ea5f656999351195231",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_ecd8dbf0",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 9
+      },
+      "writtenOn": "2018-02-06T21:46:16Z",
+      "side": 1,
+      "message": "I suggest removing this (I think it\u0027s better to keep it short)",
+      "range": {
+        "startLine": 49,
+        "startChar": 55,
+        "endLine": 49,
+        "endChar": 104
+      },
+      "revId": "b91b85dbee62186ecd035ea5f656999351195231",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_4ce467ab",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 9
+      },
+      "writtenOn": "2018-02-06T21:46:16Z",
+      "side": 1,
+      "message": "\"mentioned earlier\"",
+      "range": {
+        "startLine": 69,
+        "startChar": 3,
+        "endLine": 69,
+        "endChar": 7
+      },
+      "revId": "b91b85dbee62186ecd035ea5f656999351195231",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_2cdf63d7",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 9
+      },
+      "writtenOn": "2018-02-06T21:46:16Z",
+      "side": 1,
+      "message": "can be removed",
+      "range": {
+        "startLine": 107,
+        "startChar": 96,
+        "endLine": 107,
+        "endChar": 98
+      },
+      "revId": "b91b85dbee62186ecd035ea5f656999351195231",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_8cf14f6d",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 9
+      },
+      "writtenOn": "2018-02-06T21:46:16Z",
+      "side": 1,
+      "message": "with the address",
+      "range": {
+        "startLine": 113,
+        "startChar": 49,
+        "endLine": 113,
+        "endChar": 62
+      },
+      "revId": "b91b85dbee62186ecd035ea5f656999351195231",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
