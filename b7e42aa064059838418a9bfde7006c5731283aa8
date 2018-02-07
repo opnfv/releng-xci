@@ -22,6 +22,30 @@
       "revId": "b7e42aa064059838418a9bfde7006c5731283aa8",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_12b39698",
+        "filename": "xci/installer/osa/files/ha/user_variables_proxy.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-02-07T18:09:40Z",
+      "side": 1,
+      "message": "I can move these files in a single one hosted in xci/installer/osa/files directory, in that way it won\u0027t be related to any particular flavor.\n\nRegarding the \u0027global_environment_variables\u0027, it\u0027s the method provided by the documentation:\n\n    * https://docs.openstack.org/project-deploy-guide/openstack-ansible/latest/app-limited-connectivity.html#basic-proxy-configuration\n\nAnd it\u0027s used by several tasks to configure the proxy:\n\n    * http://git.openstack.org/cgit/openstack/openstack-ansible-openstack_hosts/tree/tasks/openstack_proxy_settings.yml\n    * http://git.openstack.org/cgit/openstack/openstack-ansible-lxc_container_create/tree/tasks/lxc_container_config.yml#n235",
+      "parentUuid": "9a3d3df0_325cda18",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 32
+      },
+      "revId": "b7e42aa064059838418a9bfde7006c5731283aa8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
