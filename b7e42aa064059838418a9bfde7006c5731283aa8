@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_325cda18",
+        "filename": "xci/installer/osa/files/ha/user_variables_proxy.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-02-07T09:06:10Z",
+      "side": 1,
+      "message": "All that is not flavor specific but normally host specific \n\nThe ansible documentation has good suggestions on how to do all of these things\n\nhttp://docs.ansible.com/ansible/latest/playbooks_environment.html\n\nHow about moving all that to a group variable so you don\u0027t have to add too many changes to playbooks?\n\nI also do not see where \u0027global_environment_variables\u0027 dictionary is used.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 32
+      },
+      "revId": "b7e42aa064059838418a9bfde7006c5731283aa8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
