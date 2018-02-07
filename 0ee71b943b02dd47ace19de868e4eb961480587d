@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_72530217",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-02-07T08:28:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3d3df0_b7a1fc47",
+      "range": {
+        "startLine": 7,
+        "startChar": 8,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "0ee71b943b02dd47ace19de868e4eb961480587d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_178c28d9",
         "filename": "xci/config/user-vars",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-02-07T07:00:59Z",
       "side": 1,
       "message": "I presume this is just for testing right?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 43
+      },
+      "revId": "0ee71b943b02dd47ace19de868e4eb961480587d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_1728a898",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-02-07T08:28:05Z",
+      "side": 1,
+      "message": "yes, just for testing the k8s on Ubuntu and centos.",
+      "parentUuid": "9a3d3df0_178c28d9",
       "range": {
         "startLine": 35,
         "startChar": 0,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_d2564e05",
+        "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-02-07T08:28:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3d3df0_f786e4b7",
+      "revId": "0ee71b943b02dd47ace19de868e4eb961480587d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_579230f6",
         "filename": "xci/installer/kubespray/playbooks/configure-targethosts.yml",
         "patchSetId": 1
@@ -76,6 +142,24 @@
       "writtenOn": "2018-02-07T07:00:59Z",
       "side": 1,
       "message": "same suggestion about update_cache",
+      "revId": "0ee71b943b02dd47ace19de868e4eb961480587d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_b2590a37",
+        "filename": "xci/installer/kubespray/playbooks/configure-targethosts.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-02-07T08:28:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3d3df0_579230f6",
       "revId": "0ee71b943b02dd47ace19de868e4eb961480587d",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
