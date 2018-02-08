@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a3d3df0_1d7a87bc",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-02-08T09:31:25Z",
+      "side": 1,
+      "message": "Why did you changed the osa value to kubespray?\n\nIs that means that if the user didn\u0027t export the XCI_INSTALLER env-var the kubespray will be used by default ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 38,
+        "endLine": 35,
+        "endChar": 47
+      },
+      "revId": "ed2a4c3c5234935225cf6c592e568f0a259107f0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
