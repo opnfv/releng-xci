@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_e5746969",
+        "filename": "xci/files/install-ansible.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-02-09T19:02:00Z",
+      "side": 1,
+      "message": "Ok, got it.",
+      "parentUuid": "9a3d3df0_fdd883f0",
+      "revId": "e7e4022c3387bfcaf99833a698592a1a4e687c20",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_dde77faa",
         "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
         "patchSetId": 10
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "9a3d3df0_a55701c9",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-02-09T19:02:00Z",
+      "side": 1,
+      "message": "I didn\u0027t know that it was possible to configure it via Bifrost. I\u0027m going to change it.",
+      "parentUuid": "9a3d3df0_dde77faa",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 40
+      },
+      "revId": "e7e4022c3387bfcaf99833a698592a1a4e687c20",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a3d3df0_3ddf8bd7",
         "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
         "patchSetId": 10
@@ -53,6 +95,30 @@
       "writtenOn": "2018-02-08T07:37:33Z",
       "side": 1,
       "message": "this conditional is a bit weird. Do you need all these conditionals to be satisfied? Is it not possible for someone to only use http_proxy and not ftp_proxy?",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 40
+      },
+      "revId": "e7e4022c3387bfcaf99833a698592a1a4e687c20",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a3d3df0_855abdef",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 10
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-02-09T19:02:00Z",
+      "side": 1,
+      "message": "the role requires those proxy_settings_*_proxy variables, I\u0027m not sure what could happen if they are assigned with empty values but let me try it.",
+      "parentUuid": "9a3d3df0_3ddf8bd7",
       "range": {
         "startLine": 47,
         "startChar": 0,
