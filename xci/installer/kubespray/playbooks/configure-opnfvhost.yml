@@ -62,6 +62,19 @@
         state: present
         update_cache: "{{ (ansible_pkg_mgr == 'apt') | ternary('yes', omit) }}"
       when: XCI_FLAVOR == 'aio'
+
+    - name: ensure log directory exist
+      stat:
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/roles/kubernetes-apps/ansible/templates/dashboard.yml.j2"
+      register: dashboard_file
+
+    - name: change dashboard server tpye to NodePort
+      lineinfile:
+        path: "{{ dashboard_file.stat.path }}"
+        insertafter: 'targetPort'
+        line: "  type: NodePort"
+      when: dashboard_file.stat.exists is defined and dashboard_file.stat.exists
+
     - name: pip install ansible
       pip:
         name: ansible
