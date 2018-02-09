@@ -157,7 +157,7 @@ kube_users:
 
 ## It is possible to activate / deactivate selected authentication methods (basic auth, static token auth)
 #kube_oidc_auth: false
-#kube_basic_auth: false
+kube_basic_auth: true
 #kube_token_auth: false
 
 
@@ -270,9 +270,10 @@ local_volumes_enabled: false
 persistent_volumes_enabled: false
 
 # Make a copy of kubeconfig on the host that runs Ansible in GITDIR/artifacts
-# kubeconfig_localhost: false
+kubeconfig_localhost: true
 # Download kubectl onto the host that runs Ansible in GITDIR/artifacts
-# kubectl_localhost: false
+kubectl_localhost: true
+artifacts_dir: "{{ ansible_env.HOME }}"
 
 # dnsmasq
 # dnsmasq_upstream_dns_servers:
@@ -289,3 +290,4 @@ persistent_volumes_enabled: false
 ## Supplementary addresses that can be added in kubernetes ssl keys.
 ## That can be usefull for example to setup a keepalived virtual IP
 # supplementary_addresses_in_ssl_keys: [10.0.0.1, 10.0.0.2, 10.0.0.3]
+cephfs_provisioner_enabled: false

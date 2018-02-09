@@ -56,6 +56,19 @@
     - name: copy k8s_cluster.yml
       shell: "cp -rf {{ remote_xci_path }}/xci/installer/kubespray/files/k8s-cluster.yml \
                      {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
+
+    - name: ensure log directory exist
+      stat:
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/roles/kubernetes-apps/ansible/templates/dashboard.yml.j2"
+      register: dashboard_file
+
+    - name: change dashboard server tpye to NodePort
+      lineinfile:
+        path: "{{ dashboard_file.stat.path }}"
+        insertafter: 'targetPort'
+        line: "  type: ClusterIP"
+      when: dashboard_file.stat.exists is defined and dashboard_file.stat.exists
+
     - name: install dbus and ptyhon-netaddr
       apt:
         name: "{{item}}"
