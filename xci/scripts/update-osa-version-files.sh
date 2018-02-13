@@ -35,6 +35,11 @@ printme() {
 # Only need a single argument
 [[ $# -lt 1 || $# -gt 2 ]] && echo "Invalid number of arguments!" && usage
 
+ironic_git_url=https://github.com/openstack/ironic
+ironic_client_git_url=https://github.com/openstack/python-ironicclient
+ironic_inspector_git_url=https://github.com/openstack/ironic-inspector
+ironic_inspector_client_git_url=https://github.com/openstack/python-ironic-inspector-client
+
 tempdir="$(mktemp -d)"
 
 trap cleanup EXIT
@@ -74,9 +79,19 @@ sed -i -e "/^export OPENSTACK_OSA_VERSION/s@:-\"[a-z0-9]*@:-\"${1}@" \
     -e "s/\(^# HEAD of osa.*of \).*/\1$(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
 
 # Update the pinned bifrost version
-[[ -n ${2:-} ]] && \
-    sed -i -e "/^export OPENSTACK_BIFROST_VERSION/s@:-\"[a-z0-9]*@:-\"${2}@" \
+if [[ -n ${2:-} ]]; then
+  echo "Updating bifrost..."
+  sed -i -e "/^export OPENSTACK_BIFROST_VERSION/s@:-\"[a-z0-9]*@:-\"${2}@" \
     -e "s/\(^# HEAD of bifrost.*of \).*/\1$(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
+  # Get ironic shas
+  for ironic in ironic_git_url ironic_client_git_url ironic_inspector_git_url ironic_inspector_client_git_url; do
+    ironic_sha=$(git ls-remote ${!ironic} | grep master | awk '{print $1}')
+    ironic=${ironic/_git*/}
+    echo "... updating ${ironic}"
+    sed -i -e "/^export BIFROST_${ironic^^}_VERSION/s@:-\"[a-z0-9]*@:-\"${ironic_sha}@" \
+      -e "s/\(^# HEAD of ${ironic/_/-}.*of \).*/\1$(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
+  done
+fi
 
 cp $tempdir/openstack-ansible/playbooks/defaults/repo_packages/openstack_services.yml ${releng_xci_base}/installer/osa/files/.
 cp $tempdir/openstack-ansible/global-requirement-pins.txt ${releng_xci_base}/installer/osa/files/.
