@@ -126,7 +126,10 @@ ${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} \
     -e write_interfaces_file=${WRITE_INTERFACES_FILE} \
     -e ipv4_gateway=192.168.122.1 \
     -e wait_timeout=${PROVISION_WAIT_TIMEOUT} \
-    -e enable_keystone=false
+    -e enable_keystone=false \
+	-e ironicinspector_source_install=true \
+	-e ironicinspectorclient_source_install=true \
+	-e ironicclient_source_install=true
 EXITCODE=$?
 
 if [ $EXITCODE != 0 ]; then
