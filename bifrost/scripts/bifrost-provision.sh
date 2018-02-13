@@ -128,8 +128,11 @@ ${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} \
     -e wait_timeout=${PROVISION_WAIT_TIMEOUT} \
     -e enable_keystone=false \
     -e ironicinspector_source_install=true \
+    -e ironicinspector_git_branch=${BIFROST_IRONIC_INSPECTOR_VERSION} \
     -e ironicinspectorclient_source_install=true \
-    -e ironicclient_source_install=true
+    -e ironicinspectorclient_git_branch=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION} \
+    -e ironicclient_source_install=true \
+    -e ironicclient_git_branch=${BIFROST_IRONIC_VERSION}
 EXITCODE=$?
 
 if [ $EXITCODE != 0 ]; then
