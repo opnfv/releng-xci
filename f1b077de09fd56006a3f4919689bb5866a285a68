@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_4618a884",
+        "filename": "xci/scripts/update-osa-version-files.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-02-13T15:31:22Z",
+      "side": 1,
+      "message": "Nit: remove tabs",
+      "revId": "f1b077de09fd56006a3f4919689bb5866a285a68",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
