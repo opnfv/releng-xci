@@ -25,8 +25,16 @@
 #-------------------------------------------------------------------------------
 # use releng-xci from master until the development work with the sandbox is complete
 export OPNFV_RELENG_VERSION="master"
-# HEAD of bifrost "master" as of 04.02.2018
-export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"593db8a7774abff54cdfa0dec8d8cca320b6cdf7"}
+# HEAD of bifrost "master" as of 13.02.2018
+export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"f3cf0d9fff6ec08ba0e46cbde5bfebfd77a26752"}
+# HEAD of ironic "master" as of 13.02.2018
+export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"180277a65a5ad7f9cdc55d55aee08ef25ff92f8b"}
+# HEAD of ironic-client "master" as of 13.02.2018
+export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"1da269b0e99601f8f6395b2ce3f436f5600e8140"}
+# HEAD of ironic-inspector "master" as of 13.02.2018
+export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"e090ffa36939b3df2e9a75c597a936556e8ac205"}
+# HEAD of ironic-inspector-client "master" as of 13.02.2018
+export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-"b73403fdad3165cfcccbf4b0330d426ae5925e01"}
 # HEAD of osa "master" as of 11.12.2017
 export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"7b3aac28a0a87e5966527829f6b0abcbc2303cc7"}
 export KEEPALIVED_VERSION=$(grep -E '.*name: keepalived' -A 3 \
