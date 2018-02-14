@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_f7a6c052",
+        "filename": "xci/playbooks/roles/run-functest/templates/env.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-02-14T20:30:36Z",
+      "side": 1,
+      "message": "is it possible to do this like below? will functest work?\n\n\n    CI_LOOP\u003d${CI_LOOP:-daily}\n\n\nThe reason for this is that we already have XCI_LOOP variable set/used by our jobs/scripts which I just renamed to align it with what functest is using.\n\nhttps://gerrit.opnfv.org/gerrit/#/c/52165/\nhttps://gerrit.opnfv.org/gerrit/#/c/52167/",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 13
+      },
+      "revId": "aace8806e0dbcc657d8a21345e7708efed9157aa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
