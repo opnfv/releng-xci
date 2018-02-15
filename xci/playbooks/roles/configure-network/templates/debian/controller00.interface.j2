@@ -5,23 +5,23 @@ auto lo
 iface lo inet loopback
 
 # Physical interface
-auto {{ interface }}
-iface {{ interface }} inet manual
+auto {{ ansible_default_ipv4.interface }}
+iface {{ ansible_default_ipv4.interface }} inet manual
 
 # Container/Host management VLAN interface
-auto {{ interface }}.10
-iface {{ interface }}.10 inet manual
-    vlan-raw-device {{ interface }}
+auto {{ ansible_default_ipv4.interface }}.10
+iface {{ ansible_default_ipv4.interface }}.10 inet manual
+    vlan-raw-device {{ ansible_default_ipv4.interface }}
 
 # OpenStack Networking VXLAN (tunnel/overlay) VLAN interface
-auto {{ interface }}.30
-iface {{ interface }}.30 inet manual
-    vlan-raw-device {{ interface }}
+auto {{ ansible_default_ipv4.interface }}.30
+iface {{ ansible_default_ipv4.interface }}.30 inet manual
+    vlan-raw-device {{ ansible_default_ipv4.interface }}
 
 # Storage network VLAN interface (optional)
-auto {{ interface }}.20
-iface {{ interface }}.20 inet manual
-    vlan-raw-device {{ interface }}
+auto {{ ansible_default_ipv4.interface }}.20
+iface {{ ansible_default_ipv4.interface }}.20 inet manual
+    vlan-raw-device {{ ansible_default_ipv4.interface }}
 
 # Container/Host management bridge
 auto br-mgmt
@@ -29,7 +29,7 @@ iface br-mgmt inet static
     bridge_stp off
     bridge_waitport 0
     bridge_fd 0
-    bridge_ports {{ interface }}.10
+    bridge_ports {{ ansible_default_ipv4.interface }}.10
     address {{host_info[inventory_hostname].MGMT_IP}}
     netmask 255.255.252.0
 
@@ -39,7 +39,7 @@ iface br-vxlan inet static
     bridge_stp off
     bridge_waitport 0
     bridge_fd 0
-    bridge_ports {{ interface }}.30
+    bridge_ports {{ ansible_default_ipv4.interface }}.30
     address {{host_info[inventory_hostname].VXLAN_IP}}
     netmask 255.255.252.0
 
@@ -49,7 +49,7 @@ iface br-vlan inet static
     bridge_stp off
     bridge_waitport 0
     bridge_fd 0
-    bridge_ports {{ interface }}
+    bridge_ports {{ ansible_default_ipv4.interface }}
     address {{host_info[inventory_hostname].VLAN_IP}}
     netmask 255.255.255.0
     gateway 192.168.122.1
@@ -69,6 +69,6 @@ iface br-storage inet static
     bridge_stp off
     bridge_waitport 0
     bridge_fd 0
-    bridge_ports {{ interface }}.20
+    bridge_ports {{ ansible_default_ipv4.interface }}.20
     address {{host_info[inventory_hostname].STORAGE_IP}}
     netmask 255.255.252.0

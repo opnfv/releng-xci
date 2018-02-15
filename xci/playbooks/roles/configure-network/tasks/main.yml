@@ -30,7 +30,7 @@
         src: "{{ ansible_os_family | lower }}/{{ ansible_hostname }}.interface.j2"
         dest: "/etc/network/interfaces"
     - name: restart network service
-      shell: "/sbin/ifconfig {{ interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
+      shell: "/sbin/ifconfig {{ ansible_default_ipv4.interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
   when: ansible_os_family | lower == "debian"
 
 - block:
@@ -47,14 +47,14 @@
         src: "{{ ansible_os_family | lower }}/suse.interface.j2"
         dest: "/etc/sysconfig/network/ifcfg-{{ item.name }}"
       with_items:
-        - { name: "{{ interface }}" }
-        - { name: "{{ interface }}.10", vlan_id: 10 }
-        - { name: "{{ interface }}.30", vlan_id: 30 }
-        - { name: "{{ interface }}.20", vlan_id: 20 }
-        - { name: "br-mgmt", bridge_ports: "{{ interface }}.10", ip: "{{ host_info[inventory_hostname].MGMT_IP }}/22" }
-        - { name: "br-vxlan", bridge_ports: "{{ interface }}.30", ip: "{{ host_info[inventory_hostname].VXLAN_IP }}/22" }
-        - { name: "br-vlan", bridge_ports: "{{ interface }}", ip: "{{ host_info[inventory_hostname].VLAN_IP }}/24" }
-        - { name: "br-storage", bridge_ports: "{{ interface }}.20", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}/22" }
+        - { name: "{{ ansible_default_ipv4.interface }}" }
+        - { name: "{{ ansible_default_ipv4.interface }}.10", vlan_id: 10 }
+        - { name: "{{ ansible_default_ipv4.interface }}.30", vlan_id: 30 }
+        - { name: "{{ ansible_default_ipv4.interface }}.20", vlan_id: 20 }
+        - { name: "br-mgmt", bridge_ports: "{{ ansible_default_ipv4.interface }}.10", ip: "{{ host_info[inventory_hostname].MGMT_IP }}/22" }
+        - { name: "br-vxlan", bridge_ports: "{{ ansible_default_ipv4.interface }}.30", ip: "{{ host_info[inventory_hostname].VXLAN_IP }}/22" }
+        - { name: "br-vlan", bridge_ports: "{{ ansible_default_ipv4.interface }}", ip: "{{ host_info[inventory_hostname].VLAN_IP }}/24" }
+        - { name: "br-storage", bridge_ports: "{{ ansible_default_ipv4.interface }}.20", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}/22" }
 
     - name: Add postup/postdown scripts on SUSE
       copy:
@@ -79,10 +79,10 @@
         src: "{{ ansible_os_family | lower }}/interface.ifcfg.j2"
         dest: "/etc/sysconfig/network-scripts/ifcfg-{{ item.name }}"
       with_items:
-        - { name: "{{ interface }}"   , bridge: "br-vlan"                 }
-        - { name: "{{ interface }}.10", bridge: "br-mgmt"   , vlan_id: 10 }
-        - { name: "{{ interface }}.20", bridge: "br-storage", vlan_id: 20 }
-        - { name: "{{ interface }}.30", bridge: "br-vxlan"  , vlan_id: 30 }
+        - { name: "{{ ansible_default_ipv4.interface }}"   , bridge: "br-vlan"                 }
+        - { name: "{{ ansible_default_ipv4.interface }}.10", bridge: "br-mgmt"   , vlan_id: 10 }
+        - { name: "{{ ansible_default_ipv4.interface }}.20", bridge: "br-storage", vlan_id: 20 }
+        - { name: "{{ ansible_default_ipv4.interface }}.30", bridge: "br-vxlan"  , vlan_id: 30 }
     - name: Configure networking on CentOS for bridges
       template:
         src: "{{ ansible_os_family | lower }}/bridge.ifcfg.j2"
