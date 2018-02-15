@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_a657e701",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-02-15T15:35:17Z",
+      "side": 1,
+      "message": "This is the same variable as below.",
+      "range": {
+        "startLine": 31,
+        "startChar": 32,
+        "endLine": 31,
+        "endChar": 63
+      },
+      "revId": "884c8bbced3fe5320cdb08629343b22ec859aeaf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
