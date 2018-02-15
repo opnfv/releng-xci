@@ -8,7 +8,6 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 # this is the interface the VM nodes are connected to libvirt network "default"
-interface: "eth0"
 python_crypto_package_name: python-pycrypto
 docker_package_name: docker
 docker_service_name: docker

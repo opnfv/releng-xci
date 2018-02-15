@@ -10,7 +10,7 @@ keepalived_sync_groups:
     instances:
       - external
 
-haproxy_keepalived_external_interface: "{{ interface }}"
+haproxy_keepalived_external_interface: "{{ ansible_default_ipv4.interface }}"
 haproxy_keepalived_authentication_password: 'keepalived'
 keepalived_instances:
   external:
