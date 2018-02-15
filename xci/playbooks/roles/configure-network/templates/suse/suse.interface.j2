@@ -1,7 +1,7 @@
 STARTMODE='auto'
 BOOTPROTO='static'
 {% if item.vlan_id is defined %}
-ETHERDEVICE={{ interface }}
+ETHERDEVICE={{ ansible_default_ipv4.interface }}
 VLAN_ID={{ item.vlan_id }}
 {% endif %}
 {% if item.bridge_ports is defined %}

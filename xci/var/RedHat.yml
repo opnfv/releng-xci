@@ -8,7 +8,6 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 # this is placeholder and left blank intentionally to complete later on
-interface: "ens3"
 python_crypto_package_name: python-crypto
 docker_package_name: docker
 docker_service_name: docker
