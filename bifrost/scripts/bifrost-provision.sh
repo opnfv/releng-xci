@@ -22,6 +22,11 @@ PROVISION_WAIT_TIMEOUT=${PROVISION_WAIT_TIMEOUT:-3600}
 # This is normally exported by XCI env but we should initialize it here
 # in case we run this script on its own for debug purposes
 XCI_ANSIBLE_VERBOSITY=${XCI_ANSIBLE_VERBOSITY:-}
+# Ironic SHAs
+BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-master}
+BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-master}
+BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-master}
+BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-master}
 
 # Ensure the right inventory files is used based on branch
 CURRENT_BIFROST_BRANCH=$(git rev-parse --abbrev-ref HEAD)
