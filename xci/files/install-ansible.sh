@@ -16,6 +16,7 @@ CHECK_CMD_PKGS=(
     libopenssl
     lsb-release
     make
+    moreutils
     net-tools
     python-devel
     python
@@ -35,6 +36,7 @@ case ${ID,,} in
         [libopenssl]=libopenssl-devel
         [lsb-release]=lsb-release
         [make]=make
+        [moreutils]=moreutils
         [net-tools]=net-tools
         [python]=python
         [python-devel]=python-devel
@@ -61,6 +63,7 @@ case ${ID,,} in
         [libopenssl]=libssl-dev
         [lsb-release]=lsb-release
         [make]=make
+        [moreutils]=moreutils
         [net-tools]=net-tools
         [python]=python-minimal
         [python-devel]=libpython-dev
@@ -82,6 +85,7 @@ case ${ID,,} in
         [libopenssl]=openssl-devel
         [lsb-release]=redhat-lsb
         [make]=make
+        [moreutils]=moreutils
         [net-tools]=net-tools
         [python]=python
         [python-devel]=python-devel
