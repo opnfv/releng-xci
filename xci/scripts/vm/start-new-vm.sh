@@ -335,7 +335,7 @@ if [[ $? != 0 ]]; then
 #!/bin/bash
 export XCI_FLAVOR=mini
 cd ~/releng-xci/xci
-./xci-deploy.sh
+./xci-deploy.sh | ts
 EOF
 		# Copy again
 		do_copy
