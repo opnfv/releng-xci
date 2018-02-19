@@ -168,4 +168,10 @@ echo "Info: Deploying '${XCI_INSTALLER}' installer"
 echo "-----------------------------------------------------------------------"
 source ${XCI_PATH}/xci/installer/${XCI_INSTALLER}/deploy.sh
 
+# Deployment time
+xci_deploy_time=$SECONDS
+echo "-------------------------------------------------------------------------------------------------------------"
+echo "Info: xci_deploy.sh deployment took $(($xci_deploy_time / 60)) minutes and $(($xci_deploy_time % 60)) seconds"
+echo "-------------------------------------------------------------------------------------------------------------"
+
 # vim: set ts=4 sw=4 expandtab:
