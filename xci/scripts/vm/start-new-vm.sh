@@ -208,12 +208,12 @@ if sudo vgscan | grep -q xci-vm-vg; then
 	}
 	echo "Flusing the ${OS_IMAGE_FILE} image to ${lv_dev}..."
 	sudo qemu-img convert -O raw ${OS_IMAGE_FILE} ${lv_dev}
-	disk_config="${lv_dev},cache=directsync,bus=virtio"
+	disk_config="${lv_dev},cache=writeback,bus=virtio"
 else
 	echo "Using file backend..."
 	echo "Resizing disk image '${OS}' to ${DISK}G..."
 	qemu-img resize ${OS_IMAGE_FILE} ${DISK}G
-	disk_config="${OS_IMAGE_FILE},cache=none,bus=virtio"
+	disk_config="${OS_IMAGE_FILE},cache=writeback,bus=virtio"
 fi
 
 echo "Installing virtual machine '${VM_NAME}'..."

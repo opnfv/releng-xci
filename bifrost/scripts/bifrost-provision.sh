@@ -46,7 +46,7 @@ export VM_DOMAIN_TYPE=${VM_DOMAIN_TYPE:-kvm}
 export VM_CPU=${VM_CPU:-4}
 export VM_DISK=${VM_DISK:-100}
 export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-8192}
-export VM_DISK_CACHE=${VM_DISK_CACHE:-none}
+export VM_DISK_CACHE=${VM_DISK_CACHE:-writeback}
 
 # Settings for bifrost
 TEST_PLAYBOOK="opnfv-virtual.yaml"
