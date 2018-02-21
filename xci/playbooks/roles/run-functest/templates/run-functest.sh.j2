@@ -11,9 +11,11 @@ openstack --insecure subnet create --network {{ external_network }} \
   --subnet-range {{ subnet_cidr }} --gateway {{ gateway_ip }} \
   --no-dhcp {{ subnet_name }}
 
+mkdir ~/results/
 mkdir ~/images && cd ~/images && wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img && cd ~
 
 sudo docker run --env-file env \
     -v $(pwd)/openrc:/home/opnfv/functest/conf/env_file  \
     -v $(pwd)/images:/home/opnfv/functest/images  \
+    -v $(pwd)/results:/home/opnfv/functest/results \
     opnfv/functest-healthcheck
