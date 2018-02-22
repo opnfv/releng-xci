@@ -19,8 +19,17 @@
 - name: prepare environment file for functest
   template:
     src: env.j2
-    dest: /root/env
+    dest: "{{ env_path }}"
     mode: 0755
+
+- name: prepare environment file for functest 2
+  template:
+    src: add-osa-version.sh.j2
+    dest: /root/add-osa-version.sh
+    mode: 0755
+
+- name: execute the script
+  shell: "/root/add-osa-version.sh"
 
 - name: prepare the script to create networks and run functest
   template:

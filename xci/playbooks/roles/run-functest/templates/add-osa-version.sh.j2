@@ -1,0 +1,11 @@
+#!/bin/bash
+
+OSA_DIR=/root/releng-xci/.cache/repos/openstack-ansible/
+PIKE_BRANCH=$(git -C releng-xci/.cache/repos/openstack-ansible/ branch | grep pike)
+QUEENS_BRANCH=$(git -C releng-xci/.cache/repos/openstack-ansible/ branch | grep queens)
+
+if [ -n "$PIKE_BRANCH" ]; then
+  echo "OSA_VERSION=pike" >> {{ env_path }}
+elif [ -n "$QUEENS_BRANCH" ]; then
+  echo "OSA_VERSION=queens" >> {{ env_path }}
+fi
