@@ -3,6 +3,9 @@
 # Variables that we need to pass from XCI to functest
 XCI_ENV=(INSTALLER_TYPE DEPLOY_SCENARIO XCI_FLAVOR)
 
+# Obtain OSA's version and add it to env
+/root/add-osa-version.sh
+
 source /root/openrc
 
 openstack --insecure network create --external \
