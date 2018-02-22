@@ -1,0 +1,8 @@
+Code-Review+1: Dimitrios Markou <mardim@intracom-telecom.com>
+Code-Review+2: Markos Chandras <mchandras@suse.de>
+Verified+1: Markos Chandras <mchandras@suse.de>
+Submitted-by: Markos Chandras <mchandras@suse.de>
+Submitted-at: Thu, 22 Feb 2018 17:48:49 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/52463
+Project: releng-xci
+Branch: refs/heads/master
