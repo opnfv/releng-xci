@@ -18,9 +18,12 @@
 
 - name: prepare environment file for functest
   template:
-    src: env.j2
-    dest: /root/env
-    mode: 0755
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
+  with_items:
+    - { src: env.j2, dest: "{{ env_path }}", mode: "0755" }
+    - { src: add-osa-version.sh.j2, dest: "{{ osa_version_script_path }}", mode: "0755" }
 
 - name: prepare the script to create networks and run functest
   template:
