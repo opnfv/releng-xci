@@ -1,0 +1,14 @@
+---
+- name: Configure Jenkins slaves
+  hosts: slaves
+  become: yes
+  gather_facts: True
+  tasks:
+    - fail:
+        msg: "Only Ubuntu distros are supported at the moment"
+      when: ansible_pkg_mgr != 'apt'
+    - include_tasks: bootstrap.yml
+    - include_tasks: user.yml
+    - include_tasks: virt.yml
+    - include_tasks: monit.yml
+    - include_tasks: update.yml

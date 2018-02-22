@@ -1,0 +1,42 @@
+- name: Install monit package
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - monit
+    - default-jdk
+
+- name: Clone opnfv repository
+  git:
+    dest: /home/jenkins/opnfv/repos/releng/
+    repo: https://gerrit.opnfv.org/gerrit/p/releng.git
+    update: yes
+
+- name: Copy jnlp script
+  file:
+    src: /home/jenkins/opnfv/repos/releng/utils/jenkins-jnlp-connect.sh
+    dest: /home/jenkins/jenkins-jnlp-connect.sh
+    state: link
+
+- name: Configure monit service
+  copy:
+    src: monitrc
+    dest: /etc/monit/monitrc
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
+
+- name: Configure jenkins on monit
+  template:
+    src: jenkins.conf.j2
+    dest: /etc/monit/conf.d/jenkins
+    force: yes
+    owner: 'root'
+    group: 'root'
+    mode: '0640'
+
+- name: Start monit service
+  service:
+    name: monit
+    state: started
+

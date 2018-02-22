@@ -1,0 +1,11 @@
+[slaves]
+pod16-jump ansible_host=10.10.160.20 jenkins_host=intel-virtual11
+pod16-node1 ansible_host=10.10.160.21 jenkins_host=intel-virtual12
+pod16-node2 ansible_host=10.10.160.22 jenkins_host=intel-virtual13
+pod16-node3 ansible_host=10.10.160.23 jenkins_host=intel-virtual14
+pod16-node4 ansible_host=10.10.160.24 jenkins_host=intel-virtual15
+pod16-node5 ansible_host=10.10.160.25 jenkins_host=intel-virtual16
+
+[functest]
+pod16-node4 ansible_host=10.10.160.24 jenkins_host=intel-virtual15
+pod16-node5 ansible_host=10.10.160.25 jenkins_host=intel-virtual16

@@ -1,0 +1,75 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2017 Ericsson AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+- hosts: localhost
+  connection: local
+
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: "{{ item }}"
+      failed_when: false
+      with_items:
+        - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
+
+    - name: cleanup leftovers of previous deployment
+      file:
+        path: "{{ item }}"
+        state: absent
+        recurse: no
+      with_items:
+        - "{{ XCI_CACHE }}/repos"
+        - "{{ LOG_PATH }} "
+        - "{{ OPNFV_SSH_HOST_KEYS_PATH }}"
+
+  roles:
+    - role: clone-repository
+      project: "openstack/openstack-ansible-openstack_openrc"
+      repo: "{{ OPENSTACK_OSA_OPENRC_GIT_URL }}"
+      dest: roles/openstack-ansible-openstack_openrc
+      version: "master"
+    - role: clone-repository
+      project: "openstack/openstack-ansible"
+      repo: "{{ OPENSTACK_OSA_GIT_URL }}"
+      dest: "{{ XCI_CACHE }}/repos/openstack-ansible"
+      version: "{{ OPENSTACK_OSA_VERSION }}"
+
+  tasks:
+    - name:  create log directory {{LOG_PATH}}
+      file:
+        path: "{{LOG_PATH}}"
+        state: directory
+        recurse: no
+    - name: check if certificate directory /etc/ssl/certs exists already
+      stat: path=/etc/ssl/certs
+      register: check_etc_ssl_certs
+    - name: create certificate directory /etc/ssl/certs
+      become: true
+      file:
+        path: "/etc/ssl/certs"
+        state: directory
+      when: check_etc_ssl_certs.stat.exists == false
+    - name: create key directory /etc/ssl/private
+      become: true
+      file:
+        path: "/etc/ssl/private"
+        state: directory
+    - name: generate self signed certificate
+      command: openssl req -new -nodes -x509 -subj "{{ XCI_SSL_SUBJECT }}" -days 3650 -keyout "/etc/ssl/private/xci.key" -out "/etc/ssl/certs/xci.crt" -extensions v3_ca
+      become: true
+    - name: Synchronize local development OSA repository to XCI paths
+      # command module is much faster than the copy module
+      synchronize:
+        src: "{{ OPENSTACK_OSA_DEV_PATH }}"
+        dest: "{{ XCI_CACHE }}/repos/openstack-ansible"
+        recursive: yes
+        delete: yes
+      when:
+        - OPENSTACK_OSA_DEV_PATH != ""

@@ -1,0 +1,9 @@
+check directory jenkins_piddir path /var/run/jenkins
+if does not exist then exec "/bin/mkdir -p /var/run/jenkins"
+if failed uid jenkins then exec "/bin/chown jenkins /var/run/jenkins"
+if failed gid jenkins then exec "/bin/chown :jenkins /var/run/jenkins"
+
+check process jenkins with pidfile /var/run/jenkins/jenkins_jnlp_pid
+start program = "/usr/bin/sudo -u jenkins /bin/bash -c 'cd /home/jenkins; export started_monit=true; ./jenkins-jnlp-connect.sh -j /home/jenkins -u jenkins -n {{ jenkins_host }} -s {{ jenkins_pass[jenkins_host] }}' with timeout 60 seconds"
+stop program = "/bin/bash -c '/bin/kill $(/bin/cat /var/run/jenkins/jenkins_jnlp_pid)'"
+depends on jenkins_piddir

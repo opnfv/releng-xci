@@ -1,0 +1,25 @@
+- name: Update system
+  apt:
+    upgrade: "{{ upgrade | default('yes') }}"
+  register: _server_upgraded
+  tags:
+    - system-update
+
+- name: Restart server
+  block:
+    - command: /sbin/shutdown -r +1
+      async: 0
+      poll: 0
+      ignore_errors: true
+    - local_action:
+        module: wait_for
+        host: "{{ ansible_host }}"
+        delay: 30
+        state: started
+        port: 22
+        connect_timeout: 10
+        timeout: 180
+        become: no
+  when: _server_upgraded|changed
+  tags:
+    - system-update

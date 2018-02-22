@@ -1,0 +1,26 @@
+- name: Configure jenkins user
+  user:
+    createhome: yes
+    name: jenkins
+    uid: 1000
+    groups:
+      - adm
+      - cdrom
+      - sudo
+      - dip
+      - plugdev
+      - lxd
+      - lpadmin
+      - sambashare
+      - libvirtd
+    password: $6$XhPNkw6qVTX$rmhJ.M3juc926d7KUY8GM9EB6FUfv0imeRLbb9c3k25zD.YpOdo3pUQ7Svqmus5pgzptw.Gzpj4t6Fy.5jRRe0
+    shell: /bin/bash
+    state: present
+    update_password: always
+- name: Configure sudoers file
+  lineinfile:
+    regexp: '^%sudo.*'
+    line: '%sudo   ALL=(ALL:ALL) NOPASSWD: ALL'
+    path: /etc/sudoers
+    state: present
+

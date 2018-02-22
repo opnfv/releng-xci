@@ -1,0 +1,22 @@
+- name: Configure nested virtualization
+  lineinfile:
+    regexp: '^options.*kvm_intel.*'
+    line: 'options kvm_intel nested=1'
+    path: /etc/modprobe.d/qemu-system-x86.conf
+    state: present
+  register: _nested_virt
+
+- name: Reload KVM module
+  modprobe:
+    name: kvm_intel
+    state: present
+    params: 'nested=1'
+  when: _nested_virt|changed
+
+- name: Configure SSH key
+  authorized_key:
+    exclusive: no
+    key: "{{ lookup('file', ssh_key | default('~/.ssh/id_rsa.pub')) }}"
+    state: present
+    user: jenkins
+    comment: "{{ lookup('env', 'USER') ~ '@' ~ lookup('env', 'HOSTNAME') }}"
