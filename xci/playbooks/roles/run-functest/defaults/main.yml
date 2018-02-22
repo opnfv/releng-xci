@@ -12,3 +12,6 @@ external_network: "ext-net"
 subnet_name: "ext-subnet"
 allocation_pool: "start=10.10.10.5,end=10.10.10.254"
 subnet_cidr: "10.10.10.0/24"
+
+env_path: /root/env
+script_path: /root/add-osa-version.sh
