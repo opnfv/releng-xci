@@ -1,0 +1,5 @@
+#!/bin/bash
+
+OSA_DIR=/root/releng-xci/.cache/repos/openstack-ansible/
+OSA_VERSION=$(git -C $OSA_DIR branch | grep stable | cut -d"/" -f2)
+echo "OSA_VERSION=$OSA_VERSION" >> {{ env_path }}
