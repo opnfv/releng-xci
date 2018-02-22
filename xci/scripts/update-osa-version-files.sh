@@ -17,6 +17,14 @@ set -e
 # NOTE(hwoarang) This could break if files are re-arranged in the future
 releng_xci_base="$(dirname $(readlink -f $0))/.."
 
+if [[ ${OPENSTACK_OSA_VERSION} =~ stable/ ]]; then
+    force_master="false"
+    pre_release="false"
+else
+    force_master="true"
+    pre_release="true"
+fi
+
 usage() {
     echo """
     ${0} <openstack-ansible commit SHA> [<bifrost commit SHA>]
@@ -58,7 +66,7 @@ popd &> /dev/null
 pushd $tempdir/openstack-ansible &> /dev/null
 source scripts/sources-branch-updater-lib.sh
 printme "Synchronize roles and packages"
-update_ansible_role_requirements "${OPENSTACK_OSA_VERSION:-master}" "true" "true"
+update_ansible_role_requirements "${OPENSTACK_OSA_VERSION:-master}" $pre_release $force_master
 
 # Construct the ansible-role-requirements-file
 echo """---
@@ -71,12 +79,12 @@ echo """---
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 # these versions are based on the osa commit ${1} on $(git --no-pager log -1 --format=%cd --date=format:%Y-%m-%d $1)
-# https://review.openstack.org/gitweb?p=openstack/openstack-ansible.git;a=commit;h=$1""" > $releng_xci_base/installer/osa/files/ansible-role-requirements.yml
+# http://git.openstack.org/cgit/openstack/openstack-ansible/commit/?id=$1""" > $releng_xci_base/installer/osa/files/ansible-role-requirements.yml
 cat $tempdir/openstack-ansible/ansible-role-requirements.yml >> $releng_xci_base/installer/osa/files/ansible-role-requirements.yml
 
 # Update the pinned OSA version
 sed -i -e "/^export OPENSTACK_OSA_VERSION/s@:-\"[a-z0-9]*@:-\"${1}@" \
-    -e "s/\(^# HEAD of osa.*of \).*/\1$(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
+    -e "s@^# HEAD of osa.*@# HEAD of osa \"${OPENSTACK_OSA_VERSION}\" as of $(date +%d\.%m\.%Y)@" $releng_xci_base/config/pinned-versions
 
 # Update the pinned bifrost version
 if [[ -n ${2:-} ]]; then
