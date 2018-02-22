@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_94ee4c8a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-02-22T20:06:47Z",
+      "side": 1,
+      "message": "This link is useful as long as you know the relationship between \"cinder_volume_clear\"(osa) and \"volume_clear\"(cinder)\n\n    * http://git.openstack.org/cgit/openstack/cinder/tree/cinder/volume/driver.py#n81",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 64
+      },
+      "revId": "f8315eedbeaa79157c489a89a155c9690a97780b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
