@@ -3,6 +3,6 @@
 !clone-repository/
 !configure-network/
 !configure-nfs/
-!prepare-functest/
+!run-functest/
 !remote-folders/
 !synchronize-time/
