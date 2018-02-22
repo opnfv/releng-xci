@@ -62,6 +62,7 @@ barbican_wsgi_processes: 2
 barbican_wsgi_threads: 1
 
 ## Cinder
+cinder_volume_clear: none
 cinder_wsgi_processes_max: 2
 cinder_wsgi_threads: 1
 cinder_wsgi_buffer_size: 16384
