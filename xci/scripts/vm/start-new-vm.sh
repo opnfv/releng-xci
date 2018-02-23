@@ -333,6 +333,7 @@ if [[ $? != 0 ]]; then
 		echo "Creating a default test case to run xci-deploy.sh"
 		cat > ${BASE_PATH}/run_jenkins_test.sh <<EOF
 #!/bin/bash
+set -o pipefail
 export XCI_FLAVOR=mini
 cd ~/releng-xci/xci
 ./xci-deploy.sh | ts
