@@ -321,6 +321,9 @@ rm ${BASE_PATH}/vm_hosts.txt
 $vm_ssh ${VM_NAME} "cp --preserve=all ~/releng-xci/xci/scripts/vm/id_rsa_for_dib /home/devuser/.ssh/id_rsa"
 $vm_ssh ${VM_NAME} "cp --preserve=all ~/releng-xci/xci/scripts/vm/id_rsa_for_dib.pub /home/devuser/.ssh/id_rsa.pub"
 $vm_ssh ${VM_NAME} "sudo mv /home/devuser/releng-xci/vm_hosts.txt /etc/hosts"
+# Disable 3-level nested virtualization since it makes things terribly slow
+$vm_ssh ${VM_NAME} "sudo bash -c 'echo \"options kvm_intel nested=0\" > /etc/modprobe.d/qemu-system-x86.conf'"
+$vm_ssh ${VM_NAME} "sudo modprobe -r kvm_intel && sudo modprobe -a kvm_intel"
 
 set +e
 
