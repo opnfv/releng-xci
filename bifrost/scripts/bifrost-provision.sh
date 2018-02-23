@@ -107,7 +107,7 @@ ${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} \
        -i inventory/localhost \
        test-bifrost-create-vm.yaml \
        -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
-       -e test_vm_cpu='host-passthrough' \
+       -e test_vm_cpu='host-model' \
        -e test_vm_memory_size=${VM_MEMORY_SIZE} \
        -e enable_venv=${ENABLE_VENV} \
        -e test_vm_domain_type=${VM_DOMAIN_TYPE} \
@@ -120,7 +120,7 @@ ${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} \
     -e use_cirros=${USE_CIRROS} \
     -e testing_user=${TESTING_USER} \
     -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
-    -e test_vm_cpu='host-passthrough' \
+    -e test_vm_cpu='host-model' \
     -e inventory_dhcp=${INVENTORY_DHCP} \
     -e inventory_dhcp_static_ip=${INVENTORY_DHCP_STATIC_IP} \
     -e enable_venv=${ENABLE_VENV} \
