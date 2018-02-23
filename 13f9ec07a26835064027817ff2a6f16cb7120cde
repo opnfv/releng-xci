@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_c5413c0d",
+        "filename": "bifrost/scripts/bifrost-provision.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-02-23T20:01:08Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be better to use the \"XCI_CPU_TYPE\" variable here?",
+      "range": {
+        "startLine": 110,
+        "startChar": 22,
+        "endLine": 110,
+        "endChar": 34
+      },
+      "revId": "13f9ec07a26835064027817ff2a6f16cb7120cde",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
