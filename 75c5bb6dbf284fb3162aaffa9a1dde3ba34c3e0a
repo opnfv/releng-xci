@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_054b242c",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-02-23T20:03:36Z",
+      "side": 1,
+      "message": "In addition of this, it\u0027s an OpenStack best practice \n\n    * https://docs.openstack.org/ha-guide/environment-ntp.html",
+      "range": {
+        "startLine": 31,
+        "startChar": 6,
+        "endLine": 31,
+        "endChar": 83
+      },
+      "revId": "75c5bb6dbf284fb3162aaffa9a1dde3ba34c3e0a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
