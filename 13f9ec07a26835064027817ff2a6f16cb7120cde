@@ -22,6 +22,30 @@
       "revId": "13f9ec07a26835064027817ff2a6f16cb7120cde",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a05cde26",
+        "filename": "bifrost/scripts/bifrost-provision.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-02-24T08:56:14Z",
+      "side": 1,
+      "message": "Unfortunately this variable only affects the Jenkins virtual machine so it\u0027s not visible to the rest of the deployment nor to those who run the deployment themselves.",
+      "parentUuid": "5a3f45e8_c5413c0d",
+      "range": {
+        "startLine": 110,
+        "startChar": 22,
+        "endLine": 110,
+        "endChar": 34
+      },
+      "revId": "13f9ec07a26835064027817ff2a6f16cb7120cde",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
