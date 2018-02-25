@@ -22,6 +22,29 @@
       "revId": "aace8806e0dbcc657d8a21345e7708efed9157aa",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b2d9e685",
+        "filename": "xci/playbooks/roles/run-functest/templates/env.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-02-25T09:50:16Z",
+      "side": 1,
+      "message": "Cedric,\n\nWe",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 13
+      },
+      "revId": "aace8806e0dbcc657d8a21345e7708efed9157aa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
