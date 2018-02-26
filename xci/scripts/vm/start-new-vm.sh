@@ -83,7 +83,7 @@ update_clean_vm_files() {
 
 [[ $# -ne 1 ]] && usage && exit 1
 
-declare -r CPU=${XCI_CPU_TYPE:-host-passthrough}
+declare -r CPU=${XCI_CPU_TYPE:-host-model}
 declare -r NCPUS=${XCI_NCPUS:-24}
 declare -r MEMORY=${XCI_MEMORY_SIZE:-65536}
 declare -r DISK=${XCI_DISK_SIZE:-500}
