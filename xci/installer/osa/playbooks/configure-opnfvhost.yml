@@ -28,6 +28,8 @@
   roles:
     - role: configure-network
       when: XCI_FLAVOR != "aio"
+    # we need to force sync time with ntp or the nodes will be out of sync timewise
+    - role: synchronize-time
 
   tasks:
     - name: generate SSH keys
