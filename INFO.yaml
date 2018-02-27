@@ -1,0 +1,42 @@
+---
+subproject: 'Cross Community CI (XCI)'
+project_category: 'Integration & Testing'
+lifecycle_state: 'Incubation'
+subproject_lead: &opnfv_releng_ptl
+    name: 'Fatih Degirmenci'
+    email: 'fatih.degirmenci@ericsson.com'
+    id: 'fdegir'
+    company: 'Ericsson'
+    timezone: 'Europe/Stockholm'
+primary_contact: *opnfv_releng_ptl
+issue_tracking:
+    type: 'jira'
+    url: 'https://jira.opnfv.org/projects/RELENG'
+    key: 'RELENG'
+mailing_list:
+    type: 'mailman2'
+    url: 'opnfv-tech-discuss@lists.opnfv.org'
+    tag: '[xci]'
+realtime_discussion:
+    type: 'irc'
+    server: 'freenode.net'
+    channel: '#opnfv-pharos'
+meetings:
+    - type: 'irc'
+      agenda: 'https://etherpad.opnfv.org/p/xci-meetings'
+      channel: '#opnfv-pharos'
+      repeats: 'weekly'
+      day: 'Wednesday'
+      time: '14:00 UTC'
+committers:
+    - <<: *opnfv_releng_ptl
+    - name: 'Yolanda Robla Mota'
+      company: 'Red Hat'
+      email: 'yroblamo@redhat.com'
+      id: 'yrobla'
+      timezone: 'Europe/Barcelona'
+    - name: 'Markos Chandras'
+      company: 'SUSE'
+      email: 'mchandras@suse.de'
+      id: 'mchandras'
+      timezone: 'Europe/London'
