@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_43bb5f0e",
+        "filename": "xci/playbooks/roles/run-functest/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-02-27T14:29:37Z",
+      "side": 1,
+      "message": "great idea!",
+      "parentUuid": "5a3f45e8_e8124861",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 14
+      },
+      "revId": "d799c5926827647feb2e2bdb2b8ef0a3ae3b465f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_280c3042",
         "filename": "xci/playbooks/roles/run-functest/tasks/main.yml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-02-27T10:49:33Z",
       "side": 1,
       "message": "why not make the add-osa-version.sh executed as part of run-functest.sh instead of having two tasks?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 14
+      },
+      "revId": "d799c5926827647feb2e2bdb2b8ef0a3ae3b465f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_833c4795",
+        "filename": "xci/playbooks/roles/run-functest/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-02-27T14:29:37Z",
+      "side": 1,
+      "message": "yes, we can do that too",
+      "parentUuid": "5a3f45e8_280c3042",
       "range": {
         "startLine": 31,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_c35f6f71",
+        "filename": "xci/playbooks/roles/run-functest/templates/add-osa-version.sh.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-02-27T14:29:37Z",
+      "side": 1,
+      "message": "I created it but never used it. thx!",
+      "parentUuid": "5a3f45e8_08097431",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 56
+      },
+      "revId": "d799c5926827647feb2e2bdb2b8ef0a3ae3b465f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_48037c0f",
         "filename": "xci/playbooks/roles/run-functest/templates/add-osa-version.sh.j2",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2018-02-27T10:49:33Z",
       "side": 1,
       "message": "is it not easier to filter out stuff using \u0027stable\u0027 instead so we don\u0027t have to update it on every openstack release?\n\nBRANCH\u003d$(git -C releng-xci/.cache/repos/openstack-ansible/ branch | grep stable)\n\necho OSA_VERSION\u003d${BRANCH/stable\\/} .. etc?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 87
+      },
+      "revId": "d799c5926827647feb2e2bdb2b8ef0a3ae3b465f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_23545353",
+        "filename": "xci/playbooks/roles/run-functest/templates/add-osa-version.sh.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-02-27T14:29:37Z",
+      "side": 1,
+      "message": "good idea",
+      "parentUuid": "5a3f45e8_48037c0f",
       "range": {
         "startLine": 4,
         "startChar": 0,
