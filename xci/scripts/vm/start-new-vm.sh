@@ -100,7 +100,6 @@ sudo virsh destroy ${VM_NAME} || true
 sudo virsh undefine ${VM_NAME} || true
 
 source /etc/os-release
-echo "Installing host (${ID,,}) dependencies..."
 # check we can run sudo
 if ! sudo -n "true"; then
 	echo ""
@@ -126,10 +125,18 @@ case ${ID,,} in
 		;;
 esac
 
+echo "Checking for running package manager instance..."
 while true; do
-	pgrep -fa "${pkg_mgr_cmd%*install*}" 2>&1 && sleep 60 || break
+	_pkg_mgr_proc=$(pgrep -f "${pkg_mgr_cmd%*install*}")
+	if [[ -n ${_pkg_mgr_proc} ]]; then
+		echo "Wainting for process ${_pkg_mgr_proc} to finish..."
+		sleep 60
+	else
+		break
+	fi
 done
 
+echo "Installing host (${ID,,}) dependencies..."
 eval ${pkg_mgr_cmd} &> /dev/null
 
 echo "Ensuring libvirt and docker services are running..."
