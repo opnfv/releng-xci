@@ -53,6 +53,7 @@ update_clean_vm_files() {
 	local image_remote="${opnfv_url}/${OS}.qcow2"
 
 	get_new_vm_files() {
+		echo "Downloading new ${OS} images from ${opnfv_url}"
 		rm -rf ${vm_cache}/${OS}*
 		wget --quiet ${image_remote}
 		wget --quiet ${sha_remote}
