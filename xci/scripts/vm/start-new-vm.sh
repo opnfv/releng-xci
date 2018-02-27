@@ -53,9 +53,10 @@ update_clean_vm_files() {
 	local image_remote="${opnfv_url}/${OS}.qcow2"
 
 	get_new_vm_files() {
+		echo "Downloading new ${OS} images from ${opnfv_url}"
 		rm -rf ${vm_cache}/${OS}*
-		wget --quiet ${image_remote}
-		wget --quiet ${sha_remote}
+		curl -O -s --retry 10 ${image_remote}
+		curl -O -s --retry 10 ${sha_remote}
 	}
 
 	# There are 3 reasons why we want to fetch files from the GS storage
@@ -68,7 +69,7 @@ update_clean_vm_files() {
 		sha_local=$(awk '{print $1}' $shafile)
 		if $XCI_UPDATE_CLEAN_VM_OS; then
 			echo "Updating local copies of ${OS}..."
-			! curl -s ${sha_remote} | grep -q ${sha_local} && \
+			! curl --retry 10 -s ${sha_remote} | grep -q ${sha_local} && \
 			get_new_vm_files
 		fi
 		echo "Verifying integrity of ${OS} files..."
