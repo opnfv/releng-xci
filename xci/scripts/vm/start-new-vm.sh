@@ -127,7 +127,7 @@ esac
 
 echo "Checking for running package manager instance..."
 while true; do
-	_pkg_mgr_proc=$(pgrep -f "${pkg_mgr_cmd%*install*}")
+	_pkg_mgr_proc=$(pgrep -f "${pkg_mgr_cmd%*install*}" | cat)
 	if [[ -n ${_pkg_mgr_proc} ]]; then
 		echo "Wainting for process ${_pkg_mgr_proc} to finish..."
 		sleep 60
