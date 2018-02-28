@@ -288,10 +288,11 @@ Host *_xci_vm
 User devuser
 
 Host *_xci_vm_opnfv
+Hostname 192.168.122.2
 User root
 TCPKeepAlive yes
 StrictHostKeyChecking no
-ProxyCommand ssh -l devuser \$(echo %h | sed 's/_opnfv//') 'nc 192.168.122.2 %p'
+ProxyCommand ssh -l devuser -i ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib ${OS}_xci_vm -W %h:%p
 EOF
 
 # Final ssh command which will also test the configuration file
