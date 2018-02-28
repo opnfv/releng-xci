@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_013b0e3b",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-02-28T12:20:03Z",
+      "side": 1,
+      "message": "Only ubuntu and centos platforms are targeted for now. removed opensuse.",
+      "parentUuid": "5a3f45e8_3903e410",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 16
+      },
+      "revId": "e950592efbd791ac366a9cac57ef80f3101a9f92",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_e1ff0200",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2018-02-28T10:38:20Z",
       "side": 1,
       "message": "the patch looks good. please remove this so we get the patch in.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 36
+      },
+      "revId": "e950592efbd791ac366a9cac57ef80f3101a9f92",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_613f7226",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-02-28T12:20:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_e1ff0200",
       "range": {
         "startLine": 67,
         "startChar": 0,
