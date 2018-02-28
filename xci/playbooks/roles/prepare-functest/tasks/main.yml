@@ -34,6 +34,3 @@
     state: present
   with_items:
     - wget
-
-- name: execute the script
-  shell: "/root/run-functest.sh"
