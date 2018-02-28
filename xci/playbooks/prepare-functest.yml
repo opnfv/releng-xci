@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Prepare the environment for functest and run tests
+- name: Prepare the environment for functest
   hosts: opnfv
   user: root
   roles:
-    - role: "run-functest"
+    - role: "prepare-functest"
