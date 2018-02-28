@@ -26,8 +26,8 @@ security_sshd_permit_root_login: yes
 
 haproxy_keepalived_external_vip_cidr: "192.168.122.220/32"
 haproxy_keepalived_internal_vip_cidr: "172.29.236.222/32"
-haproxy_keepalived_external_interface: br-vlan
-haproxy_keepalived_internal_interface: br-mgmt
+haproxy_keepalived_external_interface: br_vlan
+haproxy_keepalived_internal_interface: br_mgmt
 gnocchi_db_sync_options: ""
 
 # The settings below are taken from aio to ensure we can bump OSA SHA with current
