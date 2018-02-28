@@ -12,7 +12,7 @@ openstack --insecure subnet create --network {{ external_network }} \
   --no-dhcp {{ subnet_name }}
 
 mkdir ~/results/
-mkdir ~/images && cd ~/images && wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img && cd ~
+mkdir ~/images && cd ~/images && wget -q http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img && cd ~
 
 sudo docker run --env-file env \
     -v $(pwd)/openrc:/home/opnfv/functest/conf/env_file  \
