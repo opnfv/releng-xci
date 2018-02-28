@@ -14,11 +14,11 @@ used_ips:
 global_overrides:
   internal_lb_vip_address: 172.29.236.222
   external_lb_vip_address: 192.168.122.220
-  tunnel_bridge: "br-vxlan"
-  management_bridge: "br-mgmt"
+  tunnel_bridge: "br_vxlan"
+  management_bridge: "br_mgmt"
   provider_networks:
     - network:
-        container_bridge: "br-mgmt"
+        container_bridge: "br_mgmt"
         container_type: "veth"
         container_interface: "eth1"
         ip_from_q: "container"
@@ -29,7 +29,7 @@ global_overrides:
         is_container_address: true
         is_ssh_address: true
     - network:
-        container_bridge: "br-vxlan"
+        container_bridge: "br_vxlan"
         container_type: "veth"
         container_interface: "eth10"
         ip_from_q: "tunnel"
@@ -39,7 +39,7 @@ global_overrides:
         group_binds:
           - neutron_openvswitch_agent
     - network:
-        container_bridge: "br-vlan"
+        container_bridge: "br_vlan"
         container_type: "veth"
         container_interface: "eth12"
         host_bind_override: "eth12"
@@ -48,7 +48,7 @@ global_overrides:
         group_binds:
           - neutron_openvswitch_agent
     - network:
-        container_bridge: "br-vlan"
+        container_bridge: "br_vlan"
         container_type: "veth"
         container_interface: "eth11"
         host_bind_override: "eth12"
@@ -58,7 +58,7 @@ global_overrides:
         group_binds:
           - neutron_openvswitch_agent
     - network:
-        container_bridge: "br-storage"
+        container_bridge: "br_storage"
         container_type: "veth"
         container_interface: "eth2"
         ip_from_q: "storage"

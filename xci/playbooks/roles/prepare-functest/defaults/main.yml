@@ -3,7 +3,7 @@
 gateway_ip: "10.10.10.1"
 gateway_ip_mask: "10.10.10.1/24"
 broadcast_ip: "10.10.10.255"
-gateway_interface: "br-vlan"
+gateway_interface: "br_vlan"
 
 # Network parameters
 external_network: "ext-net"
