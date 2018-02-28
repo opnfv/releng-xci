@@ -3,15 +3,15 @@
 INTERFACE=$1
 ACTION=$4
 
-if [[ $INTERFACE == "br-vlan" ]]; then
+if [[ $INTERFACE == "br_vlan" ]]; then
     if [[ $ACTION == "pre-up" ]]; then
-        ip link add br-vlan-veth type veth peer name eth12 || true
-        ip link set br-vlan-veth up
+        ip link add br_vlan-veth type veth peer name eth12 || true
+        ip link set br_vlan-veth up
         ip link set eth12 up
-        brctl addif br-vlan br-vlan-veth
+        brctl addif br_vlan br_vlan-veth
     else
-        brctl delif br-vlan br-vlan-veth
-        ip link del br-vlan-veth || true
+        brctl delif br_vlan br_vlan-veth
+        ip link del br_vlan-veth || true
     fi
 fi
 
