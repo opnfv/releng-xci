@@ -277,17 +277,17 @@ sudo sed -i "/.*${VM_NAME}.*/d" /etc/hosts
 sudo bash -c "echo '${_ip} ${VM_NAME}' >> /etc/hosts"
 
 echo "Dropping a minimal .ssh/config file"
-cat > $HOME/.ssh/xci-vm-config<<EOF
+cat > $HOME/.ssh/${OS}-xci-vm-config<<EOF
 Host *
 StrictHostKeyChecking no
 ServerAliveInterval 60
 ServerAliveCountMax 5
 IdentityFile ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib
 
-Host *_xci_vm
+Host ${OS}_xci_vm
 User devuser
 
-Host *_xci_vm_opnfv
+Host ${OS}_xci_vm_opnfv
 Hostname 192.168.122.2
 User root
 TCPKeepAlive yes
@@ -296,7 +296,7 @@ ProxyCommand ssh -l devuser -i ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib ${OS}_
 EOF
 
 # Final ssh command which will also test the configuration file
-declare -r vm_ssh="ssh -F $HOME/.ssh/xci-vm-config"
+declare -r vm_ssh="ssh -F $HOME/.ssh/${OS}-xci-vm-config"
 
 echo "Preparing test environment..."
 # *_xci_vm hostname is invalid. Letst just use distro name
