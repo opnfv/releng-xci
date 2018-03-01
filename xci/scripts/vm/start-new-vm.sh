@@ -31,8 +31,8 @@ grep -q -i ^Y$ /sys/module/kvm_intel/parameters/nested || { echo "Nested virtual
 destroy_vm_on_failures() {
 	local exit_err=${xci_error:-130}
 	if ! ${XCI_KEEP_CLEAN_VM_ON_FAILURES}; then
-		sudo virsh destroy ${VM_NAME}_xci_vm
-		sudo virsh undefine ${VM_NAME}_xci_vm
+		sudo virsh destroy ${VM_NAME}_xci_vm || true
+		sudo virsh undefine ${VM_NAME}_xci_vm || true
 	fi
 	exit $exit_err
 }
