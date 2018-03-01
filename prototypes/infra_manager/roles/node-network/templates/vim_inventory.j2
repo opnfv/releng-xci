@@ -1,0 +1,14 @@
+[opnfv]
+opnfv_host
+
+{% for role in roles | sort %}
+{% if roles[role]| length > 1 %}
+[{{ role }}]
+{% for name in roles[role] | sort %}
+{% if name in nodes_d %}
+{{ name }}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% endfor %}

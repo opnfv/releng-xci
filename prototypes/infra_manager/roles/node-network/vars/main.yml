@@ -1,0 +1,4 @@
+---
+set_bridges: false
+
+local_xci_configs_root: "{{ xci_root }}/{{ xci.pod_name }}/etc"

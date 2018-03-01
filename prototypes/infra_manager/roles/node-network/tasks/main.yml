@@ -1,0 +1,40 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Get Facts
+##
+
+- name: Get Facts
+  include_tasks: facts.yml
+
+##
+# Change the network configuration of the node
+##
+
+- name: Set Debian type Networks
+  include_tasks: debian.yml
+  when: ansible_os_family | lower == "debian"
+
+##
+#Prepare ansible inventory for nodes_* roles
+##
+- name: Add network information to inventory
+  delegate_to: 127.0.0.1
+  template:
+    dest: "{{ local_xci_configs_root }}/ansible/vim_inventory"
+    src: "templates/vim_inventory.j2"
+
+- name: set ansible nodes inventory
+  delegate_to: 127.0.0.1
+  template:
+    dest: "{{ local_xci_configs_root }}/ansible/host_vars/{{ansible_hostname}}.yml"
+    src: "templates/vim_host_vars.yml.j2"
