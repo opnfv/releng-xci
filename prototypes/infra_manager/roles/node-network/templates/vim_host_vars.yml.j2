@@ -1,0 +1,11 @@
+---
+ansible_host: {{ ansible_host }}
+ansible_user: {{ ansible_user }}
+network:
+{% for n_name, n_config in node_config_by_networks.iteritems() %}
+  {{ n_name }}:
+    nic: {{ n_config.nic }}
+{% if n_config.ip %}
+    ip: {{ n_config.ip }}
+{% endif %}
+{% endfor %}
