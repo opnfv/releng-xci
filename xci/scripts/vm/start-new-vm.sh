@@ -26,6 +26,9 @@ export XCI_BUILD_CLEAN_VM_OS=${XCI_BUILD_CLEAN_VM_OS:-true}
 # ones.
 export XCI_UPDATE_CLEAN_VM_OS=${XCI_UPDATE_CLEAN_VM_OS:-false}
 
+# IP of OPNFV VM so we remove it from known_hosts
+OPNFV_VM_IP=192.168.122.2
+
 grep -q -i ^Y$ /sys/module/kvm_intel/parameters/nested || { echo "Nested virtualization is not enabled but it's needed for XCI to work"; exit 1; }
 
 destroy_vm_on_failures() {
@@ -250,6 +253,7 @@ chmod 600 ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib*
 # Remove it from known_hosts
 ssh-keygen -R $_ip || true
 ssh-keygen -R ${VM_NAME} || true
+ssh-keygen -R ${OPNFV_VM_IP} || true
 
 # Initial ssh command until we setup everything
 vm_ssh="ssh -o StrictHostKeyChecking=no -i ${BASE_PATH}/xci/scripts/vm/id_rsa_for_dib -l devuser"
