@@ -1,0 +1,40 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Prepare network
+##
+- name: ensure interfaces.d folder is empty
+  file:
+    path: "/etc/network/interfaces.d"
+    state: "{{ item }}"
+  with_items:
+    - absent
+    - directory
+- name: ensure interfaces file is updated
+  template:
+    src: "templates/debian_interface.j2"
+    dest: "/etc/network/interfaces.d/\
+          {{ intf.key | regex_replace('\\.0$', '') }}.cfg"
+  loop_control:
+    loop_var: intf
+  with_dict: "{{ node_config_by_intf }}"
+- name: restart pxe interface if bridged
+  shell: >-
+    ip a d {{ ansible_default_ipv4.address }}/{{
+      (ansible_default_ipv4.address+'/'+ansible_default_ipv4.netmask)
+      | ipaddr('prefix') }} dev {{ ansible_default_ipv4.interface }} &&
+    ip l set dev {{ ansible_default_ipv4.interface }} down &&
+    ifup --exclude=lo -a
+  when: set_bridges
+- name: restart all interfaces
+  shell: "ifdown --exclude=lo -a && ifup --exclude=lo -a && sleep 5"
+  when: "True"
