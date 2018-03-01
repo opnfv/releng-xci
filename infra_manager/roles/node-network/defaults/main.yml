@@ -1,0 +1,24 @@
+---
+
+# network profiles
+network_profiles:
+  controller:
+    - net-mgmt
+  storage:
+    - net-mgmt
+    - net-storage
+  network:
+    - net-mgmt
+    - net-internal
+    - net-vnf
+  compute:
+    - net-mgmt
+    - net-internal
+    - net-vnf
+
+# If we set the bridges for OSA (with linux bridges)
+bridge_mapping:
+  net-mgmt: br-mgmt
+  net-internal: br-vxlan
+  net-vnf: br-vlan
+  net-storage: br-storage
