@@ -1,0 +1,110 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+##
+# Get nodes related facts
+##
+
+- name: get nodes as a dict
+  set_fact:
+    nodes_d: "{{ nodes | nodes_as_dict() }}"
+
+- name: get role of each nodes without opnfv_host
+  set_fact:
+    nodes_roles:
+      "{{ nodes_roles | default({}) | combine({ item.key: item.value })}}"
+  when: "{{item.key not in ['opnfv_host']}}"
+  with_dict: "{{ idf.xci.nodes_roles }}"
+
+- name: get roles list with associated nodes
+  set_fact:
+    roles: "{{ nodes_roles | role2nodes() }}"
+
+##
+# Get net config of a node
+##
+- name: Get nodes net_config
+  set_fact:
+    nodes_net_config: "{{ nodes | nodes_net_config(idf.xci.net_config) }}"
+
+- name: get mac2intf (mapping from mac to interface name)
+  set_fact:
+    macs: "{{ inventory_hostname | mac2intf(hostvars, nodes_d) }}"
+
+- name: get networks to configure on this node
+  set_fact:
+    node_netw: "{{ (node_netw|default([])+network_profiles[item])| unique }}"
+  with_items: "{{ group_names }}"
+
+- name: prepare network configuration by XCI networks
+  set_fact:
+    node_config_by_networks:
+      "{{ node_config_by_networks|default({})|combine(
+        {item: {
+            'net_name': idf.xci.network_mapping[item],
+            'nic': macs[
+                     nodes_d[inventory_hostname].interfaces |
+                     selectattr('name', 'equalto',
+                                idf.xci.net_config[
+                                   idf.xci.network_mapping[item]].interface)|
+                     map(attribute='mac_address')| list | first ],
+            'vlan': nodes_d[inventory_hostname].interfaces |
+                    selectattr('name', 'equalto',
+                               idf.xci.net_config[
+                                  idf.xci.network_mapping[item]].interface)|
+                    map(attribute='vlan')| list | first |
+                    regex_replace('native', '0'),
+            'ip': nodes_d[inventory_hostname].interfaces |
+                    selectattr('name', 'equalto',
+                               idf.xci.net_config[
+                                  idf.xci.network_mapping[item]].interface)|
+                    map(attribute='address')| list | first,
+          }
+        })
+      }}"
+  with_items: "{{ node_netw }}"
+
+- name: Prepare config by interface - all except net-vnf
+  set_fact:
+    node_config_by_intf:
+      "{{node_config_by_intf|default({})|combine(
+        {item.value.nic + '.' + item.value.vlan:{
+          'type': 'bridged' if set_bridges else 'static',
+          'vlan': item.value.vlan,
+          'function': item.key,
+          'ip': item.value.ip,
+          'network': idf.xci.net_config[item.value.net_name].network,
+          'mask': idf.xci.net_config[item.value.net_name].mask,
+          'gateway':
+            idf.xci.net_config[item.value.net_name].gateway|default(''),
+          'dns': idf.xci.net_config[item.value.net_name].dns|default(''),
+          }
+        })}}"
+  when: item.key != 'net-vnf'
+  with_dict: "{{ node_config_by_networks }}"
+
+- name: Prepare config by interface - only net-vfn if exists
+  set_fact:
+    node_config_by_intf:
+      "{{node_config_by_intf|default({})|combine(
+        {item.value.nic + '.' + item.value.vlan:{
+          'type': 'bridged' if set_bridges else 'manual',
+          'vlan': item.value.vlan,
+          'function': item.key,
+          'ip': '',
+          'network': '',
+          'mask': '',
+          'gateway': '',
+          'dns': '',
+          }
+        })}}"
+  when: item.key == 'net-vnf'
+  with_dict: "{{ node_config_by_networks }}"

@@ -1,0 +1,46 @@
+auto lo
+iface lo inet loopback
+{% set nmap = xci.network_mapping %}
+{% for netw in node_netw %}
+
+##
+# OSA network '{{ netw }}'
+##
+{% set intf = macs[srv_macs[net_config[nmap[netw]].interface]] %}
+{% if net_config[nmap[netw]].vlan > 0 %}
+auto {{ intf }}.{{ net_config[nmap[netw]].vlan }}
+iface {{ intf }}.{{ net_config[nmap[netw]].vlan }} inet manual
+    vlan-raw-device {{ intf }}
+{% else %}
+auto {{ intf }}
+iface {{ intf }} inet manual
+{% endif %}
+
+auto {{ netw }}
+iface {{ netw }} inet {{ 'static' if netw != 'br-vlan' else 'manual' }}
+    bridge_stp off
+    bridge_waitport 0
+    bridge_fd 0
+    bridge_ports {{ intf }}{% if net_config[nmap[netw]].vlan > 0 %}.{{ net_config[nmap[netw]].vlan }}{% endif %}
+{% if netw != 'br-vlan' %}
+
+    address {{ net_config[nmap[netw]].network | ip_add( ip_shift ) }}
+    netmask {{ net_config[nmap[netw]].mask }}
+{% if net_config[nmap[netw]].gateway is defined %}
+    gateway {{ net_config[nmap[netw]].gateway }}
+{% endif %}
+{% if net_config[nmap[netw]].dns is defined %}
+    dns-nameservers {{ net_config[nmap[netw]].dns }}
+{% endif %}
+{% elif 'compute' in idf.xci.nodes_roles[ansible_hostname] %}
+
+# Create veth pair, do not abort if already exists
+    pre-up ip link add br-vlan-veth type veth peer name eth12 || true
+# Set both ends UP
+    pre-up ip link set br-vlan-veth up
+    pre-up ip link set eth12 up
+# Delete veth pair on DOWN
+    post-down ip link del br-vlan-veth || true
+    bridge_ports bond1 br-vlan-veth
+{% endif %}
+{% endfor %}
