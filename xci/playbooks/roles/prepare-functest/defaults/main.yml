@@ -12,3 +12,10 @@ external_network: "ext-net"
 subnet_name: "ext-subnet"
 allocation_pool: "start=10.10.10.5,end=10.10.10.254"
 subnet_cidr: "10.10.10.0/24"
+
+# CI parameters
+ci_loop: "{{ lookup('env','CI_LOOP'))}}"
+build_tag: "{{ lookup('env','BUILD_TAG') }}"
+node_name: "{{ lookup('env','NODE_NAME') }}"
+xci_installer: "{{ lookup('env','XCI_INSTALLER') }}"
+deploy_scenario: "{{ lookup('env','DEPLOY_SCENARIO') }}"
