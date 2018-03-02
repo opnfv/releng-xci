@@ -59,14 +59,15 @@
       failed_when: false
     - name: copy cinder.yml
       shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
-    - name: Configure AIO tempest
+    - name: Configure OpenStack-Ansible components
       lineinfile:
         path: "{{ OPENSTACK_OSA_ETC_PATH }}/user_variables.yml"
-        line: "{{ item }}: {{ RUN_TEMPEST | bool }}"
+        line: "{{ item.component }}: {{ item.value }} }}"
         state: present
       with_items:
-        - "tempest_install"
-        - "tempest_run"
+        - { component: "tempest_install", value: "{{ RUN_TEMPEST | bool }}" }
+        - { component: "tempest_run", value: "{{ RUN_TEMPEST | bool }}" }
+        - { component: "core_openstack", value: "{{ CORE_OPENSTACK_INSTALL | bool }}" }
     - block:
         - name: copy ceph.yml
           shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/ceph.yml {{OPENSTACK_OSA_ETC_PATH}}/conf.d/"

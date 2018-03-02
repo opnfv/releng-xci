@@ -45,5 +45,6 @@ export XCI_INSTALLER=${XCI_INSTALLER:-osa}
 #   XCI_ANSIBLE_VERBOSITY="-vvvv"
 export XCI_ANSIBLE_VERBOSITY=${XCI_ANSIBLE_VERBOSITY:-""}
 export RUN_TEMPEST=${RUN_TEMPEST:-false}
+export CORE_OPENSTACK_INSTALL=${CORE_OPENSTACK_INSTALL:-true}
 # Set this to to true to force XCI to re-create the target OS images
 export CLEAN_DIB_IMAGES=${CLEAN_DIB_IMAGES:-false}
