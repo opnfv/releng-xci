@@ -9,8 +9,8 @@
 ##############################################################################
 
 - name: copy user_variables_os-odl-nofeature.yml
-  copy:
-    src: "user_variables_os-odl-nofeature.yml"
+  template:
+    src: "user_variables_os-odl-nofeature.yml.j2"
     dest: "{{OPENSTACK_OSA_ETC_PATH}}/user_variables_os-odl-nofeature.yml"
 
 - name: copy user_variables_os-odl-nofeature-ha.yml
