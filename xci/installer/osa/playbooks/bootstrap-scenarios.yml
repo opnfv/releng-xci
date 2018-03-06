@@ -16,12 +16,18 @@
 - name: Prepare everything to run the os-odl-nofeature scenario
   include_role:
     name: "os-odl-nofeature"
+  vars:
+    ODL_VERSION: "{{ ODL_BRANCH | default(omit) }}"
   when: DEPLOY_SCENARIO == 'os-odl-nofeature'
 - name: Prepare everything to run the os-odl-sfc scenario
   include_role:
     name: "os-odl-sfc"
+  vars:
+    ODL_VERSION: "{{ ODL_BRANCH | default(omit) }}"
   when: DEPLOY_SCENARIO == 'os-odl-sfc'
 - name: Prepare everything to run the os-odl-bgpvpn scenario
   include_role:
     name: "os-odl-bgpvpn"
+  vars:
+    ODL_VERSION: "{{ ODL_BRANCH | default(omit) }}"
   when: DEPLOY_SCENARIO == 'os-odl-bgpvpn'
