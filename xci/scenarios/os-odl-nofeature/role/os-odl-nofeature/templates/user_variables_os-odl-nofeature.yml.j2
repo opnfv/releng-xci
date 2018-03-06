@@ -18,6 +18,7 @@
 # ## the defaults for each role to find additional override options.
 # ##
 
+{% raw %}
 # Ensure the openvswitch kernel module is loaded
 openstack_host_specific_kernel_modules:
   - name: "openvswitch"
@@ -37,3 +38,8 @@ neutron_ml2_drivers_type: "flat,vlan,vxlan"
 
 neutron_plugin_base:
   - odl-router_v2
+{% endraw %}
+
+{% if ODL_VERSION is defined %}
+odl_repo_url: "{{ repo_url[ {{ ansible_pkg_mgr }} ] }}"
+{% endif %}
