@@ -37,3 +37,7 @@ neutron_ml2_drivers_type: "flat,vlan,vxlan"
 
 neutron_plugin_base:
   - odl-router_v2
+
+{% if odl_repo_url %}
+odl_repo_url: {{ odl_repo_url }}
+{% endif %}

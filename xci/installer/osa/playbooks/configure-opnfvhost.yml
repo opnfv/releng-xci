@@ -95,6 +95,9 @@
       shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/openstack_services.yml {{OPENSTACK_OSA_PATH}}/playbooks/defaults/repo_packages/openstack_services.yml"
       when:
         - OPENSTACK_OSA_VERSION != "master"
+    # Resolve the odl_repo based on the version and distro
+    - include: resolve-odl-repo-url.yml
+      when: ODL_VERSION is defined
     - include: bootstrap-scenarios.yml
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"

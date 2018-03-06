@@ -1,0 +1,52 @@
+---
+#
+# This file is aimed to be used by scenarios to plug into the XCI.
+# Ideally, all they need to do at this point is to include their
+# role using a statement like the following one
+#
+# - name: Include foobar role
+#   include_role:
+#     name: "foobar"
+#   when: DEPLOY_SCENARIO == "foobar"
+
+- name: Set the distro to be used
+  set_fact:
+    distro: opensuse-42
+  when:
+    - ansible_pkg_mgr == 'zypper'
+
+- name: Set the distro to be used
+  set_fact:
+    distro: epel-7
+  when:
+    - ansible_pkg_mgr == 'yum'
+
+- name: Set the distro to be used
+  set_fact:
+    distro: ubuntu
+  when:
+    - ansible_pkg_mgr == 'apt'
+
+
+- name: Set the ODL version to be used
+  set_fact:
+    repo-version: 9
+  when:
+    - ODL_VERSION == 'master'
+
+- name: Set the ODL version to be used
+  set_fact:
+    repo-version: 8
+  when:
+    - ODL_VERSION == 'oxygen'
+
+- name: Set the ODL version to be used
+  set_fact:
+    repo-version: 7
+  when:
+    - ODL_VERSION == 'nitrogen'
+
+
+- name: Set the ODL repo url to be used
+  set_fact:
+    odl_repo_url: "https://git.opendaylight.org/gerrit/gitweb?p=integration/packaging.git;a=blob_plain;f=packages/rpm/example_repo_configs/opendaylight-{{ repo-version }}-{{ distro }}-devel.repo"
