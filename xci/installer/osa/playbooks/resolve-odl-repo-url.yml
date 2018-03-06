@@ -1,0 +1,45 @@
+---
+#
+# This file is aimed to build the repo URL for ODL
+
+- name: Set the distro to be used
+  set_fact:
+    distro: opensuse
+  when:
+    - ansible_pkg_mgr == 'zypper'
+
+- name: Set the distro to be used
+  set_fact:
+    distro: epel
+  when:
+    - ansible_pkg_mgr == 'yum'
+
+- name: Set the distro to be used
+  set_fact:
+    distro: ubuntu
+  when:
+    - ansible_pkg_mgr == 'apt'
+
+
+- name: Set version 9 if ODL-master
+  set_fact:
+    repo_version: 9
+  when:
+    - ODL_VERSION == 'master'
+
+- name: Set version 8 if ODL-oxygen
+  set_fact:
+    repo_version: 8
+  when:
+    - ODL_VERSION == 'oxygen'
+
+- name: Set version 7 if ODL-nitrogen
+  set_fact:
+    repo_version: 7
+  when:
+    - ODL_VERSION == 'nitrogen'
+
+
+- name: Set the ODL repo url to be used
+  set_fact:
+    generated_odl_repo_url: "https://git.opendaylight.org/gerrit/gitweb?p=integration/packaging.git;a=blob_plain;f=packages/rpm/example_repo_configs/opendaylight-{{ repo_version }}-{{ distro }}-devel.repo"
