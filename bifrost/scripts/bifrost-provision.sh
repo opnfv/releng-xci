@@ -141,7 +141,9 @@ ${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} \
     -e ironicinspectorclient_git_branch=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION} \
     -e ironicclient_source_install=true \
     -e ironicclient_git_branch=${BIFROST_IRONIC_CLIENT_VERSION} \
-    -e ironic_git_branch=${BIFROST_IRONIC_VERSION}
+    -e ironic_git_branch=${BIFROST_IRONIC_VERSION} \
+    -e use_prebuilt_images=${BIFROST_USE_PREBUILT_IMAGES} \
+    -e xci_distro=${XCI_DISTRO}
 EXITCODE=$?
 
 if [ $EXITCODE != 0 ]; then

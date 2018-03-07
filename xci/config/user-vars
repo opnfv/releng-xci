@@ -46,5 +46,6 @@ export XCI_INSTALLER=${XCI_INSTALLER:-osa}
 export XCI_ANSIBLE_VERBOSITY=${XCI_ANSIBLE_VERBOSITY:-""}
 export RUN_TEMPEST=${RUN_TEMPEST:-false}
 export CORE_OPENSTACK_INSTALL=${CORE_OPENSTACK_INSTALL:-false}
+export BIFROST_USE_PREBUILT_IMAGES=${BIFROST_USE_PREBUILT_IMAGES:-false}
 # Set this to to true to force XCI to re-create the target OS images
 export CLEAN_DIB_IMAGES=${CLEAN_DIB_IMAGES:-false}

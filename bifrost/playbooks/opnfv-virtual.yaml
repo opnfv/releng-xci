@@ -24,6 +24,45 @@
     - name: "Override the ipv4_gateway setting"
       set_fact:
          ipv4_gateway: "192.168.122.1"
+    - name: Prepare the XCI pre-built images
+      block:
+        - name: Create the PXE directory
+          file:
+            path: /httpboot
+            state: directory
+          become: yes
+        - name: Download the {{ xci_distro }} image checksum file
+          get_url:
+            dest: /httpboot/{{ xci_distro }}.qcow2.sha256.txt
+            force: no
+            url: http://artifacts.opnfv.org/releng/xci/images/{{ xci_distro }}.qcow2.sha256.txt
+            timeout: 3000
+          become: yes
+        - name: Extract checksum
+          shell: awk '{print $1}' /httpboot/{{ xci_distro }}.qcow2.sha256.txt
+          register: _image_checksum
+        - fail:
+            msg: "Failed to get image checksum"
+          when: _image_checksum == ''
+        - set_fact:
+            image_checksum: "{{ _image_checksum.stdout }}"
+        - name: Download the {{ xci_distro }} image file
+          get_url:
+            url: http://artifacts.opnfv.org/releng/xci/images/{{ xci_distro }}.qcow2
+            checksum: "sha256:{{ image_checksum }}"
+            timeout: 3000
+            dest: /httpboot/deployment_image.qcow2
+            force: no
+          become: yes
+        - name: Set correct mode for {{ xci_distro }}.qcow2 file
+          file:
+            path: /httpboot/deployment_image.qcow2
+            mode: '0755'
+            owner: 'root'
+            group: 'root'
+          become: yes
+      when: use_prebuilt_images | bool == true
+
   roles:
     - { role: bifrost-prep-for-install, when: skip_install is not defined }
   environment:
@@ -49,7 +88,9 @@
       dib_os_release: "jessie"
       dib_elements: "ironic-agent {{ ipa_extra_dib_elements | default('') }}"
       dib_notmpfs: true
-      when: create_ipa_image | bool == true
+      when:
+        - create_ipa_image | bool == true
+        - not use_prebuilt_images | bool == false
     - role: bifrost-create-dib-image
       dib_imagetype: "qcow2"
       dib_imagename: "{{deploy_image}}"
@@ -61,7 +102,10 @@
       dib_elements: "vm enable-serial-console simple-init devuser openssh-server growroot pip-and-virtualenv {{ extra_dib_elements }}"
       dib_packages: "{{ lookup('env', 'DIB_OS_PACKAGES') }}"
       dib_notmpfs: true
-      when: create_image_via_dib | bool == true and transform_boot_image | bool == false
+      when:
+        - create_image_via_dib | bool == true
+        - transform_boot_image | bool == false
+        - use_prebuilt_images | bool == false
     - role: bifrost-keystone-client-config
       user: "{{ ansible_env.SUDO_USER }}"
       clouds:
