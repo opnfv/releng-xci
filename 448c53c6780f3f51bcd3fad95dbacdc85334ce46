@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_f5e5eea8",
+        "filename": "bifrost/scripts/bifrost-provision.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-07T15:03:46Z",
+      "side": 1,
+      "message": "why is it necessary to set the env variable? doesn\u0027t the default behavior work for us?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 111
+      },
+      "revId": "448c53c6780f3f51bcd3fad95dbacdc85334ce46",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
