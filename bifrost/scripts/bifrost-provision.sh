@@ -28,6 +28,9 @@ BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSIO
 BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-master}
 BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-master}
 
+# set UPPER_CONSTRAINTS_FILE since it is needed in order to limit libvirt-python to 4.0.0
+export UPPER_CONSTRAINTS_FILE=https://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt
+
 # Ensure the right inventory files is used based on branch
 CURRENT_BIFROST_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [ $CURRENT_BIFROST_BRANCH = "master" ]; then
