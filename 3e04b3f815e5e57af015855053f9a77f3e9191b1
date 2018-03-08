@@ -82,6 +82,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_09e31fda",
+        "filename": "xci/installer/osa/playbooks/resolve-odl-repo-url.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-08T16:26:17Z",
+      "side": 1,
+      "message": "set fact:\nodl_version:\n  master: 9\n  oxygen: 8\n  nitrogen: 7\n...\n\nset_fact:\nrepo_url:\n  yum: https://git.opendaylight.org/gerrit/gitweb?p\u003dintegration/packaging.git;a\u003dblob_plain;f\u003dpackages/rpm/example_repo_configs/opendaylight-{{ odl_version[ODL_VERSION] }}-opensuse-devel.repo\n  zypper: ...\n  apt: ...",
+      "parentUuid": "5a3f45e8_3e88d31e",
+      "revId": "3e04b3f815e5e57af015855053f9a77f3e9191b1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_9e7c8722",
         "filename": "xci/var/opnfv.yml",
         "patchSetId": 3
