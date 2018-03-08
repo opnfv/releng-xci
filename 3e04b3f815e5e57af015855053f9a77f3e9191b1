@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_7e925b58",
+        "filename": "xci/installer/osa/deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-08T11:21:47Z",
+      "side": 1,
+      "message": "I am sorry the installer has to be generic and scenario agnostic. It\u0027s much more preferred to introduce a way for deployers to add additional ansible options.",
+      "range": {
+        "startLine": 60,
+        "startChar": 67,
+        "endLine": 60,
+        "endChar": 98
+      },
+      "revId": "3e04b3f815e5e57af015855053f9a77f3e9191b1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_1e899726",
+        "filename": "xci/installer/osa/playbooks/bootstrap-scenarios.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-08T11:21:47Z",
+      "side": 1,
+      "message": "again, no this is very scenario specific.",
+      "revId": "3e04b3f815e5e57af015855053f9a77f3e9191b1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5e831f04",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-08T11:21:47Z",
+      "side": 1,
+      "message": "why can\u0027t you do all that in your scenario role?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 34
+      },
+      "revId": "3e04b3f815e5e57af015855053f9a77f3e9191b1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_3e88d31e",
+        "filename": "xci/installer/osa/playbooks/resolve-odl-repo-url.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-08T11:21:47Z",
+      "side": 1,
+      "message": "this can be trimmed down to like 3 lines or so but it should be moved to the scenario code instead.",
+      "revId": "3e04b3f815e5e57af015855053f9a77f3e9191b1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_9e7c8722",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-08T11:21:47Z",
+      "side": 1,
+      "message": "nope we already provide a way for scenarios to pass additional info. if that\u0027s not enough we should fix it instead of mixing scenario and generic vars.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 48
+      },
+      "revId": "3e04b3f815e5e57af015855053f9a77f3e9191b1",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
