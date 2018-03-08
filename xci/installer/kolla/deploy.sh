@@ -57,6 +57,26 @@ ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLA
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for kolla"
 
+#-------------------------------------------------------------------------------
+# Configure target hosts for kolla
+#-------------------------------------------------------------------------------
+# This playbook is only run for the all flavors except aio since aio is configured
+# by an upstream script.
+
+# This playbook
+# - adds public keys to target hosts
+# - configures network
+# - configures nfs
+#-------------------------------------------------------------------------------
+if [[ $XCI_FLAVOR != "aio" ]]; then
+    echo "Info: Configuring target hosts for kolla"
+    echo "-----------------------------------------------------------------------"
+    cd $KOLLA_XCI_PLAYBOOKS
+    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+        configure-targethosts.yml
+    echo "-----------------------------------------------------------------------"
+    echo "Info: Configured target hosts"
+fi
 
 #-------------------------------------------------------------------------------
 # Install OpenStack

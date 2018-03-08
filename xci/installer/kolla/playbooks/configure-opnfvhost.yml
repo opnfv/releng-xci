@@ -70,6 +70,8 @@
       package:
         name: "{{ kolla_packages }}"
         state: latest
+    - name: start local registry
+      command: "/bin/bash {{ OPENSTACK_KOLLA_PATH }}/tools/start-registry"
     - name: set MountFlags option
       blockinfile:
         dest: "/etc/systemd/system/docker.service.d/kolla.conf"
@@ -116,7 +118,7 @@
       lineinfile:
         path: "{{ OPENSTACK_KOLLA_ETC_PATH }}/globals.yml"
         regexp: "^#docker_registry:.*"
-        line: "docker_registry: 192.168.122.2"
+        line: "docker_registry: 192.168.122.2:5000"
     - name: configure kolla api interface
       lineinfile:
         path: "{{ OPENSTACK_KOLLA_ETC_PATH }}/globals.yml"
