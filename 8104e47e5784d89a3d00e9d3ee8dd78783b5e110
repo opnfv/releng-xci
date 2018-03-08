@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_3ea57353",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-08T12:59:37Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 14,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 18
+      },
+      "revId": "8104e47e5784d89a3d00e9d3ee8dd78783b5e110",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
