@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_bee4e33b",
+        "filename": "xci/installer/osa/playbooks/resolve-odl-repo-url.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-03-08T10:06:44Z",
+      "side": 1,
+      "message": "This string will be provided by the user. For openstack, we use \u0027master\u0027 to refer to the latest code in the repo until it is branched out (now pointing to Rocky). I was thinking to do the same for ODL",
+      "parentUuid": "5a3f45e8_a3132c5b",
+      "range": {
+        "startLine": 28,
+        "startChar": 22,
+        "endLine": 28,
+        "endChar": 28
+      },
+      "revId": "f88c42b4872fb9dbd5819079dc508265d6d6311c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_8310b04f",
         "filename": "xci/installer/osa/playbooks/resolve-odl-repo-url.yml",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-03-08T00:20:06Z",
       "side": 1,
       "message": "The current repo config files for EPEL (almost all of them) don\u0027t include this field. We could copy them to add versions with it, but I think we should also keep the old ones because they are linked *tons* of places I could never track down.",
+      "range": {
+        "startLine": 45,
+        "startChar": 182,
+        "endLine": 45,
+        "endChar": 193
+      },
+      "revId": "f88c42b4872fb9dbd5819079dc508265d6d6311c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_1ed19757",
+        "filename": "xci/installer/osa/playbooks/resolve-odl-repo-url.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-03-08T10:06:44Z",
+      "side": 1,
+      "message": "You are right! I\u0027ll investigate how distro could be empty if EPEL",
+      "parentUuid": "5a3f45e8_8310b04f",
       "range": {
         "startLine": 45,
         "startChar": 182,
