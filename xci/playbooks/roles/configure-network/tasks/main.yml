@@ -12,6 +12,19 @@
     path: "/etc/udev/rules.d/99-glean.rules"
     state: absent
 
+- name: Determine required packages
+  set_fact:
+    network_packages:
+      - bridge-utils
+      - iproute2
+      - "{{ (ansible_pkg_mgr == 'apt') | ternary('vlan', '') }}"
+      - iptables
+
+- name: Ensure networking packages are present
+  package:
+    name: "{{ network_packages }}"
+    state: present
+
 - block:
     - name: configure modules
       lineinfile:
@@ -31,6 +44,9 @@
         dest: "/etc/network/interfaces"
     - name: restart network service
       shell: "/sbin/ifconfig {{ ansible_default_ipv4.interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
+      async: 15
+      poll: 0
+      ignore_errors: true
   when: ansible_os_family | lower == "debian"
 
 - block:
@@ -68,9 +84,13 @@
         dest: "/etc/sysconfig/network/ifroute-{{ item.name }}"
       with_items:
         - { name: "br-vlan", gateway: "192.168.122.1", route: "default" }
-
     - name: restart network service
-      shell: "/usr/sbin/wicked ifreload all"
+      service:
+        name: network
+        state: restarted
+      async: 15
+      poll: 0
+      ignore_errors: true
   when: ansible_os_family | lower == "suse"
 
 - block:
@@ -96,8 +116,20 @@
       lineinfile:
         path: "/etc/sysconfig/network-scripts/ifcfg-br-vlan"
         line: "GATEWAY=192.168.122.1"
-    - name: Restart networking
-      command: "systemctl restart network"
-    - name: wait for the server to come back
-      wait_for_connection:
+    - name: restart network service
+      service:
+        name: network
+        state: restarted
+      async: 15
+      poll: 0
+      ignore_errors: true
   when: ansible_os_family | lower == "redhat"
+
+- local_action:
+    module: wait_for
+    host: "{{ ansible_host }}"
+    delay: 15
+    state: started
+    port: 22
+    connect_timeout: 10
+    timeout: 180
