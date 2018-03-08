@@ -16,5 +16,7 @@
 - name: Prepare the environment for functest
   hosts: opnfv
   user: root
+  vars_files:
+    - "{{ XCI_PATH }}/xci/installer/osa/files/openstack_services.yml"
   roles:
     - role: "prepare-functest"

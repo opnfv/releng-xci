@@ -11,6 +11,7 @@
   remote_user: root
   vars_files:
     - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+    - "{{ XCI_PATH }}/xci/installer/osa/files/openstack_services.yml"
 
   pre_tasks:
     - name: Load distribution variables
@@ -107,6 +108,7 @@
       pip:
         name: pyyaml
         state: present
+        extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
     - name: generate password token
       command: "python pw-token-gen.py --file {{OPENSTACK_OSA_ETC_PATH}}/user_secrets.yml"
       args:
