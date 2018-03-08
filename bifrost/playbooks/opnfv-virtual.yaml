@@ -33,13 +33,13 @@
           become: yes
         - name: Download the {{ xci_distro }} image checksum file
           get_url:
-            dest: /httpboot/{{ xci_distro }}.qcow2.sha256.txt
+            dest: /httpboot/deployment_image.qcow2.sha256.txt
             force: no
             url: http://artifacts.opnfv.org/releng/xci/images/{{ xci_distro }}.qcow2.sha256.txt
             timeout: 3000
           become: yes
         - name: Extract checksum
-          shell: awk '{print $1}' /httpboot/{{ xci_distro }}.qcow2.sha256.txt
+          shell: awk '{print $1}' /httpboot/deployment_image.qcow2.sha256.txt
           register: _image_checksum
         - fail:
             msg: "Failed to get image checksum"

@@ -77,6 +77,12 @@ export DIB_OS_PACKAGES=${DIB_OS_PACKAGES:-"vlan,vim,less,bridge-utils,language-p
 # Additional dib elements
 export EXTRA_DIB_ELEMENTS=${EXTRA_DIB_ELEMENTS:-"openssh-server"}
 
+# Copy the OS images if found
+if [[ -e ${XCI_PATH}/deployment_image.qcow2 ]]; then
+	sudo mkdir -p /httpboot
+	sudo mv ${XCI_PATH}/deployment_image.qcow2* /httpboot/
+fi
+
 if [ ${USE_VENV} = "true" ]; then
     export VENV=/opt/stack/bifrost
     $SCRIPT_HOME/env-setup.sh &>/dev/null

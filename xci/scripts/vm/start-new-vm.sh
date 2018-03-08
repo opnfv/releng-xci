@@ -180,6 +180,8 @@ sudo rm -f ${BASE_PATH}/${OS}.qcow2
 sudo chmod 777 -R $XCI_CACHE_DIR/clean_vm/images/
 sudo chown $uid:$gid -R $XCI_CACHE_DIR/clean_vm/images/
 cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2* ${BASE_PATH}/
+cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2.sha256.txt ${BASE_PATH}/deployment_image.qcow2.sha256.txt
+cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2 ${BASE_PATH}/deployment_image.qcow2
 declare -r OS_IMAGE_FILE=${OS}.qcow2
 
 [[ ! -e ${OS_IMAGE_FILE} ]] && echo "${OS_IMAGE_FILE} not found! This should never happen!" && exit 1
@@ -324,6 +326,7 @@ EOF
 do_copy() {
 	rsync -a \
 		--exclude "${VM_NAME}*" \
+		--exclude "${OS}*" \
 		--exclude "build.log" \
 		-e "$vm_ssh" ${BASE_PATH}/ ${VM_NAME}:~/releng-xci/
 }
@@ -338,10 +341,6 @@ $vm_ssh ${VM_NAME} "sudo mv /home/devuser/releng-xci/vm_hosts.txt /etc/hosts"
 # Disable 3-level nested virtualization since it makes things terribly slow
 $vm_ssh ${VM_NAME} "sudo bash -c 'echo \"options kvm_intel nested=0\" > /etc/modprobe.d/qemu-system-x86.conf'"
 $vm_ssh ${VM_NAME} "sudo modprobe -r kvm_intel && sudo modprobe -a kvm_intel"
-# Copy image files over
-$vm_ssh ${VM_NAME} "sudo mkdir /httpboot"
-$vm_ssh ${VM_NAME} "sudo mv /home/devuser/releng-xci/${OS}.qcow2.sha256.txt /httpboot"
-$vm_ssh ${VM_NAME} "sudo mv /home/devuser/releng-xci/${OS}.qcow2 /httpboot/deployment_image.qcow2"
 
 set +e
 
