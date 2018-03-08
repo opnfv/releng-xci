@@ -29,8 +29,7 @@
       template:
         src: "{{ ansible_os_family | lower }}/{{ ansible_hostname }}.interface.j2"
         dest: "/etc/network/interfaces"
-    - name: restart network service
-      shell: "/sbin/ifconfig {{ ansible_default_ipv4.interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
+
   when: ansible_os_family | lower == "debian"
 
 - block:
@@ -69,8 +68,6 @@
       with_items:
         - { name: "br-vlan", gateway: "192.168.122.1", route: "default" }
 
-    - name: restart network service
-      shell: "/usr/sbin/wicked ifreload all"
   when: ansible_os_family | lower == "suse"
 
 - block:
@@ -96,8 +93,22 @@
       lineinfile:
         path: "/etc/sysconfig/network-scripts/ifcfg-br-vlan"
         line: "GATEWAY=192.168.122.1"
-    - name: Restart networking
-      command: "systemctl restart network"
-    - name: wait for the server to come back
-      wait_for_connection:
+
   when: ansible_os_family | lower == "redhat"
+
+- name: restart network service
+  service:
+    name: "{{ (ansible_pkg_mgr == 'apt') | ternary('networking', 'network') }}"
+    state: restarted
+  async: 15
+  poll: 0
+  ignore_errors: true
+
+- local_action:
+    module: wait_for
+    host: "{{ ansible_host }}"
+    delay: 15
+    state: started
+    port: 22
+    connect_timeout: 10
+    timeout: 180
