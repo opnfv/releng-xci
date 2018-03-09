@@ -16,6 +16,24 @@
       "revId": "f34ce036ec7115d6fa5edca9b7fa0d43ad26af69",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_aeee6cea",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-09T15:53:33Z",
+      "side": 1,
+      "message": "there is no such thing anymore. Did you find that variable useful? because the way things are there was no (easy) way to override it anyway so we had it in a variable for no practical reason.",
+      "parentUuid": "5a3f45e8_0e9cc0bf",
+      "revId": "f34ce036ec7115d6fa5edca9b7fa0d43ad26af69",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
