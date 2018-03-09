@@ -9,18 +9,12 @@
 ---
 - hosts: localhost
   connection: local
-  name: "Setting pre-test conditions"
+  name: "Host and Ironic bootstrapping"
   become: yes
-  ignore_errors: yes
-  tasks:
-  - name: Remove pre-existing leases file
-    file: path=/var/lib/misc/dnsmasq.leases state=absent
-- hosts: localhost
-  connection: local
-  name: "Executes install, enrollment, and testing in one playbook"
-  become: no
   gather_facts: yes
   pre_tasks:
+    - name: Remove pre-existing leases file
+      file: path=/var/lib/misc/dnsmasq.leases state=absent
     - name: "Override the ipv4_gateway setting"
       set_fact:
          ipv4_gateway: "192.168.122.1"
@@ -30,14 +24,12 @@
           file:
             path: /httpboot
             state: directory
-          become: yes
         - name: Download the {{ xci_distro }} image checksum file
           get_url:
             dest: /httpboot/deployment_image.qcow2.sha256.txt
             force: no
             url: http://artifacts.opnfv.org/releng/xci/images/{{ xci_distro }}.qcow2.sha256.txt
             timeout: 3000
-          become: yes
         - name: Extract checksum
           shell: awk '{print $1}' /httpboot/deployment_image.qcow2.sha256.txt
           register: _image_checksum
@@ -53,27 +45,17 @@
             timeout: 3000
             dest: /httpboot/deployment_image.qcow2
             force: no
-          become: yes
         - name: Set correct mode for {{ xci_distro }}.qcow2 file
           file:
             path: /httpboot/deployment_image.qcow2
             mode: '0755'
             owner: 'root'
             group: 'root'
-          become: yes
       when: use_prebuilt_images | bool == true
 
   roles:
-    - { role: bifrost-prep-for-install, when: skip_install is not defined }
-  environment:
-    http_proxy: "{{ lookup('env','http_proxy') }}"
-    https_proxy: "{{ lookup('env','https_proxy') }}"
-- hosts: localhost
-  connection: local
-  name: "Executes install, enrollment, and testing in one playbook"
-  become: yes
-  gather_facts: yes
-  roles:
+    - role: bifrost-prep-for-install
+      when: skip_install is not defined
     - role: bifrost-keystone-install
     - role: bifrost-ironic-install
       cleaning: false
@@ -118,22 +100,20 @@
   environment:
     http_proxy: "{{ lookup('env','http_proxy') }}"
     https_proxy: "{{ lookup('env','https_proxy') }}"
+
 - hosts: baremetal
-  name: "Enroll node with Ironic"
-  become: no
-  connection: local
-  roles:
-    - role: ironic-enroll-dynamic
-    - { role: ironic-inspect-node, when: inspect_nodes | default('false') | bool == true }
-- hosts: baremetal
-  name: "Create configuration drive files and deploy machines"
+  name: "Enrollment and Deployment"
   vars:
     multinode_testing: "{{ inventory_dhcp | bool == true }}"
   become: no
   connection: local
+  gather_facts: yes
   roles:
+    - role: ironic-enroll-dynamic
+    - { role: ironic-inspect-node, when: inspect_nodes | default('false') | bool == true }
     - role: bifrost-configdrives-dynamic
     - role: bifrost-deploy-nodes-dynamic
+
 - hosts: baremetal
   name: "Deploy machines."
   become: no
