@@ -156,7 +156,7 @@ sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 cd $XCI_PATH/bifrost/
 sudo -E bash ./scripts/destroy-env.sh
 cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory provision-vm-nodes.yml
+ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i inventory bootstrap-bifrost.yml
 cd ${XCI_CACHE}/repos/bifrost
 bash ./scripts/bifrost-provision.sh
 echo "-----------------------------------------------------------------------"
