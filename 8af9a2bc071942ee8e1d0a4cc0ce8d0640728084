@@ -1,0 +1,9 @@
+Code-Review+2: Markos Chandras <mchandras@suse.de>
+Code-Review+1: Victor Morales <victor.morales@intel.com>
+Code-Review+2: Yolanda Robla Mota <info@ysoft.biz>
+Verified+1: Fatih Degirmenci <fdegir@gmail.com>
+Submitted-by: Fatih Degirmenci <fdegir@gmail.com>
+Submitted-at: Fri, 09 Mar 2018 10:24:27 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/52729
+Project: releng-xci
+Branch: refs/heads/master
