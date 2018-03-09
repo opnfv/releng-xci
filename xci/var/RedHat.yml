@@ -9,5 +9,3 @@
 ##############################################################################
 # this is placeholder and left blank intentionally to complete later on
 python_crypto_package_name: python-crypto
-docker_package_name: docker
-docker_service_name: docker

@@ -7,6 +7,24 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
+
+- name: install functest required packages
+  package:
+    name: "{{ functest_required_packages[ansible_pkg_mgr] }}"
+    state: present
+
+# Docker is needed for functest
+- name: Ensure Docker service is started and enabled
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: install functest required pip packages
+  pip:
+   name: "{{ functest_required_pip }}"
+   state: present
+
 - name: check if the gateway was already set
   shell: "ip a | grep {{ gateway_ip }}"
   register: gateway_ip_result
@@ -27,10 +45,3 @@
     src: run-functest.sh.j2
     dest: /root/run-functest.sh
     mode: 0755
-
-- name: install required packages
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - wget

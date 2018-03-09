@@ -103,10 +103,14 @@
     - name: install python Crypto module
       package:
         name: "{{ python_crypto_package_name }}"
-    - name: install PyYAML
+    - name: install opnfv pip required packages
       pip:
-        name: pyyaml
+        name: "{{ item }}"
         state: present
+      with_items:
+        - pyyaml
+        - python-neutronclient
+        - python-openstackclient
     - name: generate password token
       command: "python pw-token-gen.py --file {{OPENSTACK_OSA_ETC_PATH}}/user_secrets.yml"
       args:
@@ -135,20 +139,6 @@
         content: "{{ xci_ssl_key }}"
         dest: "/etc/ssl/private/xci.key"
       become: true
-    - name: install opnfv required packages
-      package:
-        name: "{{ opnfv_required_packages }}"
-        state: latest
-    # Docker is needed for functest
-    - name: Ensure Docker service is started and enabled
-      service:
-        name: "{{ docker_service_name }}"
-        state: started
-        enabled: yes
-    - name: install opnfv required pip packages
-      pip:
-        name: "{{ opnfv_required_pip }}"
-        state: present
 
 - hosts: localhost
   remote_user: root
