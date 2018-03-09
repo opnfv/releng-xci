@@ -1,0 +1,16 @@
+---
+opnfv_required_packages:
+  apt:
+    - docker.io
+    - wget
+  zypper:
+    - docker
+    - wget
+  yum:
+    - docker
+    - wget
+
+opnfv_required_pip:
+  - python-openstackclient
+  - python-neutronclient
+  - docker-py
