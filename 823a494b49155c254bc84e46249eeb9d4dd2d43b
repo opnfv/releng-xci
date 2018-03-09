@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a3f45e8_ee523412",
+        "filename": "xci/playbooks/roles/prepare-functest/tasks/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-03-09T15:09:11Z",
+      "side": 1,
+      "message": "Nit: do we have to follow better naming convention for task names. (like first letter in caps) ?",
+      "revId": "823a494b49155c254bc84e46249eeb9d4dd2d43b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_bba7d04e",
         "filename": "xci/playbooks/roles/prepare-functest/vars/main.yml",
         "patchSetId": 5
