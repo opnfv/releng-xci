@@ -43,12 +43,3 @@ OPENSTACK_OSA_HAPROXY_GIT_URL: "{{ lookup('env','OPENSTACK_OSA_HAPROXY_GIT_URL')
 HAPROXY_VERSION: "{{ lookup('env','HAPROXY_VERSION') }}"
 KEEPALIVED_GIT_URL: "{{ lookup('env','KEEPALIVED_GIT_URL') }}"
 KEEPALIVED_VERSION: "{{ lookup('env','KEEPALIVED_VERSION') }}"
-
-# install docker on opnfv host only if we are running as part of CI
-opnfv_required_packages:
-  - "{{ docker_package_name }}"
-
-opnfv_required_pip:
-  - python-openstackclient
-  - python-neutronclient
-  - docker-py
