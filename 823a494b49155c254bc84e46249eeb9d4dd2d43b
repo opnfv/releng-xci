@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_bba7d04e",
+        "filename": "xci/playbooks/roles/prepare-functest/vars/main.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-03-09T14:33:20Z",
+      "side": 1,
+      "message": "as far as I know, XCI best practices says that the openstack commands should be executed from the OPNFV VM, or? If these are only installed when running the functest role, where should the users execute their commands?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 24
+      },
+      "revId": "823a494b49155c254bc84e46249eeb9d4dd2d43b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
