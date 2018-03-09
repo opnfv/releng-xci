@@ -103,25 +103,6 @@ echo "-------------------------------------------------------------------------"
 bash files/install-ansible.sh
 echo "-------------------------------------------------------------------------"
 
-case ${XCI_DISTRO,,} in
-    # These should ideally match the CI jobs
-    ubuntu)
-        export DIB_OS_RELEASE="${DIB_OS_RELEASE:-xenial}"
-        export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-ubuntu-minimal}"
-        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,iptables}"
-        ;;
-    centos)
-        export DIB_OS_RELEASE="${DIB_OS_RELEASE:-7}"
-        export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-centos-minimal}"
-        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables}"
-        ;;
-    opensuse)
-        export DIB_OS_RELEASE="${DIB_OS_RELEASE:-42.3}"
-        export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-opensuse-minimal}"
-        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables}"
-        ;;
-esac
-
 # Clone OPNFV scenario repositories
 #-------------------------------------------------------------------------------
 # This playbook
