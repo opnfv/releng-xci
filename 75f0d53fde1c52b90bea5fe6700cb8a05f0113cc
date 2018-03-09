@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_71cba972",
+        "filename": "xci/playbooks/prepare-functest.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-09T23:55:29Z",
+      "side": 1,
+      "message": "functest failure seems to be this line and ansible is complaining about it but I fail to see what\u0027s wrong...",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 40
+      },
+      "revId": "75f0d53fde1c52b90bea5fe6700cb8a05f0113cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
