@@ -17,7 +17,7 @@
     network_packages:
       - bridge-utils
       - "{{ (ansible_pkg_mgr in ['zypper', 'apt']) | ternary('iproute2', 'iproute') }}"
-      - "{{ (ansible_pkg_mgr == 'apt') | ternary('vlan', '') }}"
+      - "{{ (ansible_pkg_mgr == 'apt') | ternary('vlan', 'bridge-utils') }}"
       - iptables
 
 - name: Ensure networking packages are present
