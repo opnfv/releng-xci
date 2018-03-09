@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_0e9cc0bf",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-03-09T15:09:11Z",
+      "side": 1,
+      "message": "why can\u0027t we still add these items into opnfv_required_pip list ?",
+      "revId": "f34ce036ec7115d6fa5edca9b7fa0d43ad26af69",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
