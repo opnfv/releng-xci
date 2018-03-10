@@ -77,6 +77,26 @@ export DIB_OS_PACKAGES=${DIB_OS_PACKAGES:-"vlan,vim,less,bridge-utils,language-p
 # Additional dib elements
 export EXTRA_DIB_ELEMENTS=${EXTRA_DIB_ELEMENTS:-"openssh-server"}
 
+# dib configuration
+case ${XCI_DISTRO,,} in
+    # These should ideally match the CI jobs
+    ubuntu)
+        export DIB_OS_RELEASE="${DIB_OS_RELEASE:-xenial}"
+        export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-ubuntu-minimal}"
+        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl,iptables}"
+        ;;
+    centos)
+        export DIB_OS_RELEASE="${DIB_OS_RELEASE:-7}"
+        export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-centos-minimal}"
+        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables}"
+        ;;
+    opensuse)
+        export DIB_OS_RELEASE="${DIB_OS_RELEASE:-42.3}"
+        export DIB_OS_ELEMENT="${DIB_OS_ELEMENT:-opensuse-minimal}"
+        export DIB_OS_PACKAGES="${DIB_OS_PACKAGES:-vim,less,bridge-utils,iputils,rsyslog,curl,iptables}"
+        ;;
+esac
+
 # Copy the OS images if found
 if [[ -e ${XCI_PATH}/deployment_image.qcow2 ]]; then
 	sudo mkdir -p /httpboot
