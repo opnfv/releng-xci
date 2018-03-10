@@ -134,6 +134,30 @@
       "revId": "75f0d53fde1c52b90bea5fe6700cb8a05f0113cc",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4c0a5022",
+        "filename": "xci/playbooks/prepare-functest.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-10T21:37:40Z",
+      "side": 1,
+      "message": "the error wasn\u0027t due to functest. my wording wasn\u0027t correct here, sorry.",
+      "parentUuid": "5a3f45e8_11618539",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 40
+      },
+      "revId": "75f0d53fde1c52b90bea5fe6700cb8a05f0113cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
