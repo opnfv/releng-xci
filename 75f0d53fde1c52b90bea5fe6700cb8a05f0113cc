@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_51a02d43",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2018-03-10T10:12:54Z",
+      "side": 1,
+      "message": "A classical install via pip would have been better. Then all dependency version would have been under control (constraints)",
+      "parentUuid": "5a3f45e8_b1f9b14f",
+      "revId": "75f0d53fde1c52b90bea5fe6700cb8a05f0113cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_b17411fe",
         "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
         "patchSetId": 14
