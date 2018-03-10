@@ -119,13 +119,17 @@ COMMON_DISTRO_PKGS=(vim strace gdb htop dnsmasq docker iptables ebtables virt-ma
 
 case ${ID,,} in
 	*suse)
-		pkg_mgr_cmd="sudo zypper -q -n install ${COMMON_DISTRO_PKGS[@]} qemu-kvm qemu-tools libvirt-daemon libvirt-client libvirt-daemon-driver-qemu"
+		pkg_mgr_cmd="sudo zypper -q -n ref"
+		pkg_mgr_cmd+=" && sudo zypper -q -n install ${COMMON_DISTRO_PKGS[@]} qemu-kvm qemu-tools libvirt-daemon libvirt-client libvirt-daemon-driver-qemu"
 		;;
 	centos)
-		pkg_mgr_cmd="sudo yum install -q -y epel-release && sudo yum install -q -y in ${COMMON_DISTRO_PKGS[@]} qemu-kvm-tools qemu-img libvirt-daemon-kvm"
+		pkg_mgr_cmd="yum updateinfo"
+		pkg_mgr_cmd+=" && sudo yum install -q -y epel-release"
+		pkg_mgr_cmd+=" && sudo yum install -q -y in ${COMMON_DISTRO_PKGS[@]} qemu-kvm-tools qemu-img libvirt-daemon-kvm"
 		;;
 	ubuntu)
-		pkg_mgr_cmd="sudo apt-get install -y -q=3 ${COMMON_DISTRO_PKGS[@]} libvirt-bin qemu-utils docker.io"
+		pkg_mgr_cmd="sudo apt-get update"
+		pkg_mgr_cmd+=" && sudo apt-get install -y -q=3 ${COMMON_DISTRO_PKGS[@]} libvirt-bin qemu-utils docker.io"
 		;;
 esac
 
@@ -141,7 +145,9 @@ while true; do
 done
 
 echo "Installing host (${ID,,}) dependencies..."
-eval ${pkg_mgr_cmd} &> /dev/null
+set +e
+eval ${pkg_mgr_cmd}
+set -e
 
 echo "Ensuring libvirt and docker services are running..."
 sudo systemctl -q start libvirtd
