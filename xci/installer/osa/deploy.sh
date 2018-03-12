@@ -128,7 +128,7 @@ ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_VERBOS
 scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
 echo "-----------------------------------------------------------------------"
 # check the log to see if we have any error
-if grep -q 'failed=1\|unreachable=1' $LOG_PATH/setup-infrastructure.log; then
+if grep -q 'unreachable=1' $LOG_PATH/setup-infrastructure.log; then
     echo "Error: OpenStack node setup failed!"
     exit 1
 fi
