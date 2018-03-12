@@ -18,18 +18,19 @@ fi
 rm -rf /opt/stack
 # HOME is normally set by sudo -H
 rm -rf ${HOME}/.config/openstack
+rm -rf ${HOME}/.ansible
 
 # bifrost installs everything on venv so we need to look there if virtualbmc is not installed on the host.
 if which vbmc &>/dev/null || { [[ -e /opt/stack/bifrost/bin/activate ]] && source /opt/stack/bifrost/bin/activate; }; then
-	# Delete all libvirt VMs and hosts from vbmc (look for a port number)
-	for vm in $(vbmc list | awk '/[0-9]/{{ print $2 }}'); do
-		if which virsh &>/dev/null; then
-			virsh destroy $vm || true
-			virsh undefine $vm || true
-		fi
-		vbmc delete $vm
-	done
-	which vbmc &>/dev/null || { [[ -e /opt/stack/bifrost/bin/activate ]] && deactivate; }
+    # Delete all libvirt VMs and hosts from vbmc (look for a port number)
+    for vm in $(vbmc list | awk '/[0-9]/{{ print $2 }}'); do
+        if which virsh &>/dev/null; then
+            virsh destroy $vm || true
+            virsh undefine $vm || true
+        fi
+        vbmc delete $vm
+    done
+    which vbmc &>/dev/null || { [[ -e /opt/stack/bifrost/bin/activate ]] && deactivate; }
 fi
 
 # Destroy all XCI VMs if the previous operation failed
