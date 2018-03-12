@@ -2,6 +2,247 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a3f45e8_d51b841a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "s/provide/provides",
+      "range": {
+        "startLine": 9,
+        "startChar": 11,
+        "endLine": 9,
+        "endChar": 18
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_15168cf1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "s/deployments/deployment",
+      "range": {
+        "startLine": 12,
+        "startChar": 8,
+        "endLine": 12,
+        "endChar": 19
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_95e1fc00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "minimal",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 23
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d5e26400",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "s/move/moved",
+      "range": {
+        "startLine": 16,
+        "startChar": 59,
+        "endLine": 16,
+        "endChar": 63
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f5e7a010",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "unexpected conflicts",
+      "range": {
+        "startLine": 16,
+        "startChar": 10,
+        "endLine": 16,
+        "endChar": 31
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_75bb90e5",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "s/deploy/deploys",
+      "range": {
+        "startLine": 32,
+        "startChar": 68,
+        "endLine": 32,
+        "endChar": 74
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_15edecef",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "s/install/installs",
+      "range": {
+        "startLine": 32,
+        "startChar": 19,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b5b518f0",
+        "filename": "infra_manager/README.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "I\u0027d prefer to have a single execution command like:\n\n    $ ./servers-prepare.sh \u0026\u0026 ./nodes-deploy.sh",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 17
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d5c9c47a",
+        "filename": "infra_manager/filter_plugins/interfaces.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "Those methods seem to be only used by the filters method of FilterModule class, shouldn\u0027t be better to move it inside of the class definition instead of defining them as functions?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 15
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d54f04bd",
+        "filename": "infra_manager/scripts/install-ansible.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "I know that most of this changes are temporal, but shouldn\u0027t be better to use a softlink to install-ansible.sh script(https://git.opnfv.org/releng-xci/tree/xci/files/install-ansible.sh)",
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_354f48bf",
+        "filename": "infra_manager/scripts/install-deps.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T21:20:22Z",
+      "side": 1,
+      "message": "I think that this file were deprecated",
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_22126db1",
         "filename": "infra_manager/var/pdf.yml",
         "patchSetId": 11
