@@ -127,11 +127,6 @@ ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_VERBOS
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-infrastructure.yml | tee setup-infrastructure.log"
 scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
 echo "-----------------------------------------------------------------------"
-# check the log to see if we have any error
-if grep -q 'failed=1\|unreachable=1' $LOG_PATH/setup-infrastructure.log; then
-    echo "Error: OpenStack node setup failed!"
-    exit 1
-fi
 
 #-------------------------------------------------------------------------------
 # Verify database cluster
@@ -161,11 +156,7 @@ ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_VERBOS
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
 scp root@$OPNFV_HOST_IP:~/opnfv-setup-openstack.log $LOG_PATH/opnfv-setup-openstack.log
 echo "-----------------------------------------------------------------------"
-# check the log to see if we have any error
-if grep -q 'failed=1\|unreachable=1' $LOG_PATH/opnfv-setup-openstack.log; then
-   echo "Error: OpenStack installation failed!"
-   exit 1
-fi
+echo
 echo "Info: OpenStack installation is successfully completed!"
 
 #-------------------------------------------------------------------------------
