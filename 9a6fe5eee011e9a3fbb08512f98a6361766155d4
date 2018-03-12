@@ -22,6 +22,30 @@
       "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_2289cdeb",
+        "filename": "infra_manager/var/pdf.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-03-12T13:17:50Z",
+      "side": 1,
+      "message": "No, this is just the same config as the actual deployment, 1 NIC \u003d 1 native + 3 vlans (10/20/30)",
+      "parentUuid": "5a3f45e8_22126db1",
+      "range": {
+        "startLine": 136,
+        "startChar": 7,
+        "endLine": 136,
+        "endChar": 40
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
