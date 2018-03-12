@@ -41,6 +41,7 @@ The sandbox provides
 * multiple OPNFV scenarios to install
 * ability to select different versions of upstream components to base the work on
 * ability to enable additional OpenStack services or disable others
+* ability to install kubernetes with different network plugins
 
 One last point to highlight here is that the XCI itself uses the sandbox for
 development and test purposes so it is continuously tested to ensure it works
@@ -51,9 +52,9 @@ Components of the Sandbox
 ===================================
 
 The sandbox uses OpenStack projects for VM node creation, provisioning
-and OpenStack installation. XCI Team provides playbooks, roles, and scripts
-to ensure the components utilized by the sandbox work in a way that serves
-the users in the best possible way.
+and OpenStack or Kubernetes installation. XCI Team provides playbooks,
+roles, and scripts to ensure the components utilized by the sandbox
+work in a way that serves the users in the best possible way.
 
 * **openstack/bifrost:** Bifrost (pronounced bye-frost) is a set of Ansible
   playbooks that automates the task of deploying a base image onto a set
@@ -77,6 +78,13 @@ the users in the best possible way.
   More infromation about this project can be seen on
   `OPNFV Releng documentation <https://wiki.opnfv.org/display/releng>`_.
 
+* **kubernetes-incubator/kubespray:** Kubespray is a composition of Ansible playbooks,
+  inventory, provisioning tools, and domain knowledge for generic OS/Kubernetes
+  clusters configuration management tasks. The aims of kubespray is deploying a
+  production ready kubernetes cluster
+  More information about this project can be seen on
+  `Kubespray documentation <https://kubernetes.io/docs/getting-started-guides/kubespray/>`_.
+
 Sandbox Flavors
 ===============
 
@@ -85,29 +93,29 @@ deployed using VM nodes.
 
 Available flavors are listed on the table below.
 
-+------------------+------------------------+---------------------+-------------------------+
-| Flavor           | Number of VM Nodes     | VM Specs Per Node   | Time Estimates          |
-+==================+========================+=====================+=========================+
-| All in One (aio) | | 1 VM Node            | | vCPUs: 8          | | Provisioning: 10 mins |
-|                  | | controller & compute | | RAM: 12GB         | | Deployment: 90 mins   |
-|                  | | on single/same node  | | Disk: 80GB        | | Total: 100 mins       |
-|                  | | 1 compute node       | | NICs: 1           | |                       |
-+------------------+------------------------+---------------------+-------------------------+
-| Mini             | | 3 VM Nodes           | | vCPUs: 6          | | Provisioning: 12 mins |
-|                  | | 1 deployment node    | | RAM: 12GB         | | Deployment: 65 mins   |
-|                  | | 1 controller node    | | Disk: 80GB        | | Total: 77 mins        |
-|                  | | 1 compute node       | | NICs: 1           | |                       |
-+------------------+------------------------+---------------------+-------------------------+
-| No HA            | | 4 VM Nodes           | | vCPUs: 6          | | Provisioning: 12 mins |
-|                  | | 1 deployment node    | | RAM: 12GB         | | Deployment: 70 mins   |
-|                  | | 1 controller node    | | Disk: 80GB        | | Total: 82 mins        |
-|                  | | 2 compute nodes      | | NICs: 1           | |                       |
-+------------------+------------------------+---------------------+-------------------------+
-| HA               | | 6 VM Nodes           | | vCPUs: 6          | | Provisioning: 15 mins |
-|                  | | 1 deployment node    | | RAM: 12GB         | | Deployment: 105 mins  |
-|                  | | 3 controller nodes   | | Disk: 80GB        | | Total: 120 mins       |
-|                  | | 2 compute nodes      | | NICs: 1           | |                       |
-+------------------+------------------------+---------------------+-------------------------+
++------------------+------------------------+---------------------+--------------------------+--------------------------+
+| Flavor           | Number of VM Nodes     | VM Specs Per Node   | Time Estimates Opnestack | Time Estimates Kubernetes|
++==================+========================+=====================+==========================+==========================+
+| All in One (aio) | | 1 VM Node            | | vCPUs: 8          | | Provisioning: 10 mins  | | Provisioning: 10 mins  |
+|                  | | controller & compute | | RAM: 12GB         | | Deployment: 90 mins    | | Deployment: 30 mins    |
+|                  | | on single/same node  | | Disk: 80GB        | | Total: 100 mins        | | Total: 40 mins         |
+|                  | | 1 compute node       | | NICs: 1           | |                        | |                        |
++------------------+------------------------+---------------------+--------------------------+--------------------------+
+| Mini             | | 3 VM Nodes           | | vCPUs: 6          | | Provisioning: 12 mins  | | Provisioning: 12 mins  |
+|                  | | 1 deployment node    | | RAM: 12GB         | | Deployment: 65 mins    | | Deployment: 35 mins    |
+|                  | | 1 controller node    | | Disk: 80GB        | | Total: 77 mins         | | Total: 47 mins         |
+|                  | | 1 compute node       | | NICs: 1           | |                        | |                        |
++------------------+------------------------+---------------------+--------------------------+--------------------------+
+| No HA            | | 4 VM Nodes           | | vCPUs: 6          | | Provisioning: 12 mins  | | Provisioning: 12 mins  |
+|                  | | 1 deployment node    | | RAM: 12GB         | | Deployment: 70 mins    | | Deployment: 35 mins    |
+|                  | | 1 controller node    | | Disk: 80GB        | | Total: 82 mins         | | Total: 47 mins         |
+|                  | | 2 compute nodes      | | NICs: 1           | |                        | |                        |
++------------------+------------------------+---------------------+--------------------------+--------------------------+
+| HA               | | 6 VM Nodes           | | vCPUs: 6          | | Provisioning: 15 mins  | | Provisioning: 15 mins  |
+|                  | | 1 deployment node    | | RAM: 12GB         | | Deployment: 105 mins   | | Deployment: 40 mins    |
+|                  | | 3 controller nodes   | | Disk: 80GB        | | Total: 120 mins        | | Total: 55 mins         |
+|                  | | 2 compute nodes      | | NICs: 1           | |                        | |                        |
++------------------+------------------------+---------------------+--------------------------+--------------------------+
 
 
 The specs for VMs are configurable and the more vCPU/RAM the better.
@@ -122,8 +130,8 @@ depending on
 * installed/activated OpenStack services
 * internet connection bandwidth
 
-Flavor Layouts
---------------
+Flavor Layouts Openstack
+------------------------
 
 All flavors are created and deployed based on the upstream OpenStack Ansible (OSA)
 guidelines.
@@ -165,6 +173,43 @@ flavors.
 .. image:: images/arch-layout-test.png
    :scale: 75 %
 
+Flavor Layouts Kubernetes
+------------------------
+
+All flavors are created and deployed based on the upstream kubespray guidelines.
+
+For network plugins, calico is used. flannel, weaver, contive, canal and cilium
+are supported currently
+
+The differences between the flavors are documented below.
+
+**All in One**
+
+As shown on the table in the previous section, this flavor consists of a single
+node. All the kubernetes services run on the same node.
+
+**Mini/No HA/HA**
+
+These flavors consist of multiple nodes.
+
+* **opnfv**: This node is used for driving the installation towards target nodes
+  in order to ensure the deployment process is isolated from the physical host
+  and always done on a clean machine.
+* **master**:  provide the kubernetes cluster’s control plane.
+* **node**: a worker machine in Kubernetes, previously known as a minion.
+
+Ha flavor should have 3 master all working correctly. it will set up a load balancer,
+and you access your cluster via that load balancer
+
+Please see the diagrams below for the host and service layout for these
+flavors.
+
+.. image:: images/arch-layout-k8s-noha.png
+   :scale: 75 %
+
+.. image:: images/arch-layout-k8s-ha.png
+   :scale: 75 %
+
 User Guide
 ==========
 
@@ -200,7 +245,12 @@ How to Use
 
    | ``cd releng-xci/xci``
 
-4. Execute the sandbox script
+4. If you want to deploy the kubernetes, set the variable. Otherwise skip.
+
+   | ``export XCI_INSTALLER=kubespray``
+   | ``export DEPLOY_SCENARIO=k8-nosdn-nofeature``
+
+5. Execute the sandbox script
 
    | ``./xci-deploy.sh``
 
@@ -241,7 +291,13 @@ default.
 
 5. Set the version to use for openstack-ansible
 
+   1) if deploying openstack
+
    | ``export OPENSTACK_OSA_VERSION=master``
+
+   2) if deploying kubernetes
+
+   | ``export KUBESPRAY_VERSION=master``
 
 6. Set where the logs should be stored
 
@@ -256,7 +312,7 @@ behaviors, especially if it is changed to ``master``. If you are not
 sure about how good the version you intend to use is, it is advisable to
 use the pinned versions instead.
 
-**Verifying the Basic Operation**
+**Verifying the Openstack Basic Operation**
 
 You can verify the basic operation using the commands below.
 
@@ -275,6 +331,23 @@ You can verify the basic operation using the commands below.
 You can also access the Horizon UI by using the URL, username, and
 the password displayed on your console upon the completion of the
 deployment.
+
+**Verifying the Kubernetes Basic Operation**
+
+You can verify the basic operation using the commands below.
+
+1. Login to opnfv host
+
+   | ``ssh root@192.168.122.2``
+
+2. Issue kubectl commands
+
+   | ``kubectl get nodes``
+
+You can also access the Horizon UI by using the URL, username, and
+the password displayed on your console upon the completion of the
+deployment.
+
 
 **Debugging Tips**
 
@@ -295,11 +368,11 @@ Here are steps that take place upon the execution of the sandbox script
 2. Installs ansible on the host where sandbox script is executed.
 3. Creates and provisions VM nodes based on the flavor chosen by the user.
 4. Configures the host where the sandbox script is executed.
-5. Configures the deployment host which the OpenStack installation will
-   be driven from.
-6. Configures the target hosts where OpenStack will be installed.
-7. Configures the target hosts as controller(s) and compute(s) nodes.
-8. Starts the OpenStack installation.
+5. Configures the deployment host which the OpenStacki/Kubernetes
+   installation will be driven from.
+6. Configures the target hosts where OpenStack/Kuberntes will be installed.
+7. Configures the target hosts as controller(s) and compute(s) nodes when deploy Openstack.
+8. Starts the OpenStack/Kubernetes installation.
 
 .. image:: images/xci-basic-flow.png
    :height: 640px
