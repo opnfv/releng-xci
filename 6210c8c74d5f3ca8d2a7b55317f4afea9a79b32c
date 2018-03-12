@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_f5f960c9",
+        "filename": "infra_manager/roles/node-network/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T19:15:42Z",
+      "side": 1,
+      "message": "nit: the number of \u0027\u003d\u0027 characters have to correspond with the title, like:\n\n    Nodes network configuration\n    \u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 9
+      },
+      "revId": "6210c8c74d5f3ca8d2a7b55317f4afea9a79b32c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_15ffacab",
+        "filename": "infra_manager/roles/node-network/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T19:15:42Z",
+      "side": 1,
+      "message": "s/bridege/bridge",
+      "range": {
+        "startLine": 16,
+        "startChar": 26,
+        "endLine": 16,
+        "endChar": 33
+      },
+      "revId": "6210c8c74d5f3ca8d2a7b55317f4afea9a79b32c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_752d5046",
+        "filename": "infra_manager/roles/node-network/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T19:15:42Z",
+      "side": 1,
+      "message": "s/define/defined",
+      "range": {
+        "startLine": 16,
+        "startChar": 26,
+        "endLine": 16,
+        "endChar": 33
+      },
+      "revId": "6210c8c74d5f3ca8d2a7b55317f4afea9a79b32c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5530149e",
+        "filename": "infra_manager/roles/node-network/defaults/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T19:15:42Z",
+      "side": 1,
+      "message": "This comment needs to be more descriptive",
+      "range": {
+        "startLine": 3,
+        "startChar": 2,
+        "endLine": 3,
+        "endChar": 18
+      },
+      "revId": "6210c8c74d5f3ca8d2a7b55317f4afea9a79b32c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_550934dc",
+        "filename": "infra_manager/roles/node-network/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T19:15:42Z",
+      "side": 1,
+      "message": "Should be better to use:\n\n    when: ansible_os_family | lower \u003d\u003d \"debian\"",
+      "range": {
+        "startLine": 18,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 43
+      },
+      "revId": "6210c8c74d5f3ca8d2a7b55317f4afea9a79b32c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_9513bc0c",
+        "filename": "infra_manager/roles/node-network/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T19:15:42Z",
+      "side": 1,
+      "message": "Those two tasks can be grouped into a block",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "6210c8c74d5f3ca8d2a7b55317f4afea9a79b32c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b5107802",
+        "filename": "infra_manager/roles/node-network/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-12T19:15:42Z",
+      "side": 1,
+      "message": "ditto: line 18",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 43
+      },
+      "revId": "6210c8c74d5f3ca8d2a7b55317f4afea9a79b32c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
