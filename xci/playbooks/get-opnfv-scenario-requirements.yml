@@ -110,7 +110,7 @@
           with_items: "{{ deploy_scenario.installers }}"
           loop_control:
             label: "{{ item.installer }}"
-          when: item.installer == XCI_INSTALLER
+          when: item.installer == INSTALLER_TYPE
         - set_fact:
             deploy_scenario_flavor: "{{ (XCI_FLAVOR in deploy_scenario_installer.flavors) | bool }}"
           when:
@@ -128,7 +128,7 @@
         msg:
           - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
           - ERROR! The {{ DEPLOY_SCENARIO }} scenario can't be deployed. This is because
-          - the {{ XCI_INSTALLER }} XCI installer or the {{ XCI_FLAVOR }} flavor or the {{ XCI_DISTRO }}
+          - the {{ INSTALLER_TYPE }} XCI installer or the {{ XCI_FLAVOR }} flavor or the {{ XCI_DISTRO }}
           - distribution is not supported by this scenario. It may also be possible that
           - this scenario doesn't exist at all or it's not listed in {{ scenario_file }}.
           - ''
