@@ -14,7 +14,7 @@
 # limitations under the License.
 
 - name: Prepare the environment for functest
-  hosts: opnfv
+  hosts: jumphost
   user: root
   vars_files:
     - ../var/opnfv.yml
