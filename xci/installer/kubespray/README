@@ -55,7 +55,7 @@ Change into the directory where the sandbox script is located
 
 Set the variable to run kubespray
 
-    export XCI_INSTALLER=kubespray
+    export INSTALLER_TYPE=kubespray
     export DEPLOY_SCENARIO=k8-nosdn-nofeature
     export XCI_FLAVOR=mini
 
