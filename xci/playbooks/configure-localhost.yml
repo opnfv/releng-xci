@@ -35,33 +35,33 @@
       repo: "{{ OPENSTACK_OSA_OPENRC_GIT_URL }}"
       dest: roles/openstack-ansible-openstack_openrc
       version: "master"
-      when: XCI_INSTALLER == "osa"
+      when: INSTALLER_TYPE == "osa"
     - role: clone-repository
       project: "openstack/openstack-ansible"
       repo: "{{ OPENSTACK_OSA_GIT_URL }}"
       dest: "{{ XCI_CACHE }}/repos/openstack-ansible"
       version: "{{ OPENSTACK_OSA_VERSION }}"
-      when: XCI_INSTALLER == "osa"
+      when: INSTALLER_TYPE == "osa"
     - role: clone-repository
       project: "kubernetes-incubator/kubespray"
       repo: "{{ KUBESPRAY_GIT_URL }}"
       dest: "{{ XCI_CACHE }}/repos/kubespray"
       version: "{{ KUBESPRAY_VERSION }}"
-      when: XCI_INSTALLER == "kubespray"
+      when: INSTALLER_TYPE == "kubespray"
     - role: clone-repository
       project: "openstack/openstack-ansible-haproxy_server"
       repo: "{{ OPENSTACK_OSA_HAPROXY_GIT_URL }}"
       dest: roles/haproxy_server
       version: "{{ HAPROXY_VERSION }}"
       when:
-        - XCI_INSTALLER == "kubespray"
+        - INSTALLER_TYPE == "kubespray"
     - role: clone-repository
       project: "ansible-keepalived"
       repo: "{{ KEEPALIVED_GIT_URL }}"
       dest: roles/keepalived
       version: "{{ KEEPALIVED_VERSION }}"
       when:
-        - XCI_INSTALLER == "kubespray"
+        - INSTALLER_TYPE == "kubespray"
 
   tasks:
     - name:  create log directory {{LOG_PATH}}
@@ -97,4 +97,4 @@
           when:
             - OPENSTACK_OSA_DEV_PATH != ""
       when:
-        - XCI_INSTALLER == "osa"
+        - INSTALLER_TYPE == "osa"
