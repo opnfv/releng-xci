@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_dde28cd4",
+        "filename": "bifrost/scripts/destroy-env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-12T15:22:45Z",
+      "side": 1,
+      "message": "you should probably remove the entire .ansible directory since anything in that directoy can affect the XCI deployment :/",
+      "range": {
+        "startLine": 21,
+        "startChar": 14,
+        "endLine": 21,
+        "endChar": 31
+      },
+      "revId": "9d9d3d0b01bec2b928f3c8bbed1541c2ab7fa463",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
