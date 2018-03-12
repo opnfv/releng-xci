@@ -20,7 +20,7 @@
     - name: Set facts for remote deployment
       set_fact:
         remote_xci_path: "{{ ansible_env.HOME }}/releng-xci"
-        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/installer/{{ XCI_INSTALLER }}/files/{{ XCI_FLAVOR }}"
+        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/installer/{{ INSTALLER_TYPE }}/files/{{ XCI_FLAVOR }}"
         remote_xci_playbooks: "{{ ansible_env.HOME }}/releng-xci/xci/playbooks"
 
     - name: Copy releng-xci to remote host
