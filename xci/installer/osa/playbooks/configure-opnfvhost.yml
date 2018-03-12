@@ -101,9 +101,6 @@
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
         chdir: "{{OPENSTACK_OSA_PATH}}"
-    - name: install python Crypto module
-      package:
-        name: "{{ python_crypto_package_name }}"
     - name: install opnfv pip required packages
       pip:
         name: "{{ item }}"
