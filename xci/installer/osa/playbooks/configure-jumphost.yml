@@ -7,7 +7,7 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-- hosts: opnfv
+- hosts: jumphost
   remote_user: root
   vars_files:
     - "{{ XCI_PATH }}/xci/var/opnfv.yml"
@@ -146,7 +146,7 @@
     - name: Append public keys to authorized_keys
       shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ XCI_PATH }}/xci/files/authorized_keys"
 
-- hosts: opnfv
+- hosts: jumphost
   remote_user: root
   vars_files:
     - "{{ XCI_PATH }}/xci/var/opnfv.yml"

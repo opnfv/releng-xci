@@ -58,7 +58,7 @@ echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd $OSA_XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
-    configure-opnfvhost.yml
+    configure-jumphost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
 
