@@ -39,7 +39,7 @@ fi
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_PARAMS} -i inventory configure-localhost.yml
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
 
