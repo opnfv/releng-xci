@@ -112,7 +112,7 @@ echo "-------------------------------------------------------------------------"
 echo "Info: Cloning OPNFV scenario repositories"
 echo "-------------------------------------------------------------------------"
 cd $XCI_PATH/xci/playbooks
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i "localhost," get-opnfv-scenario-requirements.yml
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," get-opnfv-scenario-requirements.yml
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
@@ -137,7 +137,7 @@ sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 cd $XCI_PATH/bifrost/
 sudo -E bash ./scripts/destroy-env.sh
 cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i "localhost," bootstrap-bifrost.yml
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," bootstrap-bifrost.yml
 cd ${XCI_CACHE}/repos/bifrost
 bash ./scripts/bifrost-provision.sh
 echo "-----------------------------------------------------------------------"
