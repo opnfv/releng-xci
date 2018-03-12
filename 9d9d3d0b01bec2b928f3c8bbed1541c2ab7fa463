@@ -22,6 +22,30 @@
       "revId": "9d9d3d0b01bec2b928f3c8bbed1541c2ab7fa463",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_3d0d7091",
+        "filename": "bifrost/scripts/destroy-env.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-03-12T15:33:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_dde28cd4",
+      "range": {
+        "startLine": 21,
+        "startChar": 14,
+        "endLine": 21,
+        "endChar": 31
+      },
+      "revId": "9d9d3d0b01bec2b928f3c8bbed1541c2ab7fa463",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
