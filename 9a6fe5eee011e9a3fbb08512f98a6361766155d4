@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_22126db1",
+        "filename": "infra_manager/var/pdf.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-03-12T13:15:06Z",
+      "side": 1,
+      "message": "The mac address of all the interfaces in the nodes are all the same. Copy/paste problem?",
+      "range": {
+        "startLine": 136,
+        "startChar": 7,
+        "endLine": 136,
+        "endChar": 40
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
