@@ -64,6 +64,8 @@ source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
 source "$XCI_PATH/xci/installer/${XCI_INSTALLER}/env" &>/dev/null || true
 # source xci configuration
 source $XCI_PATH/xci/config/env-vars
+# Make sure we pass XCI_PATH everywhere
+export XCI_ANSIBLE_VERBOSITY+=" -e XCI_PATH=${XCI_PATH}"
 
 if [[ -z $(echo $PATH | grep "$HOME/.local/bin")  ]]; then
     export PATH="$HOME/.local/bin:$PATH"
