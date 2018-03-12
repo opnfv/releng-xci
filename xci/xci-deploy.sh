@@ -22,7 +22,7 @@ submit_bug_report() {
     echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
     echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
     echo "xci flavor: $XCI_FLAVOR"
-    echo "xci installer: $XCI_INSTALLER"
+    echo "xci installer: $INSTALLER_TYPE"
     echo "xci scenario: $DEPLOY_SCENARIO"
     echo "Environment variables:"
     env | grep --color=never '\(OPNFV\|XCI\|OPENSTACK\|SCENARIO\)'
@@ -61,7 +61,7 @@ source $XCI_PATH/xci/config/pinned-versions
 # source flavor configuration
 source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
 # source installer configuration
-source "$XCI_PATH/xci/installer/${XCI_INSTALLER}/env" &>/dev/null || true
+source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
 # source xci configuration
 source $XCI_PATH/xci/config/env-vars
 
@@ -88,7 +88,7 @@ echo "Info: Starting XCI Deployment"
 echo "Info: Deployment parameters"
 echo "-------------------------------------------------------------------------"
 echo "xci flavor: $XCI_FLAVOR"
-echo "xci installer: $XCI_INSTALLER"
+echo "xci installer: $INSTALLER_TYPE"
 echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
@@ -145,9 +145,9 @@ echo "Info: VM nodes are provisioned!"
 echo "-----------------------------------------------------------------------"
 
 # Deploy OpenStack on the selected installer
-echo "Info: Deploying '${XCI_INSTALLER}' installer"
+echo "Info: Deploying '${INSTALLER_TYPE}' installer"
 echo "-----------------------------------------------------------------------"
-source ${XCI_PATH}/xci/installer/${XCI_INSTALLER}/deploy.sh
+source ${XCI_PATH}/xci/installer/${INSTALLER_TYPE}/deploy.sh
 
 # Deployment time
 xci_deploy_time=$SECONDS
