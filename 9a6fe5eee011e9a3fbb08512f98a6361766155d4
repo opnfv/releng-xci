@@ -287,6 +287,30 @@
       "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_890601cd",
+        "filename": "infra_manager/var/pdf.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-03-13T19:02:37Z",
+      "side": 1,
+      "message": "This is why we need better L3 modelling via IDF and why I think idf.net_config is currently very limiting and confusing.\nThe PDF should describe the physical interfaces. PDF 1.0 does not support multiple addresses per interface, because PDF was not designed to describe L2/L3 networking ...\nImo, PDF should stop supporting \u0027address\u0027 per interface and move that to IDF, but that\u0027s for later.\ntl;dr: I don\u0027t object to this change, but just fyi it is not compliant to the PDF 1.0 spec.",
+      "parentUuid": "5a3f45e8_2289cdeb",
+      "range": {
+        "startLine": 136,
+        "startChar": 7,
+        "endLine": 136,
+        "endChar": 40
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
