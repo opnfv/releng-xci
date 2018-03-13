@@ -173,3 +173,9 @@
         src: "{{ ansible_env.HOME }}/openrc"
         dest: "{{ XCI_PATH }}/.cache/openrc"
         flat: true
+
+    - name: prepare the defaults for functest environment
+      template:
+        src: "{{ XCI_PATH }}/xci/playbooks/roles/prepare-functest/templates/main.yml.j2"
+        dest: "{{ XCI_PATH }}/xci/playbooks/roles/prepare-functest/defaults/main.yml"
+        mode: 0755
