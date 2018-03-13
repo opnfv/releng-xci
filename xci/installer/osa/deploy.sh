@@ -39,7 +39,7 @@ fi
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i inventory configure-localhost.yml
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
 
@@ -57,7 +57,7 @@ echo "Info: Configured localhost host for openstack-ansible"
 echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd $OSA_XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
     configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
@@ -77,7 +77,7 @@ if [[ $XCI_FLAVOR != "aio" ]]; then
     echo "Info: Configuring target hosts for openstack-ansible"
     echo "-----------------------------------------------------------------------"
     cd $OSA_XCI_PLAYBOOKS
-    ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -e XCI_PATH="${XCI_PATH}" -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+    ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
         configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts"
@@ -90,7 +90,7 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Setting up target hosts for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
+ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_PARAMS} \
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-hosts.yml | tee setup-hosts.log "
 scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
 echo "-----------------------------------------------------------------------"
@@ -112,7 +112,7 @@ echo "Info: Set up target hosts for openstack-ansible successfuly"
 echo "Info: Gathering facts"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/openstack-ansible/playbooks; \
-        ansible ${XCI_ANSIBLE_VERBOSITY} -m setup -a gather_subset=network,hardware,virtual all"
+        ansible ${XCI_ANSIBLE_PARAMS} -m setup -a gather_subset=network,hardware,virtual all"
 echo "-----------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
@@ -123,7 +123,7 @@ echo "-----------------------------------------------------------------------"
 echo "Info: Setting up infrastructure"
 echo "-----------------------------------------------------------------------"
 echo "xci: running ansible playbook setup-infrastructure.yml"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
+ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_PARAMS} \
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-infrastructure.yml | tee setup-infrastructure.log"
 scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
 echo "-----------------------------------------------------------------------"
@@ -157,7 +157,7 @@ echo "Info: Database cluster verification successful!"
 #-------------------------------------------------------------------------------
 echo "Info: Installing OpenStack on target hosts"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_VERBOSITY} \
+ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_PARAMS} \
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
 scp root@$OPNFV_HOST_IP:~/opnfv-setup-openstack.log $LOG_PATH/opnfv-setup-openstack.log
 echo "-----------------------------------------------------------------------"

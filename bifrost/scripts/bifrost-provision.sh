@@ -21,7 +21,7 @@ BUILD_IMAGE=true
 PROVISION_WAIT_TIMEOUT=${PROVISION_WAIT_TIMEOUT:-3600}
 # This is normally exported by XCI env but we should initialize it here
 # in case we run this script on its own for debug purposes
-XCI_ANSIBLE_VERBOSITY=${XCI_ANSIBLE_VERBOSITY:-}
+XCI_ANSIBLE_PARAMS=${XCI_ANSIBLE_PARAMS:-}
 # Ironic SHAs
 BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-master}
 BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-master}
@@ -132,7 +132,7 @@ if [[ -e /etc/centos-release ]]; then
 fi
 
 # Create the VMS
-${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} \
+${ANSIBLE} ${XCI_ANSIBLE_PARAMS} \
        -i inventory/localhost \
        test-bifrost-create-vm.yaml \
        -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
@@ -143,7 +143,7 @@ ${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} \
        -e ${INVENTORY_FILE_FORMAT}=${BAREMETAL_DATA_FILE}
 
 # Execute the installation and VM startup test
-${ANSIBLE} ${XCI_ANSIBLE_VERBOSITY} \
+${ANSIBLE} ${XCI_ANSIBLE_PARAMS} \
     -i inventory/bifrost_inventory.py \
     ${TEST_PLAYBOOK} \
     -e use_cirros=${USE_CIRROS} \

@@ -64,6 +64,8 @@ source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
 source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
 # source xci configuration
 source $XCI_PATH/xci/config/env-vars
+# Make sure we pass XCI_PATH everywhere
+export XCI_ANSIBLE_PARAMS+=" -e XCI_PATH=${XCI_PATH}"
 
 if [[ -z $(echo $PATH | grep "$HOME/.local/bin")  ]]; then
     export PATH="$HOME/.local/bin:$PATH"
@@ -112,7 +114,7 @@ echo "-------------------------------------------------------------------------"
 echo "Info: Cloning OPNFV scenario repositories"
 echo "-------------------------------------------------------------------------"
 cd $XCI_PATH/xci/playbooks
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i "localhost," get-opnfv-scenario-requirements.yml
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," get-opnfv-scenario-requirements.yml
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
@@ -137,7 +139,7 @@ sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 cd $XCI_PATH/bifrost/
 sudo -E bash ./scripts/destroy-env.sh
 cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i "localhost," bootstrap-bifrost.yml
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," bootstrap-bifrost.yml
 cd ${XCI_CACHE}/repos/bifrost
 bash ./scripts/bifrost-provision.sh
 echo "-----------------------------------------------------------------------"
