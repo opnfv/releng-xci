@@ -58,6 +58,7 @@ export XCI_PATH="$(git rev-parse --show-toplevel)"
 source $XCI_PATH/xci/config/user-vars
 # source pinned versions
 source $XCI_PATH/xci/config/pinned-versions
+export XCI_FLAVOR=ha
 # source flavor configuration
 source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
 # source installer configuration
@@ -139,6 +140,7 @@ sudo -E bash ./scripts/destroy-env.sh
 cd $XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i "localhost," bootstrap-bifrost.yml
 cd ${XCI_CACHE}/repos/bifrost
+export XCI_FLAVOR=ha
 bash ./scripts/bifrost-provision.sh
 echo "-----------------------------------------------------------------------"
 echo "Info: VM nodes are provisioned!"
