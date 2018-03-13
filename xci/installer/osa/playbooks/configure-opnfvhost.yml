@@ -56,6 +56,16 @@
     - name: copy all user override files
       shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables.yml {{OPENSTACK_OSA_ETC_PATH}}"
       failed_when: false
+    - name: make sure defaults directory exists for prepare-functest role
+      file:
+        path: "{{ remote_xci_path }}/xci/playbooks/roles/prepare-functest/defaults"
+        state: directory
+        mode: 0755
+    - name: prepare the defaults for functest environment
+      template:
+        src: "{{ XCI_PATH }}/xci/playbooks/roles/prepare-functest/templates/main.yml.j2"
+        dest: "{{ remote_xci_path }}/xci/playbooks/roles/prepare-functest/defaults/main.yml"
+        mode: 0755
     - name: copy cinder.yml
       shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/cinder.yml {{OPENSTACK_OSA_ETC_PATH}}/env.d"
     - name: Configure OpenStack-Ansible components
