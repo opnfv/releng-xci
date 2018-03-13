@@ -89,12 +89,13 @@ trap submit_bug_report ERR
 echo "Info: Starting XCI Deployment"
 echo "Info: Deployment parameters"
 echo "-------------------------------------------------------------------------"
+echo "OPNFV scenario: $DEPLOY_SCENARIO"
 echo "xci flavor: $XCI_FLAVOR"
 echo "xci installer: $INSTALLER_TYPE"
 echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
-echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
-echo "OPNFV scenario: $DEPLOY_SCENARIO"
+[[ "$INSTALLER_TYPE" == "osa" ]] && echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
+[[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
