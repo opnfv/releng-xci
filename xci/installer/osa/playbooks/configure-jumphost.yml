@@ -27,10 +27,8 @@
         remote_xci_playbooks: "{{ ansible_env.HOME }}/releng-xci/xci/playbooks"
 
   roles:
-    - role: configure-network
-      when: XCI_FLAVOR != "aio"
-    # we need to force sync time with ntp or the nodes will be out of sync timewise
-    - role: synchronize-time
+    - role: bootstrap-host
+      configure_network: XCI_FLAVOR != 'aio'
 
   tasks:
     - name: generate SSH keys
