@@ -139,6 +139,7 @@ sudo -E bash ./scripts/destroy-env.sh
 cd $XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_VERBOSITY} -i "localhost," bootstrap-bifrost.yml
 cd ${XCI_CACHE}/repos/bifrost
+export XCI_FLAVOR=ha
 bash ./scripts/bifrost-provision.sh
 echo "-----------------------------------------------------------------------"
 echo "Info: VM nodes are provisioned!"
