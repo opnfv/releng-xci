@@ -1,8 +1,7 @@
 *
 !.gitignore
 !clone-repository/
-!configure-network/
+!bootstrap-host/
 !configure-nfs/
 !prepare-functest/
 !remote-folders/
-!synchronize-time/
