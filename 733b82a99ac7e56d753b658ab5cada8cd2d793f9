@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_aa800b47",
+        "filename": "xci/playbooks/roles/prepare-functest/defaults/main.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-03-14T14:12:38Z",
+      "side": 1,
+      "message": "they can be removed",
+      "parentUuid": "5a3f45e8_e74ff790",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 49
+      },
+      "revId": "733b82a99ac7e56d753b658ab5cada8cd2d793f9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_dedd7816",
         "filename": "xci/playbooks/roles/run-functest/templates/add-osa-version.sh.j2",
         "patchSetId": 8
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "OPENSTACK_OSA_PATH is now available in the functest playbooks since https://github.com/opnfv/releng-xci/commit/f76dbbfafcdbc6acf6948f8dee60671211774567 so it should be safe to replace OSA_DIR with OPENSTACK_OSA_PATH",
       "parentUuid": "5a3f45e8_54cae94f",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 7
+      },
+      "revId": "733b82a99ac7e56d753b658ab5cada8cd2d793f9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4aba2724",
+        "filename": "xci/playbooks/roles/run-functest/templates/add-osa-version.sh.j2",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-03-14T14:12:38Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_473cebe2",
       "range": {
         "startLine": 3,
         "startChar": 0,
