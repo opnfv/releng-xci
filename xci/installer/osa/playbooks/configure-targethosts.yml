@@ -20,9 +20,7 @@
         - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
         - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
   roles:
-    - role: configure-network
-    # we need to force sync time with ntp or the nodes will be out of sync timewise
-    - role: synchronize-time
+    - role: bootstrap-host
 
 - hosts: compute
   remote_user: root
@@ -37,9 +35,7 @@
         - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
         - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
   roles:
-    - role: configure-network
-    # we need to force sync time with ntp or the nodes will be out of sync timewise
-    - role: synchronize-time
+    - role: bootstrap-host
     - role: configure-ceph
       when: XCI_CEPH_ENABLED == "true"
 
