@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_61910999",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-15T07:53:24Z",
+      "side": 1,
+      "message": "The default dashboard service type is \"ClusterIP\", so you get the string \"TCP\", this patch will change the type to \"NodePort\", you can get the port after changing to NodePort. The verify has shown this https://build.opnfv.org/ci/job/xci-verify-ubuntu-deploy-virtual-master/1011/console",
+      "parentUuid": "5a3f45e8_c15bbd2c",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 90
+      },
+      "revId": "881abd4181bb56cb8d7d1828587064d5475397f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_2142613e",
         "filename": "xci/installer/kubespray/deploy.sh",
         "patchSetId": 3
@@ -59,6 +83,30 @@
       "writtenOn": "2018-03-15T07:33:21Z",
       "side": 1,
       "message": "how does this file get created? I don\u0027t have one on my deployment.",
+      "range": {
+        "startLine": 105,
+        "startChar": 37,
+        "endLine": 105,
+        "endChar": 74
+      },
+      "revId": "881abd4181bb56cb8d7d1828587064d5475397f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c1729dac",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-15T07:53:24Z",
+      "side": 1,
+      "message": "I set the variable kube_basic_auth as true in k8s-cluster.yml in this patch, so this file was created.",
+      "parentUuid": "5a3f45e8_2142613e",
       "range": {
         "startLine": 105,
         "startChar": 37,
