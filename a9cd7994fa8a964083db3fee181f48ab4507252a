@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_418fadcc",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
+        "patchSetId": 12
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-03-15T09:33:29Z",
+      "side": 1,
+      "message": "Not sure where this script is located.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 29
+      },
+      "revId": "a9cd7994fa8a964083db3fee181f48ab4507252a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
