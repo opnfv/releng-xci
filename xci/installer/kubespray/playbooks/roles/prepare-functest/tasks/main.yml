@@ -1,0 +1,57 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Ericsson AB and others
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+- name: install functest required packages
+  package:
+    name: "{{ functest_required_packages[ansible_pkg_mgr] }}"
+    state: present
+
+- name: ensure Docker service is started and enabled
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: install functest required pip packages
+  pip:
+   name: "{{ functest_required_pip }}"
+   state: present
+   extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
+
+- name: create .kube directory
+  file:
+   path: /root/.kube
+   state: directory
+   mode: 0755
+
+- name: fetch k8s config file
+  fetch:
+   src: /root/.kube/config
+   dest: /root/.kube/
+   flat: yes
+  delegate_to: master1
+
+- name: prepare environment file for functest
+  template:
+    src: env.j2
+    dest: /root/env
+    mode: 0755
+
+- name: prepare k8s.creds file for functest
+  template:
+    src: k8s.creds.j2
+    dest: /root/k8s.creds
+    mode: 0755
+
+- name: prepare the script to run functest
+  template:
+    src: run-functest.sh.j2
+    dest: /root/run-functest.sh
+    mode: 0755

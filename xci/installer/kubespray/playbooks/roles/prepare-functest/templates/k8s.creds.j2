@@ -1,0 +1,4 @@
+export KUBECONFIG=/root/.kube/config
+export KUBERNETES_PROVIDER=local
+export KUBE_MASTER_URL=https://{{ hostvars[groups['kube-master'][0]]['ip'] }}:6443
+export KUBE_MASTER_IP={{ hostvars[groups['kube-master'][0]]['ip'] }}

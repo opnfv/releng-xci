@@ -1,0 +1,9 @@
+#!/bin/bash
+
+mkdir -p ~/results/
+
+sudo docker run --env-file env \
+    -v $(pwd)/k8s.creds:/home/opnfv/functest/conf/env_file \
+    -v $(pwd)/.kube/config:/root/.kube/config \
+    -v $(pwd)/results:/home/opnfv/functest/results \
+    opnfv/functest-kubernetes run_tests -t {{ lookup('env','FUNCTEST_SUITE_NAME') | default('healthcheck', true) }}

@@ -82,4 +82,13 @@ if grep -q 'failed=1\|unreachable=1' $LOG_PATH/setup-kubernetes.log; then
     echo "Error: Kubernetes cluster setup failed!"
     exit 1
 fi
+echo "-----------------------------------------------------------------------"
+echo "Info: Preparing deployment for Functest"
+echo "-----------------------------------------------------------------------"
+cd $K8_XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -e XCI_PATH="${XCI_PATH}" \
+        -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory/inventory.cfg \
+        prepare-functest.yml
+echo "-----------------------------------------------------------------------"
+echo
 echo "Info: Kubernetes installation is successfully completed!"
