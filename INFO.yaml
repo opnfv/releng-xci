@@ -50,3 +50,8 @@ committers:
       email: 'mbuil@suse.de'
       id: 'mbuild'
       timezone: 'Europe/Madrid'
+    - name: 'Periyasamy Palanisamy'
+      company: 'Ericsson'
+      email: 'periyasamy.palanisamy@ericsson.com'
+      id: 'epalper'
+      timezone: 'Europe/Aachen'
