@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_81d7f522",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-15T08:10:10Z",
+      "side": 1,
+      "message": "can we have this info printed to console on a bit more distinct way like separated from earlier logs with a line break, etc.\n\nsomething similar to how openstack info is logged at the end of the job.\n\nhttps://build.opnfv.org/ci/job/xci-verify-ubuntu-deploy-virtual-master/1007/console",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 44
+      },
+      "revId": "b8a9a7c86305c86b85a1182c67206819b48c63c8",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
