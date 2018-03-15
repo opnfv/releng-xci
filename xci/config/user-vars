@@ -35,6 +35,15 @@ export XCI_CEPH_ENABLED=${XCI_CEPH_ENABLED:-false}
 export INSTALLER_TYPE=${INSTALLER_TYPE:-osa}
 
 #-------------------------------------------------------------------------------
+# Set DEPLOYMENT
+#-------------------------------------------------------------------------------
+# Currently, there is a single infra deployment method: bifrost
+# Examples:
+#    export INFRA_DEPLOYMENT="bifrost"
+export INFRA_DEPLOYMENT=${INFRA_DEPLOYMENT:-bifrost}
+
+
+#-------------------------------------------------------------------------------
 # Configure some other stuff
 #-------------------------------------------------------------------------------
 # Set the verbosity for ansible
