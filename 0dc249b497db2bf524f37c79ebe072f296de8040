@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_2169c1be",
+        "filename": "xci/installer/kubespray/playbooks/roles/prepare-functest/templates/k8s.creds.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2018-03-15T07:45:37Z",
+      "side": 1,
+      "message": "We are removing that. It should be enforced by our testcases instead of an env var (it contains a dir inside the container)",
+      "revId": "0dc249b497db2bf524f37c79ebe072f296de8040",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
