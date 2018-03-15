@@ -1,0 +1,69 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+idf:
+  version: 0.1
+  osa:
+  kolla:
+  k8s:
+  net_config: &net_config
+    admin:
+      interface: 0
+      network: 172.29.236.0
+      mask: 22
+    storage:
+      interface: 1
+      network: 172.29.240.0
+      mask: 22
+    public:
+      interface: 2
+      network: 192.168.122.0
+      mask: 24
+      gateway: 192.168.122.1
+      dns: 8.8.8.8
+    private:
+      interface: 3
+      network: 172.29.244.0
+      mask: 22
+
+xci:
+  pod_name: vpod1
+  net_config: *net_config
+  nodes_roles:
+    opnfv_host: [opnfv_host]
+    node1: [compute, storage]
+    node2: [compute, storage]
+    node3: [controller]
+    node4: [controller]
+    node5: [controller]
+
+  # net_config network to be used by the PXE
+  pxe_network: public
+
+  # As the MAC of generated bridges are generated, we use a list of local
+  # bridges to create libvirt networks
+  jumphost_interfaces_bridges:
+    - name: virbr0
+      ip: 192.168.122.1
+
+  extra_addresses:
+    opnfv_host: 192.168.122.2
+
+  # network mapping
+  network_mapping:
+    # Management network used by installer components to communicate
+    net-mgmt: admin
+    # Storage Network
+    net-storage: storage
+    # Internal network for communication between VNF
+    net-internal: private
+    # Public network for VNF remote acces (ext-net in Openstack)
+    net-vnf: public
