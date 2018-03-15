@@ -34,6 +34,24 @@
       "revId": "0dc249b497db2bf524f37c79ebe072f296de8040",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_614aa9c6",
+        "filename": "xci/installer/kubespray/playbooks/roles/prepare-functest/templates/k8s.creds.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2018-03-15T08:52:16Z",
+      "side": 1,
+      "message": "I agree it\u0027s mandatory. But it should be handled by the testcase instead of the enduser",
+      "parentUuid": "5a3f45e8_21a421a5",
+      "revId": "0dc249b497db2bf524f37c79ebe072f296de8040",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
