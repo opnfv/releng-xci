@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_41168df2",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-15T08:10:10Z",
+      "side": 1,
+      "message": "sorry, you are right. I haven\u0027t looked at the job log which i should\u0027ve.",
+      "parentUuid": "5a3f45e8_61910999",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 90
+      },
+      "revId": "881abd4181bb56cb8d7d1828587064d5475397f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_2142613e",
         "filename": "xci/installer/kubespray/deploy.sh",
         "patchSetId": 3
@@ -107,6 +131,30 @@
       "side": 1,
       "message": "I set the variable kube_basic_auth as true in k8s-cluster.yml in this patch, so this file was created.",
       "parentUuid": "5a3f45e8_2142613e",
+      "range": {
+        "startLine": 105,
+        "startChar": 37,
+        "endLine": 105,
+        "endChar": 74
+      },
+      "revId": "881abd4181bb56cb8d7d1828587064d5475397f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a1d4b120",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-15T08:10:10Z",
+      "side": 1,
+      "message": "thanks for the explanation.",
+      "parentUuid": "5a3f45e8_c1729dac",
       "range": {
         "startLine": 105,
         "startChar": 37,
