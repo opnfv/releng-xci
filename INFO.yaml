@@ -45,8 +45,8 @@ committers:
       email: 'wutianwei1@huawei.com'
       id: 'hw_wutianwei'
       timezone: 'Asia/Shanghai'
-tsc:
-    changes:
-         - type: 'promotion'
-           name: 'Tianwei Wu'
-           link: ''
+    - name: 'Manuel Buil'
+      company: 'SUSE'
+      email: 'mbuil@suse.de'
+      id: 'mbuild'
+      timezone: 'Europe/Madrid'
