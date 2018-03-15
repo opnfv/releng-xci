@@ -1,0 +1,14 @@
+---
+functest_required_packages:
+  apt:
+    - docker.io
+    - wget
+  zypper:
+    - docker
+    - wget
+  yum:
+    - docker
+    - wget
+
+functest_required_pip:
+  - docker-py
