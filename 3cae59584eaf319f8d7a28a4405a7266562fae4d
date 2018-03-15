@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_beafb093",
+        "filename": "xci/installer/kubespray/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-15T03:05:58Z",
+      "side": 1,
+      "message": "this config file don\u0027t exist, utill the patch https://gerrit.opnfv.org/gerrit/#/c/52003/ was merged.",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "3cae59584eaf319f8d7a28a4405a7266562fae4d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
