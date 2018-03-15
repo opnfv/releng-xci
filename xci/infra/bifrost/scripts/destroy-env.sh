@@ -36,8 +36,10 @@ fi
 # Destroy all XCI VMs if the previous operation failed
 [[ -n ${XCI_FLAVOR} ]] && \
     for vm in ${TEST_VM_NODE_NAMES}; do
-        virsh destroy $vm || true
-        virsh undefine $vm || true
+        if which virsh &>/dev/null; then
+            virsh destroy $vm || true
+            virsh undefine $vm || true
+        fi
     done
 
 service ironic-conductor stop || true
