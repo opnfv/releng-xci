@@ -1,45 +1,25 @@
 ---
-- hosts: all
+- hosts: openstack
   remote_user: root
+  vars_files:
+    - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: "{{ item }}"
+      with_items:
+        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
+        - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
+  roles:
+    - role: bootstrap-host
+    - role: configure-nfs
+    - role: configure-ceph
+      when:
+        - XCI_CEPH_ENABLED == "true"
+        - "'compute' in group_names"
   tasks:
     - name: add public key to host
       copy:
         src: "{{ XCI_PATH }}/xci/files/authorized_keys"
         dest: /root/.ssh/authorized_keys
-
-- hosts: controller
-  remote_user: root
-  vars_files:
-    - "{{ XCI_PATH }}/xci/var/opnfv.yml"
-
-  pre_tasks:
-    - name: Load distribution variables
-      include_vars:
-        file: "{{ item }}"
-      with_items:
-        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
-  roles:
-    - role: bootstrap-host
-
-- hosts: compute
-  remote_user: root
-  vars_files:
-    - "{{ XCI_PATH }}/xci/var/opnfv.yml"
-
-  pre_tasks:
-    - name: Load distribution variables
-      include_vars:
-        file: "{{ item }}"
-      with_items:
-        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ XCI_FLAVOR_ANSIBLE_FILE_PATH }}/flavor-vars.yml"
-  roles:
-    - role: bootstrap-host
-    - role: configure-ceph
-      when: XCI_CEPH_ENABLED == "true"
-
-- hosts: compute00
-  remote_user: root
-  roles:
-    - role: configure-nfs
