@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_e842160f",
+        "filename": "xci/installer/osa/playbooks/configure-targethosts.yml",
+        "patchSetId": 16
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-16T12:26:33Z",
+      "side": 1,
+      "message": "so i am picking this one randomly but why do we check both for \u0027defined\u0027 and for not-an-empty string? I mean, if it\u0027s defined then you expect to have some sane configuration there? otherwise why simply check for non-empty strings and not for example lookup(\u0027env\u0027, \u0027no_proxy\u0027) !\u003d \u0027randomfoobarstring\u0027",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "31e99f2098874409d3a8e75627dc515839e4f8f0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
