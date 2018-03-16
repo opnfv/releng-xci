@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_92f2a56d",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-16T07:27:44Z",
+      "side": 1,
+      "message": "This is a prototype. And I don\u0027t see why a prototype has to plug itself into the XCI at this point. I would very much prefer if you duplicate xci-deploy.sh in the prototypes directory to do whatever you want it to do",
+      "revId": "fdd221fbdc5f2127bc94f10661cb430edd95e171",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
