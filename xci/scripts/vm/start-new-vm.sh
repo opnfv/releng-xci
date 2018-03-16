@@ -357,7 +357,7 @@ echo "Verifying test script exists..."
 $vm_ssh ${VM_NAME} "bash -c 'stat ~/releng-xci/run_jenkins_test.sh'"
 if [[ $? != 0 ]]; then
 	echo "Failed to find a 'run_jenkins_test.sh' script..."
-	if ${DEFAULT_XCI_TEST}; then
+	if [[ ${DEFAULT_XCI_TEST} == true ]]; then
 		echo "Creating a default test case to run xci-deploy.sh"
 		cat > ${BASE_PATH}/run_jenkins_test.sh <<EOF
 #!/bin/bash
