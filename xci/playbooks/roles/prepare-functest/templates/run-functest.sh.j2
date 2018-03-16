@@ -14,6 +14,15 @@ openstack --insecure subnet create --network {{ external_network }} \
 mkdir ~/results/
 mkdir ~/images && cd ~/images && wget -q http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img && cd ~
 
+# Construct final env file
+if [[ -e /root/xci.env ]]; then
+    # Dump the XCI env to the functest env file
+    cat /root/xci.env >> /root/env
+fi
+# Add our env on top of it to make sure our core vars are
+# set properly.
+env >> /root/env
+
 sudo docker run --env-file env \
     -v $(pwd)/openrc:/home/opnfv/functest/conf/env_file  \
     -v $(pwd)/images:/home/opnfv/functest/images  \
