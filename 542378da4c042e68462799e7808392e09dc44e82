@@ -71,6 +71,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_32147143",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-16T02:38:50Z",
+      "side": 1,
+      "message": "I think the OS means \"operating system\", if confuse, I would remove it.",
+      "parentUuid": "5a3f45e8_94d45521",
+      "range": {
+        "startLine": 82,
+        "startChar": 66,
+        "endLine": 82,
+        "endChar": 69
+      },
+      "revId": "542378da4c042e68462799e7808392e09dc44e82",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_541bed1a",
         "filename": "docs/xci-user-guide.rst",
         "patchSetId": 1
@@ -105,6 +129,30 @@
       "writtenOn": "2018-03-15T11:01:31Z",
       "side": 1,
       "message": "not needed",
+      "range": {
+        "startLine": 83,
+        "startChar": 78,
+        "endLine": 83,
+        "endChar": 79
+      },
+      "revId": "542378da4c042e68462799e7808392e09dc44e82",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_120fb52f",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-16T02:38:50Z",
+      "side": 1,
+      "message": "sorry, I don\u0027t get \"not needed\" for what?",
+      "parentUuid": "5a3f45e8_341621f2",
       "range": {
         "startLine": 83,
         "startChar": 78,
@@ -168,6 +216,30 @@
       "writtenOn": "2018-03-15T11:01:31Z",
       "side": 1,
       "message": "can you move this entire paragraph regarding kubespray above opnfv/releng-xci paragraph so releng-xci is the last one?",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 92
+      },
+      "revId": "542378da4c042e68462799e7808392e09dc44e82",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_721ef964",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-16T02:38:50Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_d4dedd3e",
       "range": {
         "startLine": 81,
         "startChar": 0,
