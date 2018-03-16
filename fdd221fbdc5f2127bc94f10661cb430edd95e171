@@ -16,6 +16,24 @@
       "revId": "fdd221fbdc5f2127bc94f10661cb430edd95e171",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_8386d563",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-03-16T17:16:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_92f2a56d",
+      "revId": "fdd221fbdc5f2127bc94f10661cb430edd95e171",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
