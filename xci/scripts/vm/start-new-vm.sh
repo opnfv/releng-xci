@@ -188,6 +188,8 @@ sudo chown $uid:$gid -R $XCI_CACHE_DIR/clean_vm/images/
 cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2* ${BASE_PATH}/
 cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2.sha256.txt ${BASE_PATH}/deployment_image.qcow2.sha256.txt
 cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2 ${BASE_PATH}/deployment_image.qcow2
+
+cd ${BASE_PATH}
 declare -r OS_IMAGE_FILE=${OS}.qcow2
 
 [[ ! -e ${OS_IMAGE_FILE} ]] && echo "${OS_IMAGE_FILE} not found! This should never happen!" && exit 1
