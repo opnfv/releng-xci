@@ -136,6 +136,10 @@
         content: "{{ xci_ssl_key }}"
         dest: "/etc/ssl/private/xci.key"
       become: true
+    - name: fetch xci environment
+      copy:
+        src: "{{ XCI_PATH }}/.cache/xci.env"
+        dest: /root/xci.env
 
 - hosts: localhost
   remote_user: root
