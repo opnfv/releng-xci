@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Variables that we need to pass from XCI to functest
+XCI_ENV=(INSTALLER_TYPE DEPLOY_SCENARIO XCI_FLAVOR)
+
 source /root/openrc
 
 openstack --insecure network create --external \
@@ -13,6 +16,19 @@ openstack --insecure subnet create --network {{ external_network }} \
 
 mkdir ~/results/
 mkdir ~/images && cd ~/images && wget -q http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img && cd ~
+
+# Extract variables from xci.env file
+if [[ -e /root/xci.env ]]; then
+    for x in ${XCI_ENV[@]}; do
+        grep "^${x}=" /root/xci.env >> /root/env
+    done
+fi
+
+# Dump the env file
+echo "------------------------------------------------------"
+echo "------------- functest environment file --------------"
+cat /root/env
+echo "------------------------------------------------------"
 
 sudo docker run --env-file env \
     -v $(pwd)/openrc:/home/opnfv/functest/conf/env_file  \
