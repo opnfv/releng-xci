@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_883552f9",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-16T15:45:08Z",
+      "side": 1,
+      "message": "I think we shouldn\u0027t mess with this /root/env as we don\u0027t know how functest execution could be impacted. anything functest does in future will have possibility to introduce some vars which might conflict with what we are dumping in it.\n\nwe need xci.env just for updating our templates such as this script and nothing more - at least for the timebeing.",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 34
+      },
+      "revId": "f96979d7e26d711f504522adfa193fea07089fd5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e83cd6e4",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-16T15:45:08Z",
+      "side": 1,
+      "message": "same here.",
+      "range": {
+        "startLine": 24,
+        "startChar": 13,
+        "endLine": 24,
+        "endChar": 16
+      },
+      "revId": "f96979d7e26d711f504522adfa193fea07089fd5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
