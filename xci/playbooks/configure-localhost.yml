@@ -98,3 +98,8 @@
             - OPENSTACK_OSA_DEV_PATH != ""
       when:
         - INSTALLER_TYPE == "osa"
+
+    - name: Dump XCI execution environment to a file
+      shell: env > /root/xci.env
+      args:
+        executable: /bin/bash

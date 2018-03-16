@@ -7,6 +7,11 @@
         src: "{{ XCI_PATH }}/xci/files/authorized_keys"
         dest: /root/.ssh/authorized_keys
 
+    - name: fetch xci environment
+      copy:
+        src: /root/xci.env
+        dest: /root/xci.env
+
 - hosts: controller
   remote_user: root
   vars_files:
