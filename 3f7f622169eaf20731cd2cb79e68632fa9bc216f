@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_d2ec2d92",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-16T07:31:51Z",
+      "side": 1,
+      "message": "a is not needed",
+      "range": {
+        "startLine": 77,
+        "startChar": 77,
+        "endLine": 77,
+        "endChar": 78
+      },
+      "revId": "3f7f622169eaf20731cd2cb79e68632fa9bc216f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
