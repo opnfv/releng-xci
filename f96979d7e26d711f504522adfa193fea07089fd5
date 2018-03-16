@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_0808222c",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-16T15:56:26Z",
+      "side": 1,
+      "message": "Well the problem is that you need to pass additional variables to the functest right? If you know beforehand which variables you need, then we can extract them from the xci.env script instead of sourcing it.",
+      "parentUuid": "5a3f45e8_883552f9",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 34
+      },
+      "revId": "f96979d7e26d711f504522adfa193fea07089fd5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_e83cd6e4",
         "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
         "patchSetId": 3
