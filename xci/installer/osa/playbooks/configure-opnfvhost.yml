@@ -171,3 +171,8 @@
         src: "{{ ansible_env.HOME }}/openrc"
         dest: "{{ XCI_PATH }}/.cache/openrc"
         flat: true
+
+    - name: add public key to host
+      copy:
+        src: "{{ XCI_PATH }}/xci/files/authorized_keys"
+        dest: /root/.ssh/authorized_keys
