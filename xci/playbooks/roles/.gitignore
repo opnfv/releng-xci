@@ -1,7 +1,0 @@
-*
-!.gitignore
-!clone-repository/
-!bootstrap-host/
-!configure-nfs/
-!prepare-functest/
-!remote-folders/
