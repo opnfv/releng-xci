@@ -64,6 +64,9 @@ source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
 source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
 # source xci configuration
 source $XCI_PATH/xci/config/env-vars
+# source helpers library
+source ${XCI_PATH}/xci/files/install-lib.sh
+
 # Make sure we pass XCI_PATH everywhere
 export XCI_ANSIBLE_PARAMS+=" -e XCI_PATH=${XCI_PATH}"
 
@@ -103,7 +106,7 @@ echo "-------------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 echo "Info: Installing Ansible from pip"
 echo "-------------------------------------------------------------------------"
-bash files/install-ansible.sh
+install_ansible
 echo "-------------------------------------------------------------------------"
 
 # Clone OPNFV scenario repositories
