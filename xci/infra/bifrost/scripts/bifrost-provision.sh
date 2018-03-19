@@ -13,11 +13,7 @@ set -o pipefail
 export PYTHONUNBUFFERED=1
 SCRIPT_HOME="$(cd "$(dirname "$0")" && pwd)"
 BIFROST_HOME=$SCRIPT_HOME/..
-ANSIBLE_INSTALL_ROOT=${ANSIBLE_INSTALL_ROOT:-/opt/stack}
 ENABLE_VENV="false"
-USE_DHCP="false"
-USE_VENV="true"
-BUILD_IMAGE=true
 PROVISION_WAIT_TIMEOUT=${PROVISION_WAIT_TIMEOUT:-3600}
 # This is normally exported by XCI env but we should initialize it here
 # in case we run this script on its own for debug purposes
@@ -67,13 +63,6 @@ WRITE_INTERFACES_FILE=true
 export DIB_DEV_USER_PWDLESS_SUDO=yes
 export DIB_DEV_USER_PASSWORD=devuser
 
-# Settings for distro: xenial/ubuntu-minimal, 7/centos7, 42.2/suse
-export DIB_OS_RELEASE=${DIB_OS_RELEASE:-xenial}
-export DIB_OS_ELEMENT=${DIB_OS_ELEMENT:-ubuntu-minimal}
-
-# DIB OS packages
-export DIB_OS_PACKAGES=${DIB_OS_PACKAGES:-"vlan,vim,less,bridge-utils,language-pack-en,iputils-ping,rsyslog,curl"}
-
 # Additional dib elements
 export EXTRA_DIB_ELEMENTS=${EXTRA_DIB_ELEMENTS:-"openssh-server"}
 
@@ -103,20 +92,8 @@ if [[ -e ${XCI_PATH}/deployment_image.qcow2 ]]; then
 	sudo mv ${XCI_PATH}/deployment_image.qcow2* /httpboot/
 fi
 
-if [ ${USE_VENV} = "true" ]; then
-    export VENV=/opt/stack/bifrost
-    $SCRIPT_HOME/env-setup.sh &>/dev/null
-    # Note(cinerama): activate is not compatible with "set -u";
-    # disable it just for this line.
-    set +u
-    source ${VENV}/bin/activate
-    set -u
-    ANSIBLE=${VENV}/bin/ansible-playbook
-    ENABLE_VENV="true"
-else
-    $SCRIPT_HOME/env-setup.sh &>/dev/null
-    ANSIBLE=${HOME}/.local/bin/ansible-playbook
-fi
+# Install missing dependencies                                                                                                               
+$(which pip) install -q --user --upgrade -r "$(dirname $0)/../requirements.txt"
 
 # Change working directory
 cd $BIFROST_HOME/playbooks
@@ -132,7 +109,7 @@ if [[ -e /etc/centos-release ]]; then
 fi
 
 # Create the VMS
-${ANSIBLE} ${XCI_ANSIBLE_PARAMS} \
+ansible-playbook ${XCI_ANSIBLE_PARAMS} \
        -i inventory/localhost \
        test-bifrost-create-vm.yaml \
        -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
@@ -143,7 +120,7 @@ ${ANSIBLE} ${XCI_ANSIBLE_PARAMS} \
        -e ${INVENTORY_FILE_FORMAT}=${BAREMETAL_DATA_FILE}
 
 # Execute the installation and VM startup test
-${ANSIBLE} ${XCI_ANSIBLE_PARAMS} \
+ansible-playbook ${XCI_ANSIBLE_PARAMS} \
     -i inventory/bifrost_inventory.py \
     ${TEST_PLAYBOOK} \
     -e use_cirros=${USE_CIRROS} \
