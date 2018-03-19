@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a3f45e8_8cb561f0",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-19T19:22:21Z",
+      "side": 1,
+      "message": "This comment is not related to the defined variable",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 72
+      },
+      "revId": "d0ccacabef902993327b0ccf1b80561911f76d6e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_69a3a74f",
         "filename": "xci/infra/bifrost/scripts/destroy-env.sh",
         "patchSetId": 2
