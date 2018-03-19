@@ -25,8 +25,13 @@ submit_bug_report() {
     echo "xci installer: $INSTALLER_TYPE"
     echo "xci scenario: $DEPLOY_SCENARIO"
     echo "Environment variables:"
-    env | grep --color=never '\(OPNFV\|XCI\|INSTALLER_TYPE\|OPENSTACK\|SCENARIO\)'
+    env | grep --color=never '\(OPNFV\|XCI\|INSTALLER_TYPE\|OPENSTACK\|SCENARIO\|ANSIBLE\)'
     echo "-------------------------------------------------------------------------"
+}
+
+exit_trap() {
+    submit_bug_report
+    generate_ara
 }
 
 #-------------------------------------------------------------------------------
@@ -151,10 +156,15 @@ echo "Info: Deploying '${INSTALLER_TYPE}' installer"
 echo "-----------------------------------------------------------------------"
 source ${XCI_PATH}/xci/installer/${INSTALLER_TYPE}/deploy.sh
 
+# Reset trap
+trap ERR
+
 # Deployment time
 xci_deploy_time=$SECONDS
 echo "-------------------------------------------------------------------------------------------------------------"
 echo "Info: xci_deploy.sh deployment took $(($xci_deploy_time / 60)) minutes and $(($xci_deploy_time % 60)) seconds"
 echo "-------------------------------------------------------------------------------------------------------------"
+
+generate_ara
 
 # vim: set ts=4 sw=4 expandtab:
