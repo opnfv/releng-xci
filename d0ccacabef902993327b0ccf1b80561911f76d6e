@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_69a3a74f",
+        "filename": "xci/infra/bifrost/scripts/destroy-env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-03-19T14:16:41Z",
+      "side": 1,
+      "message": "I guess you added this for the case where there are no VMs, however, if there is a problem destroying the VM, then it will just continue. Not sure if we should do this in some other way",
+      "range": {
+        "startLine": 40,
+        "startChar": 30,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "d0ccacabef902993327b0ccf1b80561911f76d6e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
