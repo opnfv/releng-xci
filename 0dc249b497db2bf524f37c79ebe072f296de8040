@@ -52,6 +52,29 @@
       "revId": "0dc249b497db2bf524f37c79ebe072f296de8040",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_89839303",
+        "filename": "xci/installer/kubespray/playbooks/roles/prepare-functest/templates/k8s.creds.j2",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-19T12:54:49Z",
+      "side": 1,
+      "message": "mini/noha/aio use the first host in kube-master group as master_ip. but ha ,which uses the virtual ip, don\u0027t use the first host. so I think it has better to get the KUBE_MASTER_URL and \nKUBE_MASTER_IP from /root/.kube/config, just like https://gerrit.opnfv.org/gerrit/gitweb?p\u003dreleng.git;a\u003dblob;f\u003djjb/functest/functest-k8.sh;h\u003d115ff42192647ee684c934c016f54b5789f9f67a;hb\u003drefs/heads/master#l17",
+      "range": {
+        "startLine": 4,
+        "startChar": 22,
+        "endLine": 4,
+        "endChar": 67
+      },
+      "revId": "0dc249b497db2bf524f37c79ebe072f296de8040",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
