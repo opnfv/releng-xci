@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_ac35bddc",
+        "filename": "xci/installer/osa/playbooks/bootstrap-scenarios.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-19T15:46:19Z",
+      "side": 1,
+      "message": "I don\u0027t understand. In the commit message you suggest to use\n\nexport XCI_ANSIBLE_PARAMS\u003d\"-e ODL_VERSION\u003doxygen\"\n\nand in here, you simply ignore ODL_VERSION and use ODL_BRANCH instead...\n\nWhat\u0027s wrong with using XCI_ANSIBLE_PARAMS and not make any changes to this global playbook?",
+      "revId": "456cc2db9f74be9137f5712b0b19c0c2f4f28013",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
