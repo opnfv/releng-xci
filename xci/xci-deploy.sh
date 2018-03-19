@@ -25,8 +25,13 @@ submit_bug_report() {
     echo "xci installer: $INSTALLER_TYPE"
     echo "xci scenario: $DEPLOY_SCENARIO"
     echo "Environment variables:"
-    env | grep --color=never '\(OPNFV\|XCI\|INSTALLER_TYPE\|OPENSTACK\|SCENARIO\)'
+    env | grep --color=never '\(OPNFV\|XCI\|INSTALLER_TYPE\|OPENSTACK\|SCENARIO\|ANSIBLE\)'
     echo "-------------------------------------------------------------------------"
+}
+
+exit_trap() {
+    submit_bug_report
+    collect_xci_logs
 }
 
 #-------------------------------------------------------------------------------
@@ -86,7 +91,7 @@ done
 unset user_local_dev_vars local_user_var
 
 # register our handler
-trap submit_bug_report ERR
+trap exit_trap ERR
 
 # We are using sudo so we need to make sure that env_reset is not present
 sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
@@ -151,10 +156,15 @@ echo "Info: Deploying '${INSTALLER_TYPE}' installer"
 echo "-----------------------------------------------------------------------"
 source ${XCI_PATH}/xci/installer/${INSTALLER_TYPE}/deploy.sh
 
+# Reset trap
+trap ERR
+
 # Deployment time
 xci_deploy_time=$SECONDS
 echo "-------------------------------------------------------------------------------------------------------------"
 echo "Info: xci_deploy.sh deployment took $(($xci_deploy_time / 60)) minutes and $(($xci_deploy_time % 60)) seconds"
 echo "-------------------------------------------------------------------------------------------------------------"
+
+collect_xci_logs
 
 # vim: set ts=4 sw=4 expandtab:
