@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_ccce4983",
+        "filename": "xci/files/install-lib.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-19T19:29:37Z",
+      "side": 1,
+      "message": "nit: Maybe this should be documented and removed from here to be used for all the scripts.",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 31
+      },
+      "revId": "a93d641a4989a9b7baec9688c05eb51bd1a24632",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
