@@ -29,6 +29,11 @@ submit_bug_report() {
     echo "-------------------------------------------------------------------------"
 }
 
+exit_trap() {
+    submit_bug_report
+    generate_ara
+}
+
 #-------------------------------------------------------------------------------
 # This script should not be run as root
 #-------------------------------------------------------------------------------
@@ -155,10 +160,18 @@ echo "Info: Deploying '${INSTALLER_TYPE}' installer"
 echo "-----------------------------------------------------------------------"
 source ${XCI_PATH}/xci/installer/${INSTALLER_TYPE}/deploy.sh
 
+# Reset trap
+trap ERR
+
 # Deployment time
 xci_deploy_time=$SECONDS
 echo "-------------------------------------------------------------------------------------------------------------"
 echo "Info: xci_deploy.sh deployment took $(($xci_deploy_time / 60)) minutes and $(($xci_deploy_time % 60)) seconds"
 echo "-------------------------------------------------------------------------------------------------------------"
+
+echo "----------------------------------"
+echo "Info: Generating ARA report"
+echo "----------------------------------"
+generate_ara
 
 # vim: set ts=4 sw=4 expandtab:
