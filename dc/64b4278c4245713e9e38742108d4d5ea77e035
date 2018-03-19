@@ -1,0 +1,9 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Victor Morales <victor.morales@intel.com>
+Code-Review+1: wutianwei <wutianwei1@huawei.com>
+Code-Review+2: Markos Chandras <mchandras@suse.de>
+Submitted-by: Markos Chandras <mchandras@suse.de>
+Submitted-at: Mon, 19 Mar 2018 08:41:37 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/53751
+Project: releng-xci
+Branch: refs/heads/master
