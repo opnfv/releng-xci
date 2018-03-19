@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_29307f9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-03-19T12:22:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_e95057d6",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 73
+      },
+      "revId": "8d152363d8975c2ed14bc643215476aea4171b05",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_8942730e",
         "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
         "patchSetId": 9
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_89271364",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-03-19T12:22:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_8942730e",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 25
+      },
+      "revId": "8d152363d8975c2ed14bc643215476aea4171b05",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_293b5f9d",
         "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
         "patchSetId": 9
@@ -59,6 +107,30 @@
       "writtenOn": "2018-03-19T11:35:55Z",
       "side": 1,
       "message": "can you add some comments on what you are trying to achieve here? Otherwise I am sure that when we look at this in a couple of weeks time we will not remember why we did it like this.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 6
+      },
+      "revId": "8d152363d8975c2ed14bc643215476aea4171b05",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_692a872d",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
+        "patchSetId": 9
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-03-19T12:22:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_293b5f9d",
       "range": {
         "startLine": 25,
         "startChar": 0,
