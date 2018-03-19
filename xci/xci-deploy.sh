@@ -85,6 +85,9 @@ unset user_local_dev_vars local_user_var
 # register our handler
 trap submit_bug_report ERR
 
+# We are using sudo so we need to make sure that env_reset is not present
+sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
+
 #-------------------------------------------------------------------------------
 # Log info to console
 #-------------------------------------------------------------------------------
@@ -101,6 +104,13 @@ echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 [[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
 [[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "-------------------------------------------------------------------------"
+
+#-------------------------------------------------------------------------------
+# Clean up environment
+#-------------------------------------------------------------------------------
+echo "Info: Cleaning up previous XCI artifacts"
+sudo -E bash files/xci-destroy-env.sh
+echo "----------------------------------------"
 
 #-------------------------------------------------------------------------------
 # Install ansible on localhost
