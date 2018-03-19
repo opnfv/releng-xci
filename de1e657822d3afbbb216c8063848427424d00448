@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_2c9fedb5",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-03-19T16:28:43Z",
+      "side": 1,
+      "message": "somehow this grep command doesn\u0027t work on the opnfv vm (whereas it worked on the other vm). so updated it with next patch set.",
+      "revId": "de1e657822d3afbbb216c8063848427424d00448",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
