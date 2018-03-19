@@ -179,6 +179,8 @@ else
 	update_clean_vm_files
 fi
 
+declare -r XCI_DEPLOYMENT_IMAGE="deployment_image.qcow2"
+
 # Doesn't matter if we just built an image or got one from artifacts. In both
 # cases there should be a copy in the cache so copy it over.
 sudo rm -f ${BASE_PATH}/${OS}.qcow2
@@ -186,8 +188,8 @@ sudo rm -f ${BASE_PATH}/${OS}.qcow2
 sudo chmod 777 -R $XCI_CACHE_DIR/clean_vm/images/
 sudo chown $uid:$gid -R $XCI_CACHE_DIR/clean_vm/images/
 cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2* ${BASE_PATH}/
-cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2.sha256.txt ${BASE_PATH}/deployment_image.qcow2.sha256.txt
-cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2 ${BASE_PATH}/deployment_image.qcow2
+cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2.sha256.txt ${BASE_PATH}/${XCI_DEPLOYMENT_IMAGE}.sha256.txt
+cp ${XCI_CACHE_DIR}/clean_vm/images/${OS}.qcow2 ${BASE_PATH}/${XCI_DEPLOYMENT_IMAGE}
 
 cd ${BASE_PATH}
 declare -r OS_IMAGE_FILE=${OS}.qcow2
@@ -332,11 +334,13 @@ EOF
 
 # Need to copy releng-xci to the vm so we can execute stuff
 do_copy() {
-	rsync -a \
-		--exclude "${VM_NAME}*" \
-		--exclude "${OS}*" \
-		--exclude "build.log" \
-		-e "$vm_ssh" ${BASE_PATH}/ ${VM_NAME}:~/releng-xci/
+    echo "Copying releng-xci host folder to guest vm..."
+    rsync -a \
+        --exclude "${VM_NAME}*" \
+        --include "${XCI_DEPLOYMENT_IMAGE}*" \
+        --exclude "*qcow2*" \
+        --exclude "build.log" \
+        -e "$vm_ssh" ${BASE_PATH}/ ${VM_NAME}:~/releng-xci/
 }
 
 do_copy
