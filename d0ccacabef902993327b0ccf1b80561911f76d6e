@@ -22,6 +22,30 @@
       "revId": "d0ccacabef902993327b0ccf1b80561911f76d6e",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c9775bd3",
+        "filename": "xci/infra/bifrost/scripts/destroy-env.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-19T14:24:07Z",
+      "side": 1,
+      "message": "well this is not a new change right? it was there even before this patchset. Overall, destroying the VM may fail yes but normally the subsequent \u0027undefine\u0027 command is more aggressive and it will remove it anyway. if not, then the host has more severe problems to solve.",
+      "parentUuid": "5a3f45e8_69a3a74f",
+      "range": {
+        "startLine": 40,
+        "startChar": 30,
+        "endLine": 40,
+        "endChar": 37
+      },
+      "revId": "d0ccacabef902993327b0ccf1b80561911f76d6e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
