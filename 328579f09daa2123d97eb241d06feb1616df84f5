@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_60878c10",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-19T13:04:46Z",
+      "side": 1,
+      "message": "This patch addresses 3 different and independent changes. So as usual, please try and split your patches into logical changes in order to help us review them in a timely manner. If you mix too many things into a single patch then trying to understand how all of them fit together simply takes much longer.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 43
+      },
+      "revId": "328579f09daa2123d97eb241d06feb1616df84f5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
