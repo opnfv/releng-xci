@@ -14,6 +14,10 @@
 function install_ansible() {
     set -eu
 
+    # Use the upper-constraints file from the pinned requirements repository.
+    local requirements_sha=$(awk '/requirements_git_install_branch:/ {print $2}' ${XCI_PATH}/xci/installer/osa/files/openstack_services.yml)
+    local uc="https://raw.githubusercontent.com/openstack/requirements/${requirements_sha}/upper-constraints.txt"
+
     declare -A PKG_MAP
 
     # workaround: for latest bindep to work, it needs to use en_US local
@@ -163,7 +167,20 @@ function install_ansible() {
 
     PIP=$(which pip)
     echo "Using pip: $(${PIP} --version)"
-    ${PIP} -q install --user --upgrade virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION
+    ${PIP} -q install --user --upgrade -c $uc ara virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION
+
+    ara_location=$(${PYTHON} -c "import os,ara; print(os.path.dirname(ara.__file__))")
+    export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}/plugins/callbacks"
+}
+
+collect_xci_logs() {
+    echo "----------------------------------"
+    echo "Info: Collecting XCI logs"
+    echo "----------------------------------"
+
+    # Create the ARA log directory and store the sqlite source database
+    mkdir -p ${LOG_PATH}/ara/
+    rsync -q -a "${HOME}/.ara/ansible.sqlite" "${LOG_PATH}/ara/"
 }
 
 # vim: set ts=4 sw=4 expandtab:
