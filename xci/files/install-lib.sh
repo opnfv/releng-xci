@@ -168,6 +168,24 @@ function install_ansible() {
   # upgrade setuptools, as latest version is needed to install some projects
   sudo -H -E ${PIP} -q install --upgrade setuptools
   ${PIP} install -q --user --upgrade ansible==$XCI_ANSIBLE_PIP_VERSION
+
+  # ARA
+  ${PIP} install -q --user -c https://raw.githubusercontent.com/openstack/requirements/$(awk '/requirements_git_install_branch:/ {print $2}' $XCI_PATH/xci/installer/osa/files/openstack_services.yml)/upper-constraints.txt ara
+  ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
+  export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}/plugins/callbacks"
+}
+
+
+generate_ara() {
+  # Create the ARA log directory and store the sqlite source database
+  mkdir -p ${LOG_PATH}/ara/
+  rsync -a "${HOME}/.ara/ansible.sqlite" "${LOG_PATH}/ara/"
+
+  ara generate html "${LOG_PATH}/ara" || true
+  pushd ${LOG_PATH} &>/dev/null
+  tar cvf ara-report.tar ara/
+  mv ara-report.tar ara/
+  popd &> /dev/null
 }
 
 # vim: set ts=4 sw=4 expandtab:
