@@ -16,6 +16,24 @@
       "revId": "456cc2db9f74be9137f5712b0b19c0c2f4f28013",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_ec67c5b5",
+        "filename": "xci/installer/osa/playbooks/bootstrap-scenarios.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-03-19T17:44:15Z",
+      "side": 1,
+      "message": "agh, that was a typo! Thanks again",
+      "parentUuid": "5a3f45e8_ac35bddc",
+      "revId": "456cc2db9f74be9137f5712b0b19c0c2f4f28013",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
