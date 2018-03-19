@@ -7,10 +7,12 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
+set -o errexit
+set -o nounset
+set -o pipefail
 
 K8_XCI_PLAYBOOKS="$(dirname $(realpath ${BASH_SOURCE[0]}))/playbooks"
 export ANSIBLE_ROLES_PATH=$HOME/.ansible/roles:/etc/ansible/roles:${XCI_PATH}/xci/playbooks/roles
-
 
 #-------------------------------------------------------------------------------
 # Configure localhost
@@ -72,14 +74,9 @@ fi
 
 echo "Info: Using kubespray to deploy the kubernetes cluster"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "cd releng-xci/.cache/repos/kubespray;\
+ssh root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/kubespray;\
          ansible-playbook ${XCI_ANSIBLE_PARAMS} \
          -i opnfv_inventory/inventory.cfg cluster.yml -b | tee setup-kubernetes.log"
 scp root@$OPNFV_HOST_IP:~/releng-xci/.cache/repos/kubespray/setup-kubernetes.log \
          $LOG_PATH/setup-kubernetes.log
-# check the log to see if we have any error
-if grep -q 'failed=1\|unreachable=1' $LOG_PATH/setup-kubernetes.log; then
-    echo "Error: Kubernetes cluster setup failed!"
-    exit 1
-fi
 echo "Info: Kubernetes installation is successfully completed!"
