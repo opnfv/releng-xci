@@ -332,11 +332,12 @@ EOF
 
 # Need to copy releng-xci to the vm so we can execute stuff
 do_copy() {
-	rsync -a \
-		--exclude "${VM_NAME}*" \
-		--exclude "${OS}*" \
-		--exclude "build.log" \
-		-e "$vm_ssh" ${BASE_PATH}/ ${VM_NAME}:~/releng-xci/
+    echo "Copying releng-xci host folder to guest vm..."
+    rsync -a \
+        --exclude "${VM_NAME}*" \
+        --exclude "*qcow2*" \
+        --exclude "build.log" \
+        -e "$vm_ssh" ${BASE_PATH}/ ${VM_NAME}:~/releng-xci/
 }
 
 do_copy
