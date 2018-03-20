@@ -7,39 +7,45 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-OPNFV_RELENG_GIT_URL: "{{ lookup('env','OPNFV_RELENG_GIT_URL') }}"
-OPNFV_RELENG_VERSION: "{{ lookup('env','OPNFV_RELENG_VERSION') }}"
-OPENSTACK_BIFROST_GIT_URL: "{{ lookup('env','OPENSTACK_BIFROST_GIT_URL') }}"
-OPENSTACK_BIFROST_DEV_PATH: "{{ lookup('env','OPENSTACK_BIFROST_DEV_PATH') }}"
-OPENSTACK_BIFROST_VERSION: "{{ lookup('env','OPENSTACK_BIFROST_VERSION') }}"
-OPENSTACK_OSA_GIT_URL: "{{ lookup('env','OPENSTACK_OSA_GIT_URL') }}"
-OPENSTACK_OSA_OPENRC_GIT_URL: "{{ lookup('env', 'OPENSTACK_OSA_OPENRC_GIT_URL') }}"
-OPENSTACK_OSA_PATH: "{{ lookup('env','OPENSTACK_OSA_PATH') }}"
-OPENSTACK_OSA_DEV_PATH: "{{ lookup('env','OPENSTACK_OSA_DEV_PATH') }}"
-OPENSTACK_OSA_VERSION: "{{ lookup('env','OPENSTACK_OSA_VERSION') }}"
-OPENSTACK_OSA_ETC_PATH: "{{ lookup('env','OPENSTACK_OSA_ETC_PATH') }}"
-XCI_ANSIBLE_PIP_VERSION: "{{ lookup('env','XCI_ANSIBLE_PIP_VERSION') }}"
-XCI_CACHE: "{{ lookup('env', 'XCI_CACHE') }}"
-XCI_FLAVOR: "{{ lookup('env','XCI_FLAVOR') }}"
-XCI_DISTRO: "{{ lookup('env', 'XCI_DISTRO') }}"
-XCI_FLAVOR_ANSIBLE_FILE_PATH: "{{ lookup('env','XCI_FLAVOR_ANSIBLE_FILE_PATH') }}"
-CI_LOOP: "{{ lookup('env','CI_LOOP') }}"
-XCI_PATH: "{{ lookup('env', 'XCI_PATH') }}"
-XCI_SCENARIOS_CACHE: "{{ lookup('env', 'XCI_SCENARIOS_CACHE') }}"
-LOG_PATH: "{{ lookup('env','LOG_PATH') }}"
-OPNFV_HOST_IP: "{{ lookup('env','OPNFV_HOST_IP') }}"
-OPNFV_SSH_HOST_KEYS_PATH: "{{ lookup('env', 'OPNFV_SSH_HOST_KEYS_PATH') }}"
-XCI_EXTRA_VARS_PATH: "{{ lookup('env', 'XCI_EXTRA_VARS_PATH') }}"
-XCI_SSL_SUBJECT: "{{ lookup('env', 'XCI_SSL_SUBJECT') }}"
-XCI_CEPH_ENABLED: "{{ lookup('env', 'XCI_CEPH_ENABLED') }}"
-RUN_TEMPEST: "{{ lookup('env', 'RUN_TEMPEST') }}"
-CORE_OPENSTACK_INSTALL: "{{ lookup('env', 'CORE_OPENSTACK_INSTALL') }}"
-DEPLOY_SCENARIO: "{{ lookup('env','DEPLOY_SCENARIO') }}"
-INSTALLER_TYPE: "{{ lookup('env','INSTALLER_TYPE') }}"
-KUBESPRAY_VERSION: "{{ lookup('env','KUBESPRAY_VERSION') }}"
-XCI_KUBE_ANSIBLE_PIP_VERSION: "{{ lookup('env','XCI_KUBE_ANSIBLE_PIP_VERSION') }}"
-KUBESPRAY_GIT_URL: "{{ lookup('env','KUBESPRAY_GIT_URL') }}"
-OPENSTACK_OSA_HAPROXY_GIT_URL: "{{ lookup('env','OPENSTACK_OSA_HAPROXY_GIT_URL') }}"
-HAPROXY_VERSION: "{{ lookup('env','HAPROXY_VERSION') }}"
-KEEPALIVED_GIT_URL: "{{ lookup('env','KEEPALIVED_GIT_URL') }}"
-KEEPALIVED_VERSION: "{{ lookup('env','KEEPALIVED_VERSION') }}"
+# This file is used for reflecting the environment variables set in various places
+# that are used in ansible playbooks/roles. Only the variables used within ansible
+# playbooks/roles should exist in this file.
+
+# openstack/bifrost variables
+openstack_bifrost_git_url: "{{ lookup('env','OPENSTACK_BIFROST_GIT_URL') }}"
+openstack_bifrost_version: "{{ lookup('env','OPENSTACK_BIFROST_VERSION') }}"
+openstack_bifrost_dev_path: "{{ lookup('env','OPENSTACK_BIFROST_DEV_PATH') }}"
+
+# openstack/openstack-ansible variables
+openstack_osa_git_url: "{{ lookup('env','OPENSTACK_OSA_GIT_URL') }}"
+openstack_osa_version: "{{ lookup('env','OPENSTACK_OSA_VERSION') }}"
+openstack_osa_dev_path: "{{ lookup('env','OPENSTACK_OSA_DEV_PATH') }}"
+openstack_osa_path: "{{ lookup('env','OPENSTACK_OSA_PATH') }}"
+openstack_osa_etc_path: "{{ lookup('env','OPENSTACK_OSA_ETC_PATH') }}"
+openstack_osa_openrc_git_url: "{{ lookup('env', 'OPENSTACK_OSA_OPENRC_GIT_URL') }}"
+openstack_osa_haproxy_git_url: "{{ lookup('env','OPENSTACK_OSA_HAPROXY_GIT_URL') }}"
+
+# kubespray variables
+kubespray_git_url: "{{ lookup('env','KUBESPRAY_GIT_URL') }}"
+kubespray_version: "{{ lookup('env','KUBESPRAY_VERSION') }}"
+xci_kube_ansible_pip_version: "{{ lookup('env','XCI_KUBE_ANSIBLE_PIP_VERSION') }}"
+
+# variables for other components
+haproxy_version: "{{ lookup('env','HAPROXY_VERSION') }}"
+keepalived_git_url: "{{ lookup('env','KEEPALIVED_GIT_URL') }}"
+keepalived_version: "{{ lookup('env','KEEPALIVED_VERSION') }}"
+
+# xci variables
+xci_cache: "{{ lookup('env', 'XCI_CACHE') }}"
+xci_flavor: "{{ lookup('env','XCI_FLAVOR') }}"
+xci_distro: "{{ lookup('env', 'XCI_DISTRO') }}"
+xci_path: "{{ lookup('env', 'XCI_PATH') }}"
+xci_scenarios_cache: "{{ lookup('env', 'XCI_SCENARIOS_CACHE') }}"
+xci_ssl_subject: "{{ lookup('env', 'XCI_SSL_SUBJECT') }}"
+xci_ceph_enabled: "{{ lookup('env', 'XCI_CEPH_ENABLED') }}"
+log_path: "{{ lookup('env','LOG_PATH') }}"
+opnfv_ssh_host_keys_path: "{{ lookup('env', 'OPNFV_SSH_HOST_KEYS_PATH') }}"
+run_tempest: "{{ lookup('env', 'RUN_TEMPEST') }}"
+core_openstack_install: "{{ lookup('env', 'CORE_OPENSTACK_INSTALL') }}"
+deploy_scenario: "{{ lookup('env','DEPLOY_SCENARIO') }}"
+installer_type: "{{ lookup('env','INSTALLER_TYPE') }}"

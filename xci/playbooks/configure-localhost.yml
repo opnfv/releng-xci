@@ -16,8 +16,8 @@
         file: "{{ item }}"
       failed_when: false
       with_items:
-        - "{{ XCI_PATH }}/xci/var/opnfv.yml"
-        - "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
+        - "{{ xci_path }}/xci/var/opnfv.yml"
+        - "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
 
     - name: cleanup leftovers of previous deployment
       file:
@@ -25,48 +25,48 @@
         state: absent
         recurse: no
       with_items:
-        - "{{ XCI_CACHE }}/repos"
-        - "{{ LOG_PATH }} "
-        - "{{ OPNFV_SSH_HOST_KEYS_PATH }}"
+        - "{{ xci_cache }}/repos"
+        - "{{ log_path }} "
+        - "{{ opnfv_ssh_host_keys_path }}"
 
   roles:
     - role: clone-repository
       project: "openstack/openstack-ansible-openstack_openrc"
-      repo: "{{ OPENSTACK_OSA_OPENRC_GIT_URL }}"
+      repo: "{{ openstack_osa_openrc_git_url }}"
       dest: roles/openstack-ansible-openstack_openrc
       version: "master"
-      when: INSTALLER_TYPE == "osa"
+      when: installer_type == "osa"
     - role: clone-repository
       project: "openstack/openstack-ansible"
-      repo: "{{ OPENSTACK_OSA_GIT_URL }}"
-      dest: "{{ XCI_CACHE }}/repos/openstack-ansible"
-      version: "{{ OPENSTACK_OSA_VERSION }}"
-      when: INSTALLER_TYPE == "osa"
+      repo: "{{ openstack_osa_git_url }}"
+      dest: "{{ xci_cache }}/repos/openstack-ansible"
+      version: "{{ openstack_osa_version }}"
+      when: installer_type == "osa"
     - role: clone-repository
       project: "kubernetes-incubator/kubespray"
-      repo: "{{ KUBESPRAY_GIT_URL }}"
-      dest: "{{ XCI_CACHE }}/repos/kubespray"
-      version: "{{ KUBESPRAY_VERSION }}"
-      when: INSTALLER_TYPE == "kubespray"
+      repo: "{{ kubespray_git_url }}"
+      dest: "{{ xci_cache }}/repos/kubespray"
+      version: "{{ kubespray_version }}"
+      when: installer_type == "kubespray"
     - role: clone-repository
       project: "openstack/openstack-ansible-haproxy_server"
-      repo: "{{ OPENSTACK_OSA_HAPROXY_GIT_URL }}"
+      repo: "{{ openstack_osa_haproxy_git_url }}"
       dest: roles/haproxy_server
-      version: "{{ HAPROXY_VERSION }}"
+      version: "{{ haproxy_version }}"
       when:
-        - INSTALLER_TYPE == "kubespray"
+        - installer_type == "kubespray"
     - role: clone-repository
       project: "ansible-keepalived"
-      repo: "{{ KEEPALIVED_GIT_URL }}"
+      repo: "{{ keepalived_git_url }}"
       dest: roles/keepalived
-      version: "{{ KEEPALIVED_VERSION }}"
+      version: "{{ keepalived_version }}"
       when:
-        - INSTALLER_TYPE == "kubespray"
+        - installer_type == "kubespray"
 
   tasks:
-    - name:  create log directory {{LOG_PATH}}
+    - name:  create log directory {{log_path}}
       file:
-        path: "{{LOG_PATH}}"
+        path: "{{log_path}}"
         state: directory
         recurse: no
     - block:
@@ -85,21 +85,21 @@
             path: "/etc/ssl/private"
             state: directory
         - name: generate self signed certificate
-          command: openssl req -new -nodes -x509 -subj "{{ XCI_SSL_SUBJECT }}" -days 3650 -keyout "/etc/ssl/private/xci.key" -out "/etc/ssl/certs/xci.crt" -extensions v3_ca
+          command: openssl req -new -nodes -x509 -subj "{{ xci_ssl_subject }}" -days 3650 -keyout "/etc/ssl/private/xci.key" -out "/etc/ssl/certs/xci.crt" -extensions v3_ca
           become: true
         - name: Synchronize local development OSA repository to XCI paths
           # command module is much faster than the copy module
           synchronize:
-            src: "{{ OPENSTACK_OSA_DEV_PATH }}"
-            dest: "{{ XCI_CACHE }}/repos/openstack-ansible"
+            src: "{{ openstack_osa_dev_path }}"
+            dest: "{{ xci_cache }}/repos/openstack-ansible"
             recursive: yes
             delete: yes
           when:
-            - OPENSTACK_OSA_DEV_PATH != ""
+            - openstack_osa_dev_path != ""
       when:
-        - INSTALLER_TYPE == "osa"
+        - installer_type == "osa"
 
     - name: Dump XCI execution environment to a file
-      shell: env > "{{ XCI_PATH }}/.cache/xci.env"
+      shell: env > "{{ xci_path }}/.cache/xci.env"
       args:
         executable: /bin/bash
