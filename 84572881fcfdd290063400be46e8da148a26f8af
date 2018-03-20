@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_1dd7bd24",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 18
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-20T15:28:44Z",
+      "side": 1,
+      "message": "AFAIR I was having issues when I submitted changes that didn\u0027t include the conditional, I can try it again. Sadly my node that\u0027s outside of the proxy is not working so I\u0027ll use CI as testing environment.",
+      "parentUuid": "5a3f45e8_92e29cff",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 58
+      },
+      "revId": "84572881fcfdd290063400be46e8da148a26f8af",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_f2f160ce",
         "filename": "xci/installer/osa/playbooks/configure-targethosts.yml",
         "patchSetId": 18
