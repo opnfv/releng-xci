@@ -22,6 +22,30 @@
       "revId": "328579f09daa2123d97eb241d06feb1616df84f5",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4cc87922",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-20T02:16:16Z",
+      "side": 1,
+      "message": "there are correlation between these changes. such as, if you want to get the url, user and password on opnfv host, you need configure the kubectl CLI and change the type of dashboard service. otherwise there are some issues to get the url. Or could you give me some insturction how to verify the split patches together.",
+      "parentUuid": "5a3f45e8_60878c10",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 43
+      },
+      "revId": "328579f09daa2123d97eb241d06feb1616df84f5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
