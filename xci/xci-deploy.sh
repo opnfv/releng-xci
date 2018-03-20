@@ -52,6 +52,9 @@ fi
 # - env-vars: variables for the xci itself and you should not need to change or
 #   override any of them.
 #-------------------------------------------------------------------------------
+echo "ci loop: $CI_LOOP"
+echo "build tag: $BUILD_TAG"
+echo "node name: $NODE_NAME"
 # find where are we
 export XCI_PATH="$(git rev-parse --show-toplevel)"
 # source user vars
@@ -103,6 +106,9 @@ echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 [[ "$INSTALLER_TYPE" == "osa" ]] && echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
 [[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
 [[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "bifrost version: $OPENSTACK_BIFROST_VERSION"
+echo "ci loop: $CI_LOOP"
+echo "build tag: $BUILD_TAG"
+echo "node name: $NODE_NAME"
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
