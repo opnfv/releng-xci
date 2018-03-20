@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_52b494d0",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-20T12:18:41Z",
+      "side": 1,
+      "message": "if you want to force the testing for that scenario please use\n\ninstaller-type: osa\ndeploy-scenario: os-odl-bgpvpn\n\nin the commit message (maybe just above the Change-Id tag or something similar)",
+      "revId": "28b16d83b57791100eea8f22c4434cb20bca1235",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
