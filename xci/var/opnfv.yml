@@ -23,7 +23,6 @@ XCI_CACHE: "{{ lookup('env', 'XCI_CACHE') }}"
 XCI_FLAVOR: "{{ lookup('env','XCI_FLAVOR') }}"
 XCI_DISTRO: "{{ lookup('env', 'XCI_DISTRO') }}"
 XCI_FLAVOR_ANSIBLE_FILE_PATH: "{{ lookup('env','XCI_FLAVOR_ANSIBLE_FILE_PATH') }}"
-CI_LOOP: "{{ lookup('env','CI_LOOP') }}"
 XCI_PATH: "{{ lookup('env', 'XCI_PATH') }}"
 XCI_SCENARIOS_CACHE: "{{ lookup('env', 'XCI_SCENARIOS_CACHE') }}"
 LOG_PATH: "{{ lookup('env','LOG_PATH') }}"
@@ -43,3 +42,10 @@ OPENSTACK_OSA_HAPROXY_GIT_URL: "{{ lookup('env','OPENSTACK_OSA_HAPROXY_GIT_URL')
 HAPROXY_VERSION: "{{ lookup('env','HAPROXY_VERSION') }}"
 KEEPALIVED_GIT_URL: "{{ lookup('env','KEEPALIVED_GIT_URL') }}"
 KEEPALIVED_VERSION: "{{ lookup('env','KEEPALIVED_VERSION') }}"
+# Functest vars
+FUNCTEST_MODE: "{{ lookup('env','FUNCTEST_MODE') }}"
+FUNCTEST_SUITE_NAME: "{{ lookup('env','FUNCTEST_SUITE_NAME') }}"
+# CI vars
+CI_LOOP: "{{ lookup('env','CI_LOOP') }}"
+BUILD_TAG: "{{ lookup('env','BUILD_TAG') }}"
+NODE_NAME: "{{ lookup('env','NODE_NAME') }}"
