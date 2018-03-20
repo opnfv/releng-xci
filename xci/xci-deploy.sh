@@ -66,6 +66,8 @@ source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
 source $XCI_PATH/xci/config/env-vars
 # Make sure we pass XCI_PATH everywhere
 export XCI_ANSIBLE_PARAMS+=" -e XCI_PATH=${XCI_PATH}"
+# Make sure everybody knows where our global roles are
+export ANSIBLE_ROLES_PATH="$HOME/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:${XCI_PATH}/xci/playbooks/roles"
 
 if [[ -z $(echo $PATH | grep "$HOME/.local/bin")  ]]; then
     export PATH="$HOME/.local/bin:$PATH"
@@ -92,10 +94,12 @@ echo "-------------------------------------------------------------------------"
 echo "OPNFV scenario: $DEPLOY_SCENARIO"
 echo "xci flavor: $XCI_FLAVOR"
 echo "xci installer: $INSTALLER_TYPE"
+echo "infra deployment: $INFRA_DEPLOYMENT"
 echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
 echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 [[ "$INSTALLER_TYPE" == "osa" ]] && echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
 [[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
+[[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
@@ -123,29 +127,10 @@ echo "-------------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 source $(find $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO} -name xci_overrides) &>/dev/null || :
 
-#-------------------------------------------------------------------------------
-# Start provisioning VM nodes
-#-------------------------------------------------------------------------------
-# This playbook
-# - removes directories that were created by the previous xci run
-# - clones opnfv/releng-xci and openstack/bifrost repositories
-# - combines opnfv/releng-xci and openstack/bifrost scripts/playbooks
-# - destroys VMs, removes ironic db, leases, logs
-# - creates and provisions VMs for the chosen flavor
-#-------------------------------------------------------------------------------
-echo "Info: Starting provisining VM nodes using openstack/bifrost"
-echo "-------------------------------------------------------------------------"
-# We are using sudo so we need to make sure that env_reset is not present
-sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
-cd $XCI_PATH/bifrost/
-sudo -E bash ./scripts/destroy-env.sh
-cd $XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," bootstrap-bifrost.yml
-cd ${XCI_CACHE}/repos/bifrost
-bash ./scripts/bifrost-provision.sh
-echo "-----------------------------------------------------------------------"
-echo "Info: VM nodes are provisioned!"
-echo "-----------------------------------------------------------------------"
+# Deploy infrastructure based on the selected deloyment method
+echo "Info: Deploying hardware using '${INFRA_DEPLOYMENT}'"
+echo "---------------------------------------------------"
+source ${XCI_PATH}/xci/infra/${INFRA_DEPLOYMENT}/infra-provision.sh
 
 # Deploy OpenStack on the selected installer
 echo "Info: Deploying '${INSTALLER_TYPE}' installer"

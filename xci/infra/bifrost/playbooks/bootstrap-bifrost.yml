@@ -11,11 +11,11 @@
   connection: local
   gather_facts: true
   vars_files:
-    - ../var/opnfv.yml
+    - "{{ XCI_PATH }}/xci/var/opnfv.yml"
   pre_tasks:
     - name: Load distribution variables
       include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
+        file: "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
   roles:
     - role: clone-repository
       project: "opnfv/bifrost"
@@ -26,7 +26,7 @@
   tasks:
     - name: Load distribution variables
       include_vars:
-        file: ../var/{{ ansible_os_family }}.yml
+        file: "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
     - name: Synchronize local development bifrost repository to XCI paths
       # command module is much faster than the copy module
       synchronize:
@@ -38,5 +38,5 @@
         - OPENSTACK_BIFROST_DEV_PATH != ""
     - name: combine opnfv/releng-xci and openstack/bifrost scripts/playbooks
       copy:
-        src: "{{ XCI_PATH}}/bifrost/"
+        src: "{{ XCI_PATH}}/xci/infra/bifrost/"
         dest: "{{ XCI_CACHE }}/repos/bifrost"
