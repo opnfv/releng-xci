@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_1d1cdd76",
+        "filename": "xci/infra/bifrost/scripts/bifrost-provision.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-03-20T17:13:21Z",
+      "side": 0,
+      "message": "The cleaning is related to the double install ?",
+      "range": {
+        "startLine": 71,
+        "startChar": 7,
+        "endLine": 71,
+        "endChar": 14
+      },
+      "revId": "77ab4eeda0f42616c63fa3d3baef9063a1e5741e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
