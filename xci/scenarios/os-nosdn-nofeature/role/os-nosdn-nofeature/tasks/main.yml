@@ -11,8 +11,8 @@
 - name: copy user_variables_os-nosdn-nofeature.yml
   copy:
     src: "user_variables_os-nosdn-nofeature.yml"
-    dest: "{{OPENSTACK_OSA_ETC_PATH}}/user_variables_os-nosdn-nofeature.yml"
+    dest: "{{openstack_osa_etc_path}}/user_variables_os-nosdn-nofeature.yml"
 - name: copy os-nosdn-nofeature scenario specific openstack_user_config.yml
   copy:
-    src: "{{XCI_FLAVOR}}/openstack_user_config.yml"
-    dest: "{{OPENSTACK_OSA_ETC_PATH}}/openstack_user_config.yml"
+    src: "{{xci_flavor}}/openstack_user_config.yml"
+    dest: "{{openstack_osa_etc_path}}/openstack_user_config.yml"
