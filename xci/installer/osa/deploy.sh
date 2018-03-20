@@ -35,6 +35,10 @@ fi
 # - creates log directory
 # - copies flavor files such as playbook, inventory, and var file
 #-------------------------------------------------------------------------------
+echo "Dump env vars to console for debugging"
+echo "-----------------------------------------------------------------------"
+env
+echo "-----------------------------------------------------------------------"
 
 echo "Info: Configuring localhost for openstack-ansible"
 echo "-----------------------------------------------------------------------"
@@ -42,6 +46,9 @@ cd $XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
+
+# fail the job so we don't go further
+exit 1
 
 #-------------------------------------------------------------------------------
 # Configure openstack-ansible deployment host, opnfv
