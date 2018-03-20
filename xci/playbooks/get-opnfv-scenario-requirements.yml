@@ -76,7 +76,7 @@
 
     - name: Synchronize local changes to scenarios' master branch
       synchronize:
-        src: "{{ XCI_PATH }}/{{ item.item.role }}/"
+        src: "{{ xci_path }}/{{ item.item.role }}/"
         dest: "{{ role_path_default }}/{{ item.item.scenario }}"
       failed_when: false
       when:
@@ -88,47 +88,47 @@
 
     - name: Plug in the scenario to XCI (fallback)
       synchronize:
-        src: "{{ XCI_PATH }}/{{ item.item.role }}/"
+        src: "{{ xci_path }}/{{ item.item.role }}/"
         dest: "{{ role_path_default }}/{{ item.item.scenario }}"
       when: not item.stat.exists
       with_items: "{{ scenarios_list_exists.results }}"
       loop_control:
         label: "{{ item.item.scenario }}"
 
-    - name: Gather information about the selected {{ DEPLOY_SCENARIO }} scenario
+    - name: Gather information about the selected {{ deploy_scenario }} scenario
       set_fact:
         deploy_scenario: "{{ item }}"
       with_items: "{{ scenarios }}"
       loop_control:
         label: "{{ item.scenario }}"
-      when: DEPLOY_SCENARIO | lower == item.scenario
+      when: deploy_scenario | lower == item.scenario
 
-    - name: Determine if the selected {{ DEPLOY_SCENARIO }} scenario can be deployed
+    - name: Determine if the selected {{ deploy_scenario }} scenario can be deployed
       block:
         - set_fact:
             deploy_scenario_installer: "{{ item }}"
           with_items: "{{ deploy_scenario.installers }}"
           loop_control:
             label: "{{ item.installer }}"
-          when: item.installer == INSTALLER_TYPE
+          when: item.installer == installer_type
         - set_fact:
-            deploy_scenario_flavor: "{{ (XCI_FLAVOR in deploy_scenario_installer.flavors) | bool }}"
+            deploy_scenario_flavor: "{{ (xci_flavor in deploy_scenario_installer.flavors) | bool }}"
           when:
             - deploy_scenario_installer is defined
             - deploy_scenario_installer
         - set_fact:
-            deploy_scenario_distro: "{{ (XCI_DISTRO in deploy_scenario_installer.distros) | bool }}"
+            deploy_scenario_distro: "{{ (xci_distro in deploy_scenario_installer.distros) | bool }}"
           when:
             - deploy_scenario_flavor is defined
             - deploy_scenario_flavor
       when: deploy_scenario is defined
 
-    - name: Fail if {{ DEPLOY_SCENARIO }} is not supported
+    - name: Fail if {{ deploy_scenario }} is not supported
       fail:
         msg:
           - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-          - ERROR! The {{ DEPLOY_SCENARIO }} scenario can't be deployed. This is because
-          - the {{ INSTALLER_TYPE }} XCI installer or the {{ XCI_FLAVOR }} flavor or the {{ XCI_DISTRO }}
+          - ERROR! The {{ deploy_scenario }} scenario can't be deployed. This is because
+          - the {{ installer_type }} XCI installer or the {{ xci_flavor }} flavor or the {{ xci_distro }}
           - distribution is not supported by this scenario. It may also be possible that
           - this scenario doesn't exist at all or it's not listed in {{ scenario_file }}.
           - ''
@@ -144,7 +144,7 @@
     ansible_python_interpreter: "/usr/bin/python"
     scenarios: "{{ lookup('file', scenario_file) | from_yaml }}"
     scenario_file: '../opnfv-scenario-requirements.yml'
-    scenario_path_default: "{{ XCI_SCENARIOS_CACHE }}"
+    scenario_path_default: "{{ xci_scenarios_cache }}"
     role_path_default: "{{ playbook_dir }}/roles"
     git_clone_retries: 2
     git_clone_retry_delay: 5
