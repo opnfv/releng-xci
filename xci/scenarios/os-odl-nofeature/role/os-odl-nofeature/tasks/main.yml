@@ -11,16 +11,16 @@
 - name: copy user_variables_os-odl-nofeature.yml
   copy:
     src: "user_variables_os-odl-nofeature.yml"
-    dest: "{{OPENSTACK_OSA_ETC_PATH}}/user_variables_os-odl-nofeature.yml"
+    dest: "{{openstack_osa_etc_path}}/user_variables_os-odl-nofeature.yml"
 
 - name: copy user_variables_os-odl-nofeature-ha.yml
   copy:
-    src: "{{XCI_FLAVOR}}/user_variables_os-odl-nofeature-ha.yml"
-    dest: "{{OPENSTACK_OSA_ETC_PATH}}/user_variables_os-odl-nofeature-ha.yml"
+    src: "{{xci_flavor}}/user_variables_os-odl-nofeature-ha.yml"
+    dest: "{{openstack_osa_etc_path}}/user_variables_os-odl-nofeature-ha.yml"
   when:
-  - XCI_FLAVOR == "ha"
+  - xci_flavor == "ha"
 
 - name: copy os-odl-nofeature scenario specific openstack_user_config.yml
   copy:
-    src: "{{XCI_FLAVOR}}/openstack_user_config.yml"
-    dest: "{{OPENSTACK_OSA_ETC_PATH}}/openstack_user_config.yml"
+    src: "{{xci_flavor}}/openstack_user_config.yml"
+    dest: "{{openstack_osa_etc_path}}/openstack_user_config.yml"
