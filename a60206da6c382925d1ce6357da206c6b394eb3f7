@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_b8269714",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1451
+      },
+      "writtenOn": "2018-03-20T23:45:39Z",
+      "side": 1,
+      "message": "lowercase",
+      "range": {
+        "startLine": 22,
+        "startChar": 14,
+        "endLine": 22,
+        "endChar": 42
+      },
+      "revId": "a60206da6c382925d1ce6357da206c6b394eb3f7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_98211bff",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1451
+      },
+      "writtenOn": "2018-03-20T23:45:39Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 157,
+        "startChar": 13,
+        "endLine": 158,
+        "endChar": 42
+      },
+      "revId": "a60206da6c382925d1ce6357da206c6b394eb3f7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
