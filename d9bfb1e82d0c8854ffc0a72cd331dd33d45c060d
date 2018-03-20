@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_d21b84c8",
+        "filename": "xci/installer/osa/files/ansible-role-requirements.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-03-20T13:10:15Z",
+      "side": 1,
+      "message": "yes, it should work, i just tried with a sample git ansible task https://paste.ubuntu.com/p/Vrtjp7xwF8/ and it works",
+      "revId": "d9bfb1e82d0c8854ffc0a72cd331dd33d45c060d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
