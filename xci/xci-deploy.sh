@@ -67,6 +67,8 @@ source $XCI_PATH/xci/config/env-vars
 # Make sure we pass XCI_PATH everywhere
 export XCI_ANSIBLE_PARAMS+=" -e XCI_PATH=${XCI_PATH}"
 
+export DEPLOY_SCENARIO=os-odl-bgpvpn
+
 if [[ -z $(echo $PATH | grep "$HOME/.local/bin")  ]]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
