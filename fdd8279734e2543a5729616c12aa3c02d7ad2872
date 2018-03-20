@@ -16,6 +16,24 @@
       "revId": "fdd8279734e2543a5729616c12aa3c02d7ad2872",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_3800c700",
+        "filename": "xci/infra/bifrost/scripts/bifrost-provision.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-20T17:14:05Z",
+      "side": 1,
+      "message": "I do not completely understand. So the reason we had the bifrost ansible in VENV was to keep the system clean but that\u0027s pointless since we already install Ansible from pip to run XCI in the first place.\n\nSo even now, without this patch, k8s uses whatever Ansible XCI uses. That doesn\u0027t change after this patch. The only thing that changes is that bifrost uses the XCI\u0027s Ansible instead of its own.",
+      "parentUuid": "5a3f45e8_dd2a758f",
+      "revId": "fdd8279734e2543a5729616c12aa3c02d7ad2872",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
