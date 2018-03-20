@@ -1,0 +1,297 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_b8e7b711",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "can you have line lengths \u003c80 so it is easier to review?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 309
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_98e2bbff",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "XCI Framework and the tools utilized by it",
+      "range": {
+        "startLine": 16,
+        "startChar": 45,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d8ec43f6",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "it is better not to reference to the readme as it might disappear in future given that we are moving things to rtd.",
+      "range": {
+        "startLine": 27,
+        "startChar": 44,
+        "endLine": 28,
+        "endChar": 14
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_18beabd4",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "the necessary environment variables in order for sandbox to function correctly",
+      "range": {
+        "startLine": 41,
+        "startChar": 72,
+        "endLine": 41,
+        "endChar": 98
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_38bba7e6",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "line length",
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b8ce9781",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "Bifrost, OpenStack Ansible, and Kubespray directly from upstream.",
+      "range": {
+        "startLine": 48,
+        "startChar": 9,
+        "endLine": 48,
+        "endChar": 54
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f8c81f76",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "this part is relevant for developing ansible roles for openstack-ansible which can be removed from here and added to the relevant/new chapter. what is relevant at this point is the top level repos such as bifrost and osa.",
+      "range": {
+        "startLine": 61,
+        "startChar": 1,
+        "endLine": 61,
+        "endChar": 114
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d8c3a355",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "the ip of opnfv vm is 192.168.122.2",
+      "range": {
+        "startLine": 90,
+        "startChar": 11,
+        "endLine": 90,
+        "endChar": 24
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_38a287ae",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "deployment host",
+      "range": {
+        "startLine": 92,
+        "startChar": 21,
+        "endLine": 92,
+        "endChar": 29
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_18a50bb5",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "192.168.122.3",
+      "range": {
+        "startLine": 92,
+        "startChar": 41,
+        "endLine": 92,
+        "endChar": 54
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_58af9394",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "OpenStack services",
+      "range": {
+        "startLine": 94,
+        "startChar": 27,
+        "endLine": 94,
+        "endChar": 36
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b895f741",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "lxc commands must be run on controller nodes",
+      "range": {
+        "startLine": 94,
+        "startChar": 56,
+        "endLine": 94,
+        "endChar": 78
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_78ac0fa1",
+        "filename": "docs/xci-developer-guide.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-20T21:01:12Z",
+      "side": 1,
+      "message": "lxc-ls -f to have pretty formatted output",
+      "range": {
+        "startLine": 98,
+        "startChar": 2,
+        "endLine": 98,
+        "endChar": 8
+      },
+      "revId": "4c8860e90c21c309765b3b83d21593b9345cb0cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
