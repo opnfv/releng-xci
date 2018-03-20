@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_ccdbe9eb",
+        "filename": "xci/installer/kubespray/files/k8s-cluster.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-20T02:16:16Z",
+      "side": 1,
+      "message": "I have removed it.",
+      "parentUuid": "5a3f45e8_e9a85779",
+      "range": {
+        "startLine": 293,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 33
+      },
+      "revId": "6557883c5e46145f909a9e59d0349a1fd6835192",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_89b1d3e3",
         "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
         "patchSetId": 6
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_acd65dc1",
+        "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-20T02:16:16Z",
+      "side": 1,
+      "message": "I have removed it.",
+      "parentUuid": "5a3f45e8_89b1d3e3",
+      "range": {
+        "startLine": 66,
+        "startChar": 1,
+        "endLine": 68,
+        "endChar": 117
+      },
+      "revId": "6557883c5e46145f909a9e59d0349a1fd6835192",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_69b447d1",
         "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
         "patchSetId": 6
@@ -59,6 +107,30 @@
       "writtenOn": "2018-03-19T13:04:46Z",
       "side": 1,
       "message": "type",
+      "range": {
+        "startLine": 71,
+        "startChar": 36,
+        "endLine": 71,
+        "endChar": 40
+      },
+      "revId": "6557883c5e46145f909a9e59d0349a1fd6835192",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_0ce671b4",
+        "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-20T02:16:16Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "5a3f45e8_69b447d1",
       "range": {
         "startLine": 71,
         "startChar": 36,
