@@ -4,7 +4,7 @@
   tasks:
     - name: add public key to host
       copy:
-        src: "{{ XCI_PATH }}/xci/files/authorized_keys"
+        src: "{{ xci_path }}/xci/files/authorized_keys"
         dest: /root/.ssh/authorized_keys
     - name: Install required packages
       package:
@@ -15,14 +15,14 @@
 - hosts: kube-master
   remote_user: root
   vars_files:
-    - "{{ XCI_PATH }}/xci/var/opnfv.yml"
+    - "{{ xci_path }}/xci/var/opnfv.yml"
   pre_tasks:
     - name: Load distribution variables
       include_vars:
-        file: "{{ XCI_PATH }}/xci/var/{{ ansible_os_family }}.yml"
+        file: "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
   roles:
     - role: "keepalived"
-      when:  XCI_FLAVOR == 'ha'
+      when:  xci_flavor == 'ha'
     - role: "haproxy_server"
       haproxy_service_configs: "{{ haproxy_default_services}}"
-      when:  XCI_FLAVOR == 'ha'
+      when:  xci_flavor == 'ha'
