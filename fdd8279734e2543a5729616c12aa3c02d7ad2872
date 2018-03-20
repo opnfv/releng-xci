@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_dd2a758f",
+        "filename": "xci/infra/bifrost/scripts/bifrost-provision.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-03-20T17:09:45Z",
+      "side": 1,
+      "message": "You remove the venv to avoid installing ansible twice, true ? this mean the installer (OSA) ansible requires a version that will always be the same version as Bifrost. For OSA or Kolla, it is under the umbrella of Openstack, but for K8s or other, isn\u0027t it better to keep it inside the venv ?\n\nWas there a reason for ENABLE_VENV + USE_VENV ?",
+      "revId": "fdd8279734e2543a5729616c12aa3c02d7ad2872",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
