@@ -79,4 +79,36 @@ ssh root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/kubespray;\
          -i opnfv_inventory/inventory.cfg cluster.yml -b | tee setup-kubernetes.log"
 scp root@$OPNFV_HOST_IP:~/releng-xci/.cache/repos/kubespray/setup-kubernetes.log \
          $LOG_PATH/setup-kubernetes.log
+echo
+echo "-----------------------------------------------------------------------"
 echo "Info: Kubernetes installation is successfully completed!"
+echo "-----------------------------------------------------------------------"
+
+# Configure the kubernetes authentication in opnfv host.
+ssh root@$OPNFV_HOST_IP "mkdir -p ~/.kube/;\
+         cp -f ~/admin.conf ~/.kube/config; \
+         cp -f ~/kubectl /usr/local/bin"
+
+echo "Login opnfv host ssh root@$OPNFV_HOST_IP
+according to the user-guide to create a service
+https://kubernetes.io/docs/user-guide/walkthrough/k8s201/"
+
+echo
+echo "-----------------------------------------------------------------------"
+echo "Info: Kubernetes login details"
+echo "-----------------------------------------------------------------------"
+
+# Get the dashborad URL
+DASHBOARD_SERVICE=$(ssh root@$OPNFV_HOST_IP "kubectl get service -n kube-system |grep kubernetes-dashboard")
+DASHBOARD_PORT=$(echo ${DASHBOARD_SERVICE} | awk '{print $5}' |awk -F "[:/]" '{print $2}')
+KUBER_SERVER_URL=$(ssh root@$OPNFV_HOST_IP "grep -r server ~/.kube/config")
+echo "Info: Kubernetes Dashboard URL:"
+echo $KUBER_SERVER_URL | awk '{print $2}'| sed -n "s#:[0-9]*\$#:$DASHBOARD_PORT#p"
+
+# Get the dashborad user and password
+MASTER_IP=$(echo ${KUBER_SERVER_URL} | awk '{print $2}' |awk -F "[:/]" '{print $4}')
+USER_CSV=$(ssh root@$MASTER_IP " cat /etc/kubernetes/users/known_users.csv")
+USERNAME=$(echo $USER_CSV |awk -F ',' '{print $2}')
+PASSWORD=$(echo $USER_CSV |awk -F ',' '{print $1}')
+echo "Info: Dashboard username: ${USERNAME}"
+echo "Info: Dashboard password: ${PASSWORD}"

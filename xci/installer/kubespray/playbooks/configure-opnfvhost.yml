@@ -62,6 +62,13 @@
         state: present
         update_cache: "{{ (ansible_pkg_mgr == 'apt') | ternary('yes', omit) }}"
       when: XCI_FLAVOR == 'aio'
+
+    - name: change dashboard server type to NodePort
+      lineinfile:
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/roles/kubernetes-apps/ansible/templates/dashboard.yml.j2"
+        insertafter: 'targetPort'
+        line: "  type: NodePort"
+
     - name: pip install ansible
       pip:
         name: ansible
