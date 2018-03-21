@@ -22,6 +22,30 @@
       "revId": "8cb2bc0cdf0565ce59546b1ec2aac513fb7fecaa",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_efafb2e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-21T10:06:21Z",
+      "side": 1,
+      "message": "3 reasons\n- align the ansible vars we have. currently some are all caps and some are lowercase which disturbs me mentally.\n- i get confused between env vars and ansible vars time to time so this will hopefully help reduce the confusion - at least for me and it might only be me who gets confused.\n- and i\u0027ve seen that the ansible vars are generally lowercase - I\u0027m not sure if it\u0027s a standard or convention or best practice or i might have looked at wrong examples.",
+      "parentUuid": "5a3f45e8_af580a33",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "8cb2bc0cdf0565ce59546b1ec2aac513fb7fecaa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
