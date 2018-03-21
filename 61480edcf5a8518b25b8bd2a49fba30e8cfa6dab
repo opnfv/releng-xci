@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_af13ea64",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-21T14:44:48Z",
+      "side": 1,
+      "message": "no because we need to include the deployment_image files. See line 189. It\u0027s best if we do it the other way around and exclude everything except for the deployment_image qcow2 files\n\nThe deployment_image files are pre-built images which are used by bifrost later on to speed up the deployment.",
+      "range": {
+        "startLine": 338,
+        "startChar": 7,
+        "endLine": 338,
+        "endChar": 29
+      },
+      "revId": "61480edcf5a8518b25b8bd2a49fba30e8cfa6dab",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
