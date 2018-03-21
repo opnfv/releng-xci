@@ -124,6 +124,25 @@
         - pyyaml
         - python-neutronclient
         - python-openstackclient
+        - ara
+    - name: Determine ARA callback location
+      shell: python -c "import os,ara; print(os.path.dirname(ara.__file__))"
+      args:
+        executable: /bin/bash
+      register: _ara_install_dir
+    - name: Create local Ansible plugins directory
+      file:
+        path: "{{ ansible_env.HOME }}/.ansible/plugins/callback/ara"
+        state: directory
+    - name: debug ara
+      debug:
+        var: _ara_install_dir
+    - name: Configure ARA callback
+      file:
+        path: "{{ ansible_env.HOME }}/.ansible/plugins/callback/ara/callbacks"
+        src: "{{ _ara_install_dir.stdout }}/plugins/callbacks"
+        force: yes
+        state: link
     - name: generate password token
       command: "python pw-token-gen.py --file {{openstack_osa_etc_path}}/user_secrets.yml"
       args:
