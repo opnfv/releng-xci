@@ -179,8 +179,11 @@ collect_xci_logs() {
     echo "----------------------------------"
 
     # Create the ARA log directory and store the sqlite source database
-    mkdir -p ${log_path}/ara/
+    mkdir -p ${log_path}/ara/ ${log_path}/opnfv/ara
+
     rsync -q -a "${HOME}/.ara/ansible.sqlite" "${log_path}/ara/"
+    rsync -q -a root@${OPNFV_HOST_IP}:releng-xci/${log_path#$xci_path/}/ ${log_path}/opnfv/ || true
+    rsync -q -a root@${OPNFV_HOST_IP}:.ara/ansible.sqlite ${log_path}/opnfv/ara/ || true
 }
 
 # vim: set ts=4 sw=4 expandtab:
