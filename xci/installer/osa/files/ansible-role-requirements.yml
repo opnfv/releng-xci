@@ -116,7 +116,7 @@
 - name: os_neutron
   scm: git
   src: https://github.com/openstack/openstack-ansible-os_neutron
-  version: 454d1f5c115a11023a33f60b0cdf8f687cfa3596
+  version: 4bbb681632f2d577585905982d81fa019332f993
 - name: os_nova
   scm: git
   src: https://github.com/openstack/openstack-ansible-os_nova
@@ -200,7 +200,7 @@
 - name: opendaylight
   scm: git
   src: https://github.com/opendaylight/integration-packaging-ansible-opendaylight
-  version: 4aabce0605ef0f51eef4d6564cc7d779630706c5
+  version: 72face5c6bfcef4e548d2af5066eff884b4cfac7
 - name: haproxy_endpoints
   scm: git
   src: https://github.com/logan2211/ansible-haproxy-endpoints
