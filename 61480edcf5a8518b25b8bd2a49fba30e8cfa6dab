@@ -22,6 +22,30 @@
       "revId": "61480edcf5a8518b25b8bd2a49fba30e8cfa6dab",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_226d3199",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-21T18:08:02Z",
+      "side": 1,
+      "message": "What I was trying to avoid is to copy the rest of the images, e. g. if an ubuntu verify process is running and the centos and/or suse image is there, exclude them from the copy.",
+      "parentUuid": "5a3f45e8_af13ea64",
+      "range": {
+        "startLine": 338,
+        "startChar": 7,
+        "endLine": 338,
+        "endChar": 29
+      },
+      "revId": "61480edcf5a8518b25b8bd2a49fba30e8cfa6dab",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
