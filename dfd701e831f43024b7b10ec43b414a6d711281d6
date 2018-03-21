@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_cf20f6b2",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/tasks/main.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-21T14:37:13Z",
+      "side": 1,
+      "message": "Is there some sort of trailing whitespace here? I dont get why there is a diff here.",
+      "revId": "dfd701e831f43024b7b10ec43b414a6d711281d6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
