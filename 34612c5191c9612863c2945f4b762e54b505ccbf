@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_a27dc170",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-21T16:14:12Z",
+      "side": 1,
+      "message": "not that it matters much but I think this should be .com to match his SOB lines.",
+      "range": {
+        "startLine": 50,
+        "startChar": 25,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "34612c5191c9612863c2945f4b762e54b505ccbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
