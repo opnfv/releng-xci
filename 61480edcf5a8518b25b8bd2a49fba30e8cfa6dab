@@ -46,6 +46,30 @@
       "revId": "61480edcf5a8518b25b8bd2a49fba30e8cfa6dab",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_22a0919e",
+        "filename": "xci/scripts/vm/start-new-vm.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-21T20:56:22Z",
+      "side": 1,
+      "message": "yeah I understand that and that\u0027s why I suggested to invert the rule here to just copy the deployment_image* files and ignore the rest of the qcow2 files. Right now, your patch will also ignore the deployment_image files and we don\u0027t want that.",
+      "parentUuid": "5a3f45e8_226d3199",
+      "range": {
+        "startLine": 338,
+        "startChar": 7,
+        "endLine": 338,
+        "endChar": 29
+      },
+      "revId": "61480edcf5a8518b25b8bd2a49fba30e8cfa6dab",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
