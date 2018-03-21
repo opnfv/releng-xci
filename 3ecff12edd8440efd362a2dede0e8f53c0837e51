@@ -16,6 +16,24 @@
       "revId": "3ecff12edd8440efd362a2dede0e8f53c0837e51",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_0cc02c29",
+        "filename": "xci/files/install-lib.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-21T08:11:58Z",
+      "side": 1,
+      "message": "OK i can split it into two lines and add a comment",
+      "parentUuid": "5a3f45e8_589dd358",
+      "revId": "3ecff12edd8440efd362a2dede0e8f53c0837e51",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
