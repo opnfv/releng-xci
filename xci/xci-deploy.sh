@@ -73,7 +73,7 @@ source $XCI_PATH/xci/config/env-vars
 source ${XCI_PATH}/xci/files/install-lib.sh
 
 # Make sure we pass XCI_PATH everywhere
-export XCI_ANSIBLE_PARAMS+=" -e xci_path=${XCI_PATH}"
+export XCI_ANSIBLE_PARAMS+=" -e xci_path=${XCI_PATH} -vv"
 # Make sure everybody knows where our global roles are
 export ANSIBLE_ROLES_PATH="$HOME/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:${XCI_PATH}/xci/playbooks/roles"
 
