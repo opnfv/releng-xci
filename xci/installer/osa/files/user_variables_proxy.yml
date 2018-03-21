@@ -20,3 +20,6 @@ global_environment_variables:
   NO_PROXY: "{{ no_proxy_env }}"
   http_proxy: "{{ http_proxy_env_url }}"
   no_proxy: "{{ no_proxy_env }}"
+
+# package_state: present should give us  a better chance to finish
+package_state: present
