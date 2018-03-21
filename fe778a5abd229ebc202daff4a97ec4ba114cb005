@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_226371dd",
+        "filename": "xci/installer/osa/files/user_variables_proxy.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-21T15:50:11Z",
+      "side": 1,
+      "message": "this is not needed here.",
+      "revId": "fe778a5abd229ebc202daff4a97ec4ba114cb005",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
