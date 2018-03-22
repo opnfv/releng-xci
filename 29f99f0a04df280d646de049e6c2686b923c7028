@@ -34,6 +34,24 @@
       "revId": "29f99f0a04df280d646de049e6c2686b923c7028",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a0b77985",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/vars/main.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-22T14:12:55Z",
+      "side": 1,
+      "message": "I think that you will get errors if you remove the conditional.\n\nAnyway we can get it it now and think about it later.",
+      "parentUuid": "5a3f45e8_e026a115",
+      "revId": "29f99f0a04df280d646de049e6c2686b923c7028",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
