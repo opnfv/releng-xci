@@ -123,11 +123,11 @@
             - deploy_scenario_flavor
       when: deploy_scenario is defined
 
-    - name: Fail if {{ deploy_scenario }} is not supported
+    - name: Fail if {{ deploy_scenario.scenario }} is not supported
       fail:
         msg:
           - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-          - ERROR! The {{ deploy_scenario }} scenario can't be deployed. This is because
+          - ERROR! The {{ deploy_scenario.scenario }} scenario can't be deployed. This is because
           - the {{ installer_type }} XCI installer or the {{ xci_flavor }} flavor or the {{ xci_distro }}
           - distribution is not supported by this scenario. It may also be possible that
           - this scenario doesn't exist at all or it's not listed in {{ scenario_file }}.
