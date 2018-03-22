@@ -48,6 +48,7 @@
                      {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
       args:
         creates: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars/k8s-cluster.yml"
+    - include: "{{ xci_path }}/xci/playbooks/bootstrap-scenarios.yml"
     - name: Install required packages
       package:
         name: "{{ kube_require_packages[ansible_pkg_mgr] }}"

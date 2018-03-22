@@ -88,3 +88,19 @@
       distros:
         - ubuntu
         - centos
+
+- scenario: k8-canal-nofeature
+  scm: git
+  src: https://git.opnfv.org/releng-xci
+  version: master
+  role: xci/scenarios/k8-canal-nofeature/role/k8-canal-nofeature
+  installers:
+    - installer: kubespray
+      flavors:
+        - aio
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
+        - centos
