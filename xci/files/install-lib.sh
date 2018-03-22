@@ -163,11 +163,7 @@ function install_ansible() {
 
     PIP=$(which pip)
     echo "Using pip: $(${PIP} --version)"
-    sudo -H -E ${PIP} -q install --upgrade virtualenv
-    sudo -H -E ${PIP} -q install --upgrade pip
-    # upgrade setuptools, as latest version is needed to install some projects
-    sudo -H -E ${PIP} -q install --upgrade setuptools
-    ${PIP} install -q --user --upgrade ansible==$XCI_ANSIBLE_PIP_VERSION
+    ${PIP} -q install --user --upgrade virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION
 }
 
 # vim: set ts=4 sw=4 expandtab:
