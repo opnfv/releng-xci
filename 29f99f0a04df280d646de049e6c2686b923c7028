@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_05c47f5d",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/vars/main.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-22T08:29:45Z",
+      "side": 1,
+      "message": "Something is strange overall I think. You already check whether ODL_VERSION is defined elsewhere and then you check it here again. I understand what you are trying to achieve I just don\u0027t think this is the right way to do it.",
+      "revId": "29f99f0a04df280d646de049e6c2686b923c7028",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
