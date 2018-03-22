@@ -16,6 +16,24 @@
       "revId": "0c6b58fbdcfa70c526dafd657131d5895ded7a4a",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_6532a311",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-03-22T11:04:35Z",
+      "side": 1,
+      "message": "I want to use this file in osa and kubespray, or I need to create a file like installer/kubespray/playbooks/bootstrap-scenarios.yml",
+      "parentUuid": "5a3f45e8_e55eb344",
+      "revId": "0c6b58fbdcfa70c526dafd657131d5895ded7a4a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
