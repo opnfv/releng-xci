@@ -16,6 +16,24 @@
       "revId": "29f99f0a04df280d646de049e6c2686b923c7028",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e026a115",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/vars/main.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-03-22T13:43:13Z",
+      "side": 1,
+      "message": "I just want to make sure that ODL_VERSION exists before trying to format the variable. I am also checking that in the template, that\u0027s right. Would you prefer that I remove the if condition here?",
+      "parentUuid": "5a3f45e8_05c47f5d",
+      "revId": "29f99f0a04df280d646de049e6c2686b923c7028",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
