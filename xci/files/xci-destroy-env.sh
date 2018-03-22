@@ -14,6 +14,8 @@ if [[ $(whoami) != "root" ]]; then
     exit 1
 fi
 
+flavors=(aio mini noha ha)
+
 # Start fresh
 rm -rf /opt/stack
 # HOME is normally set by sudo -H
@@ -33,14 +35,16 @@ if which vbmc &>/dev/null || { [[ -e /opt/stack/bifrost/bin/activate ]] && sourc
     which vbmc &>/dev/null || { [[ -e /opt/stack/bifrost/bin/activate ]] && deactivate; }
 fi
 
-# Destroy all XCI VMs if the previous operation failed
-[[ -n ${XCI_FLAVOR} ]] && \
+# Destroy all XCI VMs on all flavors
+for varfile in ${flavors[@]}; do
+    source ${XCI_PATH}/xci/config/${varfile}-vars
     for vm in ${TEST_VM_NODE_NAMES}; do
         if which virsh &>/dev/null; then
             virsh destroy $vm || true
             virsh undefine $vm || true
         fi
     done
+done
 
 service ironic-conductor stop || true
 
@@ -76,3 +80,5 @@ service libvirtd restart
 service ironic-api restart || true
 service ironic-conductor start || true
 service ironic-inspector restart || true
+
+# vim: set ts=4 sw=4 expandtab:
