@@ -21,6 +21,9 @@
 # # Debug and Verbose options.
 debug: false
 
+# package_state: present should give us  a better chance to finish
+package_state: present
+
 # Allow root logins
 security_sshd_permit_root_login: yes
 
