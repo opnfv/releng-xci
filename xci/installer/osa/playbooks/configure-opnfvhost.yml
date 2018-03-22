@@ -110,7 +110,7 @@
       shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/openstack_services.yml {{openstack_osa_path}}/playbooks/defaults/repo_packages/openstack_services.yml"
       when:
         - openstack_osa_version != "master"
-    - include: bootstrap-scenarios.yml
+    - include: "{{ xci_path }}/xci/playbooks/bootstrap-scenarios.yml"
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
