@@ -22,6 +22,30 @@
       "revId": "055b9c04dee687d4c864d0877f5e675f8eae6ebb",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_1be8600f",
+        "filename": "INFO.yaml",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-03-22T18:59:26Z",
+      "side": 1,
+      "message": "links to the gerrit nomination changes will come there which I\u0027ll fix it in another change for all the promotions.",
+      "parentUuid": "5a3f45e8_c291ed9b",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 19
+      },
+      "revId": "055b9c04dee687d4c864d0877f5e675f8eae6ebb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
