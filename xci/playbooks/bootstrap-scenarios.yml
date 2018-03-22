@@ -25,3 +25,11 @@
   include_role:
     name: "os-odl-bgpvpn"
   when: deploy_scenario == 'os-odl-bgpvpn'
+- name: Prepare everything to run the k8-canal-nofeature scenario
+  include_role:
+    name: "k8-canal-nofeature"
+  when: deploy_scenario == 'k8-canal-nofeature'
+- name: Prepare everything to run the k8-nosdn-nofeature scenario
+  include_role:
+    name: "k8-nosdn-nofeature"
+  when: deploy_scenario == 'k8-nosdn-nofeature'
