@@ -55,11 +55,7 @@
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
         state: directory
-    - name: copy k8s_cluster.yml
-      command: "cp -rf {{ remote_xci_path }}/xci/installer/kubespray/files/k8s-cluster.yml \
-                     {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
-      args:
-        creates: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
+    - include: "{{ xci_path }}/xci/playbooks/bootstrap-scenarios.yml"
     - name: Install required packages
       package:
         name: "{{ kube_require_packages[ansible_pkg_mgr] }}"
@@ -86,5 +82,4 @@
   tasks:
     - name: Append public keys to authorized_keys
       shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ xci_path }}/xci/files/authorized_keys"
-      args:
-        creates: "{{ xci_path }}/xci/files/authorized_keys"
+      changed_when: True
