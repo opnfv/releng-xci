@@ -59,6 +59,8 @@ fi
 #-------------------------------------------------------------------------------
 # find where are we
 export XCI_PATH="$(git rev-parse --show-toplevel)"
+# Declare our virtualenv
+export XCI_VENV=${XCI_PATH}/venv/
 # source user vars
 source $XCI_PATH/xci/config/user-vars
 # source pinned versions
