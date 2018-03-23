@@ -23,7 +23,7 @@ rm -rf ${HOME}/.config/openstack
 rm -rf ${HOME}/.ansible
 
 # bifrost installs everything on venv so we need to look there if virtualbmc is not installed on the host.
-if which vbmc &>/dev/null || { [[ -e /opt/stack/bifrost/bin/activate ]] && source /opt/stack/bifrost/bin/activate; }; then
+if which vbmc &>/dev/null || { [[ -e ${XCI_VENV}/bifrost/bin/activate ]] && source ${XCI_VENV}/bifrost/bin/activate; }; then
     # Delete all libvirt VMs and hosts from vbmc (look for a port number)
     for vm in $(vbmc list | awk '/[0-9]/{{ print $2 }}'); do
         if which virsh &>/dev/null; then
@@ -80,5 +80,7 @@ service libvirtd restart
 service ironic-api restart || true
 service ironic-conductor start || true
 service ironic-inspector restart || true
+
+rm -rf ${XCI_VENV}
 
 # vim: set ts=4 sw=4 expandtab:
