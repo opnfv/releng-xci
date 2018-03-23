@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_36ba93c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-23T08:45:41Z",
+      "side": 1,
+      "message": "I think this needs to be updated so we can actually try this new scenario no?",
+      "range": {
+        "startLine": 13,
+        "startChar": 16,
+        "endLine": 13,
+        "endChar": 34
+      },
+      "revId": "f326833d4403229e9f9c99f76b642da266d5ed17",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
