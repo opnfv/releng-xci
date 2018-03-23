@@ -24,6 +24,10 @@ BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSIO
 BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-master}
 BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-master}
 
+# This is normally passed from the XCI deployment script but
+# we also need it here for the bifrost jobs which run outside of XCI
+export XCI_DISTRO=${XCI_DISTRO:-$(source /etc/os-release &>/dev/null || source /usr/lib/os-release &>/dev/null; echo ${ID,,})}
+
 # set UPPER_CONSTRAINTS_FILE since it is needed in order to limit libvirt-python to 4.0.0
 export UPPER_CONSTRAINTS_FILE=https://git.openstack.org/cgit/openstack/requirements/plain/upper-constraints.txt
 
