@@ -17,6 +17,7 @@ function install_ansible() {
     # Use the upper-constraints file from the pinned requirements repository.
     local requirements_sha=$(awk '/requirements_git_install_branch:/ {print $2}' ${XCI_PATH}/xci/installer/osa/files/openstack_services.yml)
     local uc="https://raw.githubusercontent.com/openstack/requirements/${requirements_sha}/upper-constraints.txt"
+    local install_map
 
     declare -A PKG_MAP
 
@@ -49,6 +50,7 @@ function install_ansible() {
             [lsb-release]=lsb-release
             [make]=make
             [net-tools]=net-tools
+            [pip]=python-pip
             [python]=python
             [python-devel]=python-devel
             [venv]=python-virtualenv
@@ -75,12 +77,13 @@ function install_ansible() {
             [lsb-release]=lsb-release
             [make]=make
             [net-tools]=net-tools
+            [pip]=python-pip
             [python]=python-minimal
             [python-devel]=libpython-dev
             [venv]=python-virtualenv
             [wget]=wget
         )
-        EXTRA_PKG_DEPS=()
+        EXTRA_PKG_DEPS=( apt-utils )
         sudo apt-get update
         ;;
 
@@ -96,6 +99,7 @@ function install_ansible() {
             [lsb-release]=redhat-lsb
             [make]=make
             [net-tools]=net-tools
+            [pip]=python2-pip
             [python]=python
             [python-devel]=python-devel
             [venv]=python-virtualenv
@@ -108,51 +112,15 @@ function install_ansible() {
         *) echo "ERROR: Supported package manager not found.  Supported: apt, dnf, yum, zypper"; exit 1;;
     esac
 
-    if ! $(python --version &>/dev/null); then
-        ${INSTALLER_CMD} ${PKG_MAP[python]}
-    fi
-    if ! $(gcc -v &>/dev/null); then
-        ${INSTALLER_CMD} ${PKG_MAP[gcc]}
-    fi
-    if ! $(wget --version &>/dev/null); then
-        ${INSTALLER_CMD} ${PKG_MAP[wget]}
-    fi
-
-    if ! $(python -m virtualenv --version &>/dev/null); then
-        ${INSTALLER_CMD} ${PKG_MAP[venv]}
-    fi
-
-    for pkg in ${CHECK_CMD_PKGS[@]}; do
-        if ! $(${CHECK_CMD} ${PKG_MAP[$pkg]} &>/dev/null); then
-            ${INSTALLER_CMD} ${PKG_MAP[$pkg]}
-        fi
+    # Build instllation map
+    for pkgmap in ${CHECK_CMD_PKGS[@]}; do
+        install_map+=(${PKG_MAP[$pkgmap]} )
     done
 
-    if [ -n "${EXTRA_PKG_DEPS-}" ]; then
-        for pkg in ${EXTRA_PKG_DEPS}; do
-            if ! $(${CHECK_CMD} ${pkg} &>/dev/null); then
-              ${INSTALLER_CMD} ${pkg}
-            fi
-        done
-    fi
+    install_map+=(${EXTRA_PKG_DEPS[@]} )
 
-    # If we're using a venv, we need to work around sudo not
-    # keeping the path even with -E.
-    PYTHON=$(which python)
+    ${INSTALLER_CMD} ${install_map[@]}
 
-    # To install python packages, we need pip.
-    #
-    # We can't use the apt packaged version of pip since
-    # older versions of pip are incompatible with
-    # requests, one of our indirect dependencies (bug 1459947).
-    #
-    # Note(cinerama): We use pip to install an updated pip plus our
-    # other python requirements. pip breakages can seriously impact us,
-    # so we've chosen to install/upgrade pip here rather than in
-    # requirements (which are synced automatically from the global ones)
-    # so we can quickly and easily adjust version parameters.
-    # See bug 1536627.
-    #
     # Note(cinerama): If pip is linked to pip3, the rest of the install
     # won't work. Remove the alternatives. This is due to ansible's
     # python 2.x requirement.
@@ -160,16 +128,16 @@ function install_ansible() {
         sudo -H update-alternatives --remove pip $(readlink -f /etc/alternatives/pip)
     fi
 
-    if ! which pip; then
-        wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
-        sudo -H -E ${PYTHON} /tmp/get-pip.py
-    fi
+    # We need to prepare our virtualenv now
+    virtualenv --quiet --no-site-packages ${XCI_VENV}
+    set +u
+    source ${XCI_VENV}/bin/activate
+    set -u
 
-    PIP=$(which pip)
-    echo "Using pip: $(${PIP} --version)"
-    ${PIP} -q install --user --upgrade -c $uc ara virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION
+    # We are inside the virtualenv now so we should be good to use pip and python from it.
+    pip -q install --upgrade -c $uc ara virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION
 
-    ara_location=$(${PYTHON} -c "import os,ara; print(os.path.dirname(ara.__file__))")
+    ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
     export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}/plugins/callbacks"
 }
 

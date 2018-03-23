@@ -13,7 +13,8 @@ set -o pipefail
 export PYTHONUNBUFFERED=1
 SCRIPT_HOME="$(cd "$(dirname "$0")" && pwd)"
 BIFROST_HOME=$SCRIPT_HOME/..
-ENABLE_VENV="false"
+ENABLE_VENV="true"
+export VENV=${XCI_VENV}/bifrost
 PROVISION_WAIT_TIMEOUT=${PROVISION_WAIT_TIMEOUT:-3600}
 # This is normally exported by XCI env but we should initialize it here
 # in case we run this script on its own for debug purposes
@@ -97,7 +98,7 @@ if [[ -e ${XCI_PATH}/deployment_image.qcow2 ]]; then
 fi
 
 # Install missing dependencies
-$(which pip) install -q --user --upgrade -r "$(dirname $0)/../requirements.txt"
+pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
 
 # Change working directory
 cd $BIFROST_HOME/playbooks
