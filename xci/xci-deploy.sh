@@ -59,6 +59,9 @@ fi
 #-------------------------------------------------------------------------------
 # find where are we
 export XCI_PATH="$(git rev-parse --show-toplevel)"
+
+export XCI_ANSIBLE_PARAMS="-e ODL_VERSION=nitrogen"
+
 # Declare our virtualenv
 export XCI_VENV=${XCI_PATH}/venv/
 # source user vars
