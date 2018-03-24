@@ -61,6 +61,10 @@ fi
 export XCI_PATH="$(git rev-parse --show-toplevel)"
 # Declare our virtualenv
 export XCI_VENV=${XCI_PATH}/venv/
+
+export XCI_ANSIBLE_PARAMS="-e ODL_VERSION=master"
+export DEPLOY_SCENARIO=os-odl-sfc
+
 # source user vars
 source $XCI_PATH/xci/config/user-vars
 # source pinned versions
