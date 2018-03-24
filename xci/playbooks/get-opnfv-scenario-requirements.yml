@@ -76,7 +76,7 @@
 
     - name: Synchronize local changes to scenarios' master branch
       synchronize:
-        src: "{{ xci_path }}/{{ item.item.role }}/"
+        src: "{{ xci_path }}/xci/scenarios/{{ item.item.scenario }}/{{ item.item.role | replace('xci/scenarios/{{ item.item.scenario }}', '') }}/"
         dest: "{{ role_path_default }}/{{ item.item.scenario }}"
       failed_when: false
       when:
