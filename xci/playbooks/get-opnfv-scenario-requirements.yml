@@ -68,7 +68,7 @@
     - name: Plug in the scenario to XCI
       synchronize:
         src: "{{ scenario_path_default }}/{{ item.item.scenario }}/{{ item.item.role }}/"
-        dest: "{{ role_path_default }}/{{ item.item.scenario }}"
+        dest: "{{ role_path_default }}/{{ item.item.role | basename }}"
       when: item.stat.exists
       with_items: "{{ scenarios_list_exists.results }}"
       loop_control:
@@ -76,8 +76,8 @@
 
     - name: Synchronize local changes to scenarios' master branch
       synchronize:
-        src: "{{ xci_path }}/xci/scenarios/{{ item.item.scenario }}/{{ item.item.role | replace('xci/scenarios/{{ item.item.scenario }}', '') }}/"
-        dest: "{{ role_path_default }}/{{ item.item.scenario }}"
+        src: "{{ xci_path }}/xci/scenarios/{{ item.item.scenario }}/{{ item.item.role | replace('xci/scenarios/' ~ item.item.scenario ~ '/', '') }}/"
+        dest: "{{ role_path_default }}/{{ item.item.role | basename }}"
       failed_when: false
       when:
         - item.stat.exists
@@ -89,7 +89,7 @@
     - name: Plug in the scenario to XCI (fallback)
       synchronize:
         src: "{{ xci_path }}/{{ item.item.role }}/"
-        dest: "{{ role_path_default }}/{{ item.item.scenario }}"
+        dest: "{{ role_path_default }}/{{ item.item.role | basename }}"
       when: not item.stat.exists
       with_items: "{{ scenarios_list_exists.results }}"
       loop_control:
