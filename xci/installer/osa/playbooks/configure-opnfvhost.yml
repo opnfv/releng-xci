@@ -44,9 +44,10 @@
 
   tasks:
     - name: generate SSH keys
-      shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
+      command: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
       args:
         creates: "{{ ansible_env.HOME }}/.ssh/id_rsa"
+      changed_when: True
     - name: fetch public key
       fetch:
         src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
@@ -59,17 +60,27 @@
         recursive: yes
         delete: yes
     - name: copy flavor inventory
-      shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/inventory {{ remote_xci_playbooks }}"
+      command: "/bin/cp -rf {{ remote_xci_flavor_files }}/inventory {{ remote_xci_playbooks }}"
+      args:
+        creates: "{{ remote_xci_playbooks }}/inventory"
     - name: copy openstack_deploy
-      shell: "/bin/cp -rf {{openstack_osa_path}}/etc/openstack_deploy {{openstack_osa_etc_path}}"
+      command: "/bin/cp -rf {{openstack_osa_path}}/etc/openstack_deploy {{openstack_osa_etc_path}}"
+      args:
+        creates: "{{ openstack_osa_etc_path }}"
     - name: copy openstack_user_config.yml
-      shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/openstack_user_config.yml {{openstack_osa_etc_path}}"
+      command: "/bin/cp -rf {{ remote_xci_flavor_files }}/openstack_user_config.yml {{openstack_osa_etc_path}}"
+      args:
+        creates: "{{ openstack_osa_etc_path }}/openstack_user_config.yml"
       failed_when: false
     - name: copy all user override files
-      shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables.yml {{openstack_osa_etc_path}}"
+      command: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables.yml {{openstack_osa_etc_path}}"
+      args:
+        creates: "{{ openstack_osa_etc_path }}/user_variables.yml }}"
       failed_when: false
     - name: copy cinder.yml
-      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/cinder.yml {{openstack_osa_etc_path}}/env.d"
+      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/cinder.yml {{openstack_osa_etc_path}}/env.d"
+      args:
+        creates: "{{ openstack_osa_etc_path }}/env.d/cinder.yml"
     - name: Configure OpenStack-Ansible components
       lineinfile:
         path: "{{ openstack_osa_etc_path }}/user_variables.yml"
@@ -81,15 +92,23 @@
         - { component: "core_openstack", value: "{{ core_openstack_install | bool }}" }
     - block:
         - name: copy ceph.yml
-          shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/ceph.yml {{openstack_osa_etc_path}}/conf.d/"
+          command: "/bin/cp -rf {{ remote_xci_flavor_files }}/ceph.yml {{openstack_osa_etc_path}}/conf.d/"
+          args:
+            creates: "{{ openstack_osa_etc_path }}/conf.d/ceph.yml"
         - name: copy user_ceph.yml
-          shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_ceph.yml {{openstack_osa_etc_path}}/user_ceph.yml"
+          command: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_ceph.yml {{openstack_osa_etc_path}}/user_ceph.yml"
+          args:
+            creates: "{{ openstack_osa_etc_path }}/user_ceph.yml"
         - name: copy user_variables_ceph.yml
-          shell: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables_ceph.yml {{openstack_osa_etc_path}}/user_variables_ceph.yml"
+          command: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables_ceph.yml {{openstack_osa_etc_path}}/user_variables_ceph.yml"
+          args:
+            creates: "{{ openstack_osa_etc_path }}/user_variables_ceph.yml"
       when: xci_ceph_enabled == "true"
     - block:
         - name: copy user_variables_proxy.yml
-          shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/user_variables_proxy.yml {{openstack_osa_etc_path}}/user_variables_proxy.yml"
+          command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/user_variables_proxy.yml {{openstack_osa_etc_path}}/user_variables_proxy.yml"
+          args:
+            creates: "{{ openstack_osa_etc_path }}/user_variables_proxy.yml"
         - name: "Configure http_proxy_env_url"
           lineinfile:
             path: "{{openstack_osa_etc_path}}/user_variables_proxy.yml"
@@ -98,21 +117,28 @@
       when:
         - lookup('env','http_proxy') != "randomfoobarstring"
     - name: copy OPNFV OpenStack playbook
-      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/setup-openstack.yml {{openstack_osa_path}}/playbooks"
+      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/setup-openstack.yml {{openstack_osa_path}}/playbooks"
+      args:
+        creates: "{{ openstack_osa_path }}/playbooks/setup-openstack.yml"
     - name: copy pinned versions of OSA Roles and global requirements
-      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/{{ item }} {{openstack_osa_path}}/{{ item }}"
+      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/{{ item }} {{openstack_osa_path}}/{{ item }}"
+      args:
+        creates: "{{ openstack_osa_path }}/{{ item }}"
       with_items:
         - "ansible-role-requirements.yml"
         - "global-requirement-pins.txt"
       when:
         - openstack_osa_version != "master"
     - name: copy pinned versions of OpenStack services
-      shell: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/openstack_services.yml {{openstack_osa_path}}/playbooks/defaults/repo_packages/openstack_services.yml"
+      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/openstack_services.yml {{openstack_osa_path}}/playbooks/defaults/repo_packages/openstack_services.yml"
+      args:
+        creates: "{{ openstack_osa_path }}/playbooks/defaults/repo_packages/openstack_services.yml"
       when:
         - openstack_osa_version != "master"
     - include: "{{ xci_path }}/xci/playbooks/bootstrap-scenarios.yml"
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
+      changed_when: True
       args:
         chdir: "{{openstack_osa_path}}"
     - name: install opnfv pip required packages
@@ -131,9 +157,8 @@
         extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
         executable: '/opt/ansible-runtime/bin/pip'
     - name: Determine ARA callback location
-      shell: "/opt/ansible-runtime/bin/python -c 'import os,ara; print(os.path.dirname(ara.__file__))'"
-      args:
-        executable: /bin/bash
+      command: "/opt/ansible-runtime/bin/python -c 'import os,ara; print(os.path.dirname(ara.__file__))'"
+      changed_when: False
       register: _ara_install_dir
     - name: Create local Ansible plugins directory
       file:
@@ -149,6 +174,7 @@
       command: "python pw-token-gen.py --file {{openstack_osa_etc_path}}/user_secrets.yml"
       args:
         chdir: "{{openstack_osa_path}}/scripts"
+      changed_when: True
     - name: check if certificate directory /etc/ssl/certs exists already
       stat: path=/etc/ssl/certs
       register: check_etc_ssl_certs
@@ -184,6 +210,7 @@
   tasks:
     - name: Append public keys to authorized_keys
       shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ xci_path }}/xci/files/authorized_keys"
+      changed_when: True
 
 - hosts: opnfv
   remote_user: root
