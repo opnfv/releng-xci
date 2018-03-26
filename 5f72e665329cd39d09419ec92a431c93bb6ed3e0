@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_ff78fb90",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-03-26T13:40:12Z",
+      "side": 1,
+      "message": "\"{{ openstack_osa_etc_path }}/etc/openstack_deploy\"",
+      "range": {
+        "startLine": 69,
+        "startChar": 21,
+        "endLine": 69,
+        "endChar": 43
+      },
+      "revId": "5f72e665329cd39d09419ec92a431c93bb6ed3e0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5f700fa5",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-03-26T13:40:12Z",
+      "side": 1,
+      "message": "\"{{ openstack_osa_etc_path }}/openstack_user_config.yml\"",
+      "revId": "5f72e665329cd39d09419ec92a431c93bb6ed3e0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
