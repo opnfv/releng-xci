@@ -1,0 +1,7 @@
+Code-Review+2: Fatih Degirmenci <fdegir@gmail.com>
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Submitted-by: Fatih Degirmenci <fdegir@gmail.com>
+Submitted-at: Mon, 26 Mar 2018 18:43:29 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/54483
+Project: releng-xci
+Branch: refs/heads/master
