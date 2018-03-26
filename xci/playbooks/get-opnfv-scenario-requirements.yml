@@ -78,6 +78,14 @@
       synchronize:
         src: "{{ xci_path }}/xci/scenarios/{{ item.item.scenario }}/{{ item.item.role | replace('xci/scenarios/' ~ item.item.scenario ~ '/', '') }}/"
         dest: "{{ role_path_default }}/{{ item.item.role | basename }}"
+        archive: no
+        times: no
+        recurse: yes
+        checksum: yes
+        owner: yes
+        group: yes
+        perms: yes
+        links: yes
       failed_when: false
       when:
         - item.stat.exists
