@@ -27,6 +27,9 @@ BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-master}
 
 # This is normally passed from the XCI deployment script but
 # we also need it here for the bifrost jobs which run outside of XCI
+export XCI_PATH="${XCI_PATH:-$(git rev-parse --show-toplevel)}"
+# Declare our virtualenv
+export XCI_VENV="${XCI_VENV:-${XCI_PATH}/venv/}"
 export XCI_DISTRO=${XCI_DISTRO:-$(source /etc/os-release &>/dev/null || source /usr/lib/os-release &>/dev/null; echo ${ID,,})}
 
 # set UPPER_CONSTRAINTS_FILE since it is needed in order to limit libvirt-python to 4.0.0
