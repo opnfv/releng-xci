@@ -141,6 +141,31 @@ function install_ansible() {
     export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}/plugins/callbacks"
 }
 
+ansible_lint() {
+    set -eu
+    # Use the upper-constraints file from the pinned requirements repository.
+    local requirements_sha=$(awk '/requirements_git_install_branch:/ {print $2}' ${XCI_PATH}/xci/installer/osa/files/openstack_services.yml)
+    local uc="https://raw.githubusercontent.com/openstack/requirements/${requirements_sha}/upper-constraints.txt"
+    local playbooks_dir=(xci/playbooks xci/installer/osa/playbooks xci/installer/kubespray/playbooks)
+
+    # We are inside the virtualenv now so we should be good to use pip and python from it.
+    pip -q install --upgrade -c $uc ansible-lint==3.4.21
+
+    # Clone OSA rules too
+    git clone --quiet --depth 1 https://github.com/openstack/openstack-ansible-tests.git \
+        ${XCI_CACHE}/repos/openstack-ansible-tests
+
+    # Only check our own playbooks
+    for dir in ${playbooks_dir[@]}; do
+        for play in $(ls ${XCI_PATH}/${dir}/*.yml); do
+            echo -en "Checking '${play}' playbook..."
+            ansible-lint --nocolor -R -r \
+                ${XCI_CACHE}/repos/openstack-ansible-tests/ansible-lint ${play}
+            echo -en "[OK]\n"
+        done
+    done
+}
+
 collect_xci_logs() {
     echo "----------------------------------"
     echo "Info: Collecting XCI logs"
