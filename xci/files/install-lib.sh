@@ -135,10 +135,48 @@ function install_ansible() {
     set -u
 
     # We are inside the virtualenv now so we should be good to use pip and python from it.
-    pip -q install --upgrade -c $uc ara virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION
+    pip -q install --upgrade -c $uc ara virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION ansible-lint==3.4.21
 
     ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
     export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}/plugins/callbacks"
+}
+
+ansible_lint() {
+    set -eu
+    # Use the upper-constraints file from the pinned requirements repository.
+    local requirements_sha=$(awk '/requirements_git_install_branch:/ {print $2}' ${XCI_PATH}/xci/installer/osa/files/openstack_services.yml)
+    local uc="https://raw.githubusercontent.com/openstack/requirements/${requirements_sha}/upper-constraints.txt"
+    local playbooks_dir=(xci/playbooks xci/installer/osa/playbooks xci/installer/kubespray/playbooks)
+    # Extract role from scenario information
+    local testing_role=$(sed -n "/^- scenario: ${DEPLOY_SCENARIO}/,/^$/p" ${XCI_PATH}/xci/opnfv-scenario-requirements.yml | grep role | rev | cut -d '/' -f -1 | rev)
+
+    # Clone OSA rules too
+    git clone --quiet --depth 1 https://github.com/openstack/openstack-ansible-tests.git \
+        ${XCI_CACHE}/repos/openstack-ansible-tests
+
+    # Because of https://github.com/willthames/ansible-lint/issues/306, ansible-lint does not understand
+    # import and includes yet so we need to trick it with a fake playbook so we can test our roles. We
+    # only test the role for the scenario we are testing
+    echo "Building testing playbook for role: ${testing_role}"
+    cat > ${XCI_PATH}/xci/playbooks/test-playbook.yml << EOF
+        - name: Testing playbook
+          hosts: localhost
+          roles:
+            - ${testing_role}
+EOF
+
+    # Only check our own playbooks
+    for dir in ${playbooks_dir[@]}; do
+        for play in $(ls ${XCI_PATH}/${dir}/*.yml); do
+            echo -en "Checking '${play}' playbook..."
+            ansible-lint --nocolor -R -r \
+                ${XCI_CACHE}/repos/openstack-ansible-tests/ansible-lint ${play}
+            echo -en "[OK]\n"
+        done
+    done
+
+    # Remove testing playbook
+    rm ${XCI_PATH}/xci/playbooks/test-playbook.yml
 }
 
 collect_xci_logs() {
