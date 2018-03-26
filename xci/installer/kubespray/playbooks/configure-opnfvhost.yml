@@ -31,7 +31,7 @@
         delete: yes
 
     - name: generate SSH keys
-      shell: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
+      command: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
       args:
         creates: /root/.ssh/id_rsa
     - name: add id_rsa.pub to authorized_keys
@@ -47,15 +47,19 @@
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
         state: absent
     - name: copy kubespray inventory directory
-      shell: "cp -rf {{ remote_xci_flavor_files }}/inventory \
+      command: "cp -rf {{ remote_xci_flavor_files }}/inventory \
                    {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
+      args:
+        creates: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
     - name: make sure kubespray/opnfv_inventory/group_vars/ exist
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
         state: directory
     - name: copy k8s_cluster.yml
-      shell: "cp -rf {{ remote_xci_path }}/xci/installer/kubespray/files/k8s-cluster.yml \
+      command: "cp -rf {{ remote_xci_path }}/xci/installer/kubespray/files/k8s-cluster.yml \
                      {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
+      args:
+        creates: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
     - name: Install required packages
       package:
         name: "{{ kube_require_packages[ansible_pkg_mgr] }}"
@@ -82,3 +86,5 @@
   tasks:
     - name: Append public keys to authorized_keys
       shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ xci_path }}/xci/files/authorized_keys"
+      args:
+        creates: "{{ xci_path }}/xci/files/authorized_keys"
