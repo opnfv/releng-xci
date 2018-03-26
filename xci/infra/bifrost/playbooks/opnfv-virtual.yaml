@@ -109,11 +109,15 @@
   become: no
   connection: local
   gather_facts: yes
+  pre_tasks:
+    - name: "Override default bifrost DNS if we are behind a proxy"
+      set_fact:
+         ipv4_nameserver: "192.168.122.1"
+      when: lookup('env','http_proxy') != ''
   roles:
     - role: ironic-enroll-dynamic
     - { role: ironic-inspect-node, when: inspect_nodes | default('false') | bool == true }
     - role: bifrost-configdrives-dynamic
-      ipv4_nameserver: 192.168.122.1
     - role: bifrost-deploy-nodes-dynamic
   environment:
     http_proxy: "{{ lookup('env','http_proxy') }}"
