@@ -46,6 +46,30 @@
       "revId": "b31d148b5ae1216b2a209784ce11858caeddae4c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e2fd003c",
+        "filename": "xci/infra/bifrost/playbooks/opnfv-virtual.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-03-27T17:38:06Z",
+      "side": 0,
+      "message": "I\u0027m testing this change in a server inside of a proxy network, but shouldn\u0027t be better to include a condition when the proxy variable has been defined?",
+      "parentUuid": "5a3f45e8_c230c4ea",
+      "range": {
+        "startLine": 116,
+        "startChar": 5,
+        "endLine": 116,
+        "endChar": 36
+      },
+      "revId": "b31d148b5ae1216b2a209784ce11858caeddae4c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
