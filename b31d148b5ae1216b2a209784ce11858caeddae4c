@@ -22,6 +22,30 @@
       "revId": "b31d148b5ae1216b2a209784ce11858caeddae4c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c230c4ea",
+        "filename": "xci/infra/bifrost/playbooks/opnfv-virtual.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-03-27T08:39:05Z",
+      "side": 0,
+      "message": "https://github.com/openstack/bifrost/blob/master/playbooks/roles/bifrost-configdrives-dynamic/defaults/main.yml#L19\n\nRight now the default one is the google dns",
+      "parentUuid": "5a3f45e8_c219e47a",
+      "range": {
+        "startLine": 116,
+        "startChar": 5,
+        "endLine": 116,
+        "endChar": 36
+      },
+      "revId": "b31d148b5ae1216b2a209784ce11858caeddae4c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
