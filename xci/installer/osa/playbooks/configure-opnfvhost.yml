@@ -58,28 +58,47 @@
         dest: "{{ remote_xci_path }}"
         recursive: yes
         delete: yes
-    - name: copy flavor inventory
-      command: "/bin/cp -rf {{ remote_xci_flavor_files }}/inventory {{ remote_xci_playbooks }}"
+
+    - name: Re-create OpenStack-Ansible /etc directory
+      file:
+        path: "{{ openstack_osa_etc_path }}"
+        state: "{{ item }}"
+      with_items:
+        - absent
+        - directory
+
+    - name: Remove upstream OpenStack-Ansible files
+      file:
+        path: "{{ openstack_osa_path }}/playbooks/{{ item }}"
+        state: absent
+      with_items:
+        - inventory
+        - setup-openstack.yml
+
+    - name: Copy OpenStack-Ansible configuration files
+      command: "/bin/cp -rf {{ item.src }} {{ item.dest }}"
       args:
-        creates: "{{ remote_xci_playbooks }}/inventory"
-    - name: copy openstack_deploy
-      command: "/bin/cp -rf {{openstack_osa_path}}/etc/openstack_deploy {{openstack_osa_etc_path}}"
-      args:
-        creates: "{{ openstack_osa_etc_path }}"
-    - name: copy openstack_user_config.yml
-      command: "/bin/cp -rf {{ remote_xci_flavor_files }}/openstack_user_config.yml {{openstack_osa_etc_path}}"
-      args:
-        creates: "{{ openstack_osa_etc_path }}/openstack_user_config.yml"
-      failed_when: false
-    - name: copy all user override files
-      command: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables.yml {{openstack_osa_etc_path}}"
-      args:
-        creates: "{{ openstack_osa_etc_path }}/user_variables.yml }}"
-      failed_when: false
-    - name: copy cinder.yml
-      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/cinder.yml {{openstack_osa_etc_path}}/env.d"
-      args:
-        creates: "{{ openstack_osa_etc_path }}/env.d/cinder.yml"
+        creates: "{{ item.dest }}/{{ item.src | basename }}"
+      with_items:
+        - { src: "{{ openstack_osa_path }}/etc/openstack_deploy/env.d", dest: "{{ openstack_osa_etc_path }}" }
+        - { src: "{{ openstack_osa_path }}/etc/openstack_deploy/conf.d", dest: "{{ openstack_osa_etc_path }}" }
+        - { src: "{{ openstack_osa_path }}/etc/openstack_deploy/user_secrets.yml", dest: "{{ openstack_osa_etc_path }}" }
+        - { src: "{{ remote_xci_flavor_files }}/inventory", dest: "{{ remote_xci_playbooks }}" }
+        - { src: "{{ remote_xci_flavor_files }}/openstack_user_config.yml", dest: "{{ openstack_osa_etc_path }}" }
+        - { src: "{{ remote_xci_flavor_files }}/user_variables.yml", dest: "{{ openstack_osa_etc_path }}" }
+        - { src: "{{ remote_xci_flavor_files }}/ceph.yml", dest: "{{ openstack_osa_etc_path }}/conf.d/", cond: xci_ceph_enabled }
+        - { src: "{{ remote_xci_flavor_files }}/user_ceph.yml", dest: "{{ openstack_osa_etc_path }}/user_ceph.yml", cond: xci_ceph_enabled }
+        - { src: "{{ remote_xci_flavor_files }}/user_variables_ceph.yml", dest: "{{ openstack_osa_etc_path }}/user_variables_ceph.yml", cond: xci_ceph_enabled }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/cinder.yml", dest: "{{ openstack_osa_etc_path }}/env.d" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/user_variables_proxy.yml", dest: "{{ openstack_osa_etc_path }}/user_variables_proxy.yml", cond: "{{ lookup('env', 'http_proxy') != '' }}" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/setup-openstack.yml", dest: "{{ openstack_osa_path }}/playbooks" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/ansible-role-requirements.yml", dest: "{{openstack_osa_path}}/ansible-role-requirements.yml", cond: openstack_osa_version != "master" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/global-requirement-pins.txt", dest: "{{openstack_osa_path}}/global-requirement-pins.txt", cond: openstack_osa_version != "master" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/openstack_services.yml", dest: "{{ openstack_osa_path }}/playbooks/defaults/repo_packages/openstack_services.yml", cond: openstack_osa_version != "master" }
+      when: item.cond is not defined or (item.cond is defined and item.cond | bool)
+      loop_control:
+        label: "{{ item.src }}"
+
     - name: Configure OpenStack-Ansible components
       lineinfile:
         path: "{{ openstack_osa_etc_path }}/user_variables.yml"
@@ -89,51 +108,15 @@
         - { component: "tempest_install", value: "{{ run_tempest | bool }}" }
         - { component: "tempest_run", value: "{{ run_tempest | bool }}" }
         - { component: "core_openstack", value: "{{ core_openstack_install | bool }}" }
-    - block:
-        - name: copy ceph.yml
-          command: "/bin/cp -rf {{ remote_xci_flavor_files }}/ceph.yml {{openstack_osa_etc_path}}/conf.d/"
-          args:
-            creates: "{{ openstack_osa_etc_path }}/conf.d/ceph.yml"
-        - name: copy user_ceph.yml
-          command: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_ceph.yml {{openstack_osa_etc_path}}/user_ceph.yml"
-          args:
-            creates: "{{ openstack_osa_etc_path }}/user_ceph.yml"
-        - name: copy user_variables_ceph.yml
-          command: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables_ceph.yml {{openstack_osa_etc_path}}/user_variables_ceph.yml"
-          args:
-            creates: "{{ openstack_osa_etc_path }}/user_variables_ceph.yml"
-      when: xci_ceph_enabled == "true"
-    - block:
-        - name: copy user_variables_proxy.yml
-          command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/user_variables_proxy.yml {{openstack_osa_etc_path}}/user_variables_proxy.yml"
-          args:
-            creates: "{{ openstack_osa_etc_path }}/user_variables_proxy.yml"
-        - name: "Configure http_proxy_env_url"
-          lineinfile:
-            path: "{{openstack_osa_etc_path}}/user_variables_proxy.yml"
-            regexp: "^http_proxy_env_url:.*"
-            line: "{{ 'http_proxy_env_url: ' + lookup('env','http_proxy') }}"
+
+    - name: "Configure http_proxy_env_url"
+      lineinfile:
+        path: "{{openstack_osa_etc_path}}/user_variables_proxy.yml"
+        regexp: "^http_proxy_env_url:.*"
+        line: "{{ 'http_proxy_env_url: ' + lookup('env','http_proxy') }}"
       when:
-        - lookup('env','http_proxy') != "randomfoobarstring"
-    - name: copy OPNFV OpenStack playbook
-      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/setup-openstack.yml {{openstack_osa_path}}/playbooks"
-      args:
-        creates: "{{ openstack_osa_path }}/playbooks/setup-openstack.yml"
-    - name: copy pinned versions of OSA Roles and global requirements
-      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/{{ item }} {{openstack_osa_path}}/{{ item }}"
-      args:
-        creates: "{{ openstack_osa_path }}/{{ item }}"
-      with_items:
-        - "ansible-role-requirements.yml"
-        - "global-requirement-pins.txt"
-      when:
-        - openstack_osa_version != "master"
-    - name: copy pinned versions of OpenStack services
-      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/openstack_services.yml {{openstack_osa_path}}/playbooks/defaults/repo_packages/openstack_services.yml"
-      args:
-        creates: "{{ openstack_osa_path }}/playbooks/defaults/repo_packages/openstack_services.yml"
-      when:
-        - openstack_osa_version != "master"
+        - lookup('env','http_proxy') != ""
+
     - include: "{{ xci_path }}/xci/playbooks/bootstrap-scenarios.yml"
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
