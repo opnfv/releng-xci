@@ -43,16 +43,15 @@
       proxy_settings_no_proxy: "{{ lookup('env','no_proxy') }}"
 
   tasks:
-    - name: generate SSH keys
-      command: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
-      args:
-        creates: "{{ ansible_env.HOME }}/.ssh/id_rsa"
-      changed_when: True
-    - name: fetch public key
-      fetch:
-        src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
-        dest: "{{ xci_path }}/xci/files/authorized_keys"
-        flat: yes
+    - name: Configure SSH key for root user
+      user:
+        name: root
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_comment: xci
+        ssh_key_type: rsa
+        state: present
+
     - name: Copy releng-xci to remote host
       synchronize:
         src: "{{ xci_path }}/"
@@ -204,32 +203,14 @@
         src: "{{ xci_path }}/.cache/xci.env"
         dest: /root/xci.env
 
-- hosts: localhost
-  remote_user: root
-
-  tasks:
-    - name: Append public keys to authorized_keys
-      shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ xci_path }}/xci/files/authorized_keys"
-      changed_when: True
-
-- hosts: opnfv
-  remote_user: root
-  vars_files:
-    - "{{ xci_path }}/xci/var/opnfv.yml"
-
-  pre_tasks:
-    - name: Load distribution variables
+    - name: Reload OpenStack-Ansible variables
       include_vars:
-        file: "{{ item }}"
-      failed_when: false
-      with_items:
-        - "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ xci_flavor_ansible_file_path }}/flavor-vars.yml"
-        - "{{ xci_flavor_ansible_file_path }}/user_variables.yml"
-  roles:
-    - role: "openstack-ansible-openstack_openrc"
+        file: "{{ xci_flavor_ansible_file_path }}/user_variables.yml"
 
-  tasks:
+    - name: Generate openrc
+      include_role:
+        name: "openstack-ansible-openstack_openrc"
+
     - name: add extra insecure flag to generated openrc
       blockinfile:
           dest: "{{ ansible_env.HOME }}/openrc"
@@ -242,7 +223,24 @@
         dest: "{{ xci_path }}/.cache/openrc"
         flat: true
 
-    - name: add public key to host
-      copy:
-        src: "{{ xci_path }}/xci/files/authorized_keys"
-        dest: /root/.ssh/authorized_keys
+    - name: Determine local user
+      become: no
+      local_action: command whoami
+      changed_when: False
+      register: _ansible_user
+
+    - name: Fetch local SSH key
+      delegate_to: localhost
+      become: no
+      slurp:
+        src: "/home/{{ _ansible_user.stdout }}/.ssh/id_rsa.pub"
+      register: _local_ssh_key
+
+    - name: Configure OPNFV authorized_keys file
+      authorized_key:
+        exclusive: yes
+        user: root
+        state: present
+        manage_dir: yes
+        comment: "{{ _ansible_user.stdout }} key"
+        key: "{{ _local_ssh_key['content'] | b64decode }}"
