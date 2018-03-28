@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: David Blaisonneau <david.blaisonneau@orange.com>
+Submitted-by: Markos Chandras <mchandras@suse.de>
+Submitted-at: Wed, 28 Mar 2018 21:04:26 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/54475
+Project: releng-xci
+Branch: refs/heads/master
