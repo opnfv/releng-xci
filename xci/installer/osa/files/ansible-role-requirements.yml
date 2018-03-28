@@ -7,8 +7,8 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-# these versions are based on the osa commit dbf6a9c54a8a3aa59eb998daef296022eeadfa0f on 2018-03-21
-# http://git.openstack.org/cgit/openstack/openstack-ansible/commit/?id=dbf6a9c54a8a3aa59eb998daef296022eeadfa0f
+# these versions are based on the osa commit 85714acedb50ea65d7e7684c127984c8dc56afe4 on 2018-03-28
+# http://github.com/cgit/openstack/openstack-ansible/commit/?id=85714acedb50ea65d7e7684c127984c8dc56afe4
 - name: ansible-hardening
   scm: git
   src: https://github.com/openstack/ansible-hardening
@@ -48,7 +48,7 @@
 - name: lxc_hosts
   scm: git
   src: https://github.com/openstack/openstack-ansible-lxc_hosts
-  version: 0abc1e2352f928e6c42bd952c1434dd0060cdaa2
+  version: 400f0c80b9c531a792dc01ff12cf1f3b3bd69a2d
 - name: memcached_server
   scm: git
   src: https://github.com/openstack/openstack-ansible-memcached_server
@@ -80,7 +80,7 @@
 - name: os_cinder
   scm: git
   src: https://github.com/openstack/openstack-ansible-os_cinder
-  version: c96e5e21273adbaa48ebb8f957226c6ec0ad3b8c
+  version: 948305aa6bfeeb2abdda7351aa0a8ff292810e56
 - name: os_designate
   scm: git
   src: https://github.com/openstack/openstack-ansible-os_designate
