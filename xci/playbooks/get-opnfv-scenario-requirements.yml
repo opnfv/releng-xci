@@ -113,18 +113,21 @@
 
     - name: Determine if the selected {{ deploy_scenario }} scenario can be deployed
       block:
-        - set_fact:
+        - name: Set scenario installer fact
+          set_fact:
             deploy_scenario_installer: "{{ item }}"
           with_items: "{{ deploy_scenario.installers }}"
           loop_control:
             label: "{{ item.installer }}"
           when: item.installer == installer_type
-        - set_fact:
+        - name: Set scenario flavor fact
+          set_fact:
             deploy_scenario_flavor: "{{ (xci_flavor in deploy_scenario_installer.flavors) | bool }}"
           when:
             - deploy_scenario_installer is defined
             - deploy_scenario_installer
-        - set_fact:
+        - name: Set scenario distro flavor fact
+          set_fact:
             deploy_scenario_distro: "{{ (xci_distro in deploy_scenario_installer.distros) | bool }}"
           when:
             - deploy_scenario_flavor is defined

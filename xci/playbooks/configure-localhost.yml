@@ -103,3 +103,4 @@
       shell: env > "{{ xci_path }}/.cache/xci.env"
       args:
         executable: /bin/bash
+        creates: "{{ xci_path }}/.cache/xci.env"

@@ -37,7 +37,12 @@
         name: 8021q
         state: present
     - name: ensure interfaces.d folder is empty
-      shell: "/bin/rm -rf /etc/network/interfaces.d/*"
+      file:
+        state: "{{ item }}"
+        path: "/etc/network/interfaces.d"
+      with_items:
+        - absent
+        - directory
     - name: ensure interfaces file is updated
       template:
         src: "{{ ansible_os_family | lower }}/{{ ansible_hostname }}.interface.j2"
@@ -122,7 +127,8 @@
       poll: 0
   when: ansible_os_family | lower == "redhat"
 
-- local_action:
+- name: Wait for host to come back to life
+  local_action:
     module: wait_for
     host: "{{ ansible_host }}"
     delay: 15

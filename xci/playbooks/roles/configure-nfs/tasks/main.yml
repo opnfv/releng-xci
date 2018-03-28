@@ -47,7 +47,7 @@
 - name: Install the NFS server package
   package:
     name: "{{ nfs_server_package }}"
-    state: latest
+    state: present
 
 - name: restart NFS service
   service:

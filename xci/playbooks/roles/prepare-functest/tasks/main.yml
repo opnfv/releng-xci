@@ -30,9 +30,11 @@
   shell: "ip a | grep {{ gateway_ip }}"
   register: gateway_ip_result
   ignore_errors: True
+  changed_when: False
 
 - name: add public network gateway
   command: "ip addr add {{ gateway_ip_mask }} brd {{ broadcast_ip }} dev {{ gateway_interface }}"
+  changed_when: False
   when: gateway_ip_result|failed
 
 - name: prepare environment file for functest
