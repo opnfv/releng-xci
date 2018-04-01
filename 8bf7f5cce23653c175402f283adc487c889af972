@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_426f8ffd",
+        "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-01T08:16:02Z",
+      "side": 1,
+      "message": "can you take this into a separate change?",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 69
+      },
+      "revId": "8bf7f5cce23653c175402f283adc487c889af972",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e267bb23",
+        "filename": "xci/playbooks/bootstrap-scenarios.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-01T08:16:02Z",
+      "side": 1,
+      "message": "can you take this out into a separate change together with other changes you made for k8-nosdn-nofeature so this change becomes k8-canal-nofeature specific.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 47
+      },
+      "revId": "8bf7f5cce23653c175402f283adc487c889af972",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_227243e5",
+        "filename": "xci/scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature/files/k8s-cluster.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-01T08:16:02Z",
+      "side": 1,
+      "message": "can you take this out into a separate change together with other changes you made for k8-nosdn-nofeature so this change becomes k8-canal-nofeature specific.",
+      "revId": "8bf7f5cce23653c175402f283adc487c889af972",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_827877c5",
+        "filename": "xci/scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature/tasks/.gitkeep",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-01T08:16:02Z",
+      "side": 1,
+      "message": "can you take this out into a separate change together with other changes you made for k8-nosdn-nofeature so this change becomes k8-canal-nofeature specific.",
+      "revId": "8bf7f5cce23653c175402f283adc487c889af972",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_6273abe7",
+        "filename": "xci/scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature/tasks/main.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-01T08:16:02Z",
+      "side": 1,
+      "message": "can you take this out into a separate change together with other changes you made for k8-nosdn-nofeature so this change becomes k8-canal-nofeature specific.",
+      "revId": "8bf7f5cce23653c175402f283adc487c889af972",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
