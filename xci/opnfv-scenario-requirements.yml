@@ -52,7 +52,7 @@
       flavors:
         - ha
         - mini
-        - noha
+        - noha 
       distros:
         - opensuse
         - ubuntu
@@ -101,6 +101,22 @@
         - ha
         - mini
         - noha
+      distros:
+        - ubuntu
+        - centos
+
+- scenario: k8-flannel-nofeature
+  scm: git
+  src: https://git.opnfv.org/releng-xci
+  version: master
+  role: xci/scenarios/k8-flannel-nofeature/role/k8-flannel-nofeature
+  installers:
+    - installer: kubespray
+      flavors:
+        - aio
+        - ha
+        - noha
+        - mini
       distros:
         - ubuntu
         - centos
