@@ -120,3 +120,20 @@
       distros:
         - ubuntu
         - centos
+
+- scenario: k8-flannel-nofeature
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/releng-xci
+  version: master
+  role: xci/scenarios/k8-flannel-nofeature/role/k8-flannel-nofeature
+  installers:
+    - installer: kubespray
+      flavors:
+        - aio
+        - ha
+        - noha
+        - mini
+      distros:
+        - ubuntu
+        - centos
+        - opensuse
