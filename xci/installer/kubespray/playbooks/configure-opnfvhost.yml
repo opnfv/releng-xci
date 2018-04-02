@@ -34,20 +34,26 @@
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
         state: absent
+
     - name: copy kubespray inventory directory
       command: "cp -rf {{ remote_xci_flavor_files }}/inventory \
                    {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
       args:
         creates: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
+
     - name: make sure kubespray/opnfv_inventory/group_vars/ exist
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
         state: directory
+
     - name: copy k8s_cluster.yml
       command: "cp -rf {{ remote_xci_path }}/xci/installer/kubespray/files/k8s-cluster.yml \
                      {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
       args:
         creates: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars/k8s-cluster.yml"
+
+    - include: "{{ xci_path }}/xci/playbooks/bootstrap-scenarios.yml"
+
     - name: Install required packages
       package:
         name: "{{ kube_require_packages[ansible_pkg_mgr] }}"
