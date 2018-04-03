@@ -43,44 +43,62 @@
       proxy_settings_no_proxy: "{{ lookup('env','no_proxy') }}"
 
   tasks:
-    - name: generate SSH keys
-      command: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
-      args:
-        creates: "{{ ansible_env.HOME }}/.ssh/id_rsa"
-      changed_when: True
-    - name: fetch public key
-      fetch:
-        src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
-        dest: "{{ xci_path }}/xci/files/authorized_keys"
-        flat: yes
+    - name: Configure SSH key for root user
+      user:
+        name: root
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_comment: xci
+        ssh_key_type: rsa
+        state: present
+
     - name: Copy releng-xci to remote host
       synchronize:
         src: "{{ xci_path }}/"
         dest: "{{ remote_xci_path }}"
         recursive: yes
         delete: yes
-    - name: copy flavor inventory
-      command: "/bin/cp -rf {{ remote_xci_flavor_files }}/inventory {{ remote_xci_playbooks }}"
+
+    - name: Re-create OpenStack-Ansible /etc directory
+      file:
+        path: "{{ openstack_osa_etc_path }}"
+        state: "{{ item }}"
+      with_items:
+        - absent
+        - directory
+
+    - name: Remove upstream OpenStack-Ansible files
+      file:
+        path: "{{ openstack_osa_path }}/playbooks/{{ item }}"
+        state: absent
+      with_items:
+        - inventory
+        - setup-openstack.yml
+
+    - name: Copy OpenStack-Ansible configuration files
+      command: "/bin/cp -rf {{ item.src }} {{ item.dest }}"
       args:
-        creates: "{{ remote_xci_playbooks }}/inventory"
-    - name: copy openstack_deploy
-      command: "/bin/cp -rf {{openstack_osa_path}}/etc/openstack_deploy {{openstack_osa_etc_path}}"
-      args:
-        creates: "{{ openstack_osa_etc_path }}"
-    - name: copy openstack_user_config.yml
-      command: "/bin/cp -rf {{ remote_xci_flavor_files }}/openstack_user_config.yml {{openstack_osa_etc_path}}"
-      args:
-        creates: "{{ openstack_osa_etc_path }}/openstack_user_config.yml"
-      failed_when: false
-    - name: copy all user override files
-      command: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables.yml {{openstack_osa_etc_path}}"
-      args:
-        creates: "{{ openstack_osa_etc_path }}/user_variables.yml }}"
-      failed_when: false
-    - name: copy cinder.yml
-      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/cinder.yml {{openstack_osa_etc_path}}/env.d"
-      args:
-        creates: "{{ openstack_osa_etc_path }}/env.d/cinder.yml"
+        creates: "{{ item.dest }}/{{ item.src | basename }}"
+      with_items:
+        - { src: "{{ openstack_osa_path }}/etc/openstack_deploy/env.d", dest: "{{ openstack_osa_etc_path }}" }
+        - { src: "{{ openstack_osa_path }}/etc/openstack_deploy/conf.d", dest: "{{ openstack_osa_etc_path }}" }
+        - { src: "{{ openstack_osa_path }}/etc/openstack_deploy/user_secrets.yml", dest: "{{ openstack_osa_etc_path }}" }
+        - { src: "{{ remote_xci_flavor_files }}/inventory", dest: "{{ remote_xci_playbooks }}" }
+        - { src: "{{ remote_xci_flavor_files }}/openstack_user_config.yml", dest: "{{ openstack_osa_etc_path }}" }
+        - { src: "{{ remote_xci_flavor_files }}/user_variables.yml", dest: "{{ openstack_osa_etc_path }}" }
+        - { src: "{{ remote_xci_flavor_files }}/ceph.yml", dest: "{{ openstack_osa_etc_path }}/conf.d/", cond: xci_ceph_enabled }
+        - { src: "{{ remote_xci_flavor_files }}/user_ceph.yml", dest: "{{ openstack_osa_etc_path }}/user_ceph.yml", cond: xci_ceph_enabled }
+        - { src: "{{ remote_xci_flavor_files }}/user_variables_ceph.yml", dest: "{{ openstack_osa_etc_path }}/user_variables_ceph.yml", cond: xci_ceph_enabled }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/cinder.yml", dest: "{{ openstack_osa_etc_path }}/env.d" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/user_variables_proxy.yml", dest: "{{ openstack_osa_etc_path }}/user_variables_proxy.yml", cond: "{{ lookup('env', 'http_proxy') != '' }}" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/setup-openstack.yml", dest: "{{ openstack_osa_path }}/playbooks" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/ansible-role-requirements.yml", dest: "{{openstack_osa_path}}/ansible-role-requirements.yml", cond: openstack_osa_version != "master" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/global-requirement-pins.txt", dest: "{{openstack_osa_path}}/global-requirement-pins.txt", cond: openstack_osa_version != "master" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/openstack_services.yml", dest: "{{ openstack_osa_path }}/playbooks/defaults/repo_packages/openstack_services.yml", cond: openstack_osa_version != "master" }
+      when: item.cond is not defined or (item.cond is defined and item.cond | bool)
+      loop_control:
+        label: "{{ item.src }}"
+
     - name: Configure OpenStack-Ansible components
       lineinfile:
         path: "{{ openstack_osa_etc_path }}/user_variables.yml"
@@ -90,51 +108,15 @@
         - { component: "tempest_install", value: "{{ run_tempest | bool }}" }
         - { component: "tempest_run", value: "{{ run_tempest | bool }}" }
         - { component: "core_openstack", value: "{{ core_openstack_install | bool }}" }
-    - block:
-        - name: copy ceph.yml
-          command: "/bin/cp -rf {{ remote_xci_flavor_files }}/ceph.yml {{openstack_osa_etc_path}}/conf.d/"
-          args:
-            creates: "{{ openstack_osa_etc_path }}/conf.d/ceph.yml"
-        - name: copy user_ceph.yml
-          command: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_ceph.yml {{openstack_osa_etc_path}}/user_ceph.yml"
-          args:
-            creates: "{{ openstack_osa_etc_path }}/user_ceph.yml"
-        - name: copy user_variables_ceph.yml
-          command: "/bin/cp -rf {{ remote_xci_flavor_files }}/user_variables_ceph.yml {{openstack_osa_etc_path}}/user_variables_ceph.yml"
-          args:
-            creates: "{{ openstack_osa_etc_path }}/user_variables_ceph.yml"
-      when: xci_ceph_enabled == "true"
-    - block:
-        - name: copy user_variables_proxy.yml
-          command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/user_variables_proxy.yml {{openstack_osa_etc_path}}/user_variables_proxy.yml"
-          args:
-            creates: "{{ openstack_osa_etc_path }}/user_variables_proxy.yml"
-        - name: "Configure http_proxy_env_url"
-          lineinfile:
-            path: "{{openstack_osa_etc_path}}/user_variables_proxy.yml"
-            regexp: "^http_proxy_env_url:.*"
-            line: "{{ 'http_proxy_env_url: ' + lookup('env','http_proxy') }}"
+
+    - name: "Configure http_proxy_env_url"
+      lineinfile:
+        path: "{{openstack_osa_etc_path}}/user_variables_proxy.yml"
+        regexp: "^http_proxy_env_url:.*"
+        line: "{{ 'http_proxy_env_url: ' + lookup('env','http_proxy') }}"
       when:
-        - lookup('env','http_proxy') != "randomfoobarstring"
-    - name: copy OPNFV OpenStack playbook
-      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/setup-openstack.yml {{openstack_osa_path}}/playbooks"
-      args:
-        creates: "{{ openstack_osa_path }}/playbooks/setup-openstack.yml"
-    - name: copy pinned versions of OSA Roles and global requirements
-      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/{{ item }} {{openstack_osa_path}}/{{ item }}"
-      args:
-        creates: "{{ openstack_osa_path }}/{{ item }}"
-      with_items:
-        - "ansible-role-requirements.yml"
-        - "global-requirement-pins.txt"
-      when:
-        - openstack_osa_version != "master"
-    - name: copy pinned versions of OpenStack services
-      command: "/bin/cp -rf {{ remote_xci_path }}/xci/installer/osa/files/openstack_services.yml {{openstack_osa_path}}/playbooks/defaults/repo_packages/openstack_services.yml"
-      args:
-        creates: "{{ openstack_osa_path }}/playbooks/defaults/repo_packages/openstack_services.yml"
-      when:
-        - openstack_osa_version != "master"
+        - lookup('env','http_proxy') != ""
+
     - include: "{{ xci_path }}/xci/playbooks/bootstrap-scenarios.yml"
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
@@ -204,32 +186,14 @@
         src: "{{ xci_path }}/.cache/xci.env"
         dest: /root/xci.env
 
-- hosts: localhost
-  remote_user: root
-
-  tasks:
-    - name: Append public keys to authorized_keys
-      shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ xci_path }}/xci/files/authorized_keys"
-      changed_when: True
-
-- hosts: opnfv
-  remote_user: root
-  vars_files:
-    - "{{ xci_path }}/xci/var/opnfv.yml"
-
-  pre_tasks:
-    - name: Load distribution variables
+    - name: Reload OpenStack-Ansible variables
       include_vars:
-        file: "{{ item }}"
-      failed_when: false
-      with_items:
-        - "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ xci_flavor_ansible_file_path }}/flavor-vars.yml"
-        - "{{ xci_flavor_ansible_file_path }}/user_variables.yml"
-  roles:
-    - role: "openstack-ansible-openstack_openrc"
+        file: "{{ xci_flavor_ansible_file_path }}/user_variables.yml"
 
-  tasks:
+    - name: Generate openrc
+      include_role:
+        name: "openstack-ansible-openstack_openrc"
+
     - name: add extra insecure flag to generated openrc
       blockinfile:
           dest: "{{ ansible_env.HOME }}/openrc"
@@ -242,7 +206,24 @@
         dest: "{{ xci_path }}/.cache/openrc"
         flat: true
 
-    - name: add public key to host
-      copy:
-        src: "{{ xci_path }}/xci/files/authorized_keys"
-        dest: /root/.ssh/authorized_keys
+    - name: Determine local user
+      become: no
+      local_action: command whoami
+      changed_when: False
+      register: _ansible_user
+
+    - name: Fetch local SSH key
+      delegate_to: localhost
+      become: no
+      slurp:
+        src: "/home/{{ _ansible_user.stdout }}/.ssh/id_rsa.pub"
+      register: _local_ssh_key
+
+    - name: Configure OPNFV authorized_keys file
+      authorized_key:
+        exclusive: yes
+        user: root
+        state: present
+        manage_dir: yes
+        comment: "{{ _ansible_user.stdout }} key"
+        key: "{{ _local_ssh_key['content'] | b64decode }}"

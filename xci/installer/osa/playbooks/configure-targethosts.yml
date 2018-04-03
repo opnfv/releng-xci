@@ -33,7 +33,33 @@
         - xci_ceph_enabled == "true"
         - "'compute' in group_names"
   tasks:
-    - name: add public key to host
-      copy:
-        src: "{{ xci_path }}/xci/files/authorized_keys"
-        dest: /root/.ssh/authorized_keys
+    - name: Determine local user
+      become: no
+      local_action: command whoami
+      changed_when: False
+      register: _ansible_user
+
+    - name: Fetch local SSH key
+      delegate_to: localhost
+      become: no
+      slurp:
+        src: "/home/{{ _ansible_user.stdout }}/.ssh/id_rsa.pub"
+      register: _local_ssh_key
+
+    - name: Fetch OPNFV SSH key
+      delegate_to: opnfv
+      slurp:
+        src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+      register: _opnfv_ssh_key
+
+    - name: "Configure {{ inventory_hostname }} authorized_keys file"
+      authorized_key:
+        exclusive: "{{ item.exclusive }}"
+        user: root
+        state: present
+        manage_dir: yes
+        key: "{{ item.key }}"
+        comment: "{{ item.comment }}"
+      with_items:
+        - { key: "{{ _local_ssh_key['content'] | b64decode }}", comment: "{{ _ansible_user.stdout }} key", exclusive: yes }
+        - { key: "{{ _opnfv_ssh_key['content'] | b64decode }}", comment: "opnfv host key", exclusive: no }

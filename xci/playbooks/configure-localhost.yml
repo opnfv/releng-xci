@@ -99,6 +99,20 @@
       when:
         - installer_type == "osa"
 
+    - name: Configure SSH key for local user
+      user:
+        name: "{{ ansible_env.USER }}"
+        createhome: yes
+        home: "/home/{{ ansible_env.USER }}"
+        move_home: yes
+        shell: /bin/bash
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_comment: xci
+        ssh_key_type: rsa
+        ssh_key_file: .ssh/id_rsa
+        state: present
+
     - name: Dump XCI execution environment to a file
       shell: env > "{{ xci_path }}/.cache/xci.env"
       args:

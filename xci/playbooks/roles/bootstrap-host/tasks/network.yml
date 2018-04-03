@@ -25,6 +25,31 @@
     name: "{{ network_packages }}"
     state: present
 
+- name: Ensure local facts directory exists
+  file:
+    path: "/etc/ansible/facts.d"
+    state: directory
+
+# NOTE(hwoarang) We have to check all levels of the local fact before we add it
+# otherwise Ansible will fail.
+- name: Record initial active interface
+  ini_file:
+    create: yes
+    section: network
+    state: present
+    option: xci_interface
+    value:  "{{ ansible_default_ipv4.interface }}"
+    path: "/etc/ansible/facts.d/xci.fact"
+  when: ansible_local is not defined
+    or (ansible_local is defined and ansible_local.xci is not defined)
+    or (ansible_local is defined and ansible_local.xci is defined and ansible_local.xci.network is not defined)
+    or (ansible_local is defined and ansible_local.xci is defined and ansible_local.xci.network is defined and ansible_local.xci.network.xci_interface is not defined)
+  notify:
+    - Reload facts
+
+- name: Run handlers
+  meta: flush_handlers
+
 - block:
     - name: configure modules
       lineinfile:
@@ -48,33 +73,25 @@
         src: "{{ ansible_os_family | lower }}/{{ ansible_hostname }}.interface.j2"
         dest: "/etc/network/interfaces"
     - name: restart network service
-      shell: "/sbin/ifconfig {{ ansible_default_ipv4.interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
+      shell: "/sbin/ifconfig {{ ansible_local.xci.network.xci_interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
       async: 15
       poll: 0
   when: ansible_os_family | lower == "debian"
 
 - block:
-    - name: Remove existing network configuration
-      file:
-        path: "/etc/sysconfig/network/{{ item }}"
-        state: absent
-      with_items:
-        - "ifcfg-eth0"
-        - "ifroute-eth0"
-
     - name: Configure networking on SUSE
       template:
         src: "{{ ansible_os_family | lower }}/suse.interface.j2"
         dest: "/etc/sysconfig/network/ifcfg-{{ item.name }}"
       with_items:
-        - { name: "{{ ansible_default_ipv4.interface }}" }
-        - { name: "{{ ansible_default_ipv4.interface }}.10", vlan_id: 10 }
-        - { name: "{{ ansible_default_ipv4.interface }}.30", vlan_id: 30 }
-        - { name: "{{ ansible_default_ipv4.interface }}.20", vlan_id: 20 }
-        - { name: "br-mgmt", bridge_ports: "{{ ansible_default_ipv4.interface }}.10", ip: "{{ host_info[inventory_hostname].MGMT_IP }}/22" }
-        - { name: "br-vxlan", bridge_ports: "{{ ansible_default_ipv4.interface }}.30", ip: "{{ host_info[inventory_hostname].VXLAN_IP }}/22" }
-        - { name: "br-vlan", bridge_ports: "{{ ansible_default_ipv4.interface }}", ip: "{{ host_info[inventory_hostname].VLAN_IP }}/24" }
-        - { name: "br-storage", bridge_ports: "{{ ansible_default_ipv4.interface }}.20", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}/22" }
+        - { name: "{{ ansible_local.xci.network.xci_interface }}" }
+        - { name: "{{ ansible_local.xci.network.xci_interface }}.10", vlan_id: 10 }
+        - { name: "{{ ansible_local.xci.network.xci_interface }}.30", vlan_id: 30 }
+        - { name: "{{ ansible_local.xci.network.xci_interface }}.20", vlan_id: 20 }
+        - { name: "br-mgmt", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.10", ip: "{{ host_info[inventory_hostname].MGMT_IP }}/22" }
+        - { name: "br-vxlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.30", ip: "{{ host_info[inventory_hostname].VXLAN_IP }}/22" }
+        - { name: "br-vlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}", ip: "{{ host_info[inventory_hostname].VLAN_IP }}/24" }
+        - { name: "br-storage", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.20", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}/22" }
 
     - name: Add postup/postdown scripts on SUSE
       copy:
@@ -102,10 +119,10 @@
         src: "{{ ansible_os_family | lower }}/interface.ifcfg.j2"
         dest: "/etc/sysconfig/network-scripts/ifcfg-{{ item.name }}"
       with_items:
-        - { name: "{{ ansible_default_ipv4.interface }}"   , bridge: "br-vlan"                 }
-        - { name: "{{ ansible_default_ipv4.interface }}.10", bridge: "br-mgmt"   , vlan_id: 10 }
-        - { name: "{{ ansible_default_ipv4.interface }}.20", bridge: "br-storage", vlan_id: 20 }
-        - { name: "{{ ansible_default_ipv4.interface }}.30", bridge: "br-vxlan"  , vlan_id: 30 }
+        - { name: "{{ ansible_local.xci.network.xci_interface }}"   , bridge: "br-vlan"                 }
+        - { name: "{{ ansible_local.xci.network.xci_interface }}.10", bridge: "br-mgmt"   , vlan_id: 10 }
+        - { name: "{{ ansible_local.xci.network.xci_interface }}.20", bridge: "br-storage", vlan_id: 20 }
+        - { name: "{{ ansible_local.xci.network.xci_interface }}.30", bridge: "br-vxlan"  , vlan_id: 30 }
     - name: Configure networking on CentOS for bridges
       template:
         src: "{{ ansible_os_family | lower }}/bridge.ifcfg.j2"
