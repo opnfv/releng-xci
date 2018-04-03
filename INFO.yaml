@@ -47,7 +47,7 @@ committers:
       timezone: 'Asia/Shanghai'
     - name: 'Manuel Buil'
       company: 'SUSE'
-      email: 'mbuil@suse.de'
+      email: 'mbuil@suse.com'
       id: 'mbuild'
       timezone: 'Europe/Madrid'
     - name: 'Periyasamy Palanisamy'
