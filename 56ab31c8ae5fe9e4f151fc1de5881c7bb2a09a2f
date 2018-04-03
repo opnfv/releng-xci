@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_16d2e95b",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 14
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-04-03T15:01:48Z",
+      "side": 0,
+      "message": "is JOB_NAME not used anymore? I couldn\u0027t find any reference to it.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 33
+      },
+      "revId": "56ab31c8ae5fe9e4f151fc1de5881c7bb2a09a2f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
