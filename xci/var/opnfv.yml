@@ -34,6 +34,7 @@ xci_kube_ansible_pip_version: "{{ lookup('env','XCI_KUBE_ANSIBLE_PIP_VERSION') }
 keepalived_git_url: "{{ lookup('env','KEEPALIVED_GIT_URL') }}"
 haproxy_version: "{{ lookup('env','HAPROXY_VERSION') }}"
 keepalived_version: "{{ lookup('env','KEEPALIVED_VERSION') }}"
+odl_repo_version: "{{ lookup('env','ODL_VERSION') }}"
 
 # xci variables
 xci_cache: "{{ lookup('env', 'XCI_CACHE') }}"
