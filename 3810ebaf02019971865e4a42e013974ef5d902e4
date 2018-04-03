@@ -39,6 +39,24 @@
       "revId": "3810ebaf02019971865e4a42e013974ef5d902e4",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_db7d4ae9",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-03T11:06:27Z",
+      "side": 1,
+      "message": "Looks like getopts is not meant to parse long options like take, revert, delete etc. It\u0027s mainly for standard POSIX.2 option syntax (that is, single letters preceded by a - and possibly followed by an argument value; the single letters may be grouped). \n\nCan you let me know how you want it done ?",
+      "parentUuid": "9a3d3df0_0498d468",
+      "revId": "3810ebaf02019971865e4a42e013974ef5d902e4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
