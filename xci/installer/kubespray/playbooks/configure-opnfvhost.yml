@@ -78,13 +78,5 @@
         name: ansible
         version: "{{ xci_kube_ansible_pip_version }}"
 
-
-- hosts: localhost
-  remote_user: root
-  vars_files:
-    - "{{ xci_path }}/xci/var/opnfv.yml"
-  tasks:
-    - name: Append public keys to authorized_keys
-      shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ xci_path }}/xci/files/authorized_keys"
-      args:
-        creates: "{{ xci_path }}/xci/files/authorized_keys"
+    - name: Manage SSH keys
+      include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssh-keys.yml"
