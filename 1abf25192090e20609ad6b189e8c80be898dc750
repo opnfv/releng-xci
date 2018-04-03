@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_bbae7e83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-03T09:41:03Z",
+      "side": 1,
+      "message": "what logic? It\u0027s best to explain what you are trying to achieve for us who don\u0027t understand both ends of the story.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 16
+      },
+      "revId": "1abf25192090e20609ad6b189e8c80be898dc750",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_9ba9027e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-03T09:41:03Z",
+      "side": 1,
+      "message": "I would prefer it if you used a more common thing to declare such dependencies such as\n\nDepends-On:",
+      "range": {
+        "startLine": 9,
+        "startChar": 56,
+        "endLine": 12,
+        "endChar": 46
+      },
+      "revId": "1abf25192090e20609ad6b189e8c80be898dc750",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
