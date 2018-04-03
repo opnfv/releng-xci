@@ -41,5 +41,5 @@ neutron_plugin_base:
 {% endraw %}
 
 {% if ODL_VERSION is defined %}
-odl_repo_url: "{{ repo_url[ ansible_pkg_mgr ] }}"
+odl_version: "{{ ODL_VERSION }}"
 {% endif %}
