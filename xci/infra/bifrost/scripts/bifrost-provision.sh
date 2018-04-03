@@ -100,8 +100,10 @@ if [[ -e ${XCI_PATH}/deployment_image.qcow2 ]]; then
 	sudo mv ${XCI_PATH}/deployment_image.qcow2* /httpboot/
 fi
 
-# Install missing dependencies
-pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
+# Install missing dependencies. Use sudo since for bifrost jobs
+# the venv is not ready yet.
+[[ -n ${VIRTUAL_ENV} ]] && _sudo="" || sudo="sudo -H -E"
+${_sudo} pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
 
 # Change working directory
 cd $BIFROST_HOME/playbooks
