@@ -22,6 +22,30 @@
       "revId": "9fc661b56dbd90df944755140bfff88fb1197fbd",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a72bfd92",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-04T15:27:50Z",
+      "side": 1,
+      "message": "why does it not apply to it?",
+      "parentUuid": "5a3f45e8_878a41bd",
+      "range": {
+        "startLine": 126,
+        "startChar": 10,
+        "endLine": 126,
+        "endChar": 19
+      },
+      "revId": "9fc661b56dbd90df944755140bfff88fb1197fbd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
