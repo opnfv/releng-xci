@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_a7d77dec",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-04T14:15:05Z",
+      "side": 1,
+      "message": "I still don\u0027t understand what this variable is for. My guess is that it tries to guess what kind of VMs we need to manage. This sounds like a constant to me so maybe use \u0027declare -r\u0027 ?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 114
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e72fc5f4",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-04T14:15:05Z",
+      "side": 1,
+      "message": "this \u0027fake\u0027 threading thing looks a bit fragile to me. Do we really need to bother with threading all these operations? Did you ever compare the sequential with the threaded approach to see how much we benefit from it? I personally think that doing everything in sequence is fine for the work we do.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4737994e",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-04T14:15:05Z",
+      "side": 1,
+      "message": "this function implies that it returns something. So the best way to code that would be to actually make _snapshots a local variable and use \u0027return\u0027 to actually return it.",
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_273a4d36",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-04T14:15:05Z",
+      "side": 1,
+      "message": "this is a magic variable. It\u0027s best to consume what get_snapshots() returns to you",
+      "range": {
+        "startLine": 193,
+        "startChar": 17,
+        "endLine": 193,
+        "endChar": 30
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_874081a6",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-04T14:15:05Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 332,
+        "startChar": 51,
+        "endLine": 332,
+        "endChar": 52
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a745bdb4",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-04T14:15:05Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 408,
+        "startChar": 77,
+        "endLine": 408,
+        "endChar": 78
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e716a5a6",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-04T14:15:05Z",
+      "side": 1,
+      "message": "why do you use \u0027set -x\u0027 on every case? why do we need that?",
+      "range": {
+        "startLine": 417,
+        "startChar": 6,
+        "endLine": 417,
+        "endChar": 12
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
