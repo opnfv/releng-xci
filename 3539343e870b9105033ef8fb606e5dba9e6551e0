@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_2749ad8b",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-04-04T15:04:06Z",
+      "side": 1,
+      "message": "Interesting, I didn\u0027t know about this parameter\n    * http://docs.ansible.com/ansible/latest/modules/command_module.html#parameters",
+      "range": {
+        "startLine": 125,
+        "startChar": 8,
+        "endLine": 125,
+        "endChar": 15
+      },
+      "revId": "3539343e870b9105033ef8fb606e5dba9e6551e0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c759e95b",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-04-04T15:04:06Z",
+      "side": 1,
+      "message": "This is true as long as all the distros use /usr/local/bin/ to place openstack-ansible binary.",
+      "range": {
+        "startLine": 125,
+        "startChar": 18,
+        "endLine": 125,
+        "endChar": 33
+      },
+      "revId": "3539343e870b9105033ef8fb606e5dba9e6551e0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
