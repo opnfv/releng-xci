@@ -91,10 +91,12 @@ echo "-----------------------------------------------------------------------"
 echo "Info: Kubernetes installation is successfully completed!"
 echo "-----------------------------------------------------------------------"
 
-# Configure the kubernetes authentication in opnfv host.
+# Configure the kubernetes authentication in opnfv host. In future releases
+# kubectl is no longer an artifact so we should not fail if it's not available.
+# This needs to be removed in the future
 ssh root@$OPNFV_HOST_IP "mkdir -p ~/.kube/;\
          cp -f ~/admin.conf ~/.kube/config; \
-         cp -f ~/kubectl /usr/local/bin"
+         cp -f ~/kubectl /usr/local/bin || true"
 
 echo "Login opnfv host ssh root@$OPNFV_HOST_IP
 according to the user-guide to create a service
