@@ -86,5 +86,4 @@
   tasks:
     - name: Append public keys to authorized_keys
       shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ xci_path }}/xci/files/authorized_keys"
-      args:
-        creates: "{{ xci_path }}/xci/files/authorized_keys"
+      changed_when: True
