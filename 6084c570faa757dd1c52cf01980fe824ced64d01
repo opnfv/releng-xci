@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_8d51bfda",
+        "filename": "prototypes/infra_manager/xci-deploy.sh",
+        "patchSetId": 22
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-05T12:43:52Z",
+      "side": 1,
+      "message": "Are these scripts coming in another patch?",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 17
+      },
+      "revId": "6084c570faa757dd1c52cf01980fe824ced64d01",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
