@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_aa9461e2",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-05T08:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_a7d77dec",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 114
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_e72fc5f4",
         "filename": "xci/scripts/libvirt_snapshot.sh",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-04T14:15:05Z",
       "side": 1,
       "message": "this \u0027fake\u0027 threading thing looks a bit fragile to me. Do we really need to bother with threading all these operations? Did you ever compare the sequential with the threaded approach to see how much we benefit from it? I personally think that doing everything in sequence is fine for the work we do.",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_eabdc969",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-05T08:44:31Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it have good performance since the virsh operations are running in parallel for each VM ? I remember Nikolas (original author of this code) even mentioned about this. Nikolas, Can you comment on this ?",
+      "parentUuid": "5a3f45e8_e72fc5f4",
       "range": {
         "startLine": 52,
         "startChar": 0,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_cac0cde2",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-05T08:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_4737994e",
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_273a4d36",
         "filename": "xci/scripts/libvirt_snapshot.sh",
         "patchSetId": 3
@@ -76,6 +142,30 @@
       "writtenOn": "2018-04-04T14:15:05Z",
       "side": 1,
       "message": "this is a magic variable. It\u0027s best to consume what get_snapshots() returns to you",
+      "range": {
+        "startLine": 193,
+        "startChar": 17,
+        "endLine": 193,
+        "endChar": 30
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_2ab85175",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-05T08:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_273a4d36",
       "range": {
         "startLine": 193,
         "startChar": 17,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_0abbd572",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-05T08:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_874081a6",
+      "range": {
+        "startLine": 332,
+        "startChar": 51,
+        "endLine": 332,
+        "endChar": 52
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_a745bdb4",
         "filename": "xci/scripts/libvirt_snapshot.sh",
         "patchSetId": 3
@@ -134,6 +248,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_6ab1b98e",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-05T08:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_a745bdb4",
+      "range": {
+        "startLine": 408,
+        "startChar": 77,
+        "endLine": 408,
+        "endChar": 78
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_e716a5a6",
         "filename": "xci/scripts/libvirt_snapshot.sh",
         "patchSetId": 3
@@ -145,6 +283,30 @@
       "writtenOn": "2018-04-04T14:15:05Z",
       "side": 1,
       "message": "why do you use \u0027set -x\u0027 on every case? why do we need that?",
+      "range": {
+        "startLine": 417,
+        "startChar": 6,
+        "endLine": 417,
+        "endChar": 12
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4aacbd35",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-05T08:44:31Z",
+      "side": 1,
+      "message": "I think it was done for debugging purpose. removed it now.",
+      "parentUuid": "5a3f45e8_e716a5a6",
       "range": {
         "startLine": 417,
         "startChar": 6,
