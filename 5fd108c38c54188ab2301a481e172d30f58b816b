@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_ea194989",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-05T09:01:27Z",
+      "side": 1,
+      "message": "Don\u0027t you have to add deploy-scenario os-odl-sfc and os-odl-bgpvpn for this sha bump ?",
+      "revId": "5fd108c38c54188ab2301a481e172d30f58b816b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
