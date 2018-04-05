@@ -24,7 +24,7 @@
   pip:
    name: "{{ functest_required_pip }}"
    state: present
-   extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
+   extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ openstack_requirements_version }}/upper-constraints.txt'
 
 - name: check if the gateway was already set
   shell: "ip a | grep {{ gateway_ip }}"
