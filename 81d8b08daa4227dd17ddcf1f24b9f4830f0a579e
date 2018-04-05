@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_0a72b5e4",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-05T08:53:08Z",
+      "side": 1,
+      "message": "yeah OK it might save us a few minutes but does it really worth it to make it this complex? it\u0027s not like we try to manage 100s of VMs. In the most complex scenario we only have 6 VMs",
+      "parentUuid": "5a3f45e8_eabdc969",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_4737994e",
         "filename": "xci/scripts/libvirt_snapshot.sh",
         "patchSetId": 3
