@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_4d47b71d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-05T12:42:45Z",
+      "side": 1,
+      "message": "Tasks report a status (OK, changed, failed) depending on what the tasks did. If the tasks has nothing to do it will report OK and no actual changes will happen. As such, if openstack-ansible is deployed, you don\u0027t to re-deploy it and the task should be skipped.\n\ndepending on how you run XCI, it\u0027s possible to reconfigure just one of the nodes in which case some of the components are already properly deployed and you don\u0027t want to touch them.\n\nMy future plan is to start using tags to only (re-)do part of the deployment instead of wiping everything",
+      "parentUuid": "5a3f45e8_adbf5bfa",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 20
+      },
+      "revId": "3539343e870b9105033ef8fb606e5dba9e6551e0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_2749ad8b",
         "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
         "patchSetId": 1
