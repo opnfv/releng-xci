@@ -23,6 +23,7 @@ function install_ansible() {
 
     # workaround: for latest bindep to work, it needs to use en_US local
     export LANG=c
+    export LC_ALL=C
 
     CHECK_CMD_PKGS=(
         gcc
