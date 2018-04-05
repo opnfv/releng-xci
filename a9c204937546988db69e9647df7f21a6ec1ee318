@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_8de1bf9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-05T15:54:45Z",
+      "side": 1,
+      "message": "I am sorry I still don\u0027t understand the connection between the commit message and the actual change. OK so you removed the odl repo stuff. But you also added a new configuration file? Why? Where does this come from?",
+      "revId": "a9c204937546988db69e9647df7f21a6ec1ee318",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
