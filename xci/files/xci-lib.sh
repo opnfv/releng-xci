@@ -7,9 +7,21 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-# NOTE(hwoarang): Most parts of this this file were taken from the
-# bifrost repository (scripts/install-deps.sh). This script contains all
-# the necessary distro specific code to install ansible and it's dependencies.
+function bootstrap_xci_env() {
+    # Declare our virtualenv
+    export XCI_VENV=${XCI_PATH}/venv/
+
+    # source user vars
+    source $XCI_PATH/xci/config/user-vars
+    # source pinned versions
+    source $XCI_PATH/xci/config/pinned-versions
+    # source flavor configuration
+    source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
+    # source installer configuration
+    source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
+    # source xci configuration
+    source $XCI_PATH/xci/config/env-vars
+}
 
 function install_ansible() {
     set -eu
