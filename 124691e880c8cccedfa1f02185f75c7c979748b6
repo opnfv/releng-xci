@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_3bf545cb",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-06T08:17:26Z",
+      "side": 1,
+      "message": "this is the wrong file to export the variable anyway. This is about pinned versions but requirements is not pinned explicitly so I think the env-vars file is more appropriate",
+      "revId": "124691e880c8cccedfa1f02185f75c7c979748b6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
