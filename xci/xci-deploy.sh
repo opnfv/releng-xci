@@ -81,20 +81,8 @@ fi
 #-------------------------------------------------------------------------------
 # find where are we
 export XCI_PATH="$(git rev-parse --show-toplevel)"
-# Declare our virtualenv
-export XCI_VENV=${XCI_PATH}/venv/
-# source user vars
-source $XCI_PATH/xci/config/user-vars
-# source pinned versions
-source $XCI_PATH/xci/config/pinned-versions
-# source flavor configuration
-source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
-# source installer configuration
-source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
-# source xci configuration
-source $XCI_PATH/xci/config/env-vars
 # source helpers library
-source ${XCI_PATH}/xci/files/install-lib.sh
+source ${XCI_PATH}/xci/files/xci-lib.sh
 
 # Make sure we pass XCI_PATH everywhere
 export XCI_ANSIBLE_PARAMS+=" -e xci_path=${XCI_PATH}"
@@ -114,17 +102,18 @@ for local_user_var in ${user_local_dev_vars[@]}; do
 done
 unset user_local_dev_vars local_user_var
 
-# register our handler
-trap exit_trap ERR
-
-# We are using sudo so we need to make sure that env_reset is not present
-sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
-
 #
 # Bootstrap environment for XCI Deployment
 #
 echo "Info: Preparing host environment for the XCI deployment"
 echo "-------------------------------------------------------------------------"
+bootstrap_xci_env
+
+# register our handler
+trap exit_trap ERR
+
+# We are using sudo so we need to make sure that env_reset is not present
+sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 
 #-------------------------------------------------------------------------------
 # Clean up environment
