@@ -43,15 +43,6 @@
       proxy_settings_no_proxy: "{{ lookup('env','no_proxy') }}"
 
   tasks:
-    - name: Configure SSH key for root user
-      user:
-        name: root
-        generate_ssh_key: yes
-        ssh_key_bits: 2048
-        ssh_key_comment: xci
-        ssh_key_type: rsa
-        state: present
-
     - name: Copy releng-xci to remote host
       synchronize:
         src: "{{ xci_path }}/"
@@ -132,6 +123,7 @@
         - pyyaml
         - python-neutronclient
         - python-openstackclient
+        - pyOpenSSL
     - name: Install ARA callback plugin in OSA virtualenv
       pip:
         name: ara
@@ -157,30 +149,26 @@
       args:
         chdir: "{{openstack_osa_path}}/scripts"
       changed_when: True
-    - name: check if certificate directory /etc/ssl/certs exists already
-      stat: path=/etc/ssl/certs
-      register: check_etc_ssl_certs
-    - name: create certificate directory /etc/ssl/certs
-      file:
-        path: "/etc/ssl/certs"
-        state: directory
-      when: check_etc_ssl_certs.stat.exists == false
-    - name: create key directory /etc/ssl/private
-      file:
-        path: "/etc/ssl/private"
-        state: directory
-    - name: copy certificate to /etc/ssl/certs
-      copy:
-        src: "/etc/ssl/certs/xci.crt"
-        dest: "/etc/ssl/certs/"
-    - name: read remote key from /etc/ssl/private
-      set_fact:
-        xci_ssl_key: "{{ lookup('pipe', 'sudo cat /etc/ssl/private/xci.key' ) }}"
-    - name: copy key to /etc/ssl/private
-      copy:
-        content: "{{ xci_ssl_key }}"
-        dest: "/etc/ssl/private/xci.key"
-      become: true
+
+    - name: Generate XCI private key
+      openssl_privatekey:
+        path: /etc/ssl/private/xci.key
+        size: 2048
+
+    - name: Generate XCI certificate request
+      openssl_csr:
+        privatekey_path: /etc/ssl/private/xci.key
+        path: /etc/ssl/private/xci.csr
+        common_name: "{{ xci_ssl_subject }}"
+
+    - name: Generate XCI self signed certificate
+      openssl_certificate:
+        path: /etc/ssl/certs/xci.crt
+        privatekey_path: /etc/ssl/private/xci.key
+        csr_path: /etc/ssl/private/xci.csr
+        provider: selfsigned
+        selfsigned_not_after: 20800101000000Z
+
     - name: fetch xci environment
       copy:
         src: "{{ xci_path }}/.cache/xci.env"
@@ -206,24 +194,5 @@
         dest: "{{ xci_path }}/.cache/openrc"
         flat: true
 
-    - name: Determine local user
-      become: no
-      local_action: command whoami
-      changed_when: False
-      register: _ansible_user
-
-    - name: Fetch local SSH key
-      delegate_to: localhost
-      become: no
-      slurp:
-        src: "/home/{{ _ansible_user.stdout }}/.ssh/id_rsa.pub"
-      register: _local_ssh_key
-
-    - name: Configure OPNFV authorized_keys file
-      authorized_key:
-        exclusive: yes
-        user: root
-        state: present
-        manage_dir: yes
-        comment: "{{ _ansible_user.stdout }} key"
-        key: "{{ _local_ssh_key['content'] | b64decode }}"
+    - name: Manage SSH keys
+      include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssh-keys.yml"

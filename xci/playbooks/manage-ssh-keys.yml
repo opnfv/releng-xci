@@ -1,0 +1,47 @@
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 SUSE Linux GmbH and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+- name: Configure SSH key for root user
+  user:
+    name: root
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_comment: xci
+    ssh_key_type: rsa
+    state: present
+
+- name: Determine local user
+  become: no
+  local_action: command whoami
+  changed_when: False
+  register: _ansible_user
+
+- name: Fetch local SSH key
+  delegate_to: localhost
+  become: no
+  slurp:
+    src: "/home/{{ _ansible_user.stdout }}/.ssh/id_rsa.pub"
+  register: _local_ssh_key
+
+- name: Fetch OPNFV SSH key
+  delegate_to: opnfv
+  slurp:
+    src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
+  register: _opnfv_ssh_key
+
+- name: "Configure {{ inventory_hostname }} authorized_keys file"
+  authorized_key:
+    exclusive: "{{ item.exclusive }}"
+    user: root
+    state: present
+    manage_dir: yes
+    key: "{{ item.key }}"
+    comment: "{{ item.comment }}"
+  with_items:
+    - { key: "{{ _local_ssh_key['content'] | b64decode }}", comment: "{{ _ansible_user.stdout }} key", exclusive: yes }
+    - { key: "{{ _opnfv_ssh_key['content'] | b64decode }}", comment: "opnfv host key", exclusive: no }
