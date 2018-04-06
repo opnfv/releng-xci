@@ -11,6 +11,9 @@
 # bifrost repository (scripts/install-deps.sh). This script contains all
 # the necessary distro specific code to install ansible and it's dependencies.
 
+# Avoid double sourcing the file
+[[ -n ${XCI_INSTALL_LIB_SOURCED:-} ]] && return 0 || export XCI_INSTALL_LIB_SOURCED=1
+
 # Declare our virtualenv
 export XCI_VENV=${XCI_PATH}/venv/
 
