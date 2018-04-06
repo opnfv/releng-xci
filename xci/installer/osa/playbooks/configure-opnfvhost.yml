@@ -109,8 +109,12 @@
         - lookup('env','http_proxy') != ""
 
     - include: "{{ xci_path }}/xci/playbooks/bootstrap-scenarios.yml"
+
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
+      args:
+        creates: "/usr/local/bin/openstack-ansible"
+
       changed_when: True
       args:
         chdir: "{{openstack_osa_path}}"
