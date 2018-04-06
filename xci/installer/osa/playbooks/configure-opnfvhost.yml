@@ -154,24 +154,8 @@
         chdir: "{{openstack_osa_path}}/scripts"
       changed_when: True
 
-    - name: Generate XCI private key
-      openssl_privatekey:
-        path: /etc/ssl/private/xci.key
-        size: 2048
-
-    - name: Generate XCI certificate request
-      openssl_csr:
-        privatekey_path: /etc/ssl/private/xci.key
-        path: /etc/ssl/private/xci.csr
-        common_name: "{{ xci_ssl_subject }}"
-
-    - name: Generate XCI self signed certificate
-      openssl_certificate:
-        path: /etc/ssl/certs/xci.crt
-        privatekey_path: /etc/ssl/private/xci.key
-        csr_path: /etc/ssl/private/xci.csr
-        provider: selfsigned
-        selfsigned_not_after: 20800101000000Z
+    - name: Configure SSL certificates
+      include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssl-certs.yml"
 
     - name: fetch xci environment
       copy:
