@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_96c9d07a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-06T15:19:30Z",
+      "side": 1,
+      "message": "please remove the whitespace here otherwise Jenkins will not do what you think it will do.",
+      "range": {
+        "startLine": 10,
+        "startChar": 16,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "ece57ef13b1e2375d97d8fd3da2057b7d33b4307",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
