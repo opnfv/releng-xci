@@ -66,5 +66,8 @@
         name: ansible
         version: "{{ xci_kube_ansible_pip_version }}"
 
+    - name: Configure SSL certificates
+      include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssl-certs.yml"
+
     - name: Manage SSH keys
       include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssh-keys.yml"
