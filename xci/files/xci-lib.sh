@@ -7,6 +7,9 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
+# Avoid double sourcing the file
+[[ -n ${XCI_LIB_SOURCED:-} ]] && return 0 || export XCI_LIB_SOURCED=1
+
 function bootstrap_xci_env() {
     # Declare our virtualenv
     export XCI_VENV=${XCI_PATH}/venv/
