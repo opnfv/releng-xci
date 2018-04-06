@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_5673c87f",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/templates/user_variables_os-odl-nofeature.yml.j2",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-04-06T15:00:13Z",
+      "side": 0,
+      "message": "I couldn\u0027t find another place where this variable will be defined after removing the main.yml file in this patch. If this is something that\u0027s expected from the user, shouldn\u0027t be necessary to include it in env-vars file?",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 17
+      },
+      "revId": "e2b961ec221a68437fae2a062d3492b6e77d27ad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
