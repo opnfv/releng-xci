@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_5b96514d",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-06T09:00:47Z",
+      "side": 1,
+      "message": "Yes, But Let us wait to hear back from Nikolas.",
+      "parentUuid": "5a3f45e8_0a72b5e4",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_4737994e",
         "filename": "xci/scripts/libvirt_snapshot.sh",
         "patchSetId": 3
