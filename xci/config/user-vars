@@ -14,7 +14,7 @@
 # Examples:
 #   export XCI_FLAVOR="aio"
 # or
-#   export XCI_FLAVOR="mini"
+   export XCI_FLAVOR="mini"
 # or
 #   export XCI_FLAVOR="noha"
 # or
@@ -31,7 +31,7 @@ export XCI_CEPH_ENABLED=${XCI_CEPH_ENABLED:-false}
 # Examples:
 #    export INSTALLER_TYPE="osa"
 # or
-#    export INSTALLER_TYPE="kubespray"
+    export INSTALLER_TYPE="kubespray"
 export INSTALLER_TYPE=${INSTALLER_TYPE:-osa}
 
 #-------------------------------------------------------------------------------

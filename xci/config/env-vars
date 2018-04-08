@@ -40,6 +40,6 @@ export XCI_ANSIBLE_PIP_VERSION=${XCI_ANSIBLE_PIP_VERSION:-$(curl -s https://raw.
 export ANSIBLE_HOST_KEY_CHECKING=False
 # subject of the certificate
 export XCI_SSL_SUBJECT=${XCI_SSL_SUBJECT:-"/C=US/ST=California/L=San Francisco/O=IT/CN=xci.releng.opnfv.org"}
-export DEPLOY_SCENARIO=${DEPLOY_SCENARIO:-"os-nosdn-nofeature"}
+export DEPLOY_SCENARIO=${DEPLOY_SCENARIO:-"k8-nosdn-nofeature"}
 # Kubespray requires that ansible version is 2.4.0.0
 export XCI_KUBE_ANSIBLE_PIP_VERSION=2.4.0.0
