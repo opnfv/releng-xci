@@ -29,3 +29,7 @@
   include_role:
     name: "k8-canal-nofeature"
   when: deploy_scenario == 'k8-canal-nofeature'
+- name: Prepare everything to run the k8-nosdn-nofeature scenario
+  include_role:
+    name: "k8-nosdn-nofeature"
+  when: deploy_scenario == 'k8-nosdn-nofeature'
