@@ -174,7 +174,7 @@ kube_basic_auth: true
 
 # Choose network plugin (calico, contiv, weave or flannel)
 # Can also be set to 'cloud', which lets the cloud provider setup appropriate routing
-kube_network_plugin: calico
+kube_network_plugin: cloud
 
 # weave's network password for encryption
 # if null then no network encryption
