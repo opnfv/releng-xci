@@ -80,7 +80,7 @@
         dest: "{{ role_path_default }}/{{ item.item.role | basename }}"
         archive: no
         times: no
-        recurse: yes
+        recursive: yes
         checksum: yes
         owner: yes
         group: yes
