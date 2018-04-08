@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_3c36dbe7",
+        "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-04-08T01:09:09Z",
+      "side": 1,
+      "message": "Ok, I would separete it. sorry for reply later. I am in vacation last weak",
+      "parentUuid": "5a3f45e8_426f8ffd",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 69
+      },
+      "revId": "8bf7f5cce23653c175402f283adc487c889af972",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_e267bb23",
         "filename": "xci/playbooks/bootstrap-scenarios.yml",
         "patchSetId": 7
