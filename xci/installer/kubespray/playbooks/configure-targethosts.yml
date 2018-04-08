@@ -26,3 +26,38 @@
       haproxy_user_ssl_cert: "/etc/ssl/certs/xci.crt"
       haproxy_user_ssl_key: "/etc/ssl/private/xci.key"
       when:  xci_flavor == 'ha'
+
+# NOTE(hwoarang) Kubenet expects networking to be prepared by the administrator so it's necessary
+# to do that as part of the node configuration. All we need is to add static routes on every node
+# so cbr0 interfaces can talk to each other.
+- name: Prepare networking for kubenet
+  hosts: k8s-cluster
+  gather_facts: True
+  become: yes
+  tasks:
+    - name: Configure static routes
+      block:
+        - name: Collect cbr0 information from the nodes
+          set_fact:
+            kubenet_xci_static_routes: |-
+              {% set static_routes = [] %}
+              {% for host in groups['k8s-cluster']|select("ne", inventory_hostname) %}
+              {%- set _ = static_routes.append(
+              {'network': hostvars[host]['ansible_cbr0']['ipv4']['network']+'/'+
+               hostvars[host]['ansible_cbr0']['ipv4']['netmask'],
+               'gateway': hostvars[host]['ansible_default_ipv4']['address']}) -%}
+              {% endfor %}
+              {{ static_routes }}
+
+        - name: Add static routes on each node
+          command: "ip route add {{ item.network }} via {{ item.gateway }}"
+          with_items: "{{ kubenet_xci_static_routes }}"
+          loop_control:
+            label: item.network
+
+        - name: Ensure rp_filter is disabled on localhost
+          command: 'echo 0 > /proc/sys/net/ipv4/conf/all/rp_filter'
+          delegate_to: localhost
+          run_once: True
+
+      when: deploy_scenario == 'k8-nosdn-nofeature'
