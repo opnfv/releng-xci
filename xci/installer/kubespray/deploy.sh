@@ -79,6 +79,11 @@ ssh root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/kubespray;\
          -i opnfv_inventory/inventory.cfg cluster.yml -b | tee setup-kubernetes.log"
 scp root@$OPNFV_HOST_IP:~/releng-xci/.cache/repos/kubespray/setup-kubernetes.log \
          $LOG_PATH/setup-kubernetes.log
+
+cd $K8_XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -e XCI_PATH="${XCI_PATH}" \
+    -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory/inventory.cfg \
+    configure-kubenet.yml
 echo
 echo "-----------------------------------------------------------------------"
 echo "Info: Kubernetes installation is successfully completed!"
