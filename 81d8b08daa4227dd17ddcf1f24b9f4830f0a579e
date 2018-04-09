@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_86c5193e",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-09T15:16:06Z",
+      "side": 1,
+      "message": "Moved into single threaded to make it more simple as hwoarang mentioned. \n\nI\u0027m seeing some intermittent issues while doing snapshots import with following errors. Will debug into it.\n\nopnfv_epalper@pod1-blade05:~/releng-xci/xci/scripts$ ./xci_snapshot.sh import ~/virsh-export/xci_export_2018-04-09_13_56_45.tar.gz\n\n~/import_untar ~/releng-xci/xci/scripts\n\n\n\nnodes\n/var/lib/libvirt/images/opnfv.qcow2\n\n/var/lib/libvirt/images/controller00.qcow2\n/var/lib/libvirt/images/compute00.qcow2\nopnfv/\nopnfv/current\nopnfv/snapshot_xml_export_2018-04-09_13_51_01\nopnfv/snapshots\nopnfv/xml\nopnfv/disk_path\ncontroller00/\ncontroller00/current\ncontroller00/snapshot_xml_export_2018-04-09_13_51_01\ncontroller00/snapshots\ncontroller00/xml\ncontroller00/disk_path\ncompute00/\ncompute00/current\ncompute00/snapshot_xml_export_2018-04-09_13_51_01\ncompute00/snapshots\ncompute00/xml\ncompute00/disk_path\nnodes\ntar: nodes: Cannot open: File exists\ntar: Exiting with failure status due to previous errors\n~/releng-xci/xci/scripts\nDomain opnfv defined from /tmp/xml\n\nerror: XML error: memory state cannot be saved with offline or disk-only snapshot\n\nDomain controller00 defined from /tmp/xml\n\nerror: XML error: memory state cannot be saved with offline or disk-only snapshot\n\nDomain compute00 defined from /tmp/xml\n\nerror: XML error: memory state cannot be saved with offline or disk-only snapshot\nopnfv_epalper@pod1-blade05:~/releng-xci/xci/scripts$ virsh list --all\n Id    Name                           State\n----------------------------------------------------\n -     compute00                      shut off\n -     controller00                   shut off\n -     opnfv                          shut off",
+      "parentUuid": "5a3f45e8_5b96514d",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_4737994e",
         "filename": "xci/scripts/libvirt_snapshot.sh",
         "patchSetId": 3
