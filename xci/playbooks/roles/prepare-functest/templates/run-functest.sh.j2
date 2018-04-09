@@ -49,6 +49,15 @@ sudo docker run --env-file env \
     opnfv/functest-healthcheck
 {% else %}
 {# stuff needed for Kubernetes based scenarios #}
+# Create k8s.creds file for functest
+KUBE_MASTER_URL=$(grep -r server ~/.kube/config | awk '{print $2}')
+KUBE_MASTER_IP=$(echo $KUBE_MASTER_URL | awk -F "[:/]" '{print $4}')
+cat << EOF > ~/k8s.creds
+KUBERNETES_PROVIDER=local
+KUBE_MASTER_URL=$KUBE_MASTER_URL
+KUBE_MASTER_IP=$KUBE_MASTER_IP
+EOF
+
 sudo docker run -it --env-file env \
     -v $(pwd)/k8s.creds:/home/opnfv/functest/conf/env_file \
     -v $(pwd)/.kube/config:/root/.kube/config \
