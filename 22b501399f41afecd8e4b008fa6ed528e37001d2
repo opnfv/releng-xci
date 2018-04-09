@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_f3b4a1d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-09T10:39:20Z",
+      "side": 1,
+      "message": "Is it not possible to revert the patch that broke that for you? You can use \u0027git blame\u0027 to try and do \u0027git revert\u0027 and explain that\u0027s going on.\n\nAlso \u0027first person\u0027 is not so common in commit messages.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 43
+      },
+      "revId": "22b501399f41afecd8e4b008fa6ed528e37001d2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
