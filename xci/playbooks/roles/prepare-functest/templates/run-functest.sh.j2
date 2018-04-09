@@ -3,19 +3,8 @@
 # Variables that we need to pass from XCI to functest
 XCI_ENV=(INSTALLER_TYPE XCI_FLAVOR CI_LOOP BUILD_TAG NODE_NAME FUNCTEST_MODE FUNCTEST_SUITE_NAME)
 
-source /root/openrc
-
-openstack --insecure network create --external \
-  --provider-physical-network flat \
-  --provider-network-type flat {{ external_network }}
-
-openstack --insecure subnet create --network {{ external_network }} \
-  --allocation-pool {{ allocation_pool }} \
-  --subnet-range {{ subnet_cidr }} --gateway {{ gateway_ip }} \
-  --no-dhcp {{ subnet_name }}
-
-mkdir ~/results/
-mkdir ~/images && cd ~/images && wget -q http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img && cd ~
+# Create directory to store functest logs
+mkdir -p ~/results/
 
 # Extract variables from xci.env file
 if [[ -e /root/xci.env ]]; then
@@ -38,8 +27,30 @@ echo "------------- functest environment file --------------"
 cat /root/env
 echo "------------------------------------------------------"
 
+{% if 'os-' in deploy_scenario %}
+{# stuff needed for OpenStack based scenarios #}
+source /root/openrc
+
+openstack --insecure network create --external \
+  --provider-physical-network flat \
+  --provider-network-type flat {{ external_network }}
+
+openstack --insecure subnet create --network {{ external_network }} \
+  --allocation-pool {{ allocation_pool }} \
+  --subnet-range {{ subnet_cidr }} --gateway {{ gateway_ip }} \
+  --no-dhcp {{ subnet_name }}
+
+mkdir ~/images && cd ~/images && wget -q http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img && cd ~
+
 sudo docker run --env-file env \
     -v $(pwd)/openrc:/home/opnfv/functest/conf/env_file  \
     -v $(pwd)/images:/home/opnfv/functest/images  \
     -v $(pwd)/results:/home/opnfv/functest/results \
     opnfv/functest-healthcheck
+{% else %}
+{# stuff needed for Kubernetes based scenarios #}
+sudo docker run -it --env-file env \
+    -v $(pwd)/k8s.creds:/home/opnfv/functest/conf/env_file \
+    -v $(pwd)/config:/root/.kube/config \
+    opnfv/functest-kubernetes-healthcheck
+{% endif %}
