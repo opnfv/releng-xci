@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_29ca166e",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-09T20:51:54Z",
+      "side": 1,
+      "message": "this has potential to break the logic in jenkins side of things since we are grepping this file to check if certain scenario is supported on a distro. you need to look at scripts located in releng/jjb/xci as well and adjust accordingly.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "addffa8da6781cff1acf65ce06c1d4a6ff736b38",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_89c9aa7a",
+        "filename": "xci/playbooks/roles/bootstrap-host/templates/kolla/debian/opnfv.interface.j2",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-09T20:51:54Z",
+      "side": 1,
+      "message": "can you ensure you fix the directory structure properly?\n\nin the root folder, you have the distros and then you add kolla folder there next to the distros. it is better to adjust the structure so we know what is what.",
+      "revId": "addffa8da6781cff1acf65ce06c1d4a6ff736b38",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_69c41e5f",
+        "filename": "xci/playbooks/roles/bootstrap-host/templates/kolla/redhat/bridge.ifcfg.j2",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-09T20:51:54Z",
+      "side": 1,
+      "message": "can you ensure you fix the directory structure properly?\n\nin the root folder, you have the distros and then you add kolla folder there next to the distros. it is better to adjust the structure so we know what is what.",
+      "revId": "addffa8da6781cff1acf65ce06c1d4a6ff736b38",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c9a292ad",
+        "filename": "xci/playbooks/roles/bootstrap-host/templates/kolla/redhat/interface.ifcfg.j2",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-09T20:51:54Z",
+      "side": 1,
+      "message": "can you ensure you fix the directory structure properly?\n\nin the root folder, you have the distros and then you add kolla folder there next to the distros. it is better to adjust the structure so we know what is what.",
+      "revId": "addffa8da6781cff1acf65ce06c1d4a6ff736b38",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
