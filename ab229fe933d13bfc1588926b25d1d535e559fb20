@@ -22,6 +22,30 @@
       "revId": "ab229fe933d13bfc1588926b25d1d535e559fb20",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5abac20a",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-10T15:16:52Z",
+      "side": 1,
+      "message": "Oh!  I was wrongly assuming that the scenario is executed already in the opnfv VM and thus the env variables are not accessible. I have just realized that is wrong. Thanks, I\u0027ll change it.",
+      "parentUuid": "5a3f45e8_faf46ef3",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 53
+      },
+      "revId": "ab229fe933d13bfc1588926b25d1d535e559fb20",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
