@@ -83,9 +83,9 @@
         - { src: "{{ remote_xci_path }}/xci/installer/osa/files/cinder.yml", dest: "{{ openstack_osa_etc_path }}/env.d" }
         - { src: "{{ remote_xci_path }}/xci/installer/osa/files/user_variables_proxy.yml", dest: "{{ openstack_osa_etc_path }}/user_variables_proxy.yml", cond: "{{ lookup('env', 'http_proxy') != '' }}" }
         - { src: "{{ remote_xci_path }}/xci/installer/osa/files/setup-openstack.yml", dest: "{{ openstack_osa_path }}/playbooks" }
-        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/ansible-role-requirements.yml", dest: "{{openstack_osa_path}}/ansible-role-requirements.yml", cond: openstack_osa_version != "master" }
-        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/global-requirement-pins.txt", dest: "{{openstack_osa_path}}/global-requirement-pins.txt", cond: openstack_osa_version != "master" }
-        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/openstack_services.yml", dest: "{{ openstack_osa_path }}/playbooks/defaults/repo_packages/openstack_services.yml", cond: openstack_osa_version != "master" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/ansible-role-requirements.yml", dest: "{{openstack_osa_path}}/ansible-role-requirements.yml", cond: "{{ openstack_osa_version != 'master' }}" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/global-requirement-pins.txt", dest: "{{openstack_osa_path}}/global-requirement-pins.txt", cond: "{{ openstack_osa_version != 'master' }}" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/openstack_services.yml", dest: "{{ openstack_osa_path }}/playbooks/defaults/repo_packages/openstack_services.yml", cond: "{{ openstack_osa_version != 'master' }}" }
       when: item.cond is not defined or (item.cond is defined and item.cond | bool)
       loop_control:
         label: "{{ item.src }}"
