@@ -16,6 +16,24 @@
       "revId": "5fed058d08106ded5dcb36a3c2c3572f4ac06996",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_249fdd51",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/env.j2",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-10T07:36:29Z",
+      "side": 1,
+      "message": "DEPLOY_SCENARIO is put into env file by run-functest.sh script during runtime.\n\nhttps://gerrit.opnfv.org/gerrit/gitweb?p\u003dreleng-xci.git;a\u003dblob;f\u003dxci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2#l32",
+      "parentUuid": "5a3f45e8_c490b945",
+      "revId": "5fed058d08106ded5dcb36a3c2c3572f4ac06996",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
