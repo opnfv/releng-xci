@@ -1,0 +1,24 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Orange and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+- name:
+  set_fact:
+    flavor: "{{ flavor_definitions[xci_flavor] }}"
+
+- name: generate OpenStack style inventory
+  template:
+    src: templates/inventory_openstack.j2
+    dest: "{{ target_folder }}/inventory_openstack"
+
+- name: generate Kubernates style inventory
+  template:
+    src: templates/inventory_k8s.j2
+    dest: "{{ target_folder }}/inventory_k8s"

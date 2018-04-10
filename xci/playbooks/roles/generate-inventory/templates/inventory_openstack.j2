@@ -1,0 +1,19 @@
+[deployment]
+{% set index = range(ip.start, ip.start+6)|list() %}
+opnfv ansible_ssh_host={{ ip.prefix }}{{ index.pop(0) }}
+{% if xci_flavor != "aio" %}
+
+[controller]
+{% for node in range(0, flavor.manager) %}
+controller{{ '%02d' % (loop.index-1) }} ansible_ssh_host={{ ip.prefix }}{{ index.pop(0) }}
+{% endfor %}
+
+[compute]
+{% for node in range(0, flavor.worker) %}
+compute{{ '%02d' % (loop.index-1) }} ansible_ssh_host={{ ip.prefix }}{{ index.pop(0) }}
+{% endfor %}
+
+[openstack:children]
+controller
+compute
+{% endif %}

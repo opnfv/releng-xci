@@ -1,0 +1,54 @@
+[all]
+{% set index = range(ip.start, ip.start+6)|list() %}
+{% set ip_index = index.pop(0) %}
+opnfv ansible_host={{ ip.prefix }}{{ ip_index }} ip={{ ip.prefix }}{{ ip_index }}
+{% for node in range(0, flavor.manager) %}
+{% set ip_index = index.pop(0) %}
+master{{ loop.index }} ansible_host={{ ip.prefix }}{{ ip_index }} ip={{ ip.prefix }}{{ ip_index }}
+{% endfor %}
+{% for node in range(0, flavor.worker) %}
+{% set ip_index = index.pop(0) %}
+node{{ loop.index }} ansible_host={{ ip.prefix }}{{ ip_index }} ip={{ ip.prefix }}{{ ip_index }}
+{% endfor %}
+
+[kube-master]
+{% if xci_flavor != "aio" %}
+{% for node in range(0, flavor.manager) %}
+master{{ loop.index }}
+{% endfor %}
+{% else %}
+opnfv
+{% endif %}
+
+[kube-node]
+{% if xci_flavor != "aio" %}
+{% for node in range(0, flavor.worker) %}
+node{{ loop.index }}
+{% endfor %}
+{% else %}
+opnfv
+{% endif %}
+
+[etcd]
+{% if xci_flavor != "aio" %}
+{% for node in range(0, flavor.manager) %}
+master{{ loop.index }}
+{% endfor %}
+{% else %}
+opnfv
+{% endif %}
+
+[k8s-cluster:children]
+kube-node
+kube-master
+
+[calico-rr]
+
+[vault]
+{% if xci_flavor != "aio" %}
+{% for node in range(0, flavor.manager) %}
+master{{ loop.index }}
+{% endfor %}
+{% else %}
+opnfv
+{% endif %}
