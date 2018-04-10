@@ -2,10 +2,8 @@
 - hosts: all
   remote_user: root
   tasks:
-    - name: add public key to host
-      copy:
-        src: "{{ xci_path }}/xci/files/authorized_keys"
-        dest: /root/.ssh/authorized_keys
+    - name: Manage SSH keys
+      include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssh-keys.yml"
     - name: Install required packages
       package:
         name: "{{ kube_require_packages[ansible_pkg_mgr] }}"

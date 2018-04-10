@@ -30,18 +30,6 @@
         recursive: yes
         delete: yes
 
-    - name: generate SSH keys
-      command: ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa -q -N ""
-      args:
-        creates: /root/.ssh/id_rsa
-    - name: add id_rsa.pub to authorized_keys
-      shell: cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
-      when:  xci_flavor == 'aio'
-    - name: fetch public key
-      fetch:
-        src: "{{ ansible_env.HOME }}/.ssh/id_rsa.pub"
-        dest: "{{ xci_path }}/xci/files/authorized_keys"
-        flat: yes
     - name: delete the opnfv_inventory directory
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
@@ -78,12 +66,5 @@
         name: ansible
         version: "{{ xci_kube_ansible_pip_version }}"
 
-
-- hosts: localhost
-  remote_user: root
-  vars_files:
-    - "{{ xci_path }}/xci/var/opnfv.yml"
-  tasks:
-    - name: Append public keys to authorized_keys
-      shell: "/bin/cat {{ ansible_env.HOME }}/.ssh/id_rsa.pub >> {{ xci_path }}/xci/files/authorized_keys"
-      changed_when: True
+    - name: Manage SSH keys
+      include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssh-keys.yml"
