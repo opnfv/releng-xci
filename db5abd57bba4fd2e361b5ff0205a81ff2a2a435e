@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_5f2bd493",
+        "filename": "xci/playbooks/roles/prepare-functest/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-10T14:13:39Z",
+      "side": 1,
+      "message": "i think we have established that such variables are not available (yet)",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 41
+      },
+      "revId": "db5abd57bba4fd2e361b5ff0205a81ff2a2a435e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
