@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_440dc93d",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/env.j2",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-10T09:47:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_44cb0953",
+      "revId": "5fed058d08106ded5dcb36a3c2c3572f4ac06996",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_a4e12dd2",
         "filename": "xci/playbooks/roles/prepare-functest/templates/env.j2",
         "patchSetId": 4
@@ -66,6 +84,30 @@
       "writtenOn": "2018-04-10T08:10:46Z",
       "side": 1,
       "message": "this is also extracted by the run-functest.sh script? I think we do not need it here do we?",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 13
+      },
+      "revId": "5fed058d08106ded5dcb36a3c2c3572f4ac06996",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e4169554",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/env.j2",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-10T09:47:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_a4e12dd2",
       "range": {
         "startLine": 3,
         "startChar": 0,
