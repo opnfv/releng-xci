@@ -1,0 +1,2 @@
+---
+xci_flavor: "{{ lookup('env','XCI_FLAVOR') |default('mini', true) }}"

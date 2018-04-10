@@ -22,6 +22,20 @@ if [[ ${XCI_DISTRO} == opensuse ]]; then
 fi
 
 #-------------------------------------------------------------------------------
+# Generate inventory
+#-------------------------------------------------------------------------------
+# This playbook
+# - generate an inventory depending on target infra and flavor
+#-------------------------------------------------------------------------------
+
+echo "Info: Generating inventory"
+echo "-----------------------------------------------------------------------"
+cd $XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," generate-inventory.yml
+echo "-----------------------------------------------------------------------"
+echo "Info: Inventory generated"
+
+#-------------------------------------------------------------------------------
 # Configure localhost
 #-------------------------------------------------------------------------------
 # This playbook
@@ -35,7 +49,7 @@ echo "Info: Configuring localhost for kubespray"
 echo "-----------------------------------------------------------------------"
 cd $XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -e XCI_PATH="${XCI_PATH}" \
-        -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory/inventory.cfg \
+        -i ${XCI_PLAYBOOKS}/inventory/inventory_k8s \
         configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost for kubespray"
@@ -54,7 +68,7 @@ echo "Info: Configuring opnfv deployment host for kubespray"
 echo "-----------------------------------------------------------------------"
 cd $K8_XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -e XCI_PATH="${XCI_PATH}" \
-        -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory/inventory.cfg \
+        -i ${XCI_PLAYBOOKS}/inventory/inventory_k8s \
         configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for kubespray"
@@ -73,7 +87,7 @@ if [ $XCI_FLAVOR != "aio" ]; then
     echo "-----------------------------------------------------------------------"
     cd $K8_XCI_PLAYBOOKS
     ansible-playbook ${XCI_ANSIBLE_PARAMS} -e XCI_PATH="${XCI_PATH}" \
-            -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory/inventory.cfg \
+            -i ${XCI_PLAYBOOKS}/inventory/inventory_k8s \
             configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts for kubespray"
