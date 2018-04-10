@@ -22,6 +22,30 @@
       "revId": "5e687d421f913c1e1d0e45e2f982e069ba387c21",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a41c8d78",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/env.j2",
+        "patchSetId": 16
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-10T09:47:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_24cd1d5e",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 16
+      },
+      "revId": "5e687d421f913c1e1d0e45e2f982e069ba387c21",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
