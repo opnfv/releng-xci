@@ -22,6 +22,30 @@
       "revId": "a969646cb75e787d236059d85dab61b007c46231",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e49df55a",
+        "filename": "xci/playbooks/roles/prepare-functest/tasks/main.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-10T07:34:29Z",
+      "side": 1,
+      "message": "deploy_scenario comes from https://gerrit.opnfv.org/gerrit/gitweb?p\u003dreleng-xci.git;a\u003dblob;f\u003dxci/var/opnfv.yml\n\nand this playbook is run by the script https://gerrit.opnfv.org/gerrit/gitweb?p\u003dreleng.git;a\u003dblob;f\u003djjb/xci/xci-run-functest.sh which is used by xci-verify and xci-merge jobs.",
+      "parentUuid": "5a3f45e8_a4a5adb6",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 23
+      },
+      "revId": "a969646cb75e787d236059d85dab61b007c46231",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
