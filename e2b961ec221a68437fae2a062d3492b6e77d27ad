@@ -22,6 +22,30 @@
       "revId": "e2b961ec221a68437fae2a062d3492b6e77d27ad",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_3a141643",
+        "filename": "xci/scenarios/os-odl-nofeature/role/os-odl-nofeature/templates/user_variables_os-odl-nofeature.yml.j2",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-10T14:24:42Z",
+      "side": 0,
+      "message": "I think it is fine. Even if it is not initialized, nothing will happen because I am checking if the variable exists",
+      "parentUuid": "5a3f45e8_5673c87f",
+      "range": {
+        "startLine": 43,
+        "startChar": 6,
+        "endLine": 43,
+        "endChar": 17
+      },
+      "revId": "e2b961ec221a68437fae2a062d3492b6e77d27ad",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
