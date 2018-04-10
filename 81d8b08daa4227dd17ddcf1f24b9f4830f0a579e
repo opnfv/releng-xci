@@ -168,6 +168,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_9a03aa0c",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 2697
+      },
+      "writtenOn": "2018-04-10T14:24:18Z",
+      "side": 1,
+      "message": "Snapshoting in parallel is essential in this commit. It was not about performance. For example it is done so that ovs does not recognize while snapshot that ODL is not there. If you snapshot the VMs one after another then OVS will have a minute or something where ODL is not responsive. It will be even more difficult when you have HA. Then it could be that ODL instances are moved around. Resuming this snapshot means then that you might have several ODL instances running. Creating a snapshot is nothing atomic. The instance is not responsive for this time",
+      "parentUuid": "5a3f45e8_86c5193e",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_4737994e",
         "filename": "xci/scripts/libvirt_snapshot.sh",
         "patchSetId": 3
