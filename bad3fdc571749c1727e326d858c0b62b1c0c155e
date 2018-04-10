@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_9f1c3c79",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/env.j2",
+        "patchSetId": 5
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-10T14:17:29Z",
+      "side": 1,
+      "message": "this will not work",
+      "range": {
+        "startLine": 5,
+        "startChar": 15,
+        "endLine": 5,
+        "endChar": 30
+      },
+      "revId": "bad3fdc571749c1727e326d858c0b62b1c0c155e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
