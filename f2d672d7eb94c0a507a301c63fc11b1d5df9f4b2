@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_847871f3",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-10T08:55:19Z",
+      "side": 1,
+      "message": "no please use the CI overrides to test this",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 63
+      },
+      "revId": "f2d672d7eb94c0a507a301c63fc11b1d5df9f4b2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c461d93a",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-10T08:55:19Z",
+      "side": 1,
+      "message": "please use the CI overrides",
+      "range": {
+        "startLine": 17,
+        "startChar": 2,
+        "endLine": 17,
+        "endChar": 27
+      },
+      "revId": "f2d672d7eb94c0a507a301c63fc11b1d5df9f4b2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_6473a515",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-10T08:55:19Z",
+      "side": 1,
+      "message": "please use the CI overrides",
+      "range": {
+        "startLine": 34,
+        "startChar": 3,
+        "endLine": 34,
+        "endChar": 37
+      },
+      "revId": "f2d672d7eb94c0a507a301c63fc11b1d5df9f4b2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
