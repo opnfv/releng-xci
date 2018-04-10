@@ -1,0 +1,31 @@
+---
+#
+# Check difference with actual inventories
+#
+- hosts: flavors
+  connection: local
+  vars:
+    kubespray_path: ../../../../installer/kubespray/files
+    osa_path: ../../../../installer/osa/files
+  tasks:
+    - name: recover flavor
+      set_fact:
+        xci_flavor: "{{ inventory_hostname }}"
+    - name: create temporary folder
+      tempfile:
+        state: directory
+        suffix: build
+      register: tmpfolder
+    - name: testing myself
+      include_role:
+        name: ../..
+      vars:
+        target_folder: "{{ tmpfolder.path }}"
+    - name: compare inventory with osa installer
+      shell:
+        "diff {{ osa_path }}/{{ xci_flavor }}/inventory \
+        {{ tmpfolder.path }}/inventory_openstack"
+    - name: compare inventory with kubespray installer
+      shell:
+        "diff {{ kubespray_path }}/{{ xci_flavor }}/inventory/inventory.cfg \
+        {{ tmpfolder.path }}/inventory_k8s"

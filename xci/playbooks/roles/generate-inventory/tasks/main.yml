@@ -1,0 +1,15 @@
+---
+
+- name:
+  set_fact:
+    flavor: "{{ flavor_definitions[xci_flavor] }}"
+
+- name: generate openstack style inventory
+  template:
+    src: templates/inventory_openstack.j2
+    dest: "{{ target_folder }}/inventory_openstack"
+
+- name: generate kubernates style inventory
+  template:
+    src: templates/inventory_k8s.j2
+    dest: "{{ target_folder }}/inventory_k8s"

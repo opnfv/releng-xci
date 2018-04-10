@@ -1,0 +1,26 @@
+---
+target_folder: inventory/
+
+flavor_definitions:
+  aio:
+    opnfv: 1
+    manager: 0
+    worker: 0
+  mini:
+    opnfv: 1
+    manager: 1
+    worker: 1
+  noha:
+    opnfv: 1
+    manager: 1
+    worker: 2
+  ha:
+    opnfv: 1
+    manager: 3
+    worker: 2
+
+# This part will be replace by PDF source in a next patch
+# It describes available ressources, not used ressources by the flavor
+ip:
+  start: 2
+  prefix: 192.168.122.

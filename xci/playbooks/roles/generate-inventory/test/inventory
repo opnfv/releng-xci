@@ -1,0 +1,5 @@
+[flavors]
+aio  ansible_connetion=local
+mini ansible_connetion=local
+noha ansible_connetion=local
+ha   ansible_connetion=local

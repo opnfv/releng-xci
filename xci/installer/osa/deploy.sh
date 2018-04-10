@@ -44,6 +44,19 @@ echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost host for openstack-ansible"
 
 #-------------------------------------------------------------------------------
+# Generate inventory
+#-------------------------------------------------------------------------------
+# This playbook
+# - generate an inventory depending on target infra and flavor
+#-------------------------------------------------------------------------------
+
+echo "Info: Generating inventory"
+echo "-----------------------------------------------------------------------"
+cd $XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," generate-inventory.yml
+echo "-----------------------------------------------------------------------"
+echo "Info: Inventory generated"
+#-------------------------------------------------------------------------------
 # Configure openstack-ansible deployment host, opnfv
 #-------------------------------------------------------------------------------
 # This playbook
@@ -58,7 +71,7 @@ echo "Info: Configuring opnfv deployment host for openstack-ansible"
 echo "-----------------------------------------------------------------------"
 cd $OSA_XCI_PLAYBOOKS
 ansible-galaxy install -r ${XCI_PATH}/xci/files/requirements.yml -p $HOME/.ansible/roles
-ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_PLAYBOOKS}/inventory/inventory_openstack \
     configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
@@ -78,7 +91,7 @@ if [[ $XCI_FLAVOR != "aio" ]]; then
     echo "Info: Configuring target hosts for openstack-ansible"
     echo "-----------------------------------------------------------------------"
     cd $OSA_XCI_PLAYBOOKS
-    ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory \
+    ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_PLAYBOOKS}/inventory/inventory_openstack \
         configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts"
