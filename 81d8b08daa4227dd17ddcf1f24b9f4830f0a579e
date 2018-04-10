@@ -192,6 +192,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_fa42ae0e",
+        "filename": "xci/scripts/libvirt_snapshot.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-10T15:18:43Z",
+      "side": 1,
+      "message": "Nikolas, Thanks for your inputs.\nODL-OVS connectivity shouldn\u0027t be a problem because OVS reestablishes OF connection with ODL with its periodic echo requests. So it shouldn\u0027t be an issue.\nBut this may be an issue with ODL and Openstack clustering. In case of ODL, akka cluster removes the member node if it is not reachable for particular period (https://doc.akka.io/docs/akka/2.5.3/scala/cluster-usage.html#auto-downing-do-not-use-). When ODL is deployed with xci (ansible-opendaylight role) akka.cluster.auto-down-unreachable-after attribute in akka.conf is not configured, so i am not sure about the behavior.\nwe need to check how Openstack clustering behaves in this scenario. \nHope you might have seen the issue with only clustering aspects.\n\nMarkos, Can we move back to using multi threading as it doesn\u0027t harm anything ?",
+      "parentUuid": "5a3f45e8_9a03aa0c",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 1
+      },
+      "revId": "81d8b08daa4227dd17ddcf1f24b9f4830f0a579e",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_4737994e",
         "filename": "xci/scripts/libvirt_snapshot.sh",
         "patchSetId": 3
