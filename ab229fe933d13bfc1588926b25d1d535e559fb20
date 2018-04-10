@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_faf46ef3",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-10T15:03:32Z",
+      "side": 1,
+      "message": "why does a scenario specific variable have to be in the global vars file? why don\u0027t you do that in the role specific vars files?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 53
+      },
+      "revId": "ab229fe933d13bfc1588926b25d1d535e559fb20",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
