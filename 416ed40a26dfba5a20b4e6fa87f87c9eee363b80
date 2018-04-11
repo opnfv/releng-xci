@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_cda2994a",
+        "filename": "xci/files/install-lib.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-04-11T17:34:24Z",
+      "side": 1,
+      "message": "Maybe it\u0027s time to document the external variables that every script requires, like this requires XCI_PATH, XCI_FLAVOR and INSTALLER_TYPE",
+      "revId": "416ed40a26dfba5a20b4e6fa87f87c9eee363b80",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
