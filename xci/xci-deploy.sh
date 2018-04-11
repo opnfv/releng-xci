@@ -57,6 +57,7 @@ fi
 # - env-vars: variables for the xci itself and you should not need to change or
 #   override any of them.
 #-------------------------------------------------------------------------------
+export XCI_ANSIBLE_PARAMS="-vvv"
 # find where are we
 export XCI_PATH="$(git rev-parse --show-toplevel)"
 # Declare our virtualenv
