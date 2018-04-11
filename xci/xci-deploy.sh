@@ -58,6 +58,7 @@ fi
 #   override any of them.
 #-------------------------------------------------------------------------------
 # find where are we
+export XCI_ANSIBLE_PARAMS="-vvv"
 export XCI_PATH="$(git rev-parse --show-toplevel)"
 # Declare our virtualenv
 export XCI_VENV=${XCI_PATH}/venv/
