@@ -69,5 +69,10 @@
     - name: Configure SSL certificates
       include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssl-certs.yml"
 
+    - name: fetch xci environment
+      copy:
+        src: "{{ xci_path }}/.cache/xci.env"
+        dest: /root/xci.env
+
     - name: Manage SSH keys
       include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssh-keys.yml"
