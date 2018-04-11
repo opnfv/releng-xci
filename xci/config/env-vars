@@ -16,14 +16,23 @@ export KEEPALIVED_GIT_URL=${KEEPALIVED_GIT_URL:-https://github.com/evrardjp/ansi
 export OPENSTACK_OSA_ETC_PATH=/etc/openstack_deploy
 export OPNFV_HOST_IP=192.168.122.2
 export XCI_FLAVOR_ANSIBLE_FILE_PATH=$XCI_PATH/xci/installer/$INSTALLER_TYPE/files/$XCI_FLAVOR
-export CI_LOOP=${CI_LOOP:-daily}
-export JOB_NAME=${JOB_NAME:-false}
+
 # XCI_CACHE is a cache on localhost where repositories and scenarios are cloned.
 export XCI_CACHE=${XCI_PATH}/.cache
+
 # OPNFV_XCI_CACHE is similar to XCI_CACHE but refers to the remote OPNFV host.
 export OPNFV_XCI_CACHE="/root/releng-xci/.cache"
 export XCI_SCENARIOS_CACHE="${XCI_CACHE}/repos/scenarios"
 export XCI_PLAYBOOKS=${XCI_PATH}/xci/playbooks
+
+# Functest parameters
+export FUNCTEST_MODE=${FUNCTEST_MODE:-"tier"}
+export FUNCTEST_SUITE_NAME=${FUNCTEST_SUITE_NAME:-"healthcheck"}
+
+# CI paremeters
+export CI_LOOP=${CI_LOOP:-"daily"}
+export BUILD_TAG=${BUILD_TAG:-"notag"}
+export NODE_NAME=${NODE_NAME:-$(hostname)}
 
 #-------------------------------------------------------------------------------
 # Paths where git repositories of XCI Components will be cloned on the OPNFV host
