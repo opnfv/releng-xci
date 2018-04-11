@@ -22,6 +22,30 @@
       "revId": "0d173c280c34d2e03f70b6bd76c1431884f50b99",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_edcf9527",
+        "filename": "xci/files/install-lib.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-11T17:18:19Z",
+      "side": 1,
+      "message": "yes because \u0027set -u\u0027 will fail if XCI_INSTALL_LIB_SOURCED is not defined so you need to provide an alternative value",
+      "parentUuid": "5a3f45e8_4d4969b6",
+      "range": {
+        "startLine": 15,
+        "startChar": 31,
+        "endLine": 15,
+        "endChar": 33
+      },
+      "revId": "0d173c280c34d2e03f70b6bd76c1431884f50b99",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
