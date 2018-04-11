@@ -1,0 +1,342 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_70ab5e75",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "This is perhaps not the most important thing to highlight but it will make it a bit difficult for people who are not involved in xci to realize this and could cause confusion for them. I understand the reasoning as well but we also need to think about others so I prefer we stick to the terminology used by the corresponding technologies - controller/compute and master/worker.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 53
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_50a8e276",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "given that we will not be deploying 2 VIMs at the same time, why do we need to name the inventory file differently if the inventory is generated dynamically?",
+      "range": {
+        "startLine": 52,
+        "startChar": 38,
+        "endLine": 52,
+        "endChar": 51
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b0b846c9",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 71,
+        "startChar": 38,
+        "endLine": 71,
+        "endChar": 51
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_90bd4aba",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 90,
+        "startChar": 42,
+        "endLine": 90,
+        "endChar": 55
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f0ae4e80",
+        "filename": "xci/installer/osa/deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "given that we will not be deploying 2 VIMs at the same time, why do we need to name the inventory file differently if the inventory is generated dynamically?",
+      "range": {
+        "startLine": 74,
+        "startChar": 69,
+        "endLine": 74,
+        "endChar": 88
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d0b352e7",
+        "filename": "xci/installer/osa/deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 94,
+        "startChar": 73,
+        "endLine": 94,
+        "endChar": 92
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_30cc366a",
+        "filename": "xci/playbooks/generate-inventory.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "license header is missing",
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_10c93a59",
+        "filename": "xci/playbooks/roles/generate-inventory/defaults/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "license header is missing",
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_70c23e35",
+        "filename": "xci/playbooks/roles/generate-inventory/defaults/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "this is related to my comment in commit message; it is preferable to use the right terminology; controller/compute and master/worker.",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 13
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_50bf42aa",
+        "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "license header is missing",
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d0ea32ab",
+        "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "OpenStack",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f0e5aedc",
+        "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "please use same filename for the inventory",
+      "range": {
+        "startLine": 10,
+        "startChar": 31,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b0dfa60c",
+        "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "Kubernetes",
+      "range": {
+        "startLine": 12,
+        "startChar": 17,
+        "endLine": 12,
+        "endChar": 27
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_90e42ae2",
+        "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "please use same filename for the inventory",
+      "range": {
+        "startLine": 15,
+        "startChar": 31,
+        "endLine": 15,
+        "endChar": 44
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_30d39605",
+        "filename": "xci/playbooks/roles/generate-inventory/test/test.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "license header is missing",
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_10d01af5",
+        "filename": "xci/playbooks/roles/generate-inventory/vars/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-11T23:17:41Z",
+      "side": 1,
+      "message": "license header is missing",
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
