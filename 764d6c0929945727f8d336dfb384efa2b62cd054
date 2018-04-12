@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_f6fc8674",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-04-12T11:41:36Z",
+      "side": 1,
+      "message": "what do you mean here by saying: that role will build the repo url?\n\nAre we building ODL from source ?",
+      "range": {
+        "startLine": 13,
+        "startChar": 14,
+        "endLine": 13,
+        "endChar": 47
+      },
+      "revId": "764d6c0929945727f8d336dfb384efa2b62cd054",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
