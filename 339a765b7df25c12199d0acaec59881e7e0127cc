@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_330e003c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-12T08:53:50Z",
+      "side": 1,
+      "message": "yes and I tried it with the other changes I abandoned.\n\nbut I think I am getting bored with this so I wanted to move on. ;)",
+      "parentUuid": "5a3f45e8_1324a4c3",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 29
+      },
+      "revId": "339a765b7df25c12199d0acaec59881e7e0127cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_b31a107b",
         "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
         "patchSetId": 4
@@ -53,6 +77,30 @@
       "writtenOn": "2018-04-12T08:48:07Z",
       "side": 1,
       "message": "this is a new addition and nothing to do with k8s right?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 2
+      },
+      "revId": "339a765b7df25c12199d0acaec59881e7e0127cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_130b042b",
+        "filename": "xci/playbooks/roles/prepare-functest/templates/run-functest.sh.j2",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-12T08:53:50Z",
+      "side": 1,
+      "message": "yes. is this the reason for -1? if so, I can move it to a separate change.",
+      "parentUuid": "5a3f45e8_f310185b",
       "range": {
         "startLine": 46,
         "startChar": 0,
