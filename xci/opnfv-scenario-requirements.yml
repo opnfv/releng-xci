@@ -12,6 +12,7 @@
 # XCI can make use of them.
 #
 - scenario: os-odl-sfc
+  project: sfc
   scm: git
   src: https://gerrit.opnfv.org/gerrit/sfc
   version: master
@@ -27,6 +28,7 @@
         - ubuntu
 
 - scenario: os-nosdn-nofeature
+  project: releng-xci
   scm: git
   src: https://git.opnfv.org/releng-xci
   version: master
@@ -43,6 +45,7 @@
         - centos
 
 - scenario: os-odl-nofeature
+  project: releng-xci
   scm: git
   src: https://git.opnfv.org/releng-xci
   version: master
@@ -58,6 +61,7 @@
         - ubuntu
 
 - scenario: k8-nosdn-nofeature
+  project: releng-xci
   scm: git
   src: https://git.opnfv.org/releng-xci
   version: master
@@ -75,6 +79,7 @@
         - opensuse
 
 - scenario: os-odl-bgpvpn
+  project: sdnvpn
   scm: git
   src: https://gerrit.opnfv.org/gerrit/sdnvpn
   version: master
