@@ -43,7 +43,15 @@ openstack --insecure subnet create --network {{ external_network }} \
   --subnet-range {{ subnet_cidr }} --gateway {{ gateway_ip }} \
   --no-dhcp {{ subnet_name }}
 
-mkdir ~/images && cd ~/images && wget -q http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img && cd ~
+# the needed images differ between the suites so avoid downloading unnecessary images
+if [[ "$FUNCTEST_SUITE_NAME" =~ "healthcheck" ]]; then
+    mkdir ~/images && cd ~/images && wget -q http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img && cd ~
+elif [[ "$FUNCTEST_SUITE_NAME" =~ "smoke" ]]; then
+    mkdir -p images && wget -q -O- https://git.opnfv.org/functest/plain/functest/ci/download_images.sh | bash -s -- images && ls -1 images/*
+else
+    echo "Unsupported test suite for functest"
+    exit 1
+fi
 
 # docker image to use will be different for healthcheck and smoke test
 DOCKER_IMAGE_NAME="opnfv/functest-${FUNCTEST_SUITE_NAME}"
