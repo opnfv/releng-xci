@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_5649fab5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-12T12:40:57Z",
+      "side": 1,
+      "message": "yes but our case a dynamic inventory is probably less than 30 lines of bash code because it\u0027s going to be pretty much static too. And then we can avoid the 200+ lines of code for the new role. So I am still opposed to having a role just for generating two files. But that\u0027s my opinion of course",
+      "parentUuid": "5a3f45e8_d60fca86",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 64
+      },
+      "revId": "67db334968f9ab0e7193ade1d71dc120419b878a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_9696e23d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
