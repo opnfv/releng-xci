@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_b3a330b1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "This proposition is just for the common roles, and will fit for inventory and network. The generated inventories use the installer terminology - controller/compute and master/worker.\n\nAs I said in commit message, the generated inventories are strictly the same as the one inside installers (carriage returns included :))",
+      "parentUuid": "5a3f45e8_70ab5e75",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 53
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_50a8e276",
         "filename": "xci/installer/kubespray/deploy.sh",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-11T23:17:41Z",
       "side": 1,
       "message": "given that we will not be deploying 2 VIMs at the same time, why do we need to name the inventory file differently if the inventory is generated dynamically?",
+      "range": {
+        "startLine": 52,
+        "startChar": 38,
+        "endLine": 52,
+        "endChar": 51
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_337e001a",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "Because of the terminology inside - controller/compute and master/worker.\n\nIf we want to avoid those 2 files, is see:\n- use an input parameter to push the installer type to apply the good terminology\n- mix both inventories, but installers have to evolve not to use generic groups (like \u0027all\u0027 for k8s)\n\nI agree that in the target we should have just one inventory, but to not change the actual inventories i set one per installer type",
+      "parentUuid": "5a3f45e8_50a8e276",
       "range": {
         "startLine": 52,
         "startChar": 38,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_d39cfc5f",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "ditto (see k8s)",
+      "parentUuid": "5a3f45e8_b0b846c9",
+      "range": {
+        "startLine": 71,
+        "startChar": 38,
+        "endLine": 71,
+        "endChar": 51
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_90bd4aba",
         "filename": "xci/installer/kubespray/deploy.sh",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2018-04-11T23:17:41Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 90,
+        "startChar": 42,
+        "endLine": 90,
+        "endChar": 55
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_33a560a2",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "ditto (see k8s)",
+      "parentUuid": "5a3f45e8_90bd4aba",
       "range": {
         "startLine": 90,
         "startChar": 42,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_53710c43",
+        "filename": "xci/installer/osa/deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "ditto (see k8s)",
+      "parentUuid": "5a3f45e8_f0ae4e80",
+      "range": {
+        "startLine": 74,
+        "startChar": 69,
+        "endLine": 74,
+        "endChar": 88
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_d0b352e7",
         "filename": "xci/installer/osa/deploy.sh",
         "patchSetId": 2
@@ -128,6 +248,30 @@
       "writtenOn": "2018-04-11T23:17:41Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 94,
+        "startChar": 73,
+        "endLine": 94,
+        "endChar": 92
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f3977838",
+        "filename": "xci/installer/osa/deploy.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "ditto (see k8s)",
+      "parentUuid": "5a3f45e8_d0b352e7",
       "range": {
         "startLine": 94,
         "startChar": 73,
@@ -157,6 +301,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_13f7848c",
+        "filename": "xci/playbooks/generate-inventory.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_30cc366a",
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_10c93a59",
         "filename": "xci/playbooks/roles/generate-inventory/defaults/main.yml",
         "patchSetId": 2
@@ -168,6 +330,24 @@
       "writtenOn": "2018-04-11T23:17:41Z",
       "side": 1,
       "message": "license header is missing",
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_73f08891",
+        "filename": "xci/playbooks/roles/generate-inventory/defaults/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_10c93a59",
       "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -197,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_53ed8cb6",
+        "filename": "xci/playbooks/roles/generate-inventory/defaults/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "\u003e this is related to my comment in commit message; it is preferable\n \u003e to use the right terminology; controller/compute and master/worker.\n\nsee my answer in commit message",
+      "parentUuid": "5a3f45e8_70c23e35",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 13
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_50bf42aa",
         "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
         "patchSetId": 2
@@ -214,6 +418,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_b32df000",
+        "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_50bf42aa",
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_d0ea32ab",
         "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
         "patchSetId": 2
@@ -225,6 +447,30 @@
       "writtenOn": "2018-04-11T23:17:41Z",
       "side": 1,
       "message": "OpenStack",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_9332745d",
+        "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_d0ea32ab",
       "range": {
         "startLine": 7,
         "startChar": 17,
@@ -283,6 +529,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_f333f85f",
+        "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_b0dfa60c",
+      "range": {
+        "startLine": 12,
+        "startChar": 17,
+        "endLine": 12,
+        "endChar": 27
+      },
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_90e42ae2",
         "filename": "xci/playbooks/roles/generate-inventory/tasks/main.yml",
         "patchSetId": 2
@@ -323,6 +593,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_3341e0a9",
+        "filename": "xci/playbooks/roles/generate-inventory/test/test.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_30d39605",
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_10d01af5",
         "filename": "xci/playbooks/roles/generate-inventory/vars/main.yml",
         "patchSetId": 2
@@ -334,6 +622,24 @@
       "writtenOn": "2018-04-11T23:17:41Z",
       "side": 1,
       "message": "license header is missing",
+      "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_133e6428",
+        "filename": "xci/playbooks/roles/generate-inventory/vars/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T07:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_10d01af5",
       "revId": "47bfd5ea0c744cff0d21062a1372945e80128dfa",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
