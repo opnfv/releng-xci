@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_d60fca86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T12:17:07Z",
+      "side": 1,
+      "message": "It is a possibility, and i am not opposed to that, but the main advantages of a dynamic inventory is to manage continually changing resources, or to create complex inventory structures. This is not our case.\n\nFor now, using a generator has the advantage that it creates \u0027real\u0027 files, easy to compare to existing ones, easy to debug, and easy to evolved with the templates.\n\nIt can be an evolution.",
+      "parentUuid": "5a3f45e8_76ab5675",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 64
+      },
+      "revId": "67db334968f9ab0e7193ade1d71dc120419b878a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_9696e23d",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_3628aee1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T12:17:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_9696e23d",
+      "revId": "67db334968f9ab0e7193ade1d71dc120419b878a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_b6915e49",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -53,6 +95,24 @@
       "writtenOn": "2018-04-12T10:48:35Z",
       "side": 1,
       "message": "missing Signed-off-by line",
+      "revId": "67db334968f9ab0e7193ade1d71dc120419b878a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_1625b208",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-12T12:17:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_b6915e49",
       "revId": "67db334968f9ab0e7193ade1d71dc120419b878a",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
