@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_76ab5675",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-12T10:48:35Z",
+      "side": 1,
+      "message": "I find it strange that we use a role to generate an inventory. Why not simply use a dynamic inventory?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 64
+      },
+      "revId": "67db334968f9ab0e7193ade1d71dc120419b878a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_9696e23d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-12T10:48:35Z",
+      "side": 1,
+      "message": "future",
+      "revId": "67db334968f9ab0e7193ade1d71dc120419b878a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b6915e49",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-12T10:48:35Z",
+      "side": 1,
+      "message": "missing Signed-off-by line",
+      "revId": "67db334968f9ab0e7193ade1d71dc120419b878a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
