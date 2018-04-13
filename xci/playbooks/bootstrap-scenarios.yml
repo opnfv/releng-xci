@@ -33,3 +33,7 @@
   include_role:
     name: "k8-calico-nofeature"
   when: deploy_scenario == 'k8-calico-nofeature'
+- name: Prepare everything to run the k8-flannel-nofeature scenario
+  include_role:
+    name: "k8-flannel-nofeature"
+  when: deploy_scenario == 'k8-flannel-nofeature'
