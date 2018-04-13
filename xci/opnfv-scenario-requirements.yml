@@ -104,3 +104,4 @@
       distros:
         - ubuntu
         - centos
+        - opensuse
