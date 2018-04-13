@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_7c7fb5ab",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-13T05:14:37Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 55,
+        "startChar": 14,
+        "endLine": 55,
+        "endChar": 15
+      },
+      "revId": "ae5b43661c6bc92db1e27105bf160bd5dbf0696d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5c7c79b5",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-13T05:14:37Z",
+      "side": 1,
+      "message": "please switch to gerrit\n\n    https://gerrit.opnfv.org/gerrit/releng-xci",
+      "range": {
+        "startLine": 110,
+        "startChar": 7,
+        "endLine": 110,
+        "endChar": 39
+      },
+      "revId": "ae5b43661c6bc92db1e27105bf160bd5dbf0696d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
