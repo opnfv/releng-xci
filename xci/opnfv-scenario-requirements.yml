@@ -60,7 +60,7 @@
 - scenario: k8-nosdn-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci
-  version: master
+  version: 287cd664fcfb18f7a54ce408856641ed17657f44
   role: xci/scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature
   installers:
     - installer: kubespray
