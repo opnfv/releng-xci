@@ -109,10 +109,9 @@ echo "xci flavor: $XCI_FLAVOR"
 echo "xci installer: $INSTALLER_TYPE"
 echo "infra deployment: $INFRA_DEPLOYMENT"
 echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
-echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
+[[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
 [[ "$INSTALLER_TYPE" == "osa" ]] && echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
 [[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
-[[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "bifrost version: $OPENSTACK_BIFROST_VERSION"
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
