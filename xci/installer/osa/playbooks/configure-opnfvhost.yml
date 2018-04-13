@@ -115,9 +115,6 @@
       args:
         creates: "/usr/local/bin/openstack-ansible"
 
-      changed_when: True
-      args:
-        chdir: "{{openstack_osa_path}}"
     - name: install opnfv pip required packages
       pip:
         name: "{{ item }}"
