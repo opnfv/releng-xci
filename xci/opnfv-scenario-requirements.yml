@@ -104,6 +104,7 @@
       distros:
         - ubuntu
         - centos
+        - opensuse
 
 - scenario: k8-calico-nofeature
   scm: git
