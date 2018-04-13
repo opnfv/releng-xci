@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_22c98459",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-13T10:52:16Z",
+      "side": 1,
+      "message": "any reason to not add opensuse here? Please also rebase your patchset on top of latest releng-xci master branch",
+      "revId": "2aa15ac96566716774b7ce049d502bb392705bc7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}

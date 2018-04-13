@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_42cc906a",
+        "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-13T10:52:16Z",
+      "side": 0,
+      "message": "whitespace changes again for no reason",
+      "revId": "24580de790cd3658f560ddc8baaee58eb65d16b6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
