@@ -45,6 +45,30 @@
       "revId": "1dd714dd9456aa80bb34e3616f4a6ca387d44947",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_878eaa77",
+        "filename": "xci/scenarios/k8-flannel-nofeature/role/k8-flannel-nofeature/tasks/main.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5761
+      },
+      "writtenOn": "2018-04-13T06:48:43Z",
+      "side": 1,
+      "message": "https://github.com/kubernetes-incubator/kubespray/blob/master/docs/flannel.md\n\nI think this refers to creating a file at the master node for flannel integration.",
+      "parentUuid": "5a3f45e8_67b43e35",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "1dd714dd9456aa80bb34e3616f4a6ca387d44947",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
