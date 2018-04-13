@@ -69,6 +69,30 @@
       "revId": "1dd714dd9456aa80bb34e3616f4a6ca387d44947",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a73e468a",
+        "filename": "xci/scenarios/k8-flannel-nofeature/role/k8-flannel-nofeature/tasks/main.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-04-13T06:57:36Z",
+      "side": 1,
+      "message": "OK, Thanks! I think you should choose flannel as the kube_network_plugin in k8s-cluster.yml",
+      "parentUuid": "5a3f45e8_878eaa77",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 33
+      },
+      "revId": "1dd714dd9456aa80bb34e3616f4a6ca387d44947",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
