@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_47978248",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-13T07:50:15Z",
+      "side": 1,
+      "message": "can you please switch using gerrit url instead of git? \n\n    https://gerrit.opnfv.org/gerrit/releng-xci",
+      "range": {
+        "startLine": 94,
+        "startChar": 7,
+        "endLine": 94,
+        "endChar": 39
+      },
+      "revId": "c88a31b6ddbdf6270cfacfcc756843825c73680f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e7ae8e97",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-13T07:50:15Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 110,
+        "startChar": 7,
+        "endLine": 110,
+        "endChar": 39
+      },
+      "revId": "c88a31b6ddbdf6270cfacfcc756843825c73680f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
