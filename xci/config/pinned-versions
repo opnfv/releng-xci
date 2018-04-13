@@ -45,4 +45,4 @@ export HAPROXY_VERSION=$(grep -E '.*name: haproxy_server' -A 3 \
        | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
 # HEAD of kubspray "master" as of 27.02.2018
 # kubespray's bug Reference: https://github.com/kubernetes-incubator/kubespray/issues/2400
-export KUBESPRAY_VERSION=${KUBESPRAY_VERSION:-"810c10a0e9b65b0ef8ae8f7c302f7553a165631c"}
+export KUBESPRAY_VERSION=${KUBESPRAY_VERSION:-"5d9bb300d716880610c34dd680c167d2d728984d"}

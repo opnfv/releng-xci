@@ -14,13 +14,6 @@ set -o pipefail
 K8_XCI_PLAYBOOKS="$(dirname $(realpath ${BASH_SOURCE[0]}))/playbooks"
 export ANSIBLE_ROLES_PATH=$HOME/.ansible/roles:/etc/ansible/roles:${XCI_PATH}/xci/playbooks/roles
 
-# NOTE(hwoarang): This is a workaround for SUSE until upstream PR is accepted
-# https://github.com/kubernetes-incubator/kubespray/pull/2380
-if [[ ${XCI_DISTRO} == opensuse ]]; then
-    export KUBESPRAY_GIT_URL=https://github.com/hwoarang/kubespray.git
-    export KUBESPRAY_VERSION=add-opensuse-support
-fi
-
 #-------------------------------------------------------------------------------
 # Configure localhost
 #-------------------------------------------------------------------------------
