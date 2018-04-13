@@ -120,3 +120,4 @@
       distros:
         - ubuntu
         - centos
+        - opensuse
