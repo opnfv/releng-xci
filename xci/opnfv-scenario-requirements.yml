@@ -91,9 +91,25 @@
 
 - scenario: k8-canal-nofeature
   scm: git
-  src: https://git.opnfv.org/releng-xci
+  src: https://gerrit.opnfv.org/gerrit/releng-xci
   version: master
   role: xci/scenarios/k8-canal-nofeature/role/k8-canal-nofeature
+  installers:
+    - installer: kubespray
+      flavors:
+        - aio
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
+        - centos
+
+- scenario: k8-calico-nofeature
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/releng-xci
+  version: master
+  role: xci/scenarios/k8-calico-nofeature/role/k8-calico-nofeature
   installers:
     - installer: kubespray
       flavors:
