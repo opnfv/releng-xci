@@ -120,6 +120,7 @@
       distros:
         - ubuntu
         - centos
+        - opensuse
 
 - scenario: k8-flannel-nofeature
   scm: git
