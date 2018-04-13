@@ -104,3 +104,19 @@
       distros:
         - ubuntu
         - centos
+
+- scenario: k8-calico-nofeature
+  scm: git
+  src: https://git.opnfv.org/releng-xci
+  version: master
+  role: xci/scenarios/k8-calico-nofeature/role/k8-calico-nofeature
+  installers:
+    - installer: kubespray
+      flavors:
+        - aio
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
+        - centos
