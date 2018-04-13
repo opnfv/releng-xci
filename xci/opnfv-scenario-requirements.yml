@@ -28,7 +28,7 @@
 
 - scenario: os-nosdn-nofeature
   scm: git
-  src: https://git.opnfv.org/releng-xci
+  src: https://gerrit.opnfv.org/gerrit/releng-xci
   version: master
   role: xci/scenarios/os-nosdn-nofeature/role/os-nosdn-nofeature
   installers:
@@ -44,7 +44,7 @@
 
 - scenario: os-odl-nofeature
   scm: git
-  src: https://git.opnfv.org/releng-xci
+  src: https://gerrit.opnfv.org/gerrit/releng-xci
   version: master
   role: xci/scenarios/os-odl-nofeature/role/os-odl-nofeature
   installers:
@@ -59,7 +59,7 @@
 
 - scenario: k8-nosdn-nofeature
   scm: git
-  src: https://git.opnfv.org/releng-xci
+  src: https://gerrit.opnfv.org/gerrit/releng-xci
   version: master
   role: xci/scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature
   installers:
