@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: k8s-cluster
   remote_user: root
   tasks:
     - name: Manage SSH keys
