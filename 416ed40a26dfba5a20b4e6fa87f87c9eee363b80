@@ -66,6 +66,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_8f4cfcc9",
+        "filename": "xci/files/install-lib.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-16T10:33:35Z",
+      "side": 1,
+      "message": "Again, renaming script will not help because my comment is not related to this script but about the vars. As you said, the variables we get by sourcing these files are so critical to XCI, doing that here will make it a bit invisible/hidden. \n\nThe xci-deploy.sh is the top level script so it is more appropriate to source them there - at the same time I get what you mean too. Honestly, I can\u0027t offer an alternative either.",
+      "parentUuid": "5a3f45e8_73ab6875",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 36
+      },
+      "revId": "416ed40a26dfba5a20b4e6fa87f87c9eee363b80",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_30fb96c2",
         "filename": "xci/xci-deploy.sh",
         "patchSetId": 1
