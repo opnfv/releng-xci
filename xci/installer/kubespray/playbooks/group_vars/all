@@ -1,14 +1,3 @@
-kube_require_packages:
-  apt:
-    - python-netaddr
-    - dbus
-  yum:
-    - python-netaddr
-    - dbus
-  zypper:
-    - python-netaddr
-    - dbus-1
-
 keepalived_ubuntu_src: "uca"
 keepalived_uca_apt_repo_url: "{{ uca_apt_repo_url | default('http://ubuntu-cloud.archive.canonical.com/ubuntu') }}"
 
