@@ -311,6 +311,30 @@
       "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_41d7aded",
+        "filename": "infra_manager/var/pdf.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-16T13:32:59Z",
+      "side": 1,
+      "message": "Thanks. I will update the code/structure when a pdf/idf version will support that and be official",
+      "parentUuid": "5a3f45e8_890601cd",
+      "range": {
+        "startLine": 136,
+        "startChar": 7,
+        "endLine": 136,
+        "endChar": 40
+      },
+      "revId": "9a6fe5eee011e9a3fbb08512f98a6361766155d4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
