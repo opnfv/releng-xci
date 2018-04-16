@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_ef0f8086",
+        "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-16T10:24:04Z",
+      "side": 1,
+      "message": "what kind of X is this?",
+      "range": {
+        "startLine": 70,
+        "startChar": 42,
+        "endLine": 70,
+        "endChar": 43
+      },
+      "revId": "879c93eed0405c21016d57e25303b6d160a9a3b6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
