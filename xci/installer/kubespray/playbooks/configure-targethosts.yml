@@ -1,14 +1,9 @@
 ---
-- hosts: all
+- hosts: k8s-cluster
   remote_user: root
   tasks:
     - name: Manage SSH keys
       include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssh-keys.yml"
-    - name: Install required packages
-      package:
-        name: "{{ kube_require_packages[ansible_pkg_mgr] }}"
-        state: present
-        update_cache: "{{ (ansible_pkg_mgr == 'apt') | ternary('yes', omit) }}"
 
 - hosts: kube-master
   remote_user: root
