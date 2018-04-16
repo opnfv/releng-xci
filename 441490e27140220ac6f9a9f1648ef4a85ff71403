@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_2af2f605",
+        "filename": "prototypes/infra_manager/README.md",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-16T13:15:37Z",
+      "side": 1,
+      "message": "uses",
+      "range": {
+        "startLine": 11,
+        "startChar": 20,
+        "endLine": 11,
+        "endChar": 24
+      },
+      "revId": "441490e27140220ac6f9a9f1648ef4a85ff71403",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_ea392ea5",
+        "filename": "prototypes/infra_manager/filter_plugins/interfaces.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-16T13:15:37Z",
+      "side": 1,
+      "message": "What script is calling these functions?",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "441490e27140220ac6f9a9f1648ef4a85ff71403",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_2ac956ac",
+        "filename": "prototypes/infra_manager/scripts/install-ansible.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-16T13:15:37Z",
+      "side": 1,
+      "message": "This script does not exist anymore in master of releng-xci. It was replaced by xci/files/install-lib.sh",
+      "revId": "441490e27140220ac6f9a9f1648ef4a85ff71403",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_6adfde69",
+        "filename": "prototypes/infra_manager/var/opnfv.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-16T13:15:37Z",
+      "side": 1,
+      "message": "suse and centos are not supported yet?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 16
+      },
+      "revId": "441490e27140220ac6f9a9f1648ef4a85ff71403",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
