@@ -62,10 +62,13 @@
         insertafter: 'targetPort'
         line: "  type: NodePort"
 
-    - name: pip install ansible
+    - name: pip install required packages
       pip:
-        name: ansible
-        version: "{{ xci_kube_ansible_pip_version }}"
+        name: "{{ item.name }}"
+        version: "{{ item.version | default(omit) }}"
+      with_items:
+        - { name: 'ansible', version: "{{ xci_kube_ansible_pip_version }}" }
+        - { name: 'netaddr' }
 
     - name: Configure SSL certificates
       include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssl-certs.yml"
