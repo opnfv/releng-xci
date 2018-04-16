@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_6a223e53",
+        "filename": "prototypes/infra_manager/servers-prepare.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-16T13:37:05Z",
+      "side": 1,
+      "message": "attached to the role patch\nhttps://gerrit.opnfv.org/gerrit/#/c/50355/",
+      "parentUuid": "5a3f45e8_ea600ea7",
+      "range": {
+        "startLine": 60,
+        "startChar": 18,
+        "endLine": 60,
+        "endChar": 44
+      },
+      "revId": "21455cb285707cbb43bbc81298b568818a7cdbc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_8a506ad5",
         "filename": "prototypes/infra_manager/servers-prepare.sh",
         "patchSetId": 14
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-16T13:20:18Z",
       "side": 1,
       "message": "where is this file?",
+      "range": {
+        "startLine": 70,
+        "startChar": 18,
+        "endLine": 70,
+        "endChar": 42
+      },
+      "revId": "21455cb285707cbb43bbc81298b568818a7cdbc6",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_aa18c61e",
+        "filename": "prototypes/infra_manager/servers-prepare.sh",
+        "patchSetId": 14
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 361
+      },
+      "writtenOn": "2018-04-16T13:37:05Z",
+      "side": 1,
+      "message": "attached to the role patch\nhttps://gerrit.opnfv.org/gerrit/#/c/50357/",
+      "parentUuid": "5a3f45e8_8a506ad5",
       "range": {
         "startLine": 70,
         "startChar": 18,
