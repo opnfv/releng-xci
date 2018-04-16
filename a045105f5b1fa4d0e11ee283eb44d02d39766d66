@@ -22,6 +22,30 @@
       "revId": "a045105f5b1fa4d0e11ee283eb44d02d39766d66",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4a12e257",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 17
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-16T11:50:10Z",
+      "side": 1,
+      "message": "It *has* to be done after kubespray is deployed so it really needs to be done at the end of the deployment. configure-targetshosts happens before kubespray is deployed so we can\u0027t do it there.",
+      "parentUuid": "5a3f45e8_2f0b282b",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 25
+      },
+      "revId": "a045105f5b1fa4d0e11ee283eb44d02d39766d66",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
