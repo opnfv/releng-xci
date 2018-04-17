@@ -148,6 +148,9 @@ ansible_lint() {
     # Extract role from scenario information
     local testing_role=$(sed -n "/^- scenario: ${DEPLOY_SCENARIO}/,/^$/p" ${XCI_PATH}/xci/opnfv-scenario-requirements.yml | grep role | rev | cut -d '/' -f -1 | rev)
 
+    # clear XCI_CACHE
+    rm -rf ${XCI_CACHE}/repos/openstack-ansible-tests
+
     # Clone OSA rules too
     git clone --quiet --depth 1 https://github.com/openstack/openstack-ansible-tests.git \
         ${XCI_CACHE}/repos/openstack-ansible-tests
