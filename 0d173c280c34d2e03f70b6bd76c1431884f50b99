@@ -70,6 +70,29 @@
       "revId": "0d173c280c34d2e03f70b6bd76c1431884f50b99",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4095a385",
+        "filename": "xci/files/install-lib.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-17T07:29:56Z",
+      "side": 1,
+      "message": "this comes from the dependent patch and i have concerns about this approach but unfortunately, I\u0027m not able to propose an alternative at this time.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 36
+      },
+      "revId": "0d173c280c34d2e03f70b6bd76c1431884f50b99",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
