@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_9b743e37",
+        "filename": "xci/infra/bifrost/scripts/bifrost-provision.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 5761
+      },
+      "writtenOn": "2018-04-17T13:41:29Z",
+      "side": 1,
+      "message": "Are we activating this bifrost venv here ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 59
+      },
+      "revId": "2566ded7381033456f5c797acfea19f0cf86fcf3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
