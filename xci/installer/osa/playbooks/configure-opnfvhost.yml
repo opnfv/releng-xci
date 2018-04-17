@@ -114,6 +114,7 @@
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
       args:
         creates: "/usr/local/bin/openstack-ansible"
+        chdir: "{{openstack_osa_path}}"
 
     - name: install opnfv pip required packages
       pip:
