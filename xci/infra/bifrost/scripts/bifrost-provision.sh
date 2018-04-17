@@ -103,6 +103,7 @@ fi
 # Install missing dependencies. Use sudo since for bifrost jobs
 # the venv is not ready yet.
 [[ -n ${VIRTUAL_ENV:-} ]] && _sudo="" || _sudo="sudo -H -E"
+${_sudo} pip install -q --upgrade pip
 ${_sudo} pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
 
 # Change working directory
