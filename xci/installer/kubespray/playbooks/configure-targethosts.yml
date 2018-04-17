@@ -1,12 +1,13 @@
 ---
-- hosts: all
+- hosts: k8s-cluster
   remote_user: root
   tasks:
     - name: Manage SSH keys
       include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssh-keys.yml"
-    - name: Install required packages
+
+    - name: Install dbus
       package:
-        name: "{{ kube_require_packages[ansible_pkg_mgr] }}"
+        name: "{{ (ansible_pkg_mgr == 'zypper') | ternary('dbus-1', 'dbus') }}"
         state: present
         update_cache: "{{ (ansible_pkg_mgr == 'apt') | ternary('yes', omit) }}"
 
