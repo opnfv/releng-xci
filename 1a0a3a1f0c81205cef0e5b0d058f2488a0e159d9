@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_0080bb44",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-17T07:28:06Z",
+      "side": 1,
+      "message": "missing signed-off line",
+      "revId": "1a0a3a1f0c81205cef0e5b0d058f2488a0e159d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
