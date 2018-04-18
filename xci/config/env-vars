@@ -52,3 +52,5 @@ export XCI_SSL_SUBJECT=${XCI_SSL_SUBJECT:-"/C=US/ST=California/L=San Francisco/O
 export DEPLOY_SCENARIO=${DEPLOY_SCENARIO:-"os-nosdn-nofeature"}
 # Kubespray requires that ansible version is 2.4.0.0
 export XCI_KUBE_ANSIBLE_PIP_VERSION=2.4.0.0
+# OpenStack global requirements version
+export OPENSTACK_REQUIREMENTS_VERSION=${OPENSTACK_REQUIREMENTS_VERSION:-$(awk '/requirements_git_install_branch:/ {print $2}' ${XCI_PATH}/xci/installer/osa/files/openstack_services.yml)}

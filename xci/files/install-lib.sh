@@ -15,8 +15,7 @@ function install_ansible() {
     set -eu
 
     # Use the upper-constraints file from the pinned requirements repository.
-    local requirements_sha=$(awk '/requirements_git_install_branch:/ {print $2}' ${XCI_PATH}/xci/installer/osa/files/openstack_services.yml)
-    local uc="https://raw.githubusercontent.com/openstack/requirements/${requirements_sha}/upper-constraints.txt"
+    local uc="https://raw.githubusercontent.com/openstack/requirements/${OPENSTACK_REQUIREMENTS_VERSION}/upper-constraints.txt"
     local install_map
 
     declare -A PKG_MAP
@@ -144,8 +143,7 @@ function install_ansible() {
 ansible_lint() {
     set -eu
     # Use the upper-constraints file from the pinned requirements repository.
-    local requirements_sha=$(awk '/requirements_git_install_branch:/ {print $2}' ${XCI_PATH}/xci/installer/osa/files/openstack_services.yml)
-    local uc="https://raw.githubusercontent.com/openstack/requirements/${requirements_sha}/upper-constraints.txt"
+    local uc="https://raw.githubusercontent.com/openstack/requirements/${OPENSTACK_REQUIREMENTS_VERSION}/upper-constraints.txt"
     local playbooks_dir=(xci/playbooks xci/installer/osa/playbooks xci/installer/kubespray/playbooks)
     # Extract role from scenario information
     local testing_role=$(sed -n "/^- scenario: ${DEPLOY_SCENARIO}/,/^$/p" ${XCI_PATH}/xci/opnfv-scenario-requirements.yml | grep role | rev | cut -d '/' -f -1 | rev)
