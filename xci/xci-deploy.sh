@@ -155,6 +155,8 @@ echo "-------------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 source $(find $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO} -name xci_overrides) &>/dev/null || :
 
+env
+
 # Deploy infrastructure based on the selected deloyment method
 echo "Info: Deploying hardware using '${INFRA_DEPLOYMENT}'"
 echo "---------------------------------------------------"
