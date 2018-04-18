@@ -34,6 +34,24 @@
       "revId": "ca865256a504edf4e164bbe7b00e562745ae765c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_41dc8446",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-18T12:39:26Z",
+      "side": 1,
+      "message": "The last playbook executed in a releng-xci deployment is the tempest playbook which runs a set of tests. Nevertheless, I am not sure if it runs all the tests which you think should be run, these are the OpenStack objects it checks: https://hastebin.com/kakazesumu.md",
+      "parentUuid": "5a3f45e8_0108bcd8",
+      "revId": "ca865256a504edf4e164bbe7b00e562745ae765c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
