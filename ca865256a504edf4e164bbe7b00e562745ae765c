@@ -52,6 +52,24 @@
       "revId": "ca865256a504edf4e164bbe7b00e562745ae765c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c1c6d467",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-18T12:59:19Z",
+      "side": 1,
+      "message": "Can you please read the commit message again?\n\nThis change documents what we currently do and NOT what we are going to do in order to capture the current state.\n\nOnce this gets merged, the next change will be the one we will be working on setting new criterias.",
+      "parentUuid": "5a3f45e8_41dc8446",
+      "revId": "ca865256a504edf4e164bbe7b00e562745ae765c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
