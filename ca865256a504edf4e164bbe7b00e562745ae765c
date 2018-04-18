@@ -16,6 +16,24 @@
       "revId": "ca865256a504edf4e164bbe7b00e562745ae765c",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_0108bcd8",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-18T12:14:47Z",
+      "side": 1,
+      "message": "I agree and as I mentioned during ONS, adding more tests makes also sense when looking at the ratio of deployment time and time spent on testing, in addition to the improved test coverage, of course.\n\nHowever, if I understand Fatih\u0027s commit message correctly, we should have exactly these discussions along with the follow-up patch because this patch here one just describes the current state.",
+      "parentUuid": "5a3f45e8_7e603f01",
+      "revId": "ca865256a504edf4e164bbe7b00e562745ae765c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
