@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_3e8197fb",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-18T07:51:22Z",
+      "side": 1,
+      "message": "is (there is no verb)",
+      "revId": "869e6d25953b60a0f768717f1df7c638dc8c6e13",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_1e865b13",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-18T07:51:22Z",
+      "side": 1,
+      "message": "run, the subject is various CI Loops, right?",
+      "range": {
+        "startLine": 28,
+        "startChar": 37,
+        "endLine": 28,
+        "endChar": 41
+      },
+      "revId": "869e6d25953b60a0f768717f1df7c638dc8c6e13",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
