@@ -21,7 +21,7 @@ export PYTHONUNBUFFERED=1
 SCRIPT_HOME="$(cd "$(dirname "$0")" && pwd)"
 BIFROST_HOME=$SCRIPT_HOME/..
 ENABLE_VENV="true"
-export VENV=${XCI_VENV}/bifrost
+export VENV=${XCI_VENV}
 PROVISION_WAIT_TIMEOUT=${PROVISION_WAIT_TIMEOUT:-3600}
 # This is normally exported by XCI env but we should initialize it here
 # in case we run this script on its own for debug purposes
@@ -102,7 +102,15 @@ fi
 
 # Install missing dependencies. Use sudo since for bifrost jobs
 # the venv is not ready yet.
-[[ -n ${VIRTUAL_ENV:-} ]] && _sudo="" || _sudo="sudo -H -E"
+if [[ -n ${VIRTUAL_ENV:-} ]]; then
+    _sudo=""
+else
+    virtualenv --quiet --no-site-packages ${XCI_VENV}
+    set +u
+    source ${XCI_VENV}/bin/activate
+    set -u
+    _sudo="sudo -H -E"
+fi
 ${_sudo} pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
 
 # Change working directory
