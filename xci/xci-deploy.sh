@@ -63,14 +63,14 @@ export XCI_PATH="$(git rev-parse --show-toplevel)"
 export XCI_VENV=${XCI_PATH}/venv/
 # source user vars
 source $XCI_PATH/xci/config/user-vars
+# source xci configuration
+source $XCI_PATH/xci/config/env-vars
 # source pinned versions
 source $XCI_PATH/xci/config/pinned-versions
 # source flavor configuration
 source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
 # source installer configuration
 source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
-# source xci configuration
-source $XCI_PATH/xci/config/env-vars
 # source helpers library
 source ${XCI_PATH}/xci/files/install-lib.sh
 
