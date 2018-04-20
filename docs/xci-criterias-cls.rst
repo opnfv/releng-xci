@@ -8,7 +8,7 @@
 CI Loops, Promotion Criterias and Confidence Levels
 ===================================================
 
-This document is explains CI Loops, Promotion Criterias and Confidence Levels
+This document explains CI Loops, Promotion Criterias and Confidence Levels
 XCI applies for the scenarios and features that are onboarded to XCI.
 
 The criterias documented here are expected to be updated collaboratively by
@@ -18,7 +18,7 @@ relevant to the features and scenarios.
 
 This document should be seen as guidance for the projects taking part in XCI
 until the OPNFV CD-Based Release Model and the criterias set for the CI Loops
-for that track become available. Until that happens, CI Loops will used by XCU
+for that track become available. Until that happens, CI Loops will used by XCI
 will follow what is documented here and provide feedback to the projects based
 on the test scope set within this document.
 
@@ -31,45 +31,104 @@ Descriptions
 
 This chapter contains the descriptions of the terms and examples.
 
+Artifacts and Compositions
+--------------------------
+
+An artifact is one of many kinds of tangible by-products produced during the
+development of software. [1] An artifact can itself be composed of many
+individual artifacts. Some examples to artifacts are
+
+* documents
+* binaries produced by the build process
+* container images
+* test suites
+
+A composition represents set of source, artifact and documentation items.
+Compositions can be very simple, consisting of a single item, or very large,
+containing any number of items when compositions are nested.
+
+In OPNFV, the emphasis is mostly on compositions and rather then standalone
+artifacts. What is written in the remainder of this document uses the words
+artifact and composition interchangeably and the ideas respresented there
+may equally be applicable to both depending on the context.
+
+OPNFV scenarios can be seen as composition examples.
+
 CI Loop
 -------
 
 CI Loops are independent entities to execute certain activities that can take
-place in CI at any given time and provide feedback.
+place in CI at any given time in order to test/qualify artifacts or
+compositions and provide feedback.
 
 CI Loops run repeatedly and as independently as possible from other loops, do
-not trigger each other and with very little or no metadata passed directly
+not call each other directly (no RPC, etc) and with no metadata passed directly
 between them.
 
-CI Loops can be run when certain things happen, via timer, or polling.
+CI Loops can be run when certain things happen. Examples are Gerrit events,
+events emitted by other CI Loops in a CI Flow, events published by upstream
+projects, via timer, polling, or manually.
+
+The feedback provided by CI Loops can be as simple as basic SUCCESS and FAILURE
+values with the possibility of accessing further information such as the logs
+produced at the end of the loop or historical information in the form of
+trends.
+
+Apart from providing feedback, the most crucial outcome of
+CI Loops are the Confidence Levels applied on artifacts or compositions which
+will then be used for qualifying those versions in order to carry them over
+in the CI Flow.
 
 A sample CI Loop is verify.
 
 CI Flow
 -------
 
-CI Flows are constituted by linking different activities together.
-In this context, a CI loop corresponds to certain activity and flow then becomes
+CI Flows are constituted by linking different activities together. In this
+context, a CI loop corresponds to certain activity and flow then becomes
 linked loops.
+
+Anything that results in the triggering of the initial CI Loop in given CI Flow
+is the trigger for the CI Flow as well. An important point to highlight here is
+that not all versions of all artifacts can go till the end of the CI Flow if
+they fail anywhere within the flow, resulting in interruption of the flow.
+
+CI Loops in CI Flow are run in serialized manner but not for any given
+artifact. The further loops in a CI Flow are available only for the artifacts
+that were qualified/deemed to be good by the preceding loops in CI Flow. For
+example, if a version of an artifact fails to pass post-merge loop, it simply
+gets discarded and not carried over to the next loop, which is daily in this
+example.
+
+The order in CI Flow is important as well since only the artifacts with the
+right level of confidence should be carried over to the next loop that is worth
+testing on that level. Artifacts can not skip loops.
+
+The output of a CI Flow could be weekly "stable" releases or candidates for
+official release depending on the confidence level reached.
 
 A sample CI Flow could be verify, post-merge and daily.
 
 Confidence Level
 ----------------
 
-A Confidence Level(CL) is a simple key value pair(quality stamp) indicating a
-confidence level. CLs are applied by the loops and gained by the artifacts while
-they travel through CI. CLs can be applied to compositions or baselines can also
-be applied as well. Especially in OPNFV, compositions get tested rather then
-standalone artifacts. What is documented in the remainder of this document uses
-they word artifact and the details are applicable to compositions and baselines
-as well.
+A Confidence Level(CL) is a simple key value pair indicating a quality stamp
+attached to a version of an artifact or a composition in order to qualify the
+version as candidate for further testing or candidate for release.
+
+CLs are applied by the loops and gained by the artifacts while they traverse
+through CI Flow.
 
 Stamped versions of the artifacts can be carried over to the next loops in CI
 flow to do more extensive testing. A version of the artifact can have 0..n CLs,
 each given and corresponding to a loop in CI.
 
+In perfect world, the artifacts should be composed using only the "good" CLs.
+
 CLs are part of the artifact metadata.
+
+The keys used in CLs match to the loop names and the values are the values are
+simple status codes; SUCCESS and FAILURE. The values are also used by Jenkins.
 
 A sample CL is "daily": "SUCCESS"
 
@@ -77,7 +136,7 @@ Promotion
 ---------
 
 Loops in CI verify/test the artifacts that reach to that loop. Outcomes of the
-loops (loop verdicts) used for identifying and applying CLs. By doing this
+loops (loop verdicts) are used for identifying and applying CLs. By doing this
 continuously, loops populate candidate versions for the next loops in CI flow.
 
 Promotion in this context is the selection of a version of the artifact from
@@ -108,6 +167,14 @@ necessary to have the right balance; having too low bar means low quality and
 too high makes it nearly impossible for anyone to fulfil that, especially
 especially at the early phases of the project lifecycle.
 
+The reevaluation of the content of the loops and promotion criterias can be
+triggered by the use of the feedback provided by the loops themselves. If the
+loops always end with succesfull results consistently  completions, it may be
+time to employ tougher pass criteria since the quality is so high than what it
+was before when the criteria was first set. The opposite is possible as well; if
+things always fail, the criteria may need to be loosen by reducing the test
+scope.
+
 Based on the content/scope of the loops, time to run them can vary; from minutes
 to hours, and sometimes days and time it takes to run them is another factor to
 be taken into accout while constructing loops and setting the scope for them.
@@ -116,3 +183,109 @@ Setting the Promotion Criterias for the Scenarios
 =================================================
 
 TBD
+
+CI Loops and Confidence Levels Used by XCI for the Scenarios
+============================================================
+
+XCI will have various CI Loops to ensure the development done by the OPNFV
+projects are verified properly and feedback that is fit for purpose is provided
+to them in a timely manner.
+
+The CI Loops XCI uses, what they test, and the Confidence Levels applied by them
+can be seen from the table below.
+
++------------+------------------------------------+--------------------------------------+
+| CI Loop    | Tests                              | Confidence Level Applied by the Loop |
++============+====================================+======================================+
+| verify     | | open patches                     || N/A                                 |
++------------+------------------------------------+--------------------------------------+
+| post-merge | | merged changes                   || merge                               |
++------------+------------------------------------+--------------------------------------+
+| daily      | | scenarios promoted by merge loop || daily                               |
++------------+------------------------------------+--------------------------------------+
+| weekly     | | scenarios promoted by daily loop || weekly                              |
++------------+------------------------------------+--------------------------------------+
+
+Please note that not all these CI Loops are available at this point in time and
+they will be activated as soon as they become available.
+
+In the following chapters, what each of these loops do is explained in more
+details.
+
+verify
+------
+
+The changes and subsequent patches are tested by this loop using the criteria
+this loop expects patches to fulfill.
+
+The changes that get Verified+1 from this loop is deemed to be good and can be
+merged to master if there is sufficient +2 votes from the corresponding project
+committers.
+
+There is no specific Confidence Level(CL) applied by this loop as the changes
+that get merged to master gains the CL naturally by landing to master.
+
+post-merge
+----------
+
+The changes that are merged to master are tested by this loop using the criteria
+this loop expects merged changes to fulfill.
+
+The scenarios that are successfully verified by this loop get stamped with the
+CL **"merge": "SUCCESS"** and become candidates for next loop in CI Flow, which
+is **daily**.
+
+The scenarios that fail verification by this loop get stamped with the CL
+**"merge": "FAILURE"** and are discarded as candidates for the next loop.
+
+The metadata of the scenario that passes this loop gets stored on
+`OPNFV Artifact Repository <http://artifacts.opnfv.org/xci.html>`_ in **merge**
+folder and the next loop looks for and fetches from there.
+
+The scenario is also displayed on **merge** column on
+`XCI Dashboard <http://129.192.69.214/xci.php>`_ for projects to see what is
+happening with their scenario at any given time.
+
+daily
+-----
+
+The scenarios that were promoted by **post-merge** loop are candidates for this
+loop to pick and test against the criteria this loop expects selected candidates
+to fulfill.
+
+The scenarios that are successfully verified by this loop get stamped with the
+CL **"daily": "SUCCESS"** and become candidates for next loop in CI Flow, which
+is **weekly**.
+
+The scenarios that fail verification by this loop get stamped with the CL
+**"daily": "FAILURE"** and are discarded as candidates for the next loop.
+
+The metadata of the scenario that passes this loop gets stored on
+`OPNFV Artifact Repository <http://artifacts.opnfv.org/xci.html>`_ in **daily**
+folder and the next loop looks for and fetches from there.
+
+The scenario is also displayed on **daily** column on
+`XCI Dashboard <http://129.192.69.214/xci.php>`_ for projects to see what is
+happening with their scenario at any given time.
+
+weekly
+------
+
+The scenarios that were promoted by **daily** loop are candidates for this loop
+to pick and test against the criteria this loop expects selected candidates
+to fulfill.
+
+The scenarios that are successfully verified by this loop get stamped with the
+CL **"weekly": "SUCCESS"**. This CL could essentially become the CL the release
+candidates are expected to have in future.
+
+The scenarios that fail verification by this loop get stamped with the CL
+**"weekly": "FAILURE"** and are discarded as candidates for the next loop.
+
+The metadata of the scenario that passes this loop gets stored on
+`OPNFV Artifact Repository <http://artifacts.opnfv.org/xci.html>`_ in **weekly**
+folder and the next loop looks for and fetches from there.
+
+The scenario is also displayed on **weekly** column on
+`XCI Dashboard <http://129.192.69.214/xci.php>`_ for projects to see what is
+happening with their scenario at any given time.
