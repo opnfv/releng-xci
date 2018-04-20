@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_445bed2d",
+        "filename": "xci/files/install-lib.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-20T10:05:19Z",
+      "side": 1,
+      "message": "aren\u0027t we opening ourselves up to problems by bringing the latest version of it? shouldn\u0027t we instead be pinning pip version to a certain version we know?",
+      "range": {
+        "startLine": 137,
+        "startChar": 4,
+        "endLine": 137,
+        "endChar": 32
+      },
+      "revId": "9249b0028160b37eb0dca0a3499fe0ef481e6054",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
