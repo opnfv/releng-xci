@@ -112,8 +112,8 @@ Based on the content/scope of the loops, time to run them can vary; from minutes
 to hours, and sometimes days and time it takes to run them is another factor to
 be taken into accout while constructing loops and setting the scope for them.
 
-CI Loops and Confidence Levels Used by XCI for the Scenarios
-============================================================
+CI Loops and Confidence Levels Used by XCI for the Scenarios/Features
+=====================================================================
 
 XCI will have various CI Loops to ensure the development done by the OPNFV
 projects are verified properly and feedback that is fit for purpose is provided
@@ -208,3 +208,242 @@ folder and the next loop looks for and fetches from there.
 The scenario is also displayed on **weekly** column on
 `XCI Dashboard <http://129.192.69.214/xci.php>`_ for projects to see what is
 happening with their scenario at any given time.
+
+Promotion Criterias and Loop Contents
+=====================================
+
+This chapter documents the promotion criterias and loop contents that will be
+used by CI Loops to verify patches, changes, and scenarios depending on where
+the loop is in overall CI Flow.
+
+Basic Criteria for All Loops and Features/Scenarios
+---------------------------------------------------
+
+The table below shows the basic criterias that are common across different loops
+and features/scenarios. All the features/scenarios are expected to pass these
+basic criterias.
+
+The feature/scenario specific testing is run in addition to basic testing.
+They need to be set by the feature projects, scenario owners, test projects and
+release management.
+
+As highlighted on the table, basic criteria for some loops are not listed. It is
+important the community proposes what to test there as well.
+
++------------+-----------------+-------------------+----------------+-----------------+--------------------+
+| CI Loop    | Deployment Type | Deployment Flavor | Functest Suite | Yardstick Suite | Long Duration Test |
++============+=================+===================+==================================+====================+
+| verify     | | virtual       || noha             | healthcheck    | N/A             | N/A                |
++------------+-----------------+-------------------+----------------+-----------------+--------------------+
+| post-merge | | virtual       || noha             | **<addme>**    | N/A             | N/A                |
++------------+-----------------+-------------------+----------------+-----------------+--------------------+
+| daily      | | baremetal     || ha               | **<addme>**    | **<addme>**     | N/A                |
++------------+-----------------+-------------------+----------------+-----------------+--------------------+
+| weekly     | | baremetal     || ha               | **<addme>**    | **<addme>**     | **<addme>**        |
++------------+-----------------+-------------------+----------------+-----------------+--------------------+
+
+Feature and Scenario Specific Testing
+-------------------------------------
+
+Feature and scenario owners are expected to provide feedback for the test loops
+marked as **<addme>** below. It is important to state again that no matter what
+the loop or feature/scenario, all of them are expected to meet the basic
+criteria set per loop level and feature/scenario specific testing proposed by
+the projects comes on top of that.
+
+**congress**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**promise**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**os-nosdn-nofeature**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**os-nosdn-fds**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**os-nosdn-vmha**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**os-odl-nofeature**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**os-odl-sfc**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**os-odl-bgpvpn**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**k8-nosdn-nofeature**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**k8-calico-nofeature**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**k8-canal-nofeature**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+**k8-flannel-nofeature**
+
+* verify
+  - virtual noha deployment
+  - functest healthcheck
+* post-merge
+  - virtual noha deployment
+  - functest **<addme (smoke, scenario specific test, etc.)>**
+* daily
+  - baremetal ha deployment
+  - functest **<addme (x, y, z, scenario specific test, etc.)>**
+  - yardstick **<addme>**
+* weekly
+  - baremetal ha deployment
+  - long duration test **<addme>**
+
+CI Loops and Confidence Levels Used by XCI for the Test Projects
+================================================================
+
+TBD
