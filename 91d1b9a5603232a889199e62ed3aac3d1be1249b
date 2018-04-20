@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_e7bcbb08",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5807
+      },
+      "writtenOn": "2018-04-20T20:08:23Z",
+      "side": 1,
+      "message": "Add definition for \"artifact\" and \"composition\" and provide examples (as used in CL section)\njust guessing examples:\nartifact: specific installer version, specific openstack release., specific..\ncomposition: all software that make up a scenario\n\nor maybe simpler to say that an artifact can be itself composed of many individual artifacts (\u003dcomposition)\n\nI guess it is implicit that test tools that make up the CI loops (e.g. functest) cannot qualify themselves as artifacts for the CI flow?",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_273a2399",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5807
+      },
+      "writtenOn": "2018-04-20T20:08:23Z",
+      "side": 1,
+      "message": "Define what \"feedback\" can contain, is it a simple pass/fail or a gauge? logs?\nAlso the purpose of a CI loops would be to run on a composition to test/qualify it.",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c7b9bf16",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5807
+      },
+      "writtenOn": "2018-04-20T20:08:23Z",
+      "side": 1,
+      "message": "or gerrit events.",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_073f2789",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5807
+      },
+      "writtenOn": "2018-04-20T20:08:23Z",
+      "side": 1,
+      "message": "linking different CI loops? Or can it be more than just loops?\nI guess these loops run are serialized for any given artifact?\nIs the order important and consistent across runs?\nAlso describe what is the output of a CI Flow - I guess it would be a list of CI loop \"feedbacks\"\nHow is a CI Flow triggered and how is that trigger related to the trigger of individual CI loops that compose it? Does it override them?",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c7509fd6",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5807
+      },
+      "writtenOn": "2018-04-20T20:08:23Z",
+      "side": 1,
+      "message": "are there valid values for CL?\nname: is arbitrary?\nvalues: success/fail?\n\nMight also note that some artifacts might have a collection of \"good\" and \"bad\" CLs on the same CI run.",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e76afb7f",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 5807
+      },
+      "writtenOn": "2018-04-20T20:08:23Z",
+      "side": 1,
+      "message": "Can you explain how you would raise the bar in practice? Will that entail using a new version of a CI loop with tougher pass criteria?",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_87717778",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5807
+      },
+      "writtenOn": "2018-04-20T20:08:23Z",
+      "side": 1,
+      "message": "Another orthogonal can of worms is how do you upgrade your CI Loops themselves without \"breaking\" your current set of CLs? E.g. how do you know the latest and greates functest version isn\u0027t going to cause issues with current CLs and promotion criterias.\n\nAny change in CI loop version and promotion criteria  might cause upgrades of downgrades of previously qualified artifacts.",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
