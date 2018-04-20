@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_a46ab1b0",
+        "filename": "xci/files/install-lib.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-20T10:18:10Z",
+      "side": 1,
+      "message": "I think we already have too many variables in releng-xci/xci/config/env-vars but I think this is a candidate to be pinned there rather than hardcoding in script directly - if possible.",
+      "range": {
+        "startLine": 137,
+        "startChar": 34,
+        "endLine": 137,
+        "endChar": 39
+      },
+      "revId": "71d3c3750c89820c9e759b5f00b403a19836d77a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
