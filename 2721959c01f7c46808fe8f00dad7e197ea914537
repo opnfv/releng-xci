@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_a4a591a3",
+        "filename": "xci/scripts/snapshotting/osa/after_import_hook.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-04-20T13:00:55Z",
+      "side": 1,
+      "message": "I can see it working for os-odl-bgpvpn scenario. Let me know if you are okay with executing post hooks after the import.\nPlease show some mercy on reviewing this code.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 27
+      },
+      "revId": "2721959c01f7c46808fe8f00dad7e197ea914537",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
