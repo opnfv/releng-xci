@@ -112,7 +112,99 @@ Based on the content/scope of the loops, time to run them can vary; from minutes
 to hours, and sometimes days and time it takes to run them is another factor to
 be taken into accout while constructing loops and setting the scope for them.
 
-Setting the Promotion Criterias for the Scenarios
-=================================================
+CI Loops and Confidence Levels Used by XCI for the Scenarios
+============================================================
 
-TBD
+XCI will have various CI Loops to ensure the development done by the OPNFV
+projects are verified properly and feedback that is fit for purpose is provided
+to them in a timely manner.
+
+The CI Loops XCI uses, what they test, and the Confidence Levels applied by them
+can be seen from the table below.
+
++------------+------------------------------------+--------------------------------------+
+| CI Loop    | Tests                              | Confidence Level Applied by the Loop |
++============+====================================+======================================+
+| verify     | | open patches                     || N/A                                 |
++------------+------------------------------------+--------------------------------------+
+| post-merge | | merged changes                   || merge                               |
++------------+------------------------------------+--------------------------------------+
+| daily      | | scenarios promoted by merge loop || daily                               |
++------------+------------------------------------+--------------------------------------+
+| weekly     | | scenarios promoted by daily loop || weekly                              |
++------------+------------------------------------+--------------------------------------+
+
+Please note that not all these CI Loops are available at this point in time and
+they will be activated as soon as they become available.
+
+In the following chapters, what each of these loops do is explained in more
+details.
+
+verify
+------
+
+The changes and subsequent patches are tested by this loop using the criteria
+this loop expects patches to fulfil.
+
+The changes that get Verified+1 from this loop is deemed to be good and can be
+merged to master if there is sufficient +2 votes from the corresponding project
+committers.
+
+There is no specific Confidence Level(CL) applied by this loop as the changes
+that get merged to master gains the CL naturally by landing to master.
+
+post-merge
+----------
+
+The changes that are merged to master are tested by this loop using the criteria
+this loop expects merged changes to fulfil.
+
+The scenarios that are successfully verified by this loop get stamped with the
+CL **"merge": "SUCCESS"** and become candidates for next loop in CI Flow, which
+is **daily**.
+
+The metadata of the scenario that passes this loop gets stored on
+`OPNFV Artifact Repository <http://artifacts.opnfv.org/xci.html>`_ in **merge**
+folder and the next loop looks for and fetches from there.
+
+The scenario is also displayed on **merge** column on
+`XCI Dashboard <http://129.192.69.214/xci.php>`_ for projects to see what is
+happening with their scenario at any given time.
+
+daily
+-----
+
+The scenarios that were promoted by **post-merge** loop are candidates for this
+loop to pick and test against the criteria this loop expects selected candidates
+to fulfil.
+
+The scenarios that are successfully verified by this loop get stamped with the
+CL **"daily": "SUCCESS"** and become candidates for next loop in CI Flow, which
+is **weekly**.
+
+The metadata of the scenario that passes this loop gets stored on
+`OPNFV Artifact Repository <http://artifacts.opnfv.org/xci.html>`_ in **daily**
+folder and the next loop looks for and fetches from there.
+
+The scenario is also displayed on **daily** column on
+`XCI Dashboard <http://129.192.69.214/xci.php>`_ for projects to see what is
+happening with their scenario at any given time.
+
+weekly
+------
+
+The scenarios that were promoted by **daily** loop are candidates for this loop
+to pick and test against the criteria this loop expects selected candidates
+to fulfil.
+
+The scenarios that are successfully verified by this loop get stamped with the
+CL **"weekly": "SUCCESS"**. This CL could essentially become the CL the release
+candidates are expected to have in future.
+
+The metadata of the scenario that passes this loop gets stored on
+`OPNFV Artifact Repository <http://artifacts.opnfv.org/xci.html>`_ in **weekly**
+folder and the next loop looks for and fetches from there.
+
+The scenario is also displayed on **weekly** column on
+`XCI Dashboard <http://129.192.69.214/xci.php>`_ for projects to see what is
+happening with their scenario at any given time.
