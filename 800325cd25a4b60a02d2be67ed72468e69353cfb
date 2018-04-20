@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_e40159b0",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-20T12:22:04Z",
+      "side": 1,
+      "message": "this is no pinning since the version is being determined dynamically",
+      "range": {
+        "startLine": 54,
+        "startChar": 6,
+        "endLine": 54,
+        "endChar": 30
+      },
+      "revId": "800325cd25a4b60a02d2be67ed72468e69353cfb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_84f855c4",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-20T12:22:04Z",
+      "side": 1,
+      "message": "this is no real pinning",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 186
+      },
+      "revId": "800325cd25a4b60a02d2be67ed72468e69353cfb",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
