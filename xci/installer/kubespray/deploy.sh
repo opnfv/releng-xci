@@ -46,6 +46,7 @@ echo "Info: Configured localhost for kubespray"
 echo "Info: Configuring opnfv deployment host for kubespray"
 echo "-----------------------------------------------------------------------"
 cd $K8_XCI_PLAYBOOKS
+ansible-galaxy install -r ${XCI_PATH}/xci/files/requirements.yml -p $HOME/.ansible/roles
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -e XCI_PATH="${XCI_PATH}" \
         -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory/inventory.cfg \
         configure-opnfvhost.yml
