@@ -11,7 +11,7 @@
   vars_files:
     - "{{ xci_path }}/xci/var/opnfv.yml"
 
-  tasks:
+  pre_tasks:
     - name: Load distribution variables
       include_vars:
         file: "{{ item }}"
@@ -23,6 +23,11 @@
         remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/installer/{{ installer_type }}/files/{{ xci_flavor }}"
         remote_xci_playbooks: "{{ ansible_env.HOME }}/releng-xci/xci/playbooks"
 
+  roles:
+    - role: bootstrap-host
+      configure_network: xci_flavor != 'aio'
+
+  tasks:
     - name: Copy releng-xci to remote host
       synchronize:
         src: "{{ xci_path }}/"

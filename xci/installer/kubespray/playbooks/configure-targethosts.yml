@@ -1,6 +1,19 @@
 ---
 - hosts: k8s-cluster
   remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: "{{ item }}"
+      with_items:
+        - "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
+
+  roles:
+    - role: bootstrap-host
+
   tasks:
     - name: Manage SSH keys
       include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssh-keys.yml"
