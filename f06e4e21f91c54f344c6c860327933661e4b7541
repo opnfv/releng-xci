@@ -105,6 +105,98 @@
       "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_fa0bb28b",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T21:05:51Z",
+      "side": 1,
+      "message": "run basic ODL robot tests [1] as part of verify (and every following loop)\n\n[1] http://docs.opnfv.org/en/stable-fraser/submodules/functest/docs/testing/user/userguide/test_details.html#opendaylight",
+      "range": {
+        "startLine": 334,
+        "startChar": 5,
+        "endLine": 334,
+        "endChar": 8
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5afd866d",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T21:05:51Z",
+      "side": 1,
+      "message": "run basic ODL robot tests [1] as part of verify (and every following loop)\n\n[1] http://docs.opnfv.org/en/stable-fraser/submodules/functest/docs/testing/user/userguide/test_details.html#opendaylight",
+      "range": {
+        "startLine": 350,
+        "startChar": 5,
+        "endLine": 350,
+        "endChar": 8
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_3a023a6f",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T21:05:51Z",
+      "side": 1,
+      "message": "run basic ODL robot tests [1] as part of verify (and every following loop)\n\n[1] http://docs.opnfv.org/en/stable-fraser/submodules/functest/docs/testing/user/userguide/test_details.html#opendaylight",
+      "range": {
+        "startLine": 366,
+        "startChar": 5,
+        "endLine": 366,
+        "endChar": 8
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_7af7a28b",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T21:05:51Z",
+      "side": 1,
+      "message": "*basic* feature/scenario-specific tests, i.e. specific BGPVPN tests, should be run already during verify, otherwise a merged patch can break a feature entirely.\n\nA potential consequence of this is that the current BGPVPN test suite, which comprises multiple tests, needs to be split up into basic and more advanced tests - each of which needs to be \"callable\" as a Functest test suite.\n\nThis might actually be a general aspect to consider: which level of granularity is needed and do we need to split existing test suites?",
+      "range": {
+        "startLine": 366,
+        "startChar": 9,
+        "endLine": 366,
+        "endChar": 15
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
