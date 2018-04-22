@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_faa8d28e",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-22T20:16:16Z",
+      "side": 1,
+      "message": "I think what you proposed is pretty inline with what this document uses in general;\n\n    an artifact can be itself composed of many individual artifacts (\u003dcomposition)\n\nA composition represents set of source, artifact and documentation items so in the end it is not wrong to use artifact and composition interchangeably since a composition can  be very simple, consisting of a single item, or very large, containing any number of items when compositions are nested.\n\nIn our case, our scenarios are compositions of various components such as OpenStack and OpenDaylight. They are also compositions of what those projects develop/deliver.\n\nAbout the tools; they are also artifacts if we look at test project pipelines; test projects produce artifacts in different forms and types such as docker images which should essentially go through their own CI pipelines in order to be qualified to be used in pipelines for OPNFV scenarios. OPNFV scenarios can then be used to form the environment which consists of other compositions such as what test projects develop/deliver. The important thing here is to ensure the compositions are tested against other compositions\u0027 verified versions.",
+      "parentUuid": "5a3f45e8_e7bcbb08",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_273a2399",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-04-20T20:08:23Z",
       "side": 1,
       "message": "Define what \"feedback\" can contain, is it a simple pass/fail or a gauge? logs?\nAlso the purpose of a CI loops would be to run on a composition to test/qualify it.",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_9a970e48",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-22T20:16:16Z",
+      "side": 1,
+      "message": "There are various levels of feedback; the most basic one is to state what happened to a certain version of artifact/composition in the loops we have; SUCCESS/FAIL.\n\nFurther information/feedback can and will be provided which can be in the form of logs and so on.",
+      "parentUuid": "5a3f45e8_273a2399",
       "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_9aa54ea4",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-22T20:16:16Z",
+      "side": 1,
+      "message": "or events emitted by the other CI loops or even by upstream.",
+      "parentUuid": "5a3f45e8_c7b9bf16",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_073f2789",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2018-04-20T20:08:23Z",
       "side": 1,
       "message": "linking different CI loops? Or can it be more than just loops?\nI guess these loops run are serialized for any given artifact?\nIs the order important and consistent across runs?\nAlso describe what is the output of a CI Flow - I guess it would be a list of CI loop \"feedbacks\"\nHow is a CI Flow triggered and how is that trigger related to the trigger of individual CI loops that compose it? Does it override them?",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_da9d1668",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-22T20:16:16Z",
+      "side": 1,
+      "message": "Currently CI Flow is constructed by linking the loops in CI. \n\nThe loops are run in serialized manner but not for any given artifact. The further loops are available only for the artifacts that were qualified/deemed to be good by the preceding loops in CI Flow. For example, if a version of an artifact fails to pass post-merge loop, it simply gets discarded and not carried over to the next loop, which is daily in this example.\n\nOrder is important since we only want to bring the artifacts with the right level of confidence into the next loop that is worth testing on that level. Artifacts can\u0027t skip loops.\n\nThe output of a loop is the Confidence Level (quality stamp) that loop applies on the tested version of the artifact and the corresponding feedback in the form of simple SUCCESS/FAIL and any accompanying logs. The output of a CI Flow could be weekly \"stable\" releases or candidates for official release depending on the quality level reached.\n\nAnything that results in the triggering of the post-merge loop is also the trigger for the CI flow. An important thing to highlight here is that not all versions of all artifacts can go till the end of the CI Flow if they fail anywhere.\n\nIn future, a CI Flow can also be triggered by upstream as well such as OpenDaylight when we establish promotion from ODL to OPNFV. ODL can make an artifact available via their autorelease which triggers \"acceptance test\" in OPNFV CI and that version gets included in the new version of os-odl-nofeature scenarios for example which in turn gets tested by daily and weekly loops in OPNFV.",
+      "parentUuid": "5a3f45e8_073f2789",
       "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_ba9aca6b",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-22T20:16:16Z",
+      "side": 1,
+      "message": "The current thinking is to use below keys for confidence levels\n\n    merge\n    daily\n    weekly\n\nwhich match to the loop names. By the way, these are just made up names based on what we have today. The values are simple status codes; SUCCESS and FAILURE which is also used by Jenkins.\n\nIn perfect world, the artifacts should be composed using only the \"good\" CLs.",
+      "parentUuid": "5a3f45e8_c7509fd6",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_e76afb7f",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_5a8106fa",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-22T20:16:16Z",
+      "side": 1,
+      "message": "Something like that.\n\nAs explained in the text, we need to ensure we test right things by keeping an eye on what feedback we get. \n\nIf we always get succesful completions, it might be time to employ tougher pass criteria since the quality is so high than what it was before when the criteria was first set. The opposite is possible as well; if things always fail, we need to loosen the criteria a bit.",
+      "parentUuid": "5a3f45e8_e76afb7f",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_87717778",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -115,6 +223,24 @@
       "writtenOn": "2018-04-20T20:08:23Z",
       "side": 1,
       "message": "Another orthogonal can of worms is how do you upgrade your CI Loops themselves without \"breaking\" your current set of CLs? E.g. how do you know the latest and greates functest version isn\u0027t going to cause issues with current CLs and promotion criterias.\n\nAny change in CI loop version and promotion criteria  might cause upgrades of downgrades of previously qualified artifacts.",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_3a9d1a5a",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-22T20:16:16Z",
+      "side": 1,
+      "message": "The test projects should also employ mechanisms to qualify their artifacts. What we have been doing in OPNFV is total opposite of this; we always take the latest of everything; OPNFV scneario, latest versions of test frameworks, latest versions of test cases, infra, etc. Similar mechanism is needed for test projects and OPNFV scenarios should only be tested by qualified versions of test project deliverables. For example, the daily loop for OPNFV scenarios should use the test project deliverables with CL \"daily\": \"SUCCESS\".\n\nDemotion is also possible but this is something we need to think and trial further. Another case for this is the version bump of one of the components in a promoted scenario; will we demote it if it fails or apply it from that point onwards for the scenarios that are created by the use of that version.",
+      "parentUuid": "5a3f45e8_87717778",
       "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
