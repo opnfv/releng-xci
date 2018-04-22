@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_bae2ca2c",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-22T14:29:00Z",
+      "side": 1,
+      "message": "Yes, it parses text files that keep scenario metadata from artifact repo. It is a temporary solution to demonstrate the idea about what kind of a dashboard we could use.\n\nThe idea with this dashboard is to show things on a very high level on purpose with the possibility of clicking and going down further to see the details of each phase.",
+      "parentUuid": "5a3f45e8_faf0d2ff",
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_ba8bea66",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2018-04-22T08:56:02Z",
       "side": 1,
       "message": "Healthcheck is worse than OpenStack Gating criteria (master). I would have fixed this decrease.\n\nBy the way, CI_LOOP will be removed from Functest testcases.yaml. It\u0027s releng specific.",
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_1ad3fe60",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-22T14:29:00Z",
+      "side": 1,
+      "message": "The idea to ask for feedback from the wider community is exactly that; we need to hear what people/different projects/release management think we should apply for gating in order to settle on criterias.\n\nFor some, the criteria might be too easy to fulfill and for the others it might be very difficult depending on where they are in project lifecycle or what kind of compositions they are creating. Another expectation from people is to provide alternatives so it would be good if you could share your perspective and say what should be run for gating rather than just saying this is worse than what OpenStack does.\n\nAbout CI_LOOP; apart from settling on the criterias we are using, we are also working on establishing a common terminology across different projects. The reason for this is that we currently do not have a shared vocabulary between the projects and it is important to settle on that as well so when we talk about things, we all can understand each other. Second part of it is to reflect that vocabulary to what we do in CI. The wording chosen here is based on what we already have and it could be called whatever; CI_LOOP, CI_PIPELINE, etc, etc but the actual thing here is to collect/name the activities we are doing in different stages we have in CI in common way. Functest and releng are the 2 projects within 10+ and we need to hear from all the projects that take part in this exercise rather than taking project specific decisions.",
+      "parentUuid": "5a3f45e8_ba8bea66",
       "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
