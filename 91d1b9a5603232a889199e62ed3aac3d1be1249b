@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a3f45e8_1a8bfe1f",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T20:24:22Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 11,
+        "startChar": 14,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_fa8f3228",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T20:24:22Z",
+      "side": 1,
+      "message": "XCI",
+      "range": {
+        "startLine": 21,
+        "startChar": 75,
+        "endLine": 21,
+        "endChar": 78
+      },
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_e7bcbb08",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -142,6 +188,52 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_daab5673",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T20:24:22Z",
+      "side": 1,
+      "message": "Defining a term by using the very same term does not work. How about just using the term \"quality stamp\":\nA Confidence Level(CL) is a simple key value pair indicating a\nquality stamp.",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 16
+      },
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_baa80a78",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T20:24:22Z",
+      "side": 1,
+      "message": "remove (?)",
+      "range": {
+        "startLine": 62,
+        "startChar": 72,
+        "endLine": 63,
+        "endChar": 18
+      },
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_c7509fd6",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -171,6 +263,29 @@
       "side": 1,
       "message": "The current thinking is to use below keys for confidence levels\n\n    merge\n    daily\n    weekly\n\nwhich match to the loop names. By the way, these are just made up names based on what we have today. The values are simple status codes; SUCCESS and FAILURE which is also used by Jenkins.\n\nIn perfect world, the artifacts should be composed using only the \"good\" CLs.",
       "parentUuid": "5a3f45e8_c7509fd6",
+      "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_fabd72b8",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T20:24:22Z",
+      "side": 1,
+      "message": "are used",
+      "range": {
+        "startLine": 80,
+        "startChar": 22,
+        "endLine": 80,
+        "endChar": 26
+      },
       "revId": "91d1b9a5603232a889199e62ed3aac3d1be1249b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
