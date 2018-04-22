@@ -48,6 +48,75 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_3aeb5ab1",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T20:39:38Z",
+      "side": 1,
+      "message": "shouldn\u0027t this actually refer to the artifacts which comprise a scenario? Maybe just word-smithing.",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 13
+      },
+      "revId": "4b73f808c498860aa249987573c54eef839e4cee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_fae452e2",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T20:39:38Z",
+      "side": 1,
+      "message": "for completeness, you can also describe the failure case in one sentence:\n\"Scenarios/artifacts which fail verification in this loop get stamped \"merge\":\"FAILURE\" and are discarded as candidates for the next loop.\"",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 13
+      },
+      "revId": "4b73f808c498860aa249987573c54eef839e4cee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_dad99623",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T20:39:38Z",
+      "side": 1,
+      "message": "it might be interesting for this document to fully list/describe the metadata",
+      "range": {
+        "startLine": 166,
+        "startChar": 3,
+        "endLine": 166,
+        "endChar": 28
+      },
+      "revId": "4b73f808c498860aa249987573c54eef839e4cee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_c4e09d98",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -64,6 +133,46 @@
         "startChar": 3,
         "endLine": 179,
         "endChar": 9
+      },
+      "revId": "4b73f808c498860aa249987573c54eef839e4cee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_7ad042f6",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T20:39:38Z",
+      "side": 1,
+      "message": "same as above: describe failure case.",
+      "revId": "4b73f808c498860aa249987573c54eef839e4cee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_bad64aef",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2018-04-22T20:39:38Z",
+      "side": 1,
+      "message": "dito",
+      "range": {
+        "startLine": 185,
+        "startChar": 4,
+        "endLine": 185,
+        "endChar": 12
       },
       "revId": "4b73f808c498860aa249987573c54eef839e4cee",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
