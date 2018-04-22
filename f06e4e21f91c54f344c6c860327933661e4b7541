@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_da8eb678",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2018-04-22T08:56:02Z",
+      "side": 1,
+      "message": "Is 129.192.69.214 reachable?",
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_ba8bea66",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 3405
+      },
+      "writtenOn": "2018-04-22T08:56:02Z",
+      "side": 1,
+      "message": "Healthcheck is worse than OpenStack Gating criteria (master). I would have fixed this decrease.\n\nBy the way, CI_LOOP will be removed from Functest testcases.yaml. It\u0027s releng specific.",
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
