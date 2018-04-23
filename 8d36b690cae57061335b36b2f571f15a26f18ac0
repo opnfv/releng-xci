@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_ba492ab9",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 833
+      },
+      "writtenOn": "2018-04-23T00:56:20Z",
+      "side": 1,
+      "message": "delele \"will\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 62,
+        "endLine": 21,
+        "endChar": 66
+      },
+      "revId": "8d36b690cae57061335b36b2f571f15a26f18ac0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_da4cf6ca",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 833
+      },
+      "writtenOn": "2018-04-23T00:56:20Z",
+      "side": 1,
+      "message": "I guess there should be \"accompanied\"",
+      "range": {
+        "startLine": 25,
+        "startChar": 42,
+        "endLine": 25,
+        "endChar": 54
+      },
+      "revId": "8d36b690cae57061335b36b2f571f15a26f18ac0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_1acade1a",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 833
+      },
+      "writtenOn": "2018-04-23T00:56:20Z",
+      "side": 1,
+      "message": "not clear why test suites are artifacts.",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 44,
+        "endChar": 13
+      },
+      "revId": "8d36b690cae57061335b36b2f571f15a26f18ac0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
