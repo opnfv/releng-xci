@@ -134,6 +134,7 @@ function install_ansible() {
     set -u
 
     # We are inside the virtualenv now so we should be good to use pip and python from it.
+    pip -q install --upgrade pip==9.0.3 # We need a version which supports the '-c' parameter
     pip -q install --upgrade -c $uc ara virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION ansible-lint==3.4.21
 
     ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
