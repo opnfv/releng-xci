@@ -22,6 +22,30 @@
       "revId": "d412843b8e26afea25e2a1e4bc6d4c48fb748531",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_7df83cc3",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-04-23T07:45:51Z",
+      "side": 1,
+      "message": "I don\u0027t understand. If you change something in xci/scenarios then the first \u0027source\u0027 will succeed and because of || the second one will not be executed. So nothing gets overridden.",
+      "parentUuid": "5a3f45e8_baf76a58",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 95
+      },
+      "revId": "d412843b8e26afea25e2a1e4bc6d4c48fb748531",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
