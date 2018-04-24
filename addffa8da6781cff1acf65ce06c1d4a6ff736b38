@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_116ac080",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-04-24T23:13:18Z",
+      "side": 1,
+      "message": "So did you mean to modify any of these files(https://git.opnfv.org/releng/tree/jjb/xci) to avoid any break before accepting this patch right?",
+      "parentUuid": "5a3f45e8_29ca166e",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 16
+      },
+      "revId": "addffa8da6781cff1acf65ce06c1d4a6ff736b38",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_89c9aa7a",
         "filename": "xci/playbooks/roles/bootstrap-host/templates/kolla/debian/opnfv.interface.j2",
         "patchSetId": 9
@@ -36,6 +60,24 @@
       "writtenOn": "2018-04-09T20:51:54Z",
       "side": 1,
       "message": "can you ensure you fix the directory structure properly?\n\nin the root folder, you have the distros and then you add kolla folder there next to the distros. it is better to adjust the structure so we know what is what.",
+      "revId": "addffa8da6781cff1acf65ce06c1d4a6ff736b38",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f16634ba",
+        "filename": "xci/playbooks/roles/bootstrap-host/templates/kolla/debian/opnfv.interface.j2",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-04-24T23:13:18Z",
+      "side": 1,
+      "message": "Agree, this patch was created on top of this other[1]. The main problem is that Kolla can\u0027t use underscores as bridge names, so it\u0027s better to provide separate network configuration.\n\n[1] https://gerrit.opnfv.org/gerrit/#/c/52841/",
+      "parentUuid": "5a3f45e8_89c9aa7a",
       "revId": "addffa8da6781cff1acf65ce06c1d4a6ff736b38",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
