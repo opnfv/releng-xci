@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_ba1beac8",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-24T08:52:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_44d5adb7",
+      "range": {
+        "startLine": 147,
+        "startChar": 29,
+        "endLine": 147,
+        "endChar": 35
+      },
+      "revId": "4b73f808c498860aa249987573c54eef839e4cee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_84da15e6",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2018-04-20T15:19:25Z",
       "side": 1,
       "message": "ditto: line 147.",
+      "range": {
+        "startLine": 160,
+        "startChar": 36,
+        "endLine": 160,
+        "endChar": 42
+      },
+      "revId": "4b73f808c498860aa249987573c54eef839e4cee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_7a25e207",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-24T08:52:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_84da15e6",
       "range": {
         "startLine": 160,
         "startChar": 36,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_9a28aee3",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-24T08:52:12Z",
+      "side": 1,
+      "message": "it could perhaps be renamed to compositions but again this chapter talks about scenario testing so instead of using terms, the use of word \"scenario\" might be more proper to explicitly state what we actually test and qualify.",
+      "parentUuid": "5a3f45e8_3aeb5ab1",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 13
+      },
+      "revId": "4b73f808c498860aa249987573c54eef839e4cee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_fae452e2",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_da1eb6ba",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-24T08:52:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a3f45e8_fae452e2",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 13
+      },
+      "revId": "4b73f808c498860aa249987573c54eef839e4cee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_dad99623",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2018-04-22T20:39:38Z",
       "side": 1,
       "message": "it might be interesting for this document to fully list/describe the metadata",
+      "range": {
+        "startLine": 166,
+        "startChar": 3,
+        "endLine": 166,
+        "endChar": 28
+      },
+      "revId": "4b73f808c498860aa249987573c54eef839e4cee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5a82a6c8",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-24T08:52:12Z",
+      "side": 1,
+      "message": "Good idea. Will do that in a separate change since I\u0027m not sure where to place that.",
+      "parentUuid": "5a3f45e8_dad99623",
       "range": {
         "startLine": 166,
         "startChar": 3,
