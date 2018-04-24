@@ -1,4 +1,3 @@
-=====================
 How to deploy bifrost
 =====================
 The scripts and playbooks defined on this repo, need to be combined with proper `Bifrost <http://git.openstack.org/cgit/openstack/bifrost>`_ code.
