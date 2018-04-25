@@ -1,0 +1,412 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_d7cb2851",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "I\u0027ll add more related comments to the spec itself but can we make this a bit more generalized and say something like \"spec: PDF/IDF support\"? This can in turn have subsections like initial work needed to enable PDF/IDF on virtual deployments followed by baremetal ones?",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f7be24ad",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "XCI PDF/IDF Support",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_17c2b033",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "adapt XCI to use PDF/IDF which will be used for virtual and baremetal deployments",
+      "range": {
+        "startLine": 5,
+        "startChar": 42,
+        "endLine": 5,
+        "endChar": 76
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_37e40ce0",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "would be good to have virtual deployment as one of the items in the list.",
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_97e520de",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "Descriptor",
+      "range": {
+        "startLine": 12,
+        "startChar": 11,
+        "endLine": 12,
+        "endChar": 22
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_77ea14ad",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "pyscial or virtual machines",
+      "range": {
+        "startLine": 13,
+        "startChar": 12,
+        "endLine": 13,
+        "endChar": 28
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d7d208ff",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "Descriptor",
+      "range": {
+        "startLine": 17,
+        "startChar": 17,
+        "endLine": 17,
+        "endChar": 28
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b7cf7c55",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "XCI supports virtualized deployments only.",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 49
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_17d91022",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "on",
+      "range": {
+        "startLine": 26,
+        "startChar": 44,
+        "endLine": 26,
+        "endChar": 46
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d7f96881",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "lab or production environments",
+      "range": {
+        "startLine": 28,
+        "startChar": 24,
+        "endLine": 28,
+        "endChar": 47
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5706f886",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "I think this is not needed since you already mentioned the limitation above by saying \"baremetal is the preferred way to deploy NFV platform\" in lab or production environments.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 23
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_b7f65c8d",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "the infra manager should prepare the infrastructure for XCI to drive the deployment towards which could consist of set of virtual or baremetal nodes.\n\nI see this as 3 step process\n- creation of virtual nodes or using already available baremetal nodes (for virtual nodes, we libvirt can do that separately)\n- provisioning of nodes no matter if they are virtual or baremetal (bifrost)\n- getting the scenario on the provisioned nodes (osa/kubespray for the timebeing)\n\nand all these 3 are driven/utilized by the XCI framework",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 14
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_17f0f08f",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "The infra_manager tool will consume the IDF/PDF files describing the infrastructure as input and it will use\n* \u003cyet-to-be-created-tool\u003e to create VMs using the metadata from PDF/IDF in case of virtual deployment\n* bifrost to provision the the nodes",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f7ec64bd",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "this can be ignored",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_572d58fd",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "this is probably the \u003cyet-to-be-created-tool\u003e mentioned above. this script should use the vm specs from pdf to create those vms. in case of virtual, it will create all of the vms. in case of baremetal, only opnfv vm.",
+      "range": {
+        "startLine": 70,
+        "startChar": 40,
+        "endLine": 70,
+        "endChar": 58
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_f743c4ac",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "provisions the nodes",
+      "range": {
+        "startLine": 72,
+        "startChar": 25,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_37324c5f",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "should this be renamed to provision-nodes.sh?",
+      "range": {
+        "startLine": 73,
+        "startChar": 40,
+        "endLine": 73,
+        "endChar": 55
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5714389f",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-25T15:35:09Z",
+      "side": 1,
+      "message": "this is probably not me since I\u0027m not known as a nice person.",
+      "range": {
+        "startLine": 95,
+        "startChar": 24,
+        "endLine": 95,
+        "endChar": 34
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
