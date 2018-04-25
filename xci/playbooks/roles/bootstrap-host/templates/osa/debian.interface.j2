@@ -1,0 +1,28 @@
+# {{ ansible_managed }}
+
+# Physical interface
+{% if item.bridge_ports is not defined %}
+auto {{ item.name }}
+iface {{ item.name }} inet manual
+{% if item.vlan_id is defined %}
+    vlan-raw-device {{ item.name|replace('.' ~ item.vlan_id, '') }}
+{% endif %}
+
+{% else %}
+auto {{ item.name }}
+iface {{ item.name }} inet static
+    bridge_stp off
+    bridge_waitport 0
+    bridge_fd 0
+    bridge_ports {{ ansible_local.xci.network.xci_interface }}
+{% if item.ip is defined %}
+    address {{ item.ip }}
+{% endif %}
+{% if item.prefix is defined %}
+    netmask {{ item.prefix }}
+{% endif %}
+{% if item.gateway is defined %}
+    gateway {{ item.gateway }}
+{% endif %}
+
+{% endif %}
