@@ -1,0 +1,45 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 SUSE LINUX GmbH.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+- name: "Configure networking on {{ inventory_hostname }}"
+  template:
+    src: "{{ installer_type }}/{{ ansible_os_family | lower }}.interface.j2"
+    dest: "/etc/sysconfig/network/ifcfg-{{ item.name }}"
+  with_items:
+    - { name: "{{ ansible_local.xci.network.xci_interface }}" }
+    - { name: "{{ ansible_local.xci.network.xci_interface }}.10", vlan_id: 10 }
+    - { name: "{{ ansible_local.xci.network.xci_interface }}.30", vlan_id: 30 }
+    - { name: "{{ ansible_local.xci.network.xci_interface }}.20", vlan_id: 20 }
+    - { name: "br-mgmt", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.10", ip: "{{ host_info[inventory_hostname].MGMT_IP }}/22" }
+    - { name: "br-vxlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.30", ip: "{{ host_info[inventory_hostname].VXLAN_IP }}/22" }
+    - { name: "br-vlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}", ip: "{{ host_info[inventory_hostname].VLAN_IP }}/24" }
+    - { name: "br-storage", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.20", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}/22" }
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Add postup/postdown scripts on SUSE
+  copy:
+    src: "network-config-suse"
+    dest: "/etc/sysconfig/network/scripts/network-config-suse"
+    mode: 0755
+
+- name: Configure routes on SUSE
+  template:
+    src: "{{ installer_type }}/{{ ansible_os_family | lower }}.routes.j2"
+    dest: "/etc/sysconfig/network/ifroute-{{ item.name }}"
+  with_items:
+    - { name: "br-vlan", gateway: "192.168.122.1", route: "default" }
+
+- name: restart network service
+  service:
+    name: network
+    state: restarted
+  async: 15
+  poll: 0
