@@ -1,0 +1,35 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 SUSE LINUX GmbH.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+- name: "Configure networking on {{ inventory_hostname }}"
+  template:
+    src: "{{ installer_type }}/{{ ansible_os_family | lower }}.ifcfg.j2"
+    dest: "/etc/sysconfig/network-scripts/ifcfg-{{ item.name }}"
+  with_items:
+    - { name: "{{ ansible_local.xci.network.xci_interface }}"   , bridge: "br-vlan"                 }
+    - { name: "{{ ansible_local.xci.network.xci_interface }}.10", bridge: "br-mgmt"   , vlan_id: 10 }
+    - { name: "{{ ansible_local.xci.network.xci_interface }}.20", bridge: "br-storage", vlan_id: 20 }
+    - { name: "{{ ansible_local.xci.network.xci_interface }}.30", bridge: "br-vxlan"  , vlan_id: 30 }
+    - { name: "br-vlan"   , ip: "{{ host_info[inventory_hostname].VLAN_IP }}",    prefix: 24 }
+    - { name: "br-mgmt"   , ip: "{{ host_info[inventory_hostname].MGMT_IP }}",    prefix: 22 }
+    - { name: "br-storage", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}", prefix: 22 }
+    - { name: "br-vxlan"  , ip: "{{ host_info[inventory_hostname].VXLAN_IP }}",   prefix: 22 }
+
+- name: Add default route through br-vlan
+  lineinfile:
+    path: "/etc/sysconfig/network-scripts/ifcfg-br-vlan"
+    line: "GATEWAY=192.168.122.1"
+
+- name: restart network service
+  service:
+    name: network
+    state: restarted
+  async: 15
+  poll: 0
