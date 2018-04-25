@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_c53feeb2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-25T20:54:31Z",
+      "side": 1,
+      "message": "Not sure if I understand... are you suggesting to divide the whole baremetal support into various specs (e.g. PDF/IDF support)? Or you mean calling the whole baremetal support: PDF/IDF support?",
+      "parentUuid": "5a3f45e8_d7cb2851",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_f7be24ad",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 2
