@@ -1,0 +1,58 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 SUSE LINUX GmbH.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+- name: configure modules
+  lineinfile:
+    dest: /etc/modules
+    state: present
+    create: yes
+    line: "8021q"
+
+- name: add modules
+  modprobe:
+    name: 8021q
+    state: present
+
+- name: ensure interfaces.d folder is empty
+  file:
+    state: "{{ item }}"
+    path: "/etc/network/interfaces.d"
+  with_items:
+    - absent
+    - directory
+
+- name: Ensure /etc/interfaces can source additional files
+  copy:
+    content: |
+      auto lo
+      iface lo inet loopback
+      source /etc/network/interfaces.d/*.cfg
+    dest: "/etc/network/interfaces"
+
+- name: "Configure networking for {{ inventory_hostname }}"
+  template:
+    src: "{{ installer_type }}/debian.interface.j2"
+    dest: "/etc/network/interfaces.d/{{ item.name }}.cfg"
+  with_items:
+    - { name: "{{ ansible_local.xci.network.xci_interface }}" }
+    - { name: "{{ ansible_local.xci.network.xci_interface }}.10", vlan_id: 10 }
+    - { name: "{{ ansible_local.xci.network.xci_interface }}.30", vlan_id: 30 }
+    - { name: "{{ ansible_local.xci.network.xci_interface }}.20", vlan_id: 20 }
+    - { name: "br-mgmt", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.10", ip: "{{ host_info[inventory_hostname].MGMT_IP }}", prefix: "255.255.252.0" }
+    - { name: "br-vxlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.30", ip: "{{ host_info[inventory_hostname].VXLAN_IP }}", prefix: "255.255.252.0" }
+    - { name: "br-vlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}", ip: "{{ host_info[inventory_hostname].VLAN_IP }}", prefix: "255.255.255.0", gateway: "192.168.122.1" }
+    - { name: "br-storage", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.20", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}", prefix: "255.255.252.0" }
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: restart network service
+  shell: "/sbin/ifconfig {{ ansible_local.xci.network.xci_interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
+  async: 15
+  poll: 0
