@@ -34,6 +34,7 @@ function install_ansible() {
         python
         venv
         wget
+        curl
     )
 
     source /etc/os-release || source /usr/lib/os-release
@@ -54,6 +55,7 @@ function install_ansible() {
             [python-devel]=python-devel
             [venv]=python-virtualenv
             [wget]=wget
+            [curl]=curl
         )
         EXTRA_PKG_DEPS=( python-xml )
         sudo zypper -n ref
@@ -81,6 +83,7 @@ function install_ansible() {
             [python-devel]=libpython-dev
             [venv]=python-virtualenv
             [wget]=wget
+            [curl]=curl
         )
         EXTRA_PKG_DEPS=( apt-utils )
         sudo apt-get update
@@ -103,6 +106,7 @@ function install_ansible() {
             [python-devel]=python-devel
             [venv]=python-virtualenv
             [wget]=wget
+            [curl]=curl
         )
         sudo $PKG_MANAGER updateinfo
         EXTRA_PKG_DEPS=( deltarpm )
