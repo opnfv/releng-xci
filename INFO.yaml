@@ -55,8 +55,3 @@ committers:
       email: 'periyasamy.palanisamy@ericsson.com'
       id: 'epalper'
       timezone: 'Europe/Aachen'
-    - name: 'David Blaisonneau'
-      company: 'Orange'
-      email: 'david.blaisonneau@orange.com'
-      id: 'David_Orange'
-      timezone: 'Europe/Paris'
