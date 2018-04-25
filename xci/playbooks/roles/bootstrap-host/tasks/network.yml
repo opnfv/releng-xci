@@ -70,7 +70,7 @@
         - directory
     - name: ensure interfaces file is updated
       template:
-        src: "{{ ansible_os_family | lower }}/{{ ansible_hostname }}.interface.j2"
+        src: "{{ installer_type }}/{{ ansible_os_family | lower }}/{{ ansible_hostname }}.interface.j2"
         dest: "/etc/network/interfaces"
     - name: restart network service
       shell: "/sbin/ifconfig {{ ansible_local.xci.network.xci_interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
@@ -81,7 +81,7 @@
 - block:
     - name: Configure networking on SUSE
       template:
-        src: "{{ ansible_os_family | lower }}/suse.interface.j2"
+        src: "{{ installer_type }}/{{ ansible_os_family | lower }}/suse.interface.j2"
         dest: "/etc/sysconfig/network/ifcfg-{{ item.name }}"
       with_items:
         - { name: "{{ ansible_local.xci.network.xci_interface }}" }
@@ -101,7 +101,7 @@
 
     - name: Configure routes on SUSE
       template:
-        src: "{{ ansible_os_family | lower }}/suse.routes.j2"
+        src: "{{ installer_type }}/{{ ansible_os_family | lower }}/suse.routes.j2"
         dest: "/etc/sysconfig/network/ifroute-{{ item.name }}"
       with_items:
         - { name: "br-vlan", gateway: "192.168.122.1", route: "default" }
@@ -116,7 +116,7 @@
 - block:
     - name: Configure networking on CentOS for interfaces
       template:
-        src: "{{ ansible_os_family | lower }}/interface.ifcfg.j2"
+        src: "{{ installer_type }}/{{ ansible_os_family | lower }}/interface.ifcfg.j2"
         dest: "/etc/sysconfig/network-scripts/ifcfg-{{ item.name }}"
       with_items:
         - { name: "{{ ansible_local.xci.network.xci_interface }}"   , bridge: "br-vlan"                 }
@@ -125,7 +125,7 @@
         - { name: "{{ ansible_local.xci.network.xci_interface }}.30", bridge: "br-vxlan"  , vlan_id: 30 }
     - name: Configure networking on CentOS for bridges
       template:
-        src: "{{ ansible_os_family | lower }}/bridge.ifcfg.j2"
+        src: "{{ installer_type }}/{{ ansible_os_family | lower }}/bridge.ifcfg.j2"
         dest: "/etc/sysconfig/network-scripts/ifcfg-{{ item.name }}"
       with_items:
         - { name: "br-vlan"   , ip: "{{ host_info[inventory_hostname].VLAN_IP }}",    prefix: 24 }
