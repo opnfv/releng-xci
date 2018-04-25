@@ -1,0 +1,22 @@
+DEVICE={{ item.name }}
+NM_CONTROLLED=no
+ONBOOT=yes
+BOOTPROTO=none
+{% if item.vlan_id is defined %}
+VLAN=yes
+ETHERDEVICE={{ ansible_local.xci.network.xci_interface }}
+VLAN_ID={{ item.vlan_id }}
+{% endif %}
+{% if item.bridge is not defined %}
+BRIDGE={{ item.bridge }}
+{% else %}
+TYPE=Bridge
+DELAY=0
+STP=off
+{% endif %}
+{% if item.ip is defined %}
+IPADDR={{ item.ip }}
+{% endif %}
+{% if item.prefix is defined %}
+PREFIX={{ item.prefix }}
+{% endif %}
