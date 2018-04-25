@@ -154,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_74b332e9",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-25T10:34:13Z",
+      "side": 1,
+      "message": "If ODL is running those tests on their side, we will be duplicating stuff. However, we might consume odl tarballs which were never tested. This is something which should be discussed in the ODL-XCI POC",
+      "parentUuid": "5a3f45e8_fa0bb28b",
+      "range": {
+        "startLine": 334,
+        "startChar": 5,
+        "endLine": 334,
+        "endChar": 8
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_5afd866d",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
@@ -170,6 +194,52 @@
         "startChar": 5,
         "endLine": 350,
         "endChar": 8
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_54df160d",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-25T10:34:13Z",
+      "side": 1,
+      "message": "We should test the SFC testcases. We currently have 4 of them but all are run consecutively when functest tests the SFC scenario. Same for daily",
+      "range": {
+        "startLine": 357,
+        "startChar": 13,
+        "endLine": 357,
+        "endChar": 62
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_d4cb2651",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-25T10:34:13Z",
+      "side": 1,
+      "message": "we currently have no yardstick testcases",
+      "range": {
+        "startLine": 361,
+        "startChar": 14,
+        "endLine": 361,
+        "endChar": 25
       },
       "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
