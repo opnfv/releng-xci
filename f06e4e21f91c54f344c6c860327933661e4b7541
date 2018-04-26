@@ -290,6 +290,52 @@
       "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_ab0d51ea",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-04-26T09:15:03Z",
+      "side": 1,
+      "message": "there are only healthcheck and smoke tests in functest for k8s different network_plugins scenarios. Same for daily.",
+      "range": {
+        "startLine": 389,
+        "startChar": 12,
+        "endLine": 389,
+        "endChar": 62
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_8be055fb",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-04-26T09:15:03Z",
+      "side": 1,
+      "message": "we need add daily job and yardstick test in k8s scenarios",
+      "range": {
+        "startLine": 393,
+        "startChar": 1,
+        "endLine": 393,
+        "endChar": 25
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
