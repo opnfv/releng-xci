@@ -116,6 +116,30 @@
       "revId": "f1d522b08ceeb4fe87f7ed0c25827875adf15983",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_0671dc43",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T14:26:32Z",
+      "side": 1,
+      "message": "Imagine I have a releng-xci patch and I want to test it with a specific os-odl-sfc patch? Where should I place foobar.yml and what should I write after the -e so that jenkins can find foobar.yml when doing the verification?",
+      "parentUuid": "5a3f45e8_a6a90892",
+      "range": {
+        "startLine": 16,
+        "startChar": 59,
+        "endLine": 16,
+        "endChar": 69
+      },
+      "revId": "f1d522b08ceeb4fe87f7ed0c25827875adf15983",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
