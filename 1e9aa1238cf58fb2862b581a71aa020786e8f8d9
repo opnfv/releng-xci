@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_0b18c573",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-26T08:08:04Z",
+      "side": 1,
+      "message": "The second one; the main item for us to fix is PDF/IDF support which is applicable to both virtual and baremetal deployments.\n\nThere will be differences when it comes to the usage of PDF/IDF based on the type of the deployment and what they need from implementation point of view. Those can be documented in corresponding sections and the implementation can be done via corresponding changes separately, some fixing things for virtual deployments and following ones fixing the baremetal by reusing what\u0027s been done for virtual deployments.",
+      "parentUuid": "5a3f45e8_c53feeb2",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_f7be24ad",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 2
