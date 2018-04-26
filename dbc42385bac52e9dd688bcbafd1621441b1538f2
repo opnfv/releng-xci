@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_e64cb044",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T13:53:28Z",
+      "side": 1,
+      "message": "all right",
+      "parentUuid": "5a3f45e8_8b15f54a",
+      "range": {
+        "startLine": 5,
+        "startChar": 59,
+        "endLine": 5,
+        "endChar": 66
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_a67aa874",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 3
@@ -135,6 +159,72 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_c649b432",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T13:53:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_4606441e",
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_0650bcd2",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T13:53:28Z",
+      "side": 1,
+      "message": "Let me rephrase it",
+      "parentUuid": "5a3f45e8_e614b045",
+      "range": {
+        "startLine": 18,
+        "startChar": 28,
+        "endLine": 18,
+        "endChar": 36
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_265338e3",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T13:53:28Z",
+      "side": 1,
+      "message": "Let me rephrase it",
+      "parentUuid": "5a3f45e8_a6074817",
+      "range": {
+        "startLine": 18,
+        "startChar": 26,
+        "endLine": 18,
+        "endChar": 27
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_261b3874",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 3
@@ -146,6 +236,30 @@
       "writtenOn": "2018-04-26T13:17:17Z",
       "side": 1,
       "message": "Please link to actual template in Pharos repo which is run against a schema for verification and accuracy.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 63
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_6660a0a5",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T13:53:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_261b3874",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -181,6 +295,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_4665a4b3",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T13:53:28Z",
+      "side": 1,
+      "message": "That pharos link does not have a good example for idf so I took the one from fuel that you provided in IRC",
+      "parentUuid": "5a3f45e8_0618bc73",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 63
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_86232ca6",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 3
@@ -204,6 +342,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_a65628cc",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T13:53:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_86232ca6",
+      "range": {
+        "startLine": 51,
+        "startChar": 39,
+        "endLine": 51,
+        "endChar": 47
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_c63894d5",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 3
@@ -215,6 +377,30 @@
       "writtenOn": "2018-04-26T13:17:17Z",
       "side": 1,
       "message": "I suggest remove these terms and just say something like \"supporting\"",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 20
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_865b2cf5",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T13:53:28Z",
+      "side": 1,
+      "message": "I think it is clearer if we specify the exact required files or? If we write supporting instead, we are not saying how many are there and people might get confused and start crying",
+      "parentUuid": "5a3f45e8_c63894d5",
       "range": {
         "startLine": 74,
         "startChar": 13,
@@ -285,6 +471,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_660700cb",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T13:53:28Z",
+      "side": 1,
+      "message": "Yeehaw!!! (as in a cowboy movie)",
+      "parentUuid": "5a3f45e8_263218f2",
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_062f1c89",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 3
@@ -296,6 +500,30 @@
       "writtenOn": "2018-04-26T13:17:17Z",
       "side": 1,
       "message": "please separate these terms",
+      "range": {
+        "startLine": 109,
+        "startChar": 66,
+        "endLine": 109,
+        "endChar": 73
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c6709474",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T13:53:28Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "5a3f45e8_062f1c89",
       "range": {
         "startLine": 109,
         "startChar": 66,
