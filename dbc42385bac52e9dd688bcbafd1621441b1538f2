@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_06155ce4",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T14:02:02Z",
+      "side": 1,
+      "message": "good point. The adverb \u0027normally\u0027 is well written then ;)",
+      "parentUuid": "5a3f45e8_a67aa874",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 25
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_a6074817",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 3
@@ -424,6 +448,30 @@
       "writtenOn": "2018-04-26T13:34:40Z",
       "side": 1,
       "message": "i think it is important to highlight that the virtual node(s) the tool will use the metadata to set the specs of created vms, no matter if it is virtual or baremetal deployment. we will not hardcode the cpu/ram/disk in config files and they will come from pdf.",
+      "range": {
+        "startLine": 79,
+        "startChar": 37,
+        "endLine": 79,
+        "endChar": 64
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e621504e",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T14:02:02Z",
+      "side": 1,
+      "message": "let me add some extra words",
+      "parentUuid": "5a3f45e8_06e27c2e",
       "range": {
         "startLine": 79,
         "startChar": 37,
