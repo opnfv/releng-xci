@@ -534,6 +534,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_669d40bc",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-26T13:29:10Z",
+      "side": 1,
+      "message": "I think you can remove it. We should perhaps document it in actual docs if they are not there already.",
+      "parentUuid": "5a3f45e8_cb87fdb3",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_572d58fd",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 2
@@ -616,6 +640,30 @@
       "side": 1,
       "message": "it just boots them or? Provision sounds to me as it also installs required packages",
       "parentUuid": "5a3f45e8_f743c4ac",
+      "range": {
+        "startLine": 72,
+        "startChar": 25,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_46a2c4fd",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-26T13:29:10Z",
+      "side": 1,
+      "message": "We bake the packages in to images built by dib so when the machine gets booted, it will have os + selected packages.",
+      "parentUuid": "5a3f45e8_cbaedd2d",
       "range": {
         "startLine": 72,
         "startChar": 25,
