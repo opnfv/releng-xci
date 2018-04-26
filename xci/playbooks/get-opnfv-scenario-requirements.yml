@@ -31,15 +31,21 @@
       loop_control:
         label: "{{ item[0].scenario }}"
 
-    - name: Create scenario directories
-      file:
-        path: "{{ role_path_default }}/{{ item.scenario }}"
-        state: directory
-      with_items: "{{ scenarios }}"
+    - name: Update scenarios with local overrides
+      set_fact:
+          scenarios: >
+            {%- for z in xci_scenarios_overrides -%}
+              {%- for x in scenarios if x.scenario == z.scenario  -%}
+                {%- set _ = x.update(z) -%}
+              {%- endfor -%}
+            {%- endfor -%}
+            {{- scenarios -}}
+      with_items: "{{ xci_scenarios_overrides }}"
       loop_control:
         label: "{{ item.scenario }}"
+      when: xci_scenarios_overrides is defined
 
-    - name: Clone git repos (with git)
+    - name: Clone git repos
       git:
         repo: "{{ item.src }}"
         dest: "{{ scenario_path_default }}/{{ item.scenario | default(item.src | basename) }}"
@@ -47,8 +53,6 @@
         refspec: "{{ item.refspec | default(omit) }}"
         update: true
         force: true
-      when:
-        - item.scm == "git" or item.scm is undefined
       with_items: "{{ scenarios }}"
       register: git_clone
       until: git_clone | success
@@ -57,51 +61,13 @@
       loop_control:
         label: "{{ item.scenario }}"
 
-    - name: Check that scenarios exist
-      stat:
-        path: "{{ scenario_path_default }}/{{ item.scenario }}/{{ item.role }}"
-      register: scenarios_list_exists
+    - name: Plug in the scenario Ansible roles to XCI
+      synchronize:
+        src: "{{ scenario_path_default }}/{{ item.scenario }}/{{ item.role }}/"
+        dest: "{{ role_path_default }}/{{ item.role | basename }}"
       with_items: "{{ scenarios }}"
       loop_control:
         label: "{{ item.scenario }}"
-
-    - name: Plug in the scenario to XCI
-      synchronize:
-        src: "{{ scenario_path_default }}/{{ item.item.scenario }}/{{ item.item.role }}/"
-        dest: "{{ role_path_default }}/{{ item.item.role | basename }}"
-      when: item.stat.exists
-      with_items: "{{ scenarios_list_exists.results }}"
-      loop_control:
-        label: "{{ item.item.scenario }}"
-
-    - name: Synchronize local changes to scenarios' master branch
-      synchronize:
-        src: "{{ xci_path }}/xci/scenarios/{{ item.item.scenario }}/{{ item.item.role | replace('xci/scenarios/' ~ item.item.scenario ~ '/', '') }}/"
-        dest: "{{ role_path_default }}/{{ item.item.role | basename }}"
-        archive: no
-        times: no
-        recursive: yes
-        checksum: yes
-        owner: yes
-        group: yes
-        perms: yes
-        links: yes
-      failed_when: false
-      when:
-        - item.stat.exists
-        - item.item.version == 'master'
-      with_items: "{{ scenarios_list_exists.results }}"
-      loop_control:
-        label: "{{ item.item.scenario }}"
-
-    - name: Plug in the scenario to XCI (fallback)
-      synchronize:
-        src: "{{ xci_path }}/{{ item.item.role }}/"
-        dest: "{{ role_path_default }}/{{ item.item.role | basename }}"
-      when: not item.stat.exists
-      with_items: "{{ scenarios_list_exists.results }}"
-      loop_control:
-        label: "{{ item.item.scenario }}"
 
     - name: Gather information about the selected {{ deploy_scenario }} scenario
       set_fact:
