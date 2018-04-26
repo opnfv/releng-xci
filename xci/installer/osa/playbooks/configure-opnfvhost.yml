@@ -81,6 +81,7 @@
         - { src: "{{ remote_xci_flavor_files }}/user_ceph.yml", dest: "{{ openstack_osa_etc_path }}/user_ceph.yml", cond: xci_ceph_enabled }
         - { src: "{{ remote_xci_flavor_files }}/user_variables_ceph.yml", dest: "{{ openstack_osa_etc_path }}/user_variables_ceph.yml", cond: xci_ceph_enabled }
         - { src: "{{ remote_xci_path }}/xci/installer/osa/files/cinder.yml", dest: "{{ openstack_osa_etc_path }}/env.d" }
+        - { src: "{{ remote_xci_path }}/xci/installer/osa/files/user_variables_xci.yml", dest: "{{ openstack_osa_etc_path }}/user_variables_xci.yml" }
         - { src: "{{ remote_xci_path }}/xci/installer/osa/files/user_variables_proxy.yml", dest: "{{ openstack_osa_etc_path }}/user_variables_proxy.yml", cond: "{{ lookup('env', 'http_proxy') != '' }}" }
         - { src: "{{ remote_xci_path }}/xci/installer/osa/files/setup-openstack.yml", dest: "{{ openstack_osa_path }}/playbooks" }
         - { src: "{{ remote_xci_path }}/xci/installer/osa/files/ansible-role-requirements.yml", dest: "{{openstack_osa_path}}/ansible-role-requirements.yml", cond: "{{ openstack_osa_version != 'master' }}" }
