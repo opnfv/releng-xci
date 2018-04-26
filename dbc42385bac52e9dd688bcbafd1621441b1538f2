@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_8b15f54a",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-04-26T13:17:17Z",
+      "side": 1,
+      "message": "Please separate out these. For example, XCI to use PDF and IDF. \n\nThese are two separate things with different purposes. PDF defines actual hardware in the an OPNFV POD while IDF is a work in progress that defines how to deploy OPNFV onto the physical hardware. (For example, Which network on which NIC)",
+      "range": {
+        "startLine": 5,
+        "startChar": 59,
+        "endLine": 5,
+        "endChar": 66
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a6074817",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-04-26T13:17:17Z",
+      "side": 1,
+      "message": ":",
+      "range": {
+        "startLine": 18,
+        "startChar": 26,
+        "endLine": 18,
+        "endChar": 27
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4606441e",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-04-26T13:17:17Z",
+      "side": 1,
+      "message": "POD",
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e614b045",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-04-26T13:17:17Z",
+      "side": 1,
+      "message": "Documents",
+      "range": {
+        "startLine": 18,
+        "startChar": 28,
+        "endLine": 18,
+        "endChar": 36
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_261b3874",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-04-26T13:17:17Z",
+      "side": 1,
+      "message": "Please link to actual template in Pharos repo which is run against a schema for verification and accuracy.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 63
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_0618bc73",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-04-26T13:17:17Z",
+      "side": 1,
+      "message": "Please link to actual template in Pharos repo (ame as above)",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 63
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_86232ca6",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-04-26T13:17:17Z",
+      "side": 1,
+      "message": "PDF and IDF (again please separate)",
+      "range": {
+        "startLine": 51,
+        "startChar": 39,
+        "endLine": 51,
+        "endChar": 47
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c63894d5",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-04-26T13:17:17Z",
+      "side": 1,
+      "message": "I suggest remove these terms and just say something like \"supporting\"",
+      "range": {
+        "startLine": 74,
+        "startChar": 13,
+        "endLine": 74,
+        "endChar": 20
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_263218f2",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-04-26T13:17:17Z",
+      "side": 1,
+      "message": "Jack Morgan (jmorgan1)",
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_062f1c89",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-04-26T13:17:17Z",
+      "side": 1,
+      "message": "please separate these terms",
+      "range": {
+        "startLine": 109,
+        "startChar": 66,
+        "endLine": 109,
+        "endChar": 73
+      },
+      "revId": "dbc42385bac52e9dd688bcbafd1621441b1538f2",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
