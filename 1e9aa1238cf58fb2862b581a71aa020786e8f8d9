@@ -228,6 +228,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_8b5df57b",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_b7cf7c55",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 49
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_17d91022",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 2
@@ -239,6 +263,30 @@
       "writtenOn": "2018-04-25T15:35:09Z",
       "side": 1,
       "message": "on",
+      "range": {
+        "startLine": 26,
+        "startChar": 44,
+        "endLine": 26,
+        "endChar": 46
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_eb559950",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_17d91022",
       "range": {
         "startLine": 26,
         "startChar": 44,
@@ -274,6 +322,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_cb525d66",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_d7f96881",
+      "range": {
+        "startLine": 28,
+        "startChar": 24,
+        "endLine": 28,
+        "endChar": 47
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_5706f886",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 2
@@ -285,6 +357,30 @@
       "writtenOn": "2018-04-25T15:35:09Z",
       "side": 1,
       "message": "I think this is not needed since you already mentioned the limitation above by saying \"baremetal is the preferred way to deploy NFV platform\" in lab or production environments.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 23
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_2b4ca1c7",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "Let me rephrase it. I think it is important to mention that we not only want to do baremetal because that\u0027s what everyone is doing. There are hardware specific things we cannot test in virtual",
+      "parentUuid": "5a3f45e8_5706f886",
       "range": {
         "startLine": 30,
         "startChar": 0,
@@ -320,6 +416,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_2bfae142",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_b7f65c8d",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 14
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_17f0f08f",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 2
@@ -331,6 +451,30 @@
       "writtenOn": "2018-04-25T15:35:09Z",
       "side": 1,
       "message": "The infra_manager tool will consume the IDF/PDF files describing the infrastructure as input and it will use\n* \u003cyet-to-be-created-tool\u003e to create VMs using the metadata from PDF/IDF in case of virtual deployment\n* bifrost to provision the the nodes",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 26
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_6b97c9ec",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_17f0f08f",
       "range": {
         "startLine": 40,
         "startChar": 0,
@@ -366,6 +510,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_cb87fdb3",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "I wrote it for completeness, should I remove it?",
+      "parentUuid": "5a3f45e8_f7ec64bd",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_572d58fd",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 2
@@ -377,6 +545,30 @@
       "writtenOn": "2018-04-25T15:35:09Z",
       "side": 1,
       "message": "this is probably the \u003cyet-to-be-created-tool\u003e mentioned above. this script should use the vm specs from pdf to create those vms. in case of virtual, it will create all of the vms. in case of baremetal, only opnfv vm.",
+      "range": {
+        "startLine": 70,
+        "startChar": 40,
+        "endLine": 70,
+        "endChar": 58
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_ebb11990",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "right, let me use that name for the tool as we don\u0027t know yet",
+      "parentUuid": "5a3f45e8_572d58fd",
       "range": {
         "startLine": 70,
         "startChar": 40,
@@ -412,6 +604,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_cbaedd2d",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "it just boots them or? Provision sounds to me as it also installs required packages",
+      "parentUuid": "5a3f45e8_f743c4ac",
+      "range": {
+        "startLine": 72,
+        "startChar": 25,
+        "endLine": 72,
+        "endChar": 51
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_37324c5f",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 2
@@ -435,6 +651,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_2ba8211f",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "Let\u0027s make it more general right now",
+      "parentUuid": "5a3f45e8_37324c5f",
+      "range": {
+        "startLine": 73,
+        "startChar": 40,
+        "endLine": 73,
+        "endChar": 55
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_5714389f",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 2
@@ -446,6 +686,30 @@
       "writtenOn": "2018-04-25T15:35:09Z",
       "side": 1,
       "message": "this is probably not me since I\u0027m not known as a nice person.",
+      "range": {
+        "startLine": 95,
+        "startChar": 24,
+        "endLine": 95,
+        "endChar": 34
+      },
+      "revId": "1e9aa1238cf58fb2862b581a71aa020786e8f8d9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_0ba56546",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-26T12:51:28Z",
+      "side": 1,
+      "message": "hahaha",
+      "parentUuid": "5a3f45e8_5714389f",
       "range": {
         "startLine": 95,
         "startChar": 24,
