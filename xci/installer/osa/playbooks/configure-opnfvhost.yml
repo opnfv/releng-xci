@@ -109,7 +109,15 @@
       when:
         - lookup('env','http_proxy') != ""
 
-    - include: "{{ xci_path }}/xci/playbooks/bootstrap-scenarios.yml"
+    - name: Reload XCI deployment host facts
+      setup:
+        filter: ansible_local
+        gather_subset: "!all"
+      delegate_to: 127.0.0.1
+
+    - name: Prepare everything to run the {{ deploy_scenario }} role
+      include_role:
+        name: "{{ hostvars['opnfv'].ansible_local.xci.scenarios.role }}"
 
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
