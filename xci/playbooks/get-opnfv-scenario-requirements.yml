@@ -45,6 +45,79 @@
         label: "{{ item.scenario }}"
       when: xci_scenarios_overrides is defined
 
+    - name: Collect list of known scenarions
+      set_fact:
+        known_scenarios: >
+          {%- set scenario_names = [] -%}
+          {%- for x in scenarios -%}
+            {%- set _ = scenario_names.append(x.scenario) -%}
+          {%- endfor -%}
+          {{- scenario_names -}}
+      with_items: "{{ scenarios }}"
+      loop_control:
+        label: "{{ item.scenario }}"
+
+    - name: Fail if 'DEPLOY_SCENARIO' is not defined
+      fail:
+        msg: "DEPLOY_SCENARIO env variable is not defined so no scenario can be deployed"
+      when: deploy_scenario is not defined
+
+    - name: Ensure {{ deploy_scenario }} is a known XCI scenario
+      fail:
+        msg: "{{ deploy_scenario }} does not exist"
+      when: deploy_scenario not in known_scenarios
+
+    - name: Collect scenario information
+      set_fact:
+        xci_scenario: >
+          {%- set xci_scenario = {} -%}
+          {%- for x in scenarios if x.scenario == deploy_scenario -%}
+          {%-   for z in x.installers if z.installer == installer_type -%}
+          {%-     set _ = xci_scenario.update({'flavors': z.flavors}) -%}
+          {%-     set _ = xci_scenario.update({'distros': z.distros}) -%}
+          {%-   endfor -%}
+          {%- set _ = xci_scenario.update({'role': x.role | basename}) -%}
+          {%- endfor -%}
+          {{ xci_scenario }}
+
+    - name: Ensure local facts directory exists
+      file:
+        path: "/etc/ansible/facts.d"
+        state: directory
+      become: true
+
+    # NOTE(hwoarang) We have to check all levels of the local fact before we add it
+    # otherwise Ansible will fail.
+    - name: Record scenario information
+      ini_file:
+        create: yes
+        section: scenarios
+        state: present
+        option: role
+        value:  "{{ xci_scenario.role | basename }}"
+        path: "/etc/ansible/facts.d/xci.fact"
+      become: true
+      when: ansible_local is not defined
+        or (ansible_local is defined and ansible_local.xci is not defined)
+        or (ansible_local is defined and ansible_local.xci is defined and ansible_local.xci.scenarios is not defined)
+        or (ansible_local is defined and ansible_local.xci is defined and ansible_local.xci.scenarios is defined and ansible_local.xci.scenarios.role is not defined)
+
+    - name: Fail if {{ deploy_scenario }} is not supported
+      fail:
+        msg:
+          - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+          - ERROR! The {{ deploy_scenario }} scenario can't be deployed. This is because
+          - the {{ installer_type }} XCI installer or the {{ xci_flavor }} flavor or the {{ xci_distro }}
+          - distribution is not supported by this scenario. It may also be possible that
+          - this scenario doesn't exist at all or it's not listed in {{ scenario_file }}.
+          - ''
+          - This is a great chance for you to contribute to XCI ;-)
+          - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+          - ''
+      when:
+          (xci_scenario['flavors'] is defined and xci_flavor not in xci_scenario['flavors']) or
+          (xci_scenario['distros'] is defined and xci_distro not in xci_scenario['distros'])
+
     - name: Clone git repos
       git:
         repo: "{{ item.src }}"
@@ -68,54 +141,6 @@
       with_items: "{{ scenarios }}"
       loop_control:
         label: "{{ item.scenario }}"
-
-    - name: Gather information about the selected {{ deploy_scenario }} scenario
-      set_fact:
-        deploy_scenario: "{{ item }}"
-      with_items: "{{ scenarios }}"
-      loop_control:
-        label: "{{ item.scenario }}"
-      when: deploy_scenario | lower == item.scenario
-
-    - name: Determine if the selected {{ deploy_scenario }} scenario can be deployed
-      block:
-        - name: Set scenario installer fact
-          set_fact:
-            deploy_scenario_installer: "{{ item }}"
-          with_items: "{{ deploy_scenario.installers }}"
-          loop_control:
-            label: "{{ item.installer }}"
-          when: item.installer == installer_type
-        - name: Set scenario flavor fact
-          set_fact:
-            deploy_scenario_flavor: "{{ (xci_flavor in deploy_scenario_installer.flavors) | bool }}"
-          when:
-            - deploy_scenario_installer is defined
-            - deploy_scenario_installer
-        - name: Set scenario distro flavor fact
-          set_fact:
-            deploy_scenario_distro: "{{ (xci_distro in deploy_scenario_installer.distros) | bool }}"
-          when:
-            - deploy_scenario_flavor is defined
-            - deploy_scenario_flavor
-      when: deploy_scenario is defined
-
-    - name: Fail if {{ deploy_scenario.scenario }} is not supported
-      fail:
-        msg:
-          - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-          - ERROR! The {{ deploy_scenario.scenario }} scenario can't be deployed. This is because
-          - the {{ installer_type }} XCI installer or the {{ xci_flavor }} flavor or the {{ xci_distro }}
-          - distribution is not supported by this scenario. It may also be possible that
-          - this scenario doesn't exist at all or it's not listed in {{ scenario_file }}.
-          - ''
-          - This is a great chance for you to contribute to XCI ;-)
-          - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-          - ''
-      when:
-        - deploy_scenario is not defined or
-          deploy_scenario_distro is not defined or
-          (deploy_scenario_distro is defined and not deploy_scenario_distro)
 
   vars:
     ansible_python_interpreter: "/usr/bin/python"
