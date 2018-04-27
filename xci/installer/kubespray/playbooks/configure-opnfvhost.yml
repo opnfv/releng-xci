@@ -43,7 +43,17 @@
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
         state: directory
-    - include: "{{ xci_path }}/xci/playbooks/bootstrap-scenarios.yml"
+
+    - name: Reload XCI deployment host facts
+      setup:
+        filter: ansible_local
+        gather_subset: "!all"
+      delegate_to: 127.0.0.1
+
+    - name: Prepare everything to run the {{ deploy_scenario }} role
+      include_role:
+        name: "{{ hostvars['opnfv'].ansible_local.xci.scenarios.role }}"
+
     - name: Install required packages
       package:
         name: "{{ kube_require_packages[ansible_pkg_mgr] }}"
