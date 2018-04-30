@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_a449fb32",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-30T13:05:17Z",
+      "side": 1,
+      "message": "Yes, however step 1 requires the pdf and idf files to be ready. That we need to do previously",
+      "parentUuid": "5a3f45e8_890a1877",
+      "revId": "3392bba052669cfd133cadd207c5dd5ff2c45bd5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_69386c3d",
         "filename": "docs/specs/infra_manager.rst",
         "patchSetId": 6
@@ -47,6 +65,24 @@
       "writtenOn": "2018-04-30T09:37:41Z",
       "side": 1,
       "message": "Currently PDF information  (as per {{ XCI_FLAVOR }}-vars) is almost same across flavors. But when we implement ONAP scenarios which needs high end resources (https://wiki.onap.org/display/DW/Resources+and+Sizing+on+vanilla+Openstack). \nAre you considering ONAP too while defining PDF templates ?",
+      "revId": "3392bba052669cfd133cadd207c5dd5ff2c45bd5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4460f7a4",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-04-30T13:05:17Z",
+      "side": 1,
+      "message": "This patch will use the flavors we currently have. We can consider adding more when we more are needed",
+      "parentUuid": "5a3f45e8_69386c3d",
       "revId": "3392bba052669cfd133cadd207c5dd5ff2c45bd5",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
