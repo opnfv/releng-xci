@@ -1,0 +1,210 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_49913046",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-30T09:16:03Z",
+      "side": 1,
+      "message": "can we be a bit more explicit and instead create the spec for the specific scenario k8-nosdn-onap?",
+      "range": {
+        "startLine": 7,
+        "startChar": 12,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "85450df9416867832fce8d8d31fc57deded99ff9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_69b34ce9",
+        "filename": "docs/specs/onap_scenario.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-30T09:16:03Z",
+      "side": 1,
+      "message": "please split this to 2 specs; one for k8-nosdn-onap and the other one for os-nosdn-onap which Peri is going to write.",
+      "revId": "85450df9416867832fce8d8d31fc57deded99ff9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c9a420a8",
+        "filename": "docs/specs/onap_scenario.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-30T09:16:03Z",
+      "side": 1,
+      "message": "hardware requirements for what kind of deployment?\n\n- is it virtual deployment?\n- are the requirements listed here per node in baremetal case or a single node in virtual deployment case?\n- what is the flavor?",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "85450df9416867832fce8d8d31fc57deded99ff9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a9a1d495",
+        "filename": "docs/specs/onap_scenario.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-30T09:16:03Z",
+      "side": 1,
+      "message": "please move this outside of this spec. os-nosdn-onap scenario should have its own spec.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 55
+      },
+      "revId": "85450df9416867832fce8d8d31fc57deded99ff9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_09aba875",
+        "filename": "docs/specs/onap_scenario.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-30T09:16:03Z",
+      "side": 1,
+      "message": "should be in its own spec.",
+      "range": {
+        "startLine": 51,
+        "startChar": 15,
+        "endLine": 51,
+        "endChar": 28
+      },
+      "revId": "85450df9416867832fce8d8d31fc57deded99ff9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e9a75ca5",
+        "filename": "docs/specs/onap_scenario.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-30T09:16:03Z",
+      "side": 1,
+      "message": "should be in corresponding spec.",
+      "range": {
+        "startLine": 52,
+        "startChar": 54,
+        "endLine": 52,
+        "endChar": 57
+      },
+      "revId": "85450df9416867832fce8d8d31fc57deded99ff9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_49b810c8",
+        "filename": "docs/specs/onap_scenario.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-30T09:16:03Z",
+      "side": 1,
+      "message": "on k8-nosdn-onap scenario",
+      "revId": "85450df9416867832fce8d8d31fc57deded99ff9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_29bdc4b7",
+        "filename": "docs/specs/onap_scenario.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-30T09:16:03Z",
+      "side": 1,
+      "message": "please explicitly state the location - xci/scenarios/k8-nosdn-onap",
+      "range": {
+        "startLine": 57,
+        "startChar": 31,
+        "endLine": 57,
+        "endChar": 44
+      },
+      "revId": "85450df9416867832fce8d8d31fc57deded99ff9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_89ae987f",
+        "filename": "docs/specs/onap_scenario.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-30T09:16:03Z",
+      "side": 1,
+      "message": "you can perhaps mention that the base scenario for this scenario will be k8-nosdn-nofeature and necessary role will be developed to do what\u0027s needed one k8s installation is done.",
+      "revId": "85450df9416867832fce8d8d31fc57deded99ff9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c9cb8051",
+        "filename": "docs/specs/onap_scenario.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-04-30T09:16:03Z",
+      "side": 1,
+      "message": "what are the proposed way to get the scenario up and running? this is related to my earlier comments/questions\n- what type of deployment (assuming it is virtual but better to state that)\n- what is the flavor\n- what are the hw requirements since depending on those, the flavor config will be impacted either overriding the current flavor config files setting vm specs or via the scenario specific pdf/idf.\n- how and where we are going to fetch onap artifacts (docker images etc)",
+      "revId": "85450df9416867832fce8d8d31fc57deded99ff9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
