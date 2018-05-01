@@ -22,6 +22,30 @@
       "revId": "e804b77beecd279f6cd2c6c15424787ab5f5e478",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_3fbe9665",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-01T17:35:55Z",
+      "side": 1,
+      "message": "yeah i could do that",
+      "parentUuid": "5a3f45e8_dff6925c",
+      "range": {
+        "startLine": 59,
+        "startChar": 27,
+        "endLine": 59,
+        "endChar": 31
+      },
+      "revId": "e804b77beecd279f6cd2c6c15424787ab5f5e478",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
