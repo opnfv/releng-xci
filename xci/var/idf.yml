@@ -11,9 +11,6 @@
 
 idf:
   version: 0.1
-  osa:
-  kolla:
-  k8s:
   net_config: &net_config
     admin:
       interface: 0
@@ -37,13 +34,63 @@ idf:
 xci:
   pod_name: vpod1
   net_config: *net_config
-  nodes_roles:
-    opnfv_host: [opnfv_host]
-    node1: [compute, storage]
-    node2: [compute, storage]
-    node3: [controller]
-    node4: [controller]
-    node5: [controller]
+  flavors:
+    mini:
+      - opnfv
+      - node1
+      - node2
+    noha:
+      - opnfv
+      - node1
+      - node2
+      - node3
+    ha:
+      - opnfv
+      - node1
+      - node2
+      - node3
+      - node4
+      - node5
+
+  osa:
+    nodes_roles:
+      opnfv: [deployment]
+      node1: [controller]
+      node2: [compute, storage]
+      node3: [compute, storage]
+      node4: [controller]
+      node5: [controller]
+    groups:
+      openstack:
+        - controller
+        - compute
+        - storage
+    hostnames:
+      opnfv: opnfv
+      node1: controller00
+      node2: compute00
+      node3: compute01
+      node4: controller01
+      node5: controller02
+  kubespray:
+    nodes_roles:
+      opnvf: [opnfv]
+      node1: [kube-master, etcd, vault]
+      node2: [kube-node]
+      node3: [kube-node]
+      node4: [kube-master, etcd, vault]
+      node5: [kube-master, etcd, vault]
+    groups:
+      k8s-cluster:
+        - kube-node
+        - kude-master
+    hostnames:
+      opnfv: opnfv
+      node1: master1
+      node2: node1
+      node3: node2
+      node4: master2
+      node5: master3
 
   # net_config network to be used by the PXE
   pxe_network: public
@@ -55,7 +102,7 @@ xci:
       ip: 192.168.122.1
 
   extra_addresses:
-    opnfv_host: 192.168.122.2
+    opnfv: 192.168.122.2
 
   # network mapping
   network_mapping:
