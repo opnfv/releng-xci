@@ -74,7 +74,6 @@
         - { src: "{{ openstack_osa_path }}/etc/openstack_deploy/env.d", dest: "{{ openstack_osa_etc_path }}" }
         - { src: "{{ openstack_osa_path }}/etc/openstack_deploy/conf.d", dest: "{{ openstack_osa_etc_path }}" }
         - { src: "{{ openstack_osa_path }}/etc/openstack_deploy/user_secrets.yml", dest: "{{ openstack_osa_etc_path }}" }
-        - { src: "{{ remote_xci_flavor_files }}/inventory", dest: "{{ remote_xci_playbooks }}" }
         - { src: "{{ remote_xci_flavor_files }}/openstack_user_config.yml", dest: "{{ openstack_osa_etc_path }}" }
         - { src: "{{ remote_xci_flavor_files }}/user_variables.yml", dest: "{{ openstack_osa_etc_path }}" }
         - { src: "{{ remote_xci_flavor_files }}/ceph.yml", dest: "{{ openstack_osa_etc_path }}/conf.d/", cond: xci_ceph_enabled }
