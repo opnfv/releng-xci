@@ -17,10 +17,10 @@
     - { name: "{{ ansible_local.xci.network.xci_interface }}.10", bridge: "br-mgmt"   , vlan_id: 10 }
     - { name: "{{ ansible_local.xci.network.xci_interface }}.20", bridge: "br-storage", vlan_id: 20 }
     - { name: "{{ ansible_local.xci.network.xci_interface }}.30", bridge: "br-vxlan"  , vlan_id: 30 }
-    - { name: "br-vlan"   , ip: "{{ host_info[inventory_hostname].VLAN_IP }}",    prefix: 24 }
-    - { name: "br-mgmt"   , ip: "{{ host_info[inventory_hostname].MGMT_IP }}",    prefix: 22 }
-    - { name: "br-storage", ip: "{{ host_info[inventory_hostname].STORAGE_IP }}", prefix: 22 }
-    - { name: "br-vxlan"  , ip: "{{ host_info[inventory_hostname].VXLAN_IP }}",   prefix: 22 }
+    - { name: "br-vlan"   , ip: "{{ host_info[inventory_hostname].public }}",    prefix: 24 }
+    - { name: "br-mgmt"   , ip: "{{ host_info[inventory_hostname].admin }}",    prefix: 22 }
+    - { name: "br-storage", ip: "{{ host_info[inventory_hostname].storage }}", prefix: 22 }
+    - { name: "br-vxlan"  , ip: "{{ host_info[inventory_hostname].private}}",   prefix: 22 }
   loop_control:
     label: "{{ item.name }}"
 
