@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_e23932f3",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:53:25Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "5a3f45e8_e2b49283",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 8
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_e29db20b",
         "filename": "xci/playbooks/dynamic_inventory.py",
         "patchSetId": 8
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_e210125b",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:53:25Z",
+      "side": 1,
+      "message": "ok. Some years ago I read several articles about not using classes in Python like this one: https://news.ycombinator.com/item?id\u003d3717715 and I think they are right. Classes should only be used when at least two objects of a class will be created (and those objects are used later on) so that code is not replicated. If not, then regular Python scripts should be used. However, I already had various never ending discussions about this in SFC project, so if you prefer classes, I am fine",
+      "parentUuid": "5a3f45e8_6291a2f0",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_c2a2364a",
         "filename": "xci/playbooks/dynamic_inventory.py",
         "patchSetId": 8
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "not in this version but like I said before I am looking for feeback on the overall approach.",
       "parentUuid": "5a3f45e8_c2a2364a",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_8506781b",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:53:25Z",
+      "side": 1,
+      "message": "ok. So far, seems fine to me. I\u0027ll have another look at it tomorrow",
+      "parentUuid": "5a3f45e8_428e26d1",
       "range": {
         "startLine": 24,
         "startChar": 0,
