@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_228b1ac4",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:19:10Z",
+      "side": 1,
+      "message": "I might be wrong but I think best practices say that global variables must use capital letters",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 8
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e29db20b",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:19:10Z",
+      "side": 1,
+      "message": "Any reason why you define it as a class instead of a regular python script? There will not be several objects created out of this class and the XCIInventory is only going to be used once (when executing configure-opnfvhost.yml)",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c2a2364a",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:19:10Z",
+      "side": 1,
+      "message": "As far as I see, the only way to call this class is through a direct call and thus through the __main__ function. That means *args and **kw will not be used or?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 36
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
