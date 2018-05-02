@@ -236,6 +236,69 @@
       "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_45b91014",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-05-02T19:31:40Z",
+      "side": 1,
+      "message": "I\u0027ve seen this before and never dugg whether it is XCI-specific or OSA-specific.\nThe way I see it, flavor is a subset of configuration required for a specific scenario. So if we want to bring in Fuel@OPNFV as an XCI installer, I need to understand how this can be adapted without introducing a new knob in the installer ...",
+      "range": {
+        "startLine": 33,
+        "startChar": 38,
+        "endLine": 33,
+        "endChar": 48
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c5cd20b9",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-05-02T19:31:40Z",
+      "side": 1,
+      "message": "I think these should be read from PDF/IDF as well, maybe in another change.",
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_05dc2872",
+        "filename": "xci/playbooks/roles/bootstrap-host/tasks/network_redhat.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2997
+      },
+      "writtenOn": "2018-05-02T19:31:40Z",
+      "side": 1,
+      "message": "unrelated to current patch, but these should be picked up from PDF/IDF, as certain PODs can\u0027t accomodate /22 (e.g. lf-pod5 has /25 PXE/admin).\nSame goes for vlan tags.",
+      "range": {
+        "startLine": 20,
+        "startChar": 89,
+        "endLine": 20,
+        "endChar": 91
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
