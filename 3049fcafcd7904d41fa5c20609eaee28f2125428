@@ -144,6 +144,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_a59d74be",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-02T18:59:23Z",
+      "side": 1,
+      "message": "I have absolutely no preference. I just followed the example script from the ansible repository. I can easily change it to a proper script with functions instead of object+methods",
+      "parentUuid": "5a3f45e8_e210125b",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_c2a2364a",
         "filename": "xci/playbooks/dynamic_inventory.py",
         "patchSetId": 8
