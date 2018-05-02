@@ -34,6 +34,184 @@
       "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_22795ac8",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:41:44Z",
+      "side": 1,
+      "message": "a",
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a2656a1f",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:41:44Z",
+      "side": 1,
+      "message": "are",
+      "range": {
+        "startLine": 221,
+        "startChar": 47,
+        "endLine": 221,
+        "endChar": 49
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_826aeeeb",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:41:44Z",
+      "side": 1,
+      "message": "are",
+      "range": {
+        "startLine": 222,
+        "startChar": 26,
+        "endLine": 222,
+        "endChar": 28
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_0276ded6",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:41:44Z",
+      "side": 1,
+      "message": "what do you mean by that? Why can\u0027t it get the CL: verify: \"SUCCESS\"? Is it because it is not yet an artifact as it was not merged?",
+      "range": {
+        "startLine": 226,
+        "startChar": 25,
+        "endLine": 226,
+        "endChar": 70
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_82514e38",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:41:44Z",
+      "side": 1,
+      "message": "What does it mean that it fetches a CL? Shouldn\u0027t it just read it?",
+      "range": {
+        "startLine": 243,
+        "startChar": 39,
+        "endLine": 243,
+        "endChar": 46
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_22603a00",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:41:44Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 265,
+        "startChar": 39,
+        "endLine": 265,
+        "endChar": 46
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_6256c22b",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:41:44Z",
+      "side": 1,
+      "message": "could we define that it needs to have at least 3 consecutive CLs (daily: SUCCESS) to run weekly? I have experiences where by chance a scenario was working. Those \"false positive\" alarms get reduced if we require several daily: success",
+      "range": {
+        "startLine": 274,
+        "startChar": 35,
+        "endLine": 276,
+        "endChar": 11
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4253c638",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-02T16:41:44Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 287,
+        "startChar": 39,
+        "endLine": 287,
+        "endChar": 46
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
