@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a3f45e8_452ab090",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-05-03T07:58:32Z",
+      "side": 1,
+      "message": "CI Loops which will be used by XCI",
+      "range": {
+        "startLine": 21,
+        "startChar": 53,
+        "endLine": 21,
+        "endChar": 78
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_5df2a006",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 3
@@ -37,6 +60,52 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_a51a947a",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-05-03T07:58:32Z",
+      "side": 1,
+      "message": "I think you mean \u0027than\u0027 here",
+      "range": {
+        "startLine": 50,
+        "startChar": 60,
+        "endLine": 50,
+        "endChar": 64
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_08127d56",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-05-03T07:58:32Z",
+      "side": 1,
+      "message": "run",
+      "range": {
+        "startLine": 96,
+        "startChar": 20,
+        "endLine": 96,
+        "endChar": 27
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_22795ac8",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 3
@@ -48,6 +117,29 @@
       "writtenOn": "2018-05-02T16:41:44Z",
       "side": 1,
       "message": "a",
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_48180575",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-05-03T07:58:32Z",
+      "side": 1,
+      "message": "Why should we low our expectations if the things are failing ?\n\nI think the reason that things are failing is because something is not working correctly so I think that we should keep the same criteria until the things are working and not lower our expectations.",
+      "range": {
+        "startLine": 174,
+        "startChar": 44,
+        "endLine": 176,
+        "endChar": 6
+      },
       "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -139,6 +231,29 @@
         "startChar": 39,
         "endLine": 243,
         "endChar": 46
+      },
+      "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a828a986",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-05-03T07:58:32Z",
+      "side": 1,
+      "message": "I like that ! Great Idea!",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 48
       },
       "revId": "9ea58443e24e52b13271708ce2b99dfbbfa8c988",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
