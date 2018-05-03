@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_c871b5a9",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-05-03T08:06:04Z",
+      "side": 1,
+      "message": "Do we really need a whole new scenario just for ONAP ? why we cannot integrate ONAP to an existing scenario? I mean ONAP is just a component. What will happen if we want to integrate a different VNFM and NFVO like Tacker ? Are we gonna need a new scenario for Tacker too ?",
+      "range": {
+        "startLine": 12,
+        "startChar": 50,
+        "endLine": 12,
+        "endChar": 76
+      },
+      "revId": "8af9e2b4b5cb45a0c6ce8ced8ccda57d465f7d11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_8854cdff",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-05-03T08:06:04Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 19,
+        "startChar": 9,
+        "endLine": 19,
+        "endChar": 11
+      },
+      "revId": "8af9e2b4b5cb45a0c6ce8ced8ccda57d465f7d11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_e85591fa",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-05-03T08:06:04Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 19,
+        "startChar": 56,
+        "endLine": 19,
+        "endChar": 57
+      },
+      "revId": "8af9e2b4b5cb45a0c6ce8ced8ccda57d465f7d11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_a84f096a",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-05-03T08:06:04Z",
+      "side": 1,
+      "message": "Remove one with",
+      "range": {
+        "startLine": 24,
+        "startChar": 41,
+        "endLine": 24,
+        "endChar": 50
+      },
+      "revId": "8af9e2b4b5cb45a0c6ce8ced8ccda57d465f7d11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
