@@ -262,6 +262,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_88068d1b",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-03T07:41:30Z",
+      "side": 1,
+      "message": "So this is XCI specific. Depending on the flavor, the configuration of OSA or k8s deployment can change",
+      "parentUuid": "5a3f45e8_45b91014",
+      "range": {
+        "startLine": 33,
+        "startChar": 38,
+        "endLine": 33,
+        "endChar": 48
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_c5cd20b9",
         "filename": "xci/playbooks/dynamic_inventory.py",
         "patchSetId": 8
@@ -279,6 +303,24 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_e8075116",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-03T07:41:30Z",
+      "side": 1,
+      "message": "Yeah but the way we do stuff right now we can\u0027t extract these information from the PDF/IDF so we need to fake it.",
+      "parentUuid": "5a3f45e8_c5cd20b9",
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_05dc2872",
         "filename": "xci/playbooks/roles/bootstrap-host/tasks/network_redhat.yml",
         "patchSetId": 8
@@ -290,6 +332,30 @@
       "writtenOn": "2018-05-02T19:31:40Z",
       "side": 1,
       "message": "unrelated to current patch, but these should be picked up from PDF/IDF, as certain PODs can\u0027t accomodate /22 (e.g. lf-pod5 has /25 PXE/admin).\nSame goes for vlan tags.",
+      "range": {
+        "startLine": 20,
+        "startChar": 89,
+        "endLine": 20,
+        "endChar": 91
+      },
+      "revId": "3049fcafcd7904d41fa5c20609eaee28f2125428",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_c80c153e",
+        "filename": "xci/playbooks/roles/bootstrap-host/tasks/network_redhat.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-03T07:41:30Z",
+      "side": 1,
+      "message": "Yeah this will change later on but right now we do everything in virtual pods so we have the flexibility to do whatever we want.\n\nI want to introduce the IDF/PDF changes in small chunks instead of a huge one",
+      "parentUuid": "5a3f45e8_05dc2872",
       "range": {
         "startLine": 20,
         "startChar": 89,
