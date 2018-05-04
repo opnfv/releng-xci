@@ -48,7 +48,7 @@
 - name: lxc_hosts
   scm: git
   src: https://github.com/openstack/openstack-ansible-lxc_hosts
-  version: 400f0c80b9c531a792dc01ff12cf1f3b3bd69a2d
+  version: e77c3a923bc8aae4a264917f592b58b5d1c79aed
 - name: memcached_server
   scm: git
   src: https://github.com/openstack/openstack-ansible-memcached_server
@@ -160,7 +160,7 @@
 - name: repo_build
   scm: git
   src: https://github.com/openstack/openstack-ansible-repo_build
-  version: 0e50a282b09f62670494ada2f7d42509c148067f
+  version: ec5210e812e48dac30eca4c188a9d159c5cdacbf
 - name: repo_server
   scm: git
   src: https://github.com/openstack/openstack-ansible-repo_server
