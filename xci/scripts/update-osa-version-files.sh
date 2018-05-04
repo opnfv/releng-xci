@@ -96,10 +96,6 @@ fi
 cp $tempdir/openstack-ansible/playbooks/defaults/repo_packages/openstack_services.yml ${releng_xci_base}/installer/osa/files/.
 cp $tempdir/openstack-ansible/global-requirement-pins.txt ${releng_xci_base}/installer/osa/files/.
 
-# Switch sources from git.openstack.org to github.com
-sed -i "s@^src:.*git\.openstack\.org/\(.*\)@src: https://github\.com/\1@g" ${releng_xci_base}/installer/osa/files/ansible-role-requirements.yml
-sed -i "s@\(^.*git_repo:\).*git\.openstack\.org/\(.*\)@\1 https://github\.com/\2@g" ${releng_xci_base}/installer/osa/files/openstack_services.yml
-
 popd &> /dev/null
 
 printme ""
