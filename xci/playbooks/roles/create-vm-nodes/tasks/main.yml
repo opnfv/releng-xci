@@ -1,0 +1,49 @@
+---
+# baremetal_json_file could be the file coming from pdf/idf
+
+- name: "Load distribution defaults"
+  include_vars: "{{ ansible_os_family | lower }}.yml"
+
+# From the previous list
+- name: "Install required packages"
+  package:
+    name: "{{ required_packages }}"
+
+- include_tasks: prepare_libvirt.yml
+- include_tasks: download_opnfvimage.yml
+
+- name: create placeholder var for vm entries in JSON format
+  set_fact:
+    nodes_json_data: {}
+
+# First we create the opnfv_vm
+- include_tasks: create_vm.yml
+  with_items: "{{ [opnfv_vm] + nodes }}"
+
+- name: Start the opnfv vm
+  virt: 
+    command: start
+    name: opnfv
+
+- name: remove previous baremetal data file
+  file:
+    state: absent
+    path: "{{ baremetal_json_file }}"
+
+# We got nodes_json_data from the create_vm playbook
+- name: write to baremetal json file
+  copy:
+    dest: "{{ baremetal_json_file }}"
+    content: "{{ nodes_json_data | to_nice_json }}"
+
+- debug: var=nodes_json_data
+
+- name: >
+    "Set file permissions such that the baremetal data file
+    can be read by the user executing Ansible"
+  file:
+    path: "{{ baremetal_json_file }}"
+    owner: "{{ ansible_env.SUDO_USER }}"
+  when: >
+    ansible_env.SUDO_USER is defined and
+    baremetal_json_file != ""
