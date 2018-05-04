@@ -40,7 +40,7 @@ fi
 # Destroy all XCI VMs on all flavors
 for varfile in ${flavors[@]}; do
     source ${XCI_PATH}/xci/config/${varfile}-vars
-    for vm in ${TEST_VM_NODE_NAMES}; do
+    for vm in ${NODE_NAMES}; do
         if which virsh &>/dev/null; then
             virsh destroy $vm &>/dev/null || true
             virsh undefine $vm &>/dev/null || true
