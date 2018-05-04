@@ -7,8 +7,7 @@
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-- hosts: localhost
-  connection: local
+- hosts: opnfv
   gather_facts: true
   vars_files:
     - "{{ xci_path }}/xci/var/opnfv.yml"
