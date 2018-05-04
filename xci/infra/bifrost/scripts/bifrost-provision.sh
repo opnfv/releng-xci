@@ -10,18 +10,36 @@
 set -eu
 set -o pipefail
 
+cd /root/releng-xci
+
 # This is normally passed from the XCI deployment script but
 # we also need it here for the bifrost jobs which run outside of XCI
 export XCI_PATH="${XCI_PATH:-$(git rev-parse --show-toplevel)}"
 # Declare our virtualenv
-export XCI_VENV="${XCI_VENV:-${XCI_PATH}/venv/}"
 export XCI_DISTRO=${XCI_DISTRO:-$(source /etc/os-release &>/dev/null || source /usr/lib/os-release &>/dev/null; echo ${ID,,})}
+
+# find where are we
+export XCI_PATH="$(git rev-parse --show-toplevel)"
+# source helpers library
+source ${XCI_PATH}/xci/files/xci-lib.sh
+# load the env variables again
+bootstrap_xci_env
+# Make sure we pass XCI_PATH everywhere
+export XCI_ANSIBLE_PARAMS+=" -e xci_path=${XCI_PATH}"
+# Make sure everybody knows where our global roles are
+export ANSIBLE_ROLES_PATH="$HOME/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:${XCI_PATH}/xci/playbooks/roles"
+#-------------------------------------------------------------------------------
+# Install ansible on localhost
+#-------------------------------------------------------------------------------
+echo "Info: Installing Ansible from pip"
+echo "-------------------------------------------------------------------------"
+install_ansible
+echo "-------------------------------------------------------------------------"
 
 export PYTHONUNBUFFERED=1
 SCRIPT_HOME="$(cd "$(dirname "$0")" && pwd)"
 BIFROST_HOME=$SCRIPT_HOME/..
-ENABLE_VENV="true"
-export VENV=${XCI_VENV}
+# We set it to false until the bifrost problems are fixed upstream
 PROVISION_WAIT_TIMEOUT=${PROVISION_WAIT_TIMEOUT:-3600}
 # This is normally exported by XCI env but we should initialize it here
 # in case we run this script on its own for debug purposes
@@ -37,23 +55,13 @@ export UPPER_CONSTRAINTS_FILE=https://git.openstack.org/cgit/openstack/requireme
 
 # Ensure the right inventory files is used based on branch
 CURRENT_BIFROST_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [ $CURRENT_BIFROST_BRANCH = "master" ]; then
-    BAREMETAL_DATA_FILE=${BAREMETAL_DATA_FILE:-'/tmp/baremetal.json'}
-    INVENTORY_FILE_FORMAT="baremetal_json_file"
-else
-    BAREMETAL_DATA_FILE=${BAREMETAL_DATA_FILE:-'/tmp/baremetal.csv'}
-    INVENTORY_FILE_FORMAT="baremetal_csv_file"
-fi
+BAREMETAL_DATA_FILE=${BAREMETAL_DATA_FILE:-'/tmp/baremetal.json'}
+INVENTORY_FILE_FORMAT="baremetal_json_file"
 export BIFROST_INVENTORY_SOURCE=$BAREMETAL_DATA_FILE
 
 # Default settings for VMs
-export TEST_VM_NUM_NODES=${TEST_VM_NUM_NODES:-3}
-export TEST_VM_NODE_NAMES=${TEST_VM_NODE_NAMES:-"opnfv controller00 compute00"}
+export NUM_NODES=${NUM_NODES:-3}
 export VM_DOMAIN_TYPE=${VM_DOMAIN_TYPE:-kvm}
-export VM_CPU=${VM_CPU:-4}
-export VM_DISK=${VM_DISK:-100}
-export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-8192}
-export VM_DISK_CACHE=${VM_DISK_CACHE:-unsafe}
 
 # Settings for bifrost
 TEST_PLAYBOOK="opnfv-virtual.yaml"
@@ -100,21 +108,7 @@ if [[ -e ${XCI_PATH}/deployment_image.qcow2 ]]; then
 	sudo mv ${XCI_PATH}/deployment_image.qcow2* /httpboot/
 fi
 
-# Install missing dependencies. Use sudo since for bifrost jobs
-# the venv is not ready yet.
-if [[ -n ${VIRTUAL_ENV:-} ]]; then
-    _sudo=""
-else
-    virtualenv --quiet --no-site-packages ${XCI_VENV}
-    set +u
-    source ${XCI_VENV}/bin/activate
-    set -u
-    _sudo="sudo -H -E"
-fi
-${_sudo} pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
-
-# Change working directory
-cd $BIFROST_HOME/playbooks
+pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
 
 # NOTE(hwoarang): Disable selinux as we are hitting issues with it from time to
 # time. Remove this when Centos7 is a proper gate on bifrost so we know that
@@ -126,16 +120,10 @@ if [[ -e /etc/centos-release ]]; then
     sudo setenforce 0
 fi
 
-# Create the VMS
-ansible-playbook ${XCI_ANSIBLE_PARAMS} \
-       -i inventory/localhost \
-       test-bifrost-create-vm.yaml \
-       -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
-       -e test_vm_cpu='host-model' \
-       -e test_vm_memory_size=${VM_MEMORY_SIZE} \
-       -e enable_venv=${ENABLE_VENV} \
-       -e test_vm_domain_type=${VM_DOMAIN_TYPE} \
-       -e ${INVENTORY_FILE_FORMAT}=${BAREMETAL_DATA_FILE}
+# Fetch the interface, avoiding the loopback
+INTERFACE=$(ls /sys/class/net | grep -v lo)
+
+cd $BIFROST_HOME/playbooks
 
 # Execute the installation and VM startup test
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
@@ -143,11 +131,10 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
     ${TEST_PLAYBOOK} \
     -e use_cirros=${USE_CIRROS} \
     -e testing_user=${TESTING_USER} \
-    -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
+    -e test_vm_num_nodes=${NUM_NODES} \
     -e test_vm_cpu='host-model' \
     -e inventory_dhcp=${INVENTORY_DHCP} \
     -e inventory_dhcp_static_ip=${INVENTORY_DHCP_STATIC_IP} \
-    -e enable_venv=${ENABLE_VENV} \
     -e enable_inspector=${USE_INSPECTOR} \
     -e inspect_nodes=${INSPECT_NODES} \
     -e download_ipa=${DOWNLOAD_IPA} \
@@ -164,7 +151,8 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
     -e ironicclient_git_branch=${BIFROST_IRONIC_CLIENT_VERSION} \
     -e ironic_git_branch=${BIFROST_IRONIC_VERSION} \
     -e use_prebuilt_images=${BIFROST_USE_PREBUILT_IMAGES} \
-    -e xci_distro=${XCI_DISTRO}
+    -e xci_distro=${XCI_DISTRO} \
+    -e network_interface=${INTERFACE}
 EXITCODE=$?
 
 if [ $EXITCODE != 0 ]; then

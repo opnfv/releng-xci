@@ -1,0 +1,29 @@
+---
+- name: Download the {{ xci_distro }} image checksum file
+  get_url:
+    dest: "{{ opnfv_image_path }}/deployment_image.qcow2.sha256.txt"
+    force: no
+    url: http://artifacts.opnfv.org/releng/xci/images/{{ xci_distro }}.qcow2.sha256.txt
+    timeout: 3000
+- name: Extract checksum
+  shell: awk '{print $1}' "{{ opnfv_image_path }}/deployment_image.qcow2.sha256.txt"
+  register: _image_checksum
+- fail:
+    msg: "Failed to get image checksum"
+  when: _image_checksum == ''
+- set_fact:
+    image_checksum: "{{ _image_checksum.stdout }}"
+- name: Download the {{ xci_distro }} image file
+  get_url:
+    url: http://artifacts.opnfv.org/releng/xci/images/{{ xci_distro }}.qcow2
+    checksum: "sha256:{{ image_checksum }}"
+    timeout: 3000
+    dest: "{{ opnfv_image_path }}/deployment_image.qcow2"
+    force: no
+- name: Set correct mode for deployment_image.qcow2 file
+  file:
+    path: "{{ opnfv_image_path }}/deployment_image.qcow2"
+    mode: '0755'
+    owner: 'root'
+    group: 'root'
+

@@ -52,14 +52,27 @@
             owner: 'root'
             group: 'root'
       when: use_prebuilt_images | bool == true
-
+    - name: Ensure /etc/hosts has good defaults
+      lineinfile:
+        create: yes
+        dest: "/etc/hosts"
+        regexp: "{{ item.regexp }}.*({{ ansible_hostname }}|localhost).*"
+        line: "{{ item.contents }}"
+      with_items:
+        - { regexp: '^127\.0\.0\.1', contents: '127.0.0.1 {{ ansible_hostname }} {{ ansible_fqdn }} localhost' }
+        - { regexp: '^::1', contents: '::1 {{ ansible_hostname }} {{ ansible_fqdn }} localhost ipv6-localhost ipv6-loopback' }
+    - name: Install required packages
+      package:
+        name: iptables
+        state: present
   roles:
     - role: bifrost-prep-for-install
       when: skip_install is not defined
     - role: bifrost-keystone-install
     - role: bifrost-ironic-install
       cleaning: false
-      testing: true
+      testing: false
+      enabled_hardware_types: ipmi
     # NOTE(TheJulia): While the next step creates a ramdisk, some elements
     # do not support ramdisk-image-create as they invoke steps to cleanup
     # the ramdisk which causes ramdisk-image-create to believe it failed.
@@ -89,7 +102,6 @@
         - transform_boot_image | bool == false
         - use_prebuilt_images | bool == false
     - role: bifrost-keystone-client-config
-      user: "{{ ansible_env.SUDO_USER }}"
       clouds:
         bifrost:
           config_username: "{{ ironic.keystone.default_username }}"
