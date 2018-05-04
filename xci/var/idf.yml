@@ -37,8 +37,8 @@ xci:
   flavors:
     mini:
       - opnfv
-      - node1
-      - node2
+      - controller00
+      - compute00
     noha:
       - opnfv
       - node1
@@ -55,8 +55,8 @@ xci:
   osa:
     nodes_roles:
       opnfv: [deployment]
-      node1: [controller]
-      node2: [compute, storage]
+      controller00: [controller]
+      compute00: [compute, storage]
       node3: [compute, storage]
       node4: [controller]
       node5: [controller]
