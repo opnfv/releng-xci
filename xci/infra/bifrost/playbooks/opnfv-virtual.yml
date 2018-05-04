@@ -7,11 +7,12 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 ---
-- hosts: localhost
-  connection: local
+- hosts: opnfv
   name: "Host and Ironic bootstrapping"
   become: yes
   gather_facts: yes
+  vars_files:
+    - "../vars/{{ ansible_os_family | lower }}.yml"
   pre_tasks:
     - name: Remove pre-existing leases file
       file: path=/var/lib/misc/dnsmasq.leases state=absent
@@ -52,6 +53,19 @@
             owner: 'root'
             group: 'root'
       when: use_prebuilt_images | bool == true
+    - name: Ensure /etc/hosts has good defaults
+      lineinfile:
+        create: yes
+        dest: "/etc/hosts"
+        regexp: "{{ item.regexp }}.*({{ ansible_hostname }}|localhost).*"
+        line: "{{ item.contents }}"
+      with_items:
+        - { regexp: '^127\.0\.0\.1', contents: '127.0.0.1 {{ ansible_hostname }} {{ ansible_fqdn }} localhost' }
+        - { regexp: '^::1', contents: '::1 {{ ansible_hostname }} {{ ansible_fqdn }} localhost ipv6-localhost ipv6-loopback' }
+    - name: Install required packages
+      package:
+        name: "{{ bifrost_required_devel_packages }}"
+        state: present
 
   roles:
     - role: bifrost-prep-for-install
@@ -59,7 +73,9 @@
     - role: bifrost-keystone-install
     - role: bifrost-ironic-install
       cleaning: false
-      testing: true
+      testing: false
+      enabled_hardware_types: ipmi
+      network_interface: "{{ ansible_default_ipv4.interface }}"
     # NOTE(TheJulia): While the next step creates a ramdisk, some elements
     # do not support ramdisk-image-create as they invoke steps to cleanup
     # the ramdisk which causes ramdisk-image-create to believe it failed.
@@ -89,7 +105,6 @@
         - transform_boot_image | bool == false
         - use_prebuilt_images | bool == false
     - role: bifrost-keystone-client-config
-      user: "{{ ansible_env.SUDO_USER }}"
       clouds:
         bifrost:
           config_username: "{{ ironic.keystone.default_username }}"
@@ -107,18 +122,36 @@
   vars:
     multinode_testing: "{{ inventory_dhcp | bool == true }}"
   become: no
-  connection: local
-  gather_facts: yes
-  pre_tasks:
+  gather_facts: False
+  tasks:
+    - name: Gathering facts
+      setup:
+      delegate_to: opnfv
+      delegate_facts: False
     - name: "Override default bifrost DNS if we are behind a proxy"
       set_fact:
          ipv4_nameserver: "192.168.122.1"
       when: lookup('env','http_proxy') != ''
-  roles:
-    - role: ironic-enroll-dynamic
-    - { role: ironic-inspect-node, when: inspect_nodes | default('false') | bool == true }
-    - role: bifrost-configdrives-dynamic
-    - role: bifrost-deploy-nodes-dynamic
+    - name: Find network interface in the OPNFV node
+      set_fact:
+        network_interface: "{{ ansible_default_ipv4.interface }}"
+    - import_role:
+        name: ironic-enroll-dynamic
+        private: True
+      delegate_to: opnfv
+    - import_role:
+        name: ironic-inspect-node
+        private: True
+      delegate_to: opnfv
+      when: inspect_nodes | default('false') | bool == true
+    - import_role:
+        name: bifrost-configdrives-dynamic
+        private: True
+      delegate_to: opnfv
+    - import_role:
+        name: bifrost-deploy-nodes-dynamic
+        private: True
+      delegate_to: opnfv
   environment:
     http_proxy: "{{ lookup('env','http_proxy') }}"
     https_proxy: "{{ lookup('env','https_proxy') }}"
@@ -127,7 +160,13 @@
 - hosts: baremetal
   name: "Deploy machines."
   become: no
-  connection: local
   serial: 1
-  roles:
-    - role: bifrost-prepare-for-test-dynamic
+  gather_facts: False
+  tasks:
+      #- name: Gathering facts
+      #setup:
+      #delegate_to: opnfv
+      #delegate_facts: False
+    - import_role:
+        name: bifrost-prepare-for-test-dynamic
+      delegate_to: opnfv
