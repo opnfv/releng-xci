@@ -66,12 +66,6 @@ flavors, however, the implementation should not hinder the possibility of
 having one pdf and idf per scenario, defining the characteristics and the
 number of nodes to be deployed.
 
-Code impact
------------
-
-The new code will be introduced in a new directory called infra_manager under
-releng-xci/xci/prototypes
-
 Tentative User guide
 --------------------
 
