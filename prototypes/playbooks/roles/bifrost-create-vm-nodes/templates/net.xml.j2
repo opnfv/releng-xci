@@ -1,0 +1,25 @@
+<network>
+  <name>{{ test_vm_network }}</name>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='{{ network_interface }}' stp='on' delay='0'/>
+  <ip address='{{ nodes[0].remote_management.address.split(':')[0] }}' netmask='{{ test_vm_network_netmask }}'>
+#  {% if test_vm_network_enable_dhcp | bool %}
+#  {% set limiting_ips = [] %}
+#  {% set limiting_nodes = [nodes[0], nodes[-1]] %}
+#  {% for node in limiting_nodes %}
+#  {%-  for interface in node.interfaces %}
+#  {%-    if 'native' in (interface.vlan | string) %}
+#  {%-      set _ = limiting_ips.append(interface.address) %}
+#  {%-    endif %}
+#  {%-  endfor %}
+#  {%-endfor %}
+#    <dhcp>
+#      <range start='{{ limiting_ips[0] }}' end='{{ limiting_ips[1] }}'/>
+#    </dhcp>
+#  {% endif %}
+  </ip>
+</network>
