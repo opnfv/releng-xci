@@ -1,0 +1,93 @@
+- name: Prepare deployment host
+  hosts: deployment_host
+  gather_facts: True
+  tasks:
+    - name: Ensure common private key has correct permissions
+      file:
+        path: "{{ xci_path }}/xci/scripts/vm/id_rsa_for_dib"
+        mode: "0600"
+
+    - name: Remove host from known_hosts file if necessary
+      shell:
+        ssh-keygen -R {{ hostvars['opnfv'].ip }}
+      failed_when: false
+
+- name: Prepare the OPNFV host
+  hosts: opnfv
+  gather_facts: True
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+  tasks:
+    - name: Copy bifrost inventory file
+      copy:
+        src: /tmp/baremetal.json
+        dest: /tmp/baremetal.json
+
+    - name: Configure SSH key for devuser
+      user:
+        name: devuser
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_comment: xci
+        ssh_key_type: rsa
+        state: present
+
+    - name: Determine local user
+      become: no
+      local_action: command whoami
+      changed_when: False
+      register: _ansible_user
+
+    - name: Fetch local SSH key
+      delegate_to: localhost
+      become: no
+      slurp:
+        src: "/home/{{ _ansible_user.stdout }}/.ssh/id_rsa.pub"
+      register: _local_ssh_key
+
+    - name: "Configure {{ inventory_hostname }} authorized_keys file (devuser)"
+      authorized_key:
+        exclusive: no
+        user: devuser
+        state: present
+        manage_dir: yes
+        key: "{{ _local_ssh_key['content'] | b64decode }}"
+        comment: "deployer's key"
+
+    - name: "Configure {{ inventory_hostname }} authorized_keys file (root)"
+      authorized_key:
+        exclusive: no
+        user: root
+        state: present
+        manage_dir: yes
+        key: "{{ _local_ssh_key['content'] | b64decode }}"
+        comment: "deployer's key"
+      become: yes
+
+    - name: Ensure /httpboot directory exists
+      file:
+        path: /httpboot
+        state: directory
+      become: yes
+
+    - name: Copy original qcow2 image to OPNFV VM
+      synchronize:
+        src: "{{ xci_cache }}/{{ item }}"
+        dest: /httpboot/
+        recursive: yes
+        delete: yes
+      with_items:
+        - "deployment_image.qcow2"
+        - "deployment_image.qcow2.sha256.txt"
+      become: yes
+
+    - name: Configure DNS on openSUSE
+      block:
+        - stat:
+            path: /etc/resolv.conf.netconfig
+          register: _resolv_conf_netconfig
+        - shell: |
+            mv /etc/resolv.conf.netconfig /etc/resolv.conf
+          become: yes
+          when: _resolv_conf_netconfig.stat.exists
+      when: ansible_pkg_mgr == 'zypper'
