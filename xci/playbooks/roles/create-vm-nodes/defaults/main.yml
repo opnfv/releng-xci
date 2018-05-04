@@ -6,7 +6,7 @@ baremetal_json_file: '/tmp/baremetal.json'
 vm_nic: "virtio"
 vm_groups: {}
 vm_default_groups: "{{ lookup('env', 'DEFAULT_HOST_GROUPS').split() | default(['baremetal'], true) }}"
-vm_disk_cache: "{{ lookup('env', 'VM_DISK_CACHE') | default('unsafe', true) }}"
+vm_disk_cache: unsafe
 node_names: "{{ lookup('env', 'NODE_NAMES').split() }}"
 
 # NOTE(pas-ha) name and default are chosen to be the same
