@@ -1,0 +1,73 @@
+---
+# baremetal_json_file could be the file coming from pdf/idf
+
+# NOTE(cinerama) openSUSE Tumbleweed & Leap have different distribution
+# IDs which are not currently accounted for in Ansible, so adjust facts
+# so we can have shared defaults for the whole SuSE family.
+# This change can be removed when the pull request at
+# https://github.com/ansible/ansible/pull/17575 lands in a new version.
+- name: Ensure openSUSE Tumbleweed has the correct family
+  set_fact:
+    ansible_os_family: "Suse"
+  when: ansible_os_family | search("openSUSE Tumbleweed")
+
+- name: Ensure openSUSE Leap has the correct family
+  set_fact:
+    ansible_os_family: "Suse"
+  when: (ansible_os_family | search("SUSE LINUX")) or
+        (ansible_os_family | search("openSUSE Leap"))
+
+- name: "Update apt cache if Ubuntu/Debian"
+  block:
+    - pip:
+        name: "python-apt"
+        extra_args: "-c {{ upper_constraints_file }}"
+        virtualenv: "{{ enable_venv | bool | ternary(bifrost_venv_dir, omit) }}"
+    - apt:
+        update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: "Load distribution defaults"
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "../defaults/required_defaults_{{ ansible_distribution }}.yml"
+    - "../defaults/required_defaults_{{ ansible_os_family }}.yml"
+
+# From the previous list
+- name: "Install required packages"
+  action: "{{ ansible_pkg_mgr }} name={{ item }} state=present"
+  with_items: "{{ required_packages }}"
+
+- include_tasks: prepare_libvirt.yml
+
+- name: create placeholder var for vm entries in JSON format
+  set_fact:
+    nodes_json_data: {}
+
+# First we create the opnfv_vm
+- include_tasks: create_vm.yml
+  with_items: "{{ opnfv_vm }}"
+
+- include_tasks: create_vm.yml
+  with_items: "{{ nodes }}"
+
+- name: remove previous baremetal data file
+  file:
+    state: absent
+    path: "{{ baremetal_json_file }}"
+
+# We got nodes_json_data from the create_vm playbook
+- name: write to baremetal json file
+  copy:
+    dest: "{{ baremetal_json_file }}"
+    content: "{{ nodes_json_data | to_nice_json }}"
+
+- name: >
+    "Set file permissions such that the baremetal data file
+    can be read by the user executing Ansible"
+  file:
+    path: "{{ baremetal_json_file }}"
+    owner: "{{ ansible_env.SUDO_USER }}"
+  when: >
+    ansible_env.SUDO_USER is defined and
+    baremetal_json_file != ""
