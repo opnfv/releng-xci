@@ -1,0 +1,5 @@
+---
+- name: Start the opnfv vm
+  virt: 
+    command: start
+    name: opnfv
