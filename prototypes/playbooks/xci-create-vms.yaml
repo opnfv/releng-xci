@@ -1,0 +1,12 @@
+# Create a default VMs
+---
+- hosts: localhost
+  connection: local
+  name: "Executes install, enrollment, and testing in one playbook"
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../../xci/var/pdf.yml
+    - ../../xci/var/opnfv_vm.yml
+  roles:
+    - role: create-vm-nodes
