@@ -1,0 +1,67 @@
+---
+##############################################################################
+# Copyright (c) 2017 Ericsson AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+opnfv_vm:
+  name: opnfv
+  node: &nodeparams
+    type: virtual
+    vendor: libvirt
+    model: pc
+    arch: x86_64
+    cpus: 6
+    cpu_cflags: host-model
+    cores: 6
+    memory: 12G
+  disks: &disks
+    - name: disk1
+      disk_capacity: 80G
+      disk_type: hdd
+      disk_interface: sata
+      disk_rotation:
+  remote_params: &remote_params
+    type:
+      - ipmi: [2.0]
+    user: admin
+    pass: password
+  remote_management:
+    <<: *remote_params
+    address: 192.168.122.1:625
+    mac_address: "52:54:00:fe:3b:01"
+  interface_common_nic1: &interface_common_nic1
+    name: nic1
+    speed:
+    features:
+    vlan: 10
+  interface_common_nic2: &interface_common_nic2
+    name: nic2
+    speed:
+    features:
+    vlan: 20
+  interface_common_nic3: &interface_common_nic3
+    name: nic3
+    speed:
+    features:
+    vlan: native
+  interface_common_nic4: &interface_common_nic4
+    name: nic4
+    speed:
+    features:
+    vlan: 30
+  interfaces:
+    - mac_address: "52:54:00:33:82:d0"
+      address: 172.29.236.10
+      <<: *interface_common_nic1
+    - mac_address: "52:54:00:33:82:d0"
+      address: 172.29.244.10
+      <<: *interface_common_nic2
+    - mac_address: "52:54:00:33:82:d0"
+      address: 192.168.122.2
+      <<: *interface_common_nic3
+    - mac_address: "52:54:00:33:82:d0"
+      address: 172.29.240.10
+      <<: *interface_common_nic4
