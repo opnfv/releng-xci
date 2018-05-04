@@ -17,8 +17,6 @@ function bootstrap_xci_env() {
     source $XCI_PATH/xci/config/user-vars
     # source pinned versions
     source $XCI_PATH/xci/config/pinned-versions
-    # source flavor configuration
-    source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
     # source installer configuration
     source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
     # source xci configuration
