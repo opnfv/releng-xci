@@ -16,6 +16,8 @@ export XCI_PATH="${XCI_PATH:-$(git rev-parse --show-toplevel)}"
 # Declare our virtualenv
 export XCI_VENV="${XCI_VENV:-${XCI_PATH}/venv/}"
 export XCI_DISTRO=${XCI_DISTRO:-$(source /etc/os-release &>/dev/null || source /usr/lib/os-release &>/dev/null; echo ${ID,,})}
+# Path to reach the prototypes
+export XCI_PROTOTYPE_PATH=$XCI_PATH/prototypes
 
 export PYTHONUNBUFFERED=1
 SCRIPT_HOME="$(cd "$(dirname "$0")" && pwd)"
@@ -37,23 +39,13 @@ export UPPER_CONSTRAINTS_FILE=https://git.openstack.org/cgit/openstack/requireme
 
 # Ensure the right inventory files is used based on branch
 CURRENT_BIFROST_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [ $CURRENT_BIFROST_BRANCH = "master" ]; then
-    BAREMETAL_DATA_FILE=${BAREMETAL_DATA_FILE:-'/tmp/baremetal.json'}
-    INVENTORY_FILE_FORMAT="baremetal_json_file"
-else
-    BAREMETAL_DATA_FILE=${BAREMETAL_DATA_FILE:-'/tmp/baremetal.csv'}
-    INVENTORY_FILE_FORMAT="baremetal_csv_file"
-fi
+BAREMETAL_DATA_FILE=${BAREMETAL_DATA_FILE:-'/tmp/baremetal.json'}
+INVENTORY_FILE_FORMAT="baremetal_json_file"
 export BIFROST_INVENTORY_SOURCE=$BAREMETAL_DATA_FILE
 
 # Default settings for VMs
-export TEST_VM_NUM_NODES=${TEST_VM_NUM_NODES:-3}
-export TEST_VM_NODE_NAMES=${TEST_VM_NODE_NAMES:-"opnfv controller00 compute00"}
+export NUM_NODES=${NUM_NODES:-3}
 export VM_DOMAIN_TYPE=${VM_DOMAIN_TYPE:-kvm}
-export VM_CPU=${VM_CPU:-4}
-export VM_DISK=${VM_DISK:-100}
-export VM_MEMORY_SIZE=${VM_MEMORY_SIZE:-8192}
-export VM_DISK_CACHE=${VM_DISK_CACHE:-unsafe}
 
 # Settings for bifrost
 TEST_PLAYBOOK="opnfv-virtual.yaml"
@@ -114,7 +106,7 @@ fi
 ${_sudo} pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
 
 # Change working directory
-cd $BIFROST_HOME/playbooks
+cd $XCI_PROTOTYPE_PATH/playbooks
 
 # NOTE(hwoarang): Disable selinux as we are hitting issues with it from time to
 # time. Remove this when Centos7 is a proper gate on bifrost so we know that
@@ -126,16 +118,32 @@ if [[ -e /etc/centos-release ]]; then
     sudo setenforce 0
 fi
 
+echo "This is the venv:" $VENV
+echo "This is the virtual_env:" $VIRTUAL_ENV
+
+if [$ENABLE_VENV]; then
 # Create the VMS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
        -i inventory/localhost \
-       test-bifrost-create-vm.yaml \
-       -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
-       -e test_vm_cpu='host-model' \
-       -e test_vm_memory_size=${VM_MEMORY_SIZE} \
+       xci-create-vms.yaml \
+       -e num_nodes=${NUM_NODES} \
        -e enable_venv=${ENABLE_VENV} \
-       -e test_vm_domain_type=${VM_DOMAIN_TYPE} \
+       -e vm_domain_type=${VM_DOMAIN_TYPE} \
+       -e ansible_python_interpreter=$VIRTUAL_ENV/bin/python \
        -e ${INVENTORY_FILE_FORMAT}=${BAREMETAL_DATA_FILE}
+else
+# Create the VMS
+ansible-playbook ${XCI_ANSIBLE_PARAMS} \
+       -i inventory/localhost \
+       xci-create-vms.yaml \
+       -e num_nodes=${NUM_NODES} \
+       -e enable_venv=${ENABLE_VENV} \
+       -e vm_domain_type=${VM_DOMAIN_TYPE} \
+       -e ${INVENTORY_FILE_FORMAT}=${BAREMETAL_DATA_FILE}
+fi
+
+
+cd $BIFROST_HOME/playbooks
 
 # Execute the installation and VM startup test
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
@@ -143,7 +151,7 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
     ${TEST_PLAYBOOK} \
     -e use_cirros=${USE_CIRROS} \
     -e testing_user=${TESTING_USER} \
-    -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
+    -e test_vm_num_nodes=${NUM_NODES} \
     -e test_vm_cpu='host-model' \
     -e inventory_dhcp=${INVENTORY_DHCP} \
     -e inventory_dhcp_static_ip=${INVENTORY_DHCP_STATIC_IP} \
