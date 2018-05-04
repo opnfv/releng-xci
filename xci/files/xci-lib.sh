@@ -146,11 +146,13 @@ function install_ansible() {
         sudo -H update-alternatives --remove pip $(readlink -f /etc/alternatives/pip)
     fi
 
-    # We need to prepare our virtualenv now
-    virtualenv --quiet --no-site-packages ${XCI_VENV}
-    set +u
-    source ${XCI_VENV}/bin/activate
-    set -u
+    if [ ! -z "${XCI_VENV-}" ]; then
+      # We need to prepare our virtualenv now
+      virtualenv --quiet --no-site-packages ${XCI_VENV}
+      set +u
+      source ${XCI_VENV}/bin/activate
+      set -u
+    fi
 
     # We are inside the virtualenv now so we should be good to use pip and python from it.
     pip -q install --upgrade pip==9.0.3 # We need a version which supports the '-c' parameter

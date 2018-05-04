@@ -248,7 +248,7 @@ verification jobs.
 
 =======
 Support
-=======
+========
 
 OPNFV XCI issues are tracked on OPNFV JIRA Releng project. If you encounter
 and issue or identify a bug, please submit an issue to JIRA using
