@@ -24,7 +24,7 @@ jumphost:
   interfaces:
 ##############################################################################
 nodes:
-  - name: node1
+  - name: controller00
     node: &nodeparams
       type: virtual
       vendor: libvirt
@@ -83,7 +83,7 @@ nodes:
         address: 172.29.240.11
         <<: *interface_common_nic4
   ##############################################################################
-  - name: node2
+  - name: compute00
     node: *nodeparams
     disks: *disks
     remote_management:
