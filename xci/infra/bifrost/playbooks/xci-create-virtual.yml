@@ -1,29 +1,42 @@
 ---
 # SPDX-license-identifier: Apache-2.0
 ##############################################################################
-# Copyright (c) 2017 Ericsson AB and others.
+# Copyright (c) 2018 SUSE LINUX GmbH.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Apache License, Version 2.0
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-- hosts: localhost
-  connection: local
-  gather_facts: true
+
+- hosts: deployment_host
+  name: "Bootstrap XCI hardware resources and prepare provisioning environment"
+  gather_facts: yes
   vars_files:
+    - "{{ xci_path }}/xci/var/pdf.yml"
+    - "{{ xci_path }}/xci/var/opnfv_vm.yml"
     - "{{ xci_path }}/xci/var/opnfv.yml"
   pre_tasks:
     - name: Load distribution variables
       include_vars:
         file: "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
   roles:
+    - role: create-vm-nodes
+      become: yes
     - role: clone-repository
       project: "opnfv/bifrost"
       repo: "{{ openstack_bifrost_git_url }}"
       dest: "{{ xci_cache }}/repos/bifrost"
       version: "{{ openstack_bifrost_version }}"
-
   tasks:
+    - name: Wait for host to come back to life
+      local_action:
+        module: wait_for
+        host: "{{ opnfv_vm_ip }}"
+        delay: 15
+        state: started
+        port: 22
+        connect_timeout: 10
+        timeout: 180
     - name: Load distribution variables
       include_vars:
         file: "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
@@ -40,3 +53,12 @@
       copy:
         src: "{{ xci_path}}/xci/infra/bifrost/"
         dest: "{{ xci_cache }}/repos/bifrost"
+    - name: "Ensure /etc/hosts has good defaults"
+      lineinfile:
+        dest: "/etc/hosts"
+        regexp: "{{ item.regexp }}.*({{ ansible_hostname }}|localhost).*"
+        line: "{{ item.contents }}"
+      become: yes
+      with_items:
+        - { regexp: '^127\.0\.0\.1', contents: '127.0.0.1 {{ ansible_hostname }} {{ ansible_fqdn }} localhost' }
+        - { regexp: '^::1', contents: '::1 {{ ansible_hostname }} {{ ansible_fqdn }} localhost ipv6-localhost ipv6-loopback' }
