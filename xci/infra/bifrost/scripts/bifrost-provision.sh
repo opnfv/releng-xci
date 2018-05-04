@@ -16,6 +16,8 @@ export XCI_PATH="${XCI_PATH:-$(git rev-parse --show-toplevel)}"
 # Declare our virtualenv
 export XCI_VENV="${XCI_VENV:-${XCI_PATH}/venv/}"
 export XCI_DISTRO=${XCI_DISTRO:-$(source /etc/os-release &>/dev/null || source /usr/lib/os-release &>/dev/null; echo ${ID,,})}
+# Path to reach the prototypes
+export XCI_PROTOTYPE_PATH=$XCI_PATH/prototypes
 
 export PYTHONUNBUFFERED=1
 SCRIPT_HOME="$(cd "$(dirname "$0")" && pwd)"
@@ -37,13 +39,8 @@ export UPPER_CONSTRAINTS_FILE=https://git.openstack.org/cgit/openstack/requireme
 
 # Ensure the right inventory files is used based on branch
 CURRENT_BIFROST_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [ $CURRENT_BIFROST_BRANCH = "master" ]; then
-    BAREMETAL_DATA_FILE=${BAREMETAL_DATA_FILE:-'/tmp/baremetal.json'}
-    INVENTORY_FILE_FORMAT="baremetal_json_file"
-else
-    BAREMETAL_DATA_FILE=${BAREMETAL_DATA_FILE:-'/tmp/baremetal.csv'}
-    INVENTORY_FILE_FORMAT="baremetal_csv_file"
-fi
+BAREMETAL_DATA_FILE=${BAREMETAL_DATA_FILE:-'/tmp/baremetal.json'}
+INVENTORY_FILE_FORMAT="baremetal_json_file"
 export BIFROST_INVENTORY_SOURCE=$BAREMETAL_DATA_FILE
 
 # Default settings for VMs
@@ -114,7 +111,7 @@ fi
 ${_sudo} pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
 
 # Change working directory
-cd $BIFROST_HOME/playbooks
+cd $XCI_PROTOTYPE_PATH/playbooks
 
 # NOTE(hwoarang): Disable selinux as we are hitting issues with it from time to
 # time. Remove this when Centos7 is a proper gate on bifrost so we know that
@@ -129,13 +126,15 @@ fi
 # Create the VMS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
        -i inventory/localhost \
-       test-bifrost-create-vm.yaml \
-       -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
+       xci-create-vms.yaml \
+       -e num_nodes=${NUM_NODES} \
        -e test_vm_cpu='host-model' \
        -e test_vm_memory_size=${VM_MEMORY_SIZE} \
        -e enable_venv=${ENABLE_VENV} \
        -e test_vm_domain_type=${VM_DOMAIN_TYPE} \
        -e ${INVENTORY_FILE_FORMAT}=${BAREMETAL_DATA_FILE}
+
+cd $BIFROST_HOME/playbooks
 
 # Execute the installation and VM startup test
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
@@ -143,7 +142,7 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
     ${TEST_PLAYBOOK} \
     -e use_cirros=${USE_CIRROS} \
     -e testing_user=${TESTING_USER} \
-    -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
+    -e test_vm_num_nodes=${NUM_NODES} \
     -e test_vm_cpu='host-model' \
     -e inventory_dhcp=${INVENTORY_DHCP} \
     -e inventory_dhcp_static_ip=${INVENTORY_DHCP_STATIC_IP} \

@@ -1,0 +1,11 @@
+---
+nodes_ip: |-
+  {% set ips = [] %}
+  {% for node in nodes %}
+  {%-  for interface in node.interfaces %}
+  {%-    if 'native' in (interface.vlan | string) %}
+  {%-      set _ = ips.append(interface.address) %}
+  {%-    endif %}
+  {%-  endfor %}
+  {%-endfor %}
+  {{ ips }}

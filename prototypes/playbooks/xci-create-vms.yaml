@@ -1,0 +1,13 @@
+# Create a default VM
+---
+- hosts: localhost
+  connection: local
+  name: "Executes install, enrollment, and testing in one playbook"
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../../xci/var/pdf.yml
+    - ../../xci/var/opnfv_vm.yml
+  pre_tasks:
+  roles:
+    - role: bifrost-create-vm-nodes
