@@ -1,0 +1,19 @@
+# Create a default VM
+---
+- hosts: localhost
+  connection: local
+  name: "Executes install, enrollment, and testing in one playbook"
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - ../../xci/var/pdf.yml
+    - ../../xci/var/idf.yml
+  pre_tasks:
+  # Process pdf and idf into a file which is understandable
+  # Required values: test_vm_node_names, test_vm_num_nodes, test_vm_disk_gib
+  # test_vm_logdir, vm_host_group, test_vm_libvirt_uri, test_vm_storage_pool,
+  # test_vm_domain_type, test_vm_cpu_count, test_vm_memory_size, test_vm_arch,
+  # test_vm_machine, test_vm_cpu, test_vm_emulator, test_vm_disk_cache,
+  # test_vm_network, test_vm_nic,
+  roles:
+    - role: bifrost-create-vm-nodes
