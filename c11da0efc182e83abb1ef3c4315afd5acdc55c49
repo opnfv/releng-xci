@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_eb94668c",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-07T17:01:14Z",
+      "side": 1,
+      "message": "\"It is obvious that ONAP (requires, needs...) to be installed...\", a verb is missing here or?",
+      "revId": "c11da0efc182e83abb1ef3c4315afd5acdc55c49",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_6bf056fe",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-07T17:01:14Z",
+      "side": 1,
+      "message": "As this is the problems section, I would write something like: XCI requires ONAP if it aims to deploy edge cloud scenarios",
+      "range": {
+        "startLine": 23,
+        "startChar": 32,
+        "endLine": 23,
+        "endChar": 77
+      },
+      "revId": "c11da0efc182e83abb1ef3c4315afd5acdc55c49",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_4b8e3a7a",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-07T17:01:14Z",
+      "side": 1,
+      "message": "This is part of how the solution is implemented but it does not describe the problem",
+      "range": {
+        "startLine": 24,
+        "startChar": 38,
+        "endLine": 24,
+        "endChar": 60
+      },
+      "revId": "c11da0efc182e83abb1ef3c4315afd5acdc55c49",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_cbf1aa02",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-07T17:01:14Z",
+      "side": 1,
+      "message": "Why is this?",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 53
+      },
+      "revId": "c11da0efc182e83abb1ef3c4315afd5acdc55c49",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_abf6def6",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-07T17:01:14Z",
+      "side": 1,
+      "message": "Does that mean os-nosdn-nofeature scenario will always deploy ONAP?",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 8
+      },
+      "revId": "c11da0efc182e83abb1ef3c4315afd5acdc55c49",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_0bdf126a",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-05-07T17:01:14Z",
+      "side": 1,
+      "message": "Check with Fatih and Markos but I think they wanted to remove that directory from the releng-xci repo",
+      "range": {
+        "startLine": 80,
+        "startChar": 31,
+        "endLine": 80,
+        "endChar": 44
+      },
+      "revId": "c11da0efc182e83abb1ef3c4315afd5acdc55c49",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
