@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_3c9176f1",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-09T09:34:34Z",
+      "side": 1,
+      "message": "+1",
+      "range": {
+        "startLine": 45,
+        "startChar": 32,
+        "endLine": 45,
+        "endChar": 36
+      },
+      "revId": "7a73b4c92ece6f645086a539b171082fcf10609d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5cc3a2ec",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-09T09:34:34Z",
+      "side": 1,
+      "message": "as i commented on Victor\u0027s k8-nosdn-onap spec, i think we can try the same thing for this scenario as well; have a scenario specific pdf for virtual deployments which sets the specs for the scenario.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 39
+      },
+      "revId": "7a73b4c92ece6f645086a539b171082fcf10609d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_bc6bc6ef",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-09T09:34:34Z",
+      "side": 1,
+      "message": "this part requires some thinking like should we first run vanilla openstack healthcheck before attempting to bring ONAP up but not something which impacts overall thinking.",
+      "range": {
+        "startLine": 77,
+        "startChar": 3,
+        "endLine": 77,
+        "endChar": 25
+      },
+      "revId": "7a73b4c92ece6f645086a539b171082fcf10609d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_9c708add",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-09T09:34:34Z",
+      "side": 1,
+      "message": "same question about ONAP artifacts;\n\na question regarding what ONAP artifacts and which versions of them we are going to bring in, from where and how. this heavily depends on how onap creates those artifacts, tests them, and stores them.\n\nit would be good if you can give some details about this as well.\n\nwe should also look for possibility to pick and choose the artifacts based on the way we are going to structure the CI on our side but this is not the most crucial thing at the moment.",
+      "revId": "7a73b4c92ece6f645086a539b171082fcf10609d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
