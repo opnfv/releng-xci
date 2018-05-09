@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_3cfa1643",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-09T09:20:05Z",
+      "side": 1,
+      "message": "I really think we should use a bit more realistic flavor such as mini; 1 master and 1 worker node.\n\nCan you add details for that as well? Like how much RAM/HD/vCores for master and worker are needed?",
+      "range": {
+        "startLine": 34,
+        "startChar": 50,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_5c9c420f",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-09T09:20:05Z",
+      "side": 1,
+      "message": "we just moved generic scenarios to releng-xci-scenarios repo so the path will be releng-xci-scenarios/scenarios/k8-nosdn-onap",
+      "range": {
+        "startLine": 56,
+        "startChar": 14,
+        "endLine": 56,
+        "endChar": 41
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_bc9d860c",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-09T09:20:05Z",
+      "side": 1,
+      "message": "I think this would be a good opportunity for us to exercise the idea of having scenario specific pdf as well. this can be kept next to the scenario and the framework can check the existence of scenario specific pdf to create/provision vms.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 20
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_9ca24a49",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-09T09:20:05Z",
+      "side": 1,
+      "message": "i think we have kubectl already. helm can be installed by the scenario role.",
+      "range": {
+        "startLine": 70,
+        "startChar": 9,
+        "endLine": 70,
+        "endChar": 45
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_fc8a6ebd",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-09T09:20:05Z",
+      "side": 1,
+      "message": "a question regarding which versions of onap we are going to bring in, from where and how. this heavily depends on how onap creates those artifacts, tests them, and stores them.\n\ni suppose helm charts have the metadata necessary to fetch them from docker hub (?). it would be good if you can give some details about this as well.\n\nwe should also look for possibility to pick and choose the artifacts based on the way we are going to structure the CI on our side but this is not the most crucial thing at the moment.",
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
