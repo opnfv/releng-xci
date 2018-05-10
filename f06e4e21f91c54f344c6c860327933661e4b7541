@@ -108,6 +108,29 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_ad1eee5c",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 346
+      },
+      "writtenOn": "2018-05-10T10:50:46Z",
+      "side": 1,
+      "message": "The work upstream has just started see e.g. https://review.openstack.org/#/c/566541/ and https://review.openstack.org/#/c/566542/\n\nFor testing, as Blazar already includes Tempest tests, the plan is to run them on xci",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 11
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_9add4ee3",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
