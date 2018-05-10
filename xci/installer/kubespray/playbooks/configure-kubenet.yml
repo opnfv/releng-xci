@@ -13,6 +13,7 @@
 # so cbr0 interfaces can talk to each other.
 - name: Prepare networking for kubenet
   hosts: k8s-cluster
+  remote_user: root
   gather_facts: True
   become: yes
   vars_files:
