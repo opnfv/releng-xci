@@ -91,7 +91,7 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Setting up target hosts for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_PARAMS} \
+ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-hosts.yml | tee setup-hosts.log "
 scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
 echo "-----------------------------------------------------------------------"
@@ -113,7 +113,7 @@ echo "Info: Set up target hosts for openstack-ansible successfuly"
 echo "Info: Gathering facts"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/openstack-ansible/playbooks; \
-        ansible ${XCI_ANSIBLE_PARAMS} -m setup -a gather_subset=network,hardware,virtual all"
+        ansible -m setup -a gather_subset=network,hardware,virtual all"
 echo "-----------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
@@ -124,7 +124,7 @@ echo "-----------------------------------------------------------------------"
 echo "Info: Setting up infrastructure"
 echo "-----------------------------------------------------------------------"
 echo "xci: running ansible playbook setup-infrastructure.yml"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_PARAMS} \
+ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-infrastructure.yml | tee setup-infrastructure.log"
 scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
 echo "-----------------------------------------------------------------------"
@@ -153,7 +153,7 @@ echo "Info: Database cluster verification successful!"
 #-------------------------------------------------------------------------------
 echo "Info: Installing OpenStack on target hosts"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible ${XCI_ANSIBLE_PARAMS} \
+ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
 scp root@$OPNFV_HOST_IP:~/opnfv-setup-openstack.log $LOG_PATH/opnfv-setup-openstack.log
 echo "-----------------------------------------------------------------------"
