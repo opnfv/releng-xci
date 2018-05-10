@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a3f45e8_2dbc9e05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-10T12:58:19Z",
+      "side": 1,
+      "message": "this is not a good subject. It\u0027s best to give a summary of the fixes",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 31
+      },
+      "revId": "fbcb4a4be5754b6cc754e0404be23050a618df79",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
