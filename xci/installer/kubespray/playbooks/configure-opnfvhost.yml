@@ -56,10 +56,11 @@
 
     - name: Install required packages
       package:
-        name: "{{ kube_require_packages[ansible_pkg_mgr] }}"
+        name: "{{ (ansible_pkg_mgr == 'zypper') | ternary('dbus-1', 'dbus') }}"
         state: present
         update_cache: "{{ (ansible_pkg_mgr == 'apt') | ternary('yes', omit) }}"
       when: xci_flavor == 'aio'
+
 
     - name: change dashboard server type to NodePort
       lineinfile:
