@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_08238fa7",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-05-11T13:13:32Z",
+      "side": 1,
+      "message": "Okay, updated it with your comment.",
+      "parentUuid": "5a3f45e8_5cc3a2ec",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 39
+      },
+      "revId": "7a73b4c92ece6f645086a539b171082fcf10609d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_bc6bc6ef",
         "filename": "docs/specs/onap-openstack-scenario.rst",
         "patchSetId": 4
@@ -71,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_683df3c3",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-05-11T13:13:32Z",
+      "side": 1,
+      "message": "I meant to run https://onap.readthedocs.io/en/amsterdam/guides/onap-developer/settingup/fullonap.html#test-the-installation after the ONAP installation. \n\nI don\u0027t know what kind of health checks you want to run after openstack installation. do you think it is really necessary ?",
+      "parentUuid": "5a3f45e8_bc6bc6ef",
+      "range": {
+        "startLine": 77,
+        "startChar": 3,
+        "endLine": 77,
+        "endChar": 25
+      },
+      "revId": "7a73b4c92ece6f645086a539b171082fcf10609d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_9c708add",
         "filename": "docs/specs/onap-openstack-scenario.rst",
         "patchSetId": 4
@@ -82,6 +130,24 @@
       "writtenOn": "2018-05-09T09:34:34Z",
       "side": 1,
       "message": "same question about ONAP artifacts;\n\na question regarding what ONAP artifacts and which versions of them we are going to bring in, from where and how. this heavily depends on how onap creates those artifacts, tests them, and stores them.\n\nit would be good if you can give some details about this as well.\n\nwe should also look for possibility to pick and choose the artifacts based on the way we are going to structure the CI on our side but this is not the most crucial thing at the moment.",
+      "revId": "7a73b4c92ece6f645086a539b171082fcf10609d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_882e7f8a",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-05-11T13:13:32Z",
+      "side": 1,
+      "message": "Okay, Have updated the step 5 in the proposed section. is that fine ?",
+      "parentUuid": "5a3f45e8_9c708add",
       "revId": "7a73b4c92ece6f645086a539b171082fcf10609d",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
