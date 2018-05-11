@@ -118,7 +118,7 @@ fi
 COMMON_DISTRO_PKGS=(vim strace gdb htop dnsmasq docker iptables ebtables virt-manager qemu-kvm)
 
 case ${ID,,} in
-	*suse)
+	*suse*)
 		pkg_mgr_cmd="sudo zypper -q -n ref"
 		pkg_mgr_cmd+=" && sudo zypper -q -n install ${COMMON_DISTRO_PKGS[@]} qemu-tools libvirt-daemon libvirt-client libvirt-daemon-driver-qemu"
 		;;
