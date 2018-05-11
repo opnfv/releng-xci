@@ -119,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_68a693af",
+        "filename": "docs/specs/onap-openstack-scenario.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-11T19:27:44Z",
+      "side": 1,
+      "message": "i think it makes sense to verify the deployed openstack works fine before proceeding with ONAP installation.\n\nif we don\u0027t do that, attempt deploying ONAP and experience issues, it would be a bit troublesome to find where the problem is.\n\nor assume ONAP installation went fine but ONAP healthchecks failed. again, it might be tricky to identify the issue in certain situations.",
+      "parentUuid": "5a3f45e8_683df3c3",
+      "range": {
+        "startLine": 77,
+        "startChar": 3,
+        "endLine": 77,
+        "endChar": 25
+      },
+      "revId": "7a73b4c92ece6f645086a539b171082fcf10609d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_9c708add",
         "filename": "docs/specs/onap-openstack-scenario.rst",
         "patchSetId": 4
