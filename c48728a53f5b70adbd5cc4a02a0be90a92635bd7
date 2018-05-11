@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_4593c25a",
+        "filename": "xci/installer/kubespray/playbooks/configure-kubenet.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-05-11T07:27:30Z",
+      "side": 1,
+      "message": "I am not sure. but if not this there is issue \"fatal: [opnfv]: UNREACHABLE! \u003d\u003e {\"changed\": false, \"msg\": \"Failed to connect to the host via sh: Permission denied (publickey,password).\\r\\n\", \"unreachable\": true\"",
+      "parentUuid": "5a3f45e8_a5f0c6c9",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 19
+      },
+      "revId": "c48728a53f5b70adbd5cc4a02a0be90a92635bd7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_45e58207",
         "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
         "patchSetId": 2
@@ -36,6 +60,24 @@
       "writtenOn": "2018-05-11T07:10:58Z",
       "side": 1,
       "message": "why this new line?",
+      "revId": "c48728a53f5b70adbd5cc4a02a0be90a92635bd7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a3f45e8_05b7faf5",
+        "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-05-11T07:27:30Z",
+      "side": 1,
+      "message": "I will delete",
+      "parentUuid": "5a3f45e8_45e58207",
       "revId": "c48728a53f5b70adbd5cc4a02a0be90a92635bd7",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
