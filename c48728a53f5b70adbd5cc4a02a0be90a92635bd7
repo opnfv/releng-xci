@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5a3f45e8_45a10293",
+        "filename": "xci/installer/kubespray/playbooks/configure-kubenet.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-11T07:45:55Z",
+      "side": 1,
+      "message": "I think it\u0027s probably because we do not configure the SSH keys properly in AIO. OK then, that change looks good to me but I will have a look on fixing the actual problem.",
+      "parentUuid": "5a3f45e8_4593c25a",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 19
+      },
+      "revId": "c48728a53f5b70adbd5cc4a02a0be90a92635bd7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_45e58207",
         "filename": "xci/installer/kubespray/playbooks/configure-opnfvhost.yml",
         "patchSetId": 2
