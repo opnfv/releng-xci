@@ -17,7 +17,6 @@
         file: "{{ item }}"
       with_items:
         - "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
-        - "{{ xci_flavor_ansible_file_path }}/flavor-vars.yml"
   roles:
     - role: peru.proxy_settings
       proxy_settings_http_proxy: "{{ lookup('env','http_proxy') }}"
