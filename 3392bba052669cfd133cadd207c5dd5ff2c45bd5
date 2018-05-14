@@ -109,6 +109,30 @@
       "revId": "3392bba052669cfd133cadd207c5dd5ff2c45bd5",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_be7b7528",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-14T21:21:38Z",
+      "side": 1,
+      "message": "oh this sounds like \u0027sdf\u0027 to me",
+      "parentUuid": "1a494da4_5eb071f4",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 33
+      },
+      "revId": "3392bba052669cfd133cadd207c5dd5ff2c45bd5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
