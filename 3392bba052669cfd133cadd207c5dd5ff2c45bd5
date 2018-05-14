@@ -86,6 +86,29 @@
       "revId": "3392bba052669cfd133cadd207c5dd5ff2c45bd5",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_5eb071f4",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-05-14T21:01:57Z",
+      "side": 1,
+      "message": "Can you provide more details on what per scenario pdf look like as compared to actual pdf? \n\nIn other words, what values do you expect to be different or need to be changed from actual pdf.",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 33
+      },
+      "revId": "3392bba052669cfd133cadd207c5dd5ff2c45bd5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
