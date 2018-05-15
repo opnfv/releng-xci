@@ -34,11 +34,6 @@
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
         state: absent
-    - name: copy kubespray inventory directory
-      command: "cp -rf {{ remote_xci_flavor_files }}/inventory \
-                   {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
-      args:
-        creates: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
     - name: make sure kubespray/opnfv_inventory/group_vars/ exist
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
