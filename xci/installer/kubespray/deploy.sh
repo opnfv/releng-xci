@@ -28,8 +28,7 @@ echo "Info: Configuring localhost for kubespray"
 echo "-----------------------------------------------------------------------"
 cd $XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -e XCI_PATH="${XCI_PATH}" \
-        -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory/inventory.cfg \
-        configure-localhost.yml
+        -i dynamic_inventory.py configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost for kubespray"
 
@@ -47,8 +46,7 @@ echo "Info: Configuring opnfv deployment host for kubespray"
 echo "-----------------------------------------------------------------------"
 cd $K8_XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -e XCI_PATH="${XCI_PATH}" \
-        -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory/inventory.cfg \
-        configure-opnfvhost.yml
+        -i ${XCI_PLAYBOOKS}/dynamic_inventory.py configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for kubespray"
 
@@ -66,8 +64,7 @@ if [ $XCI_FLAVOR != "aio" ]; then
     echo "-----------------------------------------------------------------------"
     cd $K8_XCI_PLAYBOOKS
     ansible-playbook ${XCI_ANSIBLE_PARAMS} -e XCI_PATH="${XCI_PATH}" \
-            -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory/inventory.cfg \
-            configure-targethosts.yml
+            -i ${XCI_PLAYBOOKS}/dynamic_inventory.py configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts for kubespray"
 fi
@@ -82,8 +79,7 @@ scp root@$OPNFV_HOST_IP:~/releng-xci/.cache/repos/kubespray/setup-kubernetes.log
 
 cd $K8_XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
-    -i ${XCI_FLAVOR_ANSIBLE_FILE_PATH}/inventory/inventory.cfg \
-    configure-kubenet.yml
+    -i ${XCI_PLAYBOOKS}/dynamic_inventory.py configure-kubenet.yml
 echo
 echo "-----------------------------------------------------------------------"
 echo "Info: Kubernetes installation is successfully completed!"
