@@ -133,6 +133,30 @@
       "revId": "3392bba052669cfd133cadd207c5dd5ff2c45bd5",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_be01b53b",
+        "filename": "docs/specs/infra_manager.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-15T07:17:19Z",
+      "side": 1,
+      "message": "it is pdf and it will be based on official pdf template/schema such as the one Alex proposed. https://gerrit.opnfv.org/gerrit/#/c/50315/\n\nif you look at the specs for k8-nosdn-onap and os-nosdn-onap, the resource requirements are much higher than what our flavors provide. my expectation with vPDF for XCI is to have flavors replaced by vPDF and we have default one(s) as oppose to {flavor}-vars.\n\nbut the default vPDFs we will have will not be sufficient for all the scenarios since the cpu/ram/disk allocation is pretty conservative.\n\none way to solve this is to allow scenarios to specify their own vPDFs if needed so XCI uses those vPDFs instead of the default ones we provide.\n\nwe already have this btw; if you look at os-odl-sfc and os-odl-bgpvpn, they override VM specs so vPDF will essentially result in same.\n\nhttps://github.com/opnfv/sfc/blob/master/scenarios/os-odl-sfc/xci_overrides\nhttps://github.com/opnfv/sdnvpn/blob/master/scenarios/os-odl-bgpvpn/xci_overrides\n\nand this is only applicable for virtual deployments.\nfor baremetal, we will already have set of PDFs which the CI will schedule the jobs on right PODs depending on what the scenario needs.",
+      "parentUuid": "1a494da4_be7b7528",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 33
+      },
+      "revId": "3392bba052669cfd133cadd207c5dd5ff2c45bd5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
