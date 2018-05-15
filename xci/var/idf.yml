@@ -83,7 +83,7 @@ xci:
     groups:
       k8s-cluster:
         - kube-node
-        - kude-master
+        - kube-master
     hostnames:
       opnfv: opnfv
       node1: master1

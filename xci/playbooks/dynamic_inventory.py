@@ -13,6 +13,7 @@
 # Based on https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/cobbler.py
 
 import argparse
+import glob
 import os
 import sys
 import yaml
@@ -30,10 +31,12 @@ class XCIInventory(object):
         self.inventory['_meta']['hostvars'] = {}
         self.installer = os.environ.get('INSTALLER_TYPE', 'osa')
         self.flavor = os.environ.get('XCI_FLAVOR', 'mini')
+        self.flavor_files = os.path.normpath(os.path.dirname(__file__) + "/../../xci/installer/" + self.installer + "/files/" + self.flavor)
 
         # Static information for opnfv host for now
         self.add_host('opnfv')
-        self.add_hostvar('opnfv', 'ansible_ssh_host', '192.168.122.2')
+        self.add_hostvar('opnfv', 'ansible_host', '192.168.122.2')
+        self.add_hostvar('opnfv', 'ip', '192.168.122.2')
         self.add_to_group('deployment', 'opnfv')
         self.add_to_group('opnfv', 'opnfv')
 
@@ -93,6 +96,7 @@ class XCIInventory(object):
             pdf_host_info = filter(lambda x: x['name'] == host, pdf['nodes'])[0]
             native_vlan_if = filter(lambda x: x['vlan'] == 'native', pdf_host_info['interfaces'])
             self.add_hostvar(hostname, 'ansible_host', native_vlan_if[0]['address'])
+            self.add_hostvar(hostname, 'ip', native_vlan_if[0]['address'])
             host_networks[hostname] = {}
             # And now record the rest of the information
             for network in idf['idf']['net_config'].keys():
@@ -106,6 +110,24 @@ class XCIInventory(object):
         # Now add the additional groups
         for parent in idf['xci'][self.installer]['groups'].keys():
             map(lambda x: self.add_group(x, parent), idf['xci'][self.installer]['groups'][parent])
+
+        # Read additional group variables
+        self.read_additional_group_vars()
+
+    def read_additional_group_vars(self):
+        if not os.path.exists(self.flavor_files + "/inventory/group_vars"):
+            return
+        group_dir = self.flavor_files + "/inventory/group_vars/*.yml"
+        group_file = glob.glob(group_dir)
+        for g in group_file:
+            with open(g) as f:
+                try:
+                    group_vars = yaml.safe_load(f)
+                except yaml.YAMLError as e:
+                    print(e)
+                    sys.exit(1)
+                for k,v in group_vars.items():
+                    self.add_groupvar(os.path.basename(g.replace('.yml', '')), k, v)
 
     def dump(self, data):
         print (json.dumps(data, sort_keys=True, indent=2))
@@ -134,8 +156,8 @@ class XCIInventory(object):
         self.inventory['_meta']['hostvars'][host].update({param: value})
 
     def add_groupvar(self, group, param, value):
-        if group not in self.groupvars(group):
-            self.inventory[group]['vars'] = {}
+        if param not in self.groupvars(group):
+            self.inventory[group]['vars'][param] = {}
         self.inventory[group]['vars'].update({param: value})
 
     def hostvars(self):
