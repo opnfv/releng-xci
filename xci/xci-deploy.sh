@@ -164,8 +164,7 @@ echo "-------------------------------------------------------------------------"
 
 # Get scenario variables overrides
 #-------------------------------------------------------------------------------
-source $(find $XCI_PATH/xci/scenarios/${DEPLOY_SCENARIO} -name xci_overrides) &>/dev/null || \
-    source $(find $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO} -name xci_overrides) &>/dev/null || :
+source $(find $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO} -name xci_overrides) &>/dev/null || :
 
 #-------------------------------------------------------------------------------
 # Log info to console
