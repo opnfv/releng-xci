@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a494da4_2f30d155",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-16T11:00:27Z",
+      "side": 1,
+      "message": "should we have something like this perhaps?\n\n    OPNFV Scenario: os-nosdn-nofeature\n    Scenario Version: master ($sha)\n\nor in case of tag\n\n    OPNFV Scenario: os-nosdn-nofeature\n    Scenario Version: 6.0.0 ($sha)\n\nso we display what\u0027s in opnfv-scenario-requirements.yml and add sha as additional info?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 113
+      },
+      "revId": "710fbb498e394e48890e1648dfdfac02ba5d394f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
