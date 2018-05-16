@@ -86,8 +86,6 @@
         state: directory
       become: true
 
-    # NOTE(hwoarang) We have to check all levels of the local fact before we add it
-    # otherwise Ansible will fail.
     - name: Record scenario information
       ini_file:
         create: yes
@@ -97,10 +95,6 @@
         value:  "{{ xci_scenario.role | basename }}"
         path: "/etc/ansible/facts.d/xci.fact"
       become: true
-      when: ansible_local is not defined
-        or (ansible_local is defined and ansible_local.xci is not defined)
-        or (ansible_local is defined and ansible_local.xci is defined and ansible_local.xci.scenarios is not defined)
-        or (ansible_local is defined and ansible_local.xci is defined and ansible_local.xci.scenarios is defined and ansible_local.xci.scenarios.role is not defined)
 
     - name: Fail if {{ deploy_scenario }} is not supported
       fail:
