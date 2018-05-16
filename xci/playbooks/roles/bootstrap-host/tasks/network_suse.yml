@@ -17,10 +17,10 @@
     - { name: "{{ ansible_local.xci.network.xci_interface }}.10", vlan_id: 10 }
     - { name: "{{ ansible_local.xci.network.xci_interface }}.30", vlan_id: 30 }
     - { name: "{{ ansible_local.xci.network.xci_interface }}.20", vlan_id: 20 }
-    - { name: "br-mgmt", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.10", ip: "{{ host_info[inventory_hostname].admin }}/22" }
-    - { name: "br-vxlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.30", ip: "{{ host_info[inventory_hostname].private }}/22" }
-    - { name: "br-vlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}", ip: "{{ host_info[inventory_hostname].public }}/24" }
-    - { name: "br-storage", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.20", ip: "{{ host_info[inventory_hostname].storage }}/22" }
+    - { name: "br-mgmt", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.10", network: "{{ host_info[inventory_hostname].admin }}" }
+    - { name: "br-vxlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.30", network: "{{ host_info[inventory_hostname].private }}" }
+    - { name: "br-vlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}", network: "{{ host_info[inventory_hostname].public }}" }
+    - { name: "br-storage", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.20", network: "{{ host_info[inventory_hostname].storage }}" }
   loop_control:
     label: "{{ item.name }}"
 
@@ -35,7 +35,7 @@
     src: "{{ installer_type }}/{{ ansible_os_family | lower }}.routes.j2"
     dest: "/etc/sysconfig/network/ifroute-{{ item.name }}"
   with_items:
-    - { name: "br-vlan", gateway: "192.168.122.1", route: "default" }
+    - { name: "br-vlan", gateway: "{{ host_info[inventory_hostname]['br-vlan']['gateway'] }}", route: "default" }
 
 - name: restart network service
   service:
