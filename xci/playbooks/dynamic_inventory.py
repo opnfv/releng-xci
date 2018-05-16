@@ -39,10 +39,10 @@ class XCIInventory(object):
 
         self.opnfv_networks = {}
         self.opnfv_networks['opnfv'] = {}
-        self.opnfv_networks['opnfv']['admin'] = '172.29.236.10'
-        self.opnfv_networks['opnfv']['public'] = '192.168.122.2'
-        self.opnfv_networks['opnfv']['private'] = '172.29.240.10'
-        self.opnfv_networks['opnfv']['storage'] = '172.29.244.10'
+        self.opnfv_networks['opnfv']['admin'] = '172.29.236.10/22'
+        self.opnfv_networks['opnfv']['public'] = '192.168.122.2/24'
+        self.opnfv_networks['opnfv']['private'] = '172.29.240.10/22'
+        self.opnfv_networks['opnfv']['storage'] = '172.29.244.10/24'
 
         self.read_pdf_idf()
 
@@ -95,9 +95,11 @@ class XCIInventory(object):
             self.add_hostvar(hostname, 'ansible_host', native_vlan_if[0]['address'])
             host_networks[hostname] = {}
             # And now record the rest of the information
-            for network in idf['idf']['net_config'].keys():
+            for network, ndata in idf['idf']['net_config'].items():
                 network_interface_num = idf['idf']['net_config'][network]['interface']
-                host_networks[hostname][network] = pdf_host_info['interfaces'][int(network_interface_num)]['address']
+                host_networks[hostname][network] = pdf_host_info['interfaces'][int(network_interface_num)]['address'] + "/" + str(ndata['mask'])
+                if 'gateway' in ndata.keys():
+                    host_networks[hostname]['gateway'] = str(ndata['gateway']) + "/" + str(ndata['mask'])
 
             host_networks.update(self.opnfv_networks)
 

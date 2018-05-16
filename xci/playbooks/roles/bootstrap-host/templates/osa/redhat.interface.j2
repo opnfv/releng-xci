@@ -14,9 +14,6 @@ TYPE=Bridge
 DELAY=0
 STP=off
 {% endif %}
-{% if item.ip is defined %}
-IPADDR={{ item.ip }}
-{% endif %}
-{% if item.prefix is defined %}
-PREFIX={{ item.prefix }}
+{% if item.address is defined %}
+IPADDR={{ item.address }}
 {% endif %}

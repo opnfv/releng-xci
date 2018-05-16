@@ -10,8 +10,8 @@ BRIDGE_FORWARDDELAY='0'
 BRIDGE_STP=off
 BRIDGE_PORTS={{ item.bridge_ports }}
 {% endif %}
-{% if item.ip is defined %}
-IPADDR={{ item.ip }}
+{% if item.address is defined %}
+IPADDR={{ item.address }}
 {% endif %}
 PRE_UP_SCRIPT="compat:suse:network-config-suse"
 POST_DOWN_SCRIPT="compat:suse:network-config-suse"

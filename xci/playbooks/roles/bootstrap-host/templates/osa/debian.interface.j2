@@ -25,14 +25,12 @@ iface {{ item.name }} inet static
     post-down ip link del br-vlan-veth || true
     bridge_ports br-vlan-veth
 {% endif %}
-{% if item.ip is defined %}
-    address {{ item.ip }}
-{% endif %}
-{% if item.prefix is defined %}
-    netmask {{ item.prefix }}
+{% if item.address is defined %}
+    address {{ item.address | ipaddr('address') }}
+    netmask {{ item.prefix | ipaddr('netmask') }}
 {% endif %}
 {% if item.gateway is defined %}
-    gateway {{ item.gateway }}
+    gateway {{ item.gateway | ipaddr('address') }}
 {% endif %}
 
 {% endif %}
