@@ -29,7 +29,7 @@
 - scenario: os-nosdn-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
+  version: 6.0.0
   role: scenarios/os-nosdn-nofeature/role/os-nosdn-nofeature
   installers:
     - installer: osa
@@ -45,7 +45,7 @@
 - scenario: os-odl-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
+  version: 6.0.0
   role: scenarios/os-odl-nofeature/role/os-odl-nofeature
   installers:
     - installer: osa
@@ -60,7 +60,7 @@
 - scenario: k8-nosdn-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
+  version: 6.0.0
   role: scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature
   installers:
     - installer: kubespray
@@ -92,7 +92,7 @@
 - scenario: k8-canal-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
+  version: 6.0.0
   role: scenarios/k8-canal-nofeature/role/k8-canal-nofeature
   installers:
     - installer: kubespray
@@ -109,7 +109,7 @@
 - scenario: k8-calico-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
+  version: 6.0.0
   role: scenarios/k8-calico-nofeature/role/k8-calico-nofeature
   installers:
     - installer: kubespray
@@ -126,7 +126,7 @@
 - scenario: k8-flannel-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
+  version: 6.0.0
   role: scenarios/k8-flannel-nofeature/role/k8-flannel-nofeature
   installers:
     - installer: kubespray
