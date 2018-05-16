@@ -143,6 +143,9 @@ cd $XCI_PATH/xci/playbooks
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," get-opnfv-scenario-requirements.yml
 echo "-------------------------------------------------------------------------"
 
+echo "Info: Deploying ${DEPLOY_SCENARIO}@$(cd $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO} && git rev-parse HEAD)"
+echo "-------------------------------------------------------------------------"
+
 #-------------------------------------------------------------------------------
 # Check playbooks using ansible-lint
 #-------------------------------------------------------------------------------
