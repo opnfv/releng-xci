@@ -104,7 +104,7 @@ sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 echo "Info: Starting XCI Deployment"
 echo "Info: Deployment parameters"
 echo "-------------------------------------------------------------------------"
-echo "OPNFV scenario: $DEPLOY_SCENARIO"
+echo "OPNFV scenario: $DEPLOY_SCENARIO (sha: $(cd ${XCI_CACHE}/.repos/${DEPLOY_SCENARIO} && git rev-parse HEAD))"
 echo "xci flavor: $XCI_FLAVOR"
 echo "xci installer: $INSTALLER_TYPE"
 echo "infra deployment: $INFRA_DEPLOYMENT"
