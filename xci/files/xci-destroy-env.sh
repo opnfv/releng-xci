@@ -21,6 +21,8 @@ rm -rf /opt/stack
 # HOME is normally set by sudo -H
 rm -rf ${HOME}/.config/openstack
 rm -rf ${HOME}/.ansible
+# Wipe repos
+rm -rf ${XCI_CACHE}/repos
 
 # bifrost installs everything on venv so we need to look there if virtualbmc is not installed on the host.
 if which vbmc &>/dev/null || { [[ -e ${XCI_VENV}/bifrost/bin/activate ]] && source ${XCI_VENV}/bifrost/bin/activate; }; then

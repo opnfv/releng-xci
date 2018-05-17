@@ -25,7 +25,6 @@
         state: absent
         recurse: no
       with_items:
-        - "{{ xci_cache }}/repos"
         - "{{ log_path }} "
         - "{{ opnfv_ssh_host_keys_path }}"
 
