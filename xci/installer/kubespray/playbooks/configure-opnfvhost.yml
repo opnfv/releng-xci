@@ -74,6 +74,7 @@
       with_items:
         - { name: 'ansible', version: "{{ xci_kube_ansible_pip_version }}" }
         - { name: 'netaddr' }
+        - { name: 'ansible-modules-hashivault' }
 
     - name: Configure SSL certificates
       include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssl-certs.yml"
