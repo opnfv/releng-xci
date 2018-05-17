@@ -29,6 +29,28 @@ submit_bug_report() {
     echo "-------------------------------------------------------------------------"
 }
 
+log_xci_information() {
+    local scenario_version scenario_sha
+
+    cd ${XCI_SCENARIOS_CACHE}/${DEPLOY_SCENARIO}
+    scenario_sha=$(git rev-parse HEAD)
+    scenario_version=$(git describe --exact 2>/dev/null || echo "master")
+    cd -
+    echo "Info: Starting XCI Deployment"
+    echo "Info: Deployment parameters"
+    echo "-------------------------------------------------------------------------"
+    echo "OPNFV scenario: $DEPLOY_SCENARIO"
+    echo "Scenario version: ${scenario_version} (sha: ${scenario_sha})"
+    echo "xci flavor: $XCI_FLAVOR"
+    echo "xci installer: $INSTALLER_TYPE"
+    echo "infra deployment: $INFRA_DEPLOYMENT"
+    echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
+    [[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
+    [[ "$INSTALLER_TYPE" == "osa" ]] && echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
+    [[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
+    echo "-------------------------------------------------------------------------"
+}
+
 exit_trap() {
     submit_bug_report
     collect_xci_logs
@@ -98,20 +120,10 @@ trap exit_trap ERR
 # We are using sudo so we need to make sure that env_reset is not present
 sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 
-#-------------------------------------------------------------------------------
-# Log info to console
-#-------------------------------------------------------------------------------
-echo "Info: Starting XCI Deployment"
-echo "Info: Deployment parameters"
-echo "-------------------------------------------------------------------------"
-echo "OPNFV scenario: $DEPLOY_SCENARIO"
-echo "xci flavor: $XCI_FLAVOR"
-echo "xci installer: $INSTALLER_TYPE"
-echo "infra deployment: $INFRA_DEPLOYMENT"
-echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
-[[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
-[[ "$INSTALLER_TYPE" == "osa" ]] && echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
-[[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
+#
+# Bootstrap environment for XCI Deployment
+#
+echo "Info: Preparing host environment for the XCI deployment"
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
@@ -150,11 +162,15 @@ echo "-------------------------------------------------------------------------"
 ansible_lint
 echo "-------------------------------------------------------------------------"
 
-#-------------------------------------------------------------------------------
 # Get scenario variables overrides
 #-------------------------------------------------------------------------------
 source $(find $XCI_PATH/xci/scenarios/${DEPLOY_SCENARIO} -name xci_overrides) &>/dev/null || \
     source $(find $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO} -name xci_overrides) &>/dev/null || :
+
+#-------------------------------------------------------------------------------
+# Log info to console
+#-------------------------------------------------------------------------------
+log_xci_information
 
 # Deploy infrastructure based on the selected deloyment method
 echo "Info: Deploying hardware using '${INFRA_DEPLOYMENT}'"
