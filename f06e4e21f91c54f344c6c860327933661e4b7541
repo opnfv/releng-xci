@@ -154,6 +154,46 @@
     },
     {
       "key": {
+        "uuid": "1a494da4_a48363cb",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 314
+      },
+      "writtenOn": "2018-05-18T07:00:57Z",
+      "side": 1,
+      "message": "I think yardstick scenario specific testing should be added here before merge. we have one case for vm ha in yardstick",
+      "range": {
+        "startLine": 325,
+        "startChar": 57,
+        "endLine": 325,
+        "endChar": 62
+      },
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_8488e7e8",
+        "filename": "docs/xci-criterias-cls.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 314
+      },
+      "writtenOn": "2018-05-18T07:00:57Z",
+      "side": 1,
+      "message": "suggest to add the vm ha test case in yardstick as well for daily and weekly testing",
+      "revId": "f06e4e21f91c54f344c6c860327933661e4b7541",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_fa0bb28b",
         "filename": "docs/xci-criterias-cls.rst",
         "patchSetId": 1
