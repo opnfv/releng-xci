@@ -215,4 +215,54 @@ collect_xci_logs() {
     sudo -H -E bash -c 'chown ${SUDO_UID}:${SUDO_GID} -R ${LOG_PATH}/'
 }
 
+submit_bug_report() {
+    cd ${XCI_PATH}
+    echo ""
+    echo "-------------------------------------------------------------------------"
+    echo "Oh nooooo! The XCI deployment failed miserably :-("
+    echo ""
+    echo "If you need help, please choose one of the following options"
+    echo "* #opnfv-pharos @ freenode network"
+    echo "* opnfv-tech-discuss mailing list (https://lists.opnfv.org/mailman/listinfo/opnfv-tech-discuss)"
+    echo "  - Please prefix the subject with [XCI]"
+    echo "* https://jira.opnfv.org (Release Engineering project)"
+    echo ""
+    echo "Do not forget to submit the following information on your bug report:"
+    echo ""
+    git diff --quiet && echo "releng-xci tree status: clean" || echo "releng-xci tree status: local modifications"
+    echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
+    echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
+    echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
+    echo "xci flavor: $XCI_FLAVOR"
+    echo "xci installer: $INSTALLER_TYPE"
+    echo "xci scenario: $DEPLOY_SCENARIO"
+    echo "Environment variables:"
+    env | grep --color=never '\(OPNFV\|XCI\|INSTALLER_TYPE\|OPENSTACK\|SCENARIO\|ANSIBLE\)'
+    echo "-------------------------------------------------------------------------"
+}
+
+log_xci_information() {
+    local scenario_version scenario_sha
+
+    cd ${XCI_SCENARIOS_CACHE}/${DEPLOY_SCENARIO}
+    scenario_sha=$(git rev-parse HEAD)
+    scenario_version=$(git describe --exact 2>/dev/null || echo "master")
+    cd -
+    echo "Info: Starting XCI Deployment"
+    echo "Info: Deployment parameters"
+    echo "-------------------------------------------------------------------------"
+    echo "OPNFV scenario: $DEPLOY_SCENARIO"
+    echo "Scenario version: ${scenario_version} (sha: ${scenario_sha})"
+    echo "xci flavor: $XCI_FLAVOR"
+    echo "xci installer: $INSTALLER_TYPE"
+    echo "infra deployment: $INFRA_DEPLOYMENT"
+    echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
+    [[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
+    [[ "$INSTALLER_TYPE" == "osa" ]] && echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
+    [[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
+    echo "-------------------------------------------------------------------------"
+}
+
+exit_trap() {
+    submit_bug_report
 # vim: set ts=4 sw=4 expandtab:
