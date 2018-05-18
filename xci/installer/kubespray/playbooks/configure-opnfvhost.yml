@@ -34,15 +34,17 @@
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
         state: absent
-    - name: copy kubespray inventory directory
-      command: "cp -rf {{ remote_xci_flavor_files }}/inventory \
-                   {{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
-      args:
-        creates: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
+
     - name: make sure kubespray/opnfv_inventory/group_vars/ exist
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
         state: directory
+
+    - name: copy kubespray inventory directory
+      file:
+        src: "{{ remote_xci_playbooks }}/dynamic_inventory.py"
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/dynamic_inventory.py"
+        state: link
 
     - name: Reload XCI deployment host facts
       setup:
