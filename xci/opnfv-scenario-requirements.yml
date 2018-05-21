@@ -139,3 +139,20 @@
         - ubuntu
         - centos
         - opensuse
+
+- scenario: k8-contiv-nofeature
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+  version: master
+  role: scenarios/k8-contiv-nofeature/role/k8-contiv-nofeature
+  installers:
+    - installer: kubespray
+      flavors:
+        - aio
+        - ha
+        - noha
+        - mini
+      distros:
+        - ubuntu
+        - centos
+        - opensuse
