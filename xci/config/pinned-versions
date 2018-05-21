@@ -25,16 +25,16 @@
 #-------------------------------------------------------------------------------
 # use releng-xci from master until the development work with the sandbox is complete
 export OPNFV_RELENG_VERSION="master"
-# HEAD of bifrost "master" as of 13.02.2018
-export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"28b6b8c96f89532bbddeca513285e6c00db89205"}
-# HEAD of ironic "master" as of 13.02.2018
-export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-"9b8440aa318e4883a74ef8640ad5409dd22858a9"}
-# HEAD of ironic-client "master" as of 13.02.2018
-export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"1da269b0e99601f8f6395b2ce3f436f5600e8140"}
-# HEAD of ironic-inspector "master" as of 13.02.2018
-export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"84da941fafb905c2debdd9a9ba68ba743af3ce8a"}
-# HEAD of ironic-inspector-client "master" as of 13.02.2018
-export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-"b73403fdad3165cfcccbf4b0330d426ae5925e01"}
+# HEAD of bifrost "master" as of 21.05.2018
+export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"ad0cbe99be87694f08013827974c51849cece58b"}
+# HEAD of ironic "master" as of 21.05.2018
+export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-"75cd526bad98efeb0985958debf26f3b9c070c7e"}
+# HEAD of python-ironicclient "master" as of 21.05.2018
+export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"69f1bb8c01095432c740ce21c8a8228ad49511a8"}
+# HEAD of ironic-inspector "master" as of 21.05.2018
+export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"c312669bde68ffbbc22e115a4b0f4796bb613dd2"}
+# HEAD of python-ironic-inspector-client "master" as of 21.05.2018
+export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-"6048afc1a03eefe89b9f1f508d9099e658d0fba0"}
 # HEAD of osa "stable/queens" as of 03.04.2018
 export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"90d0679d209cb494b9a71817c56e2c26c7fc5ca1"}
 export KEEPALIVED_VERSION=$(grep -E '.*name: keepalived' -A 3 \
