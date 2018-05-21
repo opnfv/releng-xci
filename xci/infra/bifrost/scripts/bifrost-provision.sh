@@ -100,18 +100,14 @@ if [[ -e ${XCI_PATH}/deployment_image.qcow2 ]]; then
 	sudo mv ${XCI_PATH}/deployment_image.qcow2* /httpboot/
 fi
 
-# Install missing dependencies. Use sudo since for bifrost jobs
-# the venv is not ready yet.
-if [[ -n ${VIRTUAL_ENV:-} ]]; then
-    _sudo=""
-else
+# Install missing dependencies. Enter venv if we haven't done it already.
+if [[ -z ${VIRTUAL_ENV:-} ]]; then
     virtualenv --quiet --no-site-packages ${XCI_VENV}
     set +u
     source ${XCI_VENV}/bin/activate
     set -u
-    _sudo="sudo -H -E"
 fi
-${_sudo} pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
+pip install -q --upgrade -r "$(dirname $0)/../requirements.txt"
 
 # Change working directory
 cd $BIFROST_HOME/playbooks
@@ -130,6 +126,7 @@ fi
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
        -i inventory/localhost \
        test-bifrost-create-vm.yaml \
+       -e ansible_python_interpreter=${VENV}/bin/python \
        -e test_vm_num_nodes=${TEST_VM_NUM_NODES} \
        -e test_vm_cpu='host-model' \
        -e test_vm_memory_size=${VM_MEMORY_SIZE} \
