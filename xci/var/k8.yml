@@ -1,0 +1,45 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 SUSE LINUX GmbH and others.
+#
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+metadata:
+  name: kubernetes
+  description: Descriptor file for kubernetes scenarios
+
+configuration:
+  sdn:
+    - name: calico
+      parameters:
+        - version: 0.1
+    - name: canal
+      parameters:
+        - version: 0.1
+    - name: flannel
+      parameters:
+        - version: 0.1
+    - name: contiv
+      parameters:
+        - version: 0.1      
+  features:
+    - name: onap:
+      parameters:
+        - version: 0.1
+
+deployment:
+    ha: False # or True
+    restrictions:
+      - master:
+        memory: 12G
+        arch: x86_64
+        disk: 100G
+      - node:
+        memory: 6G
+        arch: x86_64
+        disk: 50G
