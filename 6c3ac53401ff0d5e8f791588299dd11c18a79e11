@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a494da4_4ee276d6",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 2829
+      },
+      "writtenOn": "2018-05-22T16:26:34Z",
+      "side": 1,
+      "message": "we need more than one file in the future, I don\u0027t think we will have one big sdf file with all the possible combinations.",
+      "revId": "6c3ac53401ff0d5e8f791588299dd11c18a79e11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_cec68649",
+        "filename": "xci/var/sdf.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2829
+      },
+      "writtenOn": "2018-05-22T16:26:34Z",
+      "side": 1,
+      "message": "the file name should be maybe more specific, like k8.yml and we should probably have a folder to store sdf files, what do you think? How were you envisioning this?",
+      "revId": "6c3ac53401ff0d5e8f791588299dd11c18a79e11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_8eb59ecf",
+        "filename": "xci/var/sdf.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2829
+      },
+      "writtenOn": "2018-05-22T16:26:34Z",
+      "side": 1,
+      "message": "typo :)",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "6c3ac53401ff0d5e8f791588299dd11c18a79e11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_aee7bae3",
+        "filename": "xci/var/sdf.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2829
+      },
+      "writtenOn": "2018-05-22T16:26:34Z",
+      "side": 1,
+      "message": "we should have more options, e.g flannel too",
+      "revId": "6c3ac53401ff0d5e8f791588299dd11c18a79e11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
