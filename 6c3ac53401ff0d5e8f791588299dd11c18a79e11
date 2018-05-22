@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1a494da4_2e772a04",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T17:11:57Z",
+      "side": 1,
+      "message": "I agree but I consider this an XCI specific issue. We can fix that possibly by allowing to pass the SDF file as a parameter to XCI. Once we agree how the SDF file will look like, then feeding it to XCI is very easy.",
+      "parentUuid": "1a494da4_4ee276d6",
+      "revId": "6c3ac53401ff0d5e8f791588299dd11c18a79e11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a494da4_cec68649",
         "filename": "xci/var/sdf.yml",
         "patchSetId": 4
@@ -70,6 +88,24 @@
       "writtenOn": "2018-05-22T16:26:34Z",
       "side": 1,
       "message": "we should have more options, e.g flannel too",
+      "revId": "6c3ac53401ff0d5e8f791588299dd11c18a79e11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_0e74eefb",
+        "filename": "xci/var/sdf.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T17:11:57Z",
+      "side": 1,
+      "message": "right but this is something for the template right? In my mind, we need to come me up with a template which lists all the available options and then have a validator which ensures that whatever specific sdf file we pass to XCI is in line with the template.\n\nJust to be clear, this is not a template file, but a specific SDF file for the k8-calico-nofeature scenario.",
+      "parentUuid": "1a494da4_aee7bae3",
       "revId": "6c3ac53401ff0d5e8f791588299dd11c18a79e11",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
