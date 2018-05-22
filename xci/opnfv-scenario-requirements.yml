@@ -71,7 +71,6 @@
         - noha
       distros:
         - ubuntu
-        - centos
         - opensuse
 
 - scenario: os-odl-bgpvpn
@@ -103,7 +102,6 @@
         - noha
       distros:
         - ubuntu
-        - centos
         - opensuse
 
 - scenario: k8-calico-nofeature
@@ -120,7 +118,6 @@
         - noha
       distros:
         - ubuntu
-        - centos
         - opensuse
 
 - scenario: k8-flannel-nofeature
@@ -137,7 +134,6 @@
         - mini
       distros:
         - ubuntu
-        - centos
         - opensuse
 
 - scenario: k8-contiv-nofeature
@@ -154,5 +150,4 @@
         - mini
       distros:
         - ubuntu
-        - centos
         - opensuse
