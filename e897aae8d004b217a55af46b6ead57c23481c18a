@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a494da4_1317f7ee",
+        "filename": "prototypes/playbooks/roles/create-vm-nodes/defaults/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T10:46:46Z",
+      "side": 1,
+      "message": "are all these needed?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 131
+      },
+      "revId": "e897aae8d004b217a55af46b6ead57c23481c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_73d3db38",
+        "filename": "prototypes/playbooks/roles/create-vm-nodes/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T10:46:46Z",
+      "side": 1,
+      "message": "you can get rid of these and probably use a mechanism similar to OSA to load the variables later on",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "e897aae8d004b217a55af46b6ead57c23481c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_53d85f53",
+        "filename": "prototypes/playbooks/roles/create-vm-nodes/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T10:46:46Z",
+      "side": 1,
+      "message": "this is not needed. You can update the cache when installing the packages.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 37
+      },
+      "revId": "e897aae8d004b217a55af46b6ead57c23481c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_b3dd6345",
+        "filename": "prototypes/playbooks/roles/create-vm-nodes/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T10:46:46Z",
+      "side": 1,
+      "message": "you can use the \u0027package\u0027 module.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 39
+      },
+      "revId": "e897aae8d004b217a55af46b6ead57c23481c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_93e2e701",
+        "filename": "prototypes/playbooks/roles/create-vm-nodes/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T10:46:46Z",
+      "side": 1,
+      "message": "opnfv_vm is a single item right? why have a list with only a single item?",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 47,
+        "endChar": 30
+      },
+      "revId": "e897aae8d004b217a55af46b6ead57c23481c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_f3e6cb15",
+        "filename": "prototypes/playbooks/roles/create-vm-nodes/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T10:46:46Z",
+      "side": 1,
+      "message": "is it not possible to merge these two tasks?",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 27
+      },
+      "revId": "e897aae8d004b217a55af46b6ead57c23481c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_d3e3cf03",
+        "filename": "prototypes/playbooks/roles/create-vm-nodes/tasks/prepare_libvirt.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T10:46:46Z",
+      "side": 1,
+      "message": "i would say to forget the venv and install libvirt-python and lxml using distro packages.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 76
+      },
+      "revId": "e897aae8d004b217a55af46b6ead57c23481c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_13eed7ec",
+        "filename": "prototypes/playbooks/xci-create-vms.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T10:46:46Z",
+      "side": 1,
+      "message": "your inventory already has \u0027connection\u003dlocal\u0027",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 19
+      },
+      "revId": "e897aae8d004b217a55af46b6ead57c23481c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_331af317",
+        "filename": "prototypes/playbooks/xci-create-vms.yaml",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-22T10:46:46Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "e897aae8d004b217a55af46b6ead57c23481c18a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
