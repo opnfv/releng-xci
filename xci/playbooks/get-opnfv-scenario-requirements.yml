@@ -57,15 +57,17 @@
       loop_control:
         label: "{{ item.scenario }}"
 
-    - name: Fail if 'DEPLOY_SCENARIO' is not defined
-      fail:
-        msg: "DEPLOY_SCENARIO env variable is not defined so no scenario can be deployed"
-      when: deploy_scenario is not defined
+    - name: Extract SDF information
+      set_fact:
+        platform: "{{ (sdf['metadata']['name'] == 'kubernetes') | ternary('k8', 'os') }}"
+        sdn: "{{ (sdf['configuration']['sdn'] is defined) | ternary(sdf['configuration']['sdn'], 'nosdn') }}"
+        feature: "{{ (sdf['configuration']['feature'] is defined) | ternary(sdf['configuration']['feature'], 'nofeature') }}"
+        installer: "{{ (sdf['metadata']['name'] == 'kubernetes') | ternary('kubespray', 'osa') }}"
+        deployment: "mini" # hardcode mini for now
 
-    - name: Ensure {{ deploy_scenario }} is a known XCI scenario
-      fail:
-        msg: "{{ deploy_scenario }} does not exist"
-      when: deploy_scenario not in known_scenarios
+    - name: Set deploy_scenario fact
+      set_fact:
+        deploy_scenario: "{{ platform }}-{{ sdn }}-{{ feature }}"
 
     - name: Collect scenario information
       set_fact:
@@ -91,10 +93,29 @@
         create: yes
         section: scenarios
         state: present
-        option: role
-        value:  "{{ xci_scenario.role | basename }}"
+        option: "{{ item.option }}"
+        value:  "{{ item.value }}"
         path: "/etc/ansible/facts.d/xci.fact"
+      with_items:
+        - { option: 'role', value: "{{ xci_scenario.role | basename }}" }
+        - { option: 'sdn', value: "{{ sdn }}" }
+        - { option: 'feature', value: "{{ feature }}" }
+        - { option: 'deployment', value: "{{ deployment }}" }
+        - { option: 'installer', value: "{{ installer }}" }
       become: true
+
+    - name: Ensure XCI cache exists
+      file:
+        path: "{{ xci_cache }}"
+        state: directory
+
+    - name: Create XCI env file for deployment
+      copy:
+        content: |
+            export XCI_FLAVOR={{ deployment }}
+            export DEPLOY_SCENARIO={{ deploy_scenario }}
+            export INSTALLER_TYPE={{ installer }}
+        dest: "{{ xci_cache }}/xci_deploy.env"
 
     - name: Fail if {{ deploy_scenario }} is not supported
       fail:
@@ -139,6 +160,7 @@
   vars:
     ansible_python_interpreter: "/usr/bin/python"
     scenarios: "{{ lookup('file', scenario_file) | from_yaml }}"
+    sdf: "{{ lookup('file', '../var/sdf.yml') | from_yaml }}"
     scenario_file: '../opnfv-scenario-requirements.yml'
     scenario_path_default: "{{ xci_scenarios_cache }}"
     role_path_default: "{{ playbook_dir }}/roles"
