@@ -88,6 +88,7 @@ echo "Info: Cloning OPNFV scenario repositories"
 echo "-------------------------------------------------------------------------"
 cd $XCI_PATH/xci/playbooks
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," get-opnfv-scenario-requirements.yml
+source ${XCI_CACHE}/xci_deploy.env
 echo "-------------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
