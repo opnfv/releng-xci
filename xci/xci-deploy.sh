@@ -3,59 +3,6 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-submit_bug_report() {
-    cd ${XCI_PATH}
-    echo ""
-    echo "-------------------------------------------------------------------------"
-    echo "Oh nooooo! The XCI deployment failed miserably :-("
-    echo ""
-    echo "If you need help, please choose one of the following options"
-    echo "* #opnfv-pharos @ freenode network"
-    echo "* opnfv-tech-discuss mailing list (https://lists.opnfv.org/mailman/listinfo/opnfv-tech-discuss)"
-    echo "  - Please prefix the subject with [XCI]"
-    echo "* https://jira.opnfv.org (Release Engineering project)"
-    echo ""
-    echo "Do not forget to submit the following information on your bug report:"
-    echo ""
-    git diff --quiet && echo "releng-xci tree status: clean" || echo "releng-xci tree status: local modifications"
-    echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
-    echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
-    echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
-    echo "xci flavor: $XCI_FLAVOR"
-    echo "xci installer: $INSTALLER_TYPE"
-    echo "xci scenario: $DEPLOY_SCENARIO"
-    echo "Environment variables:"
-    env | grep --color=never '\(OPNFV\|XCI\|INSTALLER_TYPE\|OPENSTACK\|SCENARIO\|ANSIBLE\)'
-    echo "-------------------------------------------------------------------------"
-}
-
-log_xci_information() {
-    local scenario_version scenario_sha
-
-    cd ${XCI_SCENARIOS_CACHE}/${DEPLOY_SCENARIO}
-    scenario_sha=$(git rev-parse HEAD)
-    scenario_version=$(git describe --exact 2>/dev/null || echo "master")
-    cd -
-    echo "Info: Starting XCI Deployment"
-    echo "Info: Deployment parameters"
-    echo "-------------------------------------------------------------------------"
-    echo "OPNFV scenario: $DEPLOY_SCENARIO"
-    echo "Scenario version: ${scenario_version} (sha: ${scenario_sha})"
-    echo "xci flavor: $XCI_FLAVOR"
-    echo "xci installer: $INSTALLER_TYPE"
-    echo "infra deployment: $INFRA_DEPLOYMENT"
-    echo "opnfv/releng-xci version: $(git rev-parse HEAD)"
-    [[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
-    [[ "$INSTALLER_TYPE" == "osa" ]] && echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
-    [[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
-    echo "-------------------------------------------------------------------------"
-}
-
-exit_trap() {
-    submit_bug_report
-    collect_xci_logs
-}
-
 #-------------------------------------------------------------------------------
 # This script should not be run as root
 #-------------------------------------------------------------------------------
@@ -81,20 +28,8 @@ fi
 #-------------------------------------------------------------------------------
 # find where are we
 export XCI_PATH="$(git rev-parse --show-toplevel)"
-# Declare our virtualenv
-export XCI_VENV=${XCI_PATH}/venv/
-# source user vars
-source $XCI_PATH/xci/config/user-vars
-# source pinned versions
-source $XCI_PATH/xci/config/pinned-versions
-# source flavor configuration
-source "$XCI_PATH/xci/config/${XCI_FLAVOR}-vars"
-# source installer configuration
-source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
-# source xci configuration
-source $XCI_PATH/xci/config/env-vars
 # source helpers library
-source ${XCI_PATH}/xci/files/install-lib.sh
+source ${XCI_PATH}/xci/files/xci-lib.sh
 
 # Make sure we pass XCI_PATH everywhere
 export XCI_ANSIBLE_PARAMS+=" -e xci_path=${XCI_PATH}"
@@ -114,17 +49,18 @@ for local_user_var in ${user_local_dev_vars[@]}; do
 done
 unset user_local_dev_vars local_user_var
 
-# register our handler
-trap exit_trap ERR
-
-# We are using sudo so we need to make sure that env_reset is not present
-sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
-
 #
 # Bootstrap environment for XCI Deployment
 #
 echo "Info: Preparing host environment for the XCI deployment"
 echo "-------------------------------------------------------------------------"
+bootstrap_xci_env
+
+# register our handler
+trap exit_trap ERR
+
+# We are using sudo so we need to make sure that env_reset is not present
+sudo sed -i "s/^Defaults.*env_reset/#&/" /etc/sudoers
 
 #-------------------------------------------------------------------------------
 # Clean up environment
