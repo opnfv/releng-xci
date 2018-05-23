@@ -11,21 +11,8 @@
 # OPNFV scenarios participating in XCI must create their own entry in this file so
 # XCI can make use of them.
 #
-- scenario: os-odl-sfc
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/sfc
-  version: master
-  role: scenarios/os-odl-sfc/role/os-odl-sfc
-  installers:
-    - installer: osa
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - opensuse
-        - ubuntu
 
+# OpenStack based scenarios
 - scenario: os-nosdn-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
@@ -57,6 +44,38 @@
         - opensuse
         - ubuntu
 
+- scenario: os-odl-sfc
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/sfc
+  version: master
+  role: scenarios/os-odl-sfc/role/os-odl-sfc
+  installers:
+    - installer: osa
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - opensuse
+        - ubuntu
+
+- scenario: os-odl-bgpvpn
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/sdnvpn
+  version: master
+  role: scenarios/os-odl-bgpvpn/role/os-odl-bgpvpn
+  installers:
+    - installer: osa
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
+        - centos
+
+
+# Kubernetes based scenarios
 - scenario: k8-nosdn-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
@@ -73,21 +92,6 @@
         - ubuntu
         - centos
         - opensuse
-
-- scenario: os-odl-bgpvpn
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/sdnvpn
-  version: master
-  role: scenarios/os-odl-bgpvpn/role/os-odl-bgpvpn
-  installers:
-    - installer: osa
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - ubuntu
-        - centos
 
 - scenario: k8-canal-nofeature
   scm: git
