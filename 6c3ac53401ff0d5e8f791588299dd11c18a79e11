@@ -109,6 +109,24 @@
       "revId": "6c3ac53401ff0d5e8f791588299dd11c18a79e11",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_a90cd495",
+        "filename": "xci/var/sdf.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2829
+      },
+      "writtenOn": "2018-05-23T09:47:11Z",
+      "side": 1,
+      "message": "What you call template seems to be the definition of a generic scenario.\nIn my mind the generic scenario contains all the options then we need to be able to test every combination. specific SDF could be basically auto-generated. Not sure we are at the point when we can test all the combinations so having a specific SDF makes sense.",
+      "parentUuid": "1a494da4_0e74eefb",
+      "revId": "6c3ac53401ff0d5e8f791588299dd11c18a79e11",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
