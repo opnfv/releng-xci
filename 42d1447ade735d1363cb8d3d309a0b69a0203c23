@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1a494da4_82044a7f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T10:03:33Z",
+      "side": 1,
+      "message": "i get that from WIP/RFC line.\n\nbut i still think the commit message and the rest of the change should reflect the intention.",
+      "parentUuid": "1a494da4_02a31a9f",
+      "range": {
+        "startLine": 9,
+        "startChar": 38,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a494da4_a287c60e",
         "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
         "patchSetId": 5
