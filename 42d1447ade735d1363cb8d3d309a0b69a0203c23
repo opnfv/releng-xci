@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "1a494da4_c282d2ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T09:11:00Z",
+      "side": 1,
+      "message": "the commit message doesn\u0027t really reflect everything this patch proposes.",
+      "range": {
+        "startLine": 9,
+        "startChar": 38,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_a287c60e",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T09:11:00Z",
+      "side": 1,
+      "message": "i think it is better to focus sdf itself and leave the implementation details for later in a separate change.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 65
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_027cba1f",
+        "filename": "xci/var/k8-calico-nofeature.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T09:11:00Z",
+      "side": 1,
+      "message": "i think we should use the terminology coming from upstream. would it be better to use something like network_plugin?\n\nor if we are after a generic approach which can be used both for openstack and k8s, we can perhaps name it something like networking etc.",
+      "range": {
+        "startLine": 17,
+        "startChar": 2,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_305f8410",
+        "filename": "xci/var/k8.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T09:11:00Z",
+      "side": 1,
+      "message": "i think we should use the terminology coming from upstream. would it be better to use something like network_plugin or something in k8s case?",
+      "range": {
+        "startLine": 17,
+        "startChar": 2,
+        "endLine": 17,
+        "endChar": 5
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a494da4_82828a50",
         "filename": "xci/var/k8.yml",
         "patchSetId": 5
@@ -18,6 +110,52 @@
         "startChar": 22,
         "endLine": 29,
         "endChar": 28
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_e278ae2d",
+        "filename": "xci/var/k8.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T09:11:00Z",
+      "side": 1,
+      "message": "is this restrictions or minimum requirements?",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_2273b64e",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T09:11:00Z",
+      "side": 1,
+      "message": "a separate change please.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 34
       },
       "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
