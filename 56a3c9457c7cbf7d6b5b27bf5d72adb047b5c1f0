@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a494da4_a28866e8",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T11:19:23Z",
+      "side": 1,
+      "message": "I think the focus should be the reference platform capabilities rather than CI so the wording could focus that and state that ODL COE is not part of any scenario to leverage advanced networking capabilities of ODL.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 70
+      },
+      "revId": "56a3c9457c7cbf7d6b5b27bf5d72adb047b5c1f0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_e269ce26",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T11:19:23Z",
+      "side": 1,
+      "message": "I suppose this is kubernetes master node(s).",
+      "range": {
+        "startLine": 25,
+        "startChar": 7,
+        "endLine": 25,
+        "endChar": 13
+      },
+      "revId": "56a3c9457c7cbf7d6b5b27bf5d72adb047b5c1f0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_026dda32",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T11:19:23Z",
+      "side": 1,
+      "message": "ha of what? ODL Clustering or the k8s cluster itself?",
+      "range": {
+        "startLine": 28,
+        "startChar": 29,
+        "endLine": 28,
+        "endChar": 31
+      },
+      "revId": "56a3c9457c7cbf7d6b5b27bf5d72adb047b5c1f0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_4277e202",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T11:19:23Z",
+      "side": 1,
+      "message": "I suppose this is kubernetes worker node(s).",
+      "range": {
+        "startLine": 32,
+        "startChar": 7,
+        "endLine": 32,
+        "endChar": 11
+      },
+      "revId": "56a3c9457c7cbf7d6b5b27bf5d72adb047b5c1f0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_6265be44",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-29T11:19:23Z",
+      "side": 1,
+      "message": "I suppose this is k8-nosdn-nofeature scenario. If so, it would be good to reuse the existing role like\n\n    - include_role: \u003crole\u003e\n\nand then add additional roles/plays/tasks to do the rest.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 53
+      },
+      "revId": "56a3c9457c7cbf7d6b5b27bf5d72adb047b5c1f0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
