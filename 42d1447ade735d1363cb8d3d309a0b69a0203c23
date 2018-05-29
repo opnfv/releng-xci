@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a494da4_82828a50",
+        "filename": "xci/var/k8.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5391
+      },
+      "writtenOn": "2018-05-29T01:31:18Z",
+      "side": 1,
+      "message": "white space",
+      "range": {
+        "startLine": 29,
+        "startChar": 22,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
