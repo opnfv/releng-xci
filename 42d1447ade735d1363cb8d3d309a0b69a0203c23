@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a494da4_02a31a9f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-29T09:23:35Z",
+      "side": 1,
+      "message": "this patch is PoC/WIP/RFC so please do not focus on the usual git practices. It will never be merged as is",
+      "parentUuid": "1a494da4_c282d2ff",
+      "range": {
+        "startLine": 9,
+        "startChar": 38,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a494da4_a287c60e",
         "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2018-05-29T09:11:00Z",
       "side": 1,
       "message": "i think it is better to focus sdf itself and leave the implementation details for later in a separate change.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 65
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_e29f0e4f",
+        "filename": "xci/playbooks/get-opnfv-scenario-requirements.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-29T09:23:35Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "1a494da4_a287c60e",
       "range": {
         "startLine": 60,
         "startChar": 0,
@@ -151,6 +199,30 @@
       "writtenOn": "2018-05-29T09:11:00Z",
       "side": 1,
       "message": "a separate change please.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 34
+      },
+      "revId": "42d1447ade735d1363cb8d3d309a0b69a0203c23",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_42ad2288",
+        "filename": "xci/xci-deploy.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-29T09:23:35Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "1a494da4_2273b64e",
       "range": {
         "startLine": 91,
         "startChar": 0,
