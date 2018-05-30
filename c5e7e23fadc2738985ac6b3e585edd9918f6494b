@@ -22,6 +22,30 @@
       "revId": "c5e7e23fadc2738985ac6b3e585edd9918f6494b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_999afc12",
+        "filename": "xci/playbooks/roles/bootstrap-host/templates/kubespray",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-05-30T14:09:22Z",
+      "side": 1,
+      "message": "This is actually a symlink (what\u0027s how gerrit displays symlinks i believe)\n\nSo this kubespray directory is a symlink to the osa directory because both can use the same template files for networking.",
+      "parentUuid": "1a494da4_99f31c73",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "c5e7e23fadc2738985ac6b3e585edd9918f6494b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
