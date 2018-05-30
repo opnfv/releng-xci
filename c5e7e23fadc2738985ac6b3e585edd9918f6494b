@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a494da4_99f31c73",
+        "filename": "xci/playbooks/roles/bootstrap-host/templates/kubespray",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-30T14:02:06Z",
+      "side": 1,
+      "message": "this didn\u0027t make sense but i didn\u0027t want to slow you either so i appreciate if you can tell me what is the purpose of this.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "c5e7e23fadc2738985ac6b3e585edd9918f6494b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
