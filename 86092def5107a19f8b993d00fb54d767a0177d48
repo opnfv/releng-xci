@@ -34,6 +34,24 @@
       "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_cc5de4eb",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7311
+      },
+      "writtenOn": "2018-05-30T23:20:26Z",
+      "side": 1,
+      "message": "https://git.opendaylight.org/gerrit/#/c/68856/\n\nThis review has the whole procedure to get the COE setup up using ansible and vagrant.",
+      "parentUuid": "1a494da4_ec6ee0c8",
+      "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
