@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a494da4_1909cc31",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7311
+      },
+      "writtenOn": "2018-05-30T15:43:21Z",
+      "side": 1,
+      "message": "please take a look at the ansible playbook at https://git.opendaylight.org/gerrit/#/c/68920/53/csit/variables/coe/coe_play.yaml to get details on how to build the required binaries..",
+      "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
