@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1a494da4_1948ac2c",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-30T08:45:17Z",
+      "side": 1,
+      "message": "Thanks for the feedback Sylvain.\n\nThis then leaves 2 XCI flavors\n\n    - noha: 1 master, 2 workers\n    - ha: 3 masters, 2 workers",
+      "parentUuid": "1a494da4_79be1001",
+      "range": {
+        "startLine": 34,
+        "startChar": 50,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_5c9c420f",
         "filename": "docs/specs/onap_oom_scenario.rst",
         "patchSetId": 2
@@ -129,6 +153,30 @@
       "writtenOn": "2018-05-30T08:38:41Z",
       "side": 1,
       "message": "v2.8.2 in Beijing release",
+      "range": {
+        "startLine": 70,
+        "startChar": 55,
+        "endLine": 70,
+        "endChar": 61
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_b95ed8e7",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-30T08:45:17Z",
+      "side": 1,
+      "message": "An additional question related to the versions. I remember seeing 1.8.x as k8s version. Have you tried to see if 1.9.x or even 1.10.x version of k8s works or we have to stick to what ONAP requires?",
+      "parentUuid": "1a494da4_59bb540e",
       "range": {
         "startLine": 70,
         "startChar": 55,
