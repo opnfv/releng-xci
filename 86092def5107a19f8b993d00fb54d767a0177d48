@@ -16,6 +16,24 @@
       "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_ec6ee0c8",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-30T17:29:54Z",
+      "side": 1,
+      "message": "thanks for the feedback.\n\nI am wondering if you have (or plan to have) complete role that does everything needed to get coe up? If not, would it make sense to create such role directly in ODL?",
+      "parentUuid": "1a494da4_1909cc31",
+      "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
