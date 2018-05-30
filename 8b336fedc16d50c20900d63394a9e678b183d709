@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a494da4_569043ec",
+        "filename": "xci/var/k8.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-30T06:21:17Z",
+      "side": 1,
+      "message": "a general comment about sdf; again, if I am remembering it correctly, SDFs will be common across OPNFV like how we do for PDFs. This means that some of the scenarios or configuration of the scenarios might not be supported by all installers. I\u0027m not sure if we need to think about it now or leave it for later so just highlighting the historical thinking. It might not be possible to achieve common SDFs and we might end up with installer specific SDFs like how we did with IDF.",
+      "revId": "8b336fedc16d50c20900d63394a9e678b183d709",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_7693bffa",
+        "filename": "xci/var/k8.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-30T06:21:17Z",
+      "side": 1,
+      "message": "sorry for coming back to this but I\u0027m still thinking about the relation between pdf/idf and sdf.\n\nthe way we are thinking pdf is that it exposes the capabilities of given resource either baremetal pod or vpod. and then sdf describes what capabilities a certain scenario requires. so this might need to be expected_capabilities or something - sorry for not being able to find better wording.",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "8b336fedc16d50c20900d63394a9e678b183d709",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
