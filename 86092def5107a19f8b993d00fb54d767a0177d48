@@ -88,6 +88,24 @@
       "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_ccb5e4ce",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 7311
+      },
+      "writtenOn": "2018-05-31T07:21:14Z",
+      "side": 1,
+      "message": "This will be a great idea. I have not tried this before, will try to get some more information on the things to be done here, to make this possible",
+      "parentUuid": "1a494da4_2c7c4820",
+      "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
