@@ -63,6 +63,7 @@
         state: absent
       with_items:
         - inventory
+        - setup-infrastructure.yml
         - setup-openstack.yml
 
     - name: Copy OpenStack-Ansible configuration files
