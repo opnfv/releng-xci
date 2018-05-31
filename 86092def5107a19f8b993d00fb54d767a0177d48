@@ -52,6 +52,24 @@
       "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_2c956840",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-05-31T05:15:42Z",
+      "side": 1,
+      "message": "\u003e\u003e https://git.opendaylight.org/gerrit/#/c/68856/\n\nThanks. This will help to implement ansible tasks to configure COE watcher and CNI plugin in k8s nodes.\n\nBut what Fatih is talking about to enhance ansible-opendaylight role (https://github.com/opendaylight/integration-packaging-ansible-opendaylight) to configure opendaylight with coe. This gives flexibility for the external installers (like xci and apex) to leverage this role for odl-coe scenario deployments with different flavors like ODL ha and noha. It also gives ability to pin with different ODL versions and even at patch level.",
+      "parentUuid": "1a494da4_cc5de4eb",
+      "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
