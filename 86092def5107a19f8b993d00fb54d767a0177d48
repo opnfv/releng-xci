@@ -70,6 +70,24 @@
       "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a494da4_2c7c4820",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-05-31T06:28:34Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "1a494da4_2c956840",
+      "revId": "86092def5107a19f8b993d00fb54d767a0177d48",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
