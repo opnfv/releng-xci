@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_1c943936",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-04T18:18:45Z",
+      "side": 1,
+      "message": "Apparently, it\u0027s possible to control that limit using the max-pod kubernetes configuration value[1]. It seems like kubespray exposes this value thru kubelet_max_pods configuration[2] which its default value is 110[3].\n\n[1] https://github.com/kubernetes/kubernetes/blob/master/cmd/kubelet/app/options/options.go#L543\n[2] https://github.com/kubernetes-incubator/kubespray/blob/master/roles/kubernetes/node/templates/kubelet.standard.env.j2#L31\n[3] https://github.com/kubernetes-incubator/kubespray/blob/master/roles/kubernetes/node/defaults/main.yml#L74-L76",
+      "parentUuid": "1a494da4_79be1001",
+      "range": {
+        "startLine": 34,
+        "startChar": 50,
+        "endLine": 34,
+        "endChar": 67
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_5c9c420f",
         "filename": "docs/specs/onap_oom_scenario.rst",
         "patchSetId": 2
@@ -189,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_7c99f56d",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-04T18:18:45Z",
+      "side": 1,
+      "message": "Maybe you\u0027re referring to this one[1]. I haven\u0027t tried but I haven\u0027t seen any reason to don\u0027t do it.\n\n[1] https://wiki.onap.org/display/DW/ONAP+on+Kubernetes",
+      "parentUuid": "1a494da4_b95ed8e7",
+      "range": {
+        "startLine": 70,
+        "startChar": 55,
+        "endLine": 70,
+        "endChar": 61
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_fc8a6ebd",
         "filename": "docs/specs/onap_oom_scenario.rst",
         "patchSetId": 2
@@ -200,6 +248,47 @@
       "writtenOn": "2018-05-09T09:20:05Z",
       "side": 1,
       "message": "a question regarding which versions of onap we are going to bring in, from where and how. this heavily depends on how onap creates those artifacts, tests them, and stores them.\n\ni suppose helm charts have the metadata necessary to fetch them from docker hub (?). it would be good if you can give some details about this as well.\n\nwe should also look for possibility to pick and choose the artifacts based on the way we are going to structure the CI on our side but this is not the most crucial thing at the moment.",
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_5c9eb157",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-04T18:18:45Z",
+      "side": 1,
+      "message": "Agree, but the deployment method that was used during the Amsterdam release has been radically changed and the community seems to support this change and deprecated the older one.",
+      "parentUuid": "5a3f45e8_fc8a6ebd",
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_bca26d98",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-04T18:18:45Z",
+      "side": 1,
+      "message": "This list needs to be updated with latest actors.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 8
+      },
       "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
