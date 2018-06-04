@@ -31,6 +31,7 @@ function install_ansible() {
 
     # Use the upper-constraints file from the pinned requirements repository.
     local uc="https://raw.githubusercontent.com/openstack/requirements/${OPENSTACK_REQUIREMENTS_VERSION}/upper-constraints.txt"
+    local osa_uc="https://raw.githubusercontent.com/openstack/openstack-ansible/${OPENSTACK_OSA_VERSION}/global-requirement-pins.txt"
     local install_map
 
     declare -A PKG_MAP
@@ -154,7 +155,7 @@ function install_ansible() {
 
     # We are inside the virtualenv now so we should be good to use pip and python from it.
     pip -q install --upgrade pip==9.0.3 # We need a version which supports the '-c' parameter
-    pip -q install --upgrade -c $uc ara virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION ansible-lint==3.4.21
+    pip -q install --upgrade -c $uc -c $osa_uc ara virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION ansible-lint==3.4.21
 
     ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
     export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}/plugins/callbacks"
@@ -162,8 +163,6 @@ function install_ansible() {
 
 ansible_lint() {
     set -eu
-    # Use the upper-constraints file from the pinned requirements repository.
-    local uc="https://raw.githubusercontent.com/openstack/requirements/${OPENSTACK_REQUIREMENTS_VERSION}/upper-constraints.txt"
     local playbooks_dir=(xci/playbooks xci/installer/osa/playbooks xci/installer/kubespray/playbooks)
     # Extract role from scenario information
     local testing_role=$(sed -n "/^- scenario: ${DEPLOY_SCENARIO}/,/^$/p" ${XCI_PATH}/xci/opnfv-scenario-requirements.yml | grep role | rev | cut -d '/' -f -1 | rev)
