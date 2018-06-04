@@ -32,5 +32,8 @@ iface {{ item.name }} inet static
 {% if item.network is defined and item.network.gateway is defined %}
     gateway {{ item.network.gateway | ipaddr('address') }}
 {% endif %}
+{% if item.network is defined and item.network.dns is defined %}
+    dns-nameservers {{ item.network.dns | ipaddr('address') }}
+{% endif %}
 
 {% endif %}
