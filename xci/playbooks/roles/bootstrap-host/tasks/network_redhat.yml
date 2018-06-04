@@ -24,11 +24,6 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: Add default route through br-vlan
-  lineinfile:
-    path: "/etc/sysconfig/network-scripts/ifcfg-br-vlan"
-    line: "GATEWAY={{ host_info[inventory_hostname]['public']['gateway'] | ipaddr('address') }}"
-
 - name: restart network service
   service:
     name: network

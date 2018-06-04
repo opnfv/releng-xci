@@ -30,6 +30,14 @@
     dest: "/etc/sysconfig/network/scripts/network-config-suse"
     mode: 0755
 
+- name: Configure static DNS on SUSE
+  lineinfile:
+    regexp: '^NETCONFIG_DNS_STATIC_SERVERS=.*'
+    line: "NETCONFIG_DNS_STATIC_SERVERS={{ host_info[inventory_hostname]['public']['dns'] }}"
+    path: "/etc/sysconfig/network/config"
+    state: present
+  when: host_info[inventory_hostname]['public']['dns'] is defined
+
 - name: Configure routes on SUSE
   template:
     src: "{{ installer_type }}/{{ ansible_os_family | lower }}.routes.j2"
