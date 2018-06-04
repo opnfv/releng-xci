@@ -17,3 +17,10 @@ STP=off
 {% if item.network is defined %}
 IPADDR={{ item.network.address }}
 {% endif %}
+{% if item.network is defined and item.network.gateway is defined %}
+GATEWAY="{{ host_info[inventory_hostname]['public']['gateway'] | ipaddr('address') }}"
+{% endif %}
+{% if item.network is defined and item.network.dns is defined %}
+DNS="{{ host_info[inventory_hostname]['public']['dns'] }}"
+{% endif %}
+{% endif %}

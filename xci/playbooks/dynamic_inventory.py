@@ -47,6 +47,7 @@ class XCIInventory(object):
         self.opnfv_networks['opnfv']['public'] = {}
         self.opnfv_networks['opnfv']['public']['address'] = '192.168.122.2/24'
         self.opnfv_networks['opnfv']['public']['gateway'] = '192.168.122.1'
+        self.opnfv_networks['opnfv']['public']['dns'] = '192.168.122.1'
         self.opnfv_networks['opnfv']['private'] = {}
         self.opnfv_networks['opnfv']['private']['address'] = '172.29.240.10/22'
         self.opnfv_networks['opnfv']['storage'] = {}
@@ -110,6 +111,8 @@ class XCIInventory(object):
                 host_networks[hostname][network]['address'] = pdf_host_info['interfaces'][int(network_interface_num)]['address'] + "/" + str(ndata['mask'])
                 if 'gateway' in ndata.keys():
                     host_networks[hostname][network]['gateway'] = str(ndata['gateway']) + "/" + str(ndata['mask'])
+                if 'dns' in ndata.keys():
+                    host_networks[hostname][network]['dns'] = str(ndata['dns'])
 
             host_networks.update(self.opnfv_networks)
 
