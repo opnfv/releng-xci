@@ -96,21 +96,26 @@
         path: "/etc/ansible/facts.d/xci.fact"
       become: true
 
-    - name: Fail if {{ deploy_scenario }} is not supported
+    - name: Fail if {{ xci_flavor }} not supported by {{ deploy_scenario }}
       fail:
-        msg:
-          - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-          - ERROR! The {{ deploy_scenario }} scenario can't be deployed. This is because
-          - the {{ installer_type }} XCI installer or the {{ xci_flavor }} flavor or the {{ xci_distro }}
-          - distribution is not supported by this scenario. It may also be possible that
-          - this scenario doesn't exist at all or it's not listed in {{ scenario_file }}.
-          - ''
-          - This is a great chance for you to contribute to XCI ;-)
-          - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-          - ''
-      when:
-          (xci_scenario['flavors'] is defined and xci_flavor not in xci_scenario['flavors']) or
-          (xci_scenario['distros'] is defined and xci_distro not in xci_scenario['distros'])
+        msg: |
+          ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+          ERROR! The {{ deploy_scenario }} scenario can't be deployed. This is because
+          the {{ xci_flavor }} flavor is not supported by this scenario.
+          ''This is a great chance for you to contribute to XCI ;-)''
+          ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+      when: xci_scenario['flavors'] is defined and xci_flavor not in xci_scenario['flavors']
+
+    - name: Fail if {{ xci_distro }} not supported by {{ deploy_scenario }}
+      fail:
+        msg: |
+          ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+          ERROR! The {{ deploy_scenario }} scenario can't be deployed. This is because
+          the {{ installer_type }} XCI Installer does not support the {{ xci_distro }}
+          distribution.
+          ''This is a great chance for you to contribute to XCI ;-)''
+          ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+      when: xci_scenario['distros'] is defined and xci_distro not in xci_scenario['distros']
 
     - name: Clone git repos
       git:
