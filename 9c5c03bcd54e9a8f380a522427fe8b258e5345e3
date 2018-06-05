@@ -97,6 +97,29 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_dc02c10a",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-05T09:38:15Z",
+      "side": 1,
+      "message": "based on the conversation during the meeting with Orange, it would be good to start with calico and rename the scenario to k8-calico-onap.\n\nhttps://etherpad.opnfv.org/p/xci-oom",
+      "range": {
+        "startLine": 47,
+        "startChar": 13,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_5c9c420f",
         "filename": "docs/specs/onap_oom_scenario.rst",
         "patchSetId": 2
@@ -283,6 +306,30 @@
       "writtenOn": "2018-06-04T18:18:45Z",
       "side": 1,
       "message": "This list needs to be updated with latest actors.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 8
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_fc050515",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-05T09:38:15Z",
+      "side": 1,
+      "message": "Yes and no.\nI want to hear plans of Jack since he hasn\u0027t even commented on this spec. \n\nJack, can you comment here so we know you are willing to take over the scenario?",
+      "parentUuid": "da5c1566_bca26d98",
       "range": {
         "startLine": 88,
         "startChar": 0,
