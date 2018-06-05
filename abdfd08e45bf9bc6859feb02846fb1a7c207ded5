@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_7f99e76d",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 543
+      },
+      "writtenOn": "2018-06-05T14:00:12Z",
+      "side": 1,
+      "message": "I see this is not getting rendered to HTML by RTDs because it\u0027s not included in a Table of Contents tree. I guess that\u0027s fine, seems normal given all the similar warnings.\n\n/home/jenkins-ci/opnfv/slave_root/workspace/docs-verify-rtd-master/docs/submodules/releng-xci/docs/specs/k8-odl-coe.rst:: WARNING: document isn\u0027t included in any toctree\n\nhttps://build.opnfv.org/ci/job/docs-verify-rtd-master/4296/console",
+      "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_9f9f9b50",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 543
+      },
+      "writtenOn": "2018-06-05T14:00:12Z",
+      "side": 1,
+      "message": "Is it also the case that ODL NetVirt is not used as the pod networking provider for any K8s scenario?",
+      "range": {
+        "startLine": 18,
+        "startChar": 1,
+        "endLine": 18,
+        "endChar": 54
+      },
+      "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_bfa25f98",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 543
+      },
+      "writtenOn": "2018-06-05T14:00:12Z",
+      "side": 1,
+      "message": "Does this apply to the worker node hardware section only?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 44
+      },
+      "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_ffacd78e",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 543
+      },
+      "writtenOn": "2018-06-05T14:00:12Z",
+      "side": 1,
+      "message": "What does IDF stand for?",
+      "range": {
+        "startLine": 45,
+        "startChar": 47,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
