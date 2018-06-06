@@ -120,7 +120,8 @@
 - name: os_nova
   scm: git
   src: https://github.com/openstack/openstack-ansible-os_nova
-  version: 8c6a1b572e334bf185bf23759b90089a88a88b4b
+  version: d104fb16bdc349382fd05265ff9e19b6b0133fac
+  refspec: refs/changes/17/572417/1
 - name: os_octavia
   scm: git
   src: https://github.com/openstack/openstack-ansible-os_octavia
@@ -152,7 +153,7 @@
 - name: plugins
   scm: git
   src: https://github.com/openstack/openstack-ansible-plugins
-  version: 2472c81eb3b065a7ed7dc4fd6bc4fef3f171089c
+  version: e1f330786d5f09bb02c3f06b3484a089223419ad
 - name: rabbitmq_server
   scm: git
   src: https://github.com/openstack/openstack-ansible-rabbitmq_server
@@ -160,7 +161,7 @@
 - name: repo_build
   scm: git
   src: https://github.com/openstack/openstack-ansible-repo_build
-  version: ec5210e812e48dac30eca4c188a9d159c5cdacbf
+  version: a84d11ab04c911c788b534cd61d33e6e2b71dd0b
 - name: repo_server
   scm: git
   src: https://github.com/openstack/openstack-ansible-repo_server
