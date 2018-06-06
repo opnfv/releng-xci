@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_cd4a0927",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-06-06T14:04:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da5c1566_625cac26",
+      "range": {
+        "startLine": 7,
+        "startChar": 47,
+        "endLine": 7,
+        "endChar": 50
+      },
+      "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_c2401838",
         "filename": "docs/specs/k8-odl-coe.rst",
         "patchSetId": 5
@@ -247,6 +271,24 @@
       "writtenOn": "2018-06-05T23:42:16Z",
       "side": 1,
       "message": "We do copy cni plugin on master node as well",
+      "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_ad47d51c",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 6895
+      },
+      "writtenOn": "2018-06-06T14:04:37Z",
+      "side": 1,
+      "message": "okay, rephrased the sentence.",
+      "parentUuid": "da5c1566_0276903e",
       "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
