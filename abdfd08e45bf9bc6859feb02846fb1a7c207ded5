@@ -119,6 +119,24 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_ee2b8392",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2179
+      },
+      "writtenOn": "2018-06-09T17:08:31Z",
+      "side": 1,
+      "message": "COE has two modes - baremetal and hybrid.  baremetal involves kubernetes only scenario.  hybrid deals with openstack and k8s; it uses kuryr to address vm and container/pod networking.  hence was referring to this as coe baremetal",
+      "parentUuid": "da5c1566_02f2109a",
+      "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_9f9f9b50",
         "filename": "docs/specs/k8-odl-coe.rst",
         "patchSetId": 5
