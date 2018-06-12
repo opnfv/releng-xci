@@ -64,6 +64,27 @@ echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for openstack-ansible"
 
 #-------------------------------------------------------------------------------
+# Gather facts for all the hosts and containers
+#-------------------------------------------------------------------------------
+# This is needed in order to gather the facts for containers due to a change in
+# upstream that changed the hosts fact are gathered which causes failures during
+# running setup-infrastructure.yml playbook due to lack of the facts for lxc
+# containers.
+#
+# OSA gate also executes this command. See the link
+# http://logs.openstack.org/64/494664/1/check/gate-openstack-ansible-openstack-ansible-aio-ubuntu-xenial/2a0700e/console.html
+#-------------------------------------------------------------------------------
+echo "Info: Gathering facts"
+echo "-----------------------------------------------------------------------"
+ssh root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/openstack-ansible/playbooks; \
+        ansible -i ${XCI_PLAYBOOKS}/dynamic_inventory.py \
+        -m setup -a gather_subset=network,hardware,virtual all"
+echo "-----------------------------------------------------------------------"
+
+#-------------------------------------------------------------------------------
+# Set up target hosts for openstack-ansible
+
+#-------------------------------------------------------------------------------
 # Configure target hosts for openstack-ansible
 #-------------------------------------------------------------------------------
 # This playbook is only run for the all flavors except aio since aio is configured
@@ -85,21 +106,6 @@ if [[ $XCI_FLAVOR != "aio" ]]; then
 fi
 
 #-------------------------------------------------------------------------------
-# Set up target hosts for openstack-ansible
-#-------------------------------------------------------------------------------
-# This is openstack-ansible playbook. Check upstream documentation for details.
-#-------------------------------------------------------------------------------
-echo "Info: Setting up target hosts for openstack-ansible"
-echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
-     releng-xci/.cache/repos/openstack-ansible/playbooks/setup-hosts.yml | tee setup-hosts.log "
-scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
-echo "-----------------------------------------------------------------------"
-echo "Info: Set up target hosts for openstack-ansible successfuly"
-
-# TODO: Check this with the upstream and issue a fix in the documentation if the
-# problem is valid.
-#-------------------------------------------------------------------------------
 # Gather facts for all the hosts and containers
 #-------------------------------------------------------------------------------
 # This is needed in order to gather the facts for containers due to a change in
@@ -113,8 +119,22 @@ echo "Info: Set up target hosts for openstack-ansible successfuly"
 echo "Info: Gathering facts"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/openstack-ansible/playbooks; \
-        ansible -m setup -a gather_subset=network,hardware,virtual all"
+        ansible -i ${XCI_PLAYBOOKS}/dynamic_inventory.py \
+        -m setup -a gather_subset=network,hardware,virtual all"
 echo "-----------------------------------------------------------------------"
+
+#-------------------------------------------------------------------------------
+# Set up target hosts for openstack-ansible
+#-------------------------------------------------------------------------------
+# This is openstack-ansible playbook. Check upstream documentation for details.
+#-------------------------------------------------------------------------------
+echo "Info: Setting up target hosts for openstack-ansible"
+echo "-----------------------------------------------------------------------"
+ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
+     releng-xci/.cache/repos/openstack-ansible/playbooks/setup-hosts.yml -e osa_gather_facts=False | tee setup-hosts.log "
+scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
+echo "-----------------------------------------------------------------------"
+echo "Info: Set up target hosts for openstack-ansible successfuly"
 
 #-------------------------------------------------------------------------------
 # Set up infrastructure
@@ -125,7 +145,7 @@ echo "Info: Setting up infrastructure"
 echo "-----------------------------------------------------------------------"
 echo "xci: running ansible playbook setup-infrastructure.yml"
 ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
-     releng-xci/.cache/repos/openstack-ansible/playbooks/setup-infrastructure.yml | tee setup-infrastructure.log"
+     releng-xci/.cache/repos/openstack-ansible/playbooks/setup-infrastructure.yml -e osa_gather_facts=False | tee setup-infrastructure.log"
 scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
 echo "-----------------------------------------------------------------------"
 
@@ -154,7 +174,7 @@ echo "Info: Database cluster verification successful!"
 echo "Info: Installing OpenStack on target hosts"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
-     releng-xci/.cache/repos/openstack-ansible/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
+     releng-xci/.cache/repos/openstack-ansible/playbooks/setup-openstack.yml -e osa_gather_facts=False | tee opnfv-setup-openstack.log"
 scp root@$OPNFV_HOST_IP:~/opnfv-setup-openstack.log $LOG_PATH/opnfv-setup-openstack.log
 echo "-----------------------------------------------------------------------"
 echo
