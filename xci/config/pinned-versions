@@ -27,18 +27,18 @@
 export OPNFV_RELENG_VERSION="master"
 # use functest-healthcheck image that is known to work and contains the original list of testcases
 export OPNFV_FUNCTEST_HEALTHCHECK_DOCKER_IMAGE_DIGEST="sha256:faa1ec5778ac1580cc46f0e4f5abec24026868b95fc6fc3ae6023275dc980c2d"
-# HEAD of bifrost "master" as of 13.02.2018
-export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"81e48e7b488c15516503b2b08f087f4a7ae9a673"}
-# HEAD of ironic "master" as of 13.02.2018
-export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-"9b8440aa318e4883a74ef8640ad5409dd22858a9"}
-# HEAD of ironic-client "master" as of 13.02.2018
-export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"1da269b0e99601f8f6395b2ce3f436f5600e8140"}
-# HEAD of ironic-inspector "master" as of 13.02.2018
-export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"84da941fafb905c2debdd9a9ba68ba743af3ce8a"}
-# HEAD of ironic-inspector-client "master" as of 13.02.2018
-export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-"b73403fdad3165cfcccbf4b0330d426ae5925e01"}
-# HEAD of osa "stable/queens" as of 06.06.2018
-export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"5dbc4c5b67e67c370b04099c7dce56dd2f559288"}
+# HEAD of bifrost "master" as of 17.08.2018
+export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"c1c6fb7487d5b967624400623fd35aabf303b917"}
+# HEAD of ironic "master" as of 17.08.2018
+export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-"d792111b46e37181f1447d697f32a6023208df04"}
+# HEAD of ironic-client "master" as of 17.08.2018
+export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"8dcbf5b6d0bc2c2dc3881dbc557e2e403e2fe2b4"}
+# HEAD of ironic-inspector "master" as of 17.08.2018
+export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"be06e77dabbbd5ffa4ff48a1a676305c4db2f581"}
+# HEAD of ironic-inspector-client "master" as of 17.08.2018
+export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-"6eed85c38ee63ade0c2720120fbc9d0520c14f55"}
+# HEAD of osa "stable/rocky" as of 17.08.2018
+export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"cbfdb7dc295ff702044b807336fab067d84a3f20"}
 export KEEPALIVED_VERSION=$(grep -E '.*name: keepalived' -A 3 \
        ${XCI_PATH}/xci/installer/osa/files/ansible-role-requirements.yml \
        | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
