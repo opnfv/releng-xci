@@ -53,6 +53,11 @@ class XCIInventory(object):
         self.opnfv_networks['opnfv']['storage'] = {}
         self.opnfv_networks['opnfv']['storage']['address'] = '172.29.244.10/24'
 
+        # Add localhost
+        self.add_host('deployment_host')
+        self.add_hostvar('deployment_host', 'ansible_ssh_host', '127.0.0.1')
+        self.add_hostvar('deployment_host', 'ansible_connection', 'local')
+
         self.read_pdf_idf()
 
         self.parse_args()
