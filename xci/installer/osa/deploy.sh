@@ -97,6 +97,10 @@ scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
 echo "-----------------------------------------------------------------------"
 echo "Info: Set up target hosts for openstack-ansible successfuly"
 
+# DNM: Fact gathering fails due to not having target hosts in the inventory at this
+# point. The below line is just added to see how far we can go with the shabump
+ssh root@$OPNFV_HOST_IP 'echo -e "192.168.122.3 controller00\n192.168.122.4 compute00" >> /etc/hosts'
+
 # TODO: Check this with the upstream and issue a fix in the documentation if the
 # problem is valid.
 #-------------------------------------------------------------------------------
