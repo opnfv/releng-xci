@@ -196,3 +196,8 @@ echo "-----------------------------------------------------------------------"
 echo
 echo "Info: Post-deployment scenario role execution done"
 # vim: set ts=4 sw=4 expandtab:
+
+# TODO: Fix this properly
+echo "Add port to br-int for floating IPs to work"
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@192.168.122.3 \
+    "ovs-vsctl add-port br-int eth12 && ovs-vsctl list-ports br-int"

@@ -9,6 +9,8 @@
 ### These are pinned to ensure exactly the same behaviour forever!   ###
 ### These pins are updated through the sources-branch-updater script ###
 ###
-pip==9.0.1
-setuptools==38.5.1
-wheel==0.30.0
+# Bumping pip to version 10 fails in tempest when trying to install
+# packages with an empty list.
+pip==18.0
+setuptools==40.0.0
+wheel==0.31.1
