@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_5b74ee9b",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-06-12T17:33:39Z",
+      "side": 1,
+      "message": "yes, I think we should change the name per the advice we got from the Orange team.",
+      "parentUuid": "da5c1566_dc02c10a",
+      "range": {
+        "startLine": 47,
+        "startChar": 13,
+        "endLine": 47,
+        "endChar": 27
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a3f45e8_5c9c420f",
         "filename": "docs/specs/onap_oom_scenario.rst",
         "patchSetId": 2
@@ -131,6 +155,30 @@
       "writtenOn": "2018-05-09T09:20:05Z",
       "side": 1,
       "message": "we just moved generic scenarios to releng-xci-scenarios repo so the path will be releng-xci-scenarios/scenarios/k8-nosdn-onap",
+      "range": {
+        "startLine": 56,
+        "startChar": 14,
+        "endLine": 56,
+        "endChar": 41
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_3b793a94",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-06-12T17:33:39Z",
+      "side": 1,
+      "message": "scenario name will need to be updated here as well",
+      "parentUuid": "5a3f45e8_5c9c420f",
       "range": {
         "startLine": 56,
         "startChar": 14,
@@ -330,6 +378,30 @@
       "side": 1,
       "message": "Yes and no.\nI want to hear plans of Jack since he hasn\u0027t even commented on this spec. \n\nJack, can you comment here so we know you are willing to take over the scenario?",
       "parentUuid": "da5c1566_bca26d98",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 8
+      },
+      "revId": "9c5c03bcd54e9a8f380a522427fe8b258e5345e3",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_9b6e86c8",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 3201
+      },
+      "writtenOn": "2018-06-12T17:33:39Z",
+      "side": 1,
+      "message": "Yes, I can take over this scenario. Please add my name here. thanks",
+      "parentUuid": "da5c1566_fc050515",
       "range": {
         "startLine": 88,
         "startChar": 0,
