@@ -113,7 +113,8 @@ echo "Info: Set up target hosts for openstack-ansible successfuly"
 echo "Info: Gathering facts"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/openstack-ansible/playbooks; \
-        ansible -m setup -a gather_subset=network,hardware,virtual all"
+        ansible -i ~/releng-xci/xci/playbooks/dynamic_inventory.py \
+        -m setup -a gather_subset=network,hardware,virtual all"
 echo "-----------------------------------------------------------------------"
 
 #-------------------------------------------------------------------------------
