@@ -54,13 +54,13 @@ else
 fi
 
 # docker image to use will be different for healthcheck and smoke test
-DOCKER_IMAGE_NAME="opnfv/functest-${FUNCTEST_SUITE_NAME}"
+DOCKER_IMAGE_NAME="ollivier/functest-${FUNCTEST_SUITE_NAME}"
 
 sudo docker run --env-file env \
     -v $(pwd)/openrc:/home/opnfv/functest/conf/env_file  \
     -v $(pwd)/images:/home/opnfv/functest/images  \
     -v $(pwd)/results:/home/opnfv/functest/results \
-    ${DOCKER_IMAGE_NAME}@${OPNFV_FUNCTEST_HEALTHCHECK_DOCKER_IMAGE_DIGEST}
+    ${DOCKER_IMAGE_NAME}
 {% else %}
 {# stuff needed for Kubernetes based scenarios #}
 # Create k8s.creds file for functest
