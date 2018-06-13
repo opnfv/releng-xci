@@ -96,6 +96,7 @@ echo "Login opnfv host ssh root@$OPNFV_HOST_IP
 according to the user-guide to create a service
 https://kubernetes.io/docs/user-guide/walkthrough/k8s201/"
 
+
 echo
 echo "-----------------------------------------------------------------------"
 echo "Info: Kubernetes login details"
