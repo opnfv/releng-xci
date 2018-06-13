@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "da5c1566_96401d58",
+        "filename": "xci/var/k8-calico-nofeature.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1451
+      },
+      "writtenOn": "2018-06-13T16:05:32Z",
+      "side": 1,
+      "message": "There should be a version specifier here for the SDF template. Perhaps \u0027version: 0\u0027 is a good indicator that this is still in development.\n\nWithout the versioning tooling in the future may break due to missing fields.\n\nWe don\u0027t need to have the spec ratified right now, but I think it\u0027s good to do something similar like we do with PDF in validating the schema.",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 14,
+        "endChar": 54
+      },
+      "revId": "8b336fedc16d50c20900d63394a9e678b183d709",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a494da4_569043ec",
         "filename": "xci/var/k8.yml",
         "patchSetId": 6
@@ -31,6 +54,29 @@
       "side": 1,
       "message": "I was thinking about it, but scenarios are more \u0027agnostic\u0027 than IDF. Since IDF is basically an installer thing, we can potentially embed extra information there in order to make the SDF as generic as possible (this of course still allows installers to interpret an SDF the way they want to).",
       "parentUuid": "1a494da4_569043ec",
+      "revId": "8b336fedc16d50c20900d63394a9e678b183d709",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_7631090b",
+        "filename": "xci/var/k8.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1451
+      },
+      "writtenOn": "2018-06-13T16:05:32Z",
+      "side": 1,
+      "message": "What does the \u0027version\u0027 here represent? The sha from a repo, the version of the sdf, the version of calico? Should scenarios be specifying specific version of components even?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 22
+      },
       "revId": "8b336fedc16d50c20900d63394a9e678b183d709",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -72,6 +118,30 @@
       "side": 1,
       "message": "Right so \u0027hardware_requirements\u0027 to me sounds like \u0027minimum requirements\u0027 for the underlying hardware. I will change it to the \u0027expected_capabilities\u0027 in the next iteration.",
       "parentUuid": "1a494da4_7693bffa",
+      "range": {
+        "startLine": 37,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 25
+      },
+      "revId": "8b336fedc16d50c20900d63394a9e678b183d709",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_d65a954f",
+        "filename": "xci/var/k8.yml",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1451
+      },
+      "writtenOn": "2018-06-13T16:05:32Z",
+      "side": 1,
+      "message": "In the sdf template in Pharos these are called \u0027prerequisites\u0027",
+      "parentUuid": "1a494da4_196f0c94",
       "range": {
         "startLine": 37,
         "startChar": 4,
