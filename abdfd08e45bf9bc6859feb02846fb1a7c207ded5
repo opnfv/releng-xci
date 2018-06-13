@@ -184,6 +184,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_31addb89",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 543
+      },
+      "writtenOn": "2018-06-13T20:50:15Z",
+      "side": 1,
+      "message": "Okay, so I will send a patchset to clarify this slightly.",
+      "parentUuid": "da5c1566_a23d24be",
+      "range": {
+        "startLine": 18,
+        "startChar": 1,
+        "endLine": 18,
+        "endChar": 54
+      },
+      "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_bfa25f98",
         "filename": "docs/specs/k8-odl-coe.rst",
         "patchSetId": 5
@@ -231,6 +255,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_11aa5770",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 543
+      },
+      "writtenOn": "2018-06-13T20:50:15Z",
+      "side": 1,
+      "message": "Okay, so this is really about the scenario overall, not just the Worker Nodes section (which this line is currently scoped to). I\u0027ll break it into a different section to clarify.",
+      "parentUuid": "da5c1566_e2eefcb3",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 44
+      },
+      "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_ffacd78e",
         "filename": "docs/specs/k8-odl-coe.rst",
         "patchSetId": 5
@@ -266,6 +314,30 @@
       "side": 1,
       "message": "Installer Descriptor File.\n\nAs you might know that PDF is static file describing the hardware capabilities. Installers need additional things that differ depending on installer and that info needs to be kept somewhere. IDF is used for that purpose and can be seen like glue between HW and the Installer.",
       "parentUuid": "da5c1566_ffacd78e",
+      "range": {
+        "startLine": 45,
+        "startChar": 47,
+        "endLine": 45,
+        "endChar": 51
+      },
+      "revId": "abdfd08e45bf9bc6859feb02846fb1a7c207ded5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_71b633de",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 543
+      },
+      "writtenOn": "2018-06-13T20:50:15Z",
+      "side": 1,
+      "message": "Okay, I\u0027ll send a patch to fill in this TODO",
+      "parentUuid": "da5c1566_024970d0",
       "range": {
         "startLine": 45,
         "startChar": 47,
