@@ -160,3 +160,21 @@
         - ubuntu
         - centos
         - opensuse
+
+- scenario: k8-nosdn-istio
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+  version: 47145857b78f8093aa0653a16158e2940deac697
+  refspec: refs/changes/57/58357/4
+  role: scenarios/k8-nosdn-istio/role/k8-nosdn-istio
+  installers:
+    - installer: kubespray
+      flavors:
+        - aio
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
+        - centos
+        - opensuse
