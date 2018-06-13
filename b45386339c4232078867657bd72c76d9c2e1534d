@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_7b3a9237",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-06-13T06:57:55Z",
+      "side": 1,
+      "message": "Kubernetes",
+      "range": {
+        "startLine": 45,
+        "startChar": 31,
+        "endLine": 45,
+        "endChar": 40
+      },
+      "revId": "b45386339c4232078867657bd72c76d9c2e1534d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_db3e3e29",
+        "filename": "docs/specs/k8-odl-coe.rst",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-06-13T06:57:55Z",
+      "side": 1,
+      "message": "specific",
+      "range": {
+        "startLine": 66,
+        "startChar": 5,
+        "endLine": 66,
+        "endChar": 14
+      },
+      "revId": "b45386339c4232078867657bd72c76d9c2e1534d",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
