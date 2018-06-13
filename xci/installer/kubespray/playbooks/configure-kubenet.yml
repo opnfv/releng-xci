@@ -38,14 +38,14 @@
           with_items: "{{ kubenet_xci_static_routes }}"
           loop_control:
             label: "{{ item.network }}"
-      when: deploy_scenario == 'k8-nosdn-nofeature'
+      when: deploy_scenario.find(k8-nosdn-') != -1
 
     - name: Ensure rp_filter is disabled on localhost
       sysctl:
         name: net.ipv4.conf.all.rp_filter
         sysctl_set: yes
         state: present
-        value: "{{ deploy_scenario == 'k8-nosdn-nofeature' | ternary(0, 1) }}"
+        value: "{{ (kubenet_xci_static_routes is defined) | ternary(0, 1) }}"
         reload: yes
       delegate_to: localhost
       run_once: True
