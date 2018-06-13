@@ -160,3 +160,20 @@
         - ubuntu
         - centos
         - opensuse
+
+- scenario: k8-nosdn-istio
+  scm: git
+  src: https://github.com/wtwde/xci-scenarios.git
+  version: master
+  role: scenarios/k8-nosdn-istio/role/k8-nosdn-istio
+  installers:
+    - installer: kubespray
+      flavors:
+        - aio
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
+        - centos
+        - opensuse

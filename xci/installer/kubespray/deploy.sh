@@ -96,6 +96,32 @@ echo "Login opnfv host ssh root@$OPNFV_HOST_IP
 according to the user-guide to create a service
 https://kubernetes.io/docs/user-guide/walkthrough/k8s201/"
 
+if [[ "$DEPLOY_SCENARIO" =~ "-istio" ]]; then
+    echo
+    echo "-----------------------------------------------------------------------"
+    echo "Deploying istio"
+    echo "-----------------------------------------------------------------------"
+    ssh root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/istio;\
+             kubectl apply -f install/kubernetes/istio-demo.yaml"
+    result=1
+    trynum=50
+    while [ $result -ne "0" ]
+    do
+        sleep 30
+        echo "Info: waiting istio running"
+        ssh root@192.168.122.2 "kubectl get pods -n istio-system"
+        result=$(ssh root@192.168.122.2 "kubectl get pods -n istio-system | egrep -v 'NAME|Running|Completed' | wc -l")
+        if [ $trynum == 0 ];then
+            exit 1
+        fi
+        trynum=$[$trynum-1]
+    done
+    echo
+    echo "-----------------------------------------------------------------------"
+    echo "Deployed istio"
+    echo "-----------------------------------------------------------------------"
+fi
+
 echo
 echo "-----------------------------------------------------------------------"
 echo "Info: Kubernetes login details"
