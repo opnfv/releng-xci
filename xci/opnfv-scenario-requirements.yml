@@ -160,3 +160,17 @@
         - ubuntu
         - centos
         - opensuse
+
+- scenario: k8-odl-coe
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+  version: cd42f60a33b2d31d7fbd0b461228b2ba408458cd
+  refspec: refs/changes/63/58363/4
+  role: scenarios/k8-odl-coe/role/k8-odl-coe
+  installers:
+    - installer: kubespray
+      flavors:
+        - mini
+      distros:
+        - ubuntu
+        - opensuse
