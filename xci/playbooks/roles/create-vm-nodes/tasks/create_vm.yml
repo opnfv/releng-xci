@@ -72,6 +72,8 @@
         - ansible_distribution != 'CentOS'
         - vm_libvirt_uri == 'qemu:///system'
 
+    - debug: var=item.interfaces
+
     # Fetches the xml descriptor from the template
     - name: create_vm
       virt:
