@@ -97,11 +97,6 @@ Available flavors are listed on the table below.
 +------------------+------------------------+---------------------+--------------------------+--------------------------+
 | Flavor           | Number of VM Nodes     | VM Specs Per Node   | Time Estimates Openstack | Time Estimates Kubernetes|
 +==================+========================+=====================+==========================+==========================+
-| All in One (aio) | | 1 VM Node            | | vCPUs: 8          | | Provisioning: 10 mins  | | Provisioning: 10 mins  |
-|                  | | controller & compute | | RAM: 12GB         | | Deployment: 90 mins    | | Deployment: 30 mins    |
-|                  | | on single/same node  | | Disk: 80GB        | | Total: 100 mins        | | Total: 40 mins         |
-|                  | | 1 compute node       | | NICs: 1           | |                        | |                        |
-+------------------+------------------------+---------------------+--------------------------+--------------------------+
 | Mini             | | 3 VM Nodes           | | vCPUs: 6          | | Provisioning: 12 mins  | | Provisioning: 12 mins  |
 |                  | | 1 deployment node    | | RAM: 12GB         | | Deployment: 65 mins    | | Deployment: 35 mins    |
 |                  | | 1 controller node    | | Disk: 80GB        | | Total: 77 mins         | | Total: 47 mins         |
@@ -150,14 +145,6 @@ ongoing.
 
 The differences between the flavors are documented below.
 
-**All in One**
-
-As shown on the table in the previous section, this flavor consists of a single
-node. All the OpenStack services, including compute run on the same node.
-
-The flavor All in One (aio) is deployed based on the process described in the
-upstream documentation. Please check `OpenStack Ansible Developer Quick Start <https://docs.openstack.org/openstack-ansible/pike/contributor/quickstart-aio.html>`_ for details.
-
 **Mini/No HA/HA**
 
 These flavors consist of multiple nodes.
@@ -183,12 +170,6 @@ For network plugins, calico is used. flannel, weaver, contive, canal and cilium
 are supported currently
 
 The differences between the flavors are documented below.
-
-**All in One**
-
-As shown on the table in the previous section, this flavor consists of a single
-node. All the kubernetes services run on the same node, which acts as master
-and worker at the same time.
 
 **Mini/No HA/HA**
 
@@ -257,7 +238,7 @@ How to Use
    | ``./xci-deploy.sh``
 
 Issuing above command will start the sandbox deployment using the default
-flavor ``aio`` and the verified versions of upstream components.
+flavor ``mini`` and the verified versions of upstream components.
 (`pinned-versions <https://git.opnfv.org/releng-xci/tree/xci/config/pinned-versions>`_).
 The sandbox should be ready between 1,5 and 2 hours depending on the host
 machine.
