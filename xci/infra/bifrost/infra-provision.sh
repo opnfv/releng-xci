@@ -32,7 +32,6 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -e xci_distro=${XCI_DISTRO} \
         ${BIFROST_ROOT_DIR}/playbooks/xci-create-virtual.yml
 
-
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         --private-key=${XCI_PATH}/xci/scripts/vm/id_rsa_for_dib \
         --user=devuser \

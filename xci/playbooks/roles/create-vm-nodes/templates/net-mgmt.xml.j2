@@ -1,0 +1,16 @@
+<network>
+  <name>{{ vm_network }}</name>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='{{ network_bridge_mgmt }}' stp='on' delay='0'/>
+  <ip address='{{opnfv_vm.remote_management.address.split(':')[0] }}' netmask='{{ idf.net_config.mgmt.mask }}'>
+     <dhcp>
+       {%- set index = idf.net_config.mgmt.interface %}
+       {%- set interface = opnfv_vm.interfaces[index] %}
+       <host mac="{{ interface.mac_address }}" ip="{{ interface.address }}"/>
+     </dhcp>
+  </ip>
+</network>

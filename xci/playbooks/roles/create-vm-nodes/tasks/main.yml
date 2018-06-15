@@ -4,12 +4,20 @@
 - name: "Load distribution defaults"
   include_vars: "{{ ansible_os_family | lower }}.yml"
 
+
+- debug: var=network_interface_pxe
+- debug: var=testinggg
+
+- name: Dump all vars
+  action: template src=templates/dumpall.j2 dest=/tmp/ansible.all
+
 # From the previous list
 - name: "Install required packages"
   package:
     name: "{{ required_packages }}"
 
 - include_tasks: prepare_libvirt.yml
+
 - include_tasks: download_opnfvimage.yml
 
 - name: create placeholder var for vm entries in JSON format
@@ -18,10 +26,15 @@
 
 # First we create the opnfv_vm
 - include_tasks: create_vm.yml
-  with_items: "{{ [opnfv_vm] + nodes }}"
+  with_items: "{{ [opnfv_vm] }}"
+
+- debug: var=nodes
+
+- include_tasks: barematalhoststojson.yml
+  with_items: "{{ nodes }}"
 
 - name: Start the opnfv vm
-  virt: 
+  virt:
     command: start
     name: opnfv
 
