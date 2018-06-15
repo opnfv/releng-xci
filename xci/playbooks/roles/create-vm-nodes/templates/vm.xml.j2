@@ -43,7 +43,7 @@
     {%- endfor %}
     {%- for interface in native_interfaces -%}
     <interface type='network'>
-      <source network='{{ vm_network }}'/>
+      <source network='{{ vm_network_admin }}'/>
       <model type='{{ vm_nic }}'/>
       <mac address='{{ interface.mac_address }}'/>
     </interface>

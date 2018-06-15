@@ -52,6 +52,11 @@ opnfv_vm:
     speed:
     features:
     vlan: 30
+  interface_common_nic5: &interface_common_nic5
+    name: nic5
+    speed:
+    features:
+    vlan: native
   interfaces:
     - mac_address: "52:54:00:33:82:d0"
       address: 172.29.236.10
@@ -64,4 +69,7 @@ opnfv_vm:
       <<: *interface_common_nic3
     - mac_address: "52:54:00:33:82:d0"
       address: 172.29.240.10
+      <<: *interface_common_nic4
+    - mac_address: "52:54:00:33:82:d1"
+      address: 172.16.2.100
       <<: *interface_common_nic4
