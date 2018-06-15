@@ -32,7 +32,6 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -e xci_distro=${XCI_DISTRO} \
         ${BIFROST_ROOT_DIR}/playbooks/xci-create-virtual.yml
 
-
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -i ${XCI_PATH}/xci/playbooks/dynamic_inventory.py \
         ${BIFROST_ROOT_DIR}/playbooks/xci-prepare-virtual.yml

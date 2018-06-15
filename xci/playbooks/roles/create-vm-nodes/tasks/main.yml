@@ -18,10 +18,15 @@
 
 # First we create the opnfv_vm
 - include_tasks: create_vm.yml
-  with_items: "{{ [opnfv_vm] + nodes }}"
+  with_items: "{{ [opnfv_vm] }}"
+
+- debug: var=nodes
+
+- include_tasks: barematalhoststojson.yml
+  with_items: "{{ nodes }}"
 
 - name: Start the opnfv vm
-  virt: 
+  virt:
     command: start
     name: opnfv
 
