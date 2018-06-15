@@ -5,14 +5,12 @@
       <port start='1024' end='65535'/>
     </nat>
   </forward>
-  <bridge name='{{ network_interface }}' stp='on' delay='0'/>
-  <ip address='{{ nodes[0].remote_management.address.split(':')[0] }}' netmask='{{ node_network_netmask }}'>
+  <bridge name='{{ network_bridge_pxe }}' stp='on' delay='0'/>
+  <ip address='{{opnfv_vm.remote_management.address.split(':')[0] }}' netmask='{{ idf.net_config.admin.mask }}'>
      <dhcp>
-      {%- for interface in opnfv_vm.interfaces %}
-       {%-   if 'native' in (interface.vlan | string) %}
+       {%- set index = idf.net_config.pxe.interface %}
+       {%- set interface = opnfv_vm.interfaces[index] %}
        <host mac="{{ interface.mac_address }}" ip="{{ interface.address }}"/>
-       {%-   endif %}
-       {%- endfor %}
      </dhcp>
   </ip>
 </network>
