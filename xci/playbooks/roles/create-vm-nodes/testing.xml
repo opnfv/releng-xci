@@ -1,0 +1,7 @@
+<network>
+  <name>testing</name>
+  <forward dev='putilla' mode='nat'/>
+  <bridge name='testing' stp='on' delay='0'/>
+  <mac address='52:54:00:e9:8f:a8'/>
+  <ip address='10.167.8.1' netmask='255.255.255.0' />
+</network>

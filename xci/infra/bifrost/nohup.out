@@ -1,0 +1,2077 @@
+holi
+
+bye
+ansible-playbook 2.4.4.0
+  config file = None
+  configured module search path = [u'/home/jenkins/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules', u'/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/library']
+  ansible python module location = /usr/local/lib/python2.7/dist-packages/ansible
+  executable location = /usr/local/bin/ansible-playbook
+  python version = 2.7.12 (default, Dec  4 2017, 14:50:18) [GCC 5.4.0 20160609]
+No config file found; using defaults
+Parsed /home/jenkins/releng-xci/xci/playbooks/dynamic_inventory.py inventory source with script plugin
+Parsed /home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory/bifrost_inventory.py inventory source with script plugin
+ [WARNING]: Found both group and host with same name: opnfv
+
+PLAYBOOK: Helloworld.yml *******************************************************
+1 plays in /home/jenkins/releng-xci/xci/infra/bifrost/playbooks/Helloworld.yml
+
+PLAY [This is a hello-world example] *******************************************
+META: ran handlers
+
+TASK [debug] *******************************************************************
+task path: /home/jenkins/releng-xci/xci/infra/bifrost/playbooks/Helloworld.yml:5
+ok: [node1 -> 192.168.122.2] => {
+    "ipv4_address": ""
+}
+ok: [node2 -> 192.168.122.2] => {
+    "ipv4_address": ""
+}
+
+TASK [debug] *******************************************************************
+task path: /home/jenkins/releng-xci/xci/infra/bifrost/playbooks/Helloworld.yml:8
+ok: [node1 -> 192.168.122.2] => {
+    "hostvars": {
+        "127.0.0.1": {
+            "ansible_check_mode": false, 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_image_via_dib": true, 
+            "create_ipa_image": "true", 
+            "dib_image_type": "vm", 
+            "download_ipa": "false", 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "localhost"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory", 
+            "inventory_file": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory/bifrost_inventory.py", 
+            "inventory_hostname": "127.0.0.1", 
+            "inventory_hostname_short": "127", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_db_password": "aSecretPassword473z", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "mysql_password": null, 
+            "mysql_username": "root", 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "transform_boot_image": false, 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "compute00": {
+            "ansible_check_mode": false, 
+            "ansible_host": "192.168.122.4", 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "compute", 
+                "openstack", 
+                "storage"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/xci/playbooks", 
+            "inventory_file": "/home/jenkins/releng-xci/xci/playbooks/dynamic_inventory.py", 
+            "inventory_hostname": "compute00", 
+            "inventory_hostname_short": "compute00", 
+            "ip": "192.168.122.4", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "controller00": {
+            "ansible_check_mode": false, 
+            "ansible_host": "192.168.122.3", 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "controller", 
+                "openstack"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/xci/playbooks", 
+            "inventory_file": "/home/jenkins/releng-xci/xci/playbooks/dynamic_inventory.py", 
+            "inventory_hostname": "controller00", 
+            "inventory_hostname_short": "controller00", 
+            "ip": "192.168.122.3", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "deployment_host": {
+            "ansible_check_mode": false, 
+            "ansible_connection": "local", 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_ssh_host": "127.0.0.1", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "ungrouped"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/xci/playbooks", 
+            "inventory_file": "/home/jenkins/releng-xci/xci/playbooks/dynamic_inventory.py", 
+            "inventory_hostname": "deployment_host", 
+            "inventory_hostname_short": "deployment_host", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "node1": {
+            "addressing_mode": "dhcp", 
+            "ansible_check_mode": false, 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_ssh_host": "", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "driver": "ipmi", 
+            "driver_info": {
+                "power": {
+                    "ipmi_address": "172.16.2.12", 
+                    "ipmi_password": "Winter2017", 
+                    "ipmi_port": "623", 
+                    "ipmi_username": "opnfv"
+                }
+            }, 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "baremetal"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_groups": [
+                "baremetal"
+            ], 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory", 
+            "inventory_file": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory/bifrost_inventory.py", 
+            "inventory_hostname": "node1", 
+            "inventory_hostname_short": "node1", 
+            "ipv4_address": "", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "name": "node1", 
+            "nics": [
+                {
+                    "mac": "ec:b1:d7:a2:44:a0"
+                }
+            ], 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "properties": {
+                "cpu_arch": "x86_64", 
+                "cpus": "2", 
+                "disk_size": "1200", 
+                "ram": "128"
+            }, 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "uuid": "b55f1bdd-ca90-5a70-b673-0be5233e0c56", 
+            "wait_for_node_deploy": false, 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "node2": {
+            "addressing_mode": "dhcp", 
+            "ansible_check_mode": false, 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_ssh_host": "", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "driver": "ipmi", 
+            "driver_info": {
+                "power": {
+                    "ipmi_address": "172.16.2.13", 
+                    "ipmi_password": "Winter2017", 
+                    "ipmi_port": "623", 
+                    "ipmi_username": "opnfv"
+                }
+            }, 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "baremetal"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_groups": [
+                "baremetal"
+            ], 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory", 
+            "inventory_file": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory/bifrost_inventory.py", 
+            "inventory_hostname": "node2", 
+            "inventory_hostname_short": "node2", 
+            "ipv4_address": "", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "name": "node2", 
+            "nics": [
+                {
+                    "mac": "ec:b1:d7:a2:44:80"
+                }
+            ], 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "properties": {
+                "cpu_arch": "x86_64", 
+                "cpus": "2", 
+                "disk_size": "1200", 
+                "ram": "128"
+            }, 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "uuid": "49b82c76-31f4-5247-9b51-a58dad650fcc", 
+            "wait_for_node_deploy": false, 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "opnfv": {
+            "ansible_check_mode": false, 
+            "ansible_host": "192.168.122.2", 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "deployment", 
+                "opnfv"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/xci/playbooks", 
+            "inventory_file": "/home/jenkins/releng-xci/xci/playbooks/dynamic_inventory.py", 
+            "inventory_hostname": "opnfv", 
+            "inventory_hostname_short": "opnfv", 
+            "ip": "192.168.122.2", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }
+    }
+}
+ok: [node2 -> 192.168.122.2] => {
+    "hostvars": {
+        "127.0.0.1": {
+            "ansible_check_mode": false, 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_image_via_dib": true, 
+            "create_ipa_image": "true", 
+            "dib_image_type": "vm", 
+            "download_ipa": "false", 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "localhost"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory", 
+            "inventory_file": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory/bifrost_inventory.py", 
+            "inventory_hostname": "127.0.0.1", 
+            "inventory_hostname_short": "127", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_db_password": "aSecretPassword473z", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "mysql_password": null, 
+            "mysql_username": "root", 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "transform_boot_image": false, 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "compute00": {
+            "ansible_check_mode": false, 
+            "ansible_host": "192.168.122.4", 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "compute", 
+                "openstack", 
+                "storage"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/xci/playbooks", 
+            "inventory_file": "/home/jenkins/releng-xci/xci/playbooks/dynamic_inventory.py", 
+            "inventory_hostname": "compute00", 
+            "inventory_hostname_short": "compute00", 
+            "ip": "192.168.122.4", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "controller00": {
+            "ansible_check_mode": false, 
+            "ansible_host": "192.168.122.3", 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "controller", 
+                "openstack"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/xci/playbooks", 
+            "inventory_file": "/home/jenkins/releng-xci/xci/playbooks/dynamic_inventory.py", 
+            "inventory_hostname": "controller00", 
+            "inventory_hostname_short": "controller00", 
+            "ip": "192.168.122.3", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "deployment_host": {
+            "ansible_check_mode": false, 
+            "ansible_connection": "local", 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_ssh_host": "127.0.0.1", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "ungrouped"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/xci/playbooks", 
+            "inventory_file": "/home/jenkins/releng-xci/xci/playbooks/dynamic_inventory.py", 
+            "inventory_hostname": "deployment_host", 
+            "inventory_hostname_short": "deployment_host", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "node1": {
+            "addressing_mode": "dhcp", 
+            "ansible_check_mode": false, 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_ssh_host": "", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "driver": "ipmi", 
+            "driver_info": {
+                "power": {
+                    "ipmi_address": "172.16.2.12", 
+                    "ipmi_password": "Winter2017", 
+                    "ipmi_port": "623", 
+                    "ipmi_username": "opnfv"
+                }
+            }, 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "baremetal"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_groups": [
+                "baremetal"
+            ], 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory", 
+            "inventory_file": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory/bifrost_inventory.py", 
+            "inventory_hostname": "node1", 
+            "inventory_hostname_short": "node1", 
+            "ipv4_address": "", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "name": "node1", 
+            "nics": [
+                {
+                    "mac": "ec:b1:d7:a2:44:a0"
+                }
+            ], 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "properties": {
+                "cpu_arch": "x86_64", 
+                "cpus": "2", 
+                "disk_size": "1200", 
+                "ram": "128"
+            }, 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "uuid": "b55f1bdd-ca90-5a70-b673-0be5233e0c56", 
+            "wait_for_node_deploy": false, 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "node2": {
+            "addressing_mode": "dhcp", 
+            "ansible_check_mode": false, 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_ssh_host": "", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "driver": "ipmi", 
+            "driver_info": {
+                "power": {
+                    "ipmi_address": "172.16.2.13", 
+                    "ipmi_password": "Winter2017", 
+                    "ipmi_port": "623", 
+                    "ipmi_username": "opnfv"
+                }
+            }, 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "baremetal"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_groups": [
+                "baremetal"
+            ], 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory", 
+            "inventory_file": "/home/jenkins/releng-xci/.cache/repos/bifrost/playbooks/inventory/bifrost_inventory.py", 
+            "inventory_hostname": "node2", 
+            "inventory_hostname_short": "node2", 
+            "ipv4_address": "", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "name": "node2", 
+            "nics": [
+                {
+                    "mac": "ec:b1:d7:a2:44:80"
+                }
+            ], 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "properties": {
+                "cpu_arch": "x86_64", 
+                "cpus": "2", 
+                "disk_size": "1200", 
+                "ram": "128"
+            }, 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "uuid": "49b82c76-31f4-5247-9b51-a58dad650fcc", 
+            "wait_for_node_deploy": false, 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }, 
+        "opnfv": {
+            "ansible_check_mode": false, 
+            "ansible_host": "192.168.122.2", 
+            "ansible_playbook_python": "/usr/bin/python", 
+            "ansible_version": {
+                "full": "2.4.4.0", 
+                "major": 2, 
+                "minor": 4, 
+                "revision": 4, 
+                "string": "2.4.4.0"
+            }, 
+            "create_ipa_image": "true", 
+            "download_ipa": "false", 
+            "enable_inspector": "true", 
+            "enable_keystone": "false", 
+            "group_names": [
+                "deployment", 
+                "opnfv"
+            ], 
+            "groups": {
+                "all": [
+                    "deployment_host", 
+                    "node1", 
+                    "node2", 
+                    "opnfv", 
+                    "controller00", 
+                    "compute00", 
+                    "127.0.0.1"
+                ], 
+                "baremetal": [
+                    "node1", 
+                    "node2"
+                ], 
+                "compute": [
+                    "compute00"
+                ], 
+                "controller": [
+                    "controller00"
+                ], 
+                "deployment": [
+                    "opnfv"
+                ], 
+                "localhost": [
+                    "127.0.0.1"
+                ], 
+                "openstack": [
+                    "controller00", 
+                    "compute00"
+                ], 
+                "opnfv": [
+                    "opnfv"
+                ], 
+                "storage": [
+                    "compute00"
+                ], 
+                "ungrouped": [
+                    "deployment_host"
+                ]
+            }, 
+            "host_info": {
+                "compute00": {
+                    "admin": {
+                        "address": "172.29.236.12/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.12/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.4/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.12/22"
+                    }
+                }, 
+                "controller00": {
+                    "admin": {
+                        "address": "172.29.236.11/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.11/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.3/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1/24"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.11/22"
+                    }
+                }, 
+                "opnfv": {
+                    "admin": {
+                        "address": "172.29.236.10/22"
+                    }, 
+                    "private": {
+                        "address": "172.29.240.10/22"
+                    }, 
+                    "public": {
+                        "address": "192.168.122.2/24", 
+                        "dns": "192.168.122.1", 
+                        "gateway": "192.168.122.1"
+                    }, 
+                    "storage": {
+                        "address": "172.29.244.10/24"
+                    }
+                }
+            }, 
+            "inspect_nodes": "true", 
+            "inventory_dhcp": "false", 
+            "inventory_dhcp_static_ip": "false", 
+            "inventory_dir": "/home/jenkins/releng-xci/xci/playbooks", 
+            "inventory_file": "/home/jenkins/releng-xci/xci/playbooks/dynamic_inventory.py", 
+            "inventory_hostname": "opnfv", 
+            "inventory_hostname_short": "opnfv", 
+            "ip": "192.168.122.2", 
+            "ipv4_gateway": "192.168.122.1", 
+            "ironic_git_branch": "master", 
+            "ironic_url": "http://192.168.122.2:6385/", 
+            "ironicclient_git_branch": "master", 
+            "ironicclient_source_install": "true", 
+            "ironicinspector_git_branch": "master", 
+            "ironicinspector_source_install": "true", 
+            "ironicinspectorclient_git_branch": "master", 
+            "ironicinspectorclient_source_install": "true", 
+            "omit": "__omit_place_holder__eecd761dc7dabb2cea62634286ab443aa3e68c26", 
+            "playbook_dir": "/home/jenkins/releng-xci/xci/infra/bifrost/playbooks", 
+            "test_vm_cpu": "host-model", 
+            "test_vm_num_nodes": "", 
+            "testing_user": "root", 
+            "use_cirros": "false", 
+            "use_prebuilt_images": "false", 
+            "wait_timeout": "3600", 
+            "write_interfaces_file": "true", 
+            "xci_distro": ""
+        }
+    }
+}
+META: ran handlers
+META: ran handlers
+
+PLAY RECAP *********************************************************************
+node1                      : ok=2    changed=0    unreachable=0    failed=0   
+node2                      : ok=2    changed=0    unreachable=0    failed=0   
+
+-----------------------------------------------------------------------
+Info: VM nodes are provisioned!
+-----------------------------------------------------------------------

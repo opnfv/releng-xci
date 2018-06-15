@@ -1,0 +1,10 @@
+- name: This is a hello-world example
+  hosts: baremetal
+  gather_facts: False
+  tasks:
+  - debug: var=ipv4_address
+    delegate_to: opnfv
+    delegate_facts: False
+  - debug: var=hostvars
+    delegate_to: opnfv
+
