@@ -1,0 +1,16 @@
+<network>
+  <name>{{ item }}</name>
+  <forward mode='route'>
+  </forward>
+  <bridge name='br-{{ item }}' stp='on' delay='0'/>
+  <% for interface in opnfv_vm.interfaces %>
+  <% if interface.config == 'mgmt' %>
+  <% set index = loop.index %>
+  <ip address='{{ opnfv_vm.interfaces[index].gateway }}' netmask='255.255.255.0'>
+     <dhcp>
+       <host mac="{{ opnfv_vm.interfaces[index].mac_address }}" ip="{{ opnfv_vm.interfaces[index].address }}"/>
+     </dhcp>
+  </ip>
+  <% endif %>
+  <% endfor %>
+</network>

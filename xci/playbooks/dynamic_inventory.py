@@ -18,6 +18,7 @@ import os
 import sys
 import yaml
 import json
+import pdb
 
 
 class XCIInventory(object):
@@ -74,8 +75,8 @@ class XCIInventory(object):
         self.args = parser.parse_args()
 
     def read_pdf_idf(self):
-        pdf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/pdf.yml"
-        idf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/idf.yml"
+        pdf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/ericsson-pdf-pod2.yml"
+        idf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/ericsson-idf-pod2.yml"
         nodes = []
         host_networks = {}
 
@@ -118,6 +119,10 @@ class XCIInventory(object):
                     host_networks[hostname][network]['gateway'] = str(ndata['gateway']) + "/" + str(ndata['mask'])
                 if 'dns' in ndata.keys():
                     host_networks[hostname][network]['dns'] = str(ndata['dns'])
+
+                # Get also vlan and mac_address from pdf
+                host_networks[hostname][network]['mac_address'] = str(pdf_host_info['interfaces'][int(network_interface_num)]['mac_address'])
+                host_networks[hostname][network]['vlan'] = str(pdf_host_info['interfaces'][int(network_interface_num)]['vlan'])
 
             host_networks.update(self.opnfv_networks)
 
