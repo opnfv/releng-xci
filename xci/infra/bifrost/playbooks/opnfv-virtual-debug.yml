@@ -1,0 +1,67 @@
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2016 RedHat and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+---
+- hosts: baremetal
+  name: "Enrollment and Deployment"
+  vars:
+    multinode_testing: "{{ inventory_dhcp | bool == true }}"
+  become: no
+  gather_facts: False
+  tasks:
+    - debug: var=ipv4_address
+    - debug: var=ipv4_ole
+    - name: Gathering facts
+      setup:
+      delegate_to: opnfv
+      delegate_facts: False
+    - name: "Override default bifrost DNS if we are behind a proxy"
+      set_fact:
+         ipv4_nameserver: "192.168.122.1"
+      when: lookup('env','http_proxy') != ''
+    - debug: var=ipv4_address
+    - name: Find network interface in the OPNFV node
+      set_fact:
+        network_interface: "{{ ansible_default_ipv4.interface }}"
+    - import_role:
+        name: ironic-enroll-dynamic
+        private: True
+      delegate_to: opnfv
+    - debug: var=ipv4_address
+    - import_role:
+        name: ironic-inspect-node
+        private: True
+      delegate_to: opnfv
+      when: inspect_nodes | default('false') | bool == true
+    - import_role:
+        name: bifrost-configdrives-dynamic
+        private: True
+      delegate_to: opnfv
+    - debug: var=ipv4_address
+    - import_role:
+        name: bifrost-deploy-nodes-dynamic
+        private: True
+      delegate_to: opnfv
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
+
+- hosts: baremetal
+  name: "Deploy machines."
+  become: no
+  serial: 1
+  gather_facts: False
+  tasks:
+      #- name: Gathering facts
+      #setup:
+      #delegate_to: opnfv
+      #delegate_facts: False
+    - import_role:
+        name: bifrost-prepare-for-test-dynamic
+      delegate_to: opnfv
