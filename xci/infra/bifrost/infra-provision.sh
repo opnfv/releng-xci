@@ -45,7 +45,7 @@ source ${XCI_CACHE}/repos/bifrost/scripts/bifrost-env.sh
 sed -i "/delegate_to:/d" ${XCI_CACHE}/repos/bifrost/playbooks/roles/bifrost-deploy-nodes-dynamic/tasks/main.yml
 
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
-    --user=devuser \
+    --user=devuser -vvv \
     -i ${XCI_PATH}/xci/playbooks/dynamic_inventory.py \
     -i ${XCI_CACHE}/repos/bifrost/playbooks/inventory/bifrost_inventory.py \
     -e use_cirros=false \
@@ -56,8 +56,8 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
     -e inventory_dhcp_static_ip=false \
     -e enable_inspector=true \
     -e inspect_nodes=true \
-    -e download_ipa=true \
-    -e create_ipa_image=false \
+    -e download_ipa=false \
+    -e create_ipa_image=true \
     -e write_interfaces_file=true \
     -e ipv4_gateway=192.168.122.1 \
     -e wait_timeout=3600 \
