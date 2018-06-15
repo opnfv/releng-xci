@@ -74,8 +74,9 @@ class XCIInventory(object):
         self.args = parser.parse_args()
 
     def read_pdf_idf(self):
-        pdf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/pdf.yml"
-        idf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/idf.yml"
+        pdf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/ericsson-pdf-pod2.yml"
+        idf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/ericsson-idf-pod2.yml"
+        opnfv_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/opnfv_vm.yml"
         nodes = []
         host_networks = {}
 
@@ -89,6 +90,13 @@ class XCIInventory(object):
         with open(idf_file) as f:
             try:
                 idf = yaml.safe_load(f)
+            except yaml.YAMLError as e:
+                print(e)
+                sys.exit(1)
+
+        with open(opnfv_file) as f:
+            try:
+                opnfv_pdf = yaml.safe_load(f)
             except yaml.YAMLError as e:
                 print(e)
                 sys.exit(1)
@@ -118,6 +126,19 @@ class XCIInventory(object):
                     host_networks[hostname][network]['gateway'] = str(ndata['gateway']) + "/" + str(ndata['mask'])
                 if 'dns' in ndata.keys():
                     host_networks[hostname][network]['dns'] = str(ndata['dns'])
+
+                # Get also vlan and mac_address from pdf
+                host_networks[hostname][network]['mac_address'] = str(pdf_host_info['interfaces'][int(network_interface_num)]['mac_address'])
+                host_networks[hostname][network]['vlan'] = str(pdf_host_info['interfaces'][int(network_interface_num)]['vlan'])
+
+            # Get also vlan and mac_address from opnfv_pdf
+            opnfv_admin = filter(lambda x: x['config'] == 'admin', opnfv_pdf['opnfv_vm']['interfaces'])[0]
+            opnfv_public = filter(lambda x: x['config'] == 'pxe', opnfv_pdf['opnfv_vm']['interfaces'])[0]
+            self.opnfv_networks['opnfv']['admin']['mac_address'] = str(opnfv_admin['mac_address'])
+            self.opnfv_networks['opnfv']['admin']['vlan'] = str(opnfv_admin['vlan'])
+            self.opnfv_networks['opnfv']['public']['mac_address'] = str(opnfv_public['mac_address'])
+            self.opnfv_networks['opnfv']['public']['vlan'] = str(opnfv_public['vlan'])
+
 
             host_networks.update(self.opnfv_networks)
 

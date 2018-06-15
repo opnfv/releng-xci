@@ -9,11 +9,36 @@ vm_default_groups: "{{ lookup('env', 'DEFAULT_HOST_GROUPS').split() | default(['
 vm_disk_cache: unsafe
 node_names: "{{ lookup('env', 'NODE_NAMES').split() }}"
 
-# NOTE(pas-ha) name and default are chosen to be the same
-# as in 'bifrost-ironic-install' role
-network_interface: "virbr0"
-# NOTE(pas-ha) these correspond to settings for the libvirt network created by default
-vm_network: "{{ lookup('env', 'VM_NET_BRIDGE') | default('default', true) }}"
+network_bridge_pxe: 'br-pxe'
+network_bridge_mgmt: 'br-mgmt'
+
+network_interface_pxe_mac: "{{ jumphost.interfaces[idf.net_config.pxe.interface].mac_address }}"
+network_interface_pxe_vlan: "{{ jumphost.interfaces[idf.net_config.pxe.interface].vlan }}"
+#network_interface_pxe: "{{ lookup('env', 'PXE_INTERFACE') }}"
+#network_interface_pxe: >-
+#  {% for x in (ansible_interfaces | map('regex_replace', '-', '_') | map('regex_replace', '^', 'ansible_') | map('extract', hostvars[inventory_hostname]) |  selectattr('macaddress','defined')) -%}
+#  {% if x.macaddress == network_interface_pxe_mac %}
+#  {{ x.device }}
+#  {%- endif %}
+#  {%- endfor %}
+
+network_interface_mgmt_mac: "{{ jumphost.interfaces[idf.net_config.admin.interface].mac_address }}"
+network_interface_mgmt_vlan: "{{ jumphost.interfaces[idf.net_config.admin.interface].vlan }}"
+
+#TODO ASK MARKOS HOW TO SELECT THE RIGHT ONE ==>     "network_interface_mgmt": "  br-external ens1f0 ens1f0.84"
+#network_interface_mgmt: "{{ lookup('env', 'MGMT_INTERFACE') }}"
+#network_interface_mgmt: >-
+#  {% set interfaces = [] %}
+#  {% for x in (ansible_interfaces | map('regex_replace', '-', '_') | map('regex_replace', '^', 'ansible_') | map('extract', hostvars[inventory_hostname]) |  selectattr('macaddress','defined')) -%}
+#  {% if x.macaddress == network_interface_mgmt_mac %}
+#  {{ x.device }}
+#  {%- endif %}
+#  {%- endfor %}
+
+
+vm_network_pxe: "{{ lookup('env', 'VM_NET_BRIDGE') | default('pxe', true) }}"
+vm_network_mgmt: "{{ lookup('env', 'VM_NET_BRIDGE_MGMT') | default('mgmt', true) }}"
+
 node_network_netmask: "255.255.255.0"
 
 node_storage_pool: "{{ lookup('env', 'LIBVIRT_STORAGE_POOL') | default('default', true) }}"

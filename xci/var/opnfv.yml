@@ -49,3 +49,8 @@ run_tempest: "{{ lookup('env', 'RUN_TEMPEST') }}"
 core_openstack_install: "{{ lookup('env', 'CORE_OPENSTACK_INSTALL') }}"
 deploy_scenario: "{{ lookup('env','DEPLOY_SCENARIO') }}"
 installer_type: "{{ lookup('env','INSTALLER_TYPE') }}"
+
+# baremetal variables
+baremetal: "{{ lookup('env','BAREMETAL') }}"
+network_interface_pxe: "{{ lookup('env','PXE_INTERFACE') }}"
+network_interface_mgmt: "{{ lookup('env','MGMT_INTERFACE') }}"

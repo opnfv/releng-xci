@@ -4,12 +4,19 @@
 - name: "Load distribution defaults"
   include_vars: "{{ ansible_os_family | lower }}.yml"
 
+- debug: var=network_interface_mgmt
+- debug: var=network_interface_pxe
+
 # From the previous list
 - name: "Install required packages"
   package:
     name: "{{ required_packages }}"
 
 - include_tasks: prepare_libvirt.yml
+  with_items:
+    - "{{ vm_network_pxe }}"
+    - "{{ vm_network_mgmt }}"
+
 - include_tasks: download_opnfvimage.yml
 
 - name: create placeholder var for vm entries in JSON format
@@ -18,10 +25,15 @@
 
 # First we create the opnfv_vm
 - include_tasks: create_vm.yml
-  with_items: "{{ [opnfv_vm] + nodes }}"
+  with_items: "{{ [opnfv_vm] }}"
+
+- debug: var=nodes
+
+- include_tasks: barematalhoststojson.yml
+  with_items: "{{ nodes }}"
 
 - name: Start the opnfv vm
-  virt: 
+  virt:
     command: start
     name: opnfv
 
@@ -35,8 +47,6 @@
   copy:
     dest: "{{ baremetal_json_file }}"
     content: "{{ nodes_json_data | to_nice_json }}"
-
-- debug: var=nodes_json_data
 
 - name: >
     "Set file permissions such that the baremetal data file

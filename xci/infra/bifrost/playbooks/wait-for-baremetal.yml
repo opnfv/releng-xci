@@ -1,0 +1,15 @@
+# ironic needs to boot the server again to install the OS in the hard drive
+# we are currently modifying opnfv vm networking config while ironic is
+# doing that and it sometimes fail because of networking glitches. We should
+# wait until the OS is installed to do the opnfv config
+
+- hosts: baremetal
+  name: "Wait for baremetal blades to be ready"
+  become: no
+  serial: 1
+  gather_facts: False
+  tasks:
+    - debug: var=ipv4_address
+    - name: "Wait for {{ ipv4_address }} to become available."
+      wait_for: state=started port=22 host={{ ipv4_address }} timeout=3600
+      delegate_to: opnfv
