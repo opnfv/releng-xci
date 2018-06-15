@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_2ad8bd1c",
+        "filename": "docs/specs/os-odl-sfc-osm.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:22:36Z",
+      "side": 1,
+      "message": "should we name the scenario os-odl-osm_sfc ?",
+      "range": {
+        "startLine": 10,
+        "startChar": 26,
+        "endLine": 10,
+        "endChar": 40
+      },
+      "revId": "ce64f9a0799a681ba3e50c6cc5e6c0a9bd77f1e0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
