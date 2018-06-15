@@ -46,45 +46,41 @@
 # with the default 192.168.122/0/24 network
 - name: destroy libvirt network
   virt_net:
-    name: "{{ vm_network }}"
+    name: "{{ item }}"
     state: absent
     uri: "{{ vm_libvirt_uri }}"
 
 - name: ensure libvirt network is present
   virt_net:
-    name: "{{ vm_network }}"
+    name: "{{ item }}"
     state: present
-    xml: "{{ lookup('template', 'net.xml.j2') }}"
+    xml: "{{ lookup('template', 'net-'+item+'.xml.j2') }}"
     uri: "{{ vm_libvirt_uri }}"
 
 - name: find facts on libvirt networks
   virt_net:
     command: facts
     uri: "{{ vm_libvirt_uri }}"
-
-# NOTE(pas-ha) yet another place where non-local libvirt will not work
+ # NOTE(pas-ha) yet another place where non-local libvirt will not work
 - name: "Delete network interface if virtual network is not active"
   command: ip link del {{ ansible_libvirt_networks[vm_network].bridge }}
   when:
     - ansible_libvirt_networks[vm_network].state != 'active'
     - vm_libvirt_uri == 'qemu:///system'
   ignore_errors: yes
-
 - name: set libvirt network to autostart
   virt_net:
-    name: "{{ vm_network }}"
+    name: "{{ item }}"
     autostart: yes
     uri: "{{ vm_libvirt_uri }}"
-
 - name: ensure libvirt network is running
   virt_net:
-    name: "{{ vm_network }}"
+    name: "{{ item }}"
     state: active
     uri: "{{ vm_libvirt_uri }}"
-
 - name: get libvirt network status
   virt_net:
-    name: "{{ vm_network }}"
+    name: "{{ item }}"
     command: status
     uri: "{{ vm_libvirt_uri }}"
   register: test_vm_net_status
