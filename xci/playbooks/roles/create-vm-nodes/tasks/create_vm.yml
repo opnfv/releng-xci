@@ -133,9 +133,18 @@
       command: get_xml
     register: vm_xml
 
+  - name: Fetch the index for pxe network
+    set_fact:
+      pxe_index: "{{ (vm_name == 'opnfv') | ternary(opnfv_vm_idf.net_config.pxe.interface, idf.net_config.pxe.interface) | int }}"
+
+  - debug: var=item.interfaces
+
+  # Find a better way to get the PXE ip address. Hardcoding 0 is not good
   - name: Fetch the ip
     set_fact:
-      vm_ip: "{%- for interface in item.interfaces %}{%- if 'native' in (interface.vlan | string) %}{{ interface.address }}{%- endif %}{%- endfor %}"
+      vm_ip: "{{ item.interfaces[pxe_index | int].address }}"
+
+  - debug: var=vm_ip
 
   # Assumes there is only a single NIC per VM
   - name: get MAC from vm XML

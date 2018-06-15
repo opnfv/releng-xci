@@ -1,43 +1,40 @@
----
-# SPDX-license-identifier: Apache-2.0
 ##############################################################################
-# Copyright (c) 2018 Orange and others.
-#
+# Copyright (c) 2018 Ericsson AB, Mirantis Inc., Enea AB and others.
 # All rights reserved. This program and the accompanying materials
 # are made available under the terms of the Apache License, Version 2.0
 # which accompanies this distribution, and is available at
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
-
+---
+### ERICSSON POD 2 installer descriptor file ###
 idf:
   version: 0.1
+  installer: ['apex', 'compass4nfv', 'daisy', 'osa']
   net_config: &net_config
-    pxe:
-      interface: 2
-      network: 172.29.236.0
-      mask: 22
     admin:
       interface: 2
-      network: 192.168.122.0
-      mask: 22
+      network: 192.168.122.0    # Untagged, 'PXE/Admin' on wiki, different IP
+      mask: 24
     mgmt:
-      interface: 0
+      interface: 1
       network: 172.29.236.0
       mask: 22
     storage:
-      interface: 1
-      network: 172.29.240.0
+      interface: 3
+      network: 172.29.240.0      # Tagged, not the same with 'storage' on wiki
+      mask: 22
+    private:
+      interface: 4
+      network: 172.29.242.0      # Tagged, not the same with 'private' on wiki
       mask: 22
     public:
       interface: 2
-      network: 192.168.122.0
+      network: 192.168.122.0     # Untagged, 'public' on wiki
       mask: 24
       gateway: 192.168.122.1
-      dns: 192.168.122.1
-    private:
-      interface: 3
-      network: 172.29.244.0
-      mask: 22
+      dns:
+        - 8.8.8.8
+        - 8.8.4.4
   osa: &idf_osa
     nodes_roles:
       opnfv: [deployment]
@@ -62,16 +59,23 @@ idf:
       # network mapping
       network_mapping:
         # Management network used by installer components to communicate
-        net-mgmt: mgmt
+        net-mgmt: admin
         # Storage Network
         net-storage: storage
         # Internal network for communication between VNF
         net-internal: private
         # Public network for VNF remote acces (ext-net in Openstack)
         net-vnf: public
+      deployment_host_interfaces:
+        # Ordered-list, index should be in sync with interface index in PDF
+        - 'eno49'
+        - 'ens1f0'
+        - 'ens1f1'
+        - 'ens2f0'
+        - 'ens2f1'
   kubespray: &idf_kubespray
     nodes_roles:
-      opnfv: [opnfv]
+      opnvf: [opnfv]
       node1: [kube-master, etcd, vault]
       node2: [kube-node]
       node3: [kube-node]
@@ -88,8 +92,10 @@ idf:
       node3: node2
       node4: master2
       node5: master3
+
+
 xci:
-  pod_name: vpod1
+  pod_name: pod1
   net_config: *net_config
   flavors:
     mini:
@@ -108,6 +114,7 @@ xci:
       - node3
       - node4
       - node5
+
   # net_config network to be used by the PXE
   pxe_network: public
 
