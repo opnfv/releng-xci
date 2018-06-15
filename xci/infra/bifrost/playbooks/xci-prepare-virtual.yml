@@ -18,10 +18,13 @@
   vars_files:
     - "{{ xci_path }}/xci/var/opnfv.yml"
   tasks:
-    - name: Copy bifrost inventory file
+    - name: Copy bifrost files
       copy:
-        src: /tmp/baremetal.json
-        dest: /tmp/baremetal.json
+        src: "{{ item }}"
+        dest: "{{ item }}"
+      with_items:
+        - '/tmp/baremetal.json'
+        - '/tmp/baremetalstaticips'
 
     - name: Configure SSH key for devuser
       user:

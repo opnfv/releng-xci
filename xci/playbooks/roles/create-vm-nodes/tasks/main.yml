@@ -10,6 +10,7 @@
     name: "{{ required_packages }}"
 
 - include_tasks: prepare_libvirt.yml
+
 - include_tasks: download_opnfvimage.yml
 
 - name: create placeholder var for vm entries in JSON format
@@ -18,10 +19,15 @@
 
 # First we create the opnfv_vm
 - include_tasks: create_vm.yml
-  with_items: "{{ [opnfv_vm] + nodes }}"
+  with_items: "{{ [opnfv_vm] }}"
+
+- debug: var=nodes
+
+- include_tasks: barematalhoststojson.yml
+  with_items: "{{ nodes }}"
 
 - name: Start the opnfv vm
-  virt: 
+  virt:
     command: start
     name: opnfv
 
@@ -35,8 +41,6 @@
   copy:
     dest: "{{ baremetal_json_file }}"
     content: "{{ nodes_json_data | to_nice_json }}"
-
-- debug: var=nodes_json_data
 
 - name: >
     "Set file permissions such that the baremetal data file
