@@ -25,6 +25,8 @@
     name: "{{ network_packages }}"
     state: present
 
+- debug: var=pxe_interface
+
 - name: Ensure local facts directory exists
   file:
     path: "/etc/ansible/facts.d"

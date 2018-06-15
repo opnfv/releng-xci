@@ -18,10 +18,6 @@
   vars_files:
     - "{{ xci_path }}/xci/var/opnfv.yml"
   tasks:
-    - name: Copy bifrost inventory file
-      copy:
-        src: /tmp/baremetal.json
-        dest: /tmp/baremetal.json
 
     - name: Configure SSH key for devuser
       user:
@@ -68,6 +64,25 @@
       file:
         path: /httpboot
         state: directory
+      become: yes
+
+    # Directory must exist before passing the static config
+    - name: "Setup Inventory DHCP Hosts Directory"
+      file:
+        path: "/etc/dnsmasq.d/bifrost.dhcp-hosts.d"
+        state: directory
+        owner: "root"
+        group: "root"
+        mode: 0755
+      become: yes
+
+    - name: Copy bifrost files
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dst }}"
+      with_items:
+        - { src: '/tmp/baremetal.json', dst: '/tmp/baremetal.json' }
+        - { src: '/tmp/baremetalstaticips', dst: '/etc/dnsmasq.d/bifrost.dhcp-hosts.d/baremetalstaticips' }
       become: yes
 
     - name: Copy original qcow2 image to OPNFV VM
