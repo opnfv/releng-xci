@@ -1,0 +1,26 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2017 Ericsson AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+- name: copy user_variables_os-odl-nofeature.yml
+  template:
+    src: "user_variables_os-odl-nofeature.yml.j2"
+    dest: "{{openstack_osa_etc_path}}/user_variables_os-odl-nofeature.yml"
+
+- name: copy user_variables_os-odl-nofeature-ha.yml
+  copy:
+    src: "{{xci_flavor}}/user_variables_os-odl-nofeature-ha.yml"
+    dest: "{{openstack_osa_etc_path}}/user_variables_os-odl-nofeature-ha.yml"
+  when:
+  - xci_flavor == "ha"
+
+- name: copy os-odl-nofeature scenario specific openstack_user_config.yml
+  copy:
+    src: "{{xci_flavor}}/openstack_user_config.yml"
+    dest: "{{openstack_osa_etc_path}}/openstack_user_config.yml"
