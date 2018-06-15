@@ -37,6 +37,8 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
 # Fetch the OPNFV_VM_IP from the libvirt network
 OPNFV_VM_IP=$(sudo virsh net-dumpxml default | grep ip= |  cut -d"'" -f4)
 
+echo "BANANA ${XCI_PATH}"
+
 sudo chmod 600 ${XCI_PATH}/xci/scripts/vm/id_rsa_for_dib
 echo "Dropping a minimal .ssh/config file"
 cat > $HOME/.ssh/xci-vm-config<<EOF
@@ -70,6 +72,11 @@ scp -r -F $HOME/.ssh/xci-vm-config ${HOME}/.ssh/id_rsa.pub xci_vm_opnfv:/home/de
 cat $HOME/.ssh/id_rsa.pub > authorized_keys
 ssh -F $HOME/.ssh/xci-vm-config xci_vm_opnfv sudo mkdir /root/.ssh
 scp -F $HOME/.ssh/xci-vm-config authorized_keys xci_vm_opnfv:/home/devuser/.ssh/authorized_keys
+
+echo "authorized keys passed"
+echo "scp ${HOME}/.ssh/known_hosts devuser@${OPNFV_VM_IP}:/home/devuser/.ssh/known_hosts"
+sleep 30
+
 # /root/.ssh/known_hosts must exist or we will get a "mkstemp: No such file or directory" when doing ssh-keygen -R in one of the bifrost roles
 scp ${HOME}/.ssh/known_hosts devuser@${OPNFV_VM_IP}:/home/devuser/.ssh/known_hosts
 
