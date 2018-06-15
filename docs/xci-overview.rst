@@ -138,7 +138,7 @@ Multi-distro Support
 --------------------
 
 Giving choice and not imposing things on developers and users are two
-of the important aspects of XCI. This means that if they want to have all in one
+of the important aspects of XCI. This means that if they want to have smaller
 deployments, they should be able to do that by using
 :ref:`different flavors <sandbox-flavors>` provided by XCI.
 
