@@ -30,8 +30,7 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -e vm_domain_type=${VM_DOMAIN_TYPE} \
         -e baremetal_json_file=/tmp/baremetal.json \
         -e xci_distro=${XCI_DISTRO} \
-        ${BIFROST_ROOT_DIR}/playbooks/xci-create-virtual.yml
-
+        ${BIFROST_ROOT_DIR}/playbooks/xci-create-virtual.yml -vvv
 
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -i ${XCI_PATH}/xci/playbooks/dynamic_inventory.py \
