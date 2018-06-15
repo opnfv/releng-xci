@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_0aca194f",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:15:18Z",
+      "side": 1,
+      "message": "we are going to disable aio flavor for a while given that it lacks testing in CI and stability of it is in question so it would be better to focus on non-aio flavors.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 18
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_aaeccdc8",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:15:18Z",
+      "side": 1,
+      "message": "worker",
+      "range": {
+        "startLine": 42,
+        "startChar": 38,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_eacd255f",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:15:18Z",
+      "side": 1,
+      "message": "this makes at least 2 worker nodes per flavor + the master nodes which has lower resource requirements so it might be relevant to list resource needs per node type in order to get grand total per flavor.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_eac6c548",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:15:18Z",
+      "side": 1,
+      "message": "k8-calico-nofeature",
+      "range": {
+        "startLine": 69,
+        "startChar": 33,
+        "endLine": 69,
+        "endChar": 51
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_4ac41140",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:15:18Z",
+      "side": 1,
+      "message": "be placed",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 6
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_2ac1dd2e",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:15:18Z",
+      "side": 1,
+      "message": "i think this will be satisfied by the ongoing work with PDF and IDF. otherwise or if the work is not completed by the time development work starts without PDF and IDF, the flavor-vars can be overriden by the scenario like how it is done for other scenarios such as os-odl-sfc.\n\nhttps://gerrit.opnfv.org/gerrit/gitweb?p\u003dsfc.git;a\u003dblob;f\u003dscenarios/os-odl-sfc/xci_overrides",
+      "range": {
+        "startLine": 76,
+        "startChar": 38,
+        "endLine": 77,
+        "endChar": 19
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_8add8917",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:15:18Z",
+      "side": 1,
+      "message": "i think onap.yaml and any other files required by this scenario should be placed in\n\n    releng-xci-scenarios/scenarios/k8-calico-onap/role/k8-calico-onap/files",
+      "range": {
+        "startLine": 91,
+        "startChar": 32,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_6ae2b5d6",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:15:18Z",
+      "side": 1,
+      "message": "I think it makes sense to mention the reuse of Orange OOM Ansible role as part of this work.\n\n    https://etherpad.opnfv.org/p/xci-oom",
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_cae781e3",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:15:18Z",
+      "side": 1,
+      "message": "I am not sure if Peri will have time to work on this scenario.",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 33
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_aab5edce",
+        "filename": "docs/specs/onap_oom_scenario.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-15T21:15:18Z",
+      "side": 1,
+      "message": "I suppose this is same as k8-calico-onap so can we delete this file?",
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
