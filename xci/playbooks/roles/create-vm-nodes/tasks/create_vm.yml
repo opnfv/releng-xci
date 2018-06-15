@@ -72,6 +72,8 @@
         - ansible_distribution != 'CentOS'
         - vm_libvirt_uri == 'qemu:///system'
 
+    - debug: var=item.interfaces
+
     # Fetches the xml descriptor from the template
     - name: create_vm
       virt:
@@ -121,7 +123,7 @@
 
   - name: Fetch the ip
     set_fact:
-      vm_ip: "{%- for interface in item.interfaces %}{%- if 'native' in (interface.vlan | string) %}{{ interface.address }}{%- endif %}{%- endfor %}"
+      vm_ip: "{{ opnfv_vm.interfaces[idf.net_config.mgmt.interface].address }}"
 
   # Assumes there is only a single NIC per VM
   - name: get MAC from vm XML

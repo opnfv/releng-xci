@@ -35,19 +35,16 @@
     <controller type='ide' index='0'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
     </controller>
-    {% set native_interfaces = [] %}
-    {%- for interface in item.interfaces %}
-    {%-   if 'native' in (interface.vlan | string) %}
-    {%-     set _ = native_interfaces.append(interface) %}
-    {%-   endif %}
-    {%- endfor %}
-    {%- for interface in native_interfaces -%}
     <interface type='network'>
-      <source network='{{ vm_network }}'/>
+      <source network='{{ vm_network_pxe }}'/>
       <model type='{{ vm_nic }}'/>
-      <mac address='{{ interface.mac_address }}'/>
+      <mac address='{{ opnfv_vm.interfaces[0].mac_address }}'/>
     </interface>
-    {% endfor -%}
+    <interface type='network'>
+      <source network='{{ vm_network_mgmt }}'/>
+      <model type='{{ vm_nic }}'/>
+      <mac address='{{ opnfv_vm.interfaces[1].mac_address }}'/>
+    </interface>
     <input type='mouse' bus='ps2'/>
     <graphics type='vnc' port='-1' autoport='yes'/>
     <video>
