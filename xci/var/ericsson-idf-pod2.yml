@@ -1,0 +1,75 @@
+##############################################################################
+# Copyright (c) 2018 Ericsson AB, Mirantis Inc., Enea AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+---
+### ERICSSON POD 2 installer descriptor file ###
+idf:
+  version: 0.1
+  installer: ['apex', 'compass4nfv', 'daisy', 'fuel']
+  net_config:
+    admin:
+      interface: 0
+      vlan: native
+      network: 10.167.4.0       # Untagged, 'PXE/Admin' on wiki, different IP
+      mask: 255.255.255.0
+    mgmt:
+      interface: 1
+      vlan: native
+      network: 192.168.122.0    # Untagged, 'vlan 300' on wiki
+      mask: 255.255.255.0
+    storage:
+      interface: 2
+      vlan: 301
+      network: 10.2.0.0/24      # Tagged, not the same with 'storage' on wiki
+      mask: 255.255.255.0
+    private:
+      interface: 3
+      vlan: 1000-1030
+      network: 10.1.0.0/24      # Tagged, not the same with 'private' on wiki
+      mask: 255.255.255.0
+    public:
+      interface: 4
+      vlan: native
+      network: 172.30.10.0/24   # Untagged, 'public' on wiki
+      ip-range: 172.30.10.100-172.30.10.254  # Some IPs are in use by lab infra
+      mask: 255.255.255.0
+      gateway: 172.30.10.1
+      dns:
+        - 8.8.8.8
+        - 8.8.4.4
+  osa:
+    jumphost:
+      bridges:
+        admin: 'br-admin'
+        mgmt: 'br-mgmt'
+        private: ~
+        public: ~
+    network:
+      ntp_strata_host1: 1.pool.ntp.org
+      ntp_strata_host2: 0.pool.ntp.org
+      node:
+        # Ordered-list, index should be in sync with node index in PDF
+        - interfaces: &interfaces
+            # Ordered-list, index should be in sync with interface index in PDF
+            - 'enp6s0'
+            - 'enp7s0'
+            - 'enp8s0'
+            - 'enp9s0'
+          busaddr: &busaddr
+            # Bus-info reported by `ethtool -i ethX`
+            - '0000:06:00.0'
+            - '0000:07:00.0'
+            - '0000:08:00.0'
+            - '0000:09:00.0'
+        - interfaces: *interfaces
+          busaddr: *busaddr
+        - interfaces: *interfaces
+          busaddr: *busaddr
+        - interfaces: *interfaces
+          busaddr: *busaddr
+        - interfaces: *interfaces
+          busaddr: *busaddr
