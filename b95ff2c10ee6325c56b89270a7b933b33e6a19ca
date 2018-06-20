@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_b0dd5b17",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-20T21:05:50Z",
+      "side": 1,
+      "message": "nit: tests run",
+      "range": {
+        "startLine": 88,
+        "startChar": 59,
+        "endLine": 88,
+        "endChar": 62
+      },
+      "revId": "b95ff2c10ee6325c56b89270a7b933b33e6a19ca",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
