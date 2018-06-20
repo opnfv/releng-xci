@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_10a0878f",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-20T21:09:37Z",
+      "side": 1,
+      "message": "please see the example in another spec.\n\nhttps://gerrit.opnfv.org/gerrit/#/c/58021/8/docs/specs/k8-odl-coe.rst@22",
+      "parentUuid": "da5c1566_fc532f6a",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_eac6c548",
         "filename": "docs/specs/k8-calico-onap.rst",
         "patchSetId": 3
@@ -295,6 +319,30 @@
       "side": 1,
       "message": "Isn\u0027t ./xci/scenarios/k8-calico-onap/role/k8-calico-onap/tasks folder?",
       "parentUuid": "da5c1566_8add8917",
+      "range": {
+        "startLine": 91,
+        "startChar": 32,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_30a30ba0",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-20T21:09:37Z",
+      "side": 1,
+      "message": "please see the comment in new patchset.",
+      "parentUuid": "da5c1566_bcd1b7cf",
       "range": {
         "startLine": 91,
         "startChar": 32,
