@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_bc5a5781",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-20T18:54:04Z",
+      "side": 1,
+      "message": "Got it, this is more like a reference to the numbers that we estimated below",
+      "parentUuid": "da5c1566_0aca194f",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 18
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_aaeccdc8",
         "filename": "docs/specs/k8-calico-onap.rst",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2018-06-15T21:15:18Z",
       "side": 1,
       "message": "worker",
+      "range": {
+        "startLine": 42,
+        "startChar": 38,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_9c5f9372",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-20T18:54:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da5c1566_aaeccdc8",
       "range": {
         "startLine": 42,
         "startChar": 38,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_fc532f6a",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-20T18:54:04Z",
+      "side": 1,
+      "message": "Maybe clarifying that this amount of resources is only for the worker nodes can provide a different perspective.",
+      "parentUuid": "da5c1566_eacd255f",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_eac6c548",
         "filename": "docs/specs/k8-calico-onap.rst",
         "patchSetId": 3
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_dc50eb60",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-20T18:54:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da5c1566_eac6c548",
+      "range": {
+        "startLine": 69,
+        "startChar": 33,
+        "endLine": 69,
+        "endChar": 51
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_4ac41140",
         "filename": "docs/specs/k8-calico-onap.rst",
         "patchSetId": 3
@@ -105,6 +201,30 @@
       "writtenOn": "2018-06-15T21:15:18Z",
       "side": 1,
       "message": "be placed",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 6
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_3c4e47c2",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-20T18:54:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da5c1566_4ac41140",
       "range": {
         "startLine": 70,
         "startChar": 0,
@@ -163,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_bcd1b7cf",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-20T18:54:04Z",
+      "side": 1,
+      "message": "Isn\u0027t ./xci/scenarios/k8-calico-onap/role/k8-calico-onap/tasks folder?",
+      "parentUuid": "da5c1566_8add8917",
+      "range": {
+        "startLine": 91,
+        "startChar": 32,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_6ae2b5d6",
         "filename": "docs/specs/k8-calico-onap.rst",
         "patchSetId": 3
@@ -174,6 +318,24 @@
       "writtenOn": "2018-06-15T21:15:18Z",
       "side": 1,
       "message": "I think it makes sense to mention the reuse of Orange OOM Ansible role as part of this work.\n\n    https://etherpad.opnfv.org/p/xci-oom",
+      "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_dcd74bbe",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 7019
+      },
+      "writtenOn": "2018-06-20T18:54:04Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "da5c1566_6ae2b5d6",
       "revId": "e23a337abc7bcb042edd35478dcb0cd8997deb8b",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
