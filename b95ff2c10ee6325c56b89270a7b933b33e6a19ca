@@ -22,6 +22,30 @@
       "revId": "b95ff2c10ee6325c56b89270a7b933b33e6a19ca",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_10cec75a",
+        "filename": "docs/specs/k8-calico-onap.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-20T21:09:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da5c1566_b0dd5b17",
+      "range": {
+        "startLine": 88,
+        "startChar": 59,
+        "endLine": 88,
+        "endChar": 62
+      },
+      "revId": "b95ff2c10ee6325c56b89270a7b933b33e6a19ca",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
