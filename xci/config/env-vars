@@ -11,11 +11,15 @@ export OPENSTACK_OSA_OPENRC_GIT_URL=${OPENSTACK_OSA_OPENRC_GIT_URL:-https://git.
 export KUBESPRAY_GIT_URL=${KUBESPRAY_GIT_URL:-https://github.com/kubernetes-incubator/kubespray.git}
 export OPENSTACK_OSA_HAPROXY_GIT_URL=${OPENSTACK_OSA_HAPROXY_GIT_URL:-https://git.openstack.org/openstack/openstack-ansible-haproxy_server}
 export KEEPALIVED_GIT_URL=${KEEPALIVED_GIT_URL:-https://github.com/evrardjp/ansible-keepalived}
+export OSM_DEVOPS_GIT_URL=${OSM_DEVOPS_GIT_URL:-https://osm.etsi.org/gerrit/osm/devops.git}
 
 # Configuration
 export OPENSTACK_OSA_ETC_PATH=/etc/openstack_deploy
 export OPNFV_HOST_IP=192.168.122.2
 export XCI_FLAVOR_ANSIBLE_FILE_PATH=$XCI_PATH/xci/installer/$INSTALLER_TYPE/files/$XCI_FLAVOR
+
+# No post-deployment tasks for any scenario by default
+export POST_DEPLOYMENT=${POST_DEPLOYMENT:-false}
 
 # XCI_CACHE is a cache on localhost where repositories and scenarios are cloned.
 export XCI_CACHE=${XCI_PATH}/.cache
