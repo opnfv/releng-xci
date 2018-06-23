@@ -116,6 +116,8 @@
     - name: Prepare everything to run the {{ deploy_scenario }} role
       include_role:
         name: "{{ hostvars['opnfv'].ansible_local.xci.scenarios.role }}"
+      when:
+        - scenario_post_deploy == "false"
 
     - name: bootstrap ansible on opnfv host
       command: "/bin/bash ./scripts/bootstrap-ansible.sh"
