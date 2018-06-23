@@ -40,6 +40,12 @@
         path: "{{ opnfv_image_path }}/{{ vm_name }}.qcow2"
       register: _vm_volume_prepared
 
+    - name: Resize opnfv VM image to {{ item.disks[0].disk_capacity }}
+      command: "qemu-img resize {{ opnfv_image_path }}/opnfv.qcow2 {{ item.disks[0].disk_capacity }}"
+      when:
+        - vm_name == 'opnfv'
+        - _vm_volume_prepared.stat.exists
+
     # NOTE(pas-ha) Ansible still lacks modules to operate on libvirt volumes
     # mbuil: Assuming there is only one disk [0]
     - name: create volume for vm
