@@ -45,3 +45,7 @@ export HAPROXY_VERSION=$(grep -E '.*name: haproxy_server' -A 3 \
        | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
 # HEAD of kubspray "master" as of 16.05.2018
 export KUBESPRAY_VERSION=${KUBESPRAY_VERSION:-"38e727dbe1bdf5316fae8d645718cc8279fbda20"}
+# use tagged version of OSM devops repo until the integration is done
+# also, this version is not OSM version. This needs to be looked into for
+# specifying exact version for OSM itself.
+export OSM_DEVOPS_VERSION=${OSM_DEVOPS_VERSION:-"v4.0.1"}
