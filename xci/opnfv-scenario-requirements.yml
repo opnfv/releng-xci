@@ -29,6 +29,18 @@
         - ubuntu
         - centos
 
+- scenario: os-nosdn-osm
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+  version: master
+  role: scenarios/os-nosdn-osm/role/os-nosdn-osm
+  installers:
+    - installer: osa
+      flavors:
+        - mini
+      distros:
+        - ubuntu
+
 - scenario: os-odl-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
