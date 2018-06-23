@@ -1,0 +1,67 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Ericsson AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+    - "{{ xci_path }}/xci/installer/osa/files/openstack_services.yml"
+
+  environment:
+    http_proxy: "{{ lookup('env','http_proxy') }}"
+    https_proxy: "{{ lookup('env','https_proxy') }}"
+    no_proxy: "{{ lookup('env','no_proxy') }}"
+    HTTP_PROXY: "{{ lookup('env','http_proxy') }}"
+    HTTPS_PROXY: "{{ lookup('env','https_proxy') }}"
+    NO_PROXY: "{{ lookup('env','no_proxy') }}"
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: "{{ item }}"
+      with_items:
+        - "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
+    - name: Set facts for remote deployment
+      set_fact:
+        remote_xci_path: "{{ ansible_env.HOME }}/releng-xci"
+        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/installer/{{installer_type}}/files/{{ xci_flavor }}"
+        remote_xci_playbooks: "{{ ansible_env.HOME }}/releng-xci/xci/playbooks"
+
+  roles:
+    - role: peru.proxy_settings
+      proxy_settings_http_proxy: "{{ lookup('env','http_proxy') }}"
+      proxy_settings_https_proxy: "{{ lookup('env','https_proxy') }}"
+      proxy_settings_ftp_proxy: "{{ lookup('env','ftp_proxy') }}"
+      proxy_settings_no_proxy: "{{ lookup('env','no_proxy') }}"
+
+  tasks:
+    - name: "Configure http_proxy_env_url"
+      lineinfile:
+        path: "{{openstack_osa_etc_path}}/user_variables_proxy.yml"
+        regexp: "^http_proxy_env_url:.*"
+        line: "{{ 'http_proxy_env_url: ' + lookup('env','http_proxy') }}"
+      when:
+        - lookup('env','http_proxy') != ""
+
+    - name: Reload XCI deployment host facts
+      setup:
+        filter: ansible_local
+        gather_subset: "!all"
+      delegate_to: 127.0.0.1
+
+    - name: Check if any post-deployment task defined for {{ deploy_scenario }} role
+      stat:
+        path: "{{ role_path_default }}/{{ item.role | basename }}/tasks/post-deployment.yml"
+      register: post_deployment_yml
+
+    - name: Execute post-deployment tasks of {{ deploy_scenario }} role
+      include_role:
+        name: "{{ hostvars['opnfv'].ansible_local.xci.scenarios.role }}"
+        tasks_from: post-deployment
+      when:
+        - post_deployment_yml.stat.exists == True
