@@ -181,4 +181,18 @@ echo "Info: Admin username -  ${USERNAME##*=}"
 echo "Info: Admin password - ${PASSWORD##*=}"
 echo "Info: It is recommended to change the default password."
 
+#-------------------------------------------------------------------------------
+# Install OpenStack
+#-------------------------------------------------------------------------------
+# This is openstack-ansible playbook. Check upstream documentation for details.
+#-------------------------------------------------------------------------------
+echo "-----------------------------------------------------------------------"
+echo "Info: Running post-deployment scenario role"
+echo "-----------------------------------------------------------------------"
+cd $OSA_XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_PLAYBOOKS}/dynamic_inventory.py \
+    scenario-post-deploy.yml
+echo "-----------------------------------------------------------------------"
+echo
+echo "Info: Post-deployment scenario role execution done"
 # vim: set ts=4 sw=4 expandtab:
