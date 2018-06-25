@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables that we need to pass from XCI to functest
-XCI_ENV=(INSTALLER_TYPE XCI_FLAVOR OPENSTACK_OSA_VERSION CI_LOOP BUILD_TAG NODE_NAME FUNCTEST_MODE FUNCTEST_SUITE_NAME)
+XCI_ENV=(INSTALLER_TYPE XCI_FLAVOR OPENSTACK_OSA_VERSION CI_LOOP BUILD_TAG NODE_NAME FUNCTEST_MODE FUNCTEST_SUITE_NAME OPNFV_FUNCTEST_HEALTHCHECK_DOCKER_IMAGE_DIGEST)
 
 # Create directory to store functest logs
 mkdir -p ~/results/
@@ -60,7 +60,7 @@ sudo docker run --env-file env \
     -v $(pwd)/openrc:/home/opnfv/functest/conf/env_file  \
     -v $(pwd)/images:/home/opnfv/functest/images  \
     -v $(pwd)/results:/home/opnfv/functest/results \
-    $DOCKER_IMAGE_NAME
+    $DOCKER_IMAGE_NAME@$OPNFV_FUNCTEST_HEALTHCHECK_DOCKER_IMAGE_DIGEST
 {% else %}
 {# stuff needed for Kubernetes based scenarios #}
 # Create k8s.creds file for functest
