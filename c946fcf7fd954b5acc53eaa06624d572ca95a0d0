@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "da5c1566_1a96de94",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-06-25T12:03:34Z",
+      "side": 1,
+      "message": "why is this not part of the xci_overrides file in the role?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 57
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_bf9ec454",
         "filename": "xci/installer/osa/deploy.sh",
         "patchSetId": 7
@@ -96,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_1aaffee4",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-06-25T12:03:34Z",
+      "side": 1,
+      "message": "From what I understand, the role has a tasks/main.yml file but you want to execute that at the end of the deployment instead of running it before right? In that case, I suggest to make tasks/main.yml simply rung debug+msg and then have another post.yml playbook to run it at the end of the deployment.",
+      "parentUuid": "da5c1566_bfed248e",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 41
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_3faab470",
         "filename": "xci/installer/osa/playbooks/scenario-post-deploy.yml",
         "patchSetId": 7
@@ -136,6 +183,53 @@
         "startChar": 0,
         "endLine": 61,
         "endChar": 40
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_7a871a62",
+        "filename": "xci/installer/osa/playbooks/scenario-post-deploy.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-06-25T12:03:34Z",
+      "side": 1,
+      "message": "We could do that yes.",
+      "parentUuid": "da5c1566_1f89b0ca",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 40
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_ba81b24c",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-06-25T12:03:34Z",
+      "side": 1,
+      "message": "i think these variables belong to the role.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 62
       },
       "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
