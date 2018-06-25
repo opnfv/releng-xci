@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_bf9ec454",
+        "filename": "xci/installer/osa/deploy.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-06-25T08:16:51Z",
+      "side": 1,
+      "message": "this is not true. This playbook does not appear to be an upstream playbook",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 80
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_1fa3709f",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-06-25T08:16:51Z",
+      "side": 1,
+      "message": "i\u0027d rather always execute the scenario playbook even if it\u0027s not needed. Just put a debug+msg statement on the scenario playbook to explain that it does nothing",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 41
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_3faab470",
+        "filename": "xci/installer/osa/playbooks/scenario-post-deploy.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-06-25T08:16:51Z",
+      "side": 1,
+      "message": "this can be improved by having a playbook in the scenario role and then using \u0027include_role\u0027 and \u0027tasks_from\u0027 we can only execute tasks from that playbook (post.yml for example).",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 40
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
