@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_dfe8d87e",
+        "filename": "xci/installer/osa/deploy.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-25T10:43:08Z",
+      "side": 1,
+      "message": "copy/paste :(\n\nwill fix, thx.",
+      "parentUuid": "da5c1566_bf9ec454",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 188,
+        "endChar": 80
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_1fa3709f",
         "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
         "patchSetId": 7
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_bfed248e",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-25T10:43:08Z",
+      "side": 1,
+      "message": "Just to make sure I understand this right; I just evaluate scenario_post_deploy in scenario playbook and skip execution with a debug+msg.",
+      "parentUuid": "da5c1566_1fa3709f",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 41
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_3faab470",
         "filename": "xci/installer/osa/playbooks/scenario-post-deploy.yml",
         "patchSetId": 7
@@ -59,6 +107,30 @@
       "writtenOn": "2018-06-25T08:16:51Z",
       "side": 1,
       "message": "this can be improved by having a playbook in the scenario role and then using \u0027include_role\u0027 and \u0027tasks_from\u0027 we can only execute tasks from that playbook (post.yml for example).",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 40
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_1f89b0ca",
+        "filename": "xci/installer/osa/playbooks/scenario-post-deploy.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-25T10:43:08Z",
+      "side": 1,
+      "message": "do you mean this?\n\n    - name: Post deployment execution of {{ deploy_scenario }} role\n      include_role:\n        name: \"{{ hostvars[\u0027opnfv\u0027].ansible_local.xci.scenarios.role }}\"\n        task_from: post.yml\n\nif so, don\u0027t we need to have some condition here to check the existence of post.yml to avoid unnecessary failures and prevent requiring all the scenarios to create this playbook even though they have nothing to do as part of post-deployment?",
+      "parentUuid": "da5c1566_3faab470",
       "range": {
         "startLine": 57,
         "startChar": 0,
