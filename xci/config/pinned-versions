@@ -25,6 +25,8 @@
 #-------------------------------------------------------------------------------
 # use releng-xci from master until the development work with the sandbox is complete
 export OPNFV_RELENG_VERSION="master"
+# use functest-healthcheck image that is known to work and contains the original list of testcases
+export OPNFV_FUNCTEST_HEALTHCHECK_DOCKER_IMAGE_DIGEST="sha256:faa1ec5778ac1580cc46f0e4f5abec24026868b95fc6fc3ae6023275dc980c2d"
 # HEAD of bifrost "master" as of 13.02.2018
 export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"28b6b8c96f89532bbddeca513285e6c00db89205"}
 # HEAD of ironic "master" as of 13.02.2018
@@ -45,3 +47,7 @@ export HAPROXY_VERSION=$(grep -E '.*name: haproxy_server' -A 3 \
        | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
 # HEAD of kubspray "master" as of 16.05.2018
 export KUBESPRAY_VERSION=${KUBESPRAY_VERSION:-"38e727dbe1bdf5316fae8d645718cc8279fbda20"}
+# use tagged version of OSM devops repo until the integration is done
+# also, this version is not OSM version. This needs to be looked into for
+# specifying exact version for OSM itself.
+export OSM_DEVOPS_VERSION=${OSM_DEVOPS_VERSION:-"v4.0.1"}
