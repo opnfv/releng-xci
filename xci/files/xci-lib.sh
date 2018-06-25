@@ -13,7 +13,6 @@
 function bootstrap_xci_env() {
     # Declare our virtualenv
     export XCI_VENV=${XCI_PATH}/venv/
-
     # source user vars
     source $XCI_PATH/xci/config/user-vars
     # source pinned versions
@@ -48,6 +47,7 @@ function install_ansible() {
         net-tools
         python-devel
         python
+        python-pyyaml
         venv
         wget
         curl
@@ -69,6 +69,7 @@ function install_ansible() {
             [pip]=python-pip
             [python]=python
             [python-devel]=python-devel
+            [python-pyyaml]=python-PyYAML
             [venv]=python-virtualenv
             [wget]=wget
             [curl]=curl
@@ -97,6 +98,7 @@ function install_ansible() {
             [pip]=python-pip
             [python]=python-minimal
             [python-devel]=libpython-dev
+            [python-pyyaml]=python-yaml
             [venv]=python-virtualenv
             [wget]=wget
             [curl]=curl
@@ -120,6 +122,7 @@ function install_ansible() {
             [pip]=python2-pip
             [python]=python
             [python-devel]=python-devel
+            [python-pyyaml]=PyYAML
             [venv]=python-virtualenv
             [wget]=wget
             [curl]=curl
@@ -155,7 +158,7 @@ function install_ansible() {
 
     # We are inside the virtualenv now so we should be good to use pip and python from it.
     pip -q install --upgrade pip==9.0.3 # We need a version which supports the '-c' parameter
-    pip -q install --upgrade -c $uc -c $osa_uc ara virtualenv pip setuptools ansible==$XCI_ANSIBLE_PIP_VERSION ansible-lint==3.4.21
+    pip -q install --upgrade -c $uc -c $osa_uc ara virtualenv pip setuptools shade ansible==$XCI_ANSIBLE_PIP_VERSION ansible-lint==3.4.21
 
     ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
     export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}/plugins/callbacks"
