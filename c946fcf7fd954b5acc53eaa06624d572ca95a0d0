@@ -238,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "da5c1566_daabc687",
+        "filename": "xci/installer/osa/playbooks/scenario-post-deploy.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-25T12:54:20Z",
+      "side": 1,
+      "message": "let\u0027s see if it works.",
+      "parentUuid": "da5c1566_7a871a62",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 40
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da5c1566_ba81b24c",
         "filename": "xci/var/opnfv.yml",
         "patchSetId": 7
@@ -297,6 +321,30 @@
       "side": 1,
       "message": "Role variables (in xci_overrides) file can still be overridden by users in the same way. My only concern is that var/opnfv.yml file is growing a lot but OK we can \u0027fix\u0027 that later on",
       "parentUuid": "da5c1566_5abe9600",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 62
+      },
+      "revId": "c946fcf7fd954b5acc53eaa06624d572ca95a0d0",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_7aa6fac2",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-25T12:54:20Z",
+      "side": 1,
+      "message": "i agree to this. (i think i agreed this before)\n\nwe need to revisit this but on the other hand, i really can\u0027t say how to fix it. having things controlled centrally is important and if we push these things to the scenarios then we will have lots of duplication, make introducing issues easier, and then make development/integration of new scenarios harder than how they are today. i don\u0027t know which one is better tbh.",
+      "parentUuid": "da5c1566_ba5d32ec",
       "range": {
         "startLine": 33,
         "startChar": 0,
