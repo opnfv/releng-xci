@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_1bd25fd2",
+        "filename": "xci/var/opnfv_vm.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:41:58Z",
+      "side": 1,
+      "message": "I am wondering if you see any issue if we reduced the specs of opnfv vm, taking the total resource requirements lower like 2 cores and 4G of RAM.\n\nAnother thing I must mention is that, some scenarios such as os-nosdn-osm gets installed and run on opnfv vm, requiring more than what I suggested above. In this case, the scenario specific descriptor file can perhaps be used, assuming we will have a mechanism to allow overriding default opnfv pdf with the scenario specific one if it exists in scenario folder.\n\nWhat do you think?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "39e1d639c0f2e1a1a4c53cdfb68ae6f6e705dd0f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
