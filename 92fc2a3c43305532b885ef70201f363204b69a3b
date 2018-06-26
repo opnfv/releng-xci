@@ -1,0 +1,186 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_3bd803ef",
+        "filename": "xci/playbooks/roles/create-vm-nodes/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:52:35Z",
+      "side": 1,
+      "message": "all this patch talks about and deals with VMs so I\u0027m wondering the relation to physical servers.",
+      "range": {
+        "startLine": 10,
+        "startChar": 27,
+        "endLine": 10,
+        "endChar": 46
+      },
+      "revId": "92fc2a3c43305532b885ef70201f363204b69a3b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_bbf37372",
+        "filename": "xci/playbooks/roles/create-vm-nodes/defaults/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:52:35Z",
+      "side": 1,
+      "message": "license missing",
+      "revId": "92fc2a3c43305532b885ef70201f363204b69a3b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_dbee278b",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/create_vm.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:52:35Z",
+      "side": 1,
+      "message": "license missing",
+      "revId": "92fc2a3c43305532b885ef70201f363204b69a3b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_1be9bf80",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/download_opnfvimage.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:52:35Z",
+      "side": 1,
+      "message": "license missing",
+      "revId": "92fc2a3c43305532b885ef70201f363204b69a3b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_5b02173f",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:52:35Z",
+      "side": 1,
+      "message": "license missing",
+      "revId": "92fc2a3c43305532b885ef70201f363204b69a3b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_fbedeb8c",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/main.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:52:35Z",
+      "side": 1,
+      "message": "trailing whitespace.",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 8
+      },
+      "revId": "92fc2a3c43305532b885ef70201f363204b69a3b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_3bff6336",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/prepare_libvirt.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:52:35Z",
+      "side": 1,
+      "message": "license missing",
+      "revId": "92fc2a3c43305532b885ef70201f363204b69a3b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_9bfcaf40",
+        "filename": "xci/playbooks/roles/create-vm-nodes/vars/debian.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:52:35Z",
+      "side": 1,
+      "message": "license missing",
+      "revId": "92fc2a3c43305532b885ef70201f363204b69a3b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_7bf9db4c",
+        "filename": "xci/playbooks/roles/create-vm-nodes/vars/redhat.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:52:35Z",
+      "side": 1,
+      "message": "license missing",
+      "revId": "92fc2a3c43305532b885ef70201f363204b69a3b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_db9587e5",
+        "filename": "xci/playbooks/roles/create-vm-nodes/vars/suse.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-06-26T21:52:35Z",
+      "side": 1,
+      "message": "license missing",
+      "revId": "92fc2a3c43305532b885ef70201f363204b69a3b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
