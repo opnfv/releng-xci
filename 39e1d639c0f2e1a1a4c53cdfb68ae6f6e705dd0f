@@ -22,6 +22,30 @@
       "revId": "39e1d639c0f2e1a1a4c53cdfb68ae6f6e705dd0f",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_4486b4ba",
+        "filename": "xci/var/opnfv_vm.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-06-28T05:42:15Z",
+      "side": 1,
+      "message": "We could potentially drop the requirements but I\u0027d rather do it on a follow-up patch to avoid re-spinning the entire series. If scenarios want to provide their own opnfv descriptor file we can arrange that.",
+      "parentUuid": "da5c1566_1bd25fd2",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "39e1d639c0f2e1a1a4c53cdfb68ae6f6e705dd0f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
