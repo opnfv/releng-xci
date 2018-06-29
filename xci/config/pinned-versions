@@ -25,8 +25,6 @@
 #-------------------------------------------------------------------------------
 # use releng-xci from master until the development work with the sandbox is complete
 export OPNFV_RELENG_VERSION="master"
-# use functest-healthcheck image that is known to work and contains the original list of testcases
-export OPNFV_FUNCTEST_HEALTHCHECK_DOCKER_IMAGE_DIGEST="sha256:faa1ec5778ac1580cc46f0e4f5abec24026868b95fc6fc3ae6023275dc980c2d"
 # HEAD of bifrost "master" as of 13.02.2018
 export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"81e48e7b488c15516503b2b08f087f4a7ae9a673"}
 # HEAD of ironic "master" as of 13.02.2018
