@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da5c1566_09efa71f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-07-06T10:35:01Z",
+      "side": 1,
+      "message": "I suppose you will update the commit message once you amend the patch to update other parts.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "f74bf966cf1fd8fc778207843a8bd24f547808e4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da5c1566_69f463f2",
+        "filename": "xci/installer/kubespray/deploy.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-07-06T10:35:01Z",
+      "side": 1,
+      "message": "maybe you can remove the extra linebreak here and keep the file unchanged.",
+      "revId": "f74bf966cf1fd8fc778207843a8bd24f547808e4",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
