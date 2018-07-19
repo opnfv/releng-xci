@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_0c3403dd",
+        "filename": "xci/infra/bifrost/playbooks/xci-create-virtual.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1451
+      },
+      "writtenOn": "2018-07-19T21:07:07Z",
+      "side": 1,
+      "message": "You shouldn\u0027t use \u0027sudo\u0027 in ansible commands. Set `become: true` instead.\n\n \u003e shell: \"brctl addif ...\"\n \u003e become: true",
+      "range": {
+        "startLine": 46,
+        "startChar": 14,
+        "endLine": 46,
+        "endChar": 18
+      },
+      "revId": "80ea65d3bcbd4e7656f87ad6ae044c585226ec71",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_ec30afea",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/create_vm.yml",
+        "patchSetId": 12
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1451
+      },
+      "writtenOn": "2018-07-19T21:07:07Z",
+      "side": 1,
+      "message": "Forgive me if I\u0027ve missed something, but unless a var is defined as \u0027item\u0027 (which it probably shouldn\u0027t be as it conflicts), and I don\u0027t see a `with_items` list here, this won\u0027t work.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 32
+      },
+      "revId": "80ea65d3bcbd4e7656f87ad6ae044c585226ec71",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
