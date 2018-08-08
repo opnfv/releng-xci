@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_614933d0",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/create_vm.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-08-08T09:21:57Z",
+      "side": 1,
+      "message": "now i got it.\n\ni can quickly send a separate change for this part and amend this change once it gets submitted if you want.",
+      "parentUuid": "9a561d44_213f3b27",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_81944738",
         "filename": "xci/var/opnfv.yml",
         "patchSetId": 19
