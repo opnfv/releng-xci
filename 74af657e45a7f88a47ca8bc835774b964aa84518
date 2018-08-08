@@ -143,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_213f3b27",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/create_vm.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-08-08T09:18:22Z",
+      "side": 1,
+      "message": "yeah i mean the fact that we need to resize the disk is independent of this scenario. It\u0027s something that we need to do anyway. But ok lets get it in as part of this scenario patchset so we don\u0027t get blocked by this.",
+      "parentUuid": "9a561d44_8109e797",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_81944738",
         "filename": "xci/var/opnfv.yml",
         "patchSetId": 19
