@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_01ce775a",
+        "filename": "xci/installer/osa/playbooks/post-deployment.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-08-08T09:07:48Z",
+      "side": 1,
+      "message": "might not be needed. this is just copy paste of the original playbook. i can remove and retry to see what happens.",
+      "parentUuid": "9a561d44_61765340",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 28
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_0179572f",
         "filename": "xci/installer/osa/playbooks/post-deployment.yml",
         "patchSetId": 19
@@ -36,6 +60,30 @@
       "writtenOn": "2018-08-08T08:56:11Z",
       "side": 1,
       "message": "not really needed",
+      "range": {
+        "startLine": 65,
+        "startChar": 42,
+        "endLine": 65,
+        "endChar": 49
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_61dbf31b",
+        "filename": "xci/installer/osa/playbooks/post-deployment.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-08-08T09:07:48Z",
+      "side": 1,
+      "message": "ok, will remove.",
+      "parentUuid": "9a561d44_0179572f",
       "range": {
         "startLine": 65,
         "startChar": 42,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_8109e797",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/create_vm.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-08-08T09:07:48Z",
+      "side": 1,
+      "message": "it is related.\n\nsince the creation of opnfv vm is separated from the rest, the disk of created opnfv vm stays 10G which is very small and osm installation fails due to lack of space. in order to get osm installed, the disk needs to be resized in advance before the vm is started.",
+      "parentUuid": "9a561d44_41734f4d",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_81944738",
         "filename": "xci/var/opnfv.yml",
         "patchSetId": 19
@@ -82,6 +154,30 @@
       "writtenOn": "2018-08-08T08:56:11Z",
       "side": 1,
       "message": "i am a bit skeptical about this. this is scenario specific variables. Shouldn\u0027t they be part of the releng-xci-scenarios repo? Remember, scenarios can use a \u0027xci_overrides\u0027 file to export env variables for XCI. These Ansible variables are being used by the scenario itself right? So shouldn\u0027t these be defined in the scenario/role default/main or vars/main ?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 62
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_e1fee36a",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-08-08T09:07:48Z",
+      "side": 1,
+      "message": "ok. i\u0027ll fix this as part of os-odl-osm_sfc and move this to scenario itself since os-nosdn-osm scenario got merged.\n\nI need this change in order to start working with os-odl-osm_sfc so i\u0027ll not remove it as part of this change.",
+      "parentUuid": "9a561d44_81944738",
       "range": {
         "startLine": 34,
         "startChar": 0,
