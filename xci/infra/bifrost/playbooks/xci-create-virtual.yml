@@ -28,6 +28,11 @@
       dest: "{{ xci_cache }}/repos/bifrost"
       version: "{{ openstack_bifrost_version }}"
   tasks:
+    - name: ensure glean rules are removed
+      file:
+        path: "/etc/udev/rules.d/99-glean.rules"
+        state: absent
+      become: yes
     - name: Wait for host to come back to life
       local_action:
         module: wait_for
