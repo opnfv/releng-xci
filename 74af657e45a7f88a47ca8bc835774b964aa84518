@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_61765340",
+        "filename": "xci/installer/osa/playbooks/post-deployment.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-08-08T08:56:11Z",
+      "side": 1,
+      "message": "hmm why is this needed?",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 28
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_0179572f",
+        "filename": "xci/installer/osa/playbooks/post-deployment.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-08-08T08:56:11Z",
+      "side": 1,
+      "message": "not really needed",
+      "range": {
+        "startLine": 65,
+        "startChar": 42,
+        "endLine": 65,
+        "endChar": 49
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_41734f4d",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/create_vm.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-08-08T08:56:11Z",
+      "side": 1,
+      "message": "is this change unrelated?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_81944738",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-08-08T08:56:11Z",
+      "side": 1,
+      "message": "i am a bit skeptical about this. this is scenario specific variables. Shouldn\u0027t they be part of the releng-xci-scenarios repo? Remember, scenarios can use a \u0027xci_overrides\u0027 file to export env variables for XCI. These Ansible variables are being used by the scenario itself right? So shouldn\u0027t these be defined in the scenario/role default/main or vars/main ?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 62
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
