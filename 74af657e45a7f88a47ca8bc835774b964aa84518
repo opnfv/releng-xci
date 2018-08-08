@@ -191,6 +191,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_612013f8",
+        "filename": "xci/playbooks/roles/create-vm-nodes/tasks/create_vm.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-08-08T09:26:02Z",
+      "side": 1,
+      "message": "no it\u0027s ok lets get it in as is",
+      "parentUuid": "9a561d44_614933d0",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_81944738",
         "filename": "xci/var/opnfv.yml",
         "patchSetId": 19
