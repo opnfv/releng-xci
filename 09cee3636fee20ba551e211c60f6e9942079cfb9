@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_f79fc14e",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 22
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2018-08-09T13:40:45Z",
+      "side": 1,
+      "message": "When I am trying to access this URL I am gettng 404 not found. Is this normal?",
+      "range": {
+        "startLine": 14,
+        "startChar": 48,
+        "endLine": 14,
+        "endChar": 90
+      },
+      "revId": "09cee3636fee20ba551e211c60f6e9942079cfb9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
