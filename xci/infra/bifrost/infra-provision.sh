@@ -32,6 +32,7 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -e xci_distro=${XCI_DISTRO} \
         -e pdf_file=${PDF} \
         -e idf_file=${IDF} \
+        -e baremetal=${BAREMETAL} \
         ${BIFROST_ROOT_DIR}/playbooks/xci-create-virtual.yml
 
 
