@@ -52,12 +52,12 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
     -e testing_user=root \
     -e test_vm_num_nodes=${NUM_NODES} \
     -e test_vm_cpu='host-model' \
-    -e inventory_dhcp=false \
+    -e inventory_dhcp=${BIFROST_INVENTORY_DHCP} \
     -e inventory_dhcp_static_ip=false \
     -e enable_inspector=true \
     -e inspect_nodes=true \
-    -e download_ipa=true \
-    -e create_ipa_image=false \
+    -e download_ipa=${BIFROST_DOWNLOAD_IPA} \
+    -e create_ipa_image=${BIFROST_CREATE_IPA} \
     -e write_interfaces_file=true \
     -e ipv4_gateway=192.168.122.1 \
     -e wait_timeout=3600 \
@@ -73,6 +73,17 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
     -e xci_distro=${XCI_DISTRO} \
     -e ironic_url="http://192.168.122.2:6385/" \
     ${BIFROST_ROOT_DIR}/playbooks/opnfv-virtual.yml
+
+
+if [ "${BAREMETAL}" = true ]; then
+  echo "Let's wait for the baremetal servers to boot again"
+  sleep 60
+
+  ansible-playbook ${XCI_ANSIBLE_PARAMS} \
+      --user=devuser -i ${XCI_PATH}/xci/playbooks/dynamic_inventory.py \
+      -i ${XCI_CACHE}/repos/bifrost/playbooks/inventory/bifrost_inventory.py \
+      ${BIFROST_ROOT_DIR}/playbooks/wait-for-baremetal.yml
+fi
 
 echo "-----------------------------------------------------------------------"
 echo "Info: VM nodes are provisioned!"
