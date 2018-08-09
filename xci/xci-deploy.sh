@@ -95,6 +95,12 @@ cd $XCI_PATH/xci/playbooks
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -i "localhost," get-opnfv-scenario-requirements.yml
 echo "-------------------------------------------------------------------------"
 
+# TESTING virbr0
+ovs-vsctl show || echo "NEIN"
+brctl show || echo"NEIN2"
+ip a
+
+
 #-------------------------------------------------------------------------------
 # Check playbooks using ansible-lint
 #-------------------------------------------------------------------------------
