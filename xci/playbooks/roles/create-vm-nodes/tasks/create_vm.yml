@@ -35,7 +35,7 @@
         path: "{{ opnfv_image_path }}/{{ vm_name }}.qcow2"
       register: _vm_volume_prepared
 
-    - name: Resize opnfv VM image to {{ item.disks[0].disk_capacity }}
+    - name: Resize opnfv VM image to {{ item.1.disks[0].disk_capacity }}
       command: "qemu-img resize {{ opnfv_image_path }}/opnfv.qcow2 {{ item.1.disks[0].disk_capacity }}"
       when:
         - vm_name == 'opnfv'
@@ -128,9 +128,17 @@
       command: get_xml
     register: vm_xml
 
+  - name: Fetch the index for admin network
+    set_fact:
+      admin_index: "{{ (vm_name == 'opnfv') | ternary(opnfv_vm_idf.net_config.admin.interface, idf.net_config.admin.interface) | int }}"
+
+  - debug: var=item.1.interfaces
+
   - name: Fetch the ip
     set_fact:
-      vm_ip: "{%- for interface in item.1.interfaces %}{%- if 'native' in (interface.vlan | string) %}{{ interface.address }}{%- endif %}{%- endfor %}"
+      vm_ip: "{{ item.1.interfaces[admin_index | int].address }}"
+
+  - debug: var=vm_ip
 
   # Assumes there is only a single NIC per VM
   - name: get MAC from vm XML

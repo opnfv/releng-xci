@@ -18,10 +18,6 @@
   vars_files:
     - "{{ xci_path }}/xci/var/opnfv.yml"
   tasks:
-    - name: Copy bifrost inventory file
-      copy:
-        src: /tmp/baremetal.json
-        dest: /tmp/baremetal.json
 
     - name: Configure SSH key for devuser
       user:
@@ -70,6 +66,25 @@
         state: directory
       become: yes
 
+    # Directory must exist before passing the static config
+    - name: "Setup Inventory DHCP Hosts Directory"
+      file:
+        path: "/etc/dnsmasq.d/bifrost.dhcp-hosts.d"
+        state: directory
+        owner: "root"
+        group: "root"
+        mode: 0755
+      become: yes
+
+    - name: Copy bifrost files
+      copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.dst }}"
+      with_items:
+        - { src: '/tmp/baremetal.json', dst: '/tmp/baremetal.json' }
+        - { src: '/tmp/baremetalstaticips', dst: '/etc/dnsmasq.d/bifrost.dhcp-hosts.d/baremetalstaticips' }
+      become: yes
+
     - name: Copy original qcow2 image to OPNFV VM
       synchronize:
         src: "{{ xci_cache }}/{{ item }}"
@@ -91,3 +106,13 @@
           become: yes
           when: _resolv_conf_netconfig.stat.exists
       when: ansible_pkg_mgr == 'zypper'
+
+    #TODO: Find a way to do this with Ansible
+    - name: Make sure the default gateway is correct
+      shell: "ip route del default"
+      become: yes
+
+    #TODO: Find a way to do this with Ansible
+    - name: Make sure the default gateway is correct
+      shell: "ip route add default via {{ host_info[inventory_hostname].public.gateway }}"
+      become: yes
