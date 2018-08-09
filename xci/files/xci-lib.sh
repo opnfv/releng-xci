@@ -52,6 +52,8 @@ function bootstrap_xci_env() {
     source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
     # source xci configuration
     source $XCI_PATH/xci/config/env-vars
+    # source the baremetal variable
+    grep -o vendor.* ${PDF} | grep -q libvirt && export BAREMETAL=false || export BAREMETAL=true
 }
 
 function install_ansible() {
