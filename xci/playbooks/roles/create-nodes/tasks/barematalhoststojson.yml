@@ -1,0 +1,79 @@
+---
+# Copyright 2018, SUSE Linux GmbH
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This playbook builds the json file with information about the baremetal nodes
+# which is read by ironic to start the pxe booting
+
+
+- name: BAREMETAL - Create file for static ip
+  file:
+    path: /tmp/baremetalstaticips
+    state: touch
+    group: root
+    owner: root
+    mode: 0644
+
+- name: "Generating the json describing baremetal nodes"
+  block:
+
+  - set_fact:
+      host_group: "{{ node_default_groups }}"
+
+  - set_fact:
+      host_group: "{{ node_default_groups | union(node_groups[item.name]) }}"
+    when: node_groups[item.name] is defined
+
+  - name: BAREMETAL - Fetch the ip
+    set_fact:
+      admin_ip: "{{ item.interfaces[idf.net_config.admin.interface].address }}"
+
+  - name: BAREMETAL - Fetch the mac
+    set_fact:
+      admin_mac: "{{ item.interfaces[idf.net_config.admin.interface].mac_address }}"
+
+  - name: BAREMETAL - set the json entry for baremetal nodes
+    set_fact:
+      node_data:
+        name: "{{ item.name }}"
+        uuid: "{{ item.name | to_uuid }}"
+        host_groups: "{{ vm_host_group }}"
+        driver: "{{ vm_node_driver|default('ipmi') }}"
+        driver_info:
+          power:
+            ipmi_address: "{{ item.remote_management.address }}"
+            ipmi_port: "{{ virtual_ipmi_port| default('623') }}"
+            ipmi_username: "{{ item.remote_management.user }}"
+            ipmi_password: "{{ item.remote_management.pass }}"
+        nics:
+          - mac: "{{ admin_mac }}"
+        ansible_ssh_host: "{{ admin_ip }}"
+        ipv4_address: "{{ admin_ip }}"
+        properties:
+          cpu_arch: "{{ item.node.arch }}"
+          ram: "{{ item.node.memory.rstrip('G') }}"
+          cpus: "{{ item.node.cpus }}"
+          disk_size: "{{ item.disks[0].disk_capacity.rstrip('G') }}"
+
+  - name: BAREMETAL - Static ip config for dnsmasq
+    lineinfile:
+      path: /tmp/baremetalstaticips
+      state: present
+      line: '{{ admin_mac }},{{ admin_ip }}'
+
+  - name: BAREMETAL - add created node info
+    set_fact:
+      nodes_json_data: "{{ nodes_json_data | combine({item.name: node_data}) }}"
+
+  when: (num_nodes | int) > (nodes_json_data | length | int) + 1

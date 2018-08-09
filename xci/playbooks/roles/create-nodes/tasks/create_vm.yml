@@ -6,11 +6,11 @@
 
   - set_fact:
       vm_log_file: "{{ node_logdir }}/{{ vm_name }}_console.log"
-      vm_host_group: "{{ vm_default_groups }}"
+      vm_host_group: "{{ node_default_groups }}"
 
   - set_fact:
-      vm_host_group: "{{ vm_default_groups | union(vm_groups[vm_name]) }}"
-    when: vm_groups[vm_name] is defined
+      vm_host_group: "{{ node_default_groups | union(node_groups[vm_name]) }}"
+    when: node_groups[vm_name] is defined
 
   - name: set prealloc arg for Debian
     set_fact:
