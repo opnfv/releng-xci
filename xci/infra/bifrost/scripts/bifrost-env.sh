@@ -32,4 +32,14 @@ export BIFROST_INVENTORY_SOURCE=/tmp/baremetal.json
 
 grep -o vendor.* opnfv_vm_pdf.yml | grep -q libvirt && export BAREMETAL=true || export BAREMETAL=false
 
+if [ "${BAREMETAL}" = true ]; then
+    export BIFROST_INVENTORY_DHCP=true
+    export BIFROST_DOWNLOAD_IPA=false
+    export BIFROST_CREATE_IPA=true
+else
+    export BIFROST_INVENTORY_DHCP=false
+    export BIFROST_DOWNLOAD_IPA=true
+    export BIFROST_CREATE_IPA=false
+fi
+
 pip install -q --upgrade -r "${XCI_CACHE}/repos/bifrost/requirements.txt"
