@@ -20,10 +20,13 @@
 
 # First we create the opnfv_vm
 - include_tasks: create_vm.yml
-  with_indexed_items: "{{ [opnfv_vm_pdf] + nodes }}"
+  with_indexed_items: "{{ vms_to_create }}"
+
+- include_tasks: barematalhoststojson.yml
+  with_items: "{{ baremetal_nodes }}"
 
 - name: Start the opnfv vm
-  virt: 
+  virt:
     command: start
     name: opnfv
 
@@ -37,8 +40,6 @@
   copy:
     dest: "{{ baremetal_json_file }}"
     content: "{{ nodes_json_data | to_nice_json }}"
-
-- debug: var=nodes_json_data
 
 - name: >
     "Set file permissions such that the baremetal data file
