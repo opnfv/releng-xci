@@ -12,8 +12,10 @@
   name: "Bootstrap XCI hardware resources and prepare provisioning environment"
   gather_facts: yes
   vars_files:
-    - "{{ xci_path }}/xci/var/pdf.yml"
-    - "{{ xci_path }}/xci/var/opnfv_vm.yml"
+    - "{{ pdf_file }}"
+    - "{{ idf_file }}"
+    - "{{ xci_path }}/xci/var/opnfv_vm_pdf.yml"
+    - "{{ xci_path }}/xci/var/opnfv_vm_idf.yml"
     - "{{ xci_path }}/xci/var/opnfv.yml"
   pre_tasks:
     - name: Load distribution variables

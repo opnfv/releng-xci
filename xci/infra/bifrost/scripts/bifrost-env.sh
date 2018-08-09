@@ -30,4 +30,6 @@ esac
 
 export BIFROST_INVENTORY_SOURCE=/tmp/baremetal.json
 
+grep -o vendor.* opnfv_vm_pdf.yml | grep -q libvirt && export BAREMETAL=true || export BAREMETAL=false
+
 pip install -q --upgrade -r "${XCI_CACHE}/repos/bifrost/requirements.txt"
