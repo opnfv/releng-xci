@@ -41,6 +41,7 @@ export INSTALLER_TYPE=${INSTALLER_TYPE:-osa}
 # Examples:
 #    export INFRA_DEPLOYMENT="bifrost"
 export INFRA_DEPLOYMENT=${INFRA_DEPLOYMENT:-bifrost}
+export BAREMETAL=${BAREMETAL:-false}
 
 
 #-------------------------------------------------------------------------------
