@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_f76ea195",
+        "filename": "xci/installer/osa/playbooks/post-deployment.yml",
+        "patchSetId": 19
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-08-09T12:14:44Z",
+      "side": 1,
+      "message": "it seems this is needed otherwise\n\nAug 09 09:02:51 TASK [Execute post-deployment tasks of os-nosdn-osm role] **********************\nERROR! \u0027dict object\u0027 has no attribute \u0027scenarios\u0027\n\nhttps://build.opnfv.org/ci/job/xci-verify-ubuntu-deploy-virtual-master/1862/console",
+      "parentUuid": "9a561d44_01ce775a",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 28
+      },
+      "revId": "74af657e45a7f88a47ca8bc835774b964aa84518",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_0179572f",
         "filename": "xci/installer/osa/playbooks/post-deployment.yml",
         "patchSetId": 19
