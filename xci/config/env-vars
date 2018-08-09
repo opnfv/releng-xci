@@ -34,6 +34,7 @@ export FUNCTEST_VERSION=${FUNCTEST_VERSION:-"latest"}
 export CI_LOOP=${CI_LOOP:-"daily"}
 export BUILD_TAG=${BUILD_TAG:-"notag"}
 export NODE_NAME=${NODE_NAME:-$(hostname)}
+grep -o vendor.* ${PDF} | grep -q libvirt && export BAREMETAL=false || export BAREMETAL=true
 
 #-------------------------------------------------------------------------------
 # Paths where git repositories of XCI Components will be cloned on the OPNFV host
