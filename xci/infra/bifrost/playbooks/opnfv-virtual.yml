@@ -80,8 +80,7 @@
     - role: bifrost-create-dib-image
       dib_imagename: "{{ http_boot_folder }}/ipa"
       build_ramdisk: false
-      dib_os_element: "{{ ipa_dib_os_element|default('debian') }}"
-      dib_os_release: "jessie"
+      dib_os_element: "{{ ipa_dib_os_element|default('fedora') }}"
       dib_elements: "ironic-agent {{ ipa_extra_dib_elements | default('') }}"
       dib_notmpfs: true
       when:
