@@ -1,0 +1,14 @@
+<network>
+  <name>{{ item }}</name>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='br-{{ item }}' stp='on' delay='0'/>
+  <ip address='{{ opnfv_vm_pdf.interfaces[opnfv_vm_idf.net_config.admin.interface].gateway }}' netmask='255.255.255.0'>
+     <dhcp>
+       <host mac="{{ opnfv_vm_pdf.interfaces[opnfv_vm_idf.net_config.admin.interface].mac_address }}" ip="{{ opnfv_vm_pdf.interfaces[opnfv_vm_idf.net_config.admin.interface].address }}"/>
+     </dhcp>
+  </ip>
+</network>
