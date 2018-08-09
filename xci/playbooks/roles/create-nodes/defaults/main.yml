@@ -1,0 +1,40 @@
+---
+# defaults file for bifrost-create-vm-nodes
+baremetal_json_file: '/tmp/baremetal.json'
+
+# We collect these parameters from the pdf
+vm_nic: "virtio"
+vm_groups: {}
+vm_default_groups: "{{ lookup('env', 'DEFAULT_HOST_GROUPS').split() | default(['baremetal'], true) }}"
+vm_disk_cache: unsafe
+node_names: "{{ lookup('env', 'NODE_NAMES').split() }}"
+
+network_bridge_admin: 'br-admin'
+network_bridge_mgmt: 'br-mgmt'
+
+network_interface_admin_mac: "{{ jumphost.interfaces[idf.net_config.admin.interface].mac_address }}"
+network_interface_admin_vlan: "{{ jumphost.interfaces[idf.net_config.admin.interface].vlan }}"
+network_interface_admin: "{{ idf.installer_type.network.deployment_host_interfaces[idf.net_config.admin.interface] }}"
+
+network_interface_mgmt_mac: "{{ jumphost.interfaces[idf.net_config.mgmt.interface].mac_address }}"
+network_interface_mgmt_vlan: "{{ jumphost.interfaces[idf.net_config.mgmt.interface].vlan }}"
+network_interface_mgmt: "{{ idf.installer_type.network.deployment_host_interfaces[idf.net_config.mgmt.interface] }}"
+
+vm_network_admin: "{{ lookup('env', 'VM_NET_BRIDGE') | default('admin', true) }}"
+vm_network_mgmt: "{{ lookup('env', 'VM_NET_BRIDGE_MGMT') | default('mgmt', true) }}"
+
+node_network_netmask: "255.255.255.0"
+
+node_storage_pool: "{{ lookup('env', 'LIBVIRT_STORAGE_POOL') | default('default', true) }}"
+node_storage_pool_path: "/var/lib/libvirt/images"
+node_logdir: "/var/log/libvirt/baremetal_logs"
+# NOTE(pas-ha) next two are generic values for most OSes, overridden by distro-specifc vars
+vm_emulator: "/usr/bin/qemu-system-x86_64"
+# NOTE(pas-ha) not really tested with non-local qemu connections
+vm_libvirt_uri: "{{ lookup('env', 'LIBVIRT_CONNECT_URI') | default('qemu:///system', true) }}"
+
+opnfv_image_path: "/var/lib/libvirt/images"
+
+vms_to_create: "{{ (baremetal | bool) | ternary([opnfv_vm_pdf], [opnfv_vm_pdf] + nodes) }}"
+baremetal_nodes: "{{ (baremetal | bool) | ternary(nodes, omit) }}"
+libvirt_networks: "{{ (baremetal | bool) | ternary([vm_network_admin,vm_network_mgmt],[vm_network_admin]) }}"
