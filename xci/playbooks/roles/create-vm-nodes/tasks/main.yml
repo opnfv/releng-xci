@@ -18,7 +18,7 @@
 
 # First we create the opnfv_vm
 - include_tasks: create_vm.yml
-  with_indexed_items: "{{ [opnfv_vm] + nodes }}"
+  with_indexed_items: "{{ [opnfv_vm_pdf] + nodes }}"
 
 - name: Start the opnfv vm
   virt: 
