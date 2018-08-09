@@ -32,14 +32,14 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -e xci_distro=${XCI_DISTRO} \
         -e pdf_file=${PDF} \
         -e idf_file=${IDF} \
-        ${BIFROST_ROOT_DIR}/playbooks/xci-create-virtual.yml
+        ${BIFROST_ROOT_DIR}/playbooks/xci-setup-nodes.yml
 
 
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         --private-key=${XCI_PATH}/xci/scripts/vm/id_rsa_for_dib \
         --user=devuser \
         -i ${XCI_PATH}/xci/playbooks/dynamic_inventory.py \
-        ${BIFROST_ROOT_DIR}/playbooks/xci-prepare-virtual.yml
+        ${BIFROST_ROOT_DIR}/playbooks/xci-prepare-env.yml
 
 source ${XCI_CACHE}/repos/bifrost/scripts/bifrost-env.sh
 
