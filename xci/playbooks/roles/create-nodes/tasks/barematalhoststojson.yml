@@ -1,0 +1,86 @@
+---
+# Copyright 2018, SUSE Linux GmbH
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This playbook builds the json file with information about the baremetal nodes
+# which is read by ironic to start the pxe booting
+
+
+- name: BAREMETAL - Create file for static ip
+  copy:
+    content: ""
+    dest: /tmp/baremetalstaticips
+    force: no
+    group: root
+    owner: root
+    mode: 0644
+
+- name: "Creating VM"
+  block:
+
+  - set_fact:
+      vm_host_group: "{{ vm_default_groups }}"
+
+  - set_fact:
+      vm_host_group: "{{ vm_default_groups | union(vm_groups[vm_name]) }}"
+    when: vm_groups[item.name] is defined
+
+  - name: BAREMETAL - Fetch the ip
+    set_fact:
+      vm_ip: "{{ item.interfaces[idf.net_config.admin.interface].address }}"
+
+  - name: BAREMETAL - Fetch the mac
+    set_fact:
+      vm_mac: "{{ item.interfaces[idf.net_config.admin.interface].mac_address }}"
+
+  - name: BAREMETAL - set the json entry for vm
+    set_fact:
+      vm_data:
+        name: "{{ item.name }}"
+        uuid: "{{ item.name | to_uuid }}"
+        host_groups: "{{ vm_host_group }}"
+        driver: "{{ vm_node_driver|default('ipmi') }}"
+        driver_info:
+          power:
+            ipmi_address: "{{ item.remote_management.address }}"
+            ipmi_port: "{{ virtual_ipmi_port| default('623') }}"
+            ipmi_username: "{{ item.remote_management.user }}"
+            ipmi_password: "{{ item.remote_management.pass }}"
+        nics:
+          - mac: "{{ vm_mac }}"
+        ansible_ssh_host: "{{ vm_ip }}"
+        ipv4_address: "{{ vm_ip }}"
+        properties:
+          cpu_arch: "{{ item.node.arch }}"
+          ram: "{{ item.node.memory.rstrip('G') }}"
+          cpus: "{{ item.node.cpus }}"
+          disk_size: "{{ item.disks[0].disk_capacity.rstrip('G') }}"
+
+  - name: BAREMETAL - Static ip config for dnsmasq
+    lineinfile:
+      path: /tmp/baremetalstaticips
+      state: present
+      line: '{{ vm_mac }},{{ vm_ip }}'
+
+  - name: BAREMETAL - add created vm info
+    set_fact:
+      nodes_json_data: "{{ nodes_json_data | combine({item.name: vm_data}) }}"
+
+  - name: Get the length
+    set_fact:
+      the_length: "{{ nodes_json_data | length }}"
+
+  - debug: var=the_length
+
+  when: (num_nodes | int) > (nodes_json_data | length | int) + 1
