@@ -22,6 +22,30 @@
       "revId": "09cee3636fee20ba551e211c60f6e9942079cfb9",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_57db0d1b",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 22
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-08-09T13:59:21Z",
+      "side": 1,
+      "message": "that is url of git repo, not gerrit. see below for the gerrit web interface.\n\nhttps://osm.etsi.org/gitweb/?p\u003dosm%2Fdevops.git;a\u003dsummary",
+      "parentUuid": "9a561d44_f79fc14e",
+      "range": {
+        "startLine": 14,
+        "startChar": 48,
+        "endLine": 14,
+        "endChar": 90
+      },
+      "revId": "09cee3636fee20ba551e211c60f6e9942079cfb9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
