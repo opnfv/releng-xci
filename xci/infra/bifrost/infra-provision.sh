@@ -24,6 +24,8 @@ export ANSIBLE_LIBRARY="$HOME/.ansible/plugins/modules:/usr/share/ansible/plugin
 echo "Info: Create XCI VM resources"
 echo "-------------------------------------------------------------------------"
 
+grep -o vendor.* opnfv_vm_pdf.yml | grep -q libvirt && export BAREMETAL=true || export BAREMETAL=false
+
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -i ${XCI_PATH}/xci/playbooks/dynamic_inventory.py \
         -e num_nodes=${NUM_NODES} \
@@ -32,6 +34,7 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -e xci_distro=${XCI_DISTRO} \
         -e pdf_file=${PDF} \
         -e idf_file=${IDF} \
+        -e baremetal=${BAREMETAL} \
         ${BIFROST_ROOT_DIR}/playbooks/xci-create-virtual.yml
 
 
