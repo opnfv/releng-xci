@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_d39bb0c7",
+        "filename": "xci/installer/osa/files/user_variables_xci.yml",
+        "patchSetId": 26
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-08-09T20:12:19Z",
+      "side": 1,
+      "message": "it seems this is the reason why it fails now...",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 50
+      },
+      "revId": "475f36d83fb0a52ae46069e881c2eba0d2cb909c",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
