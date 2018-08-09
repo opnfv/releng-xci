@@ -12,8 +12,10 @@
   name: "Bootstrap XCI hardware resources and prepare provisioning environment"
   gather_facts: yes
   vars_files:
-    - "{{ xci_path }}/xci/var/pdf.yml"
-    - "{{ xci_path }}/xci/var/opnfv_vm.yml"
+    - "{{ pdf_file }}"
+    - "{{ idf_file }}"
+    - "{{ xci_path }}/xci/var/opnfv_vm_pdf.yml"
+    - "{{ xci_path }}/xci/var/opnfv_vm_idf.yml"
     - "{{ xci_path }}/xci/var/opnfv.yml"
   pre_tasks:
     - name: Load distribution variables
@@ -36,7 +38,17 @@
         state: started
         port: 22
         connect_timeout: 10
-        timeout: 180
+        timeout: 10180
+
+    # No ansible module for brctl found
+    - name: Add pxe interface to the bridge
+      shell: "brctl addif {{ item.bridge }} {{ item.interface }}"
+      become: true
+      when: baremetal | bool == true
+      with_items:
+        - { bridge: "{{ network_bridge_admin }}", interface: "{{ network_interface_admin }}" }
+        - { bridge: "{{ network_bridge_mgmt }}", interface: "{{ network_interface_mgmt }}" }
+
     - name: Load distribution variables
       include_vars:
         file: "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
