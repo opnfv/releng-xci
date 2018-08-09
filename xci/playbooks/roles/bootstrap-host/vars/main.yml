@@ -1,0 +1,70 @@
+---
+# admin network information
+admin_mac: "{{ host_info[inventory_hostname].admin.mac_address }}"
+admin_interface: >-
+  {% for x in (ansible_interfaces | map('regex_replace', '-', '_') | map('regex_replace', '^', 'ansible_') | map('extract', hostvars[inventory_hostname]) |  selectattr('macaddress','defined')) -%}
+  {%- if x.macaddress == admin_mac -%}
+  {%- if admin_vlan == 'native' -%}
+  {{ x.device }}
+  {%- else -%}
+  {{ x.device }}.{{ admin_vlan }}
+  {%- endif -%}
+  {%- endif -%}
+  {%- endfor -%}
+admin_vlan: "{{ host_info[inventory_hostname].admin.vlan }}"
+
+# mgmt network information
+mgmt_mac: "{{ host_info[inventory_hostname].mgmt.mac_address }}"
+mgmt_interface: >-
+  {% for x in (ansible_interfaces | map('regex_replace', '-', '_') | map('regex_replace', '^', 'ansible_') | map('extract', hostvars[inventory_hostname]) |  selectattr('macaddress','defined')) -%}
+  {%- if x.macaddress == mgmt_mac -%}
+  {%- if mgmt_vlan == 'native' -%}
+  {{ x.device }}
+  {%- else -%}
+  {{ x.device }}.{{ mgmt_vlan }}
+  {%- endif -%}
+  {%- endif -%}
+  {%- endfor -%}
+mgmt_vlan: "{{ host_info[inventory_hostname].mgmt.vlan }}"
+
+# storage network information
+storage_mac: "{{ host_info[inventory_hostname].storage.mac_address }}"
+storage_interface: >-
+  {%- for x in (ansible_interfaces | map('regex_replace', '-', '_') | map('regex_replace', '^', 'ansible_') | map('extract', hostvars[inventory_hostname]) |  selectattr('macaddress','defined')) -%}
+  {%- if x.macaddress == storage_mac -%}
+  {%- if storage_vlan == 'native' -%}
+  {{ x.device }}
+  {%- else -%}
+  {{ x.device }}.{{ storage_vlan }}
+  {%- endif -%}
+  {%- endif -%}
+  {%- endfor -%}
+storage_vlan: "{{ host_info[inventory_hostname].storage.vlan }}"
+
+# public vlan netwrk information
+public_mac: "{{ host_info[inventory_hostname].public.mac_address }}"
+public_interface: >-
+  {%- for x in (ansible_interfaces | map('regex_replace', '-', '_') | map('regex_replace', '^', 'ansible_') | map('extract', hostvars[inventory_hostname]) |  selectattr('macaddress','defined')) -%}
+  {%- if x.macaddress == public_mac -%}
+  {%- if public_vlan == 'native' -%}
+  {{ x.device }}
+  {%- else -%}
+  {{ x.device }}.{{ public_vlan }}
+  {%- endif -%}
+  {%- endif -%}
+  {%- endfor -%}
+public_vlan: "{{ host_info[inventory_hostname].public.vlan }}"
+
+# private vxlan network information
+private_mac: "{{ host_info[inventory_hostname].private.mac_address }}"
+private_interface: >-
+  {%- for x in (ansible_interfaces | map('regex_replace', '-', '_') | map('regex_replace', '^', 'ansible_') | map('extract', hostvars[inventory_hostname]) |  selectattr('macaddress','defined')) -%}
+  {%- if x.macaddress == private_mac -%}
+  {%- if private_vlan == 'native' -%}
+  {{ x.device }}
+  {%- else -%}
+  {{x.device}}.{{ private_vlan }}
+  {%- endif -%}
+  {%- endif -%}
+  {%- endfor -%}
+private_vlan: "{{ host_info[inventory_hostname].private.vlan }}"
