@@ -35,19 +35,22 @@
     <controller type='ide' index='0'>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
     </controller>
-    {% set native_interfaces = [] %}
-    {%- for interface in item.1.interfaces %}
-    {%-   if 'native' in (interface.vlan | string) %}
-    {%-     set _ = native_interfaces.append(interface) %}
-    {%-   endif %}
-    {%- endfor %}
-    {%- for interface in native_interfaces -%}
     <interface type='network'>
-      <source network='{{ vm_network }}'/>
+      <source network='{{ vm_network_admin }}'/>
       <model type='{{ vm_nic }}'/>
-      <mac address='{{ interface.mac_address }}'/>
+      {%- if vm_name == 'opnfv' -%}
+      <mac address='{{ item.1.interfaces[opnfv_vm_idf.net_config.admin.interface].mac_address }}'/>
+      {%- else -%}
+      <mac address='{{ item.1.interfaces[idf.net_config.admin.interface].mac_address }}'/>
+      {%- endif -%}
     </interface>
-    {% endfor -%}
+    {%- if baremetal | bool -%}
+    <interface type='network'>
+      <source network='{{ vm_network_mgmt }}'/>
+      <model type='{{ vm_nic }}'/>
+      <mac address='{{ item.1.interfaces[opnfv_vm_idf.net_config.mgmt.interface].mac_address }}'/>
+    </interface>
+    {%- endif -%}
     <input type='mouse' bus='ps2'/>
     <graphics type='vnc' port='-1' autoport='yes'/>
     <video>
