@@ -8,7 +8,7 @@
   <bridge name='{{ network_interface }}' stp='on' delay='0'/>
   <ip address='{{ nodes[0].remote_management.address.split(':')[0] }}' netmask='{{ node_network_netmask }}'>
      <dhcp>
-      {%- for interface in opnfv_vm.interfaces %}
+      {%- for interface in opnfv_vm_pdf.interfaces %}
        {%-   if 'native' in (interface.vlan | string) %}
        <host mac="{{ interface.mac_address }}" ip="{{ interface.address }}"/>
        {%-   endif %}
