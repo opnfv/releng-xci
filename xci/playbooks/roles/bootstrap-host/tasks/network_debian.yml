@@ -51,8 +51,45 @@
     - { name: "br-storage", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.20", network: "{{ host_info[inventory_hostname].storage }}" }
   loop_control:
     label: "{{ item.name }}"
+  when: baremetal | bool != true
+
+
+- name: "Configure baremetal networking for blade: {{ inventory_hostname }}"
+  template:
+    src: "{{ installer_type }}/debian.interface.j2"
+    dest: "/etc/network/interfaces.d/{{ item.name }}.cfg"
+  with_items:
+    - { name: "{{ admin_interface }}", network: "{{ host_info[inventory_hostname].admin }}" }
+    - { name: "{{ mgmt_interface }}", vlan_id: "{{ (mgmt_vlan == 'native') | ternary(omit, mgmt_vlan) }}" }
+    - { name: "{{ storage_interface }}", vlan_id: "{{ (storage_vlan == 'native') | ternary(omit, storage_vlan) }}" }
+    - { name: "{{ public_interface }}", vlan_id: "{{ (public_vlan == 'native') | ternary(omit, public_vlan) }}" }
+    - { name: "{{ private_interface }}", vlan_id: "{{ (private_vlan == 'native') | ternary(omit, private_vlan) }}" }
+    - { name: "br-mgmt", bridge_ports: "{{ mgmt_interface }}", network: "{{ host_info[inventory_hostname].mgmt }}" }
+    - { name: "br-vxlan", bridge_ports: "{{ private_interface }}", network: "{{ host_info[inventory_hostname].private }}" }
+    - { name: "br-vlan", bridge_ports: "{{ public_interface }}", network: "{{ host_info[inventory_hostname].public }}" }
+    - { name: "br-storage", bridge_ports: "{{ storage_interface }}", network: "{{ host_info[inventory_hostname].storage }}" }
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    -  baremetal | bool == true
+    - "'opnfv' not in inventory_hostname"
+
+- name: "Configure baremetal networking for VM: {{ inventory_hostname }}"
+  template:
+    src: "{{ installer_type }}/debian.interface.j2"
+    dest: "/etc/network/interfaces.d/{{ item.name }}.cfg"
+  with_items:
+    - { name: "{{ mgmt_interface }}", vlan_id: "{{ (mgmt_vlan == 'native') | ternary(omit, mgmt_vlan) }}" }
+    - { name: "{{ public_interface }}", vlan_id: "{{ (public_vlan == 'native') | ternary(omit, public_vlan) }}" }
+    - { name: "br-mgmt", bridge_ports: "{{ mgmt_interface }}", network: "{{ host_info[inventory_hostname].mgmt }}" }
+    - { name: "br-vlan", bridge_ports: "{{ public_interface }}", network: "{{ host_info[inventory_hostname].public }}" }
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - baremetal | bool == true
+    - "'opnfv' in inventory_hostname"
 
 - name: restart network service
-  shell: "/sbin/ifconfig {{ ansible_local.xci.network.xci_interface }} 0 && /sbin/ifdown -a && /sbin/ifup -a"
-  async: 15
-  poll: 0
+  service:
+    name: network
+    state: restarted
