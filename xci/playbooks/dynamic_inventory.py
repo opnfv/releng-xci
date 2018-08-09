@@ -74,8 +74,12 @@ class XCIInventory(object):
         self.args = parser.parse_args()
 
     def read_pdf_idf(self):
+#        pdf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/ericsson-pdf-pod2.yml"
+#        idf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/ericsson-idf-pod2.yml"
         pdf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/pdf.yml"
         idf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/idf.yml"
+        opnfv_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/opnfv_vm_pdf.yml"
+        opnfv_idf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/opnfv_vm_idf.yml"
         nodes = []
         host_networks = {}
 
@@ -92,6 +96,21 @@ class XCIInventory(object):
             except yaml.YAMLError as e:
                 print(e)
                 sys.exit(1)
+
+        with open(opnfv_file) as f:
+            try:
+                opnfv_pdf = yaml.safe_load(f)
+            except yaml.YAMLError as e:
+                print(e)
+                sys.exit(1)
+
+        with open(opnfv_idf_file) as f:
+            try:
+                opnfv_idf = yaml.safe_load(f)
+            except yaml.YAMLError as e:
+                print(e)
+                sys.exit(1)
+
 
         valid_host = (host for host in idf['xci']['installers'][self.installer]['nodes_roles'] \
                       if host in idf['xci']['flavors'][self.flavor] \
@@ -118,6 +137,20 @@ class XCIInventory(object):
                     host_networks[hostname][network]['gateway'] = str(ndata['gateway']) + "/" + str(ndata['mask'])
                 if 'dns' in ndata.keys():
                     host_networks[hostname][network]['dns'] = str(ndata['dns'])
+
+                # Get also vlan and mac_address from pdf
+                host_networks[hostname][network]['mac_address'] = str(pdf_host_info['interfaces'][int(network_interface_num)]['mac_address'])
+                host_networks[hostname][network]['vlan'] = str(pdf_host_info['interfaces'][int(network_interface_num)]['vlan'])
+
+            # Get also vlan and mac_address from opnfv_pdf
+            mgmt_idf_index = int(opnfv_idf['opnfv_vm_idf']['net_config']['mgmt']['interface'])
+            opnfv_mgmt = opnfv_pdf['opnfv_vm_pdf']['interfaces'][mgmt_idf_index]
+            admin_idf_index = int(opnfv_idf['opnfv_vm_idf']['net_config']['admin']['interface'])
+            opnfv_public = opnfv_pdf['opnfv_vm_pdf']['interfaces'][admin_idf_index]
+            self.opnfv_networks['opnfv']['mgmt']['mac_address'] = str(opnfv_mgmt['mac_address'])
+            self.opnfv_networks['opnfv']['mgmt']['vlan'] = str(opnfv_mgmt['vlan'])
+            self.opnfv_networks['opnfv']['public']['mac_address'] = str(opnfv_public['mac_address'])
+            self.opnfv_networks['opnfv']['public']['vlan'] = str(opnfv_public['vlan'])
 
             host_networks.update(self.opnfv_networks)
 
