@@ -76,14 +76,10 @@
       testing: false
       enabled_hardware_types: ipmi
       network_interface: "{{ ansible_default_ipv4.interface }}"
-    # NOTE(TheJulia): While the next step creates a ramdisk, some elements
-    # do not support ramdisk-image-create as they invoke steps to cleanup
-    # the ramdisk which causes ramdisk-image-create to believe it failed.
     - role: bifrost-create-dib-image
       dib_imagename: "{{ http_boot_folder }}/ipa"
       build_ramdisk: false
-      dib_os_element: "{{ ipa_dib_os_element|default('debian') }}"
-      dib_os_release: "jessie"
+      dib_os_element: "{{ ipa_dib_os_element|default('fedora') }}"
       dib_elements: "ironic-agent {{ ipa_extra_dib_elements | default('') }}"
       dib_notmpfs: true
       when:
