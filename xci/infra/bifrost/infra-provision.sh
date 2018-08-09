@@ -24,12 +24,17 @@ export ANSIBLE_LIBRARY="$HOME/.ansible/plugins/modules:/usr/share/ansible/plugin
 echo "Info: Create XCI VM resources"
 echo "-------------------------------------------------------------------------"
 
+source ${XCI_CACHE}/repos/bifrost/scripts/bifrost-env.sh
+
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -i ${XCI_PATH}/xci/playbooks/dynamic_inventory.py \
         -e num_nodes=${NUM_NODES} \
         -e vm_domain_type=${VM_DOMAIN_TYPE} \
         -e baremetal_json_file=/tmp/baremetal.json \
         -e xci_distro=${XCI_DISTRO} \
+        -e pdf_file=${PDF} \
+        -e idf_file=${IDF} \
+        -e baremetal=${BAREMETAL} \
         ${BIFROST_ROOT_DIR}/playbooks/xci-create-virtual.yml
 
 
@@ -38,8 +43,6 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         --user=devuser \
         -i ${XCI_PATH}/xci/playbooks/dynamic_inventory.py \
         ${BIFROST_ROOT_DIR}/playbooks/xci-prepare-virtual.yml
-
-source ${XCI_CACHE}/repos/bifrost/scripts/bifrost-env.sh
 
 # This is hardcoded to delegate to localhost but we really need to delegate to opnfv instead.
 sed -i "/delegate_to:/d" ${XCI_CACHE}/repos/bifrost/playbooks/roles/bifrost-deploy-nodes-dynamic/tasks/main.yml
