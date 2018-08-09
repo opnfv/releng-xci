@@ -71,7 +71,7 @@
     command: facts
     uri: "{{ vm_libvirt_uri }}"
 
-# NOTE(pas-ha) yet another place where non-local libvirt will not work
+ # NOTE(pas-ha) yet another place where non-local libvirt will not work
 - name: "Delete network interface if virtual network is not active"
   command: ip link del {{ ansible_libvirt_networks[item].bridge }}
   when:
