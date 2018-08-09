@@ -27,4 +27,6 @@ vm_libvirt_uri: "{{ lookup('env', 'LIBVIRT_CONNECT_URI') | default('qemu:///syst
 
 opnfv_image_path: "/var/lib/libvirt/images"
 
+vms_to_create: "{{ (baremetal | bool) | ternary([opnfv_vm_pdf], [opnfv_vm_pdf] + nodes) }}"
+baremetal_nodes: "{{ (baremetal | bool) | ternary(nodes, omit) }}"
 libvirt_networks: "{{ (baremetal | bool) | ternary([vm_network_admin,vm_network_mgmt],[vm_network_admin]) }}"
