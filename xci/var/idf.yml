@@ -12,6 +12,10 @@
 idf:
   version: 0.1
   net_config: &net_config
+    pxe:
+      interface: 2
+      network: 172.29.236.0
+      mask: 22
     admin:
       interface: 0
       network: 172.29.236.0
