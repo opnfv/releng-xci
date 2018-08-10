@@ -70,6 +70,52 @@
       "revId": "09cee3636fee20ba551e211c60f6e9942079cfb9",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_5395e03e",
+        "filename": "xci/installer/osa/playbooks/post-deployment.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-08-10T06:37:41Z",
+      "side": 1,
+      "message": "I wonder if using \"include:\" is easier than include_role. In the end, you just want to execute a playbook:\n\ninclude: {{ remote_xci_scenario_path }}/role/{{ deploy_scenario }}/tasks/post-deployment.yml",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 18
+      },
+      "revId": "09cee3636fee20ba551e211c60f6e9942079cfb9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_f3b074f6",
+        "filename": "xci/installer/osa/playbooks/post-deployment.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-08-10T06:37:41Z",
+      "side": 1,
+      "message": "do you need hostvars[\u0027opnfv\u0027]? I thought the variable ansible_local.xci.scenarios.role would be available without having to add the hostvars part",
+      "range": {
+        "startLine": 62,
+        "startChar": 18,
+        "endLine": 62,
+        "endChar": 36
+      },
+      "revId": "09cee3636fee20ba551e211c60f6e9942079cfb9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
