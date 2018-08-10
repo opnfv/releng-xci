@@ -140,6 +140,30 @@
       "revId": "09cee3636fee20ba551e211c60f6e9942079cfb9",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_d3045080",
+        "filename": "xci/installer/osa/playbooks/post-deployment.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2018-08-10T07:54:27Z",
+      "side": 1,
+      "message": "I can try this in a separate change together with Markos\u0027s gather_facts thing if you\u0027re fine with it.",
+      "parentUuid": "9a561d44_f3b074f6",
+      "range": {
+        "startLine": 62,
+        "startChar": 18,
+        "endLine": 62,
+        "endChar": 36
+      },
+      "revId": "09cee3636fee20ba551e211c60f6e9942079cfb9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
