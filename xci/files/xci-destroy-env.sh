@@ -24,17 +24,15 @@ rm -rf ${HOME}/.ansible
 # Wipe repos
 rm -rf ${XCI_CACHE}/repos
 
-# bifrost installs everything on venv so we need to look there if virtualbmc is not installed on the host.
-if which vbmc &>/dev/null || { [[ -e ${XCI_VENV}/bifrost/bin/activate ]] && source ${XCI_VENV}/bifrost/bin/activate; }; then
+if which ${XCI_VENV}/bin/vbmc &>/dev/null; then
     # Delete all libvirt VMs and hosts from vbmc (look for a port number)
-    for vm in $(vbmc list | awk '/[0-9]/{{ print $2 }}'); do
+    for vm in $(${XCI_VENV}/bin/vbmc list | awk '/[0-9]/{{ print $2 }}'); do
         if which virsh &>/dev/null; then
-            virsh destroy $vm &>/dev/null || true
-            virsh undefine $vm &>/dev/null || true
+            virsh destroy $vm || true
+            virsh undefine $vm || true
         fi
-        vbmc delete $vm
+        ${XCI_VENV}/bin/vbmc delete $vm
     done
-    which vbmc &>/dev/null || { [[ -e /opt/stack/bifrost/bin/activate ]] && deactivate; }
 fi
 
 # Destroy all XCI VMs on all flavors
@@ -42,8 +40,8 @@ for varfile in ${flavors[@]}; do
     source ${XCI_PATH}/xci/config/${varfile}-vars
     for vm in ${NODE_NAMES}; do
         if which virsh &>/dev/null; then
-            virsh destroy $vm &>/dev/null || true
-            virsh undefine $vm &>/dev/null || true
+            virsh destroy $vm &> /dev/null || true
+            virsh undefine $vm &> /dev/null || true
         fi
     done
 done
@@ -84,5 +82,7 @@ service ironic-conductor start || true
 service ironic-inspector restart || true
 
 rm -rf ${XCI_VENV}
+# We also need to clear up previous vbmc config dirs
+rm -r ${HOME}/.vbmc
 
 # vim: set ts=4 sw=4 expandtab:
