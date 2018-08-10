@@ -9,6 +9,7 @@
 ##############################################################################
 - hosts: opnfv
   remote_user: root
+  gather_facts: True
   vars_files:
     - "{{ xci_path }}/xci/var/opnfv.yml"
     - "{{ xci_path }}/xci/installer/osa/files/openstack_services.yml"
@@ -45,12 +46,6 @@
         line: "{{ 'http_proxy_env_url: ' + lookup('env','http_proxy') }}"
       when:
         - lookup('env','http_proxy') != ""
-
-    - name: Reload XCI deployment host facts
-      setup:
-        filter: ansible_local
-        gather_subset: "!all"
-      delegate_to: 127.0.0.1
 
     - name: Check if any post-deployment task defined for {{ deploy_scenario }} role
       stat:
