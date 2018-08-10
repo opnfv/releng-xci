@@ -21,7 +21,7 @@
 #   export XCI_FLAVOR="ha"
 #-------------------------------------------------------------------------------
 export XCI_FLAVOR=${XCI_FLAVOR:-mini}
-export XCI_DISTRO=${XCI_DISTRO:-$(source /etc/os-release &>/dev/null || source /usr/lib/os-release &>/dev/null; echo ${ID,,})}
+export XCI_DISTRO=${XCI_DISTRO:-$(source /etc/os-release &>/dev/null || source /usr/lib/os-release &>/dev/null; ID=${ID%%-*}; echo ${ID,,})}
 export XCI_CEPH_ENABLED=${XCI_CEPH_ENABLED:-false}
 
 #-------------------------------------------------------------------------------

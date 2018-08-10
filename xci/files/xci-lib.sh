@@ -55,7 +55,7 @@ function install_ansible() {
 
     source /etc/os-release || source /usr/lib/os-release
     case ${ID,,} in
-      *suse)
+      *suse*)
         OS_FAMILY="Suse"
         INSTALLER_CMD="sudo -H -E zypper -q install -y --no-recommends"
         CHECK_CMD="zypper search --match-exact --installed"
