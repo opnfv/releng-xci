@@ -120,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_b62b8a81",
+        "filename": "xci/installer/osa/playbooks/post-deployment.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-08-10T12:45:50Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "9a561d44_939f785f",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 18
+      },
+      "revId": "09cee3636fee20ba551e211c60f6e9942079cfb9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_f3b074f6",
         "filename": "xci/installer/osa/playbooks/post-deployment.yml",
         "patchSetId": 22
