@@ -83,6 +83,6 @@ service ironic-inspector restart || true
 
 rm -rf ${XCI_VENV}
 # We also need to clear up previous vbmc config dirs
-rm -r ${HOME}/.vbmc
+rm -rf ${HOME}/.vbmc
 
 # vim: set ts=4 sw=4 expandtab:
