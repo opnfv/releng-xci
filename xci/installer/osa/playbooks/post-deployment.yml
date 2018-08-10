@@ -59,7 +59,7 @@
 
     - name: Execute post-deployment tasks of {{ deploy_scenario }} role
       include_role:
-        name: "{{ hostvars['opnfv'].ansible_local.xci.scenarios.role }}"
+        name: "{{ ansible_local.xci.scenarios.role }}"
         tasks_from: post-deployment
       when:
         - post_deployment_yml.stat.exists
