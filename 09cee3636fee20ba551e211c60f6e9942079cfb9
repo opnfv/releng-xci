@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_939f785f",
+        "filename": "xci/installer/osa/playbooks/post-deployment.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-08-10T06:47:56Z",
+      "side": 1,
+      "message": "we are loading a playbook from a role not an XCI playbook. So we also need to take role variables into consideration. That\u0027s why we use include_role.",
+      "parentUuid": "9a561d44_5395e03e",
+      "range": {
+        "startLine": 61,
+        "startChar": 6,
+        "endLine": 61,
+        "endChar": 18
+      },
+      "revId": "09cee3636fee20ba551e211c60f6e9942079cfb9",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_f3b074f6",
         "filename": "xci/installer/osa/playbooks/post-deployment.yml",
         "patchSetId": 22
