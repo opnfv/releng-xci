@@ -117,3 +117,4 @@
 - name: install virtualbmc
   pip:
     name: virtualbmc
+    virtualenv: "{{ lookup('env', 'XCI_VENV') }}"

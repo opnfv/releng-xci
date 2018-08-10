@@ -103,11 +103,15 @@
   # with a custom Ansible module using vbmc Python API
   - name: get list of nodes from virtualbmc
     command: vbmc list
+    environment:
+      PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
     register: vbmc_list
 
   # NOTE(NobodyCam): Space at the end of the find clause is required for proper matching.
   - name: delete vm from virtualbmc if it is there
     command: vbmc delete {{ vm_name }}
+    environment:
+      PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
     when: vbmc_list.stdout.find(vm_name) != -1
 
   - set_fact:
@@ -115,9 +119,13 @@
 
   - name: plug vm into vbmc
     command: vbmc add {{ vm_name }} --libvirt-uri {{ vm_libvirt_uri }} --port {{ virtual_ipmi_port }}
+    environment:
+      PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
 
   - name: start virtualbmc
     command: vbmc start {{ vm_name }}
+    environment:
+      PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
 
   - name: get XML of the vm
     virt:
