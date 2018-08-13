@@ -42,8 +42,8 @@ class XCIInventory(object):
 
         self.opnfv_networks = {}
         self.opnfv_networks['opnfv'] = {}
-        self.opnfv_networks['opnfv']['admin'] = {}
-        self.opnfv_networks['opnfv']['admin']['address'] = '172.29.236.10/22'
+        self.opnfv_networks['opnfv']['mgmt'] = {}
+        self.opnfv_networks['opnfv']['mgmt']['address'] = '172.29.236.10/22'
         self.opnfv_networks['opnfv']['public'] = {}
         self.opnfv_networks['opnfv']['public']['address'] = '192.168.122.2/24'
         self.opnfv_networks['opnfv']['public']['gateway'] = '192.168.122.1'
@@ -93,15 +93,15 @@ class XCIInventory(object):
                 print(e)
                 sys.exit(1)
 
-        valid_host = (host for host in idf['xci'][self.installer]['nodes_roles'] \
+        valid_host = (host for host in idf['xci']['installers'][self.installer]['nodes_roles'] \
                       if host in idf['xci']['flavors'][self.flavor] \
                       and host != 'opnfv')
 
         for host in valid_host:
             nodes.append(host)
-            hostname = idf['xci'][self.installer]['hostnames'][host]
+            hostname = idf['xci']['installers'][self.installer]['hostnames'][host]
             self.add_host(hostname)
-            for role in idf['xci'][self.installer]['nodes_roles'][host]:
+            for role in idf['xci']['installers'][self.installer]['nodes_roles'][host]:
                 self.add_to_group(role, hostname)
 
             pdf_host_info = filter(lambda x: x['name'] == host, pdf['nodes'])[0]
@@ -124,8 +124,8 @@ class XCIInventory(object):
             self.add_groupvar('all', 'host_info', host_networks)
 
         # Now add the additional groups
-        for parent in idf['xci'][self.installer]['groups'].keys():
-            map(lambda x: self.add_group(x, parent), idf['xci'][self.installer]['groups'][parent])
+        for parent in idf['xci']['installers'][self.installer]['groups'].keys():
+            map(lambda x: self.add_group(x, parent), idf['xci']['installers'][self.installer]['groups'][parent])
 
         # Read additional group variables
         self.read_additional_group_vars()
