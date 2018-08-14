@@ -42,8 +42,8 @@ class XCIInventory(object):
 
         self.opnfv_networks = {}
         self.opnfv_networks['opnfv'] = {}
-        self.opnfv_networks['opnfv']['admin'] = {}
-        self.opnfv_networks['opnfv']['admin']['address'] = '172.29.236.10/22'
+        self.opnfv_networks['opnfv']['mgmt'] = {}
+        self.opnfv_networks['opnfv']['mgmt']['address'] = '172.29.236.10/22'
         self.opnfv_networks['opnfv']['public'] = {}
         self.opnfv_networks['opnfv']['public']['address'] = '192.168.122.2/24'
         self.opnfv_networks['opnfv']['public']['gateway'] = '192.168.122.1'

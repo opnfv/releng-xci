@@ -13,6 +13,10 @@ idf:
   version: 0.1
   net_config: &net_config
     admin:
+      interface: 2
+      network: 192.168.122.0
+      mask: 22
+    mgmt:
       interface: 0
       network: 172.29.236.0
       mask: 22
@@ -54,7 +58,7 @@ idf:
       # network mapping
       network_mapping:
         # Management network used by installer components to communicate
-        net-mgmt: admin
+        net-mgmt: mgmt
         # Storage Network
         net-storage: storage
         # Internal network for communication between VNF
