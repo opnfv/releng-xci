@@ -17,7 +17,7 @@
     - { name: "{{ ansible_local.xci.network.xci_interface }}.10", vlan_id: 10 }
     - { name: "{{ ansible_local.xci.network.xci_interface }}.30", vlan_id: 30 }
     - { name: "{{ ansible_local.xci.network.xci_interface }}.20", vlan_id: 20 }
-    - { name: "br-mgmt", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.10", network: "{{ host_info[inventory_hostname].admin }}" }
+    - { name: "br-mgmt", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.10", network: "{{ host_info[inventory_hostname].mgmt }}" }
     - { name: "br-vxlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.30", network: "{{ host_info[inventory_hostname].private }}" }
     - { name: "br-vlan", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}", network: "{{ host_info[inventory_hostname].public }}" }
     - { name: "br-storage", bridge_ports: "{{ ansible_local.xci.network.xci_interface }}.20", network: "{{ host_info[inventory_hostname].storage }}" }
