@@ -201,7 +201,7 @@
 - name: opendaylight
   scm: git
   src: https://github.com/opendaylight/integration-packaging-ansible-opendaylight
-  version: 9d5951c39da7722c71632a10ec53e7ab93b8ac9b
+  version: b5613b96f2879590b5fe0e16886198b3fc809599
 - name: haproxy_endpoints
   scm: git
   src: https://github.com/logan2211/ansible-haproxy-endpoints
