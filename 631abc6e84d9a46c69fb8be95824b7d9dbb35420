@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_f0ecddc9",
+        "filename": "xci/installer/osa/deploy.sh",
+        "patchSetId": 36
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-08-21T10:30:27Z",
+      "side": 1,
+      "message": "This can be removed when this patch gets merged:\nhttps://gerrit.opnfv.org/gerrit/#/c/61159/",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 68
+      },
+      "revId": "631abc6e84d9a46c69fb8be95824b7d9dbb35420",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
