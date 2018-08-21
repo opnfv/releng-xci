@@ -154,7 +154,7 @@ trove_wsgi_processes: 1
 sahara_api_workers_max: 2
 sahara_api_workers: 1
 
-openrc_os_auth_url: "http://192.168.122.3:5000/v3"
+openrc_os_auth_url: "https://192.168.122.3:5000/v3"
 keystone_auth_admin_password: "opnfv-secret-password"
 openrc_os_password: "opnfv-secret-password"
 openrc_os_domain_name: "Default"
@@ -163,7 +163,7 @@ openrc_nova_endpoint_type: "publicURL"
 openrc_os_endpoint_type: "publicURL"
 openrc_clouds_yml_interface: "public"
 openrc_region_name: RegionOne
-haproxy_ssl: false
+haproxy_ssl: true
 openstack_service_publicuri_proto: http
 haproxy_user_ssl_cert: "/etc/ssl/certs/xci.crt"
 haproxy_user_ssl_key: "/etc/ssl/private/xci.key"
