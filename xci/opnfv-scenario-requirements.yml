@@ -71,6 +71,21 @@
         - opensuse
         - ubuntu
 
+- scenario: os-odl-sfc_osm
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/sfc
+  version: 1e79c57bd7420ecefc9f4ab1bdf7c8d582647d9f
+  refspec: refs/changes/11/61211/2
+  role: scenarios/os-odl-sfc_osm/role/os-odl-sfc_osm
+  installers:
+    - installer: osa
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
+
 - scenario: os-odl-bgpvpn
   scm: git
   src: https://gerrit.opnfv.org/gerrit/sdnvpn
