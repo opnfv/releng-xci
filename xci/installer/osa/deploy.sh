@@ -160,6 +160,22 @@ echo
 echo "Info: OpenStack installation is successfully completed!"
 
 #-------------------------------------------------------------------------------
+# Execute post-installation tasks
+#-------------------------------------------------------------------------------
+# Playbook post.yml is used in order to execute any post-deployment tasks that
+# are required for the scenario under test.
+#-------------------------------------------------------------------------------
+echo "-----------------------------------------------------------------------"
+echo "Info: Running post-deployment scenario role"
+echo "-----------------------------------------------------------------------"
+cd $OSA_XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_PLAYBOOKS}/dynamic_inventory.py \
+    post-deployment.yml
+echo "-----------------------------------------------------------------------"
+echo
+echo "Info: Post-deployment scenario role execution done"
+
+#-------------------------------------------------------------------------------
 # - Getting OpenStack login information
 #-------------------------------------------------------------------------------
 echo "Info: Openstack login details"
@@ -180,19 +196,4 @@ echo "Info: Admin username -  ${USERNAME##*=}"
 echo "Info: Admin password - ${PASSWORD##*=}"
 echo "Info: It is recommended to change the default password."
 
-#-------------------------------------------------------------------------------
-# Execute post-installation tasks
-#-------------------------------------------------------------------------------
-# Playbook post.yml is used in order to execute any post-deployment tasks that
-# are required for the scenario under test.
-#-------------------------------------------------------------------------------
-echo "-----------------------------------------------------------------------"
-echo "Info: Running post-deployment scenario role"
-echo "-----------------------------------------------------------------------"
-cd $OSA_XCI_PLAYBOOKS
-ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_PLAYBOOKS}/dynamic_inventory.py \
-    post-deployment.yml
-echo "-----------------------------------------------------------------------"
-echo
-echo "Info: Post-deployment scenario role execution done"
 # vim: set ts=4 sw=4 expandtab:
