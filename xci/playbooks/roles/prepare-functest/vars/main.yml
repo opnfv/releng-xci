@@ -3,12 +3,15 @@ functest_required_packages:
   apt:
     - docker.io
     - wget
+    - xz-utils
   zypper:
     - docker
     - wget
+    - xz
   yum:
     - docker
     - wget
+    - xz
 
 functest_required_pip:
   - docker-py
