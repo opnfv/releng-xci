@@ -30,10 +30,6 @@ kubespray_git_url: "{{ lookup('env','KUBESPRAY_GIT_URL') }}"
 kubespray_version: "{{ lookup('env','KUBESPRAY_VERSION') }}"
 xci_kube_ansible_pip_version: "{{ lookup('env','XCI_KUBE_ANSIBLE_PIP_VERSION') }}"
 
-# osm variables
-osm_devops_git_url: "{{ lookup('env','OSM_DEVOPS_GIT_URL') }}"
-osm_devops_version: "{{ lookup('env','OSM_DEVOPS_VERSION') }}"
-
 # variables for other components
 keepalived_git_url: "{{ lookup('env','KEEPALIVED_GIT_URL') }}"
 haproxy_version: "{{ lookup('env','HAPROXY_VERSION') }}"

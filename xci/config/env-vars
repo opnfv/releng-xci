@@ -11,7 +11,6 @@ export OPENSTACK_OSA_OPENRC_GIT_URL=${OPENSTACK_OSA_OPENRC_GIT_URL:-https://git.
 export KUBESPRAY_GIT_URL=${KUBESPRAY_GIT_URL:-https://github.com/kubernetes-incubator/kubespray.git}
 export OPENSTACK_OSA_HAPROXY_GIT_URL=${OPENSTACK_OSA_HAPROXY_GIT_URL:-https://git.openstack.org/openstack/openstack-ansible-haproxy_server}
 export KEEPALIVED_GIT_URL=${KEEPALIVED_GIT_URL:-https://github.com/evrardjp/ansible-keepalived}
-export OSM_DEVOPS_GIT_URL=${OSM_DEVOPS_GIT_URL:-https://osm.etsi.org/gerrit/osm/devops.git}
 
 # Configuration
 export OPENSTACK_OSA_ETC_PATH=/etc/openstack_deploy
