@@ -34,11 +34,11 @@ source /root/env
 {# stuff needed for OpenStack based scenarios #}
 source /root/openrc
 
-openstack --insecure network create --external \
+openstack network create --external \
   --provider-physical-network flat \
   --provider-network-type flat {{ external_network }}
 
-openstack --insecure subnet create --network {{ external_network }} \
+openstack subnet create --network {{ external_network }} \
   --allocation-pool {{ allocation_pool }} \
   --subnet-range {{ subnet_cidr }} --gateway {{ gateway_ip }} \
   --no-dhcp {{ subnet_name }}

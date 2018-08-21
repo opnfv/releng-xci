@@ -176,11 +176,11 @@
       include_role:
         name: "openstack-ansible-openstack_openrc"
 
-    - name: add extra insecure flag to generated openrc
-      blockinfile:
-          dest: "{{ ansible_env.HOME }}/openrc"
-          block: |
-              export OS_INSECURE=true
+#    - name: add extra insecure flag to generated openrc
+#      blockinfile:
+#          dest: "{{ ansible_env.HOME }}/openrc"
+#          block: |
+#              export OS_INSECURE=true
 
     - name: fetch generated openrc
       fetch:
