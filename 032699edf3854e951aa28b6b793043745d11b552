@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_a6318fa4",
+        "filename": "xci/installer/osa/deploy.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-08-22T06:19:47Z",
+      "side": 1,
+      "message": "This line should still be ata the end of the file, or?",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 31
+      },
+      "revId": "032699edf3854e951aa28b6b793043745d11b552",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
