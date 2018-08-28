@@ -18,6 +18,11 @@
   user: root
   vars_files:
     - ../var/opnfv.yml
-    - ../installer/osa/files/openstack_services.yml
+    - ../installer/osa/files/openstack_services.ymla
+  tasks:
+    - name: Copy original openrc file to OPFNV host
+      copy:
+        src: "{{ xci_cache }}/openrc"
+        dest: /root/openrc
   roles:
     - role: "prepare-functest"
