@@ -158,11 +158,6 @@
         chdir: "{{openstack_osa_path}}/scripts"
       changed_when: True
 
-    - name: Configure SSL certificates
-      include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssl-certs.yml"
-      vars:
-        extra_args: "-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt"
-
     - name: fetch xci environment
       copy:
         src: "{{ xci_path }}/.cache/xci.env"
@@ -175,12 +170,6 @@
     - name: Generate openrc
       include_role:
         name: "openstack-ansible-openstack_openrc"
-
-    - name: add extra insecure flag to generated openrc
-      blockinfile:
-          dest: "{{ ansible_env.HOME }}/openrc"
-          block: |
-              export OS_INSECURE=true
 
     - name: fetch generated openrc
       fetch:
