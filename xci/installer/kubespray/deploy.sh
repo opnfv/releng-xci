@@ -71,7 +71,7 @@ fi
 
 echo "Info: Using kubespray to deploy the kubernetes cluster"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; export XCI_FLAVOR=$XCI_FLAVOR; export INSTALLER_TYPE=$INSTALLER_TYPE; \
+ssh -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP "set -o pipefail; export XCI_FLAVOR=$XCI_FLAVOR; export INSTALLER_TYPE=$INSTALLER_TYPE; \
         cd releng-xci/.cache/repos/kubespray/; ansible-playbook \
         -i opnfv_inventory/dynamic_inventory.py cluster.yml -b | tee setup-kubernetes.log"
 scp root@$OPNFV_HOST_IP:~/releng-xci/.cache/repos/kubespray/setup-kubernetes.log \
@@ -88,7 +88,7 @@ echo "-----------------------------------------------------------------------"
 # Configure the kubernetes authentication in opnfv host. In future releases
 # kubectl is no longer an artifact so we should not fail if it's not available.
 # This needs to be removed in the future
-ssh root@$OPNFV_HOST_IP "mkdir -p ~/.kube/;\
+ssh -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP "mkdir -p ~/.kube/;\
          cp -f ~/admin.conf ~/.kube/config; \
          cp -f ~/kubectl /usr/local/bin || true"
 
@@ -102,15 +102,15 @@ echo "Info: Kubernetes login details"
 echo "-----------------------------------------------------------------------"
 
 # Get the dashborad URL
-DASHBOARD_SERVICE=$(ssh root@$OPNFV_HOST_IP "kubectl get service -n kube-system |grep kubernetes-dashboard")
+DASHBOARD_SERVICE=$(ssh -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP "kubectl get service -n kube-system |grep kubernetes-dashboard")
 DASHBOARD_PORT=$(echo ${DASHBOARD_SERVICE} | awk '{print $5}' |awk -F "[:/]" '{print $2}')
-KUBER_SERVER_URL=$(ssh root@$OPNFV_HOST_IP "grep -r server ~/.kube/config")
+KUBER_SERVER_URL=$(ssh -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP "grep -r server ~/.kube/config")
 echo "Info: Kubernetes Dashboard URL:"
 echo $KUBER_SERVER_URL | awk '{print $2}'| sed -n "s#:[0-9]*\$#:$DASHBOARD_PORT#p"
 
 # Get the dashborad user and password
 MASTER_IP=$(echo ${KUBER_SERVER_URL} | awk '{print $2}' |awk -F "[:/]" '{print $4}')
-USER_CSV=$(ssh root@$MASTER_IP " cat /etc/kubernetes/users/known_users.csv")
+USER_CSV=$(ssh -o StrictHostKeyChecking=no root@$MASTER_IP " cat /etc/kubernetes/users/known_users.csv")
 USERNAME=$(echo $USER_CSV |awk -F ',' '{print $2}')
 PASSWORD=$(echo $USER_CSV |awk -F ',' '{print $1}')
 echo "Info: Dashboard username: ${USERNAME}"

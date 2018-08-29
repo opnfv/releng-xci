@@ -90,7 +90,7 @@ fi
 #-------------------------------------------------------------------------------
 echo "Info: Setting up target hosts for openstack-ansible"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
+ssh -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-hosts.yml | tee setup-hosts.log "
 scp root@$OPNFV_HOST_IP:~/setup-hosts.log $LOG_PATH/setup-hosts.log
 echo "-----------------------------------------------------------------------"
@@ -111,7 +111,7 @@ echo "Info: Set up target hosts for openstack-ansible successfuly"
 #-------------------------------------------------------------------------------
 echo "Info: Gathering facts"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/openstack-ansible/playbooks; \
+ssh -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP "set -o pipefail; cd releng-xci/.cache/repos/openstack-ansible/playbooks; \
         ansible -m setup -a gather_subset=network,hardware,virtual all"
 echo "-----------------------------------------------------------------------"
 
@@ -123,7 +123,7 @@ echo "-----------------------------------------------------------------------"
 echo "Info: Setting up infrastructure"
 echo "-----------------------------------------------------------------------"
 echo "xci: running ansible playbook setup-infrastructure.yml"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
+ssh -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-infrastructure.yml | tee setup-infrastructure.log"
 scp root@$OPNFV_HOST_IP:~/setup-infrastructure.log $LOG_PATH/setup-infrastructure.log
 echo "-----------------------------------------------------------------------"
@@ -133,7 +133,7 @@ echo "-----------------------------------------------------------------------"
 #-------------------------------------------------------------------------------
 echo "Info: Verifying database cluster"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
+ssh -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP "set -o pipefail; ansible --ssh-extra-args='-o StrictHostKeyChecking=no' \
     -i releng-xci/.cache/repos/openstack-ansible/playbooks/inventory/ galera_container -m shell \
 	-a \"mysql -h localhost -e \\\"show status like '%wsrep_cluster_%';\\\"\" | tee galera.log"
 scp root@$OPNFV_HOST_IP:~/galera.log $LOG_PATH/galera.log
@@ -152,7 +152,7 @@ echo "Info: Database cluster verification successful!"
 #-------------------------------------------------------------------------------
 echo "Info: Installing OpenStack on target hosts"
 echo "-----------------------------------------------------------------------"
-ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
+ssh -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
      releng-xci/.cache/repos/openstack-ansible/playbooks/setup-openstack.yml | tee opnfv-setup-openstack.log"
 scp root@$OPNFV_HOST_IP:~/opnfv-setup-openstack.log $LOG_PATH/opnfv-setup-openstack.log
 echo "-----------------------------------------------------------------------"
@@ -190,8 +190,8 @@ else:
    net_config = yaml.safe_load(host_info)
    print 'Info: Horizon UI is available at https://{}' \
          .format(net_config['global_overrides']['external_lb_vip_address'])"
-USERNAME=$(ssh -q root@$OPNFV_HOST_IP awk "/OS_USERNAME=./" openrc)
-PASSWORD=$(ssh -q root@$OPNFV_HOST_IP awk "/OS_PASSWORD=./" openrc)
+USERNAME=$(ssh -q -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP awk "/OS_USERNAME=./" openrc)
+PASSWORD=$(ssh -q -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP awk "/OS_PASSWORD=./" openrc)
 echo "Info: Admin username -  ${USERNAME##*=}"
 echo "Info: Admin password - ${PASSWORD##*=}"
 echo "Info: It is recommended to change the default password."
