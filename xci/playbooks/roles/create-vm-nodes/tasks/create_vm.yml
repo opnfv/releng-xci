@@ -1,180 +1,171 @@
 ---
-# Create a VM and volume for it, save its MAC address
-- shell: "sudo virsh list --all | grep 'shut off' | wc -l"
-  register: num_vms
+- set_fact:
+    vm_name: "{{ node_names[item.0 | int] }}"
 
-- name: "Creating VM"
-  block:
-  # NOTE(pas-ha) item here refers to name of the vm
-  - set_fact:
-      vm_name: "{{ node_names[num_vms.stdout | int] }}"
+- set_fact:
+    vm_log_file: "{{ node_logdir }}/{{ vm_name }}_console.log"
+    vm_host_group: "{{ vm_default_groups }}"
 
-  - set_fact:
-      vm_log_file: "{{ node_logdir }}/{{ vm_name }}_console.log"
-      vm_host_group: "{{ vm_default_groups }}"
+- set_fact:
+    vm_host_group: "{{ vm_default_groups | union(vm_groups[vm_name]) }}"
+  when: vm_groups[vm_name] is defined
 
-  - set_fact:
-      vm_host_group: "{{ vm_default_groups | union(vm_groups[vm_name]) }}"
-    when: vm_groups[vm_name] is defined
+- name: set prealloc arg for Debian
+  set_fact:
+    prealloc: "--prealloc-metadata"
+  when:
+    - ansible_os_family == 'Debian'
+    - vm_libvirt_uri == 'qemu:///system'
 
-  - name: set prealloc arg for Debian
-    set_fact:
-      prealloc: "--prealloc-metadata"
+- name: list info on pools
+  virt_pool:
+    command: facts
+    uri: "{{ vm_libvirt_uri }}"
+
+- name: list existing vms
+  virt:
+    command: list_vms
+  register: existing_vms
+
+- block:
+  - name: Check if volume exists
+    stat:
+      path: "{{ opnfv_image_path }}/{{ vm_name }}.qcow2"
+    register: _vm_volume_prepared
+
+  - name: Resize opnfv VM image to {{ item.disks[0].disk_capacity }}
+    command: "qemu-img resize {{ opnfv_image_path }}/opnfv.qcow2 {{ item.1.disks[0].disk_capacity }}"
     when:
-      - ansible_os_family == 'Debian'
+      - vm_name == 'opnfv'
+      - _vm_volume_prepared.stat.exists
+
+  # NOTE(pas-ha) Ansible still lacks modules to operate on libvirt volumes
+  # mbuil: Assuming there is only one disk [0]
+  - name: create volume for vm
+    command: >
+      virsh --connect {{ vm_libvirt_uri }}
+      vol-create-as {{ node_storage_pool }} {{ vm_name }}.qcow2
+      {{ item.1.disks[0].disk_capacity }}
+      --format qcow2 {{ prealloc|default("") }}
+    when:
+      - not _vm_volume_prepared.stat.exists
+      - (vm_name + '.qcow2') not in ansible_libvirt_pools[node_storage_pool].volumes
+
+  - name: set path to the volume created
+    set_fact:
+      vm_volume_path: "{{ ansible_libvirt_pools[node_storage_pool].path }}/{{ vm_name }}.qcow2"
+
+  - name: pre-touch the vm volume
+    file:
+      state: touch
+      path: "{{ vm_volume_path }}"
+    when: vm_libvirt_uri == 'qemu:///system'
+
+  # NOTE(TheJulia): CentOS default installs with an XFS root, and chattr
+  # fails to set +C on XFS.  This could be more elegant, however the use
+  # case is for CI testing.
+  - name: set copy-on-write for volume on non-CentOS systems
+    command: chattr +C {{ vm_volume_path }}
+    ignore_errors: yes
+    when:
+      - ansible_distribution != 'CentOS'
       - vm_libvirt_uri == 'qemu:///system'
 
-  - name: list info on pools
-    virt_pool:
-      command: facts
-      uri: "{{ vm_libvirt_uri }}"
-
-  - name: list existing vms
+  # Fetches the xml descriptor from the template
+  - name: create_vm
     virt:
-      command: list_vms
-    register: existing_vms
-
-  - block:
-    - name: Check if volume exists
-      stat:
-        path: "{{ opnfv_image_path }}/{{ vm_name }}.qcow2"
-      register: _vm_volume_prepared
-
-    - name: Resize opnfv VM image to {{ item.disks[0].disk_capacity }}
-      command: "qemu-img resize {{ opnfv_image_path }}/opnfv.qcow2 {{ item.disks[0].disk_capacity }}"
-      when:
-        - vm_name == 'opnfv'
-        - _vm_volume_prepared.stat.exists
-
-    # NOTE(pas-ha) Ansible still lacks modules to operate on libvirt volumes
-    # mbuil: Assuming there is only one disk [0]
-    - name: create volume for vm
-      command: >
-        virsh --connect {{ vm_libvirt_uri }}
-        vol-create-as {{ node_storage_pool }} {{ vm_name }}.qcow2
-        {{ item.disks[0].disk_capacity }}
-        --format qcow2 {{ prealloc|default("") }}
-      when:
-        - not _vm_volume_prepared.stat.exists
-        - (vm_name + '.qcow2') not in ansible_libvirt_pools[node_storage_pool].volumes
-
-    - name: set path to the volume created
-      set_fact:
-        vm_volume_path: "{{ ansible_libvirt_pools[node_storage_pool].path }}/{{ vm_name }}.qcow2"
-
-    - name: pre-touch the vm volume
-      file:
-        state: touch
-        path: "{{ vm_volume_path }}"
-      when: vm_libvirt_uri == 'qemu:///system'
-
-    # NOTE(TheJulia): CentOS default installs with an XFS root, and chattr
-    # fails to set +C on XFS.  This could be more elegant, however the use
-    # case is for CI testing.
-    - name: set copy-on-write for volume on non-CentOS systems
-      command: chattr +C {{ vm_volume_path }}
-      ignore_errors: yes
-      when:
-        - ansible_distribution != 'CentOS'
-        - vm_libvirt_uri == 'qemu:///system'
-
-    # Fetches the xml descriptor from the template
-    - name: create_vm
-      virt:
-        command: define
-        name: "{{ vm_name }}"
-        uri: "{{ vm_libvirt_uri }}"
-        xml: "{{ lookup('template', 'vm.xml.j2') }}"
-
-    rescue:
-      - name: "Execute `dmesg` to collect debugging output should VM creation fail."
-        command: dmesg
-      - name: >
-          "Execute `virsh capabilities` to collect debugging output
-          should VM creation fail."
-        command: virsh capabilities
-      - name: "Abort due to failed VM creation"
-        fail: >
-          msg="VM creation step failed, please review dmesg
-          output for additional details"
-    when: vm_name not in existing_vms.list_vms
-
-  # TODO(pas-ha) replace 'command: vbmc ...' tasks
-  # with a custom Ansible module using vbmc Python API
-  - name: get list of nodes from virtualbmc
-    command: vbmc list
-    environment:
-      PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
-    register: vbmc_list
-
-  # NOTE(NobodyCam): Space at the end of the find clause is required for proper matching.
-  - name: delete vm from virtualbmc if it is there
-    command: vbmc delete {{ vm_name }}
-    environment:
-      PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
-    when: vbmc_list.stdout.find(vm_name) != -1
-
-  - set_fact:
-      virtual_ipmi_port: "{{ (vm_ipmi_port_start|default(623) | int ) + (num_vms.stdout | int ) }}"
-
-  - name: plug vm into vbmc
-    command: vbmc add {{ vm_name }} --libvirt-uri {{ vm_libvirt_uri }} --port {{ virtual_ipmi_port }}
-    environment:
-      PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
-
-  - name: start virtualbmc
-    command: vbmc start {{ vm_name }}
-    environment:
-      PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
-
-  - name: get XML of the vm
-    virt:
+      command: define
       name: "{{ vm_name }}"
-      command: get_xml
-    register: vm_xml
+      uri: "{{ vm_libvirt_uri }}"
+      xml: "{{ lookup('template', 'vm.xml.j2') }}"
 
-  - name: Fetch the ip
-    set_fact:
-      vm_ip: "{%- for interface in item.interfaces %}{%- if 'native' in (interface.vlan | string) %}{{ interface.address }}{%- endif %}{%- endfor %}"
+  rescue:
+    - name: "Execute `dmesg` to collect debugging output should VM creation fail."
+      command: dmesg
+    - name: >
+        "Execute `virsh capabilities` to collect debugging output
+        should VM creation fail."
+      command: virsh capabilities
+    - name: "Abort due to failed VM creation"
+      fail: >
+        msg="VM creation step failed, please review dmesg
+        output for additional details"
+  when: vm_name not in existing_vms.list_vms
 
-  # Assumes there is only a single NIC per VM
-  - name: get MAC from vm XML
-    set_fact:
-      vm_mac: "{{ (vm_xml.get_xml | regex_findall(\"<mac address='.*'/>\") | first).split('=') | last | regex_replace(\"['/>]\", '') }}"
+# TODO(pas-ha) replace 'command: vbmc ...' tasks
+# with a custom Ansible module using vbmc Python API
+- name: get list of nodes from virtualbmc
+  command: vbmc list
+  environment:
+    PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
+  register: vbmc_list
 
-  # NOTE(pas-ha) using default username and password set by virtualbmc - "admin" and "password" respectively
-  # see vbmc add --help
-  - name: set the json entry for vm
-    set_fact:
-      vm_data:
-        name: "{{ vm_name }}"
-        uuid: "{{ vm_name | to_uuid }}"
-        host_groups: "{{ vm_host_group }}"
-        driver: "{{ vm_node_driver|default('ipmi') }}"
-        driver_info:
-          power:
-            ipmi_address: "192.168.122.1"
-            ipmi_port: "{{ virtual_ipmi_port }}"
-            ipmi_username: "{{ item.remote_management.user }}"
-            ipmi_password: "{{ item.remote_management.pass }}"
-        nics:
-          - mac: "{{ vm_mac }}"
-        ansible_ssh_host: "{{ vm_ip }}"
-        ipv4_address: "{{ vm_ip }}"
-        properties:
-          cpu_arch: "{{ item.node.arch }}"
-          ram: "{{ item.node.memory.rstrip('G') }}"
-          cpus: "{{ item.node.cpus }}"
-          disk_size: "{{ item.disks[0].disk_capacity.rstrip('G') }}"
+# NOTE(NobodyCam): Space at the end of the find clause is required for proper matching.
+- name: delete vm from virtualbmc if it is there
+  command: vbmc delete {{ vm_name }}
+  environment:
+    PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
+  when: vbmc_list.stdout.find(vm_name) != -1
 
-  - name: add created vm info
-    set_fact:
-      nodes_json_data: "{{ nodes_json_data | combine({vm_name: vm_data}) }}"
-    when: vm_name != 'opnfv'
+- set_fact:
+    virtual_ipmi_port: "{{ (vm_ipmi_port_start|default(623) | int ) + (item.0 | int ) }}"
 
-  - name: Record OPNFV VM ip
-    set_fact:
-      opnfv_vm_ip: "{{ vm_ip }}"
-    when: vm_name == 'opnfv'
+- name: plug vm into vbmc
+  command: vbmc add {{ vm_name }} --libvirt-uri {{ vm_libvirt_uri }} --port {{ virtual_ipmi_port }}
+  environment:
+    PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
 
-  when: (num_nodes | int) > (num_vms.stdout | int)
+- name: start virtualbmc
+  command: vbmc start {{ vm_name }}
+  environment:
+    PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
+
+- name: get XML of the vm
+  virt:
+    name: "{{ vm_name }}"
+    command: get_xml
+  register: vm_xml
+
+- name: Fetch the ip
+  set_fact:
+    vm_ip: "{%- for interface in item.1.interfaces %}{%- if 'native' in (interface.vlan | string) %}{{ interface.address }}{%- endif %}{%- endfor %}"
+
+# Assumes there is only a single NIC per VM
+- name: get MAC from vm XML
+  set_fact:
+    vm_mac: "{{ (vm_xml.get_xml | regex_findall(\"<mac address='.*'/>\") | first).split('=') | last | regex_replace(\"['/>]\", '') }}"
+
+# NOTE(pas-ha) using default username and password set by virtualbmc - "admin" and "password" respectively
+# see vbmc add --help
+- name: set the json entry for vm
+  set_fact:
+    vm_data:
+      name: "{{ vm_name }}"
+      uuid: "{{ vm_name | to_uuid }}"
+      host_groups: "{{ vm_host_group }}"
+      driver: "{{ vm_node_driver|default('ipmi') }}"
+      driver_info:
+        power:
+          ipmi_address: "192.168.122.1"
+          ipmi_port: "{{ virtual_ipmi_port }}"
+          ipmi_username: "{{ item.1.remote_management.user }}"
+          ipmi_password: "{{ item.1.remote_management.pass }}"
+      nics:
+        - mac: "{{ vm_mac }}"
+      ansible_ssh_host: "{{ vm_ip }}"
+      ipv4_address: "{{ vm_ip }}"
+      properties:
+        cpu_arch: "{{ item.1.node.arch }}"
+        ram: "{{ item.1.node.memory.rstrip('G') }}"
+        cpus: "{{ item.1.node.cpus }}"
+        disk_size: "{{ item.1.disks[0].disk_capacity.rstrip('G') }}"
+
+- name: add created vm info
+  set_fact:
+    nodes_json_data: "{{ nodes_json_data | combine({vm_name: vm_data}) }}"
+  when: vm_name != 'opnfv'
+
+- name: Record OPNFV VM ip
+  set_fact:
+    opnfv_vm_ip: "{{ vm_ip }}"
+  when: vm_name == 'opnfv'
