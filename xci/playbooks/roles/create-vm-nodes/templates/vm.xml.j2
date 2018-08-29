@@ -1,9 +1,9 @@
 <domain type='{{ vm_domain_type }}'>
   <name>{{ vm_name }}</name>
-  <memory unit='GiB'>{{ item.node.memory.rstrip('G') }}</memory>
-  <vcpu>{{ item.node.cpus }}</vcpu>
+  <memory unit='GiB'>{{ item.1.node.memory.rstrip('G') }}</memory>
+  <vcpu>{{ item.1.node.cpus }}</vcpu>
   <os>
-    <type arch='{{ item.node.arch }}' machine='{{ item.node.model }}'>hvm</type>
+    <type arch='{{ item.1.node.arch }}' machine='{{ item.1.node.model }}'>hvm</type>
     {%- if 'opnfv' in vm_name -%}
     <boot dev='hd'/>
     {%- else -%}
@@ -17,7 +17,7 @@
     <apic/>
     <pae/>
   </features>
-  <cpu mode='{{ item.node.cpu_cflags }}'>
+  <cpu mode='{{ item.1.node.cpu_cflags }}'>
     <model fallback='allow'/>
   </cpu>
   <clock offset='utc'/>
@@ -36,7 +36,7 @@
       <address type='pci' domain='0x0000' bus='0x00' slot='0x01' function='0x1'/>
     </controller>
     {% set native_interfaces = [] %}
-    {%- for interface in item.interfaces %}
+    {%- for interface in item.1.interfaces %}
     {%-   if 'native' in (interface.vlan | string) %}
     {%-     set _ = native_interfaces.append(interface) %}
     {%-   endif %}
