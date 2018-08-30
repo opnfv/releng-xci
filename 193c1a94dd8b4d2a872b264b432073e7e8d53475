@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_e73c1796",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-08-30T11:28:41Z",
+      "side": 1,
+      "message": "comments?",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 1
+      },
+      "revId": "193c1a94dd8b4d2a872b264b432073e7e8d53475",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_47422311",
+        "filename": "xci/playbooks/dynamic_inventory.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-08-30T11:28:41Z",
+      "side": 1,
+      "message": "too many empty lines?",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 0
+      },
+      "revId": "193c1a94dd8b4d2a872b264b432073e7e8d53475",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
