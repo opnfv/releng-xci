@@ -25,18 +25,18 @@
 #-------------------------------------------------------------------------------
 # use releng-xci from master until the development work with the sandbox is complete
 export OPNFV_RELENG_VERSION="master"
-# HEAD of bifrost "master" as of 17.08.2018
-export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"c1c6fb7487d5b967624400623fd35aabf303b917"}
-# HEAD of ironic "master" as of 17.08.2018
-export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-"d792111b46e37181f1447d697f32a6023208df04"}
-# HEAD of ironic-client "master" as of 17.08.2018
+# HEAD of bifrost "master" as of 30.08.2018
+export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"0d0cfd908d10a670668619c575fd338d1ff328b7"}
+# HEAD of ironic "master" as of 30.08.2018
+export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-"0a10eb7794e1543ce2be09c0a55b62fa005b0710"}
+# HEAD of ironic-client "master" as of 30.08.2018
 export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"d30d415684f979fa78c70a738f90dab06b77a046"}
-# HEAD of ironic-inspector "master" as of 17.08.2018
-export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"be06e77dabbbd5ffa4ff48a1a676305c4db2f581"}
-# HEAD of ironic-inspector-client "master" as of 17.08.2018
+# HEAD of ironic-inspector "master" as of 30.08.2018
+export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"56138d8f06f531fadc184b0e0efa537c9ad66022"}
+# HEAD of ironic-inspector-client "master" as of 30.08.2018
 export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-"6eed85c38ee63ade0c2720120fbc9d0520c14f55"}
-# HEAD of osa "stable/rocky" as of 17.08.2018
-export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"cbfdb7dc295ff702044b807336fab067d84a3f20"}
+# HEAD of osa "stable/rocky" as of 30.08.2018
+export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"b9d9269528ecbe04b2638a73c2b0f49839f27422"}
 export KEEPALIVED_VERSION=$(grep -E '.*name: keepalived' -A 3 \
        ${XCI_PATH}/xci/installer/osa/files/ansible-role-requirements.yml \
        | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
