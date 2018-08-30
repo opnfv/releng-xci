@@ -43,5 +43,6 @@ export KEEPALIVED_VERSION=$(grep -E '.*name: keepalived' -A 3 \
 export HAPROXY_VERSION=$(grep -E '.*name: haproxy_server' -A 3 \
        ${XCI_PATH}/xci/installer/osa/files/ansible-role-requirements.yml \
        | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
-# HEAD of kubspray "master" as of 16.05.2018
-export KUBESPRAY_VERSION=${KUBESPRAY_VERSION:-"38e727dbe1bdf5316fae8d645718cc8279fbda20"}
+# Kubespray release v2.6.0 dated 10.08.2018
+# didn't bump to the tip of master due to open issues with the k8s v1.11.2
+export KUBESPRAY_VERSION=${KUBESPRAY_VERSION:-"8b3ce6e418ccf48171eb5b3888ee1af84f8d71ba"}
