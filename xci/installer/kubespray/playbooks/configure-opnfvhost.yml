@@ -28,12 +28,25 @@
       configure_network: xci_flavor != 'aio'
 
   tasks:
+    - name: Create list of files to copy
+      shell: |
+          git ls-tree -r --name-only HEAD > {{ xci_cache }}/releng-xci.files
+          echo ".git" >> {{ xci_cache }}/releng-xci.files
+      args:
+        executable: /bin/bash
+        chdir: "{{ xci_path }}"
+      changed_when: False
+      delegate_to: 127.0.0.1
+      tags:
+        - skip_ansible_lint
+
     - name: Copy releng-xci to remote host
       synchronize:
         src: "{{ xci_path }}/"
         dest: "{{ remote_xci_path }}"
         recursive: yes
         delete: yes
+        rsync_opts: "--files-from={{ xci_cache }}/releng-xci.files"
 
     - name: delete the opnfv_inventory directory
       file:
