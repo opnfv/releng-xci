@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Variables that we need to pass from XCI to testing
+XCI_ENV=(INSTALLER_TYPE XCI_FLAVOR OPENSTACK_OSA_VERSION CI_LOOP BUILD_TAG NODE_NAME FUNCTEST_MODE FUNCTEST_SUITE_NAME)
+
+# Extract variables from xci.env file
+if [[ -e /root/xci.env ]]; then
+    for x in ${XCI_ENV[@]}; do
+        grep "^${x}=" /root/xci.env >> /root/env
+    done
+    # Parse the XCI's DEPLOY_SCENARIO and XCI_FLAVOR variables and
+    # set the functest container's DEPLOY_SCENARIO variable in the
+    # following format <scenario>-<flavor>. But the XCI's mini flavor
+    # is converted into noha.
+    DEPLOY_SCENARIO=`grep -Po '(?<=DEPLOY_SCENARIO=).*' /root/xci.env`
+    XCI_FLAVOR=`grep -Po '(?<=XCI_FLAVOR=).*' /root/xci.env`
+    XCI_FLAVOR=${XCI_FLAVOR/mini/noha}
+    echo "DEPLOY_SCENARIO=$DEPLOY_SCENARIO-$XCI_FLAVOR" >> /root/env
+fi
+
+# we need to ensure the necessary environment variables are sourced
+source /root/env
+
+{% if 'os-' in deploy_scenario %}
+{# stuff needed for OpenStack based scenarios #}
+source /root/openrc
+
+openstack --insecure network create --external \
+  --provider-physical-network flat \
+  --provider-network-type flat {{ external_network }}
+
+openstack --insecure subnet create --network {{ external_network }} \
+  --allocation-pool {{ allocation_pool }} \
+  --subnet-range {{ subnet_cidr }} --gateway {{ gateway_ip }} \
+  --no-dhcp {{ subnet_name }}
+{% else %}
+{# stuff needed for Kubernetes based scenarios #}
+# Create k8s.creds file for testing
+KUBE_MASTER_URL=$(grep -r server ~/.kube/config | awk '{print $2}')
+KUBE_MASTER_IP=$(echo $KUBE_MASTER_URL | awk -F "[:/]" '{print $4}')
+cat << EOF > ~/k8s.creds
+KUBERNETES_PROVIDER=local
+KUBE_MASTER_URL=$KUBE_MASTER_URL
+KUBE_MASTER_IP=$KUBE_MASTER_IP
+EOF
+{% endif %}
