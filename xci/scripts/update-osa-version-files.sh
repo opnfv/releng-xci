@@ -76,20 +76,20 @@ cat $tempdir/openstack-ansible/ansible-role-requirements.yml >> $releng_xci_base
 
 # Update the pinned OSA version
 sed -i -e "/^export OPENSTACK_OSA_VERSION/s@:-\"[a-z0-9]*@:-\"${1}@" \
-    -e "s/\(^# HEAD of osa.*of \).*/\1$(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
+    -e "s/\(^# HEAD of osa \).*/\1\"${OPENSTACK_OSA_VERSION:-master}\" as of $(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
 
 # Update the pinned bifrost version
 if [[ -n ${2:-} ]]; then
   echo "Updating bifrost..."
   sed -i -e "/^export OPENSTACK_BIFROST_VERSION/s@:-\"[a-z0-9]*@:-\"${2}@" \
-    -e "s/\(^# HEAD of bifrost.*of \).*/\1$(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
+    -e "s/\(^# HEAD of bifrost \).*/\1\"${OPENSTACK_OSA_VERSION:-master}\" as of $(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
   # Get ironic shas
   for ironic in ironic_git_url ironic_client_git_url ironic_inspector_git_url ironic_inspector_client_git_url; do
-    ironic_sha=$(git ls-remote ${!ironic} | grep master | awk '{print $1}')
+    ironic_sha=$(git ls-remote ${!ironic} | grep "${OPENSTACK_OSA_VERSION:-master}" | awk '{print $1}')
     ironic=${ironic/_git*/}
     echo "... updating ${ironic}"
     sed -i -e "/^export BIFROST_${ironic^^}_VERSION/s@:-\"[a-z0-9]*@:-\"${ironic_sha}@" \
-      -e "s/\(^# HEAD of ${ironic/_/-}.*of \).*/\1$(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
+      -e "s/\(^# HEAD of ${ironic/_/-} \).*/\1\"${OPENSTACK_OSA_VERSION:-master}\" as of $(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
   done
 fi
 
