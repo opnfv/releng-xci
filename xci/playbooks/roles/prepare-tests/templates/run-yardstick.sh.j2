@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Create directory to store yardstick logs
+mkdir -p /root/yardstick-results/
+
+# Dump the env file
+echo "------------------------------------------------------"
+echo "------------- yardstick environment file --------------"
+cat /root/env
+echo "------------------------------------------------------"
+
+# we need to ensure the necessary environment variables are sourced
+source /root/env
+
+{% if 'os-' in deploy_scenario %}
+{# stuff needed for OpenStack based scenarios #}
+OS_CACERT="/etc/ssl/certs/xci.crt"
+DOCKER_IMAGE_NAME="opnfv/yardstick"
+YARDSTICK_SCENARIO_SUITE_NAME="opnfv_${DEPLOY_SCENARIO}_daily.yaml"
+
+# add OS_CACERT to openrc
+echo "export OS_CACERT=$OS_CACERT" >> ~/openrc
+
+opts="--privileged=true --rm"
+envs="-e INSTALLER_TYPE=$INSTALLER_TYPE -e INSTALLER_IP=$INSTALLER_IP \
+    -e NODE_NAME=$NODE_NAME -e EXTERNAL_NETWORK=$EXTERNAL_NETWORK \
+    -e YARDSTICK_BRANCH=master -e BRANCH=master \
+    -e DEPLOY_SCENARIO=$DEPLOY_SCENARIO -e CI_DEBUG=true"
+rc_file_vol="-v /root/openrc:/etc/yardstick/openstack.creds"
+cacert_file_vol="-v $OS_CACERT:/etc/yardstick/os_cacert"
+map_log_dir="-v /root/yardstick-results:/tmp/yardstick"
+sshkey="-v /root/.ssh/id_rsa:/root/.ssh/id_rsa"
+cmd="sudo docker run ${opts} ${envs} ${rc_file_vol} ${cacert_file_vol} \
+    ${map_log_dir} ${sshkey} ${DOCKER_IMAGE_NAME} \
+    exec_tests.sh ${YARDSTICK_SCENARIO_SUITE_NAME}"
+echo "Running yardstick with the command"
+echo "------------------------------------------------------"
+echo $cmd
+echo "------------------------------------------------------"
+$cmd
+{% else %}
+{# stuff needed for Kubernetes based scenarios #}
+    echo "Kubernetes testing is not enabled"
+{% endif %}

@@ -57,3 +57,9 @@
     src: run-functest.sh.j2
     dest: /root/run-functest.sh
     mode: 0755
+
+- name: create the script to run yardstick
+  template:
+    src: run-yardstick.sh.j2
+    dest: /root/run-yardstick.sh
+    mode: 0755
