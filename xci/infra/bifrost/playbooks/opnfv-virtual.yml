@@ -128,10 +128,6 @@
       setup:
       delegate_to: opnfv
       delegate_facts: False
-    - name: "Override default bifrost DNS if we are behind a proxy"
-      set_fact:
-         ipv4_nameserver: "192.168.122.1"
-      when: lookup('env','http_proxy') != ''
     - name: Find network interface in the OPNFV node
       set_fact:
         network_interface: "{{ ansible_default_ipv4.interface }}"
@@ -147,6 +143,8 @@
     - import_role:
         name: bifrost-configdrives-dynamic
         private: True
+      vars:
+        ipv4_namesever: "{{ ipv4_nameserver | default('192.168.122.1') }}"
       delegate_to: opnfv
     - import_role:
         name: bifrost-deploy-nodes-dynamic
