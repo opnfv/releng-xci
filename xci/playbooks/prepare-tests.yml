@@ -13,11 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-- name: Prepare the environment for functest
+- name: Prepare the environment for testing
   hosts: opnfv
   user: root
   vars_files:
     - ../var/opnfv.yml
     - ../installer/osa/files/openstack_services.yml
   roles:
-    - role: "prepare-functest"
+    - role: "prepare-tests"
