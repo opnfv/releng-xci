@@ -8,25 +8,25 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 ##############################################################################
 
-- name: install functest required packages
+- name: install required packages
   package:
-    name: "{{ functest_required_packages[ansible_pkg_mgr] }}"
+    name: "{{ required_packages[ansible_pkg_mgr] }}"
     state: present
 
-# Docker is needed for functest
+# Docker is needed for test frameworks
 - name: Ensure Docker service is started and enabled
   service:
     name: docker
     state: started
     enabled: yes
 
-- name: install functest required pip packages
+- name: install required pip packages
   pip:
-   name: "{{ functest_required_pip }}"
+   name: "{{ required_pip }}"
    state: present
    extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
 
-- name: create public network gateway for functest
+- name: create public network gateway for testing
   block:
     - name: check if the gateway was already set
       shell: "ip a | grep {{ gateway_ip }}"
@@ -40,13 +40,19 @@
       when: gateway_ip_result|failed
   when: deploy_scenario is match("os-.*")
 
-- name: prepare environment file for functest
+- name: prepare environment file for tests
   template:
     src: env.j2
     dest: /root/env
     mode: 0755
 
-- name: prepare the script to create networks and run functest
+- name: create the script to prepare for testing
+  template:
+    src: prepare-tests.sh.j2
+    dest: /root/prepare-tests.sh
+    mode: 0755
+
+- name: create the script to run functest
   template:
     src: run-functest.sh.j2
     dest: /root/run-functest.sh

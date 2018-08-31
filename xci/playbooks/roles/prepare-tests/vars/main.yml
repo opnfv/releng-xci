@@ -1,5 +1,5 @@
 ---
-functest_required_packages:
+required_packages:
   apt:
     - docker.io
     - wget
@@ -13,5 +13,5 @@ functest_required_packages:
     - wget
     - xz
 
-functest_required_pip:
+required_pip:
   - docker-py
