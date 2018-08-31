@@ -42,12 +42,29 @@
       proxy_settings_no_proxy: "{{ lookup('env','no_proxy') }}"
 
   tasks:
+    - name: Create list of files to copy
+      shell: |
+          git ls-tree -r --name-only HEAD > {{ xci_cache }}/releng-xci.files
+          echo ".git/" >> {{ xci_cache }}/releng-xci.files
+          echo ".cache/repos/" >> {{ xci_cache }}/releng-xci.files
+          echo ".cache/xci.env" >> {{ xci_cache }}/releng-xci.files
+      args:
+        executable: /bin/bash
+        chdir: "{{ xci_path }}"
+      changed_when: False
+      delegate_to: 127.0.0.1
+      tags:
+        - skip_ansible_lint
+
     - name: Copy releng-xci to remote host
       synchronize:
+        archive: yes
         src: "{{ xci_path }}/"
         dest: "{{ remote_xci_path }}"
         recursive: yes
         delete: yes
+        rsync_opts:
+          - "--files-from={{ xci_cache }}/releng-xci.files"
 
     - name: Re-create OpenStack-Ansible /etc directory
       file:
