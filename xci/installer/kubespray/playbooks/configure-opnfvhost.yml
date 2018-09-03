@@ -83,6 +83,9 @@
         - { name: 'netaddr' }
         - { name: 'ansible-modules-hashivault' }
 
+    - name: Configure SSL certificates
+      include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssl-certs.yml"
+
     - name: fetch xci environment
       copy:
         src: "{{ xci_path }}/.cache/xci.env"
