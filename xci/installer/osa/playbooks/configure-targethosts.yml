@@ -18,7 +18,7 @@
       with_items:
         - "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
   roles:
-    - role: peru.proxy_settings
+    - role: ruzickap.proxy_settings
       proxy_settings_http_proxy: "{{ lookup('env','http_proxy') }}"
       proxy_settings_https_proxy: "{{ lookup('env','https_proxy') }}"
       proxy_settings_ftp_proxy: "{{ lookup('env','ftp_proxy') }}"

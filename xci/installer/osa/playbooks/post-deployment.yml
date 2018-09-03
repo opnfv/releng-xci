@@ -31,7 +31,7 @@
         remote_xci_scenario_path: "{{ ansible_env.HOME }}/releng-xci/.cache/repos/scenarios/{{ deploy_scenario }}/scenarios/{{ deploy_scenario }}"
 
   roles:
-    - role: peru.proxy_settings
+    - role: ruzickap.proxy_settings
       proxy_settings_http_proxy: "{{ lookup('env','http_proxy') }}"
       proxy_settings_https_proxy: "{{ lookup('env','https_proxy') }}"
       proxy_settings_ftp_proxy: "{{ lookup('env','ftp_proxy') }}"
