@@ -14,4 +14,4 @@
 # limitations under the License.
 
 debug: False
-install_method: source
+install_method: distro
