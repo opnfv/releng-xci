@@ -37,6 +37,4 @@
       when:  xci_flavor == 'ha'
     - role: "haproxy_server"
       haproxy_service_configs: "{{ haproxy_default_services}}"
-      haproxy_user_ssl_cert: "/etc/ssl/certs/xci.crt"
-      haproxy_user_ssl_key: "/etc/ssl/private/xci.key"
       when:  xci_flavor == 'ha'
