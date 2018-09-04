@@ -19,7 +19,7 @@ DOCKER_IMAGE_NAME="opnfv/yardstick"
 YARDSTICK_SCENARIO_SUITE_NAME="opnfv_${DEPLOY_SCENARIO}_daily.yaml"
 
 # add OS_CACERT to openrc
-echo "export OS_CACERT=$OS_CACERT" >> ~/openrc
+echo "export OS_CACERT=/etc/yardstick/os_cacert" >> ~/openrc
 
 opts="--privileged=true --rm"
 envs="-e INSTALLER_TYPE=$INSTALLER_TYPE -e INSTALLER_IP=$INSTALLER_IP \
