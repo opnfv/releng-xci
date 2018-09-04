@@ -14,6 +14,14 @@ source /root/env
 
 {% if 'os-' in deploy_scenario %}
 {# stuff needed for OpenStack based scenarios #}
+rc_file_vol="-v /root/openrc:/etc/yardstick/openstack.creds"
+{% else %}
+{# k8 scenario name is hardcoded for the timebeing until we clarify #}
+{# which suite name we should use for the scenarios without yardstick suites #}
+DEPLOY_SCENARIO="k8-nosn-nofeature-noha"
+rc_file_vol="-v /root/admin.conf:/etc/yardstick/admin.conf"
+{% endif %}
+
 OS_CACERT="/etc/ssl/certs/xci.crt"
 DOCKER_IMAGE_NAME="opnfv/yardstick"
 YARDSTICK_SCENARIO_SUITE_NAME="opnfv_${DEPLOY_SCENARIO}_daily.yaml"
@@ -26,7 +34,6 @@ envs="-e INSTALLER_TYPE=$INSTALLER_TYPE -e INSTALLER_IP=$INSTALLER_IP \
     -e NODE_NAME=$NODE_NAME -e EXTERNAL_NETWORK=$EXTERNAL_NETWORK \
     -e YARDSTICK_BRANCH=master -e BRANCH=master \
     -e DEPLOY_SCENARIO=$DEPLOY_SCENARIO -e CI_DEBUG=true"
-rc_file_vol="-v /root/openrc:/etc/yardstick/openstack.creds"
 cacert_file_vol="-v $OS_CACERT:/etc/yardstick/os_cacert"
 map_log_dir="-v /root/yardstick-results:/tmp/yardstick"
 sshkey="-v /root/.ssh/id_rsa:/root/.ssh/id_rsa"
@@ -38,7 +45,3 @@ echo "------------------------------------------------------"
 echo $cmd
 echo "------------------------------------------------------"
 $cmd
-{% else %}
-{# stuff needed for Kubernetes based scenarios #}
-    echo "Kubernetes testing is not enabled"
-{% endif %}
