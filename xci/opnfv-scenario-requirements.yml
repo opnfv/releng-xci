@@ -136,6 +136,20 @@
         - centos
         - opensuse
 
+- scenario: k8-calico-onap
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+  version: 2477c22a045de247d73ae20910cf026a63626911
+  refspec: refs/changes/87/58987/4
+  role: scenarios/k8-calico-onap/role/k8-calico-onap
+  installers:
+    - installer: kubespray
+      flavors:
+        - mini
+        - noha
+      distros:
+        - ubuntu
+
 - scenario: k8-flannel-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
