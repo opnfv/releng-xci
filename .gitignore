@@ -1,6 +1,6 @@
 *,~
 .*.sw?
-/docs_build/
+docs_build/*
 /docs_output/
 /releng/
 .idea
@@ -33,7 +33,7 @@ coverage.xml
 nosetests.xml
 testapi_venv/
 .cache
-.tox
+.tox/
 *.retry
 job_output/
 # Clear VM files
@@ -46,3 +46,4 @@ conf.py
 *.html
 html/
 xci/logs/
+docs/_build/*
