@@ -76,7 +76,7 @@ cat $tempdir/openstack-ansible/ansible-role-requirements.yml >> $releng_xci_base
 
 # Update the pinned OSA version
 sed -i -e "/^export OPENSTACK_OSA_VERSION/s@:-\"[a-z0-9]*@:-\"${1}@" \
-    -e "s/\(^# HEAD of osa \).*/\1\"${OPENSTACK_OSA_VERSION:-master}\" as of $(date +%d\.%m\.%Y)/" $releng_xci_base/config/pinned-versions
+    -e "s@\(^# HEAD of osa \).*@\1\"${OPENSTACK_OSA_VERSION:-master}\" as of $(date +%d\.%m\.%Y)@" $releng_xci_base/config/pinned-versions
 
 # Update the pinned bifrost version
 if [[ -n ${2:-} ]]; then
