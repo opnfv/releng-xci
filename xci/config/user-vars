@@ -52,6 +52,7 @@ export INFRA_DEPLOYMENT=${INFRA_DEPLOYMENT:-bifrost}
 #   XCI_ANSIBLE_PARAMS="-v -e foo=bar"
 export XCI_ANSIBLE_PARAMS=${XCI_ANSIBLE_PARAMS:-""}
 export RUN_TEMPEST=${RUN_TEMPEST:-false}
+export RUN_HEALTHCHECK=${RUN_HEALTHCHECK:-true}
 export CORE_OPENSTACK_INSTALL=${CORE_OPENSTACK_INSTALL:-false}
 export BIFROST_CREATE_IMAGE_VIA_DIB=${BIFROST_CREATE_IMAGE_VIA_DIB:-true}
 # Set this to to true to force XCI to re-create the target OS images

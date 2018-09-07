@@ -176,6 +176,31 @@ echo
 echo "Info: Post-deployment scenario role execution done"
 
 #-------------------------------------------------------------------------------
+# Execute OpenStack-Ansible healchecks
+#-------------------------------------------------------------------------------
+# Execute various healthchecks to ensure that the deployment is functional.
+#-------------------------------------------------------------------------------
+if [[ ${RUN_HEALTHCHECK} == true ]]; then
+    echo "-----------------------------------------------------------------------"
+    echo "Info: Running OpenStack-Ansible healthchecks"
+    echo "-----------------------------------------------------------------------"
+    ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
+         releng-xci/.cache/repos/openstack-ansible/playbooks/healthcheck-infrastructure.yml | tee opnfv-healthcheck-infrastructure.log"
+    scp root@$OPNFV_HOST_IP:~/opnfv-healthcheck-infrastructure.log $LOG_PATH/opnfv-healthcheck-infrastructure.log
+
+    ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
+         releng-xci/.cache/repos/openstack-ansible/playbooks/healthcheck-hosts.yml | tee opnfv-healthcheck-hosts.log"
+    scp root@$OPNFV_HOST_IP:~/opnfv-healthcheck-hosts.log $LOG_PATH/opnfv-healthcheck-hosts.log
+
+    ssh root@$OPNFV_HOST_IP "set -o pipefail; openstack-ansible \
+         releng-xci/.cache/repos/openstack-ansible/playbooks/healthcheck-openstack.yml | tee opnfv-healthcheck-openstack.log"
+    scp root@$OPNFV_HOST_IP:~/opnfv-healthcheck-openstack.log $LOG_PATH/opnfv-healthcheck-openstack.log
+    echo "-----------------------------------------------------------------------"
+    echo
+    echo "Info: OpenStack-Ansible healthchecks execution done"
+fi
+
+#-------------------------------------------------------------------------------
 # - Getting OpenStack login information
 #-------------------------------------------------------------------------------
 echo "Info: Openstack login details"
