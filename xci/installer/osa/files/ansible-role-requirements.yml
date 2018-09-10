@@ -64,7 +64,7 @@
 - name: openstack_openrc
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-openstack_openrc
-  version: fa7c08cbde27fc2acf312cbb2af80dcd066d6fa4
+  version: 6c589d69ea4893c35f2d561aa6a18a30486950e2
 - name: os_aodh
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_aodh
