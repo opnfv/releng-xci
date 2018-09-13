@@ -92,15 +92,30 @@ ssh root@$OPNFV_HOST_IP "mkdir -p ~/.kube/;\
          cp -f ~/admin.conf ~/.kube/config; \
          cp -f ~/kubectl /usr/local/bin || true"
 
+#-------------------------------------------------------------------------------
+# Execute post-installation tasks
+#-------------------------------------------------------------------------------
+# Playbook post.yml is used in order to execute any post-deployment tasks that
+# are required for the scenario under test.
+#-------------------------------------------------------------------------------
+echo "-----------------------------------------------------------------------"
+echo "Info: Running post-deployment scenario role"
+echo "-----------------------------------------------------------------------"
+cd $K8_XCI_PLAYBOOKS
+ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_PLAYBOOKS}/dynamic_inventory.py \
+    post-deployment.yml
+echo "-----------------------------------------------------------------------"
+echo "Info: Post-deployment scenario role execution done"
+echo "-----------------------------------------------------------------------"
+echo
 echo "Login opnfv host ssh root@$OPNFV_HOST_IP
 according to the user-guide to create a service
 https://kubernetes.io/docs/user-guide/walkthrough/k8s201/"
-
 echo
 echo "-----------------------------------------------------------------------"
 echo "Info: Kubernetes login details"
 echo "-----------------------------------------------------------------------"
-
+echo
 # Get the dashborad URL
 DASHBOARD_SERVICE=$(ssh root@$OPNFV_HOST_IP "kubectl get service -n kube-system |grep kubernetes-dashboard")
 DASHBOARD_PORT=$(echo ${DASHBOARD_SERVICE} | awk '{print $5}' |awk -F "[:/]" '{print $2}')
