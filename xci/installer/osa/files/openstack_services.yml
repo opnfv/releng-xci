@@ -181,23 +181,19 @@ networking_calico_git_install_branch: 501fc98c428b8dd6b9dd7bf6908dbcd7b94ead5c #
 networking_calico_git_project_group: neutron_all
 networking_calico_git_track_branch: stable/rocky
 
-# ODL is frozen until further notice due to
-# https://github.com/openstack/networking-odl/commit/391c1d89ef2b8133d3aafbe7612c7908be106e73#diff-b4ef698db8ca845e5845c4618278f29a
 networking_odl_git_repo: https://git.openstack.org/openstack/networking-odl
-networking_odl_git_install_branch: 53ff740b2a78626d5b077278997bdcec6b1b0892 # FROZEN HEAD of "stable/rocky" as of 31.03.2018
+networking_odl_git_install_branch: ecde0a165f6145d8257fd52d50ee6f417b0b6ff0 # HEAD of "stable/rocky" as of 27.08.2018
 networking_odl_git_project_group: neutron_all
-networking_odl_git_track_branch: None
+networking_odl_git_track_branch: stable/rocky
 
 networking_ovn_git_repo: https://git.openstack.org/openstack/networking-ovn
 networking_ovn_git_install_branch: 44dcb509be15a805e00684cce2fabfc4c5265ad7 # HEAD of "stable/rocky" as of 17.08.2018
 networking_ovn_git_project_group: neutron_all
 
-# BGPVPN is frozen until further notice due to
-# https://github.com/openstack/networking-bgpvpn/commit/e9a0ea199b47f76f69545e04bdb4db44869c388b#diff-b4ef698db8ca845e5845c4618278f29a
 networking_bgpvpn_git_repo: https://git.openstack.org/openstack/networking-bgpvpn
-networking_bgpvpn_git_install_branch: 3b93ddacd390d92fb144e5660324d4da064ad9a4 # FROZEN HEAD of "stable/rocky" as of 31.03.2018
+networking_bgpvpn_git_install_branch: f5eb05bfb74fa38f1163a1b54645f99d3f224a70 # HEAD of "stable/rocky" as of 27.08.2018
 networking_bgpvpn_git_project_group: neutron_all
-networking_bgpvpn_git_track_branch: None
+networking_bgpvpn_git_track_branch: stable/rocky
 
 networking_sfc_git_repo: https://git.openstack.org/openstack/networking-sfc
 networking_sfc_git_install_branch: 4c38303620c8a3f38d7261a64ce8532979bf7560 # HEAD of "stable/rocky" as of 27.08.2018
