@@ -164,7 +164,5 @@ openrc_os_endpoint_type: "publicURL"
 openrc_clouds_yml_interface: "public"
 openrc_region_name: RegionOne
 openrc_insecure: true
-haproxy_user_ssl_cert: "/etc/ssl/certs/xci.crt"
-haproxy_user_ssl_key: "/etc/ssl/private/xci.key"
 keystone_service_adminuri_insecure: true
 keystone_service_internaluri_insecure: true

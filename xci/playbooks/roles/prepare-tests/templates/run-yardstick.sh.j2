@@ -22,7 +22,7 @@ DEPLOY_SCENARIO="k8-nosdn-nofeature-noha"
 rc_file_vol="-v /root/admin.conf:/etc/yardstick/admin.conf"
 {% endif %}
 
-OS_CACERT="/etc/ssl/certs/xci.crt"
+OS_CACERT="/etc/ssl/certs/haproxy.cert"
 DOCKER_IMAGE_NAME="opnfv/yardstick"
 YARDSTICK_SCENARIO_SUITE_NAME="opnfv_${DEPLOY_SCENARIO}_daily.yaml"
 
