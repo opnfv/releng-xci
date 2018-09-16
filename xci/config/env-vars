@@ -52,8 +52,6 @@ export LOG_PATH=${LOG_PATH:-${XCI_PATH}/xci/logs}
 export XCI_ANSIBLE_PIP_VERSION="2.5.8"
 
 export ANSIBLE_HOST_KEY_CHECKING=False
-# subject of the certificate
-export XCI_SSL_SUBJECT=${XCI_SSL_SUBJECT:-"/C=US/ST=California/L=San Francisco/O=IT/CN=xci.releng.opnfv.org"}
 export DEPLOY_SCENARIO=${DEPLOY_SCENARIO:-"os-nosdn-nofeature"}
 # attempt to sync Ansible version used by Kubespray with the rest
 export XCI_KUBE_ANSIBLE_PIP_VERSION=$XCI_ANSIBLE_PIP_VERSION
