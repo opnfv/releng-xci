@@ -35,8 +35,8 @@ export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"b29646d0e
 export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"403888919bc7f40c1c51f32fe23dff44da3cbcca"}
 # HEAD of ironic-inspector-client "stable/rocky" as of 30.08.2018
 export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-"eb588de8ba69d750223b024b24346c088c023272"}
-# HEAD of osa "stable/rocky" as of 07.09.2018
-export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"ff6161e7f08b8ffe9ff6e0552517ea3f10292cf8"}
+# HEAD of osa "stable/rocky" as of 05.10.2018
+export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"cf2b7bab51dd7bc704460f8ff5abe2f0540ed833"}
 export KEEPALIVED_VERSION=$(grep -E '.*name: keepalived' -A 3 \
        ${XCI_PATH}/xci/installer/osa/files/ansible-role-requirements.yml \
        | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
