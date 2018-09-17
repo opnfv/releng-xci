@@ -32,7 +32,7 @@ ls -al . && cd ~
 echo "------------------------------------------------------"
 
 # docker image to use will be different for healthcheck and smoke test
-DOCKER_IMAGE_NAME="ollivier/functest-${FUNCTEST_SUITE_NAME}"
+DOCKER_IMAGE_NAME="opnfv/functest-${FUNCTEST_SUITE_NAME}:${FUNCTEST_VERSION}"
 
 sudo docker run --env-file env \
     -v $(pwd)/openrc:/home/opnfv/functest/conf/env_file  \
