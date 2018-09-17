@@ -19,6 +19,7 @@
 - include: os-nova-install.yml
 - include: os-neutron-install.yml
 - include: os-heat-install.yml
+- include: os-ceilometer-install.yml
 - include: os-horizon-install.yml
   when: not core_openstack | default(False)
 - include: os-swift-install.yml
