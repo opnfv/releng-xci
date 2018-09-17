@@ -76,7 +76,7 @@
 - name: os_ceilometer
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_ceilometer
-  version: 325c9741c42356a7275015b77fad1fa7136a55e9
+  version: b95b13d0db633ab054e66fb488853df35e738c3d
 - name: os_cinder
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_cinder
@@ -116,7 +116,7 @@
 - name: os_neutron
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_neutron
-  version: 3db0b9ee91f6e8b99eb4ada99fa5ed75fd826e62
+  version: 4332fde94c3232324d0b6cad3120cf72e287f5f5
 - name: os_nova
   scm: git
   src: https://git.openstack.org/openstack/openstack-ansible-os_nova
