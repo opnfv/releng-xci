@@ -10,6 +10,35 @@
 # Avoid double sourcing the file
 [[ -n ${XCI_LIB_SOURCED:-} ]] && return 0 || export XCI_LIB_SOURCED=1
 
+function usage() {
+    echo "
+Usage: $(basename ${0}) [-i <idf>] [-p <pdf>]
+
+    -h: This message
+    -i: Installer Descriptor File (IDF). (Default ${XCI_PATH}/xci/var/idf.yml)
+    -p: Pod Descriptor File (PDF). (Default ${XCI_PATH}/xci/var/pdf.yml)
+    "
+    exit 0
+}
+
+function parse_cmdline_opts() {
+    local IDF=${XCI_PATH}/xci/var/idf.yml
+    local PDF=${XCI_PATH}/xci/var/pdf.yml
+
+    while getopts ":hi:p:" o; do
+        case "${o}" in
+            i) IDF="${OPTARG}" ;;
+            p) PDF="${OPTARG}" ;;
+            h) usage ;;
+            *) echo "ERROR: Invalid option '-${OPTARG}'"; usage ;;
+        esac
+    done
+
+    # Do all the exports
+    export PDF=$(realpath ${PDF})
+    export IDF=$(realpath ${IDF})
+}
+
 function bootstrap_xci_env() {
     # Declare our virtualenv
     export XCI_VENV=${XCI_PATH}/venv/
