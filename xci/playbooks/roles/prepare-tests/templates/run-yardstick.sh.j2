@@ -18,7 +18,6 @@ rc_file_vol="-v /root/openrc:/etc/yardstick/openstack.creds"
 {% else %}
 {# k8 scenario name is hardcoded for the timebeing until we clarify #}
 {# which suite name we should use for the scenarios without yardstick suites #}
-DEPLOY_SCENARIO="k8-nosdn-nofeature-noha"
 rc_file_vol="-v /root/admin.conf:/etc/yardstick/admin.conf"
 {% endif %}
 
