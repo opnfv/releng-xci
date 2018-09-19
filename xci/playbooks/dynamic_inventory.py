@@ -74,8 +74,8 @@ class XCIInventory(object):
         self.args = parser.parse_args()
 
     def read_pdf_idf(self):
-        pdf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/pdf.yml"
-        idf_file = os.path.dirname(os.path.realpath(__file__)) + "/../var/idf.yml"
+        pdf_file = os.environ['PDF']
+        idf_file = os.environ['IDF']
         nodes = []
         host_networks = {}
 
