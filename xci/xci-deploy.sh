@@ -50,6 +50,11 @@ done
 unset user_local_dev_vars local_user_var
 
 #
+# Parse command line options
+#
+parse_cmdline_opts $*
+
+#
 # Bootstrap environment for XCI Deployment
 #
 echo "Info: Preparing host environment for the XCI deployment"
