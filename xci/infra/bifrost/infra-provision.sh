@@ -30,6 +30,8 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -e vm_domain_type=${VM_DOMAIN_TYPE} \
         -e baremetal_json_file=/tmp/baremetal.json \
         -e xci_distro=${XCI_DISTRO} \
+	-e pdf=${PDF} \
+	-e idf=${IDF} \
         ${BIFROST_ROOT_DIR}/playbooks/xci-create-virtual.yml
 
 
