@@ -39,6 +39,7 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -i ${XCI_PATH}/xci/playbooks/dynamic_inventory.py \
         ${BIFROST_ROOT_DIR}/playbooks/xci-prepare-virtual.yml
 
+echo "test"
 source ${XCI_CACHE}/repos/bifrost/scripts/bifrost-env.sh
 
 # This is hardcoded to delegate to localhost but we really need to delegate to opnfv instead.
