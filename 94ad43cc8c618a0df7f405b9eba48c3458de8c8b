@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_c87e5be4",
+        "filename": "xci/infra/bifrost/infra-provision.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-10-01T11:41:30Z",
+      "side": 1,
+      "message": "when opnfv-virtual.yml is over, the server is sometimes still running with the IPA image and thus it responds to ssh. The sleep 60 tries to avoid having the server responding to ssh once we get into wait-for-baremetal.yml, i.e. make sure the server is not running. Nevertheless, I agree with you, I need to find some sort of function which checks if ssh is up and in that case, waits until it is down.",
+      "parentUuid": "5a682502_a8db1f1a",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 58
+      },
+      "revId": "94ad43cc8c618a0df7f405b9eba48c3458de8c8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_88d8e31e",
         "filename": "xci/infra/bifrost/playbooks/opnfv-virtual.yml",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2018-10-01T10:02:09Z",
       "side": 1,
       "message": "you lost me here. Why did you drop the qcow2 part? This is needed for VM deployments no?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 41
+      },
+      "revId": "94ad43cc8c618a0df7f405b9eba48c3458de8c8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_08605331",
+        "filename": "xci/infra/bifrost/playbooks/opnfv-virtual.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-10-01T11:41:30Z",
+      "side": 1,
+      "message": "Nope, this is a \"bug\" I found. For VM deployments, the image is already downloaded in the bifrost-ironic-install role here: https://github.com/openstack/bifrost/blob/master/playbooks/roles/bifrost-ironic-install/tasks/bootstrap.yml#L306-L308. When not doing baremetal, we skip \"bifrost-create-dib-image\"",
+      "parentUuid": "5a682502_88d8e31e",
       "range": {
         "startLine": 79,
         "startChar": 0,
