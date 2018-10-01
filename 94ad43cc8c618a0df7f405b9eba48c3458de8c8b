@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_a8db1f1a",
+        "filename": "xci/infra/bifrost/infra-provision.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-10-01T10:02:09Z",
+      "side": 1,
+      "message": "so this is not necessary. you can probably add some retries: and delay: in the playbook itself. From some servers sleep 60 could be enough, for others it wont. The playbook already uses timeout 3600 which is enough for what you want to do no?",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 58
+      },
+      "revId": "94ad43cc8c618a0df7f405b9eba48c3458de8c8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_88d8e31e",
+        "filename": "xci/infra/bifrost/playbooks/opnfv-virtual.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-10-01T10:02:09Z",
+      "side": 1,
+      "message": "you lost me here. Why did you drop the qcow2 part? This is needed for VM deployments no?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 41
+      },
+      "revId": "94ad43cc8c618a0df7f405b9eba48c3458de8c8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
