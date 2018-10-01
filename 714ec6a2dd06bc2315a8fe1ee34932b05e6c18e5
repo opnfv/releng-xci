@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_48f52b82",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 21
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-10-01T10:12:03Z",
+      "side": 1,
+      "message": "it is a bit unorthodox to have this here since this is meant to export user facing variables. But his variable can\u0027t be overridden by users. Please move it to xci/files/xci-lib.sh \n\nfunction bootstrap_xci_env()",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 92
+      },
+      "revId": "714ec6a2dd06bc2315a8fe1ee34932b05e6c18e5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
