@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_2e455770",
+        "filename": "xci/infra/bifrost/infra-provision.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-10-03T08:18:53Z",
+      "side": 1,
+      "message": "Well you can simply modify wait-for-baremetal to check if the host is live. As long as it\u0027s live then you retry over and over. When it\u0027s dead, then you move to the next step which checks when SSH is up again",
+      "parentUuid": "5a682502_c87e5be4",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 58
+      },
+      "revId": "94ad43cc8c618a0df7f405b9eba48c3458de8c8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_88d8e31e",
         "filename": "xci/infra/bifrost/playbooks/opnfv-virtual.yml",
         "patchSetId": 11
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "Nope, this is a \"bug\" I found. For VM deployments, the image is already downloaded in the bifrost-ironic-install role here: https://github.com/openstack/bifrost/blob/master/playbooks/roles/bifrost-ironic-install/tasks/bootstrap.yml#L306-L308. When not doing baremetal, we skip \"bifrost-create-dib-image\"",
       "parentUuid": "5a682502_88d8e31e",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 41
+      },
+      "revId": "94ad43cc8c618a0df7f405b9eba48c3458de8c8b",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_ce4f8391",
+        "filename": "xci/infra/bifrost/playbooks/opnfv-virtual.yml",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-10-03T08:18:53Z",
+      "side": 1,
+      "message": "I don\u0027t understand. The code that you dropped is the qcow2 OS images which are flushed to the virtual disks for the virtual machines. They have nothing to do with IPA",
+      "parentUuid": "5a682502_08605331",
       "range": {
         "startLine": 79,
         "startChar": 0,
