@@ -1,14 +1,16 @@
-create-vm-nodes
+create-nodes
 ================
 
-This role creates the XCI VMs used to deploy scenarios. It is a branch from the
-bifrost role "bifrost-create-vm-nodes":
+This role creates the all nodes required for the XCI deployment. In a baremetal
+deployment, it creates the OPNFV VM and provisions the physical servers. In a
+non-baremetal deployment, it creates the OPNFV VM and the rest of VMs used to
+deploy scenarios. It is based on the bifrost role:
 
 https://github.com/openstack/bifrost/tree/master/playbooks/roles/bifrost-create-vm-nodes
 
-It creates the VMs based on the pdf and idf document which describes the
-characteristics of the VMs or physical servers. For more information check the
-spec:
+It creates the VMs or provisions the physical servers based on the pdf and idf
+document which describes the characteristics of the VMs or physical servers.
+For more information check the spec:
 
 https://github.com/opnfv/releng-xci/blob/master/docs/specs/infra_manager.rst
 
@@ -19,9 +21,9 @@ Flow
 The script xci/infra/bifrost/scripts/bifrost-provision.sh will call the
 playbook that starts executing the role:
 
-xci-create-vms.yaml
+xci-setup-nodes.yaml
 
-Note that at this stage the pdf and the opnfv_vm.yml are loaded.
+Note that at this stage the pdf and the opnfv_pdf_vm.yml are loaded.
 
 Some distro specific tasks related to variables are done and then the
 prepare_libvirt playbook is run. This playbook, as the name says,
@@ -32,7 +34,9 @@ the data and finally dump it all into the baremetal_json_file which will be
 read by bifrost in the subsequent role.
 
 The opnfv vm and the rest of vms get created using the xml libvirt template,
-which gets filled with the pdf and opnfv_vm.yml variables.
+which gets filled with the pdf and opnfv_pdf_vm.yml variables. If there is a
+baremetal deployment, the nodes_json_data gets filled in the
+baremetalhoststojson.yml playbook which basically reads the pdf info.
 
 Finally nodes_json_data is dumped.
 
@@ -49,18 +53,9 @@ The following packages are required and ensured to be present:
 Warning
 -------
 
-- It is currently assumed that the OS for the VM will be installed in the first
-disk of the node described by the pdf. That's why there is a [0] in:
-
-    - name: create volume for vm
-      command: >
-        virsh --connect {{ vm_libvirt_uri }}
-        vol-create-as {{ node_storage_pool }} {{ vm_name }}.qcow2
-        {{ item.disks[0].disk_capacity }}
-        --format qcow2 {{ prealloc|default("") }}
-
 - It is assumed that the opnfv VM characteristics are not described in the pdf
-but in a similar document called opnfv_vm.yml
+but in a similar document called opnfv_pdf_vm.yml. There is also an idf
+document opnfv_idf_vm.yml
 
 - All references to csv from bifrost-create-vm-nodes were removed
 
