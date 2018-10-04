@@ -71,7 +71,7 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
     -e ironicclient_source_install=true \
     -e ironicclient_git_branch=${BIFROST_IRONIC_CLIENT_VERSION:-master} \
     -e ironic_git_branch=${BIFROST_IRONIC_VERSION:-master} \
-    -e use_prebuilt_images=${BIFROST_USE_PREBUILT_IMAGES:-false} \
+    -e create_image_via_dib=${BIFROST_CREATE_IMAGE_VIA_DIB:-true} \
     -e xci_distro=${XCI_DISTRO} \
     -e ironic_url="http://192.168.122.2:6385/" \
     ${BIFROST_ROOT_DIR}/playbooks/opnfv-virtual.yml

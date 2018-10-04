@@ -52,7 +52,7 @@
             mode: '0755'
             owner: 'root'
             group: 'root'
-      when: use_prebuilt_images | bool == true
+      when: create_image_via_dib | bool == false
     - name: Ensure /etc/hosts has good defaults
       lineinfile:
         create: yes
@@ -101,7 +101,6 @@
       when:
         - create_image_via_dib | bool == true
         - transform_boot_image | bool == false
-        - use_prebuilt_images | bool == false
     - role: bifrost-keystone-client-config
       clouds:
         bifrost:
