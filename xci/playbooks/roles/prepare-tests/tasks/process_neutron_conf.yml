@@ -1,0 +1,19 @@
+---
+- name: Collecting ODL variables
+  block:
+  - name: Fetch odl_password variable
+    shell: "cat /tmp/ml2_conf.ini | grep password | cut -d ' ' -f3"
+    register: odl_password
+
+  - name: Fetch odl_username variable
+    shell: "cat /tmp/ml2_conf.ini | grep username | cut -d ' ' -f3"
+    register: odl_username
+
+  - name: Fetch odl_port variable
+    shell: "cat /tmp/ml2_conf.ini | grep url | cut -d ':' -f3 | cut -d '/' -f1"
+    register: odl_port
+
+  - name: Fetch odl_ip variable
+    shell: "cat /tmp/ml2_conf.ini | grep url | cut -d ':' -f2 | cut -d '/' -f3"
+    register: odl_ip
+  when: "'-odl-' in deploy_scenario"
