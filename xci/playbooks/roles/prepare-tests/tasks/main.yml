@@ -40,6 +40,8 @@
       when: gateway_ip_result|failed
   when: deploy_scenario is match("os-.*")
 
+- include_tasks: process_neutron_conf.yml
+
 - name: prepare environment file for tests
   template:
     src: env.j2
