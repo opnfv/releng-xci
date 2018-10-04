@@ -22,7 +22,7 @@
       include_vars:
         file: "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
   roles:
-    - role: create-vm-nodes
+    - role: create-nodes
       become: yes
     - role: clone-repository
       project: "opnfv/bifrost"
