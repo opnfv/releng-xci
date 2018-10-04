@@ -32,7 +32,8 @@
 - scenario: os-nosdn-osm
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
+  refspec: refs/changes/29/63129/8
+  version: 955ee12cc04138ffc6a25436a17e57ac230273e4
   role: scenarios/os-nosdn-osm/role/os-nosdn-osm
   installers:
     - installer: osa
