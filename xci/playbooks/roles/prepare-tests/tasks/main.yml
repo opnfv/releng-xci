@@ -26,6 +26,8 @@
    state: present
    extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
 
+- include_tasks: process_neutron_conf.yml
+
 - name: prepare environment file for tests
   template:
     src: env.j2

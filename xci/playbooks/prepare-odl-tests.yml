@@ -12,11 +12,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-- name: Prepare the environment for testing
-  hosts: opnfv
+- name: Fetch info from neutron
+  hosts: opendaylight
   user: root
-  vars_files:
-    - ../var/opnfv.yml
-    - ../installer/osa/files/openstack_services.yml
-  roles:
-    - role: "prepare-tests"
+  tasks:
+    - name: Fetch the ml2_conf.ini to process ODL variables
+      fetch:
+        src: "/etc/neutron/plugins/ml2/ml2_conf.ini"
+        dest: "/tmp/ml2_conf.ini"
+        flat: yes
