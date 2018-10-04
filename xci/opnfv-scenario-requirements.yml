@@ -74,7 +74,8 @@
 - scenario: os-odl-sfc_osm
   scm: git
   src: https://gerrit.opnfv.org/gerrit/sfc
-  version: master
+  version: 1763a3942968e92403de347ded4f602a46e858ee
+  refspec: refs/changes/67/63467/7
   role: scenarios/os-odl-sfc_osm/role/os-odl-sfc_osm
   installers:
     - installer: osa
