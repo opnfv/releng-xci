@@ -76,9 +76,7 @@
       testing: false
       enabled_hardware_types: ipmi
       network_interface: "{{ ansible_default_ipv4.interface }}"
-    # NOTE(TheJulia): While the next step creates a ramdisk, some elements
-    # do not support ramdisk-image-create as they invoke steps to cleanup
-    # the ramdisk which causes ramdisk-image-create to believe it failed.
+      # Create the IPA image for ironic to boot the nodes and write the final distro in the hard drive
     - role: bifrost-create-dib-image
       dib_imagename: "{{ http_boot_folder }}/ipa"
       build_ramdisk: false
@@ -88,7 +86,7 @@
       dib_notmpfs: true
       when:
         - create_ipa_image | bool == true
-        - not use_prebuilt_images | bool == false
+      # Create the final distro image
     - role: bifrost-create-dib-image
       dib_imagetype: "qcow2"
       dib_imagename: "{{deploy_image}}"
