@@ -26,6 +26,10 @@
    state: present
    extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
 
+# odl scenarios require to add odl variables to env
+- include_tasks: process_neutron_conf.yml
+  when: "'-odl-' in deploy_scenario"
+
 - name: prepare environment file for tests
   template:
     src: env.j2
