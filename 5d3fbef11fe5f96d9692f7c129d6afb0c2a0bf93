@@ -22,6 +22,30 @@
       "revId": "5d3fbef11fe5f96d9692f7c129d6afb0c2a0bf93",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_a58d0534",
+        "filename": "xci/installer/osa/files/setup-openstack.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 7167
+      },
+      "writtenOn": "2018-10-04T07:51:22Z",
+      "side": 1,
+      "message": "hhmmm I agree!\nActually, I have tested it and something went wrong and the deployment failed. I don\u0027t know if it was just a bad luck this deployment...\nI\u0027ll try again a deployment late today and, tomorrow, I\u0027ll have a better picture about this.",
+      "parentUuid": "5a682502_45ceb184",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 34
+      },
+      "revId": "5d3fbef11fe5f96d9692f7c129d6afb0c2a0bf93",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
