@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_45ceb184",
+        "filename": "xci/installer/osa/files/setup-openstack.yml",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-10-04T07:14:14Z",
+      "side": 1,
+      "message": "I think it makes more sense if it gets installed before tacker",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 34
+      },
+      "revId": "5d3fbef11fe5f96d9692f7c129d6afb0c2a0bf93",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
