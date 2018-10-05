@@ -367,7 +367,7 @@ if [[ $? != 0 ]]; then
 #!/bin/bash
 set -o pipefail
 export XCI_FLAVOR=mini
-export BIFROST_USE_PREBUILT_IMAGES=true
+export BIFROST_CREATE_IMAGE_VIA_DIB=false
 cd ~/releng-xci/xci
 ./xci-deploy.sh | ts
 EOF
