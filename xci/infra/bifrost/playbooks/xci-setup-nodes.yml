@@ -39,6 +39,15 @@
         port: 22
         connect_timeout: 10
         timeout: 180
+    # No ansible module for brctl found
+    - name: Add pxe interface to the bridge
+      shell: "brctl addif {{ item.bridge }} {{ item.interface }}"
+      become: true
+      when: baremetal | bool == true
+      with_items:
+        - { bridge: "{{ network_bridge_admin }}", interface: "{{ network_interface_admin }}" }
+        - { bridge: "{{ network_bridge_mgmt }}", interface: "{{ network_interface_mgmt }}" }
+
     - name: Load distribution variables
       include_vars:
         file: "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
