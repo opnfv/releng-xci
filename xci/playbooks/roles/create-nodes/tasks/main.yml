@@ -10,6 +10,8 @@
     name: "{{ required_packages }}"
 
 - include_tasks: prepare_libvirt.yml
+  with_items: "{{ libvirt_networks }}"
+
 - include_tasks: download_opnfvimage.yml
 
 - name: create placeholder var for vm entries in JSON format
