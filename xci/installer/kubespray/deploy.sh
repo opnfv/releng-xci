@@ -24,6 +24,10 @@ export ANSIBLE_ROLES_PATH=$HOME/.ansible/roles:/etc/ansible/roles:${XCI_PATH}/xc
 # - creates log directory
 #-------------------------------------------------------------------------------
 
+
+echo "This is the PDF: $PDF"
+echo "This is the IDF: $IDF"
+
 echo "Info: Configuring localhost for kubespray"
 echo "-----------------------------------------------------------------------"
 cd $XCI_PLAYBOOKS
@@ -31,6 +35,10 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} -e XCI_PATH="${XCI_PATH}" \
         -i dynamic_inventory.py configure-localhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured localhost for kubespray"
+
+
+echo "This is the PDF: $PDF"
+echo "This is the IDF: $IDF"
 
 #-------------------------------------------------------------------------------
 # Configure deployment host, opnfv
@@ -49,6 +57,10 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
         -i ${XCI_PLAYBOOKS}/dynamic_inventory.py configure-opnfvhost.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Configured opnfv deployment host for kubespray"
+
+
+echo "This is the PDF: $PDF"
+echo "This is the IDF: $IDF"
 
 #-------------------------------------------------------------------------------
 # Configure target hosts for kubespray
@@ -69,6 +81,10 @@ if [ $XCI_FLAVOR != "aio" ]; then
     echo "Info: Configured target hosts for kubespray"
 fi
 
+
+echo "This is the PDF: $PDF"
+echo "This is the IDF: $IDF"
+
 echo "Info: Using kubespray to deploy the kubernetes cluster"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "set -o pipefail; export XCI_FLAVOR=$XCI_FLAVOR; export INSTALLER_TYPE=$INSTALLER_TYPE; \
@@ -76,6 +92,10 @@ ssh root@$OPNFV_HOST_IP "set -o pipefail; export XCI_FLAVOR=$XCI_FLAVOR; export 
         -i opnfv_inventory/dynamic_inventory.py cluster.yml -b | tee setup-kubernetes.log"
 scp root@$OPNFV_HOST_IP:~/releng-xci/.cache/repos/kubespray/setup-kubernetes.log \
         $LOG_PATH/setup-kubernetes.log
+
+
+echo "This is the PDF: $PDF"
+echo "This is the IDF: $IDF"
 
 cd $K8_XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
