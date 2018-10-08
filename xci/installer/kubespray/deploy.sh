@@ -69,13 +69,16 @@ if [ $XCI_FLAVOR != "aio" ]; then
     echo "Info: Configured target hosts for kubespray"
 fi
 
+
 echo "Info: Using kubespray to deploy the kubernetes cluster"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "set -o pipefail; export XCI_FLAVOR=$XCI_FLAVOR; export INSTALLER_TYPE=$INSTALLER_TYPE; \
+        export IDF=/root/releng-xci/xci/var/idf.yml; export PDF=/root/releng-xci/xci/var/pdf.yml; \
         cd releng-xci/.cache/repos/kubespray/; ansible-playbook \
         -i opnfv_inventory/dynamic_inventory.py cluster.yml -b | tee setup-kubernetes.log"
 scp root@$OPNFV_HOST_IP:~/releng-xci/.cache/repos/kubespray/setup-kubernetes.log \
         $LOG_PATH/setup-kubernetes.log
+
 
 cd $K8_XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} \
