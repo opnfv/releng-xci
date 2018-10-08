@@ -84,6 +84,17 @@ idf:
       node3: node2
       node4: master2
       node5: master3
+    network:
+      # network mapping
+      network_mapping:
+        # Management network used by installer components to communicate
+        net-mgmt: mgmt
+        # Storage Network
+        net-storage: storage
+        # Internal network for communication between VNF
+        net-internal: private
+        # Public network for VNF remote acces (ext-net in Openstack)
+        net-vnf: public
 xci:
   pod_name: vpod1
   net_config: *net_config
