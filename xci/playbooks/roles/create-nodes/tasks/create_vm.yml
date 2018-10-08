@@ -102,6 +102,8 @@
       PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
     register: vbmc_list
 
+  - debug: var=vbmc_list
+
   # NOTE(NobodyCam): Space at the end of the find clause is required for proper matching.
   - name: delete vm from virtualbmc if it is there
     command: vbmc delete {{ vm_name }}
@@ -121,6 +123,14 @@
     command: vbmc start {{ vm_name }}
     environment:
       PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
+
+  - name: get list of nodes from virtualbmc
+    command: vbmc list
+    environment:
+      PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
+    register: vbmc_list2
+
+  - debug: var=vbmc_list2
 
   - name: get XML of the vm
     virt:
