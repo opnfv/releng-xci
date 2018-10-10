@@ -69,6 +69,7 @@ if [ $XCI_FLAVOR != "aio" ]; then
     echo "Info: Configured target hosts for kubespray"
 fi
 
+
 echo "Info: Using kubespray to deploy the kubernetes cluster"
 echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "set -o pipefail; export XCI_FLAVOR=$XCI_FLAVOR; export INSTALLER_TYPE=$INSTALLER_TYPE; \
