@@ -26,20 +26,6 @@
    state: present
    extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
 
-- name: create public network gateway for testing
-  block:
-    - name: check if the gateway was already set
-      shell: "ip a | grep {{ gateway_ip }}"
-      register: gateway_ip_result
-      ignore_errors: True
-      changed_when: False
-
-    - name: add public network gateway
-      command: "ip addr add {{ gateway_ip_mask }} brd {{ broadcast_ip }} dev {{ gateway_interface }}"
-      changed_when: False
-      when: gateway_ip_result|failed
-  when: deploy_scenario is match("os-.*")
-
 - name: prepare environment file for tests
   template:
     src: env.j2
