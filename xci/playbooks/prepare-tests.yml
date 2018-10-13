@@ -22,6 +22,51 @@
         dest: "/tmp/ml2_conf.ini"
         flat: yes
 
+
+- name: check filesystem
+  hosts: localhost
+  connection: local
+  command: "ls /home"
+  register: outputls
+
+- debug: var=outputls
+
+
+- name: check filesystem2
+  hosts: localhost
+  connection: local
+  command: "ls /home/devuser/releng-xci"
+  register: outputls2
+
+- debug: var=outputls2
+
+
+- name: check filesystem3
+  hosts: localhost
+  connection: local
+  command: "ls /home/devuser/releng-xci/.cache/repos/"
+  register: outputls3
+
+- debug: var=outputls3
+
+
+- name: check filesystem4
+  hosts: localhost
+  connection: local
+  command: "ls /home/devuser/releng-xci/.cache/repos/openstack-ansible/inventory"
+  register: outputls4
+
+- debug: var=outputls4
+
+- name: check inventory
+  hosts: localhost
+  connection: local
+  command: "python /home/devuser/releng-xci/.cache/repos/openstack-ansible/inventory/dynamic_inventory.py"
+  register: outputpython
+
+- debug: var=outputpython
+
+
 - name: Prepare the environment for testing
   hosts: opnfv
   user: root
