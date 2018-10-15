@@ -12,6 +12,7 @@
   vars_files:
     - "{{ xci_path }}/xci/var/opnfv.yml"
     - "{{ xci_path }}/xci/installer/osa/files/openstack_services.yml"
+    - "{{ xci_path }}/xci/installer/osa/files/{{ xci_flavor }}/user_variables.yml"
 
   environment:
     http_proxy: "{{ lookup('env','http_proxy') }}"
