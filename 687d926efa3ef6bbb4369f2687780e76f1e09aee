@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_9cd137fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-10-16T07:04:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a682502_21d1dc57",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 50
+      },
+      "revId": "687d926efa3ef6bbb4369f2687780e76f1e09aee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_01d6604f",
         "filename": "/COMMIT_MSG",
         "patchSetId": 17
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_7ccedb5b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 17
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-10-16T07:04:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a682502_01d6604f",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 59
+      },
+      "revId": "687d926efa3ef6bbb4369f2687780e76f1e09aee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_61cbd4a5",
         "filename": "xci/infra/bifrost/playbooks/wait-for-baremetal.yml",
         "patchSetId": 17
@@ -59,6 +107,30 @@
       "writtenOn": "2018-10-15T12:17:24Z",
       "side": 1,
       "message": "is 60 seconds enough to reboot the node?",
+      "range": {
+        "startLine": 12,
+        "startChar": 70,
+        "endLine": 12,
+        "endChar": 72
+      },
+      "revId": "687d926efa3ef6bbb4369f2687780e76f1e09aee",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_dcdbaf19",
+        "filename": "xci/infra/bifrost/playbooks/wait-for-baremetal.yml",
+        "patchSetId": 17
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-10-16T07:04:08Z",
+      "side": 1,
+      "message": "Increased :)",
+      "parentUuid": "5a682502_61cbd4a5",
       "range": {
         "startLine": 12,
         "startChar": 70,
