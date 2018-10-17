@@ -22,6 +22,30 @@
       "revId": "185699728fb6182e640923085998908577e57bfa",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_c66c799f",
+        "filename": "xci/playbooks/roles/create-nodes/tasks/barematalhoststojson.yml",
+        "patchSetId": 34
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-10-17T15:17:09Z",
+      "side": 1,
+      "message": "good catch!",
+      "parentUuid": "5a682502_d3e55da9",
+      "range": {
+        "startLine": 28,
+        "startChar": 8,
+        "endLine": 28,
+        "endChar": 21
+      },
+      "revId": "185699728fb6182e640923085998908577e57bfa",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
