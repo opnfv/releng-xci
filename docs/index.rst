@@ -4,9 +4,9 @@
 .. SPDX-License-Identifier: CC-BY-4.0
 .. (c) Fatih Degirmenci (fatih.degirmenci@ericsson.com)
 
-**************************************
-Cross Community Continuous Integration
-**************************************
+********************************************
+Cross Community Continuous Integration (XCI)
+********************************************
 
 Contents:
 
