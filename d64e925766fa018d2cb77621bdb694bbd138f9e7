@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_5fcb0c72",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-10-19T08:04:38Z",
+      "side": 1,
+      "message": "you have now changed the default option from False to True. Why?",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 73
+      },
+      "revId": "d64e925766fa018d2cb77621bdb694bbd138f9e7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_bfc86075",
+        "filename": "xci/infra/bifrost/infra-provision.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-10-19T08:04:38Z",
+      "side": 1,
+      "message": "again, default option changed. Can you document it in the commit message?",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 67
+      },
+      "revId": "d64e925766fa018d2cb77621bdb694bbd138f9e7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_9fc5a45d",
+        "filename": "xci/infra/bifrost/playbooks/opnfv-virtual.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-10-19T08:04:38Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 48
+      },
+      "revId": "d64e925766fa018d2cb77621bdb694bbd138f9e7",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
