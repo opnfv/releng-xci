@@ -25,15 +25,15 @@
 #-------------------------------------------------------------------------------
 # use releng-xci from master until the development work with the sandbox is complete
 export OPNFV_RELENG_VERSION="master"
-# HEAD of bifrost "master" as of 11.10.2018
-export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"483e3a7a6ff2186b68b00c29b35213bee8074ebe"}
-# HEAD of ironic "stable/rocky" as of 11.10.2018
-export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-"4763762ae98cd871c4a90c8eacbdea7ead4f6f8b"}
-# HEAD of ironic-client "stable/rocky" as of 11.10.2018
-export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"b29646d0e8db4c534ad7ca495a3fb73882f1ef43"}
-# HEAD of ironic-inspector "stable/rocky" as of 11.10.2018
-export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"e89450c44e41ec2ddada7909e63f1edc1aa1afdd"}
-# HEAD of ironic-inspector-client "stable/rocky" as of 11.10.2018
+# HEAD of bifrost "master" as of 18.10.2018
+export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"0f605cd723a68e2c2bb9b30a15a08e5aba777bd5"}
+# HEAD of ironic "master" as of 18.10.2018
+export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-"754361489d6161bde85375e844fe2bf0e2b4dd0a"}
+# HEAD of ironic-client "master" as of 18.10.2018
+export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"a28ccb9ef8a55f96923ba4a3af12b73a91b2e448"}
+# HEAD of ironic-inspector "master" as of 18.10.2018
+export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"05a86b3d574f3262f8ada3d145a352afb8557cdb"}
+# HEAD of ironic-inspector-client "master" as of 18.10.2018
 export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-"cb370b776aa274b0ecfacfb29fa5035670839308"}
 # HEAD of osa "stable/rocky" as of 05.10.2018
 export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"cf2b7bab51dd7bc704460f8ff5abe2f0540ed833"}
