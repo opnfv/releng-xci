@@ -199,7 +199,7 @@ ansible_lint() {
     set -eu
     local playbooks_dir=(xci/playbooks xci/installer/osa/playbooks xci/installer/kubespray/playbooks)
     # Extract role from scenario information
-    local testing_role=$(sed -n "/^- scenario: ${DEPLOY_SCENARIO}/,/^$/p" ${XCI_PATH}/xci/opnfv-scenario-requirements.yml | grep role | rev | cut -d '/' -f -1 | rev)
+    local testing_role=$(sed -n "/^- scenario: ${DEPLOY_SCENARIO}$/,/^$/p" ${XCI_PATH}/xci/opnfv-scenario-requirements.yml | grep role | rev | cut -d '/' -f -1 | rev)
 
     # clear XCI_CACHE
     rm -rf ${XCI_CACHE}/repos/openstack-ansible-tests
