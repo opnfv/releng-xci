@@ -27,13 +27,8 @@
 
 - name: "Generating the json describing baremetal nodes"
   block:
-
   - set_fact:
-      host_group: "{{ node_default_groups }}"
-
-  - set_fact:
-      host_group: "{{ node_default_groups | union(node_groups[item.name]) }}"
-    when: node_groups[item.name] is defined
+      host_group: "{{ (node_groups[item.name] is defined) | ternary(node_default_groups | union(node_groups[item.name]), node_default_groups) }}"
 
   - name: BAREMETAL - Fetch the ip
     set_fact:
