@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_75c9bb77",
+        "filename": "xci/playbooks/roles/create-nodes/tasks/create_vm.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-10-30T14:52:34Z",
+      "side": 1,
+      "message": "how about using the ternary filter? ie\n\nvm_name: \"{{ (\u0027kubespray\u0027 in installer_type) |ternary(idf.kubespray.hostnames[item.1.name], idf.osa.hostnames[item.1.name]) }}\"",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "10facec920edd81c88a356023d571b9c4305d70a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
