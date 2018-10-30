@@ -2,7 +2,12 @@
 - name: "Creating VM"
   block:
   - set_fact:
-      vm_name: "{{ node_names[item.0 | int] }}"
+      vm_name: "{{ idf.osa.hostnames[item.1.name] }}"
+    when: '"osa" in installer_type'
+
+  - set_fact:
+      vm_name: "{{ idf.kubespray.hostnames[item.1.name] }}"
+    when: '"kubespray" in installer_type'
 
   - set_fact:
       vm_log_file: "{{ node_logdir }}/{{ vm_name }}_console.log"
