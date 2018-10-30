@@ -5,7 +5,6 @@ baremetal_json_file: '/tmp/baremetal.json'
 # We collect these parameters from the pdf
 vm_nic: "virtio"
 vm_disk_cache: unsafe
-node_names: "{{ lookup('env', 'NODE_NAMES').split() }}"
 node_groups: {}
 node_default_groups: "{{ lookup('env', 'DEFAULT_HOST_GROUPS').split() | default(['baremetal'], true) }}"
 
