@@ -30,6 +30,9 @@
   - set_fact:
       host_group: "{{ (node_groups[item.name] is defined) | ternary(node_default_groups | union(node_groups[item.name]), node_default_groups) }}"
 
+  - set_fact:
+      node_name: "{{ ('kubespray' in installer_type) | ternary(idf.kubespray.hostnames[item.name], idf.osa.hostnames[item.name]) }}"
+
   - name: BAREMETAL - Fetch the ip
     set_fact:
       admin_ip: "{{ item.interfaces[idf.net_config.admin.interface].address }}"
@@ -41,9 +44,9 @@
   - name: BAREMETAL - set the json entry for baremetal nodes
     set_fact:
       node_data:
-        name: "{{ item.name }}"
-        uuid: "{{ item.name | to_uuid }}"
-        host_groups: "{{ host_group }}"
+        name: "{{ node_name }}"
+        uuid: "{{ node_name | to_uuid }}"
+        host_groups: "{{ vm_host_group }}"
         driver: "ipmi"
         driver_info:
           power:
@@ -69,6 +72,6 @@
 
   - name: BAREMETAL - add created node info
     set_fact:
-      nodes_json_data: "{{ nodes_json_data | combine({item.name: node_data}) }}"
+      nodes_json_data: "{{ nodes_json_data | combine({node_name: node_data}) }}"
 
   when: (num_nodes | int) > (nodes_json_data | length | int) + 1
