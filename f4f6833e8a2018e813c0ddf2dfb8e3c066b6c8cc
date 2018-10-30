@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_754ffbbd",
+        "filename": "xci/playbooks/roles/create-nodes/tasks/create_vm.yml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-10-30T15:22:29Z",
+      "side": 1,
+      "message": "nit: space",
+      "revId": "f4f6833e8a2018e813c0ddf2dfb8e3c066b6c8cc",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
