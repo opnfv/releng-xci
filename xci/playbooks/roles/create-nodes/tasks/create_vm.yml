@@ -159,7 +159,7 @@
         name: "{{ vm_name }}"
         uuid: "{{ vm_name | to_uuid }}"
         host_groups: "{{ vm_host_group }}"
-        driver: "{{ vm_node_driver|default('ipmi') }}"
+        driver: "ipmi"
         driver_info:
           power:
             ipmi_address: "192.168.122.1"
