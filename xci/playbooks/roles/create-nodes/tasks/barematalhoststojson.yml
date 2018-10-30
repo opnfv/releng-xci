@@ -48,7 +48,7 @@
       node_data:
         name: "{{ item.name }}"
         uuid: "{{ item.name | to_uuid }}"
-        host_groups: "{{ vm_host_group }}"
+        host_groups: "{{ host_group }}"
         driver: "{{ vm_node_driver|default('ipmi') }}"
         driver_info:
           power:
