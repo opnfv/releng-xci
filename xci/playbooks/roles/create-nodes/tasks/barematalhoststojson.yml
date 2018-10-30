@@ -49,7 +49,7 @@
         name: "{{ item.name }}"
         uuid: "{{ item.name | to_uuid }}"
         host_groups: "{{ host_group }}"
-        driver: "{{ vm_node_driver|default('ipmi') }}"
+        driver: "ipmi"
         driver_info:
           power:
             ipmi_address: "{{ item.remote_management.address }}"
