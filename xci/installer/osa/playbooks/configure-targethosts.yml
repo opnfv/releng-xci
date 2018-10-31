@@ -26,7 +26,7 @@
     - role: bootstrap-host
     - role: configure-nfs
       when:
-        - "'compute' in group_names"
+        - "'compute00' in group_names"
     - role: configure-ceph
       when:
         - xci_ceph_enabled == "true"
