@@ -139,7 +139,7 @@ image_hosts:
     container_vars:
       limit_container_types: glance
       glance_nfs_client:
-        - server: "172.29.244.14"
+        - server: "172.29.244.12"
           remote_path: "/images"
           local_path: "/var/lib/glance/images"
           type: "nfs"
@@ -149,7 +149,7 @@ image_hosts:
     container_vars:
       limit_container_types: glance
       glance_nfs_client:
-        - server: "172.29.244.14"
+        - server: "172.29.244.12"
           remote_path: "/images"
           local_path: "/var/lib/glance/images"
           type: "nfs"
@@ -159,7 +159,7 @@ image_hosts:
     container_vars:
       limit_container_types: glance
       glance_nfs_client:
-        - server: "172.29.244.14"
+        - server: "172.29.244.12"
           remote_path: "/images"
           local_path: "/var/lib/glance/images"
           type: "nfs"
@@ -225,7 +225,7 @@ storage_hosts:
           nfs_mount_options: "rsize=65535,wsize=65535,timeo=1200,actimeo=120"
           nfs_shares_config: /etc/cinder/nfs_shares
           shares:
-            - ip: "172.29.244.14"
+            - ip: "172.29.244.12"
               share: "/volumes"
   controller01:
     ip: 172.29.236.12
@@ -238,7 +238,7 @@ storage_hosts:
           nfs_mount_options: "rsize=65535,wsize=65535,timeo=1200,actimeo=120"
           nfs_shares_config: /etc/cinder/nfs_shares
           shares:
-            - ip: "172.29.244.14"
+            - ip: "172.29.244.12"
               share: "/volumes"
   controller02:
     ip: 172.29.236.13
@@ -251,5 +251,5 @@ storage_hosts:
           nfs_mount_options: "rsize=65535,wsize=65535,timeo=1200,actimeo=120"
           nfs_shares_config: /etc/cinder/nfs_shares
           shares:
-            - ip: "172.29.244.14"
+            - ip: "172.29.244.12"
               share: "/volumes"
