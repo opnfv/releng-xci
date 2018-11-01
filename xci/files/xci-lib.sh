@@ -270,7 +270,7 @@ submit_bug_report() {
     echo "xci installer: $INSTALLER_TYPE"
     echo "xci scenario: $DEPLOY_SCENARIO"
     echo "Environment variables:"
-    env | grep --color=never '\(OPNFV\|XCI\|INSTALLER_TYPE\|OPENSTACK\|SCENARIO\|ANSIBLE\)'
+    env | grep --color=never '\(OPNFV\|XCI\|INSTALLER_TYPE\|OPENSTACK\|SCENARIO\|ANSIBLE\|BIFROST\|DIB\)'
     echo "-------------------------------------------------------------------------"
 }
 
