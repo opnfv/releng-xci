@@ -8,6 +8,8 @@
 - name: "Install required packages"
   package:
     name: "{{ required_packages }}"
+    update_cache: "{{ (ansible_pkg_mgr in ['apt', 'zypper']) | ternary('yes', omit) }}"
+    state: present
 
 - include_tasks: prepare_libvirt.yml
   with_items: "{{ libvirt_networks }}"

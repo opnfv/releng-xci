@@ -11,6 +11,7 @@
 - name: install required packages
   package:
     name: "{{ required_packages[ansible_pkg_mgr] }}"
+    update_cache: "{{ (ansible_pkg_mgr in ['apt', 'zypper']) | ternary('yes', omit) }}"
     state: present
 
 # Docker is needed for test frameworks

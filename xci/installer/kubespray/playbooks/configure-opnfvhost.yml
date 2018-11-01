@@ -82,7 +82,7 @@
       package:
         name: "{{ (ansible_pkg_mgr == 'zypper') | ternary('dbus-1', 'dbus') }}"
         state: present
-        update_cache: "{{ (ansible_pkg_mgr == 'apt') | ternary('yes', omit) }}"
+        update_cache: "{{ (ansible_pkg_mgr in ['apt', 'zypper']) | ternary('yes', omit) }}"
       when: xci_flavor == 'aio'
 
     - name: change dashboard server type to NodePort
