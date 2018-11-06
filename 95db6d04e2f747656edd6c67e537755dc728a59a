@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a682502_978731d7",
+        "filename": "xci/playbooks/roles/bootstrap-host/vars/main.yml",
+        "patchSetId": 37
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2018-11-06T16:09:58Z",
+      "side": 1,
+      "message": "It\u0027s just to make it more readable, especially for xxxx_vlan as we are using it also in the network_debian.yml and network_suse.yml.\n\nFor example, I prefer:     - { name: \"{{ mgmt_interface }}\", vlan_id: \"{{ (mgmt_vlan \u003d\u003d \u0027native\u0027) | ternary(omit, mgmt_vlan) }}\" }\n\nto\n\n    - { name: \"{{ mgmt_interface }}\", vlan_id: \"{{ (host_info[inventory_hostname].mgmt.vlan \u003d\u003d \u0027native\u0027) | ternary(omit, host_info[inventory_hostname].mgmt.vlan) }}\" }\n\nbut it is just a matter of personal opinion. We could write the whole variable if you feel that\u0027s better",
+      "parentUuid": "5a682502_77ded512",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 66
+      },
+      "revId": "95db6d04e2f747656edd6c67e537755dc728a59a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a682502_57e119cf",
         "filename": "xci/playbooks/roles/bootstrap-host/vars/main.yml",
         "patchSetId": 37
