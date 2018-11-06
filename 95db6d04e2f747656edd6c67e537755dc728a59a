@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a682502_77ded512",
+        "filename": "xci/playbooks/roles/bootstrap-host/vars/main.yml",
+        "patchSetId": 37
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-11-06T15:11:53Z",
+      "side": 1,
+      "message": "you already have this information in host_info[inventory_hostname].admin.mac_address }}\n\nwhy do you need a variable to hold the value of another variable?",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 66
+      },
+      "revId": "95db6d04e2f747656edd6c67e537755dc728a59a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a682502_57e119cf",
+        "filename": "xci/playbooks/roles/bootstrap-host/vars/main.yml",
+        "patchSetId": 37
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2018-11-06T15:11:53Z",
+      "side": 1,
+      "message": "same question here and on all the below _mac/_vlan variables.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 60
+      },
+      "revId": "95db6d04e2f747656edd6c67e537755dc728a59a",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
