@@ -47,7 +47,7 @@ class XCIInventory(object):
         self.opnfv_networks['opnfv']['public'] = {}
         self.opnfv_networks['opnfv']['public']['address'] = '192.168.122.2/24'
         self.opnfv_networks['opnfv']['public']['gateway'] = '192.168.122.1'
-        self.opnfv_networks['opnfv']['public']['dns'] = '192.168.122.1'
+        self.opnfv_networks['opnfv']['public']['dns'] = ['192.168.122.1']
         self.opnfv_networks['opnfv']['private'] = {}
         self.opnfv_networks['opnfv']['private']['address'] = '172.29.240.10/22'
         self.opnfv_networks['opnfv']['storage'] = {}
@@ -130,11 +130,13 @@ class XCIInventory(object):
             for network, ndata in idf['idf']['net_config'].items():
                 network_interface_num = idf['idf']['net_config'][network]['interface']
                 host_networks[hostname][network] = {}
+                host_networks[hostname][network]['dns'] = []
                 host_networks[hostname][network]['address'] = pdf_host_info['interfaces'][int(network_interface_num)]['address'] + "/" + str(ndata['mask'])
                 if 'gateway' in ndata.keys():
                     host_networks[hostname][network]['gateway'] = str(ndata['gateway']) + "/" + str(ndata['mask'])
                 if 'dns' in ndata.keys():
-                    host_networks[hostname][network]['dns'] = str(ndata['dns'])
+                    for d in ndata['dns']:
+                        host_networks[hostname][network]['dns'].append(str(d))
 
                 # Get also vlan and mac_address from pdf
                 host_networks[hostname][network]['mac_address'] = str(pdf_host_info['interfaces'][int(network_interface_num)]['mac_address'])

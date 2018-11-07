@@ -141,7 +141,7 @@
         name: bifrost-configdrives-dynamic
         private: True
       vars:
-        ipv4_namesever: "{{ ipv4_nameserver | ((lookup('env','http_proxy') != '') | ternary('192.168.122.1', '8.8.8.8')) }}"
+        ipv4_nameserver: "{{ host_info[inventory_hostname]['public']['dns'] | list }}"
       delegate_to: opnfv
     - import_role:
         name: bifrost-deploy-nodes-dynamic
