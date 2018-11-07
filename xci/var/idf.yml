@@ -29,7 +29,8 @@ idf:
       network: 192.168.122.0
       mask: 24
       gateway: 192.168.122.1
-      dns: 192.168.122.1
+      dns:
+        - 192.168.122.1
     private:
       interface: 3
       network: 172.29.244.0

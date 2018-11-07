@@ -21,6 +21,6 @@ IPADDR={{ item.network.address }}
 GATEWAY="{{ host_info[inventory_hostname]['public']['gateway'] | ipaddr('address') }}"
 {% endif %}
 {% if item.network is defined and item.network.dns is defined %}
-DNS="{{ host_info[inventory_hostname]['public']['dns'] }}"
+DNS="{{ host_info[inventory_hostname]['public']['dns'] | join(' ') }}"
 {% endif %}
 {% endif %}
