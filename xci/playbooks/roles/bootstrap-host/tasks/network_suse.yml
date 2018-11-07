@@ -73,7 +73,7 @@
 - name: Configure static DNS on SUSE
   lineinfile:
     regexp: '^NETCONFIG_DNS_STATIC_SERVERS=.*'
-    line: "NETCONFIG_DNS_STATIC_SERVERS={{ host_info[inventory_hostname]['public']['dns'] }}"
+    line: "NETCONFIG_DNS_STATIC_SERVERS=\"{{ host_info[inventory_hostname]['public']['dns'] | join(' ') }}\""
     path: "/etc/sysconfig/network/config"
     state: present
   when: host_info[inventory_hostname]['public']['dns'] is defined

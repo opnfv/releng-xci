@@ -33,7 +33,7 @@ iface {{ item.name }} inet static
     gateway {{ item.network.gateway | ipaddr('address') }}
 {% endif %}
 {% if item.network is defined and item.network.dns is defined %}
-    dns-nameservers {{ item.network.dns }}
+    dns-nameservers {{ item.network.dns | join(' ') }}
 {% endif %}
 
 {% endif %}
