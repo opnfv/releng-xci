@@ -168,6 +168,7 @@ echo "Info: OpenStack installation is successfully completed!"
 echo "-----------------------------------------------------------------------"
 echo "Info: Running post-deployment scenario role"
 echo "-----------------------------------------------------------------------"
+
 cd $OSA_XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_PLAYBOOKS}/dynamic_inventory.py \
     post-deployment.yml
