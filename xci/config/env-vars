@@ -8,7 +8,7 @@ export OPNFV_RELENG_GIT_URL=${OPNFV_RELENG_GIT_URL:-https://gerrit.opnfv.org/ger
 export OPENSTACK_BIFROST_GIT_URL=${OPENSTACK_BIFROST_GIT_URL:-https://git.openstack.org/openstack/bifrost}
 export OPENSTACK_OSA_GIT_URL=${OPENSTACK_OSA_GIT_URL:-https://git.openstack.org/openstack/openstack-ansible}
 export OPENSTACK_OSA_OPENRC_GIT_URL=${OPENSTACK_OSA_OPENRC_GIT_URL:-https://git.openstack.org/openstack/openstack-ansible-openstack_openrc}
-export KUBESPRAY_GIT_URL=${KUBESPRAY_GIT_URL:-https://github.com/kubernetes-incubator/kubespray.git}
+export KUBESPRAY_GIT_URL=${KUBESPRAY_GIT_URL:-https://github.com/kubernetes-sigs/kubespray.git}
 export OPENSTACK_OSA_HAPROXY_GIT_URL=${OPENSTACK_OSA_HAPROXY_GIT_URL:-https://git.openstack.org/openstack/openstack-ansible-haproxy_server}
 export KEEPALIVED_GIT_URL=${KEEPALIVED_GIT_URL:-https://github.com/evrardjp/ansible-keepalived}
 
