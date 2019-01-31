@@ -39,6 +39,7 @@
       flavors:
         - mini
       distros:
+        - opensuse
         - ubuntu
 
 - scenario: os-odl-nofeature
@@ -83,6 +84,7 @@
         - mini
         - noha
       distros:
+        - opensuse
         - ubuntu
 
 - scenario: os-odl-bgpvpn
