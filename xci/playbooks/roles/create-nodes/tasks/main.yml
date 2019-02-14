@@ -24,7 +24,7 @@
 - include_tasks: create_vm.yml
   with_indexed_items: "{{ vms_to_create }}"
 
-- include_tasks: barematalhoststojson.yml
+- include_tasks: baremetalhoststojson.yml
   with_items: "{{ baremetal_nodes }}"
 
 - name: Start the opnfv vm
