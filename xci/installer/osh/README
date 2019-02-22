@@ -1,0 +1,64 @@
+The xci/installer/kubespray/files/k8s-cluster.yml is obtained from kubespray.
+You can change the parameters according to your needs.
+When  starting the deploy, it will be copied to the right directory and will be used by kubespray
+
+For example:
+  kube_network_plugin: calico
+  docker_storage_options: -s overlay2
+  kube_service_addresses: 10.233.0.0/18
+
+Requirements:
+  1. Performance of hosts
+      The performance settings are not required officially. I recommend the following:
+       - VM_CPU=6
+       - VM_DISK=80GB
+       - VM_MEMORY_SIZE=16GB
+
+  2. Distributions
+       - Ubuntu 16.04
+
+  3. Packages:
+       - Ansible v2.4 (or newer) and python-netaddr is installed on the machine that will run Ansible commands
+       - Jinja 2.9 (or newer) is required to run the Ansible Playbooks
+
+  4. Others:
+       - The target servers must have access to the Internet in order to pull docker images.
+       - The target servers are configured to allow IPv4 forwarding.
+       - Your ssh key must be copied to all the servers part of your inventory.
+       - The firewalls are not managed, you'll need to implement your own rules the way you used to. In order to avoid any issue during the deployment you should disable your firewall.
+
+Flavors:
+  1. aio: Single host which acts as the deployment host, master and node.
+  2. mini: One deployment host, 1 master host and 1 node host.
+  3. noha: One deployment host, 1 master host and 2 node hosts.
+  4. ha: One deployment host, 3 master hosts and 2 node hosts.
+
+Components Installed:
+  1. etcd
+  2. network plugins:(one of following, which you can choose. Default is calico)
+       - calico
+       - flannel
+       - contive
+       - weave
+  3. kubernetes
+  4. docker
+
+How to use:
+
+Clone the OPNFV Releng repository
+
+    git clone https://gerrit.opnfv.org/gerrit/releng-xci.git
+
+Change into the directory where the sandbox script is located
+
+    cd releng-xci/xci
+
+Set the variable to run kubespray
+
+    export INSTALLER_TYPE=kubespray
+    export DEPLOY_SCENARIO=k8-nosdn-nofeature
+    export XCI_FLAVOR=mini
+
+Execute sandbox script
+
+    ./xci-deploy.sh
