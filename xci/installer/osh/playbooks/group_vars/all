@@ -1,0 +1,54 @@
+keepalived_ubuntu_src: "uca"
+keepalived_uca_apt_repo_url: "{{ uca_apt_repo_url | default('http://ubuntu-cloud.archive.canonical.com/ubuntu') }}"
+
+keepalived_sync_groups:
+  haproxy:
+    instances:
+      - external
+
+haproxy_keepalived_external_interface: "{{ ansible_default_ipv4.interface }}"
+haproxy_keepalived_authentication_password: 'keepalived'
+keepalived_instances:
+  external:
+    interface: "{{ haproxy_keepalived_external_interface }}"
+    state: "BACKUP"
+    virtual_router_id: "{{ haproxy_keepalived_external_virtual_router_id | default ('10') }}"
+    priority: "{{ ((ansible_play_hosts|length-ansible_play_hosts.index(inventory_hostname))*100)-((ansible_play_hosts|length-ansible_play_hosts.index(inventory_hostname))*50) }}"
+    authentication_password: "{{ haproxy_keepalived_authentication_password }}"
+    vips:
+      - "{{ haproxy_keepalived_external_vip_cidr | default('192.168.122.222/32')  }} dev {{ haproxy_keepalived_external_interface }}"
+
+haproxy_default_services:
+  - service:
+      haproxy_service_name: proxy-apiserver
+      haproxy_backend_nodes: "{{ groups['kube-master'] | default([]) }}"
+      haproxy_port: 8383
+      haproxy_backend_port: 6443
+      haproxy_balance_type: tcp
+
+haproxy_bind_on_non_local: "True"
+haproxy_use_keepalived: "True"
+keepalived_selinux_compile_rules:
+  - keepalived_ping
+  - keepalived_haproxy_pid_file
+
+# Ensure that the package state matches the global setting
+haproxy_package_state: "latest"
+
+haproxy_whitelist_networks:
+  - 192.168.0.0/16
+  - 172.16.0.0/12
+  - 10.0.0.0/8
+
+haproxy_galera_whitelist_networks: "{{ haproxy_whitelist_networks }}"
+haproxy_glance_registry_whitelist_networks: "{{ haproxy_whitelist_networks }}"
+haproxy_keystone_admin_whitelist_networks: "{{ haproxy_whitelist_networks }}"
+haproxy_nova_metadata_whitelist_networks: "{{ haproxy_whitelist_networks }}"
+haproxy_rabbitmq_management_whitelist_networks: "{{ haproxy_whitelist_networks }}"
+haproxy_repo_git_whitelist_networks: "{{ haproxy_whitelist_networks }}"
+haproxy_repo_cache_whitelist_networks: "{{ haproxy_whitelist_networks }}"
+haproxy_octavia_whitelist_networks: "{{ haproxy_whitelist_networks }}"
+haproxy_ssl: false
+
+internal_lb_vip_address: "192.168.122.222"
+external_lb_vip_address: "{{ internal_lb_vip_address }}"
