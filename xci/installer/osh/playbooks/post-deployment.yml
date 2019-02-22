@@ -1,0 +1,42 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 Ericsson AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: "{{ item }}"
+      with_items:
+        - "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
+    - name: Set facts for remote deployment
+      set_fact:
+        remote_xci_scenario_path: "{{ ansible_env.HOME }}/releng-xci/.cache/repos/scenarios/{{ deploy_scenario }}/scenarios/{{ deploy_scenario }}"
+
+  tasks:
+    - name: Reload XCI deployment host facts
+      setup:
+        filter: ansible_local
+        gather_subset: "!all"
+      delegate_to: 127.0.0.1
+
+    - name: Check if any post-deployment task defined for {{ deploy_scenario }} role
+      stat:
+        path: "{{ remote_xci_scenario_path }}/role/{{ deploy_scenario }}/tasks/post-deployment.yml"
+      register: post_deployment_yml
+
+    - name: Execute post-deployment tasks of {{ deploy_scenario }} role
+      include_role:
+        name: "{{ hostvars['opnfv'].ansible_local.xci.scenarios.role }}"
+        tasks_from: post-deployment
+      when:
+        - post_deployment_yml.stat.exists

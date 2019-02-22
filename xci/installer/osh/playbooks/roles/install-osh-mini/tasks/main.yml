@@ -1,0 +1,118 @@
+- name: Setup Clients
+  command: ./tools/deployment/developer/common/020-setup-client.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy the ingress controller
+  command: ./tools/deployment/developer/common/030-ingress.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Ceph
+  command: ./tools/deployment/developer/ceph/040-ceph.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Activate the openstack namespace to be able to use Ceph
+  command: ./tools/deployment/developer/ceph/045-ceph-ns-activate.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy MariaDB
+  command: ./tools/deployment/developer/ceph/050-mariadb.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy RabbitMQ
+  command: ./tools/deployment/developer/ceph/060-rabbitmq.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy memcached
+  command: ./tools/deployment/developer/ceph/070-memcached.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Keystone
+  command: ./tools/deployment/developer/ceph/080-keystone.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Heat
+  command: ./tools/deployment/developer/ceph/090-heat.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Horizon
+  command: ./tools/deployment/developer/ceph/100-horizon.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Rados Gateway for object store
+  command: ./tools/deployment/developer/ceph/110-ceph-radosgateway.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Glance
+  command: ./tools/deployment/developer/ceph/120-glance.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Cinder
+  command: ./tools/deployment/developer/ceph/130-cinder.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy OpenvSwitch
+  command: ./tools/deployment/developer/ceph/140-openvswitch.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Libvirt
+  command: ./tools/deployment/developer/ceph/150-libvirt.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Compute Kit (Nova and Neutron)
+  command: ./tools/deployment/developer/ceph/160-compute-kit.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Copy script to the worker node
+  command: "scp -o \"StrictHostKeyChecking no\" tools/deployment/developer/ceph/170-setup-gateway.sh root@192.168.122.4:170-setup-gateway.sh"
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Setup the gateway to the public network at worker node
+  command: /root/170-setup-gateway.sh
+  changed_when: false
+  delegate_to: 192.168.122.4
+
+- name: Add a route from opnfv to worker node for the public network
+  command: ip route add 172.24.4.0/24 via 192.168.122.4
+  changed_when: false
+
+# Deployment validation
+- name: Exercise the cloud
+  command: ./tools/deployment/developer/common/900-use-it.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
