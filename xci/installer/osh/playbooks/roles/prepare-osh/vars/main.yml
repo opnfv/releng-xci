@@ -1,0 +1,6 @@
+kube_dns_ip: "10.233.0.3"
+external_dns_nameservers:
+- '{{kube_dns_ip}}'
+- '192.168.122.1'
+dns_var: "search svc.cluster.local cluster.local"
+

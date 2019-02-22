@@ -12,6 +12,7 @@
 export NUM_NODES=6
 [[ "$INSTALLER_TYPE" == "osa" ]] && export NODE_NAMES="opnfv controller00 controller01 controller02 compute00 compute01"
 [[ "$INSTALLER_TYPE" == "kubespray" ]] && export NODE_NAMES="opnfv master1 master2 master3 node1 node2"
+[[ "$INSTALLER_TYPE" == "osh" ]] && export NODE_NAMES="opnfv master1 master2 master3 node1 node2"
 export VM_DOMAIN_TYPE=${VM_DOMAIN_TYPE:-kvm}
 export VM_CPU=${VM_CPU:-6}
 export VM_DISK=${VM_DISK:-80}
