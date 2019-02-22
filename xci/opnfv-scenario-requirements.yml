@@ -117,6 +117,13 @@
         - ubuntu
         - centos
         - opensuse
+    - installer: osh
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
 
 - scenario: k8-canal-nofeature
   scm: git
@@ -149,6 +156,13 @@
         - ubuntu
         - centos
         - opensuse
+    - installer: osh
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
 
 - scenario: k8-flannel-nofeature
   scm: git
