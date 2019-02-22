@@ -1,0 +1,51 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# Copyright (c) 2018 SUSE LINUX GmbH and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+
+# NOTE(hwoarang) Kubenet expects networking to be prepared by the administrator so it's necessary
+# to do that as part of the node configuration. All we need is to add static routes on every node
+# so cbr0 interfaces can talk to each other.
+- name: Prepare networking for kubenet
+  hosts: k8s-cluster
+  remote_user: root
+  gather_facts: True
+  become: yes
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+  tasks:
+    - name: Configure static routes
+      block:
+        - name: Collect cbr0 information from the nodes
+          set_fact:
+            kubenet_xci_static_routes: |-
+              {% set static_routes = [] %}
+              {% for host in groups['k8s-cluster']|select("ne", inventory_hostname) %}
+              {%- set _ = static_routes.append(
+              {'network': (hostvars[host]['ansible_cbr0']['ipv4']['network']+'/'+
+               hostvars[host]['ansible_cbr0']['ipv4']['netmask'])|ipaddr('net'),
+               'gateway': hostvars[host]['ansible_default_ipv4']['address']}) -%}
+              {% endfor %}
+              {{ static_routes }}
+
+        - name: Add static routes on each node
+          shell: "ip route show | grep -q {{ item.network }} || ip route add {{ item.network }} via {{ item.gateway }}"
+          with_items: "{{ kubenet_xci_static_routes }}"
+          loop_control:
+            label: "{{ item.network }}"
+      when: deploy_scenario.find('k8-nosdn-') != -1
+
+    - name: Ensure rp_filter is disabled on localhost
+      sysctl:
+        name: net.ipv4.conf.all.rp_filter
+        sysctl_set: yes
+        state: present
+        value: "{{ (kubenet_xci_static_routes is defined) | ternary(0, 1) }}"
+        reload: yes
+      delegate_to: localhost
+      run_once: True

@@ -1,0 +1,204 @@
+---
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  tasks:
+    - name: Create directories
+      file:
+        path: /root/{{ item }}
+        state: directory
+      with_items:
+        ['repos','tmp', '.helm/repository/local']
+
+    - name: Clone openstack-helm
+      git:
+        repo: "{{ osh_git_url }}"
+        dest: /root/repos/openstack-helm
+        version: "{{ osh_version }}"
+        update: true
+        force: true
+      register: git_clone
+      until: git_clone is success
+      retries: 2
+      delay: 5
+
+    - name: Clone openstack-helm-infra
+      git:
+        repo: "{{ osh_infra_git_url }}"
+        dest: /root/repos/openstack-helm-infra
+        version: "{{ osh_infra_version }}"
+        update: true
+        force: true
+      register: git_clone
+      until: git_clone is success
+      retries: 2
+      delay: 5
+
+    - name: Get helm
+      get_url:
+        url: https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar.gz
+        dest: tmp
+
+    - name: Uncompress helm package
+      command: "tar zxvf  tmp/helm-v2.12.3-linux-amd64.tar.gz --strip-components=1 -C tmp/"
+      changed_when: false
+      tags:
+        - skip_ansible_lint
+
+#    - name: Uncompress helm package
+#      unarchive:
+#        src: tmp/helm-v2.12.3-linux-amd64.tar.gz
+#        dest: tmp
+#        remote_src: yes
+
+    - name: Put helm in system binaries
+      copy:
+        src: tmp/helm
+        dest: /usr/bin/helm
+        remote_src: yes
+        mode: 0755
+
+    - name: Create helm-serve service file
+      copy:
+        dest: "/etc/systemd/system/helm-serve.service"
+        content: |
+          [Unit]
+          Description=Helm Server
+          After=network.target
+          [Service]
+          User=root
+          Restart=always
+          ExecStart=/usr/bin/helm serve
+          [Install]
+          WantedBy=multi-user.target
+        mode: 0640
+
+    - name: Start helm-serve service
+      service:
+        name: helm-serve
+        state: started
+        enabled: yes
+
+    - name: Wait for helm-serve service to start
+      wait_for:
+        port: 8879
+        host: 127.0.0.1
+
+    - name: Install pyhelm
+      pip:
+        name: pyhelm
+
+#### check if helm module is available/better at this point
+    - name: Init helm
+      command: "helm init"
+      changed_when: false
+
+    - name: Remove stable (external) service from helm
+      command: "helm repo remove stable"
+      changed_when: false
+
+    - name: Add local repositories service to helm
+      command: "helm repo add local http://localhost:8879/charts"
+      changed_when: false
+
+    - name: Make helm-toolkit from infra
+      make:
+        chdir: /root/repos/openstack-helm-infra
+        target: helm-toolkit
+
+# Below tasks are aligned to OSH installation shell scripts
+# (possibly) they'll be broken down to separate steps (pip/shell/helm)
+
+    - name: Setup Clients
+      command: ./tools/deployment/multinode/010-setup-client.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy the ingress controller
+      command: ./tools/deployment/multinode/020-ingress.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+#    - name: Deploy nfs
+# Ceph for multinode requires docker but is not installed
+# switching to nfs or looking for an alternative
+
+    - name: Deploy MariaDB
+      command: ./tools/deployment/multinode/050-mariadb.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy RabbitMQ
+      command: ./tools/deployment/multinode/060-rabbitmq.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy memcached
+      command: ./tools/deployment/multinode/070-memcached.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Keystone
+      command: ./tools/deployment/multinode/080-keystone.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+# Deploy Rados Gateway for object store requires Ceph
+# to check what's needed for nfs
+
+    - name: Deploy Glance
+      command: ./tools/deployment/multinode/100-glance.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Cinder
+      command: ./tools/deployment/multinode/110-cinder.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy OpenvSwitch
+      command: ./tools/deployment/multinode/120-openvswitch.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Libvirt
+      command: ./tools/deployment/multinode/130-libvirt.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Compute Kit (Nova and Neutron)
+      command: ./tools/deployment/multinode/140-compute-kit.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Heat
+      command: ./tools/deployment/multinode/150-heat.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Barbican
+      command: ./tools/deployment/multinode/160-barbican.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+# Some kind of deployment validation
+    - name: Deploy tempest
+      command: ./tools/deployment/multinode/900-tempest.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
