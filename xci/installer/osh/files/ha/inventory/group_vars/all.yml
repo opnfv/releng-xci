@@ -1,0 +1,8 @@
+---
+loadbalancer_apiserver:
+  address: 192.168.122.222
+  port: 8383
+
+apiserver_loadbalancer_domain_name: 192.168.122.222
+supplementary_addresses_in_ssl_keys:
+  - 192.168.122.222
