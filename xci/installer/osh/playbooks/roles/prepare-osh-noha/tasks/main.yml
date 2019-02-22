@@ -1,0 +1,66 @@
+- name: Create patch to get correct clouds.yaml file
+  copy:
+    dest: "/tmp/080-keystone.sh.patch"
+    content: |
+      --- 080-keystone.sh.old	2019-06-03 14:17:52.113385809 +0300
+      +++ 080-keystone.sh	2019-06-03 14:18:33.969386706 +0300
+      @@ -30,6 +30,7 @@
+       helm status keystone
+       export OS_CLOUD=openstack_helm
+       sleep 30 #NOTE(portdirect): Wait for ingress controller to update rules and restart Nginx
+      +cp /etc/openstack/clouds.yaml .
+       openstack endpoint list
+       # Delete the test pod if it still exists
+       kubectl delete pods -l application=keystone,release_group=keystone,component=test --namespace=openstack --ignore-not-found
+    mode: 0644
+
+- name: Create patch to fix a missing tempest image and cloud parameters
+  copy:
+    dest: "/tmp/tempest-values.yaml.patch"
+    content: |
+      --- values.yaml.old	2019-06-03 14:24:39.489394544 +0300
+      +++ values.yaml	2019-06-03 14:25:26.813395559 +0300
+      @@ -145,7 +145,7 @@
+             container_formats: bare
+             disk_formats: raw
+           network:
+      -      dns_servers: 10.96.0.10
+      +      dns_servers: 10.233.0.3
+             project_networks_reachable: false
+             shared_physical_network: true
+           network-feature-enabled:
+  mode: 0644
+
+- name: Apply the patches
+  patch:
+    src: "/tmp/{{ item.source }}.patch"
+    dest: "/root/repos/openstack-helm/{{ item.path }}/{{ item.name }}"
+    remote_src: yes
+  with_items:
+    - { source: "080-keystone.sh", name: "080-keystone.sh", path: "tools/deployment/multinode" }
+    - { source: "tempest-values.yaml", name: "values.yaml", path: "tempest" }
+
+- name: Modify resolv.conf file and create route to DNS patch
+  copy:
+    dest: "/root/repos/openstack-helm-infra/route_to_dns.sh"
+    content: |
+      #!/bin/bash
+      kube_service_addresses=$(grep -r 'kube_service_addresses:' /root/releng-xci/.cache/repos/kubespray/opnfv_inventory/group_vars/k8s-cluster.yml | sed -e 's/kube_service_addresses: //')
+      echo $kube_service_addresses
+      ip route add $kube_service_addresses via 192.168.122.3 dev br-vlan onlink
+      ip_route=$(ip r)
+      echo $ip_route
+      cat > /etc/resolv.conf <<EOF
+      search svc.cluster.local cluster.local
+      nameserver 10.233.0.3
+      nameserver 192.168.122.1
+      EOF
+      chattr +i /etc/resolv.conf
+      sed -i 's/10.96.0.10/10.233.0.3/gi' /root/repos/openstack-helm-infra/kube-dns/values.yaml
+    mode: 0755
+
+- name: Apply route_to_dns patch
+  command: ./route_to_dns.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm-infra

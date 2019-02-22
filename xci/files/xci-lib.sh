@@ -189,7 +189,7 @@ function install_ansible() {
 
     # We are inside the virtualenv now so we should be good to use pip and python from it.
     pip -q install --upgrade pip==9.0.3 # We need a version which supports the '-c' parameter
-    pip -q install --upgrade -c $uc -c $osa_uc ara virtualenv pip setuptools shade ansible==$XCI_ANSIBLE_PIP_VERSION ansible-lint==3.4.21
+    pip -q install --upgrade -c $uc -c $osa_uc ara==0.16.4 virtualenv pip setuptools shade ansible==$XCI_ANSIBLE_PIP_VERSION ansible-lint==3.4.21
 
     ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
     export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}/plugins/callbacks"
@@ -197,7 +197,7 @@ function install_ansible() {
 
 ansible_lint() {
     set -eu
-    local playbooks_dir=(xci/playbooks xci/installer/osa/playbooks xci/installer/kubespray/playbooks)
+    local playbooks_dir=(xci/playbooks xci/installer/osa/playbooks xci/installer/kubespray/playbooks xci/installer/osh/playbooks)
     # Extract role from scenario information
     local testing_role=$(sed -n "/^- scenario: ${DEPLOY_SCENARIO}$/,/^$/p" ${XCI_PATH}/xci/opnfv-scenario-requirements.yml | grep role | rev | cut -d '/' -f -1 | rev)
 
@@ -293,6 +293,7 @@ log_xci_information() {
     [[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
     [[ "$INSTALLER_TYPE" == "osa" ]] && echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
     [[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
+    [[ "$INSTALLER_TYPE" == "osh" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
     echo "-------------------------------------------------------------------------"
 }
 
