@@ -1,0 +1,401 @@
+---
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  tasks:
+    - name: Set kubernetes service account permissions
+      command: "kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default"
+      changed_when: false
+
+    - name: Set kubernetes node labels
+      command: "kubectl label nodes {{ item }} --all"
+      changed_when: false
+      with_items:
+        - openstack-control-plane=enabled
+        - openstack-compute-node=enabled
+        - openstack-helm-node-class=primary
+        - openvswitch=enabled
+        - linuxbridge=enabled
+        - ceph-mon=enabled
+        - ceph-osd=enabled
+        - ceph-mds=enabled
+        - ceph-mgr=enabled
+        - ceph-rgw=enabled
+
+    - name: Create directories
+      file:
+        path: /root/{{ item }}
+        state: directory
+      with_items:
+        ['repos','tmp', '.helm/repository/local']
+
+    - name: Clone openstack-helm
+      git:
+        repo: "{{ osh_git_url }}"
+        dest: /root/repos/openstack-helm
+        version: "{{ osh_version }}"
+        update: true
+        force: true
+      register: git_clone
+      until: git_clone is success
+      retries: 2
+      delay: 5
+
+    - name: Clone openstack-helm-infra
+      git:
+        repo: "{{ osh_infra_git_url }}"
+        dest: /root/repos/openstack-helm-infra
+        version: "{{ osh_infra_version }}"
+        update: true
+        force: true
+      register: git_clone
+      until: git_clone is success
+      retries: 2
+      delay: 5
+
+    - name: Get helm
+      get_url:
+        url: https://storage.googleapis.com/kubernetes-helm/helm-v2.13.0-linux-amd64.tar.gz
+        dest: tmp
+
+    - name: Uncompress helm package
+      command: "tar zxvf  tmp/helm-v2.13.0-linux-amd64.tar.gz --strip-components=1 -C tmp/"
+      changed_when: false
+      tags:
+        - skip_ansible_lint
+
+#    - name: Uncompress helm package
+#      unarchive:
+#        src: tmp/helm-v2.13.0-linux-amd64.tar.gz
+#        dest: tmp
+#        remote_src: yes
+
+    - name: Put helm in system binaries
+      copy:
+        src: tmp/helm
+        dest: /usr/bin/helm
+        remote_src: yes
+        mode: 0755
+
+    - name: Create helm-serve service file
+      copy:
+        dest: "/etc/systemd/system/helm-serve.service"
+        content: |
+          [Unit]
+          Description=Helm Server
+          After=network.target
+          [Service]
+          User=root
+          Restart=always
+          ExecStart=/usr/bin/helm serve
+          [Install]
+          WantedBy=multi-user.target
+        mode: 0640
+
+    - name: Start helm-serve service
+      service:
+        name: helm-serve
+        state: started
+        enabled: yes
+
+    - name: Wait for helm-serve service to start
+      wait_for:
+        port: 8879
+        host: 127.0.0.1
+
+    - name: Install pyhelm
+      pip:
+        name: pyhelm
+
+#### to check if helm module is available/better at this point
+    - name: Init helm
+      command: "helm init"
+      changed_when: false
+
+    - name: Remove stable (external) service from helm
+      command: "helm repo remove stable"
+      changed_when: false
+
+    - name: Add local repositories service to helm
+      command: "helm repo add local http://localhost:8879/charts"
+      changed_when: false
+
+    - name: Make charts from infra
+      make:
+        chdir: /root/repos/openstack-helm-infra
+        target: "{{ item }}"
+      with_items:
+        - helm-toolkit
+        - ingress
+        - mariadb
+        - rabbitmq
+        - memcached
+        - ceph-mon
+        - ceph-osd
+        - ceph-client
+        - ceph-provisioners
+        - ceph-rgw
+        - openvswitch
+        - libvirt
+
+    - name: Install packages
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - patch
+        - ipcalc
+        - jq
+
+#in search for a better way
+    - name: Install packages in kubernetes nodes
+      command: "ssh -o \"StrictHostKeyChecking no\" root@{{ item }} \"apt-get install -y ceph-common rbd-nbd apparmor\""
+      changed_when: false
+      with_items:
+        - "192.168.122.3"
+        - "192.168.122.4"
+        - "192.168.122.5"
+
+    - name: Create patch to get correct clouds.yaml file
+      copy:
+        dest: "/tmp/080-keystone.sh.patch"
+        content: |
+          --- 080-keystone.sh.old	2019-04-04 13:51:00.434475057 +0000
+          +++ 080-keystone.sh	2019-04-04 13:52:24.742734935 +0000
+          @@ -30,5 +30,6 @@
+           helm status keystone
+           export OS_CLOUD=openstack_helm
+           sleep 30 #NOTE(portdirect): Wait for ingress controller to update rules and restart Nginx
+          +cp /etc/openstack/clouds.yaml .
+           openstack endpoint list
+           helm test keystone --timeout 900
+        mode: 0644
+
+    - name: Create patch to disable apparmor
+      copy:
+        dest: "/tmp/nova-values.yaml.patch"
+        content: |
+          --- values.yaml.old	2019-04-08 08:46:19.376730028 +0000
+          +++ values.yaml	2019-04-08 08:49:49.013402552 +0000
+          @@ -1957,7 +1957,7 @@
+             mandatory_access_control:
+               type: apparmor
+               nova-compute-default:
+          -      nova-compute-default: localhost/docker-default
+          +      nova-compute-default: unconfined
+             user:
+               nova:
+                 uid: 42424
+      mode: 0644
+
+    - name: Create patch to fix a missing tempest image and cloud parameters
+      copy:
+        dest: "/tmp/tempest-values.yaml.patch"
+        content: |
+          --- values.yaml.old	2019-04-11 10:25:39.802549528 +0000
+          +++ values.yaml	2019-04-11 10:31:52.599393501 +0000
+          @@ -25,7 +25,7 @@
+           images:
+             tags:
+               dep_check: quay.io/stackanetes/kubernetes-entrypoint:v0.3.1
+          -    tempest_run_tests: docker.io/kolla/ubuntu-source-tempest:4.0.3
+          +    tempest_run_tests: docker.io/openstackhelm/tempest:latest-ubuntu_xenial
+               ks_user: docker.io/openstackhelm/heat:ocata
+               image_repo_sync: docker.io/docker:17.07.0
+             pull_policy: "IfNotPresent"
+          @@ -88,10 +88,10 @@
+                 services:
+                   - endpoint: internal
+                     service: local_image_registry
+          -
+          +#
+           conf:
+             script: |
+          -    tempest run --smoke
+          +    tempest run --config-file /etc/tempest/tempest.conf -w 4 --smoke
+             # The following sections can be used to blacklist and whitelist specific tests.
+             # If either section is not empty, it will be used to create an entry in the
+             # tempest-etc configmap and will be mounted into the tempest-run-tests pod
+          @@ -122,22 +122,22 @@
+             tempest:
+               auth:
+                 # admin_username value set by configmap-etc
+          -      admin_username: None
+          +      admin_username: null
+                 # admin_password value set by configmap-etc
+          -      admin_password: None
+          +      admin_password: null
+                 # admin_project_name value set by configmap-etc
+          -      admin_project_name: None
+          +      admin_project_name: null
+                 # admin_domain_name value set by configmap-etc
+          -      admin_domain_name: None
+          +      admin_domain_name: null
+                 use_dynamic_credentials: true
+                 tempest_roles: admin, member
+               identity:
+                 admin_domain_scope: true
+                 auth_version: v3
+                 # region value set by configmap-etc
+          -      region: None
+          +      region: null
+                 # uri_v3 value set by configmap-etc
+          -      uri_v3: None
+          +      uri_v3: null
+               identity-feature-enabled:
+                 api_v2: false
+                 api_v3: true
+          @@ -146,7 +146,7 @@
+                 container_formats: bare
+                 disk_formats: raw
+               network:
+          -      dns_servers: 10.96.0.10
+          +      dns_servers: 10.233.0.3
+                 project_networks_reachable: false
+                 shared_physical_network: true
+               network-feature-enabled:
+      mode: 0644
+
+    - name: Apply the patches
+      patch:
+        src: "/tmp/{{ item.source }}.patch"
+        dest: "/root/repos/openstack-helm/{{ item.path }}/{{ item.name }}"
+        remote_src: yes
+      with_items:
+        - { source: "080-keystone.sh", name: "080-keystone.sh", path: "tools/deployment/multinode" }
+        - { source: "nova-values.yaml", name: "values.yaml", path: "nova" }
+        - { source: "tempest-values.yaml", name: "values.yaml", path: "tempest" }
+
+    - name: Modify resolv.conf file and create route to DNS patch
+      copy:
+        dest: "/root/repos/openstack-helm-infra/route_to_dns.sh"
+        content: |
+          #!/bin/bash
+          kube_service_addresses=$(grep -r 'kube_service_addresses:' /root/releng-xci/.cache/repos/kubespray/opnfv_inventory/group_vars/k8s-cluster.yml | sed -e 's/kube_service_addresses: //')
+          echo $kube_service_addresses
+          ip route add $kube_service_addresses via 192.168.122.3 dev br-vlan onlink
+          ip_route=$(ip r)
+          echo $ip_route
+          cat > /etc/resolv.conf <<EOF
+          search svc.cluster.local cluster.local
+          nameserver 10.233.0.3
+          nameserver 192.168.122.1
+          EOF
+          chattr +i /etc/resolv.conf
+          sed -i 's/10.96.0.10/10.233.0.3/gi' /root/repos/openstack-helm-infra/kube-dns/values.yaml
+        mode: 0755
+
+    - name: Apply route_to_dns patch
+      command: ./route_to_dns.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm-infra
+
+# These tasks call OSH installation shell scripts
+# (possibly) they'll be broken down to separate tasks bypassing the scripts
+
+    - name: Setup Clients
+      command: ./tools/deployment/multinode/010-setup-client.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy the ingress controller
+      command: ./tools/deployment/multinode/020-ingress.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Ceph
+      command: ./tools/deployment/multinode/030-ceph.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Activate the openstack namespace to be able to use Ceph
+      command: ./tools/deployment/multinode/040-ceph-ns-activate.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy MariaDB
+      command: ./tools/deployment/multinode/050-mariadb.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy RabbitMQ
+      command: ./tools/deployment/multinode/060-rabbitmq.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy memcached
+      command: ./tools/deployment/multinode/070-memcached.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Keystone
+      command: ./tools/deployment/multinode/080-keystone.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Rados Gateway for object store
+      command: ./tools/deployment/multinode/090-ceph-radosgateway.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Glance
+      command: ./tools/deployment/multinode/100-glance.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Cinder
+      command: ./tools/deployment/multinode/110-cinder.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy OpenvSwitch
+      command: ./tools/deployment/multinode/120-openvswitch.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Libvirt
+      command: ./tools/deployment/multinode/130-libvirt.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Compute Kit (Nova and Neutron)
+      command: ./tools/deployment/multinode/140-compute-kit.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Heat
+      command: ./tools/deployment/multinode/150-heat.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Deploy Barbican
+      command: ./tools/deployment/multinode/160-barbican.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+# Deployment validation
+    - name: Deploy tempest
+      command: ./tools/deployment/multinode/900-tempest.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
