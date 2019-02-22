@@ -1,0 +1,30 @@
+- name: Write new resolv.conf file
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+
+- name: Make resolv.conf immutable
+  shell: "chattr +i /etc/resolv.conf"
+  changed_when: false
+  args:
+    executable: /bin/bash
+  tags:
+    - skip_ansible_lint
+
+- name: Get kube service addresses
+  shell: "grep -r 'kube_service_addresses:' /root/releng-xci/.cache/repos/kubespray/opnfv_inventory/group_vars/k8s-cluster.yml | awk '{print $2}'"
+  changed_when: false
+  args:
+    executable: /bin/bash
+  register: kube_service_addresses
+  tags:
+    - skip_ansible_lint
+
+- name: Update routing table with kube service addresses
+  shell: "ip route add {{ kube_service_addresses.stdout }} dev br-vlan onlink"
+  changed_when: false
+  args:
+    executable: /bin/bash
+  tags:
+    - skip_ansible_lint
+
