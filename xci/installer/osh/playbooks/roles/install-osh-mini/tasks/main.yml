@@ -1,0 +1,101 @@
+- name: Setup Clients
+  command: ./tools/deployment/common/setup-client.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy the ingress controller
+  command: ./tools/deployment/component/common/ingress.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy MariaDB
+  command: ./tools/deployment/component/common/mariadb.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy memcached
+  command: ./tools/deployment/component/common/memcached.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy RabbitMQ
+  command: ./tools/deployment/component/common/rabbitmq.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Update nfs-provisioner helm-chart
+  shell: helm dependency update nfs-provisioner
+  args:
+    chdir: /root/repos/openstack-helm-infra
+    executable: /bin/bash
+  tags:
+    - skip_ansible_lint
+
+- name: Deploy nfs-provisioner
+  command: ./tools/deployment/component/nfs-provisioner/nfs-provisioner.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Keystone
+  command: ./tools/deployment/component/keystone/keystone.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Heat
+  command: ./tools/deployment/component/heat/heat.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Glance
+  command: ./tools/deployment/component/glance/glance.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy OpenvSwitch
+  command: ./tools/deployment/component/compute-kit/openvswitch.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Libvirt
+  command: ./tools/deployment/component/compute-kit/libvirt.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Deploy Compute Kit (Nova and Neutron)
+  command: ./tools/deployment/component/compute-kit/compute-kit.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Copy script to the worker node
+  command: "scp -o \"StrictHostKeyChecking no\" tools/deployment/developer/ceph/170-setup-gateway.sh root@192.168.122.4:170-setup-gateway.sh"
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Setup the gateway to the public network at worker node
+  command: /root/170-setup-gateway.sh
+  changed_when: false
+  delegate_to: 192.168.122.4
+
+- name: Add a route from opnfv to worker node for the public network
+  command: ip route add 172.24.4.0/24 via 192.168.122.4
+  changed_when: false
+
+# Deployment validation
+- name: Exercise the cloud
+  command: ./tools/deployment/developer/common/900-use-it.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
