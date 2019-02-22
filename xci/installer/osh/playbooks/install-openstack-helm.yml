@@ -1,0 +1,25 @@
+---
+- hosts: kube-node
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  roles:
+    - role: prepare-kube-nodes-osh
+
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  roles:
+    - role: prepare-opnfvhost-osh
+    - role: prepare-osh-mini
+      when: xci_flavor == 'mini'
+    - role: prepare-osh-noha
+      when: xci_flavor == 'noha'
+    - role: prepare-osh
+    - role: install-osh-mini
+      when: xci_flavor == 'mini'
+    - role: install-osh-noha
+      when: xci_flavor == 'noha'

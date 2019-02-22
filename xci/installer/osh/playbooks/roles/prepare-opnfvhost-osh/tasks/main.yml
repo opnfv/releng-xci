@@ -1,0 +1,141 @@
+- name: Set kubernetes service account permissions
+  command: "kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default"
+  changed_when: false
+
+- name: Set kubernetes node labels
+  shell: "for x in `kubectl get nodes --show-labels | grep 'node-role.kubernetes.io/node=true' | awk '{print $1}'`; do kubectl label nodes $x {{ item }}; done"
+  args:
+    executable: /bin/bash
+  changed_when: false
+  with_items:
+    - openstack-control-plane=enabled
+    - openstack-compute-node=enabled
+    - openstack-helm-node-class=primary
+    - openvswitch=enabled
+    - linuxbridge=enabled
+    - ceph-mon=enabled
+    - ceph-osd=enabled
+    - ceph-mds=enabled
+    - ceph-mgr=enabled
+    - ceph-rgw=enabled
+
+- name: Create directories
+  file:
+    path: /root/{{ item }}
+    state: directory
+  with_items:
+    ['repos','tmp', '.helm/repository/local']
+
+- name: Clone openstack-helm
+  git:
+    repo: "{{ osh_git_url }}"
+    dest: /root/repos/openstack-helm
+    version: "{{ osh_version }}"
+    update: true
+    force: true
+  register: git_clone
+  until: git_clone is success
+  retries: 2
+  delay: 5
+
+- name: Clone openstack-helm-infra
+  git:
+    repo: "{{ osh_infra_git_url }}"
+    dest: /root/repos/openstack-helm-infra
+    version: "{{ osh_infra_version }}"
+    update: true
+    force: true
+  register: git_clone
+  until: git_clone is success
+  retries: 2
+  delay: 5
+
+- name: Get helm
+  get_url:
+    url: "{{ osh_helm_binary_url }}/helm-{{ osh_helm_binary_version }}-linux-amd64.tar.gz"
+    dest: tmp
+
+- name: Uncompress helm package
+  command: "tar zxvf  tmp/helm-{{ osh_helm_binary_version }}-linux-amd64.tar.gz --strip-components=1 -C tmp/"
+  changed_when: false
+  tags:
+    - skip_ansible_lint
+
+- name: Put helm in system binaries
+  copy:
+    src: tmp/helm
+    dest: /usr/bin/helm
+    remote_src: yes
+    mode: 0755
+
+- name: Create helm-serve service file
+  copy:
+    dest: "/etc/systemd/system/helm-serve.service"
+    content: |
+      [Unit]
+      Description=Helm Server
+      After=network.target
+      [Service]
+      User=root
+      Restart=always
+      ExecStart=/usr/bin/helm serve
+      [Install]
+      WantedBy=multi-user.target
+    mode: 0640
+
+- name: Start helm-serve service
+  service:
+    name: helm-serve
+    state: started
+    enabled: yes
+
+- name: Wait for helm-serve service to start
+  wait_for:
+    port: 8879
+    host: 127.0.0.1
+
+- name: Install pyhelm
+  pip:
+    name: pyhelm
+
+- name: Init helm
+  command: "helm init"
+  changed_when: false
+
+- name: Remove stable (external) service from helm
+  command: "helm repo remove stable"
+  changed_when: false
+
+- name: Add local repositories service to helm
+  command: "helm repo add local http://localhost:8879/charts"
+  changed_when: false
+
+- name: Make charts from infra
+  make:
+    chdir: /root/repos/openstack-helm-infra
+    target: "{{ item }}"
+  with_items:
+    - helm-toolkit
+    - ingress
+    - mariadb
+    - rabbitmq
+    - memcached
+    - ceph-mon
+    - ceph-osd
+    - ceph-client
+    - ceph-provisioners
+    - ceph-rgw
+    - openvswitch
+    - libvirt
+
+- name: Install packages
+  package:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - patch
+    - ipcalc
+    - jq
+    - nmap
+
