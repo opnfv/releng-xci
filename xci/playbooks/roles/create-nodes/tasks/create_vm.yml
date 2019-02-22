@@ -2,7 +2,16 @@
 - name: "Creating VM"
   block:
   - set_fact:
-      vm_name: "{{ ('kubespray' in installer_type) | ternary(idf.kubespray.hostnames[item.1.name], idf.osa.hostnames[item.1.name]) }}"
+      vm_name: idf.kubespray.hostnames[item.1.name]
+    when: installer_type == "kubespray"
+
+  - set_fact:
+      vm_name: idf.osa.hostnames[item.1.name]
+    when: installer_type == "osa"
+
+  - set_fact:
+      vm_name: idf.osh.hostnames[item.1.name]
+    when: installer_type == "osh"
 
   - set_fact:
       vm_log_file: "{{ node_logdir }}/{{ vm_name }}_console.log"
@@ -11,6 +20,9 @@
   - set_fact:
       vm_host_group: "{{ node_default_groups | union(node_groups[vm_name]) }}"
     when: node_groups[vm_name] is defined
+
+  - set_fact:
+      txml: "{{ lookup('template', 'vm.xml.j2') }}"
 
   - name: set prealloc arg for Debian
     set_fact:
@@ -80,6 +92,9 @@
         name: "{{ vm_name }}"
         uri: "{{ vm_libvirt_uri }}"
         xml: "{{ lookup('template', 'vm.xml.j2') }}"
+
+    - debug:
+        var: txml
 
     rescue:
       - name: "Execute `dmesg` to collect debugging output should VM creation fail."

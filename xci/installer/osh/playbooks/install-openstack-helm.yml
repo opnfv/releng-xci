@@ -1,0 +1,98 @@
+---
+- hosts: opnfv
+  remote_user: root
+
+  tasks:
+    - name: Clone openstack-helm
+      git:
+        repo: {{ osh_git_url }}
+        dest: {{ repos }}
+
+
+    - name: Clone openstack-helm-infra
+      git:
+        repo: {{ osh_infra_git_url }}
+        dest: {{ repos }}
+
+# Below tasks are aligned to OSH installation shell scripts
+# (possibly) they'll be broken down to separate steps (pip/shell/helm)
+
+    - name: Setup Clients
+      command: ./tools/deployment/multinode/010-setup-client.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+
+    - name: Deploy the ingress controller
+      command: ./tools/deployment/multinode/020-ingress.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+    - name: Deploy nfs
+# Ceph for multinode requires docker but is not installed
+# switching to nfs or looking for an alternative
+
+    - name: Deploy MariaDB
+      command: ./tools/deployment/multinode/050-mariadb.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+    - name: Deploy RabbitMQ
+      command: ./tools/deployment/multinode/050-mariadb.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+    - name: Deploy memcached
+      command: ./tools/deployment/multinode/070-memcached.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+    - name: Deploy Keystone
+      command: ./tools/deployment/multinode/080-keystone.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+# Deploy Rados Gateway for object store requires Ceph
+# to check what's needed for nfs
+
+    - name: Deploy Glance
+      command: ./tools/deployment/multinode/100-glance.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+    - name: Deploy Cinder
+      command: ./tools/deployment/multinode/110-cinder.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+        
+    - name: Deploy OpenvSwitch
+      command: ./tools/deployment/multinode/120-openvswitch.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+    - name: Deploy Libvirt
+      command: ./tools/deployment/multinode/130-libvirt.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+    - name: Deploy Compute Kit (Nova and Neutron)
+      command: ./tools/deployment/multinode/140-compute-kit.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+    - name: Deploy Heat
+      command: ./tools/deployment/multinode/150-heat.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+
+    - name: Deploy Barbican
+      command: ./tools/deployment/multinode/160-barbican.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+        
+# Some kind of deployment validation
+    - name: Deploy tempest
+      command: ./tools/deployment/multinode/900-tempest.sh
+      args:
+        chdir: {{ repos }}/openstack-helm
+

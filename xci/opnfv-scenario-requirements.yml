@@ -197,3 +197,37 @@
         - ubuntu
         - centos
         - opensuse
+
+
+# Kubernetes based scenarios used in openstack-helm install
+- scenario: osh-nosdn-nofeature
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+  version: master
+  role: scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature
+  installers:
+    - installer: osh
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
+        - centos
+        - opensuse
+
+- scenario: osh-calico-nofeature
+  scm: git
+  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+  version: master
+  role: scenarios/k8-calico-nofeature/role/k8-calico-nofeature
+  installers:
+    - installer: osh
+      flavors:
+        - ha
+        - mini
+        - noha
+      distros:
+        - ubuntu
+        - centos
+        - opensuse
