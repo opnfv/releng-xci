@@ -117,6 +117,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_f7c35836",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-02-25T14:25:27Z",
+      "side": 1,
+      "message": "The problem is that the name of the scenario already suggests that it is openstack (os)",
+      "parentUuid": "da01753e_14f37a74",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 31
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_74e8067d",
         "filename": "xci/opnfv-scenario-requirements.yml",
         "patchSetId": 1
@@ -128,6 +152,30 @@
       "writtenOn": "2019-02-23T12:05:55Z",
       "side": 1,
       "message": "wouldn\u0027t it be better to have a role named os-nosdn-nofeature which is a copy of the k8-nosdn-nofeature role + osh specific tasks?\n\nthis also requires us to adapt how we structure releng-xci-scenarios repository. just as an example.\n\n  - releng-xci-scenarios/scenarios/osa/os-nosdn-nofeature\n  - releng-xci-scenarios/scenarios/kubespray/k8-calico-nofeature\n  - releng-xci-scenarios/scenarios/osh/os-nosdn-nofeature\n\nand so on.\n\nthis will need adaptations on other parts of XCI to handle multiple installers so my suggestion is that we discuss how we should structure things and then lay the foundation for it first before progressing further with osh pieces.",
+      "range": {
+        "startLine": 207,
+        "startChar": 8,
+        "endLine": 207,
+        "endChar": 60
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_97c64c48",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-02-25T14:25:27Z",
+      "side": 1,
+      "message": "This is a good idea :)",
+      "parentUuid": "da01753e_74e8067d",
       "range": {
         "startLine": 207,
         "startChar": 8,
