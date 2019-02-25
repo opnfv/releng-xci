@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "da01753e_d7c45461",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-02-25T12:53:33Z",
+      "side": 1,
+      "message": "I think it would be useful to define the version that we want to use. We normally have that defined in this file: https://github.com/opnfv/releng-xci/blob/master/xci/config/pinned-versions. That way we can reproduce possible problems or we can deploy without having moving parts. I guess this deploys master which is a moving part",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 25
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_b7cd5089",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-02-25T12:53:33Z",
+      "side": 1,
+      "message": "can\u0027t we use a relative path? Where are all those .sh scripts? Are they under {{ repos }}?",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_97cacc6c",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-02-25T12:53:33Z",
+      "side": 1,
+      "message": "is this a requirement from Airship?",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 48
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_f7c7d862",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-02-25T12:53:33Z",
+      "side": 1,
+      "message": "I guess this is the only way to deploy Airship right? By executing a set of scripts in a specific order. I wonder if there is an Ansible way of doing it?",
+      "range": {
+        "startLine": 41,
+        "startChar": 6,
+        "endLine": 41,
+        "endChar": 14
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_14f37a74",
         "filename": "xci/opnfv-scenario-requirements.yml",
         "patchSetId": 1
