@@ -45,6 +45,7 @@ nodes:
         - ipmi: [2.0]
       user: admin
       pass: password
+      port: 623
     remote_management:
       <<: *remote_params
       address: 192.168.122.1:625
@@ -88,6 +89,7 @@ nodes:
     disks: *disks
     remote_management:
       <<: *remote_params
+      port: 624
       address: 192.168.122.1:626
       mac_address: "52:54:00:b9:d4:87"
     interfaces:
@@ -109,6 +111,7 @@ nodes:
     disks: *disks
     remote_management:
       <<: *remote_params
+      port: 625
       address: 192.168.122.1:627
       mac_address: "52:54:00:6d:0e:d1"
     interfaces:
@@ -130,6 +133,7 @@ nodes:
     disks: *disks
     remote_management:
       <<: *remote_params
+      port: 626
       address: 192.168.122.1:628
       mac_address: "52:54:00:95:02:10"
     interfaces:
@@ -151,6 +155,7 @@ nodes:
     disks: *disks
     remote_management:
       <<: *remote_params
+      port: 627
       address: 192.168.122.1:629
       mac_address: "52:54:00:84:fa:19"
     interfaces:

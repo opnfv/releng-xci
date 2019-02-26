@@ -56,7 +56,7 @@
         driver_info:
           power:
             ipmi_address: "{{ item.remote_management.address }}"
-            ipmi_port: "{{ virtual_ipmi_port| default('623') }}"
+            ipmi_port: "{{ item.remote_management.port | default('623')}}"
             ipmi_username: "{{ item.remote_management.user }}"
             ipmi_password: "{{ item.remote_management.pass }}"
         nics:

@@ -111,11 +111,8 @@
       PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
     when: vbmc_list.stdout.find(vm_name) != -1
 
-  - set_fact:
-      virtual_ipmi_port: "{{ (vm_ipmi_port_start|default(623) | int ) + (item.0 | int) }}"
-
   - name: plug vm into vbmc
-    command: vbmc add {{ vm_name }} --libvirt-uri {{ vm_libvirt_uri }} --port {{ virtual_ipmi_port }}
+    command: vbmc add {{ vm_name }} --libvirt-uri {{ vm_libvirt_uri }} --port {{ item.1.remote_management.port | default('623')}}
     environment:
       PATH: "{{ lookup('env', 'XCI_VENV') }}/bin"
 
@@ -163,7 +160,7 @@
         driver_info:
           power:
             ipmi_address: "192.168.122.1"
-            ipmi_port: "{{ virtual_ipmi_port }}"
+            ipmi_port: "{{ item.1.remote_management.port | default('623')}}"
             ipmi_username: "{{ item.1.remote_management.user }}"
             ipmi_password: "{{ item.1.remote_management.pass }}"
         nics:
