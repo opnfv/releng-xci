@@ -278,6 +278,29 @@
       "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_dac0f92c",
+        "filename": "xci/playbooks/configure-localhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5473
+      },
+      "writtenOn": "2019-02-27T09:09:52Z",
+      "side": 1,
+      "message": "this is better written as \"installer_type in [\"kubespray\", \"osh\"]\n\nsimilar to the rest of the code that this applies.",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 68
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
