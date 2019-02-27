@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "da01753e_e55efe11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 6745
+      },
+      "writtenOn": "2019-02-27T17:01:35Z",
+      "side": 1,
+      "message": "Right now this PS is not actually deploy OSH right ?\n\nThe only thing that it does is to create a basic k8s infrastructure. Is this right ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 49
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_d7c45461",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
         "patchSetId": 1
