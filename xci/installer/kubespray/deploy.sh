@@ -64,6 +64,7 @@ if [ $XCI_FLAVOR != "aio" ]; then
     echo "-----------------------------------------------------------------------"
     cd $K8_XCI_PLAYBOOKS
     ansible-playbook ${XCI_ANSIBLE_PARAMS} \
+            --ssh-extra-args='-o StrictHostKeyChecking=no' \
             -i ${XCI_PLAYBOOKS}/dynamic_inventory.py configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts for kubespray"

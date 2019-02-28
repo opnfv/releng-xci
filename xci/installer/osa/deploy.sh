@@ -77,8 +77,9 @@ if [[ $XCI_FLAVOR != "aio" ]]; then
     echo "Info: Configuring target hosts for openstack-ansible"
     echo "-----------------------------------------------------------------------"
     cd $OSA_XCI_PLAYBOOKS
-    ansible-playbook ${XCI_ANSIBLE_PARAMS} -i ${XCI_PLAYBOOKS}/dynamic_inventory.py \
-        configure-targethosts.yml
+    ansible-playbook ${XCI_ANSIBLE_PARAMS} \
+            --ssh-extra-args='-o StrictHostKeyChecking=no' \
+            -i ${XCI_PLAYBOOKS}/dynamic_inventory.py configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
     echo "Info: Configured target hosts"
 fi
