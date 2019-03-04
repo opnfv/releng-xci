@@ -52,7 +52,7 @@ function bootstrap_xci_env() {
     source "$XCI_PATH/xci/installer/${INSTALLER_TYPE}/env" &>/dev/null || true
     # source xci configuration
     source $XCI_PATH/xci/config/env-vars
-    # source the baremetal variable
+    # baremetal variable to true if the vendor in the pdf is not libvirt
     grep -o vendor.* ${PDF} | grep -q libvirt && export BAREMETAL=false || export BAREMETAL=true
 }
 
