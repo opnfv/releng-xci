@@ -160,6 +160,37 @@ execute sandbox script
 
     ./xci-deploy.sh
 
+Baremetal Usage
+--------------
+
+The previous deployments are based on VMs, i.e. controllers and computes are
+VMs. It is also possible to deploy on baremetal and for that a pdf and idf file
+which describes the hardware needs to be provided to the sandbox script:
+
+clone OPNFV releng-xci repository
+
+    git clone https://gerrit.opnfv.org/gerrit/releng-xci.git
+
+change into directory where the sandbox script is located
+
+    cd releng-xci/xci
+
+set the sandbox flavor
+
+    export XCI_FLAVOR=noha
+
+set the version to use for openstack-ansible
+
+    export OPENSTACK_OSA_VERSION=master
+
+set where the logs should be stored
+
+    export LOG_PATH=/home/jenkins/xcilogs
+
+execute sandbox script
+
+    ./xci-deploy.sh -i var/ericsson-pod2-idf.yml -p var/ericsson-pod2-pdf.yml
+
 ==============
 User Variables
 ==============
