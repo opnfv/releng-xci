@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_abca056c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "As stated, it is Work-in-Progress going on. The OSH deployment would follow upon a successful and correctly launched infrastructure. Also, it is meant as a basis for discussion.",
+      "parentUuid": "da01753e_e55efe11",
+      "range": {
+        "startLine": 7,
+        "startChar": 6,
+        "endLine": 7,
+        "endChar": 49
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_d7c45461",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2019-02-25T12:53:33Z",
       "side": 1,
       "message": "I think it would be useful to define the version that we want to use. We normally have that defined in this file: https://github.com/opnfv/releng-xci/blob/master/xci/config/pinned-versions. That way we can reproduce possible problems or we can deploy without having moving parts. I guess this deploys master which is a moving part",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 25
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_cb1f8908",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "You\u0027re right, will be changed to a specific version.",
+      "parentUuid": "da01753e_d7c45461",
       "range": {
         "startLine": 6,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_6be2dd04",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "Openstack-helm clone needs the openstack-helm-infra clone to be inside the same directory with itself and I have (at this time) placed both of them under a repos directory. These .sh scripts are way that OSH installs and must be called from this level (from inside openstack-helm directory) and I was aiming to do an end-to-end (or close) successful deployment and after that to see what/how will be transformed to playbook.",
+      "parentUuid": "da01753e_b7cd5089",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_97cacc6c",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
         "patchSetId": 1
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_0bf191cd",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "Not really a requirement, but I have to dig more into this. The Deploy Ceph script uses a script that requires a docker container, to get networking information. Need to figure out if there is other way to find the information.",
+      "parentUuid": "da01753e_97cacc6c",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 48
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_f7c7d862",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
         "patchSetId": 1
@@ -105,6 +201,30 @@
       "writtenOn": "2019-02-25T12:53:33Z",
       "side": 1,
       "message": "I guess this is the only way to deploy Airship right? By executing a set of scripts in a specific order. I wonder if there is an Ansible way of doing it?",
+      "range": {
+        "startLine": 41,
+        "startChar": 6,
+        "endLine": 41,
+        "endChar": 14
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_2bbf35d2",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "see reply on L21",
+      "parentUuid": "da01753e_f7c7d862",
       "range": {
         "startLine": 41,
         "startChar": 6,
@@ -188,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_0bc87173",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "I see, it seems I confused k8s based scenarios with kubespray deployment.\nThe osh-* scenarios I created are k8s based. Does this mean that they should go under an existing k8s-* scenario?\nThis is also related to the item in the comment below, right?",
+      "parentUuid": "da01753e_b7d0b0f8",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 203,
+        "endChar": 31
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_74e8067d",
         "filename": "xci/opnfv-scenario-requirements.yml",
         "patchSetId": 1
@@ -235,6 +379,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_8babc188",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "I see, looks good to me, too. I won\u0027t do anything on that now (I think it can be done at a later point without harm)",
+      "parentUuid": "da01753e_74e8067d",
+      "range": {
+        "startLine": 207,
+        "startChar": 8,
+        "endLine": 207,
+        "endChar": 60
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_f4e4f6ad",
         "filename": "xci/opnfv-scenario-requirements.yml",
         "patchSetId": 1
@@ -246,6 +414,30 @@
       "writtenOn": "2019-02-23T12:05:55Z",
       "side": 1,
       "message": "i suppose the support for all distros are not there yet so i suggest removing unsupported distros and leaving the supported one only.",
+      "range": {
+        "startLine": 215,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 18
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_8bb461f3",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "Of course, will be done",
+      "parentUuid": "da01753e_f4e4f6ad",
       "range": {
         "startLine": 215,
         "startChar": 0,
@@ -281,6 +473,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_6bb93de9",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "da01753e_54ed028b",
+      "range": {
+        "startLine": 223,
+        "startChar": 8,
+        "endLine": 223,
+        "endChar": 62
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_d4e1f29b",
         "filename": "xci/opnfv-scenario-requirements.yml",
         "patchSetId": 1
@@ -304,6 +520,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_cbcdc988",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "da01753e_d4e1f29b",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 233,
+        "endChar": 18
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_dac0f92c",
         "filename": "xci/playbooks/configure-localhost.yml",
         "patchSetId": 1
@@ -315,6 +555,30 @@
       "writtenOn": "2019-02-27T09:09:52Z",
       "side": 1,
       "message": "this is better written as \"installer_type in [\"kubespray\", \"osh\"]\n\nsimilar to the rest of the code that this applies.",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 68
+      },
+      "revId": "d74baf4b04695d0abc36753a2792f4165d31b047",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_8b262167",
+        "filename": "xci/playbooks/configure-localhost.yml",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-03-05T15:37:10Z",
+      "side": 1,
+      "message": "will change as proposed",
+      "parentUuid": "da01753e_dac0f92c",
       "range": {
         "startLine": 49,
         "startChar": 12,
