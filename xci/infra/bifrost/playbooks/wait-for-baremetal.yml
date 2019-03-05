@@ -9,9 +9,9 @@
   gather_facts: False
   tasks:
     - name: "Wait for nodes to reboot."
-      wait_for: state=stopped port=22 host={{ ipv4_address }} timeout=240
+      wait_for: state=stopped port=22 host={{ ipv4_address }} timeout=5000
       delegate_to: opnfv
     - name: "Wait for nodes to become available."
-      wait_for: state=started port=22 host={{ ipv4_address }} timeout=3600
+      wait_for: state=started port=22 host={{ ipv4_address }} timeout=5000
       delegate_to: opnfv
 
