@@ -21,6 +21,12 @@ import json
 
 
 class XCIInventory(object):
+    """
+
+    Generates the ansible inventory based on the idf and pdf files provided
+    when executing the deployment script
+
+    """
     def __init__(self):
         super(XCIInventory, self).__init__()
         self.inventory = {}
@@ -130,11 +136,11 @@ class XCIInventory(object):
             for network, ndata in idf['idf']['net_config'].items():
                 network_interface_num = idf['idf']['net_config'][network]['interface']
                 host_networks[hostname][network] = {}
-                host_networks[hostname][network]['dns'] = []
                 host_networks[hostname][network]['address'] = pdf_host_info['interfaces'][int(network_interface_num)]['address'] + "/" + str(ndata['mask'])
                 if 'gateway' in ndata.keys():
                     host_networks[hostname][network]['gateway'] = str(ndata['gateway']) + "/" + str(ndata['mask'])
                 if 'dns' in ndata.keys():
+                    host_networks[hostname][network]['dns'] = []
                     for d in ndata['dns']:
                         host_networks[hostname][network]['dns'].append(str(d))
 
