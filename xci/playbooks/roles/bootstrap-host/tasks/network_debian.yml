@@ -90,7 +90,7 @@
     - "'opnfv' in inventory_hostname"
 
 - name: restart network service
-  shell: "/sbin/ip addr flush dev {{ item }} && /sbin/ifdown -a && /sbin/ifup -a"
+  shell: "/sbin/ip addr flush dev {{ item }}; /sbin/ifdown -a; /sbin/ifup -a"
   async: 15
   poll: 0
   with_items:
