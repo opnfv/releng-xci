@@ -28,7 +28,7 @@ export XCI_PLAYBOOKS=${XCI_PATH}/xci/playbooks
 # Functest parameters
 export FUNCTEST_MODE=${FUNCTEST_MODE:-"tier"}
 export FUNCTEST_SUITE_NAME=${FUNCTEST_SUITE_NAME:-"healthcheck"}
-export FUNCTEST_VERSION=${FUNCTEST_VERSION:-"latest"}
+export FUNCTEST_VERSION=${FUNCTEST_VERSION:-"hunter"}
 
 # CI paremeters
 export CI_LOOP=${CI_LOOP:-"daily"}
