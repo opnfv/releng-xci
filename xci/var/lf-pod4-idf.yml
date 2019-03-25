@@ -1,0 +1,187 @@
+##############################################################################
+# Copyright (c) 2018 Linux Foundation, Enea AB and others.
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+---
+### LF POD 4 installer descriptor file ###
+
+idf:
+  version: 0.1
+  installer: ['apex', 'compass4nfv', 'daisy', 'fuel', 'osa']
+  net_config: &net_config
+    oob:
+      interface: 0
+      ip-range: 172.30.8.83-172.30.8.88
+      vlan: 410
+      mask: 24
+    admin:
+      interface: 0
+      vlan: native
+      network: 192.168.122.0
+      gateway: 192.168.122.1
+      dns: 8.8.8.8
+      mask: 24
+    mgmt:
+      interface: 1
+      network: 172.29.236.0
+      mask: 22
+    storage:
+      interface: 3
+      network: 172.29.240.0
+      mask: 24
+    private:
+      interface: 2
+      network: 172.29.242.0
+      mask: 24
+    public:
+      interface: 4
+      network: 192.168.122.0
+      mask: 24
+      gateway: 192.168.122.1
+      dns:
+        - 8.8.8.8
+        - 8.8.4.4
+  osa: &idf_osa
+    nodes_roles:
+      opnfv: [deployment]
+      pod4-node1: [controller]
+      pod4-node2: [compute, storage]
+      pod4-node3: [compute, storage]
+      pod4-node4: [controller]
+      pod4-node5: [controller]
+    groups:
+      openstack:
+        - controller
+        - compute
+        - storage
+    hostnames:
+      opnfv: opnfv
+      pod4-node1: controller00
+      pod4-node2: compute00
+      pod4-node3: compute01
+      pod4-node4: controller01
+      pod4-node5: controller02
+    network:
+      # network mapping
+      network_mapping:
+        # Management network used by installer components to communicate
+        net-mgmt: admin
+        # Storage Network
+        net-storage: storage
+        # Internal network for communication between VNF
+        net-internal: private
+        # Public network for VNF remote acces (ext-net in Openstack)
+        net-vnf: public
+      deployment_host_interfaces:
+        # Ordered-list, index should be in sync with interface index in PDF
+        - 'eno1'
+        - 'eno3.450'
+  kubespray: &idf_kubespray
+    nodes_roles:
+      opnvf: [opnfv]
+      node1: [kube-master, etcd, vault]
+      node2: [kube-node]
+      node3: [kube-node]
+      node4: [kube-master, etcd, vault]
+      node5: [kube-master, etcd, vault]
+    groups:
+      k8s-cluster:
+        - kube-node
+        - kube-master
+    hostnames:
+      opnfv: opnfv
+      node1: master1
+      node2: node1
+      node3: node2
+      node4: master2
+      node5: master3
+    network:
+      # network mapping
+      network_mapping:
+        # Management network used by installer components to communicate
+        net-mgmt: admin
+        # Storage Network
+        net-storage: storage
+        # Internal network for communication between VNF
+        net-internal: private
+        # Public network for VNF remote acces (ext-net in Openstack)
+        net-vnf: public
+      deployment_host_interfaces:
+        # Ordered-list, index should be in sync with interface index in PDF
+        - 'eno1'
+        - 'eno3.450'
+  fuel:
+    jumphost:
+      bridges:
+        admin: 'pxebr'
+        mgmt: 'br-ctl'
+        private: ~
+        public: ~
+    network:
+      node:
+        # Ordered-list, index should be in sync with node index in PDF
+        - interfaces: &interfaces
+            # Ordered-list, index should be in sync with interface index in PDF
+            - 'eno1'
+            - 'eno3'
+            - 'eno4'
+          busaddr: &busaddr
+            # Bus-info reported by `ethtool -i ethX`
+            - '0000:04:00.0'
+            - '0000:02:00.0'
+            - '0000:02:00.1'
+        - interfaces: *interfaces
+          busaddr: *busaddr
+        - interfaces: *interfaces
+          busaddr: *busaddr
+        - interfaces: *interfaces
+          busaddr: *busaddr
+        - interfaces: *interfaces
+          busaddr: *busaddr
+xci:
+  pod_name: lf-pod4
+  net_config: *net_config
+  nodes_roles:
+    opnfv_host: [opnfv_host]
+    pod4-node1: [compute, storage]
+    pod4-node2: [compute, storage]
+    pod4-node3: [controller, storage]
+    pod4-node4: [controller, storage]
+    pod4-node5: [controller, storage]
+
+  # net_config network to be used by the PXE
+  pxe_network: admin
+
+  # As the MAC of generated bridges are generated, we use a list of local
+  # bridges to create libvirt networks
+  jumphost_interfaces_bridges:
+    - name: br_admin
+      ip:
+
+  extra_addresses:
+    opnfv_host: 192.168.12.2
+
+  flavors:
+    mini:
+      - opnfv
+      - pod4-node1
+      - pod4-node2
+    noha:
+      - opnfv
+      - pod4-node1
+      - pod4-node2
+      - pod4-node3
+    ha:
+      - opnfv
+      - pod4-node1
+      - pod4-node2
+      - pod4-node3
+      - pod4-node4
+      - pod4-node5
+
+  installers:
+    osa: *idf_osa
+    kubespray: *idf_kubespray
