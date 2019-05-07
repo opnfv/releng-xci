@@ -1,0 +1,109 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  pre_tasks:
+    - name: Load distribution variables
+      include_vars:
+        file: "{{ item }}"
+      with_items:
+        - "{{ xci_path }}/xci/var/{{ ansible_os_family }}.yml"
+    - name: Set facts for remote deployment
+      set_fact:
+        remote_xci_path: "{{ ansible_env.HOME }}/releng-xci"
+        remote_xci_flavor_files: "{{ ansible_env.HOME }}/releng-xci/xci/installer/{{ installer_type }}/files/{{ xci_flavor }}"
+        remote_xci_playbooks: "{{ ansible_env.HOME }}/releng-xci/xci/playbooks"
+
+  roles:
+    - role: bootstrap-host
+      configure_network: xci_flavor != 'aio'
+
+  tasks:
+    - name: Create list of files to copy
+      shell: |
+          git ls-tree -r --name-only HEAD > {{ xci_cache }}/releng-xci.files
+          echo ".git/" >> {{ xci_cache }}/releng-xci.files
+          echo ".cache/repos/" >> {{ xci_cache }}/releng-xci.files
+          echo ".cache/xci.env" >> {{ xci_cache }}/releng-xci.files
+      args:
+        executable: /bin/bash
+        chdir: "{{ xci_path }}"
+      changed_when: False
+      delegate_to: 127.0.0.1
+      tags:
+        - skip_ansible_lint
+
+    - name: Copy releng-xci to remote host
+      synchronize:
+        archive: yes
+        src: "{{ xci_path }}/"
+        dest: "{{ remote_xci_path }}"
+        delete: yes
+        rsync_opts:
+          - "--recursive"
+          - "--files-from={{ xci_cache }}/releng-xci.files"
+
+    - name: delete the opnfv_inventory directory
+      file:
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
+        state: absent
+
+    - name: make sure kubespray/opnfv_inventory/group_vars/ exist
+      file:
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
+        state: directory
+
+    - name: copy kubespray inventory directory
+      file:
+        src: "{{ remote_xci_playbooks }}/dynamic_inventory.py"
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/dynamic_inventory.py"
+        state: link
+
+    - name: Reload XCI deployment host facts
+      setup:
+        filter: ansible_local
+        gather_subset: "!all"
+      delegate_to: 127.0.0.1
+
+    - name: Prepare everything to run the {{ deploy_scenario }} role
+      include_role:
+        name: "{{ hostvars['opnfv'].ansible_local.xci.scenarios.role }}"
+
+    - name: Install required packages
+      package:
+        name: "{{ (ansible_pkg_mgr == 'zypper') | ternary('dbus-1', 'dbus') }}"
+        state: present
+        update_cache: "{{ (ansible_pkg_mgr in ['apt', 'zypper']) | ternary('yes', omit) }}"
+      when: xci_flavor == 'aio'
+
+    - name: change dashboard server type to NodePort
+      lineinfile:
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/roles/kubernetes-apps/ansible/templates/dashboard.yml.j2"
+        insertafter: 'targetPort'
+        line: "  type: NodePort"
+
+    - name: pip install required packages
+      pip:
+        name: "{{ item.name }}"
+        version: "{{ item.version | default(omit) }}"
+      with_items:
+        - { name: 'ansible', version: "{{ xci_kube_ansible_pip_version }}" }
+        - { name: 'netaddr' }
+        - { name: 'ansible-modules-hashivault' }
+
+    - name: fetch xci environment
+      copy:
+        src: "{{ xci_path }}/.cache/xci.env"
+        dest: /root/xci.env
+
+    - name: Manage SSH keys
+      include_tasks: "{{ xci_path }}/xci/playbooks/manage-ssh-keys.yml"

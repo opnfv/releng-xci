@@ -46,21 +46,21 @@
       repo: "{{ kubespray_git_url }}"
       dest: "{{ xci_cache }}/repos/kubespray"
       version: "{{ kubespray_version }}"
-      when: installer_type == "kubespray"
+      when: installer_type in ["kubespray", "armada"]
     - role: clone-repository
       project: "openstack/openstack-ansible-haproxy_server"
       repo: "{{ openstack_osa_haproxy_git_url }}"
       dest: roles/haproxy_server
       version: "{{ haproxy_version }}"
       when:
-        - installer_type == "kubespray"
+        - installer_type == "kubespray" or installer_type == "armada"
     - role: clone-repository
       project: "ansible-keepalived"
       repo: "{{ keepalived_git_url }}"
       dest: roles/keepalived
       version: "{{ keepalived_version }}"
       when:
-        - installer_type == "kubespray"
+        - installer_type == "kubespray" or installer_type == "armada"
 
   tasks:
     - name:  create log directory {{log_path}}

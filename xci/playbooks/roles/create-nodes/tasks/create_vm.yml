@@ -2,7 +2,16 @@
 - name: "Creating VM"
   block:
   - set_fact:
-      vm_name: "{{ ('kubespray' in installer_type) | ternary(idf.kubespray.hostnames[item.1.name], idf.osa.hostnames[item.1.name]) }}"
+      vm_name: "{{ idf.kubespray.hostnames[item.1.name] }}"
+    when: installer_type == "kubespray"
+
+  - set_fact:
+      vm_name: "{{ idf.osa.hostnames[item.1.name] }}"
+    when: installer_type == "osa"
+
+  - set_fact:
+      vm_name: "{{ idf.armada.hostnames[item.1.name] }}"
+    when: installer_type == "armada"
 
   - set_fact:
       vm_log_file: "{{ node_logdir }}/{{ vm_name }}_console.log"

@@ -1,0 +1,35 @@
+- name: Change tiller host
+  copy:
+    dest: "/root/repos/tiller_host.sh"
+    content: |
+      #!/bin/bash
+      sed -i 's#armada apply /tmp/$manifest.yaml#armada apply /tmp/$manifest.yaml --debug --tiller-host localhost#gi' /root/repos/openstack-helm/tools/deployment/armada/030-armada-apply-manifests.sh
+    mode: 0755
+
+- name: Apply Change tiller host patch
+  command: ./tiller_host.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/
+
+- name: Modify Rally tests
+  blockinfile:
+    dest: /root/repos/openstack-helm-infra/helm-toolkit/templates/scripts/_rally_test.sh.tpl
+    block: |
+      echo $RALLY_ENV_NAME
+      if [ $RALLY_ENV_NAME == "osh-nova" ]; then export AUTO_REMOVE_USER=false;fi
+      if [ $RALLY_ENV_NAME == "osh-neutron" ]; then export AUTO_REMOVE_USER=false;fi
+    insertafter: 'AUTO_REMOVE_USER:="true"'
+
+- name: New Keystone password
+  blockinfile:
+    dest: /root/repos/openstack-helm/tools/deployment/armada/020-armada-render-manifests.sh
+    block: |
+      echo "Rendering clouds.yaml"
+      envsubst < /etc/openstack/clouds.yaml > /root/clouds.yaml
+
+- name: Execute setup-client script
+  command: sh /root/releng-xci/xci/installer/armada/scripts/setup-client.sh
+
+- name: Expose tiller's port to localhost
+  command: sh /root/releng-xci/xci/installer/armada/scripts/armada_connection.sh

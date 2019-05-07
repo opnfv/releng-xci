@@ -96,6 +96,37 @@ idf:
         net-internal: private
         # Public network for VNF remote acces (ext-net in Openstack)
         net-vnf: public
+  armada: &idf_armada
+    nodes_roles:
+      opnfv: [opnfv]
+      node1: [kube-master, etcd, vault]
+      node2: [kube-node]
+      node3: [kube-node]
+      node4: [kube-master, etcd, vault]
+      node5: [kube-master, etcd, vault]
+    groups:
+      k8s-cluster:
+        - kube-node
+        - kube-master
+    hostnames:
+      opnfv: opnfv
+      node1: master1
+      node2: node1
+      node3: node2
+      node4: master2
+      node5: master3
+    network:
+      # network mapping
+      network_mapping:
+        # Management network used by installer components to communicate
+        net-mgmt: mgmt
+        # Storage Network
+        net-storage: storage
+        # Internal network for communication between VNF
+        net-internal: private
+        # Public network for VNF remote acces (ext-net in Openstack)
+        net-vnf: public
+
 xci:
   pod_name: vpod1
   net_config: *net_config
@@ -131,3 +162,4 @@ xci:
   installers:
     osa: *idf_osa
     kubespray: *idf_kubespray
+    armada: *idf_armada
