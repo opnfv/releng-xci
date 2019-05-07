@@ -1,0 +1,29 @@
+- name: Armada-host-setup
+  command: ./tools/deployment/armada/010-armada-host-setup.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Armada-build
+  command: ./tools/deployment/armada/015-armada-build.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Armada-render-manifests
+  command: ./tools/deployment/armada/020-armada-render-manifests.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Armada-validate-manifests
+  command: ./tools/deployment/armada/025-armada-validate-manifests.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Armada-apply-manifests
+  command: ./tools/deployment/armada/030-armada-apply-manifests.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
