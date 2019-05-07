@@ -30,6 +30,16 @@ kubespray_git_url: "{{ lookup('env','KUBESPRAY_GIT_URL') }}"
 kubespray_version: "{{ lookup('env','KUBESPRAY_VERSION') }}"
 xci_kube_ansible_pip_version: "{{ lookup('env','XCI_KUBE_ANSIBLE_PIP_VERSION') }}"
 
+# openstack-helm variables
+osh_git_url: "{{ lookup('env','OSH_GIT_URL') }}"
+osh_version: "{{ lookup('env','OSH_VERSION') }}"
+osh_infra_git_url: "{{ lookup('env','OSH_INFRA_GIT_URL') }}"
+osh_infra_version: "{{ lookup('env','OSH_INFRA_VERSION') }}"
+
+# armada variables
+armada_git_url: "{{ lookup('env','ARMADA_GIT_URL') }}"
+armada_version: "{{ lookup('env','ARMADA_VERSION') }}"
+
 # variables for other components
 keepalived_git_url: "{{ lookup('env','KEEPALIVED_GIT_URL') }}"
 haproxy_version: "{{ lookup('env','HAPROXY_VERSION') }}"
