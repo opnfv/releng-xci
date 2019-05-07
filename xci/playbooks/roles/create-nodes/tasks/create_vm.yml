@@ -2,7 +2,16 @@
 - name: "Creating VM"
   block:
   - set_fact:
-      vm_name: "{{ ('kubespray' in installer_type) | ternary(idf.kubespray.hostnames[item.1.name], idf.osa.hostnames[item.1.name]) }}"
+      vm_name: "{{ idf.kubespray.hostnames[item.1.name] }}"
+    when: installer_type == "kubespray"
+
+  - set_fact:
+      vm_name: "{{ idf.osa.hostnames[item.1.name] }}"
+    when: installer_type == "osa"
+
+  - set_fact:
+      vm_name: "{{ idf.armada.hostnames[item.1.name] }}"
+    when: installer_type == "armada"
 
   - set_fact:
       vm_log_file: "{{ node_logdir }}/{{ vm_name }}_console.log"
@@ -53,11 +62,11 @@
         - not _vm_volume_prepared.stat.exists
         - (vm_name + '.qcow2') not in ansible_libvirt_pools[node_storage_pool].volumes
 
-    - name: set path to the volume created
+    - name: set path to the volume created 
       set_fact:
         vm_volume_path: "{{ ansible_libvirt_pools[node_storage_pool].path }}/{{ vm_name }}.qcow2"
 
-    - name: pre-touch the vm volume
+    - name: pre-touch the vm volume 
       file:
         state: touch
         path: "{{ vm_volume_path }}"
