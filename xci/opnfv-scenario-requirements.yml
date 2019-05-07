@@ -149,6 +149,11 @@
         - ubuntu
         - centos
         - opensuse
+    - installer: armada
+      flavors:
+        - noha
+      distros:
+        - ubuntu
 
 - scenario: k8-flannel-nofeature
   scm: git
