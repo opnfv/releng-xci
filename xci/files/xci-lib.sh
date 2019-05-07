@@ -197,7 +197,7 @@ function install_ansible() {
 
 ansible_lint() {
     set -eu
-    local playbooks_dir=(xci/playbooks xci/installer/osa/playbooks xci/installer/kubespray/playbooks)
+    local playbooks_dir=(xci/playbooks xci/installer/osa/playbooks xci/installer/kubespray/playbooks xci/installer/armada/playbooks)
     # Extract role from scenario information
     local testing_role=$(sed -n "/^- scenario: ${DEPLOY_SCENARIO}$/,/^$/p" ${XCI_PATH}/xci/opnfv-scenario-requirements.yml | grep role | rev | cut -d '/' -f -1 | rev)
 
@@ -293,6 +293,7 @@ log_xci_information() {
     [[ "$INFRA_DEPLOYMENT" == "bifrost" ]] && echo "openstack/bifrost version: $OPENSTACK_BIFROST_VERSION"
     [[ "$INSTALLER_TYPE" == "osa" ]] && echo "openstack/openstack-ansible version: $OPENSTACK_OSA_VERSION"
     [[ "$INSTALLER_TYPE" == "kubespray" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
+    [[ "$INSTALLER_TYPE" == "armada" ]] && echo "kubespray version: $KUBESPRAY_VERSION"
     echo "-------------------------------------------------------------------------"
 }
 

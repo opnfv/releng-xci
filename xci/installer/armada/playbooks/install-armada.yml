@@ -1,0 +1,21 @@
+---
+- hosts: kube-node
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  roles:
+    - role: prepare-kube-nodes-armada
+
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  roles:
+    - role: prepare-opnfvhost-armada
+    - role: prepare-armada-noha
+      when: xci_flavor == 'noha'
+    - role: prepare-armada
+    - role: install-armada-noha
+      when: xci_flavor == 'noha'

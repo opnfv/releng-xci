@@ -9,8 +9,12 @@ export OPENSTACK_BIFROST_GIT_URL=${OPENSTACK_BIFROST_GIT_URL:-https://git.openst
 export OPENSTACK_OSA_GIT_URL=${OPENSTACK_OSA_GIT_URL:-https://git.openstack.org/openstack/openstack-ansible}
 export OPENSTACK_OSA_OPENRC_GIT_URL=${OPENSTACK_OSA_OPENRC_GIT_URL:-https://git.openstack.org/openstack/openstack-ansible-openstack_openrc}
 export KUBESPRAY_GIT_URL=${KUBESPRAY_GIT_URL:-https://github.com/kubernetes-incubator/kubespray.git}
+export OSH_GIT_URL=${OSH_GIT_URL:-https://github.com/openstack/openstack-helm.git}
+export OSH_INFRA_GIT_URL=${OSH_INFRA_GIT_URL:-https://github.com/openstack/openstack-helm-infra.git}
 export OPENSTACK_OSA_HAPROXY_GIT_URL=${OPENSTACK_OSA_HAPROXY_GIT_URL:-https://git.openstack.org/openstack/openstack-ansible-haproxy_server}
 export KEEPALIVED_GIT_URL=${KEEPALIVED_GIT_URL:-https://github.com/evrardjp/ansible-keepalived}
+export OSH_HELM_BINARY_URL=${OSH_HELM_BINARY_URL:-https://storage.googleapis.com/kubernetes-helm}
+export OSH_HELM_BINARY_VERSION=${OSH_HELM_BINARY_VERSION:-v2.14.1}
 
 # Configuration
 export OPENSTACK_OSA_ETC_PATH=/etc/openstack_deploy
