@@ -1,0 +1,49 @@
+Requirements:
+  1. Performance of hosts
+      The performance settings are not required officially. I recommend the following:
+       - VM_CPU=6
+       - VM_DISK=80GB
+       - VM_MEMORY_SIZE=16GB
+
+  2. Distributions
+       - Ubuntu 16.04
+
+  3. Packages:
+       - Ansible v2.4 (or newer) and python-netaddr is installed on the machine that will run Ansible commands
+       - Jinja 2.9 (or newer) is required to run the Ansible Playbooks
+
+  4. Others:
+       - The target servers must have access to the Internet in order to pull docker images.
+       - The target servers are configured to allow IPv4 forwarding.
+       - Your ssh key must be copied to all the servers part of your inventory.
+       - The firewalls are not managed, you'll need to implement your own rules the way you used to. In order to avoid any issue during the deployment you should disable your firewall.
+
+Flavors:
+  1. noha: One deployment host, 1 master host and 2 node hosts.
+
+Components Installed:
+  1. etcd
+  2. network plugins:(one of following, which you can choose. Default is calico)
+       - calico
+  3. kubernetes
+  4. docker
+
+How to use:
+
+Clone the OPNFV Releng repository
+
+    git clone https://gerrit.opnfv.org/gerrit/releng-xci.git
+
+Change into the directory where the sandbox script is located
+
+    cd releng-xci/xci
+
+Set the variable to run armada
+
+    export INSTALLER_TYPE=armada
+    export DEPLOY_SCENARIO=k8-nosdn-nofeature
+    export XCI_FLAVOR=noha
+
+Execute sandbox script
+
+    ./xci-deploy.sh

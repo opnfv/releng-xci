@@ -1,0 +1,10 @@
+- name: Install packages in kubernetes nodes
+  package:
+    name: "{{ packages }}"
+    state: present
+  changed_when: false
+  vars:
+    packages:
+    - ceph-common
+    - rbd-nbd
+    - apparmor
