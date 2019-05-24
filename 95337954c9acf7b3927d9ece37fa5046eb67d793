@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f765f00_76bc6e80",
+        "filename": "xci/installer/armada/playbooks/install-armada-noha.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-05-24T09:02:38Z",
+      "side": 1,
+      "message": "Armada cli needs to be connected with tiller server in order to armada commands be executed.\nSince Armada is installed and executed in OPNFV VM(outside the cluster) and tiller lays inside cluster, tiller\u0027s port is forwarded in OPNFV VM in order for communication to be achieved.\nThe issue is that after long period(~one day), connection is dropped and setup between armada-tiller must be performed again, manually with these commands.\nIs this something acceptable(it could be highlighted in documentation)?",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 18
+      },
+      "revId": "95337954c9acf7b3927d9ece37fa5046eb67d793",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
