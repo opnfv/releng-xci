@@ -22,6 +22,30 @@
       "revId": "95337954c9acf7b3927d9ece37fa5046eb67d793",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02a5cc6e_0985ff89",
+        "filename": "xci/installer/armada/playbooks/install-armada-noha.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-05-27T12:24:07Z",
+      "side": 1,
+      "message": "A possible workaround could be:\n\nTILLER_POD\u003d$(kubectl get pods --all-namespaces | grep tiller | awk \u0027{ print $2 }\u0027)\n\nTILLER_NSPACE\u003d$(kubectl get pods --all-namespaces | grep tiller | awk \u0027{ print $1 }\u0027)\n\nwhile true; do kubectl port-forward pod/$TILLER_POD -n $TILLER_NSPACE 44134:44134; done",
+      "parentUuid": "0f765f00_76bc6e80",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 190,
+        "endChar": 18
+      },
+      "revId": "95337954c9acf7b3927d9ece37fa5046eb67d793",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
