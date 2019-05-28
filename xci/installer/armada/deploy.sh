@@ -142,6 +142,10 @@ if [ $XCI_FLAVOR == "noha" ]; then
     ansible-playbook ${XCI_ANSIBLE_PARAMS} -v -i \
         ${XCI_PLAYBOOKS}/dynamic_inventory.py install-armada-noha.yml
 fi
+if [ $XCI_FLAVOR == "mini" ]; then
+    ansible-playbook ${XCI_ANSIBLE_PARAMS} -v -i \
+        ${XCI_PLAYBOOKS}/dynamic_inventory.py install-armada-mini.yml
+fi
 echo "-----------------------------------------------------------------------"
 echo "Info: Openstack-helm installation execution done"
 echo "-----------------------------------------------------------------------"
