@@ -22,6 +22,30 @@
       "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "04b68215_f6256225",
+        "filename": "xci/playbooks/roles/bootstrap-host/templates/osh",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-05-28T10:59:44Z",
+      "side": 1,
+      "message": "This is a symbolic link: osh -\u003e osa directory. All installers use the same playbooks and roles for configuring the localhost and the opnfv host.",
+      "parentUuid": "14cf8ed6_d9f66954",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
