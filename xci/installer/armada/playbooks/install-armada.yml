@@ -14,8 +14,12 @@
 
   roles:
     - role: prepare-opnfvhost-armada
+    - role: prepare-armada-mini
+      when: xci_flavor == 'mini'
     - role: prepare-armada-noha
       when: xci_flavor == 'noha'
     - role: prepare-armada
+    - role: install-armada-mini
+      when: xci_flavor == 'mini'
     - role: install-armada-noha
       when: xci_flavor == 'noha'
