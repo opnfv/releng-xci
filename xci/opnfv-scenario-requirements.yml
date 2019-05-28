@@ -152,6 +152,7 @@
     - installer: armada
       flavors:
         - noha
+        - mini
       distros:
         - ubuntu
 
