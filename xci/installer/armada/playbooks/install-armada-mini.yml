@@ -1,0 +1,326 @@
+---
+- hosts: opnfv
+  remote_user: root
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  tasks:
+    - name: Set kubernetes service account permissions
+      command: "kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default"
+      changed_when: false
+
+    - name: Set kubernetes node labels
+      command: "kubectl label nodes {{ item }} --all"
+      changed_when: false
+      with_items:
+        - openstack-control-plane=enabled
+        - openstack-compute-node=enabled
+        - openstack-helm-node-class=primary
+        - openvswitch=enabled
+        - linuxbridge=enabled
+        - ceph-mon=enabled
+        - ceph-osd=enabled
+        - ceph-mds=enabled
+        - ceph-mgr=enabled
+        - ceph-rgw=enabled
+
+    - name: Create directories
+      file:
+        path: /root/{{ item }}
+        state: directory
+      with_items:
+        ['repos','tmp', '.helm/repository/local']
+
+    - name: Clone openstack-helm
+      git:
+        repo: "{{ osh_git_url }}"
+        dest: /root/repos/openstack-helm
+        version: "{{ osh_version }}"
+        update: true
+        force: true
+      register: git_clone
+      until: git_clone is success
+      retries: 2
+      delay: 5
+
+    - name: Clone openstack-helm-infra
+      git:
+        repo: "{{ osh_infra_git_url }}"
+        dest: /root/repos/openstack-helm-infra
+        version: "{{ osh_infra_version }}"
+        update: true
+        force: true
+      register: git_clone
+      until: git_clone is success
+      retries: 2
+      delay: 5
+
+    - name: Get helm
+      get_url:
+        url: https://storage.googleapis.com/kubernetes-helm/helm-v2.13.1-linux-amd64.tar.gz
+        dest: tmp
+
+    - name: Uncompress helm package
+      command: "tar zxvf  tmp/helm-v2.13.1-linux-amd64.tar.gz --strip-components=1 -C tmp/"
+      changed_when: false
+      tags:
+        - skip_ansible_lint
+
+    - name: Put helm in system binaries
+      copy:
+        src: tmp/helm
+        dest: /usr/bin/helm
+        remote_src: yes
+        mode: 0755
+
+    - name: Put Tiller in system binaries
+      copy:
+        src: tmp/tiller
+        dest: /usr/bin/tiller
+        remote_src: yes
+        mode: 0755
+
+    - name: Create helm-serve service file
+      copy:
+        dest: "/etc/systemd/system/helm-serve.service"
+        content: |
+          [Unit]
+          Description=Helm Server
+          After=network.target
+          [Service]
+          User=root
+          Restart=always
+          ExecStart=/usr/bin/helm serve
+          [Install]
+          WantedBy=multi-user.target
+        mode: 0640
+
+    - name: Start helm-serve service
+      service:
+        name: helm-serve
+        state: started
+        enabled: yes
+
+    - name: Wait for helm-serve service to start
+      wait_for:
+        port: 8879
+        host: 127.0.0.1
+
+    - name: Install pyhelm
+      pip:
+        name: pyhelm
+
+    - name: Init helm
+      command: "helm init"
+      changed_when: false
+
+    - name: Remove stable (external) service from helm
+      command: "helm repo remove stable"
+      changed_when: false
+
+    - name: Add local repositories service to helm
+      command: "helm repo add local http://localhost:8879/charts"
+      changed_when: false
+
+    - name: Install packages
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - patch
+        - ipcalc
+        - jq
+        - nmap
+
+    - name: Install packages in kubernetes nodes
+      command: "ssh -o \"StrictHostKeyChecking no\" root@{{ item }} \"apt-get install -y ceph-common rbd-nbd apparmor\""
+      changed_when: false
+      with_items:
+        - "192.168.122.3"
+        - "192.168.122.4"
+
+    - name: Modify resolv.conf file and create route to DNS patch
+      copy:
+        dest: "/root/repos/route_to_dns.sh"
+        content: |
+          #!/bin/bash
+          kube_service_addresses=$(grep -r 'kube_service_addresses:' /root/releng-xci/.cache/repos/kubespray/opnfv_inventory/group_vars/k8s-cluster.yml | sed -e 's/kube_service_addresses: //')
+          echo $kube_service_addresses
+          ip route add $kube_service_addresses via 192.168.122.3 dev br-vlan onlink
+          ip_route=$(ip r)
+          echo $ip_route
+          cat > /etc/resolv.conf <<EOF
+          search svc.cluster.local cluster.local
+          nameserver 10.233.0.3
+          nameserver 192.168.122.1
+          EOF
+          chattr +i /etc/resolv.conf
+        mode: 0755
+
+    - name: Apply route_to_dns patch
+      command: ./route_to_dns.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/
+
+    - name: Change tiller host
+      copy:
+        dest: "/root/repos/tiller_host.sh"
+        content: |
+          #!/bin/bash
+          sed -i 's#armada apply /tmp/$manifest.yaml#armada apply /tmp/$manifest.yaml --debug --tiller-host localhost#gi' /root/repos/openstack-helm/tools/deployment/armada/030-armada-apply-manifests.sh
+          sed -i 's#armada apply /tmp/updated-$manifest.yaml#armada apply /tmp/updated-$manifest.yaml --tiller-host localhost#gi' /root/repos/openstack-helm/tools/deployment/armada/035-armada-update-uuid.sh
+          sed -i 's#armada apply /tmp/updated-armada-osh.yaml#armada apply /tmp/updated-armada-osh.yaml --tiller-host localhost#gi' /root/repos/openstack-helm/tools/deployment/armada/035-armada-update-uuid.sh
+        mode: 0755
+
+    - name: Apply Change tiller host patch
+      command: ./tiller_host.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/
+
+    - name: Expose tiller's port to localhost
+      copy:
+        dest: "/root/repos/tiller_port.sh"
+        content: |
+          #!/bin/bash
+          TILLER_POD=$(kubectl get pods --all-namespaces | grep tiller | awk '{ print $2 }')
+          TILLER_NSPACE=$(kubectl get pods --all-namespaces | grep tiller | awk '{ print $1 }')
+          nohup bash -c "while true; do kubectl port-forward pod/$TILLER_POD -n $TILLER_NSPACE 44134:44134 &>/dev/null ; done &"
+        mode: 0755
+
+    - name: Apply Expose tiller's port to localhost patch
+      command: ./tiller_port.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/
+
+    - name: Rally test patch
+      copy:
+        dest: "/root/repos/rally_patch.sh"
+        content: |
+          #!/bin/bash
+          sed -i  '/AUTO_REMOVE_USER:="true"/a if [ $RALLY_ENV_NAME == "osh-neutron" ]; then export AUTO_REMOVE_USER=false;fi' /root/repos/openstack-helm-infra/helm-toolkit/templates/scripts/_rally_test.sh.tpl
+          sed -i  '/AUTO_REMOVE_USER:="true"/a if [ $RALLY_ENV_NAME == "osh-nova" ]; then export AUTO_REMOVE_USER=false;fi' /root/repos/openstack-helm-infra/helm-toolkit/templates/scripts/_rally_test.sh.tpl
+          sed -i  '/AUTO_REMOVE_USER:="true"/a echo $RALLY_ENV_NAME' /root/repos/openstack-helm-infra/helm-toolkit/templates/scripts/_rally_test.sh.tpl
+        mode: 0755
+
+    - name: Apply Rally test patch
+      command: ./rally_patch.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/
+
+    - name: client setup patch
+      copy:
+        dest: "/root/repos/client_setup.sh"
+        content: |
+          #!/bin/bash
+          sudo -H -E pip install python-openstackclient python-heatclient --ignore-installed
+          sudo -H mkdir -p /etc/openstack
+          sudo -H chown -R $(id -un): /etc/openstack
+          tee /etc/openstack/clouds.yaml << EOF
+          clouds:
+            openstack_helm:
+              region_name: RegionOne
+              identity_api_version: 3
+              auth:
+                username: 'admin'
+                password: \${KEYSTONE_ADMIN_PASSWORD}
+                project_name: 'admin'
+                project_domain_name: 'default'
+                user_domain_name: 'default'
+                auth_url: 'http://keystone.openstack.svc.cluster.local/v3'
+          EOF
+        mode: 0755
+
+    - name: Apply client setup patch
+      command: ./client_setup.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/
+
+    - name: New Keystone password patch
+      copy:
+        dest: "/root/repos/keystone_password.sh"
+        content: |
+          #!/bin/bash
+          echo "" >> /root/repos/openstack-helm/tools/deployment/armada/020-armada-render-manifests.sh
+          echo 'echo "Rendering clouds.yaml"' >> /root/repos/openstack-helm/tools/deployment/armada/020-armada-render-manifests.sh
+          echo "envsubst < /etc/openstack/clouds.yaml > /root/clouds.yaml" >> /root/repos/openstack-helm/tools/deployment/armada/020-armada-render-manifests.sh
+        mode: 0755
+
+    - name: Apply new Keystone password patch
+      command: ./keystone_password.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/
+
+    - name: Copy armada-mini files patch
+      copy:
+        dest: "/root/repos/armada_mini.sh"
+        content: |
+          #!/bin/bash
+          cp -rf /root/releng-xci/xci/installer/armada/manifests_mini/armada-osh.yaml /root/repos/openstack-helm/tools/deployment/armada/manifests/armada-osh.yaml
+          cp -rf /root/releng-xci/xci/installer/armada/manifests_mini/armada-ceph.yaml /root/repos/openstack-helm-infra/tools/deployment/armada/manifests/armada-ceph.yaml
+          cp /root/clouds.yaml /root/repos/openstack-helm
+        mode: 0755
+
+    - name: Apply armada-mini files patch
+      command: ./armada_mini.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/
+
+    - name: Armada-host-setup
+      command: ./tools/deployment/armada/010-armada-host-setup.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Armada-build
+      command: ./tools/deployment/armada/015-armada-build.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Armada-render-manifests
+      command: ./tools/deployment/armada/020-armada-render-manifests.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Armada-validate-manifests
+      command: ./tools/deployment/armada/025-armada-validate-manifests.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Armada-apply-manifests
+      command: ./tools/deployment/armada/030-armada-apply-manifests.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Copy script to the worker node
+      command: "scp -o \"StrictHostKeyChecking no\" tools/deployment/developer/ceph/170-setup-gateway.sh root@192.168.122.4:170-setup-gateway.sh"
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
+    - name: Setup the gateway to the public network at worker node
+      command: /root/170-setup-gateway.sh
+      changed_when: false
+      delegate_to: 192.168.122.4
+
+    - name: Add a route from opnfv to worker node for the public network
+      command: ip route add 172.24.4.0/24 via 192.168.122.4
+      changed_when: false
+
+# Deployment validation
+    - name: Exercise the cloud
+      command: ./tools/deployment/developer/common/900-use-it.sh
+      changed_when: false
+      args:
+        chdir: /root/repos/openstack-helm
+
