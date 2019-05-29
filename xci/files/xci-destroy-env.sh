@@ -21,6 +21,7 @@ rm -rf /opt/stack
 # HOME is normally set by sudo -H
 rm -rf ${HOME}/.config/openstack
 rm -rf ${HOME}/.ansible
+rm -rf ${HOME}/releng-xci/xci/playbooks/roles/keepalived
 # Wipe repos
 rm -rf ${XCI_CACHE}/repos
 
