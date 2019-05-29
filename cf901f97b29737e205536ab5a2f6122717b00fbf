@@ -2,6 +2,213 @@
   "comments": [
     {
       "key": {
+        "uuid": "4df8c392_ba75ecbd",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-29T15:32:47Z",
+      "side": 1,
+      "message": "Computes should have this disabled",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 41
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cd8e21d5_8da92d31",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-29T15:32:47Z",
+      "side": 1,
+      "message": "opnfv node and controller should have compute-node disabled",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 40
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "780db682_7cda57b1",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-29T15:32:47Z",
+      "side": 1,
+      "message": "it would be great to control this version too through an env. variable",
+      "range": {
+        "startLine": 60,
+        "startChar": 65,
+        "endLine": 60,
+        "endChar": 72
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d129e63_e1db4630",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-29T15:32:47Z",
+      "side": 1,
+      "message": "Try using ansible modules. It things fail is easier to debug: https://docs.ansible.com/ansible/latest/modules/unarchive_module.html",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 27
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a79934f_0ef854af",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-29T15:32:47Z",
+      "side": 1,
+      "message": "I wonder if it might be easier to create an ansible role and have things more organized. For example this could be a template or a file",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 36
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebd5feac_bf350a2f",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-29T15:32:47Z",
+      "side": 1,
+      "message": "better use a generic package installer, then we can reuse it for other OSs: https://docs.ansible.com/ansible/latest/modules/package_module.html",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 10
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f5332f5f_dcb042d9",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-29T15:32:47Z",
+      "side": 1,
+      "message": "This is not really best practices in ansible. You should use the names defined in the inventory",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 25
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "302ebac6_2f6e2463",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-29T15:32:47Z",
+      "side": 1,
+      "message": "Why these patches? I understand they fix problems in OSH, is OSH informed about these problems? Is there perhaps a patch that fixes them? I could understand this as a temporary solution but in that case, I\u0027d say it is better to git download a branch from OSH that has all these fixes",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 122
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c9b62edd_5ba3eb95",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-29T15:32:47Z",
+      "side": 1,
+      "message": "we should create a template for /etc/resulv.conf using jinja2 instead of this",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 99
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "14cf8ed6_d9f66954",
         "filename": "xci/playbooks/roles/bootstrap-host/templates/osh",
         "patchSetId": 14
