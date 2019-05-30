@@ -63,6 +63,8 @@ if [ $XCI_FLAVOR != "aio" ]; then
     echo "Info: Configuring target hosts for kubespray"
     echo "-----------------------------------------------------------------------"
     cd $OSH_XCI_PLAYBOOKS
+    sudo mkdir -p /opt/cache/files
+    sudo chmod -R 777 /opt/cache
     ansible-playbook ${XCI_ANSIBLE_PARAMS} \
             -i ${XCI_PLAYBOOKS}/dynamic_inventory.py configure-targethosts.yml
     echo "-----------------------------------------------------------------------"
@@ -128,7 +130,7 @@ echo $KUBER_SERVER_URL | awk '{print $2}'| sed -n "s#:[0-9]*\$#:$DASHBOARD_PORT#
 
 # Get the dashborad user and password
 MASTER_IP=$(echo ${KUBER_SERVER_URL} | awk '{print $2}' |awk -F "[:/]" '{print $4}')
-USER_CSV=$(ssh root@$MASTER_IP " cat /etc/kubernetes/users/known_users.csv")
+USER_CSV=$(ssh -o "StrictHostKeyChecking no" root@$MASTER_IP " cat /etc/kubernetes/users/known_users.csv")
 USERNAME=$(echo $USER_CSV |awk -F ',' '{print $2}')
 PASSWORD=$(echo $USER_CSV |awk -F ',' '{print $1}')
 echo "Info: Dashboard username: ${USERNAME}"
@@ -145,6 +147,10 @@ fi
 if [ $XCI_FLAVOR == "mini" ]; then
     ansible-playbook ${XCI_ANSIBLE_PARAMS} -v -i \
         ${XCI_PLAYBOOKS}/dynamic_inventory.py install-openstack-helm-mini.yml
+fi
+if [ $XCI_FLAVOR == "ha" ]; then
+    ansible-playbook ${XCI_ANSIBLE_PARAMS} -v -i \
+        ${XCI_PLAYBOOKS}/dynamic_inventory.py install-openstack-helm-ha.yml
 fi
 echo "-----------------------------------------------------------------------"
 echo "Info: Openstack-helm installation execution done"
