@@ -153,6 +153,7 @@
       flavors:
         - mini
         - noha
+        - ha
       distros:
         - ubuntu
 

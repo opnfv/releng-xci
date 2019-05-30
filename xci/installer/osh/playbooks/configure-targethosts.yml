@@ -37,4 +37,5 @@
       when:  xci_flavor == 'ha'
     - role: "haproxy_server"
       haproxy_service_configs: "{{ haproxy_default_services}}"
+      haproxy_hatop_download_path: "{{ haproxy_cache_path }}"
       when:  xci_flavor == 'ha'

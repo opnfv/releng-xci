@@ -26,6 +26,8 @@ haproxy_default_services:
       haproxy_backend_port: 6443
       haproxy_balance_type: tcp
 
+haproxy_cache_path: "/tmp/cache/files"
+
 haproxy_bind_on_non_local: "True"
 haproxy_use_keepalived: "True"
 keepalived_selinux_compile_rules:

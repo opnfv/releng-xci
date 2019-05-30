@@ -1,0 +1,22 @@
+- name: Get tiller host ip and port
+  shell: "kubectl get svc -n kube-system tiller-deploy | grep tiller | awk -F '/' '{ print $1 }' | awk '{ print $3\":\"$5 }'"
+  changed_when: false
+  args:
+    executable: /bin/bash
+  register: tiller_host
+
+- name: Fix tiller host in helm test commands
+  command: "sed -i \"/helm test/ s/$/ --host={{ tiller_host.stdout }}/\" {{ item }}"
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm/tools/deployment/multinode
+  with_items:
+    - "080-keystone.sh"
+    - "090-ceph-radosgateway.sh"
+    - "100-glance.sh"
+    - "110-cinder.sh"
+    - "140-compute-kit.sh"
+    - "150-heat.sh"
+    - "160-barbican.sh"
+  tags:
+    - skip_ansible_lint

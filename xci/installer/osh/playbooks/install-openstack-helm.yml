@@ -16,10 +16,12 @@
     - role: prepare-opnfvhost-osh
     - role: prepare-osh-mini
       when: xci_flavor == 'mini'
-    - role: prepare-osh-noha
-      when: xci_flavor == 'noha'
+    - role: prepare-osh-multinode
+      when: xci_flavor == 'noha' or xci_flavor == 'ha'
+    - role: prepare-osh-ha
+      when: xci_flavor == 'ha'
     - role: prepare-osh
     - role: install-osh-mini
       when: xci_flavor == 'mini'
-    - role: install-osh-noha
-      when: xci_flavor == 'noha'
+    - role: install-osh-multinode
+      when: xci_flavor == 'noha' or xci_flavor == 'ha'

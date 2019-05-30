@@ -128,7 +128,7 @@ echo $KUBER_SERVER_URL | awk '{print $2}'| sed -n "s#:[0-9]*\$#:$DASHBOARD_PORT#
 
 # Get the dashborad user and password
 MASTER_IP=$(echo ${KUBER_SERVER_URL} | awk '{print $2}' |awk -F "[:/]" '{print $4}')
-USER_CSV=$(ssh root@$MASTER_IP " cat /etc/kubernetes/users/known_users.csv")
+USER_CSV=$(ssh -o "StrictHostKeyChecking no" root@$MASTER_IP " cat /etc/kubernetes/users/known_users.csv")
 USERNAME=$(echo $USER_CSV |awk -F ',' '{print $2}')
 PASSWORD=$(echo $USER_CSV |awk -F ',' '{print $1}')
 echo "Info: Dashboard username: ${USERNAME}"
