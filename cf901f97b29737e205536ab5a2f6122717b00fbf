@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "190f1259_d490f0c0",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-05-31T11:54:42Z",
+      "side": 1,
+      "message": "As I understand it, there are no specific compute or controller nodes as the openstack services are containerized. The VMs are spawned in the worker node(s) of the kubernetes cluster.\nI agree that the master node should not have those (or any?) labels.",
+      "parentUuid": "4df8c392_ba75ecbd",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 41
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd8e21d5_8da92d31",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
         "patchSetId": 14
@@ -36,6 +60,30 @@
       "writtenOn": "2019-05-29T15:32:47Z",
       "side": 1,
       "message": "opnfv node and controller should have compute-node disabled",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 40
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "092040dc_1f1286c1",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-05-31T11:54:42Z",
+      "side": 1,
+      "message": "I think (but I could be wrong) that the opnfv node is not member of the kubernetes cluster and not targeted by kubectl commands like this one.\nFor controller, see above.",
+      "parentUuid": "cd8e21d5_8da92d31",
       "range": {
         "startLine": 17,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "212caab2_2f377080",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-05-31T11:54:42Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "780db682_7cda57b1",
+      "range": {
+        "startLine": 60,
+        "startChar": 65,
+        "endLine": 60,
+        "endChar": 72
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5d129e63_e1db4630",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
         "patchSetId": 14
@@ -82,6 +154,30 @@
       "writtenOn": "2019-05-29T15:32:47Z",
       "side": 1,
       "message": "Try using ansible modules. It things fail is easier to debug: https://docs.ansible.com/ansible/latest/modules/unarchive_module.html",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 27
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9dc4fb44_0afb3f6c",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-05-31T11:54:42Z",
+      "side": 1,
+      "message": "I had tried to use unarchive module at the beginning (in fact it was here, commented out, until a couple of PS back) but it is not working. I don\u0027t remember the failure, I\u0027ll come back on this.\nIn general, I agree with the suggestion for using ansible modules when possible.",
+      "parentUuid": "5d129e63_e1db4630",
       "range": {
         "startLine": 63,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "c7f88adf_ef727a9b",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-05-31T11:54:42Z",
+      "side": 1,
+      "message": "yes, I\u0027ll look into this in the spirit of the general comments",
+      "parentUuid": "3a79934f_0ef854af",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 36
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ebd5feac_bf350a2f",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
         "patchSetId": 14
@@ -128,6 +248,30 @@
       "writtenOn": "2019-05-29T15:32:47Z",
       "side": 1,
       "message": "better use a generic package installer, then we can reuse it for other OSs: https://docs.ansible.com/ansible/latest/modules/package_module.html",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 10
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9c974618_47e5ac66",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-05-31T11:54:42Z",
+      "side": 1,
+      "message": "sure, I had missed the package module",
+      "parentUuid": "ebd5feac_bf350a2f",
       "range": {
         "startLine": 137,
         "startChar": 0,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "a579752e_ee0f0795",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-05-31T11:54:42Z",
+      "side": 1,
+      "message": "I agree, will fixed with reorganization",
+      "parentUuid": "f5332f5f_dcb042d9",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 25
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "302ebac6_2f6e2463",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
         "patchSetId": 14
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "08e05e25_6a16ec46",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-05-31T11:54:42Z",
+      "side": 1,
+      "message": "Indeed, most of the patches are fixed on later versions of OSH and I\u0027ll do an update on the pinned version. A couple of points (e.g. dns_nameservers in heat template) may have to remain though.",
+      "parentUuid": "302ebac6_2f6e2463",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 122
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9b62edd_5ba3eb95",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
         "patchSetId": 14
@@ -197,6 +389,30 @@
       "writtenOn": "2019-05-29T15:32:47Z",
       "side": 1,
       "message": "we should create a template for /etc/resulv.conf using jinja2 instead of this",
+      "range": {
+        "startLine": 219,
+        "startChar": 0,
+        "endLine": 231,
+        "endChar": 99
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d4bff2f1_863663a9",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-05-31T11:54:42Z",
+      "side": 1,
+      "message": "ok, I\u0027ll look into this",
+      "parentUuid": "c9b62edd_5ba3eb95",
       "range": {
         "startLine": 219,
         "startChar": 0,
