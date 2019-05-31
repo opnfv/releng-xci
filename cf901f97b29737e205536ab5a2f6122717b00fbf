@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "756b146e_2533f1db",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-31T13:36:05Z",
+      "side": 1,
+      "message": "if a node has openstack-control-plane\u003denabled, the openstack control plane containers will be deployed there. I think 192.168.122.3 should have this enabled but 192.168.122.4 and .5 should not",
+      "parentUuid": "190f1259_d490f0c0",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 41
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd8e21d5_8da92d31",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
         "patchSetId": 14
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "I think (but I could be wrong) that the opnfv node is not member of the kubernetes cluster and not targeted by kubectl commands like this one.\nFor controller, see above.",
       "parentUuid": "cd8e21d5_8da92d31",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 40
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d5a01b52_1f007ffa",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-31T13:36:05Z",
+      "side": 1,
+      "message": "Correct, I was wrong about opnfv. 192.168.122.4 and 192.168.122.5 should have this enabled",
+      "parentUuid": "092040dc_1f1286c1",
       "range": {
         "startLine": 17,
         "startChar": 0,
@@ -190,6 +238,30 @@
     },
     {
       "key": {
+        "uuid": "a63e8907_55de797f",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-31T13:36:05Z",
+      "side": 1,
+      "message": "ok. I must say that I had never used it so not sure if it is buggy",
+      "parentUuid": "9dc4fb44_0afb3f6c",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 27
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a79934f_0ef854af",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
         "patchSetId": 14
@@ -225,6 +297,30 @@
       "side": 1,
       "message": "yes, I\u0027ll look into this in the spirit of the general comments",
       "parentUuid": "3a79934f_0ef854af",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 36
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7ddfcd2_3ff2783b",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-31T13:36:05Z",
+      "side": 1,
+      "message": "great! I can help you, I have experience with this role https://github.com/openstack/openstack-ansible-os_neutron",
+      "parentUuid": "c7f88adf_ef727a9b",
       "range": {
         "startLine": 80,
         "startChar": 0,
@@ -366,6 +462,30 @@
       "side": 1,
       "message": "Indeed, most of the patches are fixed on later versions of OSH and I\u0027ll do an update on the pinned version. A couple of points (e.g. dns_nameservers in heat template) may have to remain though.",
       "parentUuid": "302ebac6_2f6e2463",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 122
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b83ade2e_39e49e47",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-05-31T13:36:05Z",
+      "side": 1,
+      "message": "Can you add a comment with the link to the patch please? Then we can keep track",
+      "parentUuid": "08e05e25_6a16ec46",
       "range": {
         "startLine": 160,
         "startChar": 0,
