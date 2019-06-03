@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "320c2b8e_98083246",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-03T09:56:24Z",
+      "side": 1,
+      "message": "I issued kubectl describe node \u003cmaster1, node1, node2\u003e and it shows that (although the labels assigned by the playbook are all there) there is an additional label on each:\neither \"node-role.kubernetes.io/node\u003dtrue\" or \"node-role.kubernetes.io/master\u003dtrue\" plus property \"Roles:\" either \"master\" or \"node\". The way it works, as I understand it, is that in cluster members with role \u0027master\u0027, only pods of kube-system namespace are deployed while pods of namespaces ceph and openstack are placed only in cluster members of role \u0027node\u0027.\nSo, I think, all openstack modules/functions, both controller and compute (or e.g. neutron routers, ...), will be pods launched in nodeX cluster members.\nAll of these labels should be placed in all nodeX.\n\nhttp://paste.openstack.org/show/752428/\n(this is from an HA deployment, but the principle should be the same)",
+      "parentUuid": "756b146e_2533f1db",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 41
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cd8e21d5_8da92d31",
         "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
         "patchSetId": 14
@@ -486,6 +510,30 @@
       "side": 1,
       "message": "Can you add a comment with the link to the patch please? Then we can keep track",
       "parentUuid": "08e05e25_6a16ec46",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 122
+      },
+      "revId": "cf901f97b29737e205536ab5a2f6122717b00fbf",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c04aac2_5a9a8a30",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm-mini.yml",
+        "patchSetId": 14
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-03T09:56:24Z",
+      "side": 1,
+      "message": "removed apparmor from (generic) nova\nhttps://github.com/openstack/openstack-helm/commit/0abf9d2b20ce0b47857bc02f39c64013d68dd683#diff-8601da0646f273653c0592fa5d30c7fb\n\npoint to openstackhelm tempest image\nhttps://github.com/openstack/openstack-helm/commit/1c8cbe6be8085284f9bbe7746f78faa34390485b#diff-711f2d9c4c01270d5b0d40086bfbe6b2\n\nFix tempest test script\nhttps://github.com/openstack/openstack-helm/commit/720c72baa97923706bed79d5a1750c692f7e5d7e#diff-711f2d9c4c01270d5b0d40086bfbe6b2\n\nfix tempest values (None to null) (except admin_domain_scope)\nhttps://github.com/openstack/openstack-helm/commit/96aa69d131bd498a2fb19918d25ab438602ac8cb#diff-711f2d9c4c01270d5b0d40086bfbe6b2\n\nfix tempest values (admin_domain_scope)\nhttps://github.com/openstack/openstack-helm/commit/82c12e581d339a04b467be6ae721d8de3184afd8#diff-711f2d9c4c01270d5b0d40086bfbe6b2\n\nstill needed patches:\n- in keystone script, to copy correct clouds.yaml\n- last change in tempest values.yaml to change dns_servers",
+      "parentUuid": "b83ade2e_39e49e47",
       "range": {
         "startLine": 160,
         "startChar": 0,
