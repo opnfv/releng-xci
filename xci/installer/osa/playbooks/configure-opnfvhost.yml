@@ -152,6 +152,7 @@
     - name: Install ARA callback plugin in OSA virtualenv
       pip:
         name: ara
+        version: 0.16.4
         state: present
         extra_args: '-c https://raw.githubusercontent.com/openstack/requirements/{{ requirements_git_install_branch }}/upper-constraints.txt'
         executable: '/opt/ansible-runtime/bin/pip'
