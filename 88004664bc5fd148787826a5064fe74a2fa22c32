@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ed90963_2f3b7236",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 585
+      },
+      "writtenOn": "2019-06-06T08:09:16Z",
+      "side": 1,
+      "message": "can you please reformat to comply to commit message rules:\n\n1 header\n2 empty line\n3 a multiline message",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 11
+      },
+      "revId": "88004664bc5fd148787826a5064fe74a2fa22c32",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
