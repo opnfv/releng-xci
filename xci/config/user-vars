@@ -49,7 +49,7 @@ export INFRA_DEPLOYMENT=${INFRA_DEPLOYMENT:-bifrost}
 # Set the verbosity for ansible
 #
 # Examples:
-#   XCI_ANSIBLE_PARAMS="-v -e foo=bar"
+#   XCI_ANSIBLE_PARAMS+="-v -e foo=bar"
 export XCI_ANSIBLE_PARAMS=${XCI_ANSIBLE_PARAMS:-""}
 export RUN_TEMPEST=${RUN_TEMPEST:-false}
 export CORE_OPENSTACK_INSTALL=${CORE_OPENSTACK_INSTALL:-false}
