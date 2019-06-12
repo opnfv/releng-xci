@@ -46,6 +46,30 @@
       "revId": "b110c72d144d672d2f4fc0ef7e3cee09ccadafa5",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "82aec344_2a008d2f",
+        "filename": "xci/installer/osa/playbooks/configure-opnfvhost.yml",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2019-06-12T09:26:38Z",
+      "side": 1,
+      "message": "specifying versions this way is supported by ansible \u003e 2.7 and we use ansible 2.5.8. i amended the patch.",
+      "parentUuid": "5a7804c5_8a5ee714",
+      "range": {
+        "startLine": 154,
+        "startChar": 14,
+        "endLine": 154,
+        "endChar": 25
+      },
+      "revId": "b110c72d144d672d2f4fc0ef7e3cee09ccadafa5",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
     }
   ]
 }
