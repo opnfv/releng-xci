@@ -1,0 +1,412 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f1ec7f0_399b8344",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "We need to find a way to deploy scenarios inside OSH so that we can deploy something different than os-nosdn-nofeature",
+      "range": {
+        "startLine": 12,
+        "startChar": 34,
+        "endLine": 12,
+        "endChar": 69
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "78bc7f96_ece93da3",
+        "filename": "xci/files/xci-lib.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "This is already merged in the other patch, right?",
+      "range": {
+        "startLine": 192,
+        "startChar": 50,
+        "endLine": 192,
+        "endChar": 59
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c8f85f7_5f1199a6",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "I think it might be better to create just one role with different files. Then, inside that role we can call different of those files depending on the xci_flavor",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 32
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b8e6d44c_4c83b9b2",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-kube-nodes-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "If it is just this task, we could move it away from a role",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3ce45cb_ca3fcdf7",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-opnfvhost-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "Have you investigated if perhaps this can be done with the ansible k8s module? https://docs.ansible.com/ansible/latest/modules/k8s_module.html#k8s-raw-module",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 159
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5199eedc_75ad3f0c",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-opnfvhost-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "please add a file for this",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 32
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9be7bace_cc0d7911",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-opnfvhost-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "Have you investigated doing this with the helm ansible module? https://docs.ansible.com/ansible/2.4/helm_module.html",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 21
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "243d21c3_02b00226",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-opnfvhost-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "Best practices are to move these packages to a vars/ directory in the role and define a list, for example required_packages. And here you install the required_packages",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 10
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "539c4d32_765693dc",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh-mini/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "can\u0027t this file be part of the prepare-osh role? I don\u0027t think we need a role prepare-osh-mini",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 52
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6c665498_2f51d610",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh-mini/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "Why do we need this? Can\u0027t we add this after executing keystone.sh in install-osh-noha/tasks/main.yml (./tools/deployment/multinode/080-keystone.sh)?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "225de918_f79c2555",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh-mini/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "couldn\u0027t we add this as an ansible task in install-osh-noha before executing the heat install scripts (./tools/deployment/multinode/150-heat.sh)",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e25d9410_86a646d4",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh-noha/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "can\u0027t this file be part of the prepare-osh role? I don\u0027t think we need a role prepare-osh-noha",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 52
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f907b65f_f83957d4",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "any reason why we need this?",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "38bf14c5_c96703ee",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "This is a bit ugly. I wonder if we could add the value to the config values that end up deploying OSH. So when deploying kubernetes, we end up creating a yaml document with different variables that are required by the OSH installation and then we import it. What do you think? Not sure if there are more parameters needed or if this is the only one",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 146
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d934adc0_9e5d9242",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "This is done to be to use openstack commands inside the opnfv VM",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 56
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bc0694a6_ef98a400",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh/templates/resolv.conf.j2",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "great! I like templates :)",
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "535180d6_7347e2a4",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "We need to discuss how to do this in a better way. We need to support os-nosdn-nofeature by OSH but as far as I see this is currently not exactly possible",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 31
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e4491a68_53858aed",
+        "filename": "xci/playbooks/roles/bootstrap-host/templates/osh",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-06-13T14:33:49Z",
+      "side": 1,
+      "message": "[Investigate] is this needed?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
