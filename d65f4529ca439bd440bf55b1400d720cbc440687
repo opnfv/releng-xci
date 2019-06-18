@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "53798cf9_7b05445f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 20
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "I understand your point, but is this something that we need to take on at this stage? I would see that as more of an enhancement.",
+      "parentUuid": "4f1ec7f0_399b8344",
+      "range": {
+        "startLine": 12,
+        "startChar": 34,
+        "endLine": 12,
+        "endChar": 69
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "78bc7f96_ece93da3",
         "filename": "xci/files/xci-lib.sh",
         "patchSetId": 20
@@ -36,6 +60,30 @@
       "writtenOn": "2019-06-13T14:33:49Z",
       "side": 1,
       "message": "This is already merged in the other patch, right?",
+      "range": {
+        "startLine": 192,
+        "startChar": 50,
+        "endLine": 192,
+        "endChar": 59
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66264a72_7a376aaa",
+        "filename": "xci/files/xci-lib.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "yes, a leftover. removing it",
+      "parentUuid": "78bc7f96_ece93da3",
       "range": {
         "startLine": 192,
         "startChar": 50,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fa978c4a_8dfca8d7",
+        "filename": "xci/installer/osh/playbooks/install-openstack-helm.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "Wouldn\u0027t that be just the same as moving the same steps (roles) to a different location? The way it is now, someone can immediately see the steps and the cases that are applicable, without having a very long or complicated sequence.",
+      "parentUuid": "5c8f85f7_5f1199a6",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 32
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b8e6d44c_4c83b9b2",
         "filename": "xci/installer/osh/playbooks/roles/prepare-kube-nodes-osh/tasks/main.yml",
         "patchSetId": 20
@@ -82,6 +154,30 @@
       "writtenOn": "2019-06-13T14:33:49Z",
       "side": 1,
       "message": "If it is just this task, we could move it away from a role",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d1b2e2c_4d626180",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-kube-nodes-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "this task targets the kube-node group so it will be on a separate \u0027hosts\u0027 section anyhow. I think it helps to keep the main playbook cleaner.",
+      "parentUuid": "b8e6d44c_4c83b9b2",
       "range": {
         "startLine": 1,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "2a022207_4a55605e",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-opnfvhost-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "It might be possible but doesn\u0027t seem too simple. Also not sure how authentication would be done. I\u0027ll look into this.",
+      "parentUuid": "c3ce45cb_ca3fcdf7",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 159
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5199eedc_75ad3f0c",
         "filename": "xci/installer/osh/playbooks/roles/prepare-opnfvhost-osh/tasks/main.yml",
         "patchSetId": 20
@@ -128,6 +248,30 @@
       "writtenOn": "2019-06-13T14:33:49Z",
       "side": 1,
       "message": "please add a file for this",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 32
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fdb3e035_22693fb3",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-opnfvhost-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "5199eedc_75ad3f0c",
       "range": {
         "startLine": 75,
         "startChar": 0,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "a3dc199b_9f98f542",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-opnfvhost-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "The ansible helm module can only install/uninstall packages, can\u0027t handle helm system administration.",
+      "parentUuid": "9be7bace_cc0d7911",
+      "range": {
+        "startLine": 101,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 21
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "243d21c3_02b00226",
         "filename": "xci/installer/osh/playbooks/roles/prepare-opnfvhost-osh/tasks/main.yml",
         "patchSetId": 20
@@ -174,6 +342,30 @@
       "writtenOn": "2019-06-13T14:33:49Z",
       "side": 1,
       "message": "Best practices are to move these packages to a vars/ directory in the role and define a list, for example required_packages. And here you install the required_packages",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 10
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "79e63922_c4e76010",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-opnfvhost-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "sure, will do that",
+      "parentUuid": "243d21c3_02b00226",
       "range": {
         "startLine": 131,
         "startChar": 0,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "9867f464_a083c473",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh-mini/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "The patches for mini (developer scripts) and noha (multinode scripts) are on different files, so (as long as patches are used) they must be separate.",
+      "parentUuid": "539c4d32_765693dc",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 52
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6c665498_2f51d610",
         "filename": "xci/installer/osh/playbooks/roles/prepare-osh-mini/tasks/main.yml",
         "patchSetId": 20
@@ -220,6 +436,30 @@
       "writtenOn": "2019-06-13T14:33:49Z",
       "side": 1,
       "message": "Why do we need this? Can\u0027t we add this after executing keystone.sh in install-osh-noha/tasks/main.yml (./tools/deployment/multinode/080-keystone.sh)?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 38
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "09f04b1f_32d84575",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh-mini/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "yes, it can be done, I\u0027ll give it a try",
+      "parentUuid": "6c665498_2f51d610",
       "range": {
         "startLine": 11,
         "startChar": 0,
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "a228638e_23e28ae9",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh-mini/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "Actually, the file is used by the 900- scripts (900-use-it.sh in single node and 900-tempest.sh). I think I can put the task right before these scripts.",
+      "parentUuid": "225de918_f79c2555",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e25d9410_86a646d4",
         "filename": "xci/installer/osh/playbooks/roles/prepare-osh-noha/tasks/main.yml",
         "patchSetId": 20
@@ -266,6 +530,30 @@
       "writtenOn": "2019-06-13T14:33:49Z",
       "side": 1,
       "message": "can\u0027t this file be part of the prepare-osh role? I don\u0027t think we need a role prepare-osh-noha",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 52
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f78eb32_e9662955",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh-noha/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "See reply on similar comment in prepare-osh-mini.",
+      "parentUuid": "e25d9410_86a646d4",
       "range": {
         "startLine": 1,
         "startChar": 0,
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "66086e96_6d36485d",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "It\u0027s been found that the file is reverted to its original contents by DHCP later on.",
+      "parentUuid": "f907b65f_f83957d4",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 23
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38bf14c5_c96703ee",
         "filename": "xci/installer/osh/playbooks/roles/prepare-osh/tasks/main.yml",
         "patchSetId": 20
@@ -312,6 +624,30 @@
       "writtenOn": "2019-06-13T14:33:49Z",
       "side": 1,
       "message": "This is a bit ugly. I wonder if we could add the value to the config values that end up deploying OSH. So when deploying kubernetes, we end up creating a yaml document with different variables that are required by the OSH installation and then we import it. What do you think? Not sure if there are more parameters needed or if this is the only one",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 146
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fc1cc274_18d580fd",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "This is the only one. Basically, I like the idea that the value of the parameter is taken dynamically from a file that is created at run time and also I like using ansible register. I don\u0027t see a way to avoid grep+awk to get the parameter. Perhaps this can be revisited when going to kubeadm?",
+      "parentUuid": "38bf14c5_c96703ee",
       "range": {
         "startLine": 15,
         "startChar": 2,
@@ -347,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "2f922f25_1302d88f",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh/tasks/main.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "yes",
+      "parentUuid": "d934adc0_9e5d9242",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 56
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bc0694a6_ef98a400",
         "filename": "xci/installer/osh/playbooks/roles/prepare-osh/templates/resolv.conf.j2",
         "patchSetId": 20
@@ -358,6 +718,24 @@
       "writtenOn": "2019-06-13T14:33:49Z",
       "side": 1,
       "message": "great! I like templates :)",
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0de68e1_dcb1f86f",
+        "filename": "xci/installer/osh/playbooks/roles/prepare-osh/templates/resolv.conf.j2",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": ":)",
+      "parentUuid": "bc0694a6_ef98a400",
       "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
       "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
       "unresolved": false
@@ -387,6 +765,30 @@
     },
     {
       "key": {
+        "uuid": "b47244bb_2aa71638",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 20
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "this is the same as the one in commit message, right? see there",
+      "parentUuid": "535180d6_7347e2a4",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 31
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4491a68_53858aed",
         "filename": "xci/playbooks/roles/bootstrap-host/templates/osh",
         "patchSetId": 20
@@ -398,6 +800,30 @@
       "writtenOn": "2019-06-13T14:33:49Z",
       "side": 1,
       "message": "[Investigate] is this needed?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "d65f4529ca439bd440bf55b1400d720cbc440687",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6fcd762d_5e300a56",
+        "filename": "xci/playbooks/roles/bootstrap-host/templates/osh",
+        "patchSetId": 20
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7165
+      },
+      "writtenOn": "2019-06-18T13:00:22Z",
+      "side": 1,
+      "message": "I don\u0027t think it will work without this link. Kubespray also has a link to osa.",
+      "parentUuid": "e4491a68_53858aed",
       "range": {
         "startLine": 1,
         "startChar": 0,
