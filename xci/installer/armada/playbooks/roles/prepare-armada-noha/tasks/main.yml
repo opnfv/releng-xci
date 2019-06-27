@@ -29,3 +29,13 @@
   command: sh /root/releng-xci/xci/installer/armada/scripts/armada_connection.sh
   tags:
     - skip_ansible_lint
+
+- name: Copy ceph-test1
+  shell: cp -rf /root/releng-xci/xci/installer/armada/scripts/_init.sh.tpl /root/repos/openstack-helm-infra/ceph-client/templates/bin/pool/_init.sh.tpl
+  tags:
+    - skip_ansible_lint
+
+- name: Copy ceph-test2
+  shell: cp -rf /root/releng-xci/xci/installer/armada/scripts/values.yaml /root/repos/openstack-helm-infra/ceph-client/values.yaml
+  tags:
+    - skip_ansible_lint
