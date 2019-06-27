@@ -29,3 +29,13 @@
   command: sh /root/releng-xci/xci/installer/armada/scripts/armada_connection.sh
   tags:
     - skip_ansible_lint
+
+- name: Copy ceph-test1
+  shell: cp -rf /root/releng-xci/xci/installer/armada/scripts/_ingress-controller.sh.tpl /root/repos/openstack-helm-infra/ingress/templates/bin/_ingress-controller.sh.tpl
+  tags:
+    - skip_ansible_lint
+
+- name: Copy ceph-test2
+  shell: cp -rf /root/releng-xci/xci/installer/armada/scripts/_mariadb-ingress-controller.sh.tpl /root/repos/openstack-helm-infra/mariadb/templates/bin/_mariadb-ingress-controller.sh.tpl
+  tags:
+    - skip_ansible_lint
