@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6381f962_45721915",
+        "filename": "xci/installer/osh/playbooks/roles/install-osh-mini/tasks/main.yml",
+        "patchSetId": 22
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-07-17T13:09:24Z",
+      "side": 1,
+      "message": "One thing we must be careful is that these scripts are not being tested in the openstack CI completely. So, things might get broken quickly. I\u0027d suggest to leave it as it is but as soon as we detect that they are unstable, we should move to the tested version (e.g. not using ceph but nfs)",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 37
+      },
+      "revId": "a52060d3acf61c3a53cfcd35ce13ebae6ad2c6fd",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
