@@ -139,3 +139,8 @@
   package:
     name: "{{ required_packages }}"
     state: present
+
+- name: Copy get-values-overrides.sh file
+  shell: cp /root/releng-xci/xci/installer/osh/files/get-values-overrides.sh /root/repos/openstack-helm/tools/deployment/common/get-values-overrides.sh
+  tags:
+    - skip_ansible_lint

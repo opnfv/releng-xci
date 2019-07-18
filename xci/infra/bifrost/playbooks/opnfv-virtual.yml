@@ -46,6 +46,10 @@
             timeout: 3000
             dest: /httpboot/deployment_image.qcow2
             force: no
+        - name: convert image to .qcow2 format
+          shell: qemu-img convert -f raw -O qcow2 /httpboot/deployment_image.qcow2 /httpboot/deployment_image.qcow2
+          args:
+            executable: /bin/bash
         - name: Set correct mode for {{ xci_distro }}.qcow2 file
           file:
             path: /httpboot/deployment_image.qcow2
