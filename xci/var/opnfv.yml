@@ -57,6 +57,7 @@ run_tempest: "{{ lookup('env', 'RUN_TEMPEST') }}"
 core_openstack_install: "{{ lookup('env', 'CORE_OPENSTACK_INSTALL') }}"
 deploy_scenario: "{{ lookup('env','DEPLOY_SCENARIO') }}"
 installer_type: "{{ lookup('env','INSTALLER_TYPE') }}"
+osh_distro: "{{ lookup('env', 'OSH_DISTRO') }}"
 
 # baremetal variables
 baremetal: "{{ lookup('env','BAREMETAL') }}"

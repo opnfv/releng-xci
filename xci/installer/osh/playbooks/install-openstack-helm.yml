@@ -11,11 +11,13 @@
   remote_user: root
   vars_files:
     - "{{ xci_path }}/xci/var/opnfv.yml"
-
   roles:
     - role: prepare-opnfvhost-osh
     - role: prepare-osh
     - role: install-osh-mini
       when: xci_flavor == 'mini'
+      environment:
+        - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+        - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
     - role: install-osh-noha
       when: xci_flavor == 'noha'
