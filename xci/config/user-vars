@@ -34,6 +34,11 @@ export XCI_CEPH_ENABLED=${XCI_CEPH_ENABLED:-false}
 #    export INSTALLER_TYPE="kubespray"
 export INSTALLER_TYPE=${INSTALLER_TYPE:-osa}
 
+#Wait upstream in openstack-helm (OSH) to support opensuse
+if [ "$XCI_DISTRO" == "opensuse" ] && [ "$INSTALLER_TYPE" == "osh" ]; then
+    export XCI_DISTRO=ubuntu-bionic
+fi
+
 #-------------------------------------------------------------------------------
 # Set DEPLOYMENT
 #-------------------------------------------------------------------------------
