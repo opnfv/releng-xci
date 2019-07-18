@@ -20,6 +20,17 @@
     timeout: 3000
     dest: "{{ xci_cache }}/deployment_image.qcow2"
     force: no
+
+#TODO: Remove this when ubuntu-bionic
+#      image is available in correct format
+- name: convert image to .qcow2 format
+  command: qemu-img convert -f raw -O qcow2 {{ xci_cache }}/deployment_image.qcow2 {{ xci_cache }}/deployment_image.qcow2
+  args:
+    executable: /bin/bash
+  when: "{{ xci_distro == 'ubuntu-bionic' }}"
+  tags:
+    - skip_ansible_lint
+
 - name: Set correct mode for deployment_image.qcow2 file
   file:
     path: "{{ xci_cache }}/deployment_image.qcow2"
