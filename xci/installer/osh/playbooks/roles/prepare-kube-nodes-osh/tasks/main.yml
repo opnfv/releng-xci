@@ -8,4 +8,4 @@
     - ceph-common
     - rbd-nbd
     - apparmor
-
+    - nfs-common
