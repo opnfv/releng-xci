@@ -155,6 +155,7 @@
         - noha
       distros:
         - ubuntu
+        - opensuse
 
 - scenario: k8-flannel-nofeature
   scm: git
