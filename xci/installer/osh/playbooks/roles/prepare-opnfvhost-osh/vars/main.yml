@@ -3,3 +3,4 @@ required_packages:
 - ipcalc
 - jq
 - nmap
+- bc
