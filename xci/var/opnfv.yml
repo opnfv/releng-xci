@@ -37,6 +37,7 @@ osh_infra_git_url: "{{ lookup('env','OSH_INFRA_GIT_URL') }}"
 osh_infra_version: "{{ lookup('env','OSH_INFRA_VERSION') }}"
 osh_helm_binary_url: "{{ lookup('env','OSH_HELM_BINARY_URL') }}"
 osh_helm_binary_version: "{{ lookup('env','OSH_HELM_BINARY_VERSION') }}"
+openstack_osh_version: "{{ lookup('env','OPENSTACK_OSH_VERSION') }}"
 
 # variables for other components
 keepalived_git_url: "{{ lookup('env','KEEPALIVED_GIT_URL') }}"
@@ -57,6 +58,7 @@ run_tempest: "{{ lookup('env', 'RUN_TEMPEST') }}"
 core_openstack_install: "{{ lookup('env', 'CORE_OPENSTACK_INSTALL') }}"
 deploy_scenario: "{{ lookup('env','DEPLOY_SCENARIO') }}"
 installer_type: "{{ lookup('env','INSTALLER_TYPE') }}"
+osh_distro: "{{ lookup('env', 'OSH_DISTRO') }}"
 
 # baremetal variables
 baremetal: "{{ lookup('env','BAREMETAL') }}"
