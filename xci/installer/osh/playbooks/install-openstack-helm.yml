@@ -11,10 +11,13 @@
   remote_user: root
   vars_files:
     - "{{ xci_path }}/xci/var/opnfv.yml"
-
   roles:
     - role: prepare-opnfvhost-osh
     - role: prepare-osh
+    - role: install-osh-mini_opensuse
+      when:
+        - xci_flavor == 'mini'
+        - osh_distro == 'opensuse'
     - role: install-osh-mini
       when: xci_flavor == 'mini'
     - role: install-osh-noha

@@ -9,24 +9,36 @@
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Deploy MariaDB
   command: ./tools/deployment/component/common/mariadb.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Deploy memcached
   command: ./tools/deployment/component/common/memcached.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Deploy RabbitMQ
   command: ./tools/deployment/component/common/rabbitmq.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Update nfs-provisioner helm-chart
   shell: helm dependency update nfs-provisioner
@@ -41,42 +53,63 @@
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Deploy Keystone
   command: ./tools/deployment/component/keystone/keystone.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Deploy Heat
   command: ./tools/deployment/component/heat/heat.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Deploy Glance
   command: ./tools/deployment/component/glance/glance.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Deploy OpenvSwitch
   command: ./tools/deployment/component/compute-kit/openvswitch.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Deploy Libvirt
   command: ./tools/deployment/component/compute-kit/libvirt.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Deploy Compute Kit (Nova and Neutron)
   command: ./tools/deployment/component/compute-kit/compute-kit.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+  environment:
+    - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
+    - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
 
 - name: Copy script to the worker node
   command: "scp -o \"StrictHostKeyChecking no\" tools/deployment/developer/ceph/170-setup-gateway.sh root@192.168.122.4:170-setup-gateway.sh"
@@ -99,3 +132,4 @@
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
+
