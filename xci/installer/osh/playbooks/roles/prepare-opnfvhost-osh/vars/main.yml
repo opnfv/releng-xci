@@ -4,4 +4,3 @@ required_packages:
 - jq
 - nmap
 - bc
-
