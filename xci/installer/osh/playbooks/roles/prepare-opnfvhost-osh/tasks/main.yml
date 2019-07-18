@@ -139,3 +139,47 @@
   package:
     name: "{{ required_packages }}"
     state: present
+
+- set_fact: OS_DISTRO={{ lookup('env','OS_DISTRO') }}
+  tags:
+    - skip_ansible_lint
+
+- name: Set vars container_distro_name & container_distro_version
+  blockinfile:
+    dest: /root/openrc
+    insertafter: EOF
+    block: |
+      export container_distro_name=opensuse
+      export container_distro_version=15
+  when: OS_DISTRO == 'opensuse'
+
+- name: Export variables
+  shell: source /root/openrc &&  echo $container_distro_name
+  args:
+    executable: /bin/bash
+  tags:
+    - skip_ansible_lint
+  register: container_distro_name
+
+- set_fact: container_distro_name={{ container_distro_name.stdout }}
+  tags:
+    - skip_ansible_lint
+
+- name: Export variables
+  shell: source /root/openrc && echo $container_distro_version
+  args:
+    executable: /bin/bash
+  tags:
+    - skip_ansible_lint
+  register: container_distro_version
+
+- set_fact: container_distro_version={{ container_distro_version.stdout }}
+  tags:
+    - skip_ansible_lint
+
+- debug: var=container_distro_name
+  run_once: true
+
+- debug: var=container_distro_version
+  run_once: true
+
