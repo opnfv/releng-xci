@@ -1,3 +1,19 @@
+- set_fact:
+    container_distro_name: "opensuse"
+    container_distro_version: "15"
+    cacheable: yes
+  when: osh_distro == 'opensuse'
+  tags:
+    - skip_ansible_lint
+
+- set_fact:
+    container_distro_name: "ubuntu"
+    container_distro_version: "xenial"
+    cacheable: yes
+  when: osh_distro == 'ubuntu'
+  tags:
+    - skip_ansible_lint
+
 - name: Setup Clients
   command: ./tools/deployment/common/setup-client.sh
   changed_when: false
