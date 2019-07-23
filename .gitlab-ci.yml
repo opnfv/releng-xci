@@ -1,0 +1,3 @@
+---
+verify:
+  script: echo "Hello, world!"
