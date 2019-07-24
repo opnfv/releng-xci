@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9c680091_9866d1e9",
+        "filename": "xci/infra/bifrost/playbooks/opnfv-virtual.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-07-24T06:53:52Z",
+      "side": 1,
+      "message": "Yes you are right, this is a temporary solution.\nI will add a TODO comment",
+      "parentUuid": "888ff094_803f0aaf",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 33
+      },
+      "revId": "0a7fa2e6188a94d45f2c18060e4c14531072d12f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2921a91_4192bf78",
         "filename": "xci/installer/osh/files/get-values-overrides.sh",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "d1beaaca_958ce613",
+        "filename": "xci/installer/osh/files/get-values-overrides.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-07-24T06:53:52Z",
+      "side": 1,
+      "message": "I added this file because the parent patch uses previous OSH versions that do not include this(xci/config/pinned_versions).\nI will update the OSH versions and remove this file",
+      "parentUuid": "d2921a91_4192bf78",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 0
+      },
+      "revId": "0a7fa2e6188a94d45f2c18060e4c14531072d12f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fe709b4_3ed53d85",
         "filename": "xci/opnfv-scenario-requirements.yml",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2019-07-23T15:03:09Z",
       "side": 1,
       "message": "Why do you need ubuntu-bionic listed here?",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 23
+      },
+      "revId": "0a7fa2e6188a94d45f2c18060e4c14531072d12f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4b8d5e05_cb4fc124",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-07-24T06:53:52Z",
+      "side": 1,
+      "message": "If this part is not included in distros section for osh installer, then xci installation fails with the following message:\n\"ERROR! The k8-calico-nofeature scenario can\u0027t be deployed. This is because\", \"the osh XCI installer or the mini flavor or the ubuntu-bionic\", \"distribution is not supported by this scenario. It may also be possible that\", \"this scenario doesn\u0027t exist at all or it\u0027s not listed in ../opnfv-scenario-requirements.yml.\"",
+      "parentUuid": "1fe709b4_3ed53d85",
       "range": {
         "startLine": 159,
         "startChar": 8,
