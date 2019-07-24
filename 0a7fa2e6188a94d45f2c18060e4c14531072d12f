@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1d51b423_c33ecad6",
+        "filename": "xci/infra/bifrost/playbooks/opnfv-virtual.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-07-24T07:16:19Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "9c680091_9866d1e9",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 33
+      },
+      "revId": "0a7fa2e6188a94d45f2c18060e4c14531072d12f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d2921a91_4192bf78",
         "filename": "xci/installer/osh/files/get-values-overrides.sh",
         "patchSetId": 5
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "962f5068_804f40fc",
+        "filename": "xci/installer/osh/files/get-values-overrides.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-07-24T07:16:19Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "d1beaaca_958ce613",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 0
+      },
+      "revId": "0a7fa2e6188a94d45f2c18060e4c14531072d12f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1fe709b4_3ed53d85",
         "filename": "xci/opnfv-scenario-requirements.yml",
         "patchSetId": 5
@@ -131,6 +179,30 @@
       "side": 1,
       "message": "If this part is not included in distros section for osh installer, then xci installation fails with the following message:\n\"ERROR! The k8-calico-nofeature scenario can\u0027t be deployed. This is because\", \"the osh XCI installer or the mini flavor or the ubuntu-bionic\", \"distribution is not supported by this scenario. It may also be possible that\", \"this scenario doesn\u0027t exist at all or it\u0027s not listed in ../opnfv-scenario-requirements.yml.\"",
       "parentUuid": "1fe709b4_3ed53d85",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 23
+      },
+      "revId": "0a7fa2e6188a94d45f2c18060e4c14531072d12f",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eb54664e_a9da9891",
+        "filename": "xci/opnfv-scenario-requirements.yml",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-07-24T07:16:19Z",
+      "side": 1,
+      "message": "Ok. The worry I have is that if we change OS_DISTRO so early in the execution, how will we know that we want containers to be opensuse based? Perhaps it makes more sense to add a new variable OS_DISTRO_CONTAINERS which is read when deploying OSH",
+      "parentUuid": "4b8d5e05_cb4fc124",
       "range": {
         "startLine": 159,
         "startChar": 8,
