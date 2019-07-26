@@ -36,7 +36,7 @@ export INSTALLER_TYPE=${INSTALLER_TYPE:-osa}
 
 #Wait upstream in openstack-helm (OSH) to support opensuse
 if [ "$XCI_DISTRO" == "opensuse" ] && [ "$INSTALLER_TYPE" == "osh" ]; then
-    export XCI_DISTRO=ubuntu-bionic
+    export XCI_DISTRO=ubuntu
     export OSH_DISTRO=opensuse
 fi
 
