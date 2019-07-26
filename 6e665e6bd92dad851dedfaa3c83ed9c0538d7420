@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7ad10ff_454c2ba2",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-07-26T10:22:17Z",
+      "side": 1,
+      "message": "To make it clearer, I suggest adding something like XCI_DISTRO \u003d\u003d \"ubuntu\" then export OS_DISTRO\u003dubuntu. It is not needed because that would be the default behavior in OSH but I think it makes it clearer for the user",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 2
+      },
+      "revId": "6e665e6bd92dad851dedfaa3c83ed9c0538d7420",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
