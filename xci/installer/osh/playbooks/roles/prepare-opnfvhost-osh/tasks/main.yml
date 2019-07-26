@@ -139,3 +139,14 @@
   package:
     name: "{{ required_packages }}"
     state: present
+
+- name: Copy get-values-overrides.sh file
+  shell: cp /root/releng-xci/xci/installer/osh/scripts/get-values-overrides.sh /root/repos/openstack-helm/tools/deployment/common/get-values-overrides.sh
+  tags:
+    - skip_ansible_lint
+
+- name: Copy memcashed.sh file
+  shell: cp -r /root/releng-xci/xci/installer/osh/scripts/memcached.sh /root/repos/openstack-helm/tools/deployment/component/common/memcached.sh
+  tags:
+    - skip_ansible_lint
+

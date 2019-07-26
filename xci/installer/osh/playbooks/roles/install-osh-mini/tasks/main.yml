@@ -1,43 +1,43 @@
-- set_fact: OSH_DISTRO={{ lookup('env','OS_DISTRO') }}
+- set_fact: OSH_DISTRO={{ lookup('env','OSH_DISTRO') }}
   tags:
     - skip_ansible_lint
 
-- name: Set vars container_distro_name & container_distro_version
+- name: Set vars CONTAINER_DISTRO_NAME & CONTAINER_DISTRO_VERSION
   blockinfile:
     dest: /root/openrc
     insertafter: EOF
     block: |
-      export container_distro_name=opensuse
-      export container_distro_version=15
+      export CONTAINER_DISTRO_NAME=opensuse
+      export CONTAINER_DISTRO_VERSION=15
   when: OSH_DISTRO == 'opensuse'
 
 - name: Export variables
-  shell: source /root/openrc &&  echo $container_distro_name
+  shell: source /root/openrc &&  echo $CONTAINER_DISTRO_NAME
   args:
     executable: /bin/bash
-  register: container_distro_name
+  register: CONTAINER_DISTRO_NAME
   when: OSH_DISTRO == 'opensuse'
   tags:
     - skip_ansible_lint
 
 - set_fact:
-    container_distro_name: "{{ container_distro_name.stdout }}"
+    CONTAINER_DISTRO_NAME: "{{ CONTAINER_DISTRO_NAME.stdout }}"
     cacheable: yes
   when: OSH_DISTRO == 'opensuse'
   tags:
     - skip_ansible_lint
 
 - name: Export variables
-  shell: source /root/openrc && echo $container_distro_version
+  shell: source /root/openrc && echo $CONTAINER_DISTRO_VERSION
   args:
     executable: /bin/bash
-  register: container_distro_version
+  register: CONTAINER_DISTRO_VERSION
   when: OSH_DISTRO == 'opensuse'
   tags:
     - skip_ansible_lint
 
 - set_fact:
-    container_distro_version: "{{ container_distro_version.stdout }}"
+    CONTAINER_DISTRO_VERSION: "{{ CONTAINER_DISTRO_VERSION.stdout }}"
     cacheable: yes
   when: OSH_DISTRO == 'opensuse'
   tags:
