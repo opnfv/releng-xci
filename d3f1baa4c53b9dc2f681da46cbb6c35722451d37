@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a8abe43_c61757aa",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-07-26T10:22:17Z",
+      "side": 1,
+      "message": "I suggest adding another condition for ubuntu and osh. In that case OSH_DISTRO changes to ubuntu. This is not needed because that\u0027s the default behaviour but I think it will make it clearer for the user, or?",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 2
+      },
+      "revId": "d3f1baa4c53b9dc2f681da46cbb6c35722451d37",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ff01da6e_7db55e93",
+        "filename": "xci/installer/osh/playbooks/roles/install-osh-mini/tasks/main.yml",
+        "patchSetId": 8
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-07-26T10:22:17Z",
+      "side": 1,
+      "message": "Let\u0027s create two different files in the role install-osh-mini/tasks. One file does all these stuff, for example: prepare-environment.yml and the other one does the deployment(calling the scripts), for example deployment.yml. main.yml can be the file that just calls these two files",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 23
+      },
+      "revId": "d3f1baa4c53b9dc2f681da46cbb6c35722451d37",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
