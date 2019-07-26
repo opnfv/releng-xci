@@ -71,6 +71,52 @@
     },
     {
       "key": {
+        "uuid": "8a85bbd5_b027d31d",
+        "filename": "xci/installer/osh/playbooks/roles/install-osh-mini/tasks/main.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-07-26T15:45:32Z",
+      "side": 1,
+      "message": "variables in ansible are normally not in capital letters",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "2842c97c306793b4ed96311f60b07d50c4ce9579",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2da8ca2_4f05bed3",
+        "filename": "xci/installer/osh/playbooks/roles/install-osh-mini/tasks/main.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-07-26T15:45:32Z",
+      "side": 1,
+      "message": "you can get this variable from OSH_DISTRO or? I am not sure why you do this",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 63
+      },
+      "revId": "2842c97c306793b4ed96311f60b07d50c4ce9579",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "286360aa_09ff03d7",
         "filename": "xci/installer/osh/playbooks/roles/install-osh-mini/tasks/main.yml",
         "patchSetId": 9
