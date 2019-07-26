@@ -1,4 +1,4 @@
-- set_fact: OSH_DISTRO={{ lookup('env','OS_DISTRO') }}
+- set_fact: OSH_DISTRO={{ lookup('env','OSH_DISTRO') }}
   tags:
     - skip_ansible_lint
 
