@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "8ea53aa7_86f00e53",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-07-29T09:29:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "813eec1c_e6198580",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 39
+      },
+      "revId": "2842c97c306793b4ed96311f60b07d50c4ce9579",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bbc36fdb_a8b72af9",
         "filename": "xci/config/pinned-versions",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2019-07-26T15:40:44Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 45
+      },
+      "revId": "2842c97c306793b4ed96311f60b07d50c4ce9579",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d943600_9482b8ff",
+        "filename": "xci/config/pinned-versions",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-07-29T09:29:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbc36fdb_a8b72af9",
       "range": {
         "startLine": 42,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "0af8f01f_02dff80a",
+        "filename": "xci/config/user-vars",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-07-29T09:29:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e7cee88_57474f01",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 2
+      },
+      "revId": "2842c97c306793b4ed96311f60b07d50c4ce9579",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a85bbd5_b027d31d",
         "filename": "xci/installer/osh/playbooks/roles/install-osh-mini/tasks/main.yml",
         "patchSetId": 9
@@ -82,6 +154,30 @@
       "writtenOn": "2019-07-26T15:45:32Z",
       "side": 1,
       "message": "variables in ansible are normally not in capital letters",
+      "range": {
+        "startLine": 1,
+        "startChar": 12,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "2842c97c306793b4ed96311f60b07d50c4ce9579",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "73d05a38_22def7cf",
+        "filename": "xci/installer/osh/playbooks/roles/install-osh-mini/tasks/main.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-07-29T09:29:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a85bbd5_b027d31d",
       "range": {
         "startLine": 1,
         "startChar": 12,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "59c0c3d9_2ec8bf1f",
+        "filename": "xci/installer/osh/playbooks/roles/install-osh-mini/tasks/main.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-07-29T09:29:23Z",
+      "side": 1,
+      "message": "New solution has been applied",
+      "parentUuid": "d2da8ca2_4f05bed3",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 63
+      },
+      "revId": "2842c97c306793b4ed96311f60b07d50c4ce9579",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "286360aa_09ff03d7",
         "filename": "xci/installer/osh/playbooks/roles/install-osh-mini/tasks/main.yml",
         "patchSetId": 9
@@ -128,6 +248,30 @@
       "writtenOn": "2019-07-26T15:40:44Z",
       "side": 1,
       "message": "Let\u0027s create two different files in the role install-osh-mini/tasks. One file does all these stuff, for example: prepare-environment.yml and the other one does the deployment(calling the scripts), for example deployment.yml. main.yml can be the file that just calls these two files",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 23
+      },
+      "revId": "2842c97c306793b4ed96311f60b07d50c4ce9579",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eaaca2c7_d5922b96",
+        "filename": "xci/installer/osh/playbooks/roles/install-osh-mini/tasks/main.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 7431
+      },
+      "writtenOn": "2019-07-29T09:29:23Z",
+      "side": 1,
+      "message": "New role has been created: install-osh-mini-opensuse",
+      "parentUuid": "286360aa_09ff03d7",
       "range": {
         "startLine": 1,
         "startChar": 0,
