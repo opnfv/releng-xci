@@ -9,5 +9,5 @@ required_packages:
  - sgabios
  - pkg-config
  - libvirt-dev
- - python-lxml
- - python-libvirt
+ - python3-lxml
+ - python3-libvirt

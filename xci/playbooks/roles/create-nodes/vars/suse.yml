@@ -11,5 +11,5 @@ required_packages:
  - libvirt-daemon
  - pkg-config
  - libvirt-devel
- - python-lxml
- - libvirt-python
+ - python3-lxml
+ - python3-libvirt-python
