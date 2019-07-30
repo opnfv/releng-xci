@@ -25,16 +25,16 @@
 #-------------------------------------------------------------------------------
 # use releng-xci from master until the development work with the sandbox is complete
 export OPNFV_RELENG_VERSION="master"
-# HEAD of bifrost "master" as of 18.10.2018
-export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"0f605cd723a68e2c2bb9b30a15a08e5aba777bd5"}
-# HEAD of ironic "master" as of 18.10.2018
-export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-"754361489d6161bde85375e844fe2bf0e2b4dd0a"}
-# HEAD of ironic-client "master" as of 18.10.2018
-export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"a28ccb9ef8a55f96923ba4a3af12b73a91b2e448"}
-# HEAD of ironic-inspector "master" as of 18.10.2018
-export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"05a86b3d574f3262f8ada3d145a352afb8557cdb"}
-# HEAD of ironic-inspector-client "master" as of 18.10.2018
-export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-"cb370b776aa274b0ecfacfb29fa5035670839308"}
+# HEAD of bifrost "master" as of 02.07.2019
+export OPENSTACK_BIFROST_VERSION=${OPENSTACK_BIFROST_VERSION:-"I4c4ae77b64fc12006b9193fb1c3f0d13becc367d"}
+# HEAD of ironic "master" as of 02.07.2019
+export BIFROST_IRONIC_VERSION=${BIFROST_IRONIC_VERSION:-"1beb8068f95f90a570c72b82f6e518110312b696"}
+# HEAD of ironic-client "master" as of 02.07.2019
+export BIFROST_IRONIC_CLIENT_VERSION=${BIFROST_IRONIC_CLIENT_VERSION:-"eae60397bfcbed322b2121f77c35ac74d0c6b74c"}
+# HEAD of ironic-inspector "master" as of 02.07.2019
+export BIFROST_IRONIC_INSPECTOR_VERSION=${BIFROST_IRONIC_INSPECTOR_VERSION:-"0b38536d1c9ab92952e6ecd069ea13facf012830"}
+# HEAD of ironic-inspector-client "master" as of 02.07.2019
+export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-"81ae133bd570ea7359b4797ee5699d2d4233b445"}
 # HEAD of osa "stable/rocky" as of 04.01.2019
 export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"2087cd98f28b35f655ca398d25d2a6c71e38328e"}
 export KEEPALIVED_VERSION=$(grep -E '.*name: keepalived' -A 3 \
