@@ -14,6 +14,10 @@
   vars_files:
     - "../vars/{{ ansible_os_family | lower }}.yml"
   pre_tasks:
+    - name: Make python3 the default option
+      file:
+        src: /usr/bin/python3
+        dest: /usr/bin/python
     - name: Remove pre-existing leases file
       file: path=/var/lib/misc/dnsmasq.leases state=absent
     - name: "Override the ipv4_gateway setting"
@@ -62,6 +66,7 @@
       with_items:
         - { regexp: '^127\.0\.0\.1', contents: '127.0.0.1 {{ ansible_hostname }} {{ ansible_fqdn }} localhost' }
         - { regexp: '^::1', contents: '::1 {{ ansible_hostname }} {{ ansible_fqdn }} localhost ipv6-localhost ipv6-loopback' }
+    # When using python3, package does not update the cache. We should use an image which has packages already updated
     - name: Install required packages
       package:
         name: "{{ bifrost_required_devel_packages }}"
