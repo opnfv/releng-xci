@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # coding utf-8
 
 # SPDX-license-identifier: Apache-2.0
