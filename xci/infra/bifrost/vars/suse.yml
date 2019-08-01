@@ -17,3 +17,5 @@ bifrost_required_devel_packages:
   - python-xml
   - wget
   - iptables
+testing:
+  - hi
