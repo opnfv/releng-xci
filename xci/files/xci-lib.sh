@@ -97,15 +97,15 @@ function install_ansible() {
             [lsb-release]=lsb-release
             [make]=make
             [net-tools]=net-tools
-            [pip]=python-pip
-            [python]=python
-            [python-devel]=python-devel
-            [python-pyyaml]=python-PyYAML
-            [venv]=python-virtualenv
+            [pip]=python3-pip
+            [python]=python3
+            [python-devel]=python3-devel
+            [python-pyyaml]=python3-PyYAML
+            [venv]=python3-virtualenv
             [wget]=wget
             [curl]=curl
         )
-        EXTRA_PKG_DEPS=( python-xml )
+        EXTRA_PKG_DEPS=( python3-xml )
         sudo zypper -n ref
         # NOTE (cinerama): we can't install python without removing this package
         # if it exists
@@ -126,11 +126,11 @@ function install_ansible() {
             [lsb-release]=lsb-release
             [make]=make
             [net-tools]=net-tools
-            [pip]=python-pip
-            [python]=python-minimal
-            [python-devel]=libpython-dev
-            [python-pyyaml]=python-yaml
-            [venv]=python-virtualenv
+            [pip]=python3-pip
+            [python]=python3-minimal
+            [python-devel]=libpython3-dev
+            [python-pyyaml]=python3-yaml
+            [venv]=python3-virtualenv
             [wget]=wget
             [curl]=curl
         )
@@ -150,11 +150,11 @@ function install_ansible() {
             [lsb-release]=redhat-lsb
             [make]=make
             [net-tools]=net-tools
-            [pip]=python2-pip
-            [python]=python
-            [python-devel]=python-devel
+            [pip]=python3-pip
+            [python]=python3
+            [python-devel]=python3-devel
             [python-pyyaml]=PyYAML
-            [venv]=python-virtualenv
+            [venv]=python3-virtualenv
             [wget]=wget
             [curl]=curl
         )
@@ -174,13 +174,6 @@ function install_ansible() {
 
     ${INSTALLER_CMD} ${install_map[@]}
 
-    # Note(cinerama): If pip is linked to pip3, the rest of the install
-    # won't work. Remove the alternatives. This is due to ansible's
-    # python 2.x requirement.
-    if [[ $(readlink -f /etc/alternatives/pip) =~ "pip3" ]]; then
-        sudo -H update-alternatives --remove pip $(readlink -f /etc/alternatives/pip)
-    fi
-
     # We need to prepare our virtualenv now
     virtualenv --quiet --no-site-packages ${XCI_VENV}
     set +u
@@ -188,8 +181,8 @@ function install_ansible() {
     set -u
 
     # We are inside the virtualenv now so we should be good to use pip and python from it.
-    pip -q install --upgrade pip==9.0.3 # We need a version which supports the '-c' parameter
-    pip -q install --upgrade -c $uc -c $osa_uc ara==0.16.4 virtualenv pip setuptools shade ansible==$XCI_ANSIBLE_PIP_VERSION ansible-lint==3.4.21
+    pip3 --version
+    pip3 -q install --upgrade -c $uc -c $osa_uc ara==0.16.4 virtualenv pip setuptools shade ansible==$XCI_ANSIBLE_PIP_VERSION ansible-lint==3.4.21
 
     ara_location=$(python -c "import os,ara; print(os.path.dirname(ara.__file__))")
     export ANSIBLE_CALLBACK_PLUGINS="/etc/ansible/roles/plugins/callback:${ara_location}/plugins/callbacks"
