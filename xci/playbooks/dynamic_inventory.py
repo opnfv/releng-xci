@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # coding utf-8
 
 # SPDX-license-identifier: Apache-2.0
@@ -127,8 +127,8 @@ class XCIInventory(object):
             for role in idf['xci']['installers'][self.installer]['nodes_roles'][host]:
                 self.add_to_group(role, hostname)
 
-            pdf_host_info = filter(lambda x: x['name'] == host, pdf['nodes'])[0]
-            native_vlan_if = filter(lambda x: x['vlan'] == 'native', pdf_host_info['interfaces'])
+            pdf_host_info = list(filter(lambda x: x['name'] == host, pdf['nodes']))[0]
+            native_vlan_if = list(filter(lambda x: x['vlan'] == 'native', pdf_host_info['interfaces']))
             self.add_hostvar(hostname, 'ansible_host', native_vlan_if[0]['address'])
             self.add_hostvar(hostname, 'ip', native_vlan_if[0]['address'])
             host_networks[hostname] = {}
