@@ -14,6 +14,10 @@
   vars_files:
     - "../vars/{{ ansible_os_family | lower }}.yml"
   pre_tasks:
+    - name: Make python3 the default option
+      file:
+        src: /usr/bin/python3
+        dest: /usr/bin/python
     - name: Remove pre-existing leases file
       file: path=/var/lib/misc/dnsmasq.leases state=absent
     - name: "Override the ipv4_gateway setting"
