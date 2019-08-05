@@ -1,3 +1,4 @@
+---
 kube_dns_ip: "10.233.0.3"
 external_dns_nameservers:
 - '{{kube_dns_ip}}'
