@@ -60,7 +60,15 @@ export LOG_PATH=${LOG_PATH:-${XCI_PATH}/xci/logs}
 export XCI_ANSIBLE_PIP_VERSION="2.5.8"
 
 export ANSIBLE_HOST_KEY_CHECKING=False
-export DEPLOY_SCENARIO=${DEPLOY_SCENARIO:-"os-nosdn-nofeature"}
+
+# The hack below is because, in OSH deployment, k8-calico-nofeature has to be used
+# in the underlying kubernetes installation, where openstack is deployed on,
+# overriding either the XCI default or a user parameter.
+# When, in the future, multiple scenarios for openstack would be a supported option
+# this variable would have to be preserved at this point and then restored and passed to
+# OSH after the kubernetes cluster (built with k8-calico-nofeature) is ready.
+if [ "$INSTALLER_TYPE" == "osh" ]; then export DEPLOY_SCENARIO="k8-calico-nofeature"; else export DEPLOY_SCENARIO=${DEPLOY_SCENARIO:-"os-nosdn-nofeature"}; fi
+
 # attempt to sync Ansible version used by Kubespray with the rest
 export XCI_KUBE_ANSIBLE_PIP_VERSION=$XCI_ANSIBLE_PIP_VERSION
 # OpenStack global requirements version
