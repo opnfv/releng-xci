@@ -1,3 +1,4 @@
+---
 - name: Setup Clients
   command: ./tools/deployment/common/setup-client.sh
   changed_when: false
