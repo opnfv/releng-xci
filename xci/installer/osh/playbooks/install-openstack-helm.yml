@@ -20,5 +20,7 @@
         - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
         - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
         - OPENSTACK_RELEASE: "{{ openstack_osh_version }}"
+        - OSH_BR_EX_ADDR: "{{ public_gateway }}"
+        - OSH_EXT_SUBNET: "{{ floating_ip_range }}"
     - role: install-osh-noha
       when: xci_flavor == 'noha'
