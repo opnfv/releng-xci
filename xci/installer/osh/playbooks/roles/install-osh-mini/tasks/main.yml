@@ -95,8 +95,12 @@
   args:
     chdir: /root/repos/openstack-helm
 
+- debug: var=groups
+- debug: var=hostvars
+- debug: var=group_names
+
 - name: Copy script to the worker node
-  command: "scp -o \"StrictHostKeyChecking no\" tools/deployment/developer/ceph/170-setup-gateway.sh root@192.168.122.4:170-setup-gateway.sh"
+  command: "scp -o \"StrictHostKeyChecking no\" tools/deployment/developer/ceph/170-setup-gateway.sh root@{{ inventory_hostname }}:170-setup-gateway.sh"
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
@@ -104,7 +108,7 @@
 - name: Setup the gateway to the public network at worker node
   command: /root/170-setup-gateway.sh
   changed_when: false
-  delegate_to: 192.168.122.4
+  delegate_to: kube-node
 
 - name: Add a route from opnfv to worker node for the public network
   command: ip route add 172.24.4.0/24 via 192.168.122.4
