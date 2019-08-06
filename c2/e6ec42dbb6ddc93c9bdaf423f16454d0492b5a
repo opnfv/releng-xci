@@ -1,0 +1,9 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+1: Nikos Karandreas <nick@intracom-telecom.com>
+Code-Review+1: Panagiotis Karalis <panos.pkaralis@gmail.com>
+Code-Review+2: Fatih Degirmenci <fdegir@gmail.com>
+Submitted-by: Manuel Buil <mbuil@suse.com>
+Submitted-at: Tue, 06 Aug 2019 20:27:37 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/c/releng-xci/+/68317
+Project: releng-xci
+Branch: refs/heads/master
