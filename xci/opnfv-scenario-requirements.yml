@@ -28,6 +28,14 @@
         - opensuse
         - ubuntu
         - centos
+    - installer: osh
+      flavors:
+        - mini
+        - noha
+      distros:
+        - ubuntu
+        - opensuse
+        - ubuntu-bionic
 
 - scenario: os-nosdn-osm
   scm: git
