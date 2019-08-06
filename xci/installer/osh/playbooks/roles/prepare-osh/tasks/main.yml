@@ -1,3 +1,4 @@
+---
 - name: Write new resolv.conf file
   template:
     src: resolv.conf.j2

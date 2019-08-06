@@ -1,3 +1,4 @@
+---
 - name: Set kubernetes service account permissions
   command: "kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default"
   changed_when: false
