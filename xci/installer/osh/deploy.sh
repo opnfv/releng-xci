@@ -119,16 +119,26 @@ echo "-----------------------------------------------------------------------"
 echo "Info: Kubernetes login details"
 echo "-----------------------------------------------------------------------"
 echo
-# Get the dashborad URL
-DASHBOARD_SERVICE=$(ssh root@$OPNFV_HOST_IP "kubectl get service -n kube-system |grep kubernetes-dashboard")
+# Get the dashboard URL
+if ssh-keygen -f "/home/opnfv/.ssh/known_hosts" -F $OPNFV_HOST_IP;
+then
+ssh-keygen -f "/home/opnfv/.ssh/known_hosts" -R  $OPNFV_HOST_IP;
+echo "Info: known_hosts entry for opnfv host from previous deployment found and deleted"
+fi
+DASHBOARD_SERVICE=$(ssh -q -o StrictHostKeyChecking=no root@$OPNFV_HOST_IP "kubectl get service -n kube-system |grep kubernetes-dashboard")
 DASHBOARD_PORT=$(echo ${DASHBOARD_SERVICE} | awk '{print $5}' |awk -F "[:/]" '{print $2}')
 KUBER_SERVER_URL=$(ssh root@$OPNFV_HOST_IP "grep -r server ~/.kube/config")
 echo "Info: Kubernetes Dashboard URL:"
 echo $KUBER_SERVER_URL | awk '{print $2}'| sed -n "s#:[0-9]*\$#:$DASHBOARD_PORT#p"
 
-# Get the dashborad user and password
+# Get the dashboard user and password
 MASTER_IP=$(echo ${KUBER_SERVER_URL} | awk '{print $2}' |awk -F "[:/]" '{print $4}')
-USER_CSV=$(ssh root@$MASTER_IP " cat /etc/kubernetes/users/known_users.csv")
+if ssh-keygen -f "/home/opnfv/.ssh/known_hosts" -F $MASTER_IP;
+then
+ssh-keygen -f "/home/opnfv/.ssh/known_hosts" -R  $MASTER_IP;
+echo "Info: known_hosts entry for master host from previous deployment found and deleted"
+fi
+USER_CSV=$(ssh -q -o StrictHostKeyChecking=no root@$MASTER_IP " cat /etc/kubernetes/users/known_users.csv")
 USERNAME=$(echo $USER_CSV |awk -F ',' '{print $2}')
 PASSWORD=$(echo $USER_CSV |awk -F ',' '{print $1}')
 echo "Info: Dashboard username: ${USERNAME}"
