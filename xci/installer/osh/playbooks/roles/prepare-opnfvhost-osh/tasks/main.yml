@@ -4,21 +4,9 @@
   changed_when: false
 
 - name: Set kubernetes node labels
-  shell: "for x in `kubectl get nodes --show-labels | grep 'node-role.kubernetes.io/node=true' | awk '{print $1}'`; do kubectl label nodes $x {{ item }}; done"
-  args:
-    executable: /bin/bash
+  command: "kubectl label nodes {{ item }} {{ node_labels[item]|join(' ') }}"
   changed_when: false
-  with_items:
-    - openstack-control-plane=enabled
-    - openstack-compute-node=enabled
-    - openstack-helm-node-class=primary
-    - openvswitch=enabled
-    - linuxbridge=enabled
-    - ceph-mon=enabled
-    - ceph-osd=enabled
-    - ceph-mds=enabled
-    - ceph-mgr=enabled
-    - ceph-rgw=enabled
+  with_items: "{{ groups['kube-node'] }}"
 
 - name: Create directories
   file:
