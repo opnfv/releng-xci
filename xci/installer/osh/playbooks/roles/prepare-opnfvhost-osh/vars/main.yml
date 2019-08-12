@@ -5,3 +5,27 @@ required_packages:
 - jq
 - nmap
 - bc
+
+node_labels:
+  node1:
+    - openstack-control-plane=enabled
+    - openstack-compute-node={{ (xci_flavor == 'mini') | ternary('enabled', 'disable') }}
+    - openstack-helm-node-class=primary
+    - openvswitch=enabled
+    - linuxbridge=enabled
+    - ceph-mon=enabled
+    - ceph-osd=enabled
+    - ceph-mds=enabled
+    - ceph-mgr=enabled
+    - ceph-rgw=enabled
+  node2:
+    - openstack-control-plane={{ (xci_flavor == 'noha') | ternary('disable', 'enabled') }}
+    - openstack-compute-node=enabled
+    - openstack-helm-node-class=primary
+    - openvswitch=enabled
+    - linuxbridge=enabled
+    - ceph-mon=enabled
+    - ceph-osd=enabled
+    - ceph-mds=enabled
+    - ceph-mgr=enabled
+    - ceph-rgw=enabled
