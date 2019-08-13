@@ -21,7 +21,7 @@ node_labels:
   node2:
     - openstack-control-plane={{ (xci_flavor == 'noha') | ternary('disable', 'enabled') }}
     - openstack-compute-node=enabled
-    - openstack-helm-node-class=primary
+    - openstack-helm-node-class=secondary
     - openvswitch=enabled
     - linuxbridge=enabled
     - ceph-mon=enabled
