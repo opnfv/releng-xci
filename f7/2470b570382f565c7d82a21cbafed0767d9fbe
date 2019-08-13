@@ -1,0 +1,7 @@
+Verified+1: jenkins-ci <jenkins-opnfv-ci@opnfv.org>
+Code-Review+2: Fatih Degirmenci <fdegir@gmail.com>
+Submitted-by: Manuel Buil <mbuil@suse.com>
+Submitted-at: Tue, 13 Aug 2019 12:45:57 +0000
+Reviewed-on: https://gerrit.opnfv.org/gerrit/c/releng-xci/+/68346
+Project: releng-xci
+Branch: refs/heads/master
