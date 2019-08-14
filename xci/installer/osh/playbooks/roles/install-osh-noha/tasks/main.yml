@@ -83,6 +83,12 @@
   args:
     chdir: /root/repos/openstack-helm
 
+- name: Add br-vxlan as the tunnel interface
+  lineinfile:
+    path: /root/repos/openstack-helm/tools/deployment/multinode/140-compute-kit.sh
+    regexp: 'NETWORK_TUNNEL_DEV="$(network_tunnel_dev)"'
+    line: 'NETWORK_TUNNEL_DEV=br-vxlan'
+
 - name: Deploy Compute Kit (Nova and Neutron)
   command: ./tools/deployment/multinode/140-compute-kit.sh
   changed_when: false
