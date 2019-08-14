@@ -74,6 +74,21 @@
   args:
     chdir: /root/repos/openstack-helm
 
+- name: Add br-vxlan as the tunnel interface
+  lineinfile:
+    path: /root/repos/openstack-helm/tools/deployment/component/compute-kit/compute-kit.sh
+    regexp: 'tunnel: docker0'
+    line: 'tunnel: br-vxlan'
+
+- name: Debugging
+  command: cat ./tools/deployment/component/compute-kit/compute-kit.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+  register: output_debugging
+
+- debug: var=output_debugging
+
 - name: Deploy Compute Kit (Nova and Neutron)
   command: ./tools/deployment/component/compute-kit/compute-kit.sh
   changed_when: false
