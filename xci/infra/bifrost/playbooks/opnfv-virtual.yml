@@ -16,6 +16,7 @@
   pre_tasks:
     - name: Remove pre-existing leases file
       file: path=/var/lib/misc/dnsmasq.leases state=absent
+
     - name: "Override the ipv4_gateway setting"
       set_fact:
          ipv4_gateway: "192.168.122.1"
