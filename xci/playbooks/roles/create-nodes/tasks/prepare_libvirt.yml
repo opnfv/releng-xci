@@ -125,5 +125,15 @@
 - name: install virtualbmc
   pip:
     name: virtualbmc
-    version: 1.3 # >1.3 needs zmq dependency.
+    version: 1.5 # >1.3 needs zmq dependency.
     virtualenv: "{{ lookup('env', 'XCI_VENV') }}"
+
+- name: Create directory for the config of vbmc
+  file:
+    path: /etc/virtualbmc
+    state: directory
+
+- name: Place the config for virtualbmc
+  copy:
+    src: virtualbmc.conf
+    dest: /etc/virtualbmc/virtualbmc.conf
