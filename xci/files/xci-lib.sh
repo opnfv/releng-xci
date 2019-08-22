@@ -174,13 +174,6 @@ function install_ansible() {
 
     ${INSTALLER_CMD} ${install_map[@]}
 
-    # Note(cinerama): If pip is linked to pip3, the rest of the install
-    # won't work. Remove the alternatives. This is due to ansible's
-    # python 2.x requirement.
-    if [[ $(readlink -f /etc/alternatives/pip) =~ "pip3" ]]; then
-        sudo -H update-alternatives --remove pip $(readlink -f /etc/alternatives/pip)
-    fi
-
     # We need to prepare our virtualenv now
     virtualenv --quiet --no-site-packages ${XCI_VENV}
     set +u
