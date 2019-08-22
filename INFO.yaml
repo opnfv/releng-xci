@@ -40,3 +40,8 @@ committers:
       email: 'mbuil@suse.com'
       id: 'mbuil'
       timezone: 'Europe/Madrid'
+    - name: 'Panagiotis Karalis'
+      company: 'Intracom Telecom'
+      email: 'panos.pkaralis@gmail.com'
+      id: 'pkaralis'
+      timezone: 'Europe/Athens'
