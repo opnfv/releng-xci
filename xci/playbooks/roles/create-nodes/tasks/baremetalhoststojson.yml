@@ -29,15 +29,15 @@
   block:
 
   - set_fact:
-      node_name: idf.kubespray.hostnames[item.name]
+      node_name: "{{ idf.kubespray.hostnames[item.name] }}"
     when: installer_type == "kubespray"
 
   - set_fact:
-      node_name: idf.osa.hostnames[item.name]
+      node_name: "{{ idf.osa.hostnames[item.name] }}"
     when: installer_type == "osa"
 
   - set_fact:
-      node_name: idf.osh.hostnames[item.name]
+      node_name: "{{ idf.osh.hostnames[item.name] }}"
     when: installer_type == "osh"
 
   - set_fact:
