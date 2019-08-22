@@ -9,7 +9,7 @@
 ### ERICSSON POD 2 installer descriptor file ###
 idf:
   version: 0.1
-  installer: ['apex', 'compass4nfv', 'daisy', 'osa']
+  installer: ['apex', 'compass4nfv', 'daisy', 'osa', 'osh']
   net_config: &net_config
     admin:
       interface: 2
@@ -147,3 +147,4 @@ xci:
   installers:
     osa: *idf_osa
     kubespray: *idf_kubespray
+    osh: *idf_kubespray

@@ -10,7 +10,7 @@
 
 idf:
   version: 0.1
-  installer: ['apex', 'compass4nfv', 'daisy', 'fuel', 'osa']
+  installer: ['apex', 'compass4nfv', 'daisy', 'fuel', 'osa', 'osh']
   net_config: &net_config
     oob:
       interface: 0
@@ -185,3 +185,4 @@ xci:
   installers:
     osa: *idf_osa
     kubespray: *idf_kubespray
+    osh: *idf_kubespray
