@@ -49,7 +49,7 @@ for XCI and for users and developers who are using it for different
 purposes.
 
 Components of the Sandbox
-===================================
+==========================
 
 The sandbox uses OpenStack tools for VM node creation and provisioning.
 OpenStack and Kubernetes installations are done using the tools from corresponding
@@ -79,6 +79,13 @@ work in a way that serves the users in the best possible way.
   More information about this project can be seen on
   `Kubespray documentation <https://kubernetes.io/docs/getting-started-guides/kubespray/>`_.
 
+* **openstack/openstack-helm:** OpenStack-Helm is an official OpenStack
+  project which aims to deploy OpenStack on top of Kubernetes. All the OpenStack
+  services are life-cycle manages by Kubernetes and they are installed using helm and
+  LOCI images, which reduces the deployment time.
+  More information about this project can be seen on
+  `OpenStack Helm documentation <https://docs.openstack.org/openstack-helm/latest/>`_.
+
 * **opnfv/releng-xci:** OPNFV Releng Project provides additional scripts, Ansible
   playbooks and configuration options in order for developers to have an easy
   way of using openstack/bifrost and openstack/openstack-ansible by just
@@ -86,28 +93,39 @@ work in a way that serves the users in the best possible way.
   More infromation about this project can be seen on
   `OPNFV Releng documentation <https://wiki.opnfv.org/display/releng>`_.
 
-Sandbox Flavors
-===============
+Baremetal deployments
+=====================
 
-XCI Developer Sandbox provides 4 different configurations (flavors) that can be
-deployed using VM nodes.
+XCI also allows baremetal deployments. To do so, the hardware where XCI will be
+deployed must be described with idf/pdf files and point to them as explained in
+the baremetal deployment procedure later in this document.
+There are already several examples in that directory that can be used for help.
 
-Available flavors are listed on the table below.
+The baremetal deployment will follow the description of the flavors used in the
+sandbox but isntead of VMs, it will use the hardware described in the pdf/idf.
+Please check the "How to use" section below to learn how to deploy in baremetal.
+
+
+Flavors
+=======
+
+XCI provides 4 different configurations (flavors). Available flavors are
+listed on the table below.
 
 +------------------+------------------------+---------------------+--------------------------+--------------------------+
-| Flavor           | Number of VM Nodes     | VM Specs Per Node   | Time Estimates Openstack | Time Estimates Kubernetes|
+| Flavor           | Number of Nodes        | VM Specs Per Node   | Time Estimates Openstack | Time Estimates Kubernetes|
 +==================+========================+=====================+==========================+==========================+
-| Mini             | | 3 VM Nodes           | | vCPUs: 6          | | Provisioning: 12 mins  | | Provisioning: 12 mins  |
+| Mini             | | 3 Nodes              | | vCPUs: 6          | | Provisioning: 12 mins  | | Provisioning: 12 mins  |
 |                  | | 1 deployment node    | | RAM: 12GB         | | Deployment: 65 mins    | | Deployment: 35 mins    |
 |                  | | 1 controller node    | | Disk: 80GB        | | Total: 77 mins         | | Total: 47 mins         |
 |                  | | 1 compute node       | | NICs: 1           | |                        | |                        |
 +------------------+------------------------+---------------------+--------------------------+--------------------------+
-| No HA            | | 4 VM Nodes           | | vCPUs: 6          | | Provisioning: 12 mins  | | Provisioning: 12 mins  |
+| No HA            | | 4 Nodes              | | vCPUs: 6          | | Provisioning: 12 mins  | | Provisioning: 12 mins  |
 |                  | | 1 deployment node    | | RAM: 12GB         | | Deployment: 70 mins    | | Deployment: 35 mins    |
 |                  | | 1 controller node    | | Disk: 80GB        | | Total: 82 mins         | | Total: 47 mins         |
 |                  | | 2 compute nodes      | | NICs: 1           | |                        | |                        |
 +------------------+------------------------+---------------------+--------------------------+--------------------------+
-| HA               | | 6 VM Nodes           | | vCPUs: 6          | | Provisioning: 15 mins  | | Provisioning: 15 mins  |
+| HA               | | 6 Nodes              | | vCPUs: 6          | | Provisioning: 15 mins  | | Provisioning: 15 mins  |
 |                  | | 1 deployment node    | | RAM: 12GB         | | Deployment: 105 mins   | | Deployment: 40 mins    |
 |                  | | 3 controller nodes   | | Disk: 80GB        | | Total: 120 mins        | | Total: 55 mins         |
 |                  | | 2 compute nodes      | | NICs: 1           | |                        | |                        |
@@ -126,16 +144,18 @@ depending on
 * installed/activated OpenStack services
 * internet connection bandwidth
 
-Flavor Layouts - OpenStack Based Deployments
+Flavor Layouts - OSA Based Deployments
 --------------------------------------------
 
 All flavors are created and deployed based on the upstream OpenStack Ansible (OSA)
 guidelines.
 
-Network configuration on the nodes are same no matter which flavor is used.
-The VMs are attached to default libvirt network and has single NIC where VLANs
-are created on. Different Linux bridges for management, storage and tunnel
-networks are created on these VLANs.
+Network configuration on the nodes are the same no matter which flavor is used.
+Each VM has a single NIC that is attached to the default libvirt network. To 
+segregate traffic (storage, guest/private, management and public) 4 interfaces are
+generated out of that NIC by using VLANs. 3 of those interfaces are tagged and 
+attached to a linux bridge (br-mgmt, br-storage, br-vxlan). The interface taking
+care of the public traffic is untagged and also attached to a linux bridge (br-vlan)
 
 Use of more *production-like* network setup with multiple interfaces is in our
 backlog. Enabling OVS as default is currently in progress.
@@ -193,6 +213,35 @@ flavors.
 .. image:: images/arch-layout-k8s-ha.png
    :scale: 75 %
 
+Flavor Layouts - OSH Based Deployments
+--------------------------------------------
+
+Network configuration on the nodes are the same no matter which flavor is used.
+Each VM has a single NIC that is attached to the default libvirt network. To
+segregate traffic (storage, guest/private, management and public) 4 interfaces are
+generated out of that NIC by using VLANs. 3 of those interfaces are tagged and
+attached to a linux bridge (br-mgmt, br-storage, br-vxlan). The interface taking
+care of the public traffic is untagged and also attached to a linux bridge (br-vlan)
+
+Use of more *production-like* network setup with multiple interfaces is in our
+backlog. Enabling OVS as default is currently in progress.
+
+For storage, CEPH is used.
+
+The differences between the flavors are documented below.
+
+**Mini/No HA/HA**
+
+These flavors consist of multiple nodes.
+
+* **opnfv**: This node is used for driving the installation towards target nodes
+  in order to ensure the deployment process is isolated from the physical host
+  and always done on a clean machine.
+* **master**: Provides the kubernetes kube-system components (e.g. kubeapi)
+* **node**: Kubernetes workers. In mini, an OpenStack controller and compute is
+  deployed in one node. In No-HA, one controller and one compute are deployed in
+  different nodes
+
 User Guide
 ==========
 
@@ -200,21 +249,21 @@ Prerequisites
 -------------
 
 * A machine with sufficient CPU/RAM/Disk based on the chosen flavor
-* Ubuntu 16.04, OpenSUSE Leap 42.3, or CentOS 7
+* Ubuntu 16.04, Ubuntu 18.04, OpenSUSE Leap 42.3, OpenSUSE Leap 15.0 or CentOS 7
 * CPU/motherboard that supports hardware-assisted virtualization
 * Passwordless sudo
 * An SSH key generated for your user (ie ~/.ssh/id_rsa)
 * Packages to install
 
   * git
-  * python 2.7
-  * pip
+  * python 2.7 or python3 (>=3.5)
+  * pip or pip3
   * libvirt
 
 How to Use
 ----------
 
-**Basic Usage**
+**Basic Usage (sandbox deployment)**
 
 1. If you don't have one already, generate an SSH key in $HOME/.ssh
 
@@ -228,17 +277,36 @@ How to Use
 
    | ``cd releng-xci/xci``
 
-4. If you want to deploy Kubernetes based scenario, set the variables as below. Otherwise skip.
+4. Choose an installer (osa, osh or kubespray) and export the variable INSTALLER_TYPE:
 
    | ``export INSTALLER_TYPE=kubespray``
-   | ``export DEPLOY_SCENARIO=k8-nosdn-nofeature``
 
-5. Execute the sandbox script
+   or
+
+   | ``export INSTALLER_TYPE=osa``
+
+   or
+
+   | ``export INSTALLER_TYPE=osh``
+
+5. Choose the flavor (mini, noha or ha) and export the variable XCI_FLAVOR:
+
+   | ``export XCI_FLAVOR=mini``
+
+   or
+
+   | ``export XCI_FLAVOR=noha``
+
+   or
+
+   | ``export XCI_FLAVOR=ha``
+
+6. Execute the sandbox script
 
    | ``./xci-deploy.sh``
 
-Issuing above command will start the sandbox deployment using the default
-flavor ``mini`` and the verified versions of upstream components.
+If no flavor is selected, the deployment defaults to flavor ``mini`` and the
+verified versions of upstream components.
 (`pinned-versions <https://git.opnfv.org/releng-xci/tree/xci/config/pinned-versions>`_).
 The sandbox should be ready between 1,5 and 2 hours depending on the host
 machine.
@@ -248,13 +316,72 @@ using your new deployment.
 
 The openrc file will be available on ``opnfv`` host in ``$HOME``.
 
+**Basic Usage (baremetal deployment)**
+
+1. If you don't have one already, generate an SSH key in $HOME/.ssh
+
+   | ``ssh-keygen -t rsa``
+
+2. Clone OPNFV releng-xci repository
+
+   | ``git clone https://gerrit.opnfv.org/gerrit/releng-xci.git``
+
+3. Change into directory where the sandbox script is located
+
+   | ``cd releng-xci/xci``
+
+4. Choose an installer (osa, osh or kubespray) and export the variable INSTALLER_TYPE:
+
+   | ``export INSTALLER_TYPE=kubespray``
+
+   or
+
+   | ``export INSTALLER_TYPE=osa``
+
+   or
+
+   | ``export INSTALLER_TYPE=osh``
+
+5. Choose the flavor (mini, noha or ha) and export the variable XCI_FLAVOR:
+
+   | ``export XCI_FLAVOR=mini``
+
+   or
+
+   | ``export XCI_FLAVOR=noha``
+
+   or
+
+   | ``export XCI_FLAVOR=ha``
+
+6. Specify that it is going to be a baremetal deployment:
+
+   | ``export BAREMETAL=true``
+
+7. Execute the xci script pointing to the idf and pdf:
+
+   | ``./xci-deploy.sh -p /path/to/pdf.yml -i /path/to/idf.yml``
+
+If no flavor is selected the deployment uses the default flavor ``mini`` and
+the verified versions of upstream components.
+(`pinned-versions <https://git.opnfv.org/releng-xci/tree/xci/config/pinned-versions>`_).
+The baremetal deployment takes around 20 minutes longer than the sandbox
+
+After the script finishes execution, you can login to ``opnfv`` host and start
+using your new deployment.
+
+The openrc file will be available on ``opnfv`` host in ``$HOME``.
+
 **Advanced Usage**
 
-The flavor to deploy and the versions of upstream components to use can
-be configured by the users by setting certain environment variables.
+The scenario to deploy and the versions of upstream components to use can
+be configured by the users by setting certain environment variables, except
+for osh, where this is not yet possible.
+
 Below example deploys noha flavor using the latest of openstack-ansible
 master branch and stores logs in different location than what is set as
-default.
+default. It also deploys the scenario os-odl-nofeature. Note that when no
+scenario is set, os-nosdn-nofeature is deployed by default
 
 1. If you don't have one already, generate an SSH key in $HOME/.ssh
 
@@ -286,7 +413,11 @@ default.
 
    | ``export LOG_PATH=/home/jenkins/xcilogs``
 
-7. Execute the sandbox script
+7. Select the scenario
+
+   | ``export DEPLOY_SCENARIO=os-odl-nofeature``
+
+8. Execute the sandbox script
 
    | ``./xci-deploy.sh``
 
@@ -303,9 +434,13 @@ You can verify the basic operation using the commands below.
 
    | ``ssh root@192.168.122.2``
 
-2. Source openrc file
+2A. Source openrc file for OSA
 
    | ``source openrc``
+
+2B. Export OS_CLOUD for OSH
+
+   | ``export OS_CLOUD=openstack_helm``
 
 3. Issue OpenStack commands
 
