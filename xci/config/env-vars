@@ -22,6 +22,9 @@ export OSH_HELM_BINARY_VERSION=${OSH_HELM_BINARY_VERSION:-v2.13.1}
 export OPENSTACK_OSA_ETC_PATH=/etc/openstack_deploy
 export OPNFV_HOST_IP=192.168.122.2
 export XCI_FLAVOR_ANSIBLE_FILE_PATH=$XCI_PATH/xci/installer/$INSTALLER_TYPE/files/$XCI_FLAVOR
+# The kube_service_addresses value is obtained from kubespray
+export KUBE_SERVICE_ADDRESSES=${KUBE_SERVICE_ADDRESSES=:-"10.233.0.0/18"}
+export SUBNET_CIDR=192.168.122.0/24
 
 # XCI_CACHE is a cache on localhost where repositories and scenarios are cloned.
 export XCI_CACHE=${XCI_PATH}/.cache
