@@ -100,17 +100,24 @@
         executable: /bin/bash
         creates: "{{ xci_path }}/.cache/xci.env"
 
-    #TODO: Create an Ansible variable for
-    #      kube_service_addresses(10.233.0.0/18)
+    - name: Get kube service addresses
+      shell: "grep -r 'kube_service_addresses:' $HOME/kubespray/inventory/sample/group_vars/k8s-cluster/k8s-cluster.yml | awk '{print $2}'"
+      changed_when: false
+      args:
+        executable: /bin/bash
+      register: kube_service_addresses
+      tags:
+        - skip_ansible_lint
+
     - name: Update iptables
-      command: "iptables -t nat -I POSTROUTING 3 -s 192.168.122.0/24 -d 10.233.0.0/18 -j RETURN"
+      command: "iptables -t nat -I POSTROUTING 3 -s {{ subnet_cidr }}  -d {{ kube_service_addresses.stdout }} -j RETURN"
       become: true
       tags:
         - skip_ansible_lint
 
     #Provide access to the external network (for tests)
     - name: Update iptables
-      command: "iptables -t nat -I POSTROUTING 3 -s 192.168.122.0/24 -d 172.24.4.0/24 -j RETURN"
+      command: "iptables -t nat -I POSTROUTING 3 -s {{ subnet_cidr }} -d 172.24.4.0/24 -j RETURN"
       become: true
       tags:
         - skip_ansible_lint
