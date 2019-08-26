@@ -98,7 +98,7 @@
   delegate_to: node1
 
 - name: Add a route from opnfv to worker node for the public network
-  command: ip route add 172.24.4.0/24 via 192.168.122.4
+  command: ip route add 172.24.4.0/24 via {{ hostvars.node1.ip }}
   changed_when: false
 
 # Deployment validation
