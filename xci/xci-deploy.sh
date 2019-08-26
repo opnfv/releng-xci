@@ -55,6 +55,13 @@ unset user_local_dev_vars local_user_var
 parse_cmdline_opts $*
 
 #
+# Install html2text
+#
+echo "Info: Install html2text"
+echo "-------------------------------------------------------------------------"
+sudo apt-get install html2text -y
+
+#
 # Bootstrap environment for XCI Deployment
 #
 echo "Info: Preparing host environment for the XCI deployment"
