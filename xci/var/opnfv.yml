@@ -59,6 +59,7 @@ core_openstack_install: "{{ lookup('env', 'CORE_OPENSTACK_INSTALL') }}"
 deploy_scenario: "{{ lookup('env','DEPLOY_SCENARIO') }}"
 installer_type: "{{ lookup('env','INSTALLER_TYPE') }}"
 osh_distro: "{{ lookup('env', 'OSH_DISTRO') }}"
+subnet_cidr: "{{ lookup('env', 'SUBNET_CIDR') }}"
 
 # baremetal variables
 baremetal: "{{ lookup('env','BAREMETAL') }}"
