@@ -103,14 +103,14 @@
     #TODO: Create an Ansible variable for
     #      kube_service_addresses(10.233.0.0/18)
     - name: Update iptables
-      command: "iptables -t nat -I POSTROUTING 3 -s 192.168.122.0/24 -d 10.233.0.0/18 -j RETURN"
+      command: "iptables -t nat -I POSTROUTING 3 -s {{ subnet_cidr }}  -d {{ kube_service_addresses }} -j RETURN"
       become: true
       tags:
         - skip_ansible_lint
 
     #Provide access to the external network (for tests)
     - name: Update iptables
-      command: "iptables -t nat -I POSTROUTING 3 -s 192.168.122.0/24 -d 172.24.4.0/24 -j RETURN"
+      command: "iptables -t nat -I POSTROUTING 3 -s {{ kube_service_addresses }} -d 172.24.4.0/24 -j RETURN"
       become: true
       tags:
         - skip_ansible_lint
