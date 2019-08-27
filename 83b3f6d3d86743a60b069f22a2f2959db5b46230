@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f836a8cc_6a70efa2",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 6929
+      },
+      "writtenOn": "2019-08-27T15:25:49Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 85,
+        "startChar": 49,
+        "endLine": 85,
+        "endChar": 50
+      },
+      "revId": "83b3f6d3d86743a60b069f22a2f2959db5b46230",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "950b71b5_f0f17614",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 6929
+      },
+      "writtenOn": "2019-08-27T15:25:49Z",
+      "side": 1,
+      "message": "Is this correct? I thought it was specified by a command line arg",
+      "range": {
+        "startLine": 100,
+        "startChar": 63,
+        "endLine": 100,
+        "endChar": 83
+      },
+      "revId": "83b3f6d3d86743a60b069f22a2f2959db5b46230",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "16fa4fbc_db42e2de",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 6929
+      },
+      "writtenOn": "2019-08-27T15:25:49Z",
+      "side": 1,
+      "message": "are the same",
+      "range": {
+        "startLine": 216,
+        "startChar": 35,
+        "endLine": 216,
+        "endChar": 43
+      },
+      "revId": "83b3f6d3d86743a60b069f22a2f2959db5b46230",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "eae994bc_f03aef13",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 6929
+      },
+      "writtenOn": "2019-08-27T15:25:49Z",
+      "side": 1,
+      "message": "To be clear, the VMs are on the libvirt net *and* have a nic with tagged vlans? And I assume the tunnel network is also the \"public\" network in the idf.\n\nThis might be a little clearer:\n\nThe VMs are attached to the default libvirt network and also have a single NIC where all the VLANs are created on. Different Linux bridges for management, storage, and tunnel (public) networks are created from these VLANs.",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 219,
+        "endChar": 36
+      },
+      "revId": "83b3f6d3d86743a60b069f22a2f2959db5b46230",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "691f175a_42f63e93",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 6929
+      },
+      "writtenOn": "2019-08-27T15:25:49Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 287,
+        "startChar": 75,
+        "endLine": 287,
+        "endChar": 76
+      },
+      "revId": "83b3f6d3d86743a60b069f22a2f2959db5b46230",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1ee41cd_a9e88bad",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 6929
+      },
+      "writtenOn": "2019-08-27T15:25:49Z",
+      "side": 1,
+      "message": "whitespace",
+      "range": {
+        "startLine": 340,
+        "startChar": 75,
+        "endLine": 340,
+        "endChar": 76
+      },
+      "revId": "83b3f6d3d86743a60b069f22a2f2959db5b46230",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c9850da_a49ec549",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 6929
+      },
+      "writtenOn": "2019-08-27T15:25:49Z",
+      "side": 1,
+      "message": "I will get around to submitting my internal documentation around how these files need to look for a baremetal deploy. That\u0027s where most of the pain is for a new user IMO",
+      "range": {
+        "startLine": 358,
+        "startChar": 5,
+        "endLine": 358,
+        "endChar": 64
+      },
+      "revId": "83b3f6d3d86743a60b069f22a2f2959db5b46230",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
