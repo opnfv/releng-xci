@@ -52,17 +52,21 @@
           - "--recursive"
           - "--files-from={{ xci_cache }}/releng-xci.files"
 
-    - name: delete the opnfv_inventory directory
+    - name: delete and recreate the opnfv_inventory directory
       file:
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
-        state: absent
+        state: "{{ item }}"
+      with_items:
+        - absent
+        - directory
 
-    - name: make sure kubespray/opnfv_inventory/group_vars/ exist
-      file:
-        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
-        state: directory
+    - name: synchronize kubespray/inventory/sample with kubespray/opnfv_inventory
+      synchronize:
+        src: "{{ remote_xci_path }}/.cache/repos/kubespray/inventory/sample/"
+        dest: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
+        recursive: yes
 
-    - name: copy kubespray inventory directory
+    - name: copy xci dynamic inventory to kubespray opnfv_inventory directory
       file:
         src: "{{ remote_xci_playbooks }}/dynamic_inventory.py"
         path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/dynamic_inventory.py"
