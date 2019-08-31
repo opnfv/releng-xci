@@ -57,7 +57,7 @@ export LOG_PATH=${LOG_PATH:-${XCI_PATH}/xci/logs}
 # https://github.com/ansible/ansible/commit/67859c3476501d5d9839fd904aec55468d09593a
 # This was fixed in 2.5.6 so remove the pin when OSA updates to newer version.
 #export XCI_ANSIBLE_PIP_VERSION=${XCI_ANSIBLE_PIP_VERSION:-$(curl -s https://raw.githubusercontent.com/openstack/openstack-ansible/${OPENSTACK_OSA_VERSION}/scripts/bootstrap-ansible.sh | grep ansible== | sed -n "s/.*ansible==\([0-9.]*\).*/\1/p")}
-export XCI_ANSIBLE_PIP_VERSION="2.5.8"
+export XCI_ANSIBLE_PIP_VERSION="2.7.8"
 
 export ANSIBLE_HOST_KEY_CHECKING=False
 export DEPLOY_SCENARIO=${DEPLOY_SCENARIO:-"os-nosdn-nofeature"}
