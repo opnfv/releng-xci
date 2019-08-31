@@ -75,7 +75,7 @@ echo "-----------------------------------------------------------------------"
 ssh root@$OPNFV_HOST_IP "set -o pipefail; export XCI_FLAVOR=$XCI_FLAVOR; export INSTALLER_TYPE=$INSTALLER_TYPE; \
         export IDF=/root/releng-xci/xci/var/idf.yml; export PDF=/root/releng-xci/xci/var/pdf.yml; \
         cd releng-xci/.cache/repos/kubespray/; ansible-playbook \
-        -i opnfv_inventory/dynamic_inventory.py cluster.yml -b | tee setup-kubernetes.log"
+        -i inventory/opnfv/dynamic_inventory.py cluster.yml -b | tee setup-kubernetes.log"
 scp root@$OPNFV_HOST_IP:~/releng-xci/.cache/repos/kubespray/setup-kubernetes.log \
         $LOG_PATH/setup-kubernetes.log
 
@@ -88,12 +88,8 @@ echo "-----------------------------------------------------------------------"
 echo "Info: Kubernetes installation is successfully completed!"
 echo "-----------------------------------------------------------------------"
 
-# Configure the kubernetes authentication in opnfv host. In future releases
-# kubectl is no longer an artifact so we should not fail if it's not available.
-# This needs to be removed in the future
-ssh root@$OPNFV_HOST_IP "mkdir -p ~/.kube/;\
-         cp -f ~/admin.conf ~/.kube/config; \
-         cp -f ~/kubectl /usr/local/bin || true"
+ssh root@$OPNFV_HOST_IP "mkdir -p ~/.kube/; \
+    cp -f ~/releng-xci/.cache/repos/kubespray/inventory/opnfv/artifacts/admin.conf ~/.kube/config"
 
 #-------------------------------------------------------------------------------
 # Execute post-installation tasks
