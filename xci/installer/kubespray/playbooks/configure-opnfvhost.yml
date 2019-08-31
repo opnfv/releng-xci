@@ -28,6 +28,24 @@
       configure_network: xci_flavor != 'aio'
 
   tasks:
+    - name: delete existing kubespray/inventory/opnfv directory
+      file:
+        path: "{{ xci_path }}/.cache/repos/kubespray/inventory/opnfv"
+        state: absent
+      delegate_to: 127.0.0.1
+
+    - name: copy kubespray/inventory/sample as kubespray/inventory/opnfv
+      copy:
+        src: "{{ xci_path }}/.cache/repos/kubespray/inventory/sample/"
+        dest: "{{ xci_path }}/.cache/repos/kubespray/inventory/opnfv"
+      delegate_to: 127.0.0.1
+
+    - name: enable creation of kubeconfig on localhost
+      lineinfile:
+        path: "{{ xci_path }}/.cache/repos/kubespray/inventory/opnfv/group_vars/k8s-cluster/k8s-cluster.yml"
+        regexp: "^# kubeconfig_localhost:.*"
+        line: "kubeconfig_localhost: true"
+
     - name: Create list of files to copy
       shell: |
           git ls-tree -r --name-only HEAD > {{ xci_cache }}/releng-xci.files
@@ -52,20 +70,10 @@
           - "--recursive"
           - "--files-from={{ xci_cache }}/releng-xci.files"
 
-    - name: delete the opnfv_inventory directory
-      file:
-        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
-        state: absent
-
-    - name: make sure kubespray/opnfv_inventory/group_vars/ exist
-      file:
-        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
-        state: directory
-
-    - name: copy kubespray inventory directory
+    - name: link xci dynamic inventory to kubespray/inventory/opnfv directory
       file:
         src: "{{ remote_xci_playbooks }}/dynamic_inventory.py"
-        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/dynamic_inventory.py"
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/inventory/opnfv/dynamic_inventory.py"
         state: link
 
     - name: Reload XCI deployment host facts
