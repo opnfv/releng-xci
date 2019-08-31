@@ -1,0 +1,46 @@
+---
+# SPDX-license-identifier: Apache-2.0
+##############################################################################
+# All rights reserved. This program and the accompanying materials
+# are made available under the terms of the Apache License, Version 2.0
+# which accompanies this distribution, and is available at
+# http://www.apache.org/licenses/LICENSE-2.0
+##############################################################################
+- hosts: localhost
+  connection: local
+  vars_files:
+    - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  tasks:
+    - name: delete existing kubespray/inventory/opnfv directory
+      file:
+        path: "{{ xci_path }}/.cache/repos/kubespray/inventory/opnfv"
+        state: absent
+
+    - name: copy kubespray/inventory/sample as kubespray/inventory/opnfv
+      copy:
+        src: "{{ xci_path }}/.cache/repos/kubespray/inventory/sample/"
+        dest: "{{ xci_path }}/.cache/repos/kubespray/inventory/opnfv"
+
+    - name: update kubespray k8s-cluster.yml for xci
+      lineinfile:
+        path: "{{ xci_path }}/.cache/repos/kubespray/inventory/opnfv/group_vars/k8s-cluster/k8s-cluster.yml"
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+      with_items:
+        - { regexp: "kube_version:.*", line: "kube_version: {{ kubernetes_version }}" }
+        - { regexp: "kubeconfig_localhost:.*", line: "kubeconfig_localhost: true" }
+        - { regexp: "kube_basic_auth:.*", line: "kube_basic_auth: true" }
+        - { regexp: "dashboard_enabled:.*", line: "dashboard_enabled: true" }
+
+    - name: update kubespray artifacts_dir
+      lineinfile:
+        path: "{{ xci_path }}/.cache/repos/kubespray/inventory/opnfv/group_vars/k8s-cluster/k8s-cluster.yml"
+        regexp: "artifacts_dir:.*"
+        line: "artifacts_dir: '{{ '{{' }} ansible_env.HOME {{ '}}' }}'"
+
+    - name: change dashboard server type to NodePort
+      lineinfile:
+        path: "{{ xci_path }}/.cache/repos/kubespray/roles/kubernetes-apps/ansible/templates/dashboard.yml.j2"
+        insertafter: 'targetPort'
+        line: "  type: NodePort"
