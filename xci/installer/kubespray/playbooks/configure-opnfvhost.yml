@@ -38,9 +38,9 @@
         executable: /bin/bash
         chdir: "{{ xci_path }}"
       changed_when: False
-      delegate_to: 127.0.0.1
       tags:
         - skip_ansible_lint
+      delegate_to: 127.0.0.1
 
     - name: Copy releng-xci to remote host
       synchronize:
@@ -52,21 +52,19 @@
           - "--recursive"
           - "--files-from={{ xci_cache }}/releng-xci.files"
 
-    - name: delete the opnfv_inventory directory
-      file:
-        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory"
-        state: absent
-
-    - name: make sure kubespray/opnfv_inventory/group_vars/ exist
-      file:
-        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/group_vars"
-        state: directory
-
-    - name: copy kubespray inventory directory
+    - name: link xci dynamic inventory to kubespray/inventory/opnfv directory
       file:
         src: "{{ remote_xci_playbooks }}/dynamic_inventory.py"
-        path: "{{ remote_xci_path }}/.cache/repos/kubespray/opnfv_inventory/dynamic_inventory.py"
+        path: "{{ remote_xci_path }}/.cache/repos/kubespray/inventory/opnfv/dynamic_inventory.py"
         state: link
+
+    - name: Download kubectl and place it to /usr/local/bin
+      get_url:
+        url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubernetes_version }}/bin/linux/amd64/kubectl"
+        dest: /usr/local/bin/kubectl
+        owner: root
+        group: root
+        mode: 0755
 
     - name: Reload XCI deployment host facts
       setup:
@@ -84,12 +82,6 @@
         state: present
         update_cache: "{{ (ansible_pkg_mgr in ['apt', 'zypper']) | ternary('yes', omit) }}"
       when: xci_flavor == 'aio'
-
-    - name: change dashboard server type to NodePort
-      lineinfile:
-        path: "{{ remote_xci_path }}/.cache/repos/kubespray/roles/kubernetes-apps/ansible/templates/dashboard.yml.j2"
-        insertafter: 'targetPort'
-        line: "  type: NodePort"
 
     - name: pip install required packages
       pip:
