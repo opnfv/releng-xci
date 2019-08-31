@@ -145,7 +145,8 @@
 - scenario: k8-calico-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
+  version: 1c0247a5a11d2b078def7e4b9f2ca5dc6ad39bd2
+  refspec: refs/changes/18/68418/2
   role: scenarios/k8-calico-nofeature/role/k8-calico-nofeature
   installers:
     - installer: kubespray
