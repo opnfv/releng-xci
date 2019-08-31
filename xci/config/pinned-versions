@@ -50,3 +50,6 @@ export HAPROXY_VERSION=$(grep -E '.*name: haproxy_server' -A 3 \
        | tail -n1 | sed -n 's/\(^.*: \)\([0-9a-z].*$\)/\2/p')
 # Kubespray release v2.7.0 dated 02.10.2018
 export KUBESPRAY_VERSION=${KUBESPRAY_VERSION:-"v2.7.0"}
+# Kubernetes version supported by the pinned kubespray version
+# this is needed for pulling in kubectl
+export KUBERNETES_VERSION=${KUBERNETES_VERSION:-"v1.11.3"}
