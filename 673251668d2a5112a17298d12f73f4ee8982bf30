@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0131f031_22c1f317",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 254
+      },
+      "writtenOn": "2019-09-01T10:44:39Z",
+      "side": 1,
+      "message": "can you please amend the commit message as the jira line goes together with subject line. you don\u0027t need to put link to jira issue as it gets linked automatically by Gerrit so you can reference to it like in the example below. you can also put WIP in commit message subject line.\n\nsomething like below.\n\nWIP: Remove hardcoded IPs\n\nJIRA: XCI-7\n\ndeploy-scenario:k8-calico-nofeature\ninstaller-type:osh\n\nSigned-off-by: Nikos Mimigiannis \u003cnmimi@intracom-telecom.com\u003e",
+      "revId": "673251668d2a5112a17298d12f73f4ee8982bf30",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    }
+  ]
+}
