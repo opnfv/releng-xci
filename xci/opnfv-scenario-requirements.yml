@@ -11,205 +11,213 @@
 # OPNFV scenarios participating in XCI must create their own entry in this file so
 # XCI can make use of them.
 #
+# the format of the entry for a scenario is:
+#
+#   <scenario name>:
+#     scm: <scm type - generally git>
+#     src: <URI to the repo to clone from>
+#     version: <version to checkout - could be branch, SHA1, tag>
+#     refspec: <optional - gerrit refspec to checkout, refs/changes/XY/123/4>
+#     installers:
+#       <installer name>:
+#         role: <relative path to the role in source repository>
+#         distros:
+#           - <supported distro>
 
 # OpenStack based scenarios
-- scenario: os-nosdn-nofeature
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
-  role: scenarios/os-nosdn-nofeature/role/os-nosdn-nofeature
-  installers:
-    - installer: osa
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - opensuse
-        - ubuntu
-        - centos
-    - installer: osh
-      flavors:
-        - mini
-        - noha
-      distros:
-        - ubuntu
-        - opensuse
-        - ubuntu-bionic
+scenario:
+  os-nosdn-nofeature:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+    version: 8173bb0e54ab22f00798d22ecd413a5d4b7cd1ae
+    refspec: refs/changes/32/68432/3
+    installers:
+      osa:
+        role: scenarios/os-nosdn-nofeature/osa/role/os-nosdn-nofeature
+        flavors:
+          - ha
+          - mini
+          - noha
+        distros:
+          - opensuse
+          - ubuntu
+          - centos
+      osh:
+        role: scenarios/os-nosdn-nofeature/osh/role/os-nosdn-nofeature
+        flavors:
+          - mini
+          - noha
+        distros:
+          - ubuntu
+          - opensuse
+          - ubuntu-bionic
 
-- scenario: os-nosdn-osm
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
-  role: scenarios/os-nosdn-osm/role/os-nosdn-osm
-  installers:
-    - installer: osa
-      flavors:
-        - mini
-      distros:
-        - ubuntu
+  os-nosdn-osm:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+    version: master
+    installers:
+      osa:
+        role: scenarios/os-nosdn-osm/osa/role/os-nosdn-osm
+        flavors:
+          - mini
+        distros:
+          - ubuntu
 
-- scenario: os-odl-nofeature
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
-  role: scenarios/os-odl-nofeature/role/os-odl-nofeature
-  installers:
-    - installer: osa
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - opensuse
-        - ubuntu
+  os-odl-nofeature:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+    version: master
+    installers:
+      osa:
+        role: scenarios/os-odl-nofeature/osa/role/os-odl-nofeature
+        flavors:
+          - ha
+          - mini
+          - noha
+        distros:
+          - opensuse
+          - ubuntu
 
-- scenario: os-odl-sfc
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/sfc
-  version: master
-  role: scenarios/os-odl-sfc/role/os-odl-sfc
-  installers:
-    - installer: osa
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - opensuse
-        - ubuntu
+  os-odl-sfc:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/sfc
+    version: master
+    installers:
+      osa:
+        role: scenarios/os-odl-sfc/osa/role/os-odl-sfc
+        flavors:
+          - ha
+          - mini
+          - noha
+        distros:
+          - opensuse
+          - ubuntu
 
-- scenario: os-odl-sfc_osm
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/sfc
-  version: master
-  role: scenarios/os-odl-sfc_osm/role/os-odl-sfc_osm
-  installers:
-    - installer: osa
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - ubuntu
+  os-odl-sfc_osm:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/sfc
+    version: master
+    installers:
+      osa:
+        role: scenarios/os-odl-sfc_osm/osa/role/os-odl-sfc_osm
+        flavors:
+          - ha
+          - mini
+          - noha
+        distros:
+          - ubuntu
 
-- scenario: os-odl-bgpvpn
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/sdnvpn
-  version: master
-  role: scenarios/os-odl-bgpvpn/role/os-odl-bgpvpn
-  installers:
-    - installer: osa
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - ubuntu
-        - centos
+  os-odl-bgpvpn:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/sdnvpn
+    version: master
+    installers:
+      osa:
+        role: scenarios/os-odl-bgpvpn/osa/role/os-odl-bgpvpn
+        flavors:
+          - ha
+          - mini
+          - noha
+        distros:
+          - ubuntu
+          - centos
 
 
-# Kubernetes based scenarios
-- scenario: k8-nosdn-nofeature
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
-  role: scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature
-  installers:
-    - installer: kubespray
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - ubuntu
-        - centos
-        - opensuse
+  # Kubernetes based scenarios
+  k8-nosdn-nofeature:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+    version: master
+    installers:
+      kubespray:
+        role: scenarios/k8-nosdn-nofeature/kubespray/role/k8-nosdn-nofeature
+        flavors:
+          - ha
+          - mini
+          - noha
+        distros:
+          - ubuntu
+          - centos
+          - opensuse
 
-- scenario: k8-canal-nofeature
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
-  role: scenarios/k8-canal-nofeature/role/k8-canal-nofeature
-  installers:
-    - installer: kubespray
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - ubuntu
-        - centos
-        - opensuse
+  k8-canal-nofeature:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+    version: master
+    installers:
+      kubespray:
+        role: scenarios/k8-canal-nofeature/kubespray/role/k8-canal-nofeature
+        flavors:
+          - ha
+          - mini
+          - noha
+        distros:
+          - ubuntu
+          - centos
+          - opensuse
 
-- scenario: k8-calico-nofeature
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
-  role: scenarios/k8-calico-nofeature/role/k8-calico-nofeature
-  installers:
-    - installer: kubespray
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - ubuntu
-        - centos
-        - opensuse
-    - installer: osh
-      flavors:
-        - mini
-        - noha
-      distros:
-        - ubuntu
-        - opensuse
-        - ubuntu-bionic
+  k8-calico-nofeature:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+    version: 8173bb0e54ab22f00798d22ecd413a5d4b7cd1ae
+    refspec: refs/changes/32/68432/3
+    installers:
+      kubespray:
+        role: scenarios/k8-calico-nofeature/kubespray/role/k8-calico-nofeature
+        flavors:
+          - ha
+          - mini
+          - noha
+        distros:
+          - ubuntu
+          - centos
+          - opensuse
 
-- scenario: k8-flannel-nofeature
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
-  role: scenarios/k8-flannel-nofeature/role/k8-flannel-nofeature
-  installers:
-    - installer: kubespray
-      flavors:
-        - ha
-        - noha
-        - mini
-      distros:
-        - ubuntu
-        - centos
-        - opensuse
+  k8-flannel-nofeature:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+    version: master
+    installers:
+      kubespray:
+        role: scenarios/k8-flannel-nofeature/kubespray/role/k8-flannel-nofeature
+        flavors:
+          - ha
+          - noha
+          - mini
+        distros:
+          - ubuntu
+          - centos
+          - opensuse
 
-- scenario: k8-contiv-nofeature
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
-  role: scenarios/k8-contiv-nofeature/role/k8-contiv-nofeature
-  installers:
-    - installer: kubespray
-      flavors:
-        - ha
-        - noha
-        - mini
-      distros:
-        - ubuntu
-        - centos
-        - opensuse
+  k8-contiv-nofeature:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+    version: master
+    installers:
+      kubespray:
+        role: scenarios/k8-contiv-nofeature/kubespray/role/k8-contiv-nofeature
+        flavors:
+          - ha
+          - noha
+          - mini
+        distros:
+          - ubuntu
+          - centos
+          - opensuse
 
-- scenario: k8-nosdn-istio
-  scm: git
-  src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: master
-  role: scenarios/k8-nosdn-istio/role/k8-nosdn-istio
-  installers:
-    - installer: kubespray
-      flavors:
-        - ha
-        - mini
-        - noha
-      distros:
-        - ubuntu
-        - centos
-        - opensuse
+  k8-nosdn-istio:
+    scm: git
+    src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
+    version: master
+    installers:
+      kubespray:
+        role: scenarios/k8-nosdn-istio/kubespray/role/k8-nosdn-istio
+        flavors:
+          - ha
+          - mini
+          - noha
+        distros:
+          - ubuntu
+          - centos
+          - opensuse
