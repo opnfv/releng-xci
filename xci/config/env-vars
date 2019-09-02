@@ -28,7 +28,7 @@ export XCI_CACHE=${XCI_PATH}/.cache
 
 # OPNFV_XCI_CACHE is similar to XCI_CACHE but refers to the remote OPNFV host.
 export OPNFV_XCI_CACHE="/root/releng-xci/.cache"
-export XCI_SCENARIOS_CACHE="${XCI_CACHE}/repos/scenarios"
+export XCI_SCENARIOS_CACHE="${XCI_CACHE}/repos"
 export XCI_PLAYBOOKS=${XCI_PATH}/xci/playbooks
 
 # Functest parameters
