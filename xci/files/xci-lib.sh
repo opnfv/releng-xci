@@ -135,7 +135,7 @@ function install_ansible() {
             [curl]=curl
         )
         EXTRA_PKG_DEPS=( apt-utils )
-        sudo apt-get update
+        sudo apt-get update -qq > /dev/null
         ;;
 
         rhel|fedora|centos)
@@ -158,7 +158,7 @@ function install_ansible() {
             [wget]=wget
             [curl]=curl
         )
-        sudo $PKG_MANAGER updateinfo
+        sudo $PKG_MANAGER updateinfo > /dev/null
         EXTRA_PKG_DEPS=( deltarpm )
         ;;
 
@@ -172,7 +172,7 @@ function install_ansible() {
 
     install_map+=(${EXTRA_PKG_DEPS[@]} )
 
-    ${INSTALLER_CMD} ${install_map[@]}
+    ${INSTALLER_CMD} ${install_map[@]} > /dev/null
 
     # We need to prepare our virtualenv now
     virtualenv --quiet --no-site-packages ${XCI_VENV}
