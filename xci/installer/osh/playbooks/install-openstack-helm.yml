@@ -11,6 +11,12 @@
   remote_user: root
   vars_files:
     - "{{ xci_path }}/xci/var/opnfv.yml"
+
+  pre_tasks:
+    - name: Set facts for remote deployment
+      set_fact:
+        remote_xci_path: "{{ ansible_env.HOME }}/releng-xci"
+
   roles:
     - role: prepare-opnfvhost-osh
     - role: prepare-osh
