@@ -72,6 +72,10 @@
         gather_subset: "!all"
       delegate_to: 127.0.0.1
 
+    - name: Log role to console for {{ deploy_scenario }}
+      debug:
+        msg: "{{ hostvars['opnfv'].ansible_local.xci.scenarios.role }}"
+
     - name: Prepare everything to run the {{ deploy_scenario }} role
       include_role:
         name: "{{ hostvars['opnfv'].ansible_local.xci.scenarios.role }}"
