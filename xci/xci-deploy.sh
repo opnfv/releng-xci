@@ -105,13 +105,15 @@ echo "-------------------------------------------------------------------------"
 
 # Get scenario variables overrides
 #-------------------------------------------------------------------------------
-source $(find $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO} -name xci_overrides) &>/dev/null &&
+source $(find $XCI_SCENARIOS_CACHE/${DEPLOY_SCENARIO}/${INSTALLER_TYPE} -name xci_overrides) &>/dev/null &&
     echo "Sourced ${DEPLOY_SCENARIO} overrides files successfully!" || :
 
 #-------------------------------------------------------------------------------
 # Log info to console
 #-------------------------------------------------------------------------------
 log_xci_information
+
+exit 0
 
 # Deploy infrastructure based on the selected deloyment method
 echo "Info: Deploying hardware using '${INFRA_DEPLOYMENT}'"

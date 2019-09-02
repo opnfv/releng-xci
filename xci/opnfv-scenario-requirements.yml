@@ -17,9 +17,9 @@
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
   version: master
-  role: scenarios/os-nosdn-nofeature/role/os-nosdn-nofeature
   installers:
-    - installer: osa
+    osa:
+      role: scenarios/os-nosdn-nofeature/osa/role/os-nosdn-nofeature
       flavors:
         - ha
         - mini
@@ -28,7 +28,8 @@
         - opensuse
         - ubuntu
         - centos
-    - installer: osh
+    osh:
+      role: scenarios/os-nosdn-nofeature/osh/role/os-nosdn-nofeature
       flavors:
         - mini
         - noha
@@ -41,9 +42,9 @@
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
   version: master
-  role: scenarios/os-nosdn-osm/role/os-nosdn-osm
   installers:
-    - installer: osa
+    osa:
+      role: scenarios/os-nosdn-osm/osa/role/os-nosdn-osm
       flavors:
         - mini
       distros:
@@ -53,9 +54,9 @@
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
   version: master
-  role: scenarios/os-odl-nofeature/role/os-odl-nofeature
   installers:
-    - installer: osa
+    osa:
+      role: scenarios/os-odl-nofeature/osa/role/os-odl-nofeature
       flavors:
         - ha
         - mini
@@ -68,9 +69,9 @@
   scm: git
   src: https://gerrit.opnfv.org/gerrit/sfc
   version: master
-  role: scenarios/os-odl-sfc/role/os-odl-sfc
   installers:
-    - installer: osa
+    osa:
+      role: scenarios/os-odl-sfc/osa/role/os-odl-sfc
       flavors:
         - ha
         - mini
@@ -83,9 +84,9 @@
   scm: git
   src: https://gerrit.opnfv.org/gerrit/sfc
   version: master
-  role: scenarios/os-odl-sfc_osm/role/os-odl-sfc_osm
   installers:
-    - installer: osa
+    osa:
+      role: scenarios/os-odl-sfc_osm/osa/role/os-odl-sfc_osm
       flavors:
         - ha
         - mini
@@ -97,9 +98,9 @@
   scm: git
   src: https://gerrit.opnfv.org/gerrit/sdnvpn
   version: master
-  role: scenarios/os-odl-bgpvpn/role/os-odl-bgpvpn
   installers:
-    - installer: osa
+    osa:
+      role: scenarios/os-odl-bgpvpn/osa/role/os-odl-bgpvpn
       flavors:
         - ha
         - mini
@@ -114,9 +115,9 @@
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
   version: master
-  role: scenarios/k8-nosdn-nofeature/role/k8-nosdn-nofeature
   installers:
-    - installer: kubespray
+    kubespray:
+      role: scenarios/k8-nosdn-nofeature/kubespray/role/k8-nosdn-nofeature
       flavors:
         - ha
         - mini
@@ -130,9 +131,9 @@
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
   version: master
-  role: scenarios/k8-canal-nofeature/role/k8-canal-nofeature
   installers:
-    - installer: kubespray
+    kubespray:
+      role: scenarios/k8-canal-nofeature/kubespray/role/k8-canal-nofeature
       flavors:
         - ha
         - mini
@@ -145,11 +146,11 @@
 - scenario: k8-calico-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-  version: 94625920bd45180934815d8ce33197805dfff921
-  refspec: refs/changes/18/68418/6
-  role: scenarios/k8-calico-nofeature/role/k8-calico-nofeature
+  version: 6073953eedcbe5adc91b5ee5a87bf7c924b526ae
+  refspec: refs/changes/32/68432/1
   installers:
-    - installer: kubespray
+    kubespray:
+      role: scenarios/k8-calico-nofeature/kubespray/role/k8-calico-nofeature
       flavors:
         - ha
         - mini
@@ -158,22 +159,14 @@
         - ubuntu
         - centos
         - opensuse
-    - installer: osh
-      flavors:
-        - mini
-        - noha
-      distros:
-        - ubuntu
-        - opensuse
-        - ubuntu-bionic
 
 - scenario: k8-flannel-nofeature
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
   version: master
-  role: scenarios/k8-flannel-nofeature/role/k8-flannel-nofeature
   installers:
-    - installer: kubespray
+    kubespray:
+      role: scenarios/k8-flannel-nofeature/kubespray/role/k8-flannel-nofeature
       flavors:
         - ha
         - noha
@@ -187,9 +180,9 @@
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
   version: master
-  role: scenarios/k8-contiv-nofeature/role/k8-contiv-nofeature
   installers:
-    - installer: kubespray
+    kubespray:
+      role: scenarios/k8-contiv-nofeature/kubespray/role/k8-contiv-nofeature
       flavors:
         - ha
         - noha
@@ -203,9 +196,9 @@
   scm: git
   src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
   version: master
-  role: scenarios/k8-nosdn-istio/role/k8-nosdn-istio
   installers:
-    - installer: kubespray
+    kubespray:
+      role: scenarios/k8-nosdn-istio/kubespray/role/k8-nosdn-istio
       flavors:
         - ha
         - mini
