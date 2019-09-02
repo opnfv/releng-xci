@@ -34,6 +34,10 @@
         - { regexp: "kube_basic_auth:.*", line: "kube_basic_auth: true" }
         - { regexp: "dashboard_enabled:.*", line: "dashboard_enabled: true" }
 
+# NOTE(fdegir): the reason for this task to be separate from the task which uses lineinfile
+# module is that escaping curly braces does not work with with_items. what happens is that
+# ansible tries to resolve {{ ansible_env.HOME }} which we don't want since it should point
+# to home folder of the user executing this task at runtime.
     - name: update kubespray artifacts_dir
       lineinfile:
         path: "{{ xci_path }}/.cache/repos/kubespray/inventory/opnfv/group_vars/k8s-cluster/k8s-cluster.yml"
