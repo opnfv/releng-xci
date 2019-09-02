@@ -160,6 +160,7 @@ echo "Info: Continue with running the openstack-helm installation"
 echo "-----------------------------------------------------------------------"
 cd $OSH_XCI_PLAYBOOKS
 ansible-playbook ${XCI_ANSIBLE_PARAMS} -v -i ${XCI_PLAYBOOKS}/dynamic_inventory.py \
+    -e XCI_CACHE="/root/releng-xci/.cache" \
     install-openstack-helm.yml
 echo "-----------------------------------------------------------------------"
 echo "Info: Openstack-helm installation execution done"

@@ -13,7 +13,7 @@
     path: /root/{{ item }}
     state: directory
   with_items:
-    ['repos','tmp', '.helm/repository/local']
+    ['tmp', '.helm/repository/local']
 
 - name: Rename bifrost clouds file to get it out of precedence
   command: "mv .config/openstack/clouds.yaml .config/openstack/clouds.yaml.bifrost"
@@ -22,7 +22,7 @@
 - name: Clone openstack-helm
   git:
     repo: "{{ osh_git_url }}"
-    dest: /root/repos/openstack-helm
+    dest: "{{ xci_cache }}/repos/openstack-helm"
     version: "{{ osh_version }}"
     update: true
     force: true
@@ -33,20 +33,20 @@
 
 - name: Fix dns nameserver for openstack installation (mini flavor)
   lineinfile:
-    path: /root/repos/openstack-helm/tools/gate/files/heat-public-net-deployment.yaml
+    path: "{{ xci_cache }}/repos/openstack-helm/tools/gate/files/heat-public-net-deployment.yaml"
     regexp: '10\.96\.0\.10'
     line: "        - 10.233.0.3"
 
 - name: Fix dns nameserver for openstack installation (noha flavor)
   lineinfile:
-    path: /root/repos/openstack-helm/tempest/values.yaml
+    path: "{{ xci_cache }}/repos/openstack-helm/tempest/values.yaml"
     regexp: 'dns_servers'
     line: "      dns_servers: 10.233.0.3"
 
 - name: Clone openstack-helm-infra
   git:
     repo: "{{ osh_infra_git_url }}"
-    dest: /root/repos/openstack-helm-infra
+    dest: "{{ xci_cache }}/repos/openstack-helm-infra"
     version: "{{ osh_infra_version }}"
     update: true
     force: true
@@ -108,7 +108,7 @@
 
 - name: Make charts from infra
   make:
-    chdir: /root/repos/openstack-helm-infra
+    chdir: "{{ xci_cache }}/repos/openstack-helm-infra"
     target: "{{ item }}"
   with_items:
     - helm-toolkit

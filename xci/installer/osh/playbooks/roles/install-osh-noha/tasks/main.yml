@@ -3,89 +3,89 @@
   command: ./tools/deployment/multinode/010-setup-client.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy the ingress controller
   command: ./tools/deployment/multinode/020-ingress.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy Ceph
   command: ./tools/deployment/multinode/030-ceph.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Activate the openstack namespace to be able to use Ceph
   command: ./tools/deployment/multinode/040-ceph-ns-activate.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy MariaDB
   command: ./tools/deployment/multinode/050-mariadb.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy RabbitMQ
   command: ./tools/deployment/multinode/060-rabbitmq.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy memcached
   command: ./tools/deployment/multinode/070-memcached.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy Keystone
   command: ./tools/deployment/multinode/080-keystone.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy Horizon
   command: ./tools/deployment/multinode/085-horizon.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy Rados Gateway for object store
   command: ./tools/deployment/multinode/090-ceph-radosgateway.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy Glance
   command: ./tools/deployment/multinode/100-glance.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy Cinder
   command: ./tools/deployment/multinode/110-cinder.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy OpenvSwitch
   command: ./tools/deployment/multinode/120-openvswitch.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy Libvirt
   command: ./tools/deployment/multinode/130-libvirt.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Add br-vxlan as the tunnel interface
   lineinfile:
-    path: /root/repos/openstack-helm/tools/deployment/multinode/140-compute-kit.sh
+    path: "{{ xci_cache }}/repos/openstack-helm/tools/deployment/multinode/140-compute-kit.sh"
     regexp: 'NETWORK_TUNNEL_DEV="$(network_tunnel_dev)"'
     line: 'NETWORK_TUNNEL_DEV=br-vxlan'
 
@@ -93,28 +93,28 @@
   command: ./tools/deployment/multinode/140-compute-kit.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy Heat
   command: ./tools/deployment/multinode/150-heat.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Deploy Barbican
   command: ./tools/deployment/multinode/160-barbican.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Copy script to the worker node
   command: "scp -o \"StrictHostKeyChecking no\" tools/deployment/developer/ceph/170-setup-gateway.sh root@{{ hostvars.node1.ip }}:170-setup-gateway.sh"
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
 
 - name: Setup the gateway to the public network at worker node
-  command: /root/170-setup-gateway.sh
+  command: "{{ xci_cache }}/170-setup-gateway.sh"
   changed_when: false
   delegate_to: node1
 
@@ -127,4 +127,4 @@
   command: ./tools/deployment/developer/common/900-use-it.sh
   changed_when: false
   args:
-    chdir: /root/repos/openstack-helm
+    chdir: "{{ xci_cache }}/repos/openstack-helm"
