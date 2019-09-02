@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9eeae182_f3546dbd",
+        "filename": "xci/config/env-vars",
+        "patchSetId": 7
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-02T10:03:48Z",
+      "side": 1,
+      "message": "This value is taken from https://github.com/opnfv/releng-xci/blob/master/xci/var/idf.yml#L17. You should use that one to define the ansible variable subnet_cidr",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 1
+      },
+      "revId": "e39dd35a3359b021bc058844a682d3ad55c76534",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08c8fb1f_e1733ab4",
+        "filename": "xci/var/opnfv.yml",
+        "patchSetId": 7
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-02T10:03:48Z",
+      "side": 1,
+      "message": "As already commented, the value for subnet_cidr should come from https://github.com/opnfv/releng-xci/blob/master/xci/var/idf.yml#L17",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 3
+      },
+      "revId": "e39dd35a3359b021bc058844a682d3ad55c76534",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
