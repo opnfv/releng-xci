@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c2ce4b76_c5512d45",
+        "filename": "xci/installer/kubespray/playbooks/configure-installer.yml",
+        "patchSetId": 13
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-02T10:33:55Z",
+      "side": 1,
+      "message": "Rememeber to add a comment explaining why you need another task",
+      "revId": "5ed2d835de246e3cfb0878d78b382115ec8f0987",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
