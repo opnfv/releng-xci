@@ -29,8 +29,8 @@ scenario:
   os-nosdn-nofeature:
     scm: git
     src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-    version: 8173bb0e54ab22f00798d22ecd413a5d4b7cd1ae
-    refspec: refs/changes/32/68432/3
+    version: c3071232c3ee6c8a6b677168a7eb20322bc6363b
+    refspec: refs/changes/35/68435/1
     installers:
       osa:
         role: scenarios/os-nosdn-nofeature/osa/role/os-nosdn-nofeature
@@ -160,8 +160,7 @@ scenario:
   k8-calico-nofeature:
     scm: git
     src: https://gerrit.opnfv.org/gerrit/releng-xci-scenarios
-    version: 8173bb0e54ab22f00798d22ecd413a5d4b7cd1ae
-    refspec: refs/changes/32/68432/3
+    version: master
     installers:
       kubespray:
         role: scenarios/k8-calico-nofeature/kubespray/role/k8-calico-nofeature
