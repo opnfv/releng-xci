@@ -62,6 +62,12 @@
   args:
     chdir: /root/repos/openstack-helm
 
+- name: Deploy Cinder
+  command: ./tools/deployment/component/cinder/cinder.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
 - name: Deploy OpenvSwitch
   command: ./tools/deployment/component/compute-kit/openvswitch.sh
   changed_when: false
