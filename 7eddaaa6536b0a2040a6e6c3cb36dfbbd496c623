@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c11fdcd_3d919e67",
+        "filename": "xci/playbooks/configure-localhost.yml",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-03T08:05:13Z",
+      "side": 1,
+      "message": "The problem of this solution is that when doing baremetal, we are not using idf.yml but another idf.yml which represents the baremetal hardware. Look at: https://github.com/opnfv/releng-xci/blob/master/xci/files/xci-lib.sh#L13-L40. The correct idf is consumed when generating the inventory. You can see how the inventory looks like with:\n\nexport PDF\u003d~/releng-xci/xci/var/pdf.yml\nexport IDF\u003d~/releng-xci/xci/var/idf.yml \npython ~/releng-xci/xci/playbooks/dynamic_inventory.py",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 42
+      },
+      "revId": "7eddaaa6536b0a2040a6e6c3cb36dfbbd496c623",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": true
+    }
+  ]
+}
