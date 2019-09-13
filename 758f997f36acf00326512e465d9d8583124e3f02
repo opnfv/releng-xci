@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c47afd50_7678cb55",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d9aa897_02c8e23c",
+      "range": {
+        "startLine": 84,
+        "startChar": 26,
+        "endLine": 84,
+        "endChar": 33
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b7927ecd_d2365e43",
         "filename": "docs/xci-user-guide.rst",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "cd3131cf_48368421",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Nope, LOCI images. Actually, it is the only project apparently that uses LOCI images and there were talks about integrating the LOCI project into OSH",
+      "parentUuid": "b7927ecd_d2365e43",
+      "range": {
+        "startLine": 85,
+        "startChar": 2,
+        "endLine": 85,
+        "endChar": 6
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e4f8c51d_5135391f",
         "filename": "docs/xci-user-guide.rst",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2019-09-04T11:46:44Z",
       "side": 1,
       "message": "no need to say also",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 99,
+        "endChar": 8
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db5df222_07b86b86",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e4f8c51d_5135391f",
       "range": {
         "startLine": 99,
         "startChar": 4,
@@ -117,6 +189,54 @@
     },
     {
       "key": {
+        "uuid": "13bffc48_06eb712b",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bae1f1ff_020e38ba",
+      "range": {
+        "startLine": 100,
+        "startChar": 27,
+        "endLine": 100,
+        "endChar": 45
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8cfe18dd_3f61cb6b",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9440f1c6_73f67c3d",
+      "range": {
+        "startLine": 100,
+        "startChar": 50,
+        "endLine": 100,
+        "endChar": 79
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "44fb2da1_5619d2e5",
         "filename": "docs/xci-user-guide.rst",
         "patchSetId": 2
@@ -128,6 +248,30 @@
       "writtenOn": "2019-09-04T11:46:44Z",
       "side": 1,
       "message": "in which directory?",
+      "range": {
+        "startLine": 102,
+        "startChar": 35,
+        "endLine": 102,
+        "endChar": 52
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "81c6a127_0e6cc341",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44fb2da1_5619d2e5",
       "range": {
         "startLine": 102,
         "startChar": 35,
@@ -186,6 +330,54 @@
     },
     {
       "key": {
+        "uuid": "719fa807_e4a701d9",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "fdd63e80_5e3c0e97",
+      "range": {
+        "startLine": 105,
+        "startChar": 70,
+        "endLine": 105,
+        "endChar": 77
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c174048_fa5e771e",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "88cbeb1c_d6cfc676",
+      "range": {
+        "startLine": 105,
+        "startChar": 12,
+        "endLine": 105,
+        "endChar": 19
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47aab035_19c713fd",
         "filename": "docs/xci-user-guide.rst",
         "patchSetId": 2
@@ -197,6 +389,30 @@
       "writtenOn": "2019-09-04T11:46:44Z",
       "side": 1,
       "message": "on",
+      "range": {
+        "startLine": 106,
+        "startChar": 67,
+        "endLine": 106,
+        "endChar": 69
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "690cb21b_730f356d",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "47aab035_19c713fd",
       "range": {
         "startLine": 106,
         "startChar": 67,
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "d143d4fa_3528d528",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "51e15cbb_67b32c40",
+      "range": {
+        "startLine": 154,
+        "startChar": 76,
+        "endLine": 154,
+        "endChar": 77
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a3f9451b_56d11a6d",
         "filename": "docs/xci-user-guide.rst",
         "patchSetId": 2
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "48b7accb_0770f63e",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a3f9451b_56d11a6d",
+      "range": {
+        "startLine": 156,
+        "startChar": 78,
+        "endLine": 156,
+        "endChar": 79
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3c5ec2a0_b8fc44ed",
         "filename": "docs/xci-user-guide.rst",
         "patchSetId": 2
@@ -266,6 +530,30 @@
       "writtenOn": "2019-09-04T11:46:44Z",
       "side": 1,
       "message": "If no flavor is selected, the deployment uses the default flavor ``mini`` and\nthe verified versions of upstream components pinned in releng-xci repository.",
+      "range": {
+        "startLine": 308,
+        "startChar": 0,
+        "endLine": 309,
+        "endChar": 41
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c4b0322_40f129cd",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "thanks!",
+      "parentUuid": "3c5ec2a0_b8fc44ed",
       "range": {
         "startLine": 308,
         "startChar": 0,
@@ -324,6 +612,54 @@
     },
     {
       "key": {
+        "uuid": "1509c112_8d2cb0cd",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6b98398f_19643a0b",
+      "range": {
+        "startLine": 361,
+        "startChar": 42,
+        "endLine": 361,
+        "endChar": 45
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91adc4e7_4b3c285e",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0b04180b_afdd6d1c",
+      "range": {
+        "startLine": 361,
+        "startChar": 50,
+        "endLine": 361,
+        "endChar": 53
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "580227e5_fdb2b556",
         "filename": "docs/xci-user-guide.rst",
         "patchSetId": 2
@@ -335,6 +671,30 @@
       "writtenOn": "2019-09-04T11:46:44Z",
       "side": 1,
       "message": "If no flavor is selected, the deployment uses the default flavor ``mini`` and\nthe verified versions of upstream components pinned in releng-xci repository.",
+      "range": {
+        "startLine": 365,
+        "startChar": 0,
+        "endLine": 366,
+        "endChar": 45
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afb38d68_d73e7d60",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "580227e5_fdb2b556",
       "range": {
         "startLine": 365,
         "startChar": 0,
@@ -364,6 +724,24 @@
     },
     {
       "key": {
+        "uuid": "00b1762c_ed9011c3",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ab7461f1_72796168",
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "cf76d0c1_2e1eafc8",
         "filename": "docs/xci-user-guide.rst",
         "patchSetId": 2
@@ -375,6 +753,30 @@
       "writtenOn": "2019-09-04T11:46:44Z",
       "side": 1,
       "message": "Set",
+      "range": {
+        "startLine": 416,
+        "startChar": 3,
+        "endLine": 416,
+        "endChar": 9
+      },
+      "revId": "758f997f36acf00326512e465d9d8583124e3f02",
+      "serverId": "bbac25d2-bf60-4904-9ba8-a72fc000d6c5",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8fcf5872_5bce0dde",
+        "filename": "docs/xci-user-guide.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 2091
+      },
+      "writtenOn": "2019-09-13T08:47:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf76d0c1_2e1eafc8",
       "range": {
         "startLine": 416,
         "startChar": 3,
