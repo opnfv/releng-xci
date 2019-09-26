@@ -64,6 +64,7 @@ ansible-playbook ${XCI_ANSIBLE_PARAMS} \
     -e ipv4_gateway=192.168.122.1 \
     -e wait_timeout=3600 \
     -e enable_keystone=false \
+    -e ironicclient_source_install=true \
     -e ironicinspector_git_branch=${BIFROST_IRONIC_INSPECTOR_VERSION:-master} \
     -e ironicinspectorclient_git_branch=${BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION:-master} \
     -e ironicclient_git_branch=${BIFROST_IRONIC_CLIENT_VERSION:-master} \
