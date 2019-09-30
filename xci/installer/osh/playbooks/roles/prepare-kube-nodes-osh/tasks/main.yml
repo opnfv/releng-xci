@@ -10,3 +10,8 @@
     - rbd-nbd
     - apparmor
     - nfs-common
+
+- name: Add entry for ceph in hosts file
+  lineinfile:
+    path: /etc/hosts
+    line: "{{ hostvars[inventory_hostname].ip }} ceph-mon.ceph.svc.cluster.local"
