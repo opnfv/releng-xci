@@ -38,8 +38,8 @@ export BIFROST_IRONIC_INSPECTOR_CLIENT_VERSION=${BIFROST_IRONIC_INSPECTOR_CLIENT
 # HEAD of osa "stable/rocky" as of 04.01.2019
 export OPENSTACK_OSA_VERSION=${OPENSTACK_OSA_VERSION:-"2087cd98f28b35f655ca398d25d2a6c71e38328e"}
 export OPENSTACK_OSH_VERSION="rocky"
-# HEAD of osh "master" as of 17.07.2019
-export OSH_VERSION=${OSH_VERSION:-"dadf9946e076df2b09556f4a18107dc487788cdd"}
+# HEAD of osh "master" as of 03.10.2019
+export OSH_VERSION=${OSH_VERSION:-"21ad4a9fdbdf7773a997d63ea320c5ba7b519cc1"}
 # HEAD of osh-infra "master" as of 16.07.2019
 export OSH_INFRA_VERSION=${OSH_INFRA_VERSION:-"e96bdd9fb6235573acf5d4d1d019dca1e1446b7d"}
 export KEEPALIVED_VERSION=$(grep -E '.*name: keepalived' -A 3 \
