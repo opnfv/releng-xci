@@ -6,6 +6,18 @@
   args:
     chdir: /root/repos/openstack-helm
 
+- name: Deploy ceph
+  command: ./tools/deployment/component/ceph/ceph.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
+- name: Activate ceph namespace
+  command: ./tools/deployment/component/ceph/ceph-ns-activate.sh
+  changed_when: false
+  args:
+    chdir: /root/repos/openstack-helm
+
 - name: Deploy the ingress controller
   command: ./tools/deployment/component/common/ingress.sh
   changed_when: false
@@ -30,22 +42,14 @@
   args:
     chdir: /root/repos/openstack-helm
 
-- name: Update nfs-provisioner helm-chart
-  shell: helm dependency update nfs-provisioner
-  args:
-    chdir: /root/repos/openstack-helm-infra
-    executable: /bin/bash
-  tags:
-    - skip_ansible_lint
-
-- name: Deploy nfs-provisioner
-  command: ./tools/deployment/component/nfs-provisioner/nfs-provisioner.sh
+- name: Deploy Keystone
+  command: ./tools/deployment/component/keystone/keystone.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
 
-- name: Deploy Keystone
-  command: ./tools/deployment/component/keystone/keystone.sh
+- name: Deploy Cinder
+  command: ./tools/deployment/component/cinder/cinder.sh
   changed_when: false
   args:
     chdir: /root/repos/openstack-helm
