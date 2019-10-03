@@ -20,5 +20,6 @@
         - CONTAINER_DISTRO_NAME: "{{ container_distro_name }}"
         - CONTAINER_DISTRO_VERSION: "{{ container_distro_version }}"
         - OPENSTACK_RELEASE: "{{ openstack_osh_version }}"
+        - GLANCE_BACKEND: "rbd"
     - role: install-osh-noha
       when: xci_flavor == 'noha'
